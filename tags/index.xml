@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on The Road</title>
+    <link>https://zxkane.github.io/tags/</link>
+    <description>Recent content in Tags on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://zxkane.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Archsummit</title>
+      <link>https://zxkane.github.io/tags/archsummit/</link>
+      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zxkane.github.io/tags/archsummit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>会议</title>
+      <link>https://zxkane.github.io/tags/%E4%BC%9A%E8%AE%AE/</link>
+      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zxkane.github.io/tags/%E4%BC%9A%E8%AE%AE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>架构</title>
+      <link>https://zxkane.github.io/tags/%E6%9E%B6%E6%9E%84/</link>
+      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zxkane.github.io/tags/%E6%9E%B6%E6%9E%84/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

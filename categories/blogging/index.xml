@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogging on The Road</title>
+    <link>https://zxkane.github.io/categories/blogging/</link>
+    <description>Recent content in Blogging on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://zxkane.github.io/categories/blogging/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2018北京ArchSummit回顾</title>
+      <link>https://zxkane.github.io/posts/2018/2018-12-13-bj-archsummit-review/</link>
+      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zxkane.github.io/posts/2018/2018-12-13-bj-archsummit-review/</guid>
+      <description>&lt;p&gt;上周参加了&lt;a href=&#34;https://bj2018.archsummit.com&#34;&gt;ArchSummit(全球架构师峰会)&lt;/a&gt;，在这里记录下部分参加的主题以及个人感受。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

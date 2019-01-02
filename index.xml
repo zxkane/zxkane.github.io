@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Road</title>
+    <link>https://zxkane.github.io/</link>
+    <description>Recent content on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://zxkane.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2018北京ArchSummit回顾</title>
+      <link>https://zxkane.github.io/posts/2018/2018-12-13-bj-archsummit-review/</link>
+      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zxkane.github.io/posts/2018/2018-12-13-bj-archsummit-review/</guid>
+      <description>&lt;p&gt;上周参加了&lt;a href=&#34;https://bj2018.archsummit.com&#34;&gt;ArchSummit(全球架构师峰会)&lt;/a&gt;，在这里记录下部分参加的主题以及个人感受。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://zxkane.github.io/404/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zxkane.github.io/404/</guid>
+      <description> Error 404: Page Not Found It seems that the page that you&amp;rsquo;re trying to access doesn&amp;rsquo;t exist. 😟 If you&amp;rsquo;re sure that it exists, chances are it might have been moved to a new link! You may search for it on the home page. </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://zxkane.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zxkane.github.io/about/</guid>
+      <description>So, Who Am I? 
+I’m the father of twin sons. Live in Beijing. Also I&amp;rsquo;m the *uix user, a full stack software engineer, devops and cloud native evangelist.
+Curious about me? Use the social links above to check out my profiles.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<title>
+	2018北京ArchSummit回顾
+</title>
+		<style>
+	body {
+		display: block;
+		--colorBG: "#40e0d0, #ff8c00, #ff0080";
+		
+			background: linear-gradient(to right, var(--colorBG)) !important;
+		
+	}
+
+	body, body.pushable {
+		background-repeat: no-repeat;
+	  	background-attachment: fixed;
+	  	background-size: cover !important;
+	}
+</style>
+
+		<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+	
+	<meta name="author" content="Kane" />
+	<meta name="description" content="上周参加了ArchSummit(全球架构师峰会)，在这里记录下部分参加的主题以及个人感受。
+" />
+
+
+
+<meta name="generator" content="Hugo 0.53" />
+
+
+<link rel="shortcut icon" href="/img/blog.png">
+
+
+
+
+		
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+
+
+
+	<link rel="stylesheet" type="text/css" href="/css/highlight.css">
+
+
+
+
+	
+		<link rel="stylesheet" type="text/css" href="/css/highlight.css">
+	
+
+
+
+<style>
+	body.pushable {
+		display: block;
+		
+			background: linear-gradient(to right, var(--colorBG)) !important;
+		 ;
+	}
+</style>
+
+
+
+<script>
+	var colorBG =  true 
+	var enabledPost =  false 
+	
+	var isMobile = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+	console.log("The client device is a "+(isMobile?"mobile":"PC")+".")
+</script>
+
+	</head>
+
+	<body>
+		<script>
+var prevBgIndex = 0;
+var bodyBgSwitchIndex = 0;
+
+
+	var gradients = [
+	  [],
+	  ['#40e0d0', '#ff8c00', '#ff0080'], 
+	  ['#3e5151', '#decba4'], 
+	  ['#11998e', '#38ef7d'], 
+	  ['#108dc7', '#ef8e38'], 
+	  ['#fc5c7d', '#6a82fb'], 
+	  ['#fc466b', '#3f5efb'], 
+	  ['#c94b4b', '#4b134f'], 
+	  ['#23074d', '#cc5333'] 
+	];
+	document.body.style.setProperty('--colorBG', connect(gradients[getRandomInt(0, gradients.length)]));
+
+
+	function getRandomInt(min, max) {
+	  min = Math.ceil(min);
+	  max = Math.floor(max);
+	  var random;
+	  while (1) {
+	    random = Math.floor(Math.random() * (max - min)) + min;
+	    if (random !== prevBgIndex) {
+	      prevBgIndex = random;
+	      break;
+	    }
+	  }
+	  return random;
+	}
+
+	function connect(arr) {
+	  var str = '';
+	  for (var i = 0; i < arr.length; i++) {
+	    if (i !== arr.length - 1) {
+	      str += arr[i] + ', ';
+	    } else {
+	      str += arr[i];
+	    }
+	  }
+	  return str;
+	}
+</script>
+
+
+
+
+		<div id="sidebar" class="ui sidebar inverted vertical menu">
+	
+	<section id="author" class="ui top attached center aligned inverted segment">
+		
+<div class="ui small circular image">
+	
+		<img src="https://www.gravatar.com/avatar/0db85dd6e3b1972fafa2c36e6df3abfb">
+	
+</div>
+
+
+<h3 class="ui header">
+	Kane
+	<div class="sub header">Father with twin boys, an open source mania.</div>
+</h3>
+
+	</section>
+
+	
+	
+		<section class="ui attached center aligned inverted segment sidebar-dream-tags">
+			
+			
+
+
+
+
+	
+		<a class="ui label pink " href="/tags/archsummit" title="archsummit">archsummit</a>
+	
+		<a class="ui label pink " href="/tags/%E4%BC%9A%E8%AE%AE" title="会议">会议</a>
+	
+		<a class="ui label red " href="/tags/%E6%9E%B6%E6%9E%84" title="架构">架构</a>
+	
+
+
+		</section>
+	
+
+	
+	
+		<section class="ui attached inverted segment sidebar-dream-categories both flexbox">
+			<div class="ui inverted accordion">
+				
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/blogging">blogging</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://zxkane.github.io/posts/2018/2018-12-13-bj-archsummit-review/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>2018北京ArchSummit回顾</p>
+				</div>
+			</a>
+		
+	</div>
+
+
+			</div>
+		</section>
+	
+
+	
+	<section id="footer" class="ui bottom attached center aligned inverted segment">
+		
+
+	<p>© 2019 The Road</p>
+
+
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with <a href="https://github.com/UtkarshVerma/hugo-dream-plus" target="_blank">Dream Plus</a> theme.</p>
+
+	</section>
+</div>
+
+
+		<div class="pusher">
+			<div class="flipper">
+				<div class="front">
+					
+	<nav class="ui top secondary menu bar">
+	
+	<div class="item">
+		<i class="inverted big link bullseye icon dream-flip-toggle" title="About Me"></i>
+	</div>
+
+	
+	
+		<div class="item">
+			<a href="/">
+				<i class="inverted big link home icon" title="Home"></i>
+			</a>
+		</div>
+	
+
+	
+	
+		
+			<div class="item">
+				<a href="/posts">
+					<i class="inverted big link archive icon" title="Archive"></i>
+				</a>
+			</div>
+		
+	
+
+	
+	
+		<div class="item">
+			<a href="/tags">
+				<i class="inverted big link tags icon" title="All Tags"></i>
+			</a>
+		</div>
+	
+
+	
+	
+		<div class="item">
+			<a href="/categories">
+				<i class="inverted big link cubes icon" title="All Categories"></i>
+			</a>
+    	</div>
+	
+
+	
+	
+
+	
+	
+		<div class="ui container tablet computer only grid">
+			<div class="item" onClick="$('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');">
+				<i class="inverted big link sidebar icon" title="Show Sidebar"></i>
+			</div>
+		</div>
+	
+
+	
+	
+		<div class="item right">
+			<a href="/posts/index.xml">
+				<i class="inverted big link rss icon" title="RSS Feed"></i>
+			</a>
+		</div>
+	
+</nav>
+
+
+	<div class="ui centered grid">
+		
+		<div class="sixteen wide mobile only column">
+				<div class="ui inverted accordion">
+	<div id="header" class="ui inverted segment column box">		
+		
+		<header id="author" class="ui top attached center aligned inverted segment">
+			
+<div class="ui small circular image">
+	
+		<img src="https://www.gravatar.com/avatar/0db85dd6e3b1972fafa2c36e6df3abfb">
+	
+</div>
+
+
+<h3 class="ui header">
+	Kane
+	<div class="sub header">Father with twin boys, an open source mania.</div>
+</h3>
+
+		</header>
+
+		
+		<div class=" title header-title">
+			
+				<div id="tag-category-pop" class="ui red right corner label">
+					<i class="hand point icon down" title="Click this to pop tags and categories"></i>
+				</div>
+			
+		</div>
+		
+		
+		<div id="tag-category" class=" content">
+			
+				<section class="ui attached center aligned inverted segment dream-tags none flexbox">
+					
+
+
+
+
+	
+		<a class="ui label green " href="/tags/archsummit" title="archsummit">archsummit</a>
+	
+		<a class="ui label red " href="/tags/%E4%BC%9A%E8%AE%AE" title="会议">会议</a>
+	
+		<a class="ui label violet " href="/tags/%E6%9E%B6%E6%9E%84" title="架构">架构</a>
+	
+
+
+				</section>
+			
+
+			
+				<section class="ui attached inverted segment dream-categories both flexbox">
+					<div class="inverted accordion">
+						
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/blogging">blogging</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://zxkane.github.io/posts/2018/2018-12-13-bj-archsummit-review/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>2018北京ArchSummit回顾</p>
+				</div>
+			</a>
+		
+	</div>
+
+
+					</div>
+				</section>
+			
+		</div>
+
+		
+		<footer class="ui bottom attached center aligned inverted segment">
+			
+
+	<p>© 2019 The Road</p>
+
+
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with <a href="https://github.com/UtkarshVerma/hugo-dream-plus" target="_blank">Dream Plus</a> theme.</p>
+
+		</footer>
+	</div>
+</div>
+
+		</div>
+
+		<div class="sixteen wide mobile fifteen wide tablet twelve wide computer column post-list">
+			
+			<section class="ui secondary top attached black segment post-head">
+				<h1 class="post-title">
+					2018北京ArchSummit回顾
+				</h1>
+
+				<div class="sub header">
+					<div><span><i class="calendar outline icon"></i>Dec 13, 2018</span></div>
+					
+					<div><span><i class="clock outline icon"></i>3 min read</span></div>
+					<div><span><i class="angle double up icon"></i>Last updated on Dec 13, 2018</span></div>
+				</div>
+				<hr>
+
+				
+
+				<article class="post-content twemoji">
+					<p>上周参加了<a href="https://bj2018.archsummit.com">ArchSummit(全球架构师峰会)</a>，在这里记录下部分参加的主题以及个人感受。</p>
+
+<h3 id="会议回顾">会议回顾&nbsp;<a class="anchor" href="#会议回顾"><i class="small linkify icon"></i></a> </h3>
+
+<p>今年参加了几次技术会议，<code>微服务</code>、<code>容器技术</code>、<code>区块链</code>、<code>大数据</code>、<code>机器学习</code>以及<code>人工智能</code>都是当下最热门的主题。同样这次ArchSummit绝大部分topics都跟这些主题相关。</p>
+
+<p>这次会议主要参加了两个专场主题，<a href="https://bj2018.archsummit.com/track/440">Kubernetes的应用</a>和<a href="https://bj2018.archsummit.com/track/446">快手科技技术专题</a>。</p>
+
+<p><a href="https://bj2018.archsummit.com/presentation/928">基于 Kubernetes 的 DevOps</a>是来自微软Azure的容器工程师分享如何基于 Kubernetes 的 CI/CD 落地实践。该分享中提到了CI/CD各个步骤中都有众多的工具支持，如何选择合适Kubernetes的工具将持续集成和部署串联在一起是Devops中的主要挑战。分享者也安利了AKS提供Devops完整的工具链，以及将开源工具同AKS中的服务集成实现CI/CD的最佳实践。</p>
+
+<p>我们噼里啪团队在CI/CD、Devops这块做得还不错。CI/CD pipelines持续将应用部署在运行的Kubernetes集群，过程中使用的工具链基本也是社区或CNCF推荐的主流工具。下一步可以考虑同云厂商的Devops工具链集成，进一步减少维护成本。</p>
+
+<p><a href="https://bj2018.archsummit.com/presentation/1258">基于Istio on Kubernetes云原生应用的最佳实践</a>来自阿里云容器工程师的分享。他概要的分享了Istio技术和实现原理。当然也大力介绍了阿里云容器服务对Istio的原生支持，以及阿里云对客户使用Istio的支持，即使客户问题非常的初级他们的技术支持也很到位。</p>
+
+<p>Istio可以说是CNCF在Kubernetes上事实的服务治理实现。噼里啪技术团队也一直在关注这一块，正在尝试引入Istio提升服务的SLA。</p>
+
+<p>快手技术团队的4个分享都是围绕解决明确的业务问题而做得技术工作，非常具有实战性。其中<a href="https://bj2018.archsummit.com/presentation/1337">快手万亿级实时 OLAP 平台的建设与实践</a>介绍了快手实时OLAP平台从0到1的搭建过程。该平台从今年4月开始搭建，截止到11月，每日可以实时计算处理超过万亿的数据。而整个平台的搭建由两名大数据工程师外加一名前端工程师负责portal等UI，人效产出让人非常佩服。结合朋友间传言快手给技术人员的offer，快手应该是一家在实践类似Netflix管理文化的公司。</p>
+
+<p>最后给大家推荐一个国产的分布式New SQL数据库TiDB相关的主题。TiDB是国内技术团队开源的一个分布式数据库，已被CNCF作为Database实现推荐方案之一。他们的CTO分享了<a href="https://bj2018.archsummit.com/presentation/1331">TiDB on Kubernetes 最佳实践</a>，以及他们客户北京银行在<a href="https://bj2018.archsummit.com/presentation/962">两地多活的核心系统</a>中采用的数据库就是TiDB。</p>
+
+<h3 id="个人感受">个人感受&nbsp;<a class="anchor" href="#个人感受"><i class="small linkify icon"></i></a> </h3>
+
+<p>会议的分享者大多来自国内一线的互联网公司，他们普遍具备流量大、数据多、技术团队能力更强等特质。并且很少使用公有云服务，使用开源产品多数也会维护私有版本。他们的业务解决方案对中小型技术团队来说可复制性不强，照搬实施的难度高，更多的是在扩展思路了解业界技术动态。中小型技术团队最紧迫的事情是满足业务快速发展和需求多变，更合理的解法是选用云厂商的服务或第三方服务快速高效的满足业务需求。极客邦旗下的会议大多缺少这类的分享，相比之下AWS的reInvent大会在这方面做得更好。</p>
+				</article>				
+			</section>
+
+			
+			<section class="ui secondary attached segment dream-tags">
+				
+					
+
+
+
+
+	
+
+
+				
+			</section>
+
+			
+			
+				<section class="ui secondary bottom attached segment share row box">
+					
+
+
+
+
+
+
+
+
+<div class="author">
+	
+	<img class="avatar" src="https://www.gravatar.com/avatar/0db85dd6e3b1972fafa2c36e6df3abfb">
+	
+</div>
+<div class="info grow flexbox">
+	
+	<p class="name">Kane</p>
+	
+	<p class="desc">Father with twin boys, an open source mania.</p>
+</div>
+
+
+<section class="buttons row box">
+	<div class="facebook none flexbox" href="#" onclick="window.open(
+			'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+			'facebook-share-dialog',
+			'width=626,height=436'); return false;">
+		<button class="ui facebook button"><i class="facebook icon"></i>Share</button>
+	</div>
+	<div class="twitter none flexbox" onclick="window.open('https://twitter.com/intent/tweet?text=Read &quot;2018北京ArchSummit回顾  https:\/\/zxkane.github.io\/posts\/2018\/2018-12-13-bj-archsummit-review\/','_self')">
+		<button class="ui twitter button"><i class="twitter icon"></i>Tweet</button>
+	</div>
+</section>
+
+				</section>
+				<section class="ui secondary attached segment copyright">
+					
+
+				</section>
+			
+
+			
+			
+		</div>
+	</div>
+
+				</div>
+				<div class="back">
+					
+<nav class="ui top secondary menu bar">
+	<div class="item">
+		<i class="inverted big link bullseye icon dream-flip-toggle" title="About Me"></i>
+	</div>
+	
+		
+	
+		
+	
+		
+	
+
+	
+	
+	
+	
+	
+	
+	
+		
+		
+			<div class="item">
+				<a href="https://github.com/zxkane" target="	_blank">
+					<i id="ico" class="inverted big link github icon" title="GitHub"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+			<div class="item">
+				<a href="https://www.stackoverflow.com/users/390513/kane" target="	_blank">
+					<i id="ico" class="inverted big link stack overflow icon" title="Stack Overflow"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+	
+		
+		
+	
+</nav>
+
+
+
+<div class="ui centered grid about">
+	<div class="sixteen wide mobile fifteen wide tablet fifteen wide computer column about">
+		<section class="ui stacked segments">
+			<div class="ui inverted segment">
+				<article class="twemoji">
+					<h1>So, Who Am I?</h1>
+
+<hr />
+
+<p><br>
+I’m the father of <strong>twin sons</strong>. Live in Beijing. Also I&rsquo;m the *uix user, a full stack software engineer, devops and cloud native evangelist.</p>
+
+<p>Curious about me? Use the social links above to check out my profiles.</p>
+
+				</article>
+				
+				
+			</div>
+		</section>
+	</div>
+</div>
+
+				</div>
+			</div>
+		</div>
+
+		
+
+<script src="/js/site.js"></script>
+
+
+
+	<script src="https://twemoji.maxcdn.com/2/twemoji.min.js?2.6"></script>
+
+
+
+
+
+
+
+
+	<script id="dsq-count-scr" src="//.disqus.com/count.js" async></script>
+
+
+
+
+	
+	<script>
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-11561366-2', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+		
+
+
+		
+
+	<script>
+		(function () {
+		  console.log("Twemoji up and making stuff colourful!");
+		  for (var b = document.getElementsByClassName("twemoji"), a = 0; a < b.length; a++) {
+			twemoji.parse(b[a]);
+		  }
+		})();
+	</script>
+
+
+	</body>
+</html>
