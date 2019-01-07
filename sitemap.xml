@@ -3,63 +3,86 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zxkane.github.io/posts/2018/2018-12-13-bj-archsummit-review/</loc>
+    <loc>https://kane.mx/posts/effective-cloud-computing-series/preface/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2018/2018-12-13-bj-archsummit-review/</loc>
     <lastmod>2018-12-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zxkane.github.io/404/</loc>
+    <loc>https://kane.mx/404/</loc>
   </url>
   
   <url>
-    <loc>https://zxkane.github.io/about/</loc>
+    <loc>https://kane.mx/about/</loc>
   </url>
   
   <url>
-    <loc>https://zxkane.github.io/tags/archsummit/</loc>
-    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zxkane.github.io/categories/blogging/</loc>
-    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zxkane.github.io/categories/</loc>
+    <loc>https://kane.mx/tags/archsummit/</loc>
     <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zxkane.github.io/posts/</loc>
+    <loc>https://kane.mx/categories/blogging/</loc>
     <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zxkane.github.io/tags/</loc>
+    <loc>https://kane.mx/categories/</loc>
     <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zxkane.github.io/</loc>
+    <loc>https://kane.mx/categories/effective-cloud-computing/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/</loc>
     <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zxkane.github.io/tags/%E4%BC%9A%E8%AE%AE/</loc>
+    <loc>https://kane.mx/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E4%BC%9A%E8%AE%AE/</loc>
     <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zxkane.github.io/tags/%E6%9E%B6%E6%9E%84/</loc>
+    <loc>https://kane.mx/tags/%E6%9E%B6%E6%9E%84/</loc>
     <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

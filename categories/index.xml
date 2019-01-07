@@ -2,21 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on The Road</title>
-    <link>https://zxkane.github.io/categories/</link>
+    <link>https://kane.mx/categories/</link>
     <description>Recent content in Categories on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 13 Dec 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zxkane.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kane.mx/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Blogging</title>
-      <link>https://zxkane.github.io/categories/blogging/</link>
+      <link>https://kane.mx/categories/blogging/</link>
       <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://zxkane.github.io/categories/blogging/</guid>
+      <guid>https://kane.mx/categories/blogging/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Effective Cloud Computing</title>
+      <link>https://kane.mx/categories/effective-cloud-computing/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/categories/effective-cloud-computing/</guid>
       <description></description>
     </item>
     
