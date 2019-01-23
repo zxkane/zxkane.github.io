@@ -13,10 +13,10 @@
     
     <item>
       <title>不要自建Kubernetes</title>
-      <link>https://kane.mx/posts/effective-cloud-computing-series/kubernetes-on-cloud/</link>
+      <link>https://kane.mx/posts/effective-cloud-computing-series/using-kubernetes-on-cloud/</link>
       <pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://kane.mx/posts/effective-cloud-computing-series/kubernetes-on-cloud/</guid>
+      <guid>https://kane.mx/posts/effective-cloud-computing-series/using-kubernetes-on-cloud/</guid>
       <description>使用云厂商托管Kubernetes的好处，多到你想不到。</description>
     </item>
     

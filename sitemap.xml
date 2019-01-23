@@ -3,8 +3,8 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://kane.mx/posts/effective-cloud-computing-series/kubernetes-on-cloud/</loc>
-    <lastmod>2019-01-23T00:00:00+00:00</lastmod>
+    <loc>https://kane.mx/posts/effective-cloud-computing-series/using-kubernetes-on-cloud/</loc>
+    <lastmod>2019-01-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -33,7 +33,7 @@
   
   <url>
     <loc>https://kane.mx/tags/aws/</loc>
-    <lastmod>2019-01-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -51,19 +51,19 @@
   
   <url>
     <loc>https://kane.mx/categories/effective-cloud-computing/</loc>
-    <lastmod>2019-01-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/categories/kubernetes/</loc>
-    <lastmod>2019-01-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/posts/</loc>
-    <lastmod>2019-01-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -75,13 +75,13 @@
   
   <url>
     <loc>https://kane.mx/</loc>
-    <lastmod>2019-01-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</loc>
-    <lastmod>2019-01-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -99,7 +99,7 @@
   
   <url>
     <loc>https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
-    <lastmod>2019-01-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
