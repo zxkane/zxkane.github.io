@@ -31,5 +31,14 @@
       <description>&lt;p&gt;这是“如何高效使用云服务”系列文章的引子。该系列将讲述如何利用各种公有云服务来安全合规、高质量、快速、低成本的打造产品/系统，帮助企业（特别是中小微创业团队）在人少，钱缺的情况下做到最高效率。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>说一说阿里云ossfs</title>
+      <link>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</link>
+      <pubDate>Fri, 26 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</guid>
+      <description>阿里云提供的对象或者文件存储叫OSS，为应用程序提供了海量存储，按需付费等服务。应用程序则需要通过Aliyun OSS的各语言SDK才能操作（</description>
+    </item>
+    
   </channel>
 </rss>

@@ -18,11 +18,84 @@
   </url>
   
   <url>
+    <loc>https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/</loc>
+    <lastmod>2016-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</loc>
+    <lastmod>2016-09-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</loc>
+    <lastmod>2016-09-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</loc>
+    <lastmod>2016-09-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/</loc>
+    <lastmod>2016-05-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</loc>
+    <lastmod>2016-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2016/how-we-build-videome/</loc>
+    <lastmod>2016-04-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</loc>
+    <lastmod>2016-02-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2016/weixin-temporary-materials/</loc>
+    <lastmod>2016-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</loc>
+    <lastmod>2016-01-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</loc>
+    <lastmod>2016-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kane.mx/404/</loc>
   </url>
   
   <url>
     <loc>https://kane.mx/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/aliyun/</loc>
+    <lastmod>2016-02-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/angularjs/</loc>
+    <lastmod>2016-05-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/architecture/</loc>
+    <lastmod>2016-04-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -50,8 +123,26 @@
   </url>
   
   <url>
+    <loc>https://kane.mx/tags/docker/</loc>
+    <lastmod>2016-09-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/docker-swarm/</loc>
+    <lastmod>2016-09-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://kane.mx/categories/effective-cloud-computing/</loc>
     <lastmod>2019-01-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/jenkins/</loc>
+    <lastmod>2016-10-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -62,20 +153,128 @@
   </url>
   
   <url>
+    <loc>https://kane.mx/tags/mongodb/</loc>
+    <lastmod>2016-09-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/nginx/</loc>
+    <lastmod>2016-05-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/oss/</loc>
+    <lastmod>2016-02-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/ossfs/</loc>
+    <lastmod>2016-02-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/pay/</loc>
+    <lastmod>2016-01-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/performance-tuning/</loc>
+    <lastmod>2016-09-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://kane.mx/posts/</loc>
     <lastmod>2019-01-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://kane.mx/tags/seo/</loc>
+    <lastmod>2016-05-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/session-management/</loc>
+    <lastmod>2016-05-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/single-page-app/</loc>
+    <lastmod>2016-05-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/spring-boot/</loc>
+    <lastmod>2016-05-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/spring-framework/</loc>
+    <lastmod>2016-05-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/spring-session/</loc>
+    <lastmod>2016-05-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://kane.mx/tags/</loc>
-    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <lastmod>2016-02-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/</loc>
     <lastmod>2019-01-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/trouble-shooting/</loc>
+    <lastmod>2016-10-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/troubleshoot/</loc>
+    <lastmod>2016-01-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/ubuntu-1404/</loc>
+    <lastmod>2016-09-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/web-2.0/</loc>
+    <lastmod>2016-05-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/wechat/</loc>
+    <lastmod>2016-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/weixin/</loc>
+    <lastmod>2016-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -92,8 +291,38 @@
   </url>
   
   <url>
+    <loc>https://kane.mx/tags/%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0/</loc>
+    <lastmod>2016-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E5%BE%AE%E4%BF%A1/</loc>
+    <lastmod>2016-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2016-05-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E6%94%AF%E4%BB%98/</loc>
+    <lastmod>2016-01-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://kane.mx/tags/%E6%9E%B6%E6%9E%84/</loc>
     <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84/</loc>
+    <lastmod>2016-04-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

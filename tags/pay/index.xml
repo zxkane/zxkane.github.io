@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pay on The Road</title>
+    <link>https://kane.mx/tags/pay/</link>
+    <description>Recent content in Pay on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Jan 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/pay/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>单页面应用(single page application)中使用微信支付</title>
+      <link>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</link>
+      <pubDate>Sun, 24 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</guid>
+      <description>随着AngularJS等前端MVC框架的流行，AJAX的异步请求数据结合H5的push state等特性，极大的改善了网站的用户体验和页面加载</description>
+    </item>
+    
+  </channel>
+</rss>

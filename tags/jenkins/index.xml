@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jenkins on The Road</title>
+    <link>https://kane.mx/tags/jenkins/</link>
+    <description>Recent content in Jenkins on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 12 Oct 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何修复Jenkins CI无法读取存在的任务配置</title>
+      <link>https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/</link>
+      <pubDate>Wed, 12 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/</guid>
+      <description>V秘开发团队一直使用着Jenkins CI来持续集成V秘服务的新功能和各种改进。近日，Jenkins CI在重启之后，很多已有任务的配置无法被J</description>
+    </item>
+    
+  </channel>
+</rss>

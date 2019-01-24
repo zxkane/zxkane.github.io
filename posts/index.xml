@@ -188,5 +188,529 @@
 &lt;p&gt;会议的分享者大多来自国内一线的互联网公司，他们普遍具备流量大、数据多、技术团队能力更强等特质。并且很少使用公有云服务，使用开源产品多数也会维护私有版本。他们的业务解决方案对中小型技术团队来说可复制性不强，照搬实施的难度高，更多的是在扩展思路了解业界技术动态。中小型技术团队最紧迫的事情是满足业务快速发展和需求多变，更合理的解法是选用云厂商的服务或第三方服务快速高效的满足业务需求。极客邦旗下的会议大多缺少这类的分享，相比之下AWS的reInvent大会在这方面做得更好。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>如何修复Jenkins CI无法读取存在的任务配置</title>
+      <link>https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/</link>
+      <pubDate>Wed, 12 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;开发团队一直使用着&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;来持续集成&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;服务的新功能和各种改进。近日，&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;在重启之后，很多已有任务的配置无法被&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;完整的加载，导致很多功能无法使用。导致我们整个网站的各种服务无法被升级更新了:-(&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;在管理控制台列出如下的错误信息，示意现有任务的部分配置由于错误无法加载。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CannotResolveClassException: hudson.plugins.git.GitSCM, 
+CannotResolveClassException: com.cloudbees.jenkins.plugins.BitBucketTrigger, 
+CannotResolveClassException: hudson.plugins.emailext.ExtendedEmailPublisher, 
+CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过上面的错误信息，我们初步认为错误是由于插件无法被&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;加载。但是通过&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;的插件管理列表，我们发现&lt;strong&gt;Git&lt;/strong&gt;插件已经被认为是安装的了。同时我们也可以在&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;安装目录中找到插件对应的文件&lt;code&gt;git.jar&lt;/code&gt;，并且成功验证了类&lt;code&gt;hudson.plugins.git.GitSCM&lt;/code&gt;也是存在在jar文件里面的。重新安装&lt;code&gt;Git client&lt;/code&gt;插件也不能解决这个错误！&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;经过进一步的分析，通过&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;的系统日志，我们发现&lt;code&gt;Git插件&lt;/code&gt;虽然是成功安装了，但是它所依赖的某些插件没有被安装！这导致&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;无法正确加载&lt;code&gt;Git插件&lt;/code&gt;。通过日志的提示，将缺失的插件一一安装上，重启&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;后，插件加载正常，任务执行也恢复正常。&lt;/p&gt;
+
+&lt;p&gt;这个错误出现的还是相当奇怪。因为&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;会在安装插件的时候将依赖的插件一并安装上。此外该&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;已经运行很久了，这些插件也是一直安装着的。不过现在回想起之前升级&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;插件的时候，部分插件由于网络原因升级失败了，但是没有重新更新。这导致这些插件处在了一个不正确的状态。在重启&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins CI&lt;/a&gt;后，这些插件被标记为未安装，导致依赖它们的插件无法加载。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MongoDB中如何找出慢查询</title>
+      <link>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</link>
+      <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.mongodb.com/&#34;&gt;MongoDB&lt;/a&gt;是目前最为流行的&lt;a href=&#34;https://en.wikipedia.org/wiki/NoSQL&#34;&gt;NoSQL&lt;/a&gt;数据库之一。&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;的后台数据就是保存在&lt;a href=&#34;https://www.mongodb.com/&#34;&gt;MongoDB&lt;/a&gt;中的哦;)&lt;/p&gt;
+
+&lt;p&gt;尽管&lt;a href=&#34;https://www.mongodb.com/&#34;&gt;MongoDB&lt;/a&gt;的性能为业界称道，但任何数据库系统使用中都存在着慢查询的问题。慢查询的性能问题，可能是由于使用非最优的查询语句，不正确的索引或其他配置原因导致的。但开发人员或数据库维护人员首先要找出这些低效的查询，才能做出对应的查询优化。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;在&lt;a href=&#34;https://www.mongodb.com/&#34;&gt;MongoDB&lt;/a&gt;中实现慢查询的profile是非常容易，因为&lt;a href=&#34;https://www.mongodb.com/&#34;&gt;MongoDB&lt;/a&gt;内置了&lt;a href=&#34;https://docs.mongodb.com/manual/reference/method/db.setProfilingLevel/&#34;&gt;profile开关&lt;/a&gt;来记录执行时间触发了profile条件的查询。&lt;/p&gt;
+
+&lt;p&gt;参照&lt;a href=&#34;https://docs.mongodb.com/manual/reference/method/db.setProfilingLevel/&#34;&gt;db.setProfileLevel()&lt;/a&gt;的文档，通过以下命令就可以记录执行时长超过&lt;strong&gt;300ms&lt;/strong&gt;的查询。&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;setProfilingLevel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;300&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;当慢查询被重现后，可以通过查找&lt;code&gt;system.profile&lt;/code&gt; collection来查看执行时长超过&lt;strong&gt;300ms&lt;/strong&gt;的查询。&lt;/p&gt;
+
+&lt;p&gt;被profiler记录下来慢查询record看起来如下，&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;       
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;op&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;query&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;ns&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;myCollection&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;query&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;     
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;builds&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;    
+                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;$elemMatch&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;builtTime&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;$and&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;      
+                                        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;               
+                                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;createdTime&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                                                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;$lt&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;ISODate(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;2016-09-20T2000.796Z&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
+                                                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                                &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;ntoreturn&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;ntoskip&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;nscanned&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;nscannedObjects&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;18231&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;keyUpdates&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;writeConflicts&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;numYield&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;577&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;locks&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;     
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;Global&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;    
+                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;acquireCount&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;r&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;NumberLong(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1156&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
+                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;      
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;Database&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;  
+                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;acquireCount&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;r&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;NumberLong(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;578&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
+                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;      
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;Collection&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;acquireCount&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;r&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;NumberLong(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;578&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
+                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;nreturned&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;responseLength&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;98076&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;millis&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;11161&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;execStats&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;stage&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;COLLSCAN&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;filter&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;builds&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;$elemMatch&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;$and&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+                                                &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                                                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;$and&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+                                                                &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                                                                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;createdTime&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                                                                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;$lt&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;ISODate(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;2016-09-20T2000.796Z&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
+                                                                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                                                                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                                                        &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+                                                &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+                                                &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                                                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;builtTime&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                                                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;$eq&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;
+                                                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                                                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                                        &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+                                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;nReturned&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;executionTimeMillisEstimate&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;11080&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;works&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;18233&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;advanced&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;needTime&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;18230&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;needFetch&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;saveState&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;577&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;restoreState&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;577&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;isEOF&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;invalidates&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;direction&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;forward&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;nt&#34;&gt;&amp;#34;docsExamined&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;18231&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;      
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;ts&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;ISODate(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;2016-09-20T2314.313Z&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;client&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;10.171.127.66&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;allUsers&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;user&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;dbuser&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;db&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;mydb&amp;#34;&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;user&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;dbuser@mydb&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;   &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;上面的数据具体解读如下，&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;op: &#39;query&#39;&lt;/code&gt;表示执行的是查询，&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ns&lt;/code&gt;是指查询的collection，&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;query&lt;/code&gt;是具体的查询语句，&lt;/li&gt;
+&lt;li&gt;核心部分是&lt;code&gt;execStats&lt;/code&gt;，给出了的查询语句具体执行统计，跟&lt;strong&gt;.explain(&amp;lsquo;execStats&amp;rsquo;)&lt;/strong&gt;的内容是一致的。上面的统计是说，这个query执行了整个collection的扫描(总计扫描了18231个文档)，最终返回了2条文档，花费了11080ms，也就是11s还多的时间！这表明被记录下的慢查询跟collection的索引设置有问题，该查询没有用上索引。解决方案很简单，改善查询语句使用存在的索引或者设置合理的索引。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ts&lt;/code&gt;是查询开始请求的时间，&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;allUsers&lt;/code&gt;和&lt;code&gt;user&lt;/code&gt;都是MongoDB client连接所使用的用户。&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Docker Swarm mode(v1.12.x)的一些使用限制</title>
+      <link>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</link>
+      <pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Swarm mode&lt;/a&gt;在&lt;a href=&#34;https://www.docker.com&#34;&gt;Docker&lt;/a&gt; v1.12中正式发布，&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Swarm mode&lt;/a&gt;带来了诸如Docker集群，容器编排，多主机网络等激动人心的特性。&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;团队也尝试着将各种后台服务部署到&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm Cluster&lt;/a&gt;获取更好的弹性计算能力。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.docker.com&#34;&gt;Docker v1.12&lt;/a&gt;中正式发布的&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm&lt;/a&gt;在我们实用中发现仍有不少不足之处，让我们一一分享给大家。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;ol&gt;
+&lt;li&gt;无法将服务的published端口只绑定到特点的网卡上。比如我们的云主机（同时也是Swarm manager/node）有&lt;strong&gt;eth0&lt;/strong&gt;和&lt;strong&gt;eth1&lt;/strong&gt;两块网卡，分别连接内网和外网。我们计划在&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm&lt;/a&gt;中运行一个&lt;strong&gt;nginx&lt;/strong&gt;服务，通过80/443端口提供HTTP/HTTPS服务。当我们希望将&lt;strong&gt;nginx&lt;/strong&gt;中的Web服务暴露在云主机上时，我们通过以下命令创建&lt;strong&gt;nginx&lt;/strong&gt;服务。然而我们无法选择将published的&lt;strong&gt;80&lt;/strong&gt;端口绑定在哪个interface上。&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm&lt;/a&gt;会自动将服务监听到Swarm node的所有80端口上。如果我们只想将这个服务暴露在内网interface暂时无法实现。
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker service create --name vme-nginx --network vme-network --replicas &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;       --publish &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt;:80 --publish &lt;span class=&#34;m&#34;&gt;443&lt;/span&gt;:443 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;       nginx:1.11&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;无法为&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm&lt;/a&gt;内运行的服务设置主机名。通过&lt;a href=&#34;https://docs.docker.com/engine/reference/run/&#34;&gt;docker run命令&lt;/a&gt;执行的容器可以设置hostname。比如，
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run --hostname vme-nginx nginx:1.11&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+但是&lt;a href=&#34;https://docs.docker.com/engine/reference/commandline/service_create/&#34;&gt;docker service create命令&lt;/a&gt;缺少等价的参数为容器指定hostname。一些依赖于&lt;strong&gt;hostname&lt;/strong&gt;的服务将无法部署在&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm&lt;/a&gt;中，比如clustered rabbitmq。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/compose/&#34;&gt;Docker compose&lt;/a&gt;还不能与&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm&lt;/a&gt;完美集成。目前有一个experimental的&lt;a href=&#34;https://docs.docker.com/compose/bundles/&#34;&gt;Docker Stacks and Distributed Application Bundles&lt;/a&gt;在尝试做更好的整合。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;docker service update&lt;/strong&gt;有时不能更新正在运行中的container。更多讨论见&lt;a href=&#34;https://github.com/docker/swarmkit/issues/1619&#34;&gt;这个issue&lt;/a&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</title>
+      <link>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</link>
+      <pubDate>Tue, 13 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;团队一直致力于用技术改善产品。&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;后台的各种服务一直是通过完善的Devops流程自动部署到&lt;a href=&#34;https://www.docker.com&#34;&gt;Docker&lt;/a&gt;容器集群。随着&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Swarm mode&lt;/a&gt;在&lt;a href=&#34;https://www.docker.com&#34;&gt;Docker&lt;/a&gt; v1.12中正式发布，&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Swarm mode&lt;/a&gt;带来了诸如Docker集群，多主机网络等激动人心的特性。我们也在尝试将&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;服务部署到&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm Cluster&lt;/a&gt;获取更好的弹性计算能力。&lt;/p&gt;
+
+&lt;p&gt;然而我们将&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;的服务部署到&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm Cluster&lt;/a&gt;时遇到服务容器无法启动的错误。错误信息类似如下，&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;starting container failed: could not add veth pair inside the network sandbox: could not find an appropriate master \&amp;ldquo;ov-000100-1wkbc\&amp;rdquo; for \&amp;ldquo;vethee39f9d\&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;经过与&lt;a href=&#34;https://github.com/docker/docker/issues&#34;&gt;Docker 社区&lt;/a&gt;的回馈讨论，暂时通过升级Docker主机(OS: Ubuntu 14.04 LTS)的内核版本解决了这个错误。&lt;/p&gt;
+
+&lt;p&gt;具体方法如下，&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@swarm1:~# uname -r 
+&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;.13.0-32-generic
+
+root@swarm1:~# apt-get install linux-generic-lts-vivid
+root@swarm1:~# reboot
+
+root@swarm1:~# uname -r
+&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;.19.0-69-generic&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;至于这个错误的根本原因是&lt;a href=&#34;https://www.docker.com&#34;&gt;Docker&lt;/a&gt;的bug还是对Linux Kernel有特殊的要求，需要Docker开发进一步确认。如果对此问题有更多兴趣，可以关注&lt;a href=&#34;https://github.com/docker/docker/issues/25039&#34;&gt;docker issue #25039&lt;/a&gt;。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>基于Angularjs单页面应用的SEO优化</title>
+      <link>https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/</link>
+      <pubDate>Thu, 19 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/</guid>
+      <description>&lt;p&gt;在之前的&lt;a href=&#34;https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/&#34;&gt;文章&lt;/a&gt;我曾提到基于&lt;a href=&#34;https://angularjs.org/&#34;&gt;Angularjs&lt;/a&gt;的单页面应用在用户体验上的种种好处。然而任何事情都不是完美的，&lt;a href=&#34;https://angularjs.org/&#34;&gt;Angular&lt;/a&gt;和类似的框架通过应用内做页面路由的实现给SEO（也俗称搜索引擎优化）带来了不少麻烦。&lt;/p&gt;
+
+&lt;p&gt;首先，我们来看看页面内路由是如何实现的。默认&lt;a href=&#34;https://angularjs.org/&#34;&gt;Angularjs&lt;/a&gt;生成的页面uri类型如下，&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;http://mydomain.com/#/app/page1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;浏览器请求上面这个uri的时候，实际发送给服务器的请求地址是&lt;strong&gt;&lt;a href=&#34;http://mydomain.com/&#34;&gt;http://mydomain.com/&lt;/a&gt;&lt;/strong&gt;, web服务器会将默认的页面响应给浏览器，比如*index.html*或*index.php*等。&lt;/p&gt;
+
+&lt;p&gt;浏览器返回的页面里面引入了&lt;a href=&#34;https://angularjs.org/&#34;&gt;Angularjs&lt;/a&gt;和其他应用需要的JS库。&lt;a href=&#34;https://angularjs.org/&#34;&gt;Angularjs&lt;/a&gt;应用开始执行后，尝试处理路由&lt;strong&gt;/app/page1&lt;/strong&gt;。如果应用定义了该路由，将加载必要的JS库和其他html片段来完成页面的渲染。&lt;/p&gt;
+
+&lt;p&gt;理解了&lt;a href=&#34;https://angularjs.org/&#34;&gt;Angularjs&lt;/a&gt;页面内路由的原理后，我们知道了对浏览器或搜索引擎爬虫而言，单页面应用所有的页面对浏览器和搜索引擎都是一个网址，比如&lt;code&gt;http://mydomain.com/&lt;/code&gt;。这样对爬虫抓取站内链接造成了困难，因为所有应用内的链接都被认做了同一个链接。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;我们理解了uri &lt;code&gt;http://mydomain.com/#/app/page1&lt;/code&gt;给SEO造成的麻烦，接下来就是讨论如何针对SEO来作的优化。&lt;/p&gt;
+
+&lt;p&gt;最理想的情况当然是搜索引擎爬虫变的更加智能，它能理解网站的框架，并且针对此种情况做出优化。但截止到目前，包括Google在内的所有爬虫都无法做到这点。那我们SEO的优化只能在应用这边来做了。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://angularjs.org/&#34;&gt;Angularjs&lt;/a&gt;提供了一种&lt;a href=&#34;https://docs.angularjs.org/guide/$location&#34;&gt;HTML5 mode&lt;/a&gt;模式可以利用HTML5 History API来实现页面内路由。打开的方法如下，&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;nx&#34;&gt;$locationProvider&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;html5Mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;同时在&lt;code&gt;index.html&lt;/code&gt;页面加上如下标签，&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;base&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在打开&lt;a href=&#34;https://docs.angularjs.org/guide/$location&#34;&gt;HTML5 mode&lt;/a&gt;后的&lt;a href=&#34;https://angularjs.org/&#34;&gt;Angularjs&lt;/a&gt;应用的链接看起来就是这样了，&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;http://mydomain.com/app/page1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;新的链接模式和站内跳转通过访问网站主页请求将没有任何问题。然而直接在浏览器请求如上链接的话，Web服务器将尝试请求&lt;code&gt;/app/page1&lt;/code&gt;，通常会得到&lt;strong&gt;404&lt;/strong&gt;的页面响应。因为服务器上并没有部署页面&lt;code&gt;/app/page1&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;这时就需要在Web应用服务器或应用里面实现&lt;strong&gt;URL Rewrite&lt;/strong&gt;。将&lt;code&gt;/app/page1&lt;/code&gt;的请求转到单页面应用html文件上。&lt;/p&gt;
+
+&lt;p&gt;下面是一些Web服务器或应用的参考配置，&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Apache Rewrites&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;	&amp;lt;VirtualHost *:80&amp;gt;
+	    ServerName my-app
+	
+	    DocumentRoot /path/to/app
+	
+	    &amp;lt;Directory /path/to/app&amp;gt;
+	        RewriteEngine on
+	
+	        # Don&amp;#39;t rewrite files or directories
+	        RewriteCond %{REQUEST_FILENAME} -f [OR]
+	        RewriteCond %{REQUEST_FILENAME} -d
+	        RewriteRule ^ - [L]
+	
+	        # Rewrite everything else to index.html to allow html5 state links
+	        RewriteRule ^ index.html [L]
+	    &amp;lt;/Directory&amp;gt;
+	&amp;lt;/VirtualHost&amp;gt;
+	&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Nginx Rewrites&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nginx&#34; data-lang=&#34;nginx&#34;&gt;	&lt;span class=&#34;k&#34;&gt;server&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	    &lt;span class=&#34;kn&#34;&gt;server_name&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;my-app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+	
+	    &lt;span class=&#34;kn&#34;&gt;root&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/path/to/app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+	
+	    &lt;span class=&#34;kn&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	        &lt;span class=&#34;kn&#34;&gt;try_files&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$uri&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$uri/&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/index.html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+	    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+	&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Azure IIS Rewrites&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;	&amp;lt;system.webServer&amp;gt;
+	  &amp;lt;rewrite&amp;gt;
+	    &amp;lt;rules&amp;gt; 
+	      &amp;lt;rule name=&amp;#34;Main Rule&amp;#34; stopProcessing=&amp;#34;true&amp;#34;&amp;gt;
+	        &amp;lt;match url=&amp;#34;.*&amp;#34; /&amp;gt;
+	        &amp;lt;conditions logicalGrouping=&amp;#34;MatchAll&amp;#34;&amp;gt;
+	          &amp;lt;add input=&amp;#34;{REQUEST_FILENAME}&amp;#34; matchType=&amp;#34;IsFile&amp;#34; negate=&amp;#34;true&amp;#34; /&amp;gt;                                 
+	          &amp;lt;add input=&amp;#34;{REQUEST_FILENAME}&amp;#34; matchType=&amp;#34;IsDirectory&amp;#34; negate=&amp;#34;true&amp;#34; /&amp;gt;
+	        &amp;lt;/conditions&amp;gt;
+	        &amp;lt;action type=&amp;#34;Rewrite&amp;#34; url=&amp;#34;/&amp;#34; /&amp;gt;
+	      &amp;lt;/rule&amp;gt;
+	    &amp;lt;/rules&amp;gt;
+	  &amp;lt;/rewrite&amp;gt;
+	&amp;lt;/system.webServer&amp;gt;
+	&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Express Rewrites&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;	&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+	&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+	
+	&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/js&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;__dirname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;/js&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/dist&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;__dirname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;/../dist&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/css&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;__dirname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;/css&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/partials&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;__dirname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;/partials&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+	
+	&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;all&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/*&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	    &lt;span class=&#34;c1&#34;&gt;// Just send the index.html for other files to support HTML5Mode
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	    &lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sendFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;__dirname&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+	
+	&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;listen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3006&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//the port you want to use
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;ASP.Net C# Rewrites&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;	&lt;span class=&#34;k&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ROOT_DOCUMENT&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;/default.aspx&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+	
+	&lt;span class=&#34;k&#34;&gt;protected&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Application_BeginRequest&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Object&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sender&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;EventArgs&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;e&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	    &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Url&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LocalPath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+	    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IO&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;File&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Exists&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Server&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MapPath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	        &lt;span class=&#34;n&#34;&gt;Context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RewritePath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ROOT_DOCUMENT&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+	&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Spring框架下的分布式session管理</title>
+      <link>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</link>
+      <pubDate>Sat, 07 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</guid>
+      <description>&lt;p&gt;在微服务和容器等技术的帮助下，Web应用可以较为容易的进行水平扩展，来部署更多的应用实例来提升请求处理数QPS。当Web服务有状态的时候，如何在集群下管理用户session成为新的待解决问题。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://spring.io&#34;&gt;Spring Framework&lt;/a&gt;针对此问题衍生出了一个子项目&lt;a href=&#34;http://projects.spring.io/spring-session/&#34;&gt;Spring Session&lt;/a&gt;来实现集群下的session管理。该项目提供了以下功能：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;提供API和实现管理用户session&lt;/li&gt;
+&lt;li&gt;HttpSession - 替换实现应用容器(tomcat)中的HttpSession
+
+&lt;ul&gt;
+&lt;li&gt;Clustered Sessions - 实现集群的session而不依赖任何应用容器特定的解决方案&lt;/li&gt;
+&lt;li&gt;Multiple Browser Sessions - 支持多个用户session保存在同一个浏览器实例中 (例如，类似Google的多用户认证).&lt;/li&gt;
+&lt;li&gt;RESTful APIs - 通过支持session ids在Http请求头来支持Restful API的认证&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;WebSocket - 能够保证HttpSession的存活当在接受WebSocket消息时&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;从上面的功能列表中，我们可以看到&lt;a href=&#34;http://projects.spring.io/spring-session/&#34;&gt;Spring Session&lt;/a&gt;能够满足集群下各种session的使用场景和需求。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://projects.spring.io/spring-session/&#34;&gt;Spring Session&lt;/a&gt;在1.0.0 GA可以使用&lt;a href=&#34;http://redis.io/&#34;&gt;Redis&lt;/a&gt;做为session储存的backend。&lt;/p&gt;
+
+&lt;p&gt;通过changelog，在最新的1.1.0 GA中支持&lt;a href=&#34;http://docs.spring.io/spring-session/docs/1.1.1.RELEASE/reference/html5/#what-s-new-in-1-1&#34;&gt;自定义Cookie的创建&lt;/a&gt;，允许自定义Cookie的过期时间，作用域等。在即将发布的&lt;a href=&#34;http://docs.spring.io/spring-session/docs/1.2.0.RC2/reference/html5/#what-s-new-in-1-2&#34;&gt;1.2.0 GA&lt;/a&gt;版本中，将添加支持JDBC的关系数据库和&lt;a href=&#34;https://www.mongodb.org/&#34;&gt;MongoDB&lt;/a&gt;作为session保存的backend。&lt;/p&gt;
+
+&lt;p&gt;此外，&lt;a href=&#34;http://projects.spring.io/spring-session/&#34;&gt;Spring Session&lt;/a&gt;同&lt;a href=&#34;http://projects.spring.io/spring-boot/&#34;&gt;Spring-boot&lt;/a&gt;的应用有很好的&lt;a href=&#34;http://docs.spring.io/spring-session/docs/current/reference/html5/guides/boot.html&#34;&gt;集成&lt;/a&gt;，只需要十多行代码及配置即可集成！&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>V秘是如何构建的</title>
+      <link>https://kane.mx/posts/2016/how-we-build-videome/</link>
+      <pubDate>Thu, 07 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/how-we-build-videome/</guid>
+      <description>&lt;p&gt;春天来了，&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;大家庭也新增了两位10后的传人。新爸爸经过一番忙乱后，希望在这里与大家分享&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;的架构，共同探讨如何快速的构建高可用，高性能的Web服务。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;致力于提供最好的在线视频制作云平台。让用户随时随地零门槛的快速制作出高质量高清晰度的视频，来纪念记录生活中有意义的时刻，同时将这份快乐传递给更多的家人朋友一起分享。&lt;/p&gt;
+
+&lt;p&gt;然而要可靠的可扩展的实现这样看似简单的需求，其背后确由众多知名开源技术，可靠的云服务，不间歇的监控运维来实现和保证的。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;架构的基本目标就是要实现，&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;服务的高扩展性。有有效可靠的方法支撑数万并发到数十万，百万及更多的并发请求。&lt;/li&gt;
+&lt;li&gt;服务的高可用性。各种服务都是多实例的集群，某些服务故障后，集群中的其他实例仍然能够提供服务。&lt;/li&gt;
+&lt;li&gt;服务的自动化构建。从代码到服务部署上线是一套自动化的流程，越少的人工介入保证了服务的可用性。&lt;/li&gt;
+&lt;li&gt;系统的实时监控。7x24小时的监控保证服务的可用性，当监控到数据异常或服务停止运行能及时告警引入人工运维团队。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;更多细节请参阅下面的&lt;a href=&#34;http://www.slideshare.net/zxkane/how-we-build-vme&#34;&gt;slides&lt;/a&gt;,&lt;/p&gt;
+
+&lt;p&gt;&lt;iframe src=&#34;//www.slideshare.net/slideshow/embed_code/key/EaBKeYtNuNyFPL&#34; width=&#34;595&#34; height=&#34;485&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&#34; allowfullscreen&gt; &lt;/iframe&gt; &lt;div style=&#34;margin-bottom:5px&#34;&gt; &lt;strong&gt; &lt;a href=&#34;//www.slideshare.net/zxkane/how-we-build-vme&#34; title=&#34;How we build Videome&#34; target=&#34;_blank&#34;&gt;How we build Videome&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&#34;//www.slideshare.net/zxkane&#34; target=&#34;_blank&#34;&gt;Meng Xin Zhu&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;欢迎留言与我们探讨你的心得和建议。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>说一说阿里云ossfs</title>
+      <link>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</link>
+      <pubDate>Fri, 26 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</guid>
+      <description>
+
+&lt;p&gt;阿里云提供的对象或者文件存储叫&lt;a href=&#34;https://www.aliyun.com/product/oss&#34;&gt;OSS&lt;/a&gt;，为应用程序提供了海量存储，按需付费等服务。应用程序则需要通过&lt;a href=&#34;https://www.aliyun.com/product/oss&#34;&gt;Aliyun OSS&lt;/a&gt;的各语言SDK才能操作（读，写，遍历等）OSS中的文件。&lt;/p&gt;
+
+&lt;p&gt;对运维人员来说，做一些数据维护工作的时候，通过SDK操作&lt;a href=&#34;https://www.aliyun.com/product/oss&#34;&gt;OSS&lt;/a&gt;中的文件就会比较麻烦。在linux/unix环境下，通常有一些工具把远程文件系统或云盘挂载为本地文件。在网络状况比较好的情况下，操作远程文件就像操作本地文件一样。例如，把&lt;a href=&#34;https://github.com/s3fs-fuse/s3fs-fuse&#34;&gt;Amazon S3&lt;/a&gt;，&lt;a href=&#34;https://github.com/joe42/CloudFusion&#34;&gt;Dropbox云盘&lt;/a&gt;，&lt;a href=&#34;https://github.com/libfuse/sshfs&#34;&gt;可通过ssh登录的远程服务器上的磁盘&lt;/a&gt;挂载为本地文件系统。&lt;/p&gt;
+
+&lt;p&gt;之前也有第三方公司开发的工具把&lt;a href=&#34;https://www.aliyun.com/product/oss&#34;&gt;OSS bucket&lt;/a&gt;挂载为本地磁盘。出于安全考虑一直为敢使用。&lt;/p&gt;
+
+&lt;p&gt;终于，阿里云推出了官方开源版本的&lt;a href=&#34;https://github.com/aliyun/ossfs&#34;&gt;ossfs&lt;/a&gt;，并且提供技术支持（通过工单）。&lt;/p&gt;
+
+&lt;p&gt;接下来，聊聊我的使用体会。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;安装，配置都还简单。&lt;/li&gt;
+&lt;li&gt;文档看起来比较详细，但实际操作起来有些就不对。感觉写文档的人，并没有在相应环境上测试过。&lt;/li&gt;
+&lt;li&gt;权限设计的一塌糊涂。&lt;a href=&#34;https://github.com/aliyun/ossfs&#34;&gt;ossfs&lt;/a&gt;基于&lt;a href=&#34;https://en.wikipedia.org/wiki/Filesystem_in_Userspace&#34;&gt;FUSE&lt;/a&gt;，理当允许非root挂载或卸载OSS bucket。非root用户使用&lt;a href=&#34;https://github.com/aliyun/ossfs&#34;&gt;ossfs&lt;/a&gt;挂载的文件默认的owner都是&lt;strong&gt;root&lt;/strong&gt;! 还好目前有workaround，挂载的时候指定参数，&lt;code&gt;-ouid=your_uid -ogid=your_gid&lt;/code&gt;来指定文件的owner。&lt;/li&gt;
+&lt;li&gt;性能极其低下！！！一台ECS主机挂载了一个使用内网地址的oss bucket，bucket根下面有2k+子目录（对文件系统而言）,bucket内文件总计有28G。然而执行&lt;code&gt;ls /tmp/&amp;lt;bucket mount point&amp;gt;&lt;/code&gt;超过10分钟都无法完成。而我们&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;之前用Java实现的&lt;a href=&#34;https://github.com/videome/AliyunOSSFS&#34;&gt;AliyunOSSFS&lt;/a&gt;执行同样的操作只需要数秒。&lt;/li&gt;
+&lt;li&gt;阿里云相关的技术支持人员及其不专业。很多文件系统，&lt;a href=&#34;https://en.wikipedia.org/wiki/Filesystem_in_Userspace&#34;&gt;FUSE&lt;/a&gt;等概念都不甚了解。跟他们沟通这些技术问题，首先要花时间进行教育。花费大量时间来沟通，进展确缓慢。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;总之-阿里云ossfs-https-github-com-aliyun-ossfs-这个工具远远没有达到-production-ready-的质量-无法使用到生产环境中&#34;&gt;总之，&lt;a href=&#34;https://github.com/aliyun/ossfs&#34;&gt;阿里云ossfs&lt;/a&gt;这个工具远远没有达到&lt;strong&gt;production ready&lt;/strong&gt;的质量。无法使用到生产环境中。&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>如何使用微信公众平台的临时素材</title>
+      <link>https://kane.mx/posts/2016/weixin-temporary-materials/</link>
+      <pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/weixin-temporary-materials/</guid>
+      <description>&lt;p&gt;微信给公众平台提供了&lt;a href=&#34;http://mp.weixin.qq.com/wiki/15/2d353966323806a202cd2deaafe8e557.html&#34;&gt;素材管理&lt;/a&gt;的接口，通过这一系列接口可以上传，接收以及管理图片，视频等多媒体文件。其中又分为&lt;strong&gt;临时&lt;/strong&gt;和&lt;strong&gt;永久&lt;/strong&gt;两种类型。永久素材有总量的限制，临时素材微信服务器只给保存3天。&lt;/p&gt;
+
+&lt;p&gt;最近&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;刚好有个同微信用户互动的场景，为用户美化微信拍摄的小视频。&lt;a href=&#34;https://vme360.com&#34;&gt;V秘&lt;/a&gt;后台服务器收到用户发送过来小视频（微信将其认做临时素材），将其美化处理后，再将美化的视频上传为临时素材，最终美化后的视频作为视频类型的客服消息被推送给用户。整个流程很简洁，用户发送小视频后，就坐等观看美化后的小视频了。&lt;/p&gt;
+
+&lt;p&gt;然而最终经过V秘开发团队的实践及测试，得出的结论是，&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;##&lt;strong&gt;微信公众平台的临时素材不能用！绝对的鸡肋！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;公众平台上传素材的API以及使用已有素材发送视频消息API都很健壮。但问题出在了微信后台资源的服务上面。&lt;/p&gt;
+
+&lt;p&gt;开发者把图片视频成功上传为临时素材后，会从微信的接口得到这个素材的ID。这个ID随后作为给用户发送图文消息或视频消息的资源。微信后台会把这个ID对应到素材的真实URL路径上。这个过程是没有问题的。同时微信作为一个拥有海量用户的软件，它会将这些将要推送给用户的素材都发布到它的CDN。用户收到的最终图片视频的地址就是素材文件在微信/腾讯CDN上的地址。对CDN有了解的朋友都知道，CDN服务器分散在全国或全世界各地，当用户请求这个资源的时候，请求会被路由到离用户最近的CDN服务器上。当CDN服务器上还没有缓存请求的资源时，这时候有个溯源的过程。就是原始文件从文件服务器传送到该CDN服务器的一个过程。这时，用户有一个额外的等待，等待时间取决于文件大小和CDN服务器和文件服务器间的带宽。&lt;/p&gt;
+
+&lt;p&gt;微信用来给公众号放置临时素材的CDN在这一块出了问题。在我们的测试中，微信CDN可能一直无法提供这些临时素材（某些文件超过1天后仍然无法访问）。而且出现错误的几率相当高，至少20%以上。由于CDN无法为临时素材提供可靠的访问保障，所以我们得出微信给公众号临时素材这个功能基本就是不能用。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>单页面应用(single page application)中使用微信支付</title>
+      <link>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</link>
+      <pubDate>Sun, 24 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</guid>
+      <description>&lt;p&gt;随着&lt;strong&gt;AngularJS&lt;/strong&gt;等前端MVC框架的流行，AJAX的异步请求数据结合H5的push state等特性，极大的改善了网站的用户体验和页面加载性能。这类网站应用通常只有一个入口页面，通过应用内路由到不同的页面，所以俗称单页面(signle page application)应用。页面&lt;strong&gt;URL&lt;/strong&gt;看起来如下，&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;网站首页
+&lt;a href=&#34;http://mysite.com/#/index&#34;&gt;http://mysite.com/#/index&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;商品列表页
+&lt;a href=&#34;http://mysite.com/#/goods/list&#34;&gt;http://mysite.com/#/goods/list&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;商品详情页
+&lt;a href=&#34;http://mysite.com/#/goods/skuid&#34;&gt;http://mysite.com/#/goods/skuid&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;网站关于页
+&lt;a href=&#34;http://mysite.com/#/about&#34;&gt;http://mysite.com/#/about&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;对浏览器而言，上面几个地址都是访问的网站&lt;strong&gt;&lt;code&gt;/&lt;/code&gt;&lt;/strong&gt;目录，每个url不同的是&lt;code&gt;hash&lt;/code&gt;部分。而&lt;strong&gt;AngularJS&lt;/strong&gt;正是依赖页面的&lt;code&gt;hash&lt;/code&gt;来做的应用内路由，根据不同的路由来加载不同的&lt;code&gt;js&lt;/code&gt;和&lt;code&gt;html&lt;/code&gt;片段，实现动态内容的加载。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;世上并没有绝对完美的事情，单页面应用在用户体验和性能上获得了好处。然而，在别的地方必然付出代价。这里就分享一下单页面应用和微信支付集成的一些经验。&lt;/p&gt;
+
+&lt;p&gt;这里的微信支付指的是，在微信浏览器中通过JS接口调起微信支付来完成网页应用中商品的购买。微信支付本身的开发集成并不复杂，这里就不赘述了。微信支付出于安全考虑，要求公众号必须注册支付发起页面的地址（到支付页面的上级目录为止），并且能够添加到白名单的地址不超过3个。也就是如果应用在*商品详情页*发起支付请求，那么地址&lt;strong&gt;&lt;code&gt;http://mysite.com/#/goods/&lt;/code&gt;&lt;/strong&gt;必须在白名单列表。&lt;/p&gt;
+
+&lt;p&gt;目前为止，一切都很好理解，把支付页面加到微信支付白名单不就万事大吉了。可经过实测，事实确不是这么简单！&lt;/p&gt;
+
+&lt;p&gt;在微信&lt;strong&gt;iOS&lt;/strong&gt;版本中，微信支付JS会错误的使用landing网站页面的URL，而不是发起支付的页面URL！比如用户通过网站首页&lt;strong&gt;&lt;code&gt;http://mysite.com/#/index&lt;/code&gt;&lt;/strong&gt;进入应用，通过站内链接浏览到了某商品详情页&lt;strong&gt;&lt;code&gt;http://mysite.com/#/goods/skuid&lt;/code&gt;&lt;/strong&gt;并发起了支付。但微信JS会把landing页面URL&lt;strong&gt;&lt;code&gt;http://mysite.com/#/index&lt;/code&gt;&lt;/strong&gt;判定为支付的发起页面，从而导致支付JS调用失败！&lt;/p&gt;
+
+&lt;p&gt;因为应用存在多个页面，不可能把所有的页面都加到支付白名单中(有3个数目限制，并且工作量也大到不现实)。要解决这个问题，只好另辟蹊径。我目前找到的方法是，强制刷新页面当打开商品详情页的时候。等同于直接在微信浏览器中打开了商品详情页。虽然对用户体验有些影响，但支付功能正常工作了。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>文件系统的Inode耗尽，会导致Docker编译镜像出现&#39;No space left on device&#39;错误</title>
+      <link>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</link>
+      <pubDate>Thu, 21 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</guid>
+      <description>&lt;p&gt;最近在提交前端代码后，前端代码的自动发布老是失败。失败的原因多是编译Docker镜像时在执行&lt;code&gt;COPY&lt;/code&gt;语句拷贝文件到镜像文件系统时，扔出了&amp;rsquo;No space left on device&amp;rsquo;这个错误。这个错误根据描述非常好理解，就是docker文件系统所在磁盘没有了空间。&lt;/p&gt;
+
+&lt;p&gt;但是通过&lt;code&gt;df -h&lt;/code&gt;命令，该磁盘至少还有3，4个G的剩余空间。而前端镜像的文件大小最多也不超过300M。在该磁盘通过&lt;code&gt;touch&lt;/code&gt;,&lt;code&gt;cp&lt;/code&gt;仍然可以创建文件。&lt;/p&gt;
+
+&lt;p&gt;所以这个问题非常奇怪，为什么&lt;code&gt;docker&lt;/code&gt;或者&lt;code&gt;操作系统&lt;/code&gt;抱怨磁盘没有了空间？在磁盘仍然剩余数个G的情况下？&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;再通过相关的查找后，docker的这个&lt;a href=&#34;https://github.com/docker/docker/issues/18144&#34;&gt;issue&lt;/a&gt;给了我启发。Linux文件系统的&lt;code&gt;inode&lt;/code&gt;在耗尽后，该文件系统将不能再创建新文件。因为前端页面是基于&lt;code&gt;nodejs&lt;/code&gt;的程序，它依赖的packages产生了大量文件，在反复制作不同的docker images时，这些依赖文件又被反复复制，导致文件数量远远超过了默认inode和磁盘大小的比例，最终&lt;code&gt;inode&lt;/code&gt;先于磁盘空间被全部使用。&lt;/p&gt;
+
+&lt;p&gt;遇到类似问题的同学，可以通过&lt;code&gt;df -i&lt;/code&gt;查看&lt;code&gt;inode&lt;/code&gt;的使用情况来排查问题是否由于&lt;code&gt;inode&lt;/code&gt;耗尽导致这个错误。&lt;/p&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
