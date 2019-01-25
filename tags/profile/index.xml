@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Profile on The Road</title>
+    <link>https://kane.mx/tags/profile/</link>
+    <description>Recent content in Profile on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 28 Dec 2010 11:33:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/profile/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Inside P2&#39;s profile (2) - the fragment matches all osgi bundles</title>
+      <link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</link>
+      <pubDate>Tue, 28 Dec 2010 11:33:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid>
+      <description>Recently our installer met a strange bug, it didn&amp;rsquo;t uninstall all legacy bundles after updating to new version. Finally I found it&amp;rsquo;s due to a magic fragment is missing in the profile due to some causes.
+ 
+
+
+
+installBundle(bundle:${artifact})
+
+uninstallBundle(bundle:${artifact})
+
+ 
+setStartLevel(startLevel:4);
+
+
+
+
+It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsquo;s a fragment IU and match all the eclipse&amp;rsquo;s plug-ins in that profile.</description>
+    </item>
+    
+    <item>
+      <title>Inside P2&#39;s profile (1) - inclusion rules</title>
+      <link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</link>
+      <pubDate>Tue, 28 Dec 2010 11:13:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid>
+      <description>You would see some interesting properties at the bottom of eclipse&amp;rsquo;s profile.
+For example,
+
+
+It attaches a property named &amp;lsquo;org.eclipse.equinox.p2.internal.inclusion.rules&amp;rsquo; with value &amp;lsquo;STRICT&amp;rsquo; on the IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; with version 3.6.1.M20100909-0800.
+It&amp;rsquo;s a very important property for the p2 engine. It means the IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; has been explicitly installed into the profile, so it&amp;rsquo;s not allowed be implicitly updated or removed.
+For example,
+We have top feature IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; that represents the Eclipse SDK, &amp;lsquo;org.</description>
+    </item>
+    
+  </channel>
+</rss>

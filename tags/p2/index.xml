@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>P2 on The Road</title>
+    <link>https://kane.mx/tags/p2/</link>
+    <description>Recent content in P2 on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 17 Oct 2011 19:34:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/p2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>p2 query performance</title>
+      <link>https://kane.mx/posts/archive/blogspot/p2-query-performance/</link>
+      <pubDate>Mon, 17 Oct 2011 19:34:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/p2-query-performance/</guid>
+      <description>Our p2 based on installer suffered performance issue when querying IUs from repositories. Though the repositories have a large number of IUs to be queried, but we find the performance of using QL is unacceptable in some special scenarios.
+I published several different methods to find the expected IUs. Thomas pointed out the better expression of QL and finally helped us to find out the our repository without IIndexProvider implementation.</description>
+    </item>
+    
+    <item>
+      <title>Eclipse P2&#39;s import/export capability</title>
+      <link>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</link>
+      <pubDate>Fri, 22 Apr 2011 15:56:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</guid>
+      <description>I implemented the replication tool at the end of 2009, then published it to Eclipse Marketplace in May 2010. However it&amp;rsquo;s not pervasively used due to users have to install that plug-in firstly.
+I searched a similar request on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.</description>
+    </item>
+    
+    <item>
+      <title>Inside P2&#39;s profile (2) - the fragment matches all osgi bundles</title>
+      <link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</link>
+      <pubDate>Tue, 28 Dec 2010 11:33:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid>
+      <description>Recently our installer met a strange bug, it didn&amp;rsquo;t uninstall all legacy bundles after updating to new version. Finally I found it&amp;rsquo;s due to a magic fragment is missing in the profile due to some causes.
+ 
+
+
+
+installBundle(bundle:${artifact})
+
+uninstallBundle(bundle:${artifact})
+
+ 
+setStartLevel(startLevel:4);
+
+
+
+
+It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsquo;s a fragment IU and match all the eclipse&amp;rsquo;s plug-ins in that profile.</description>
+    </item>
+    
+    <item>
+      <title>Inside P2&#39;s profile (1) - inclusion rules</title>
+      <link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</link>
+      <pubDate>Tue, 28 Dec 2010 11:13:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid>
+      <description>You would see some interesting properties at the bottom of eclipse&amp;rsquo;s profile.
+For example,
+
+
+It attaches a property named &amp;lsquo;org.eclipse.equinox.p2.internal.inclusion.rules&amp;rsquo; with value &amp;lsquo;STRICT&amp;rsquo; on the IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; with version 3.6.1.M20100909-0800.
+It&amp;rsquo;s a very important property for the p2 engine. It means the IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; has been explicitly installed into the profile, so it&amp;rsquo;s not allowed be implicitly updated or removed.
+For example,
+We have top feature IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; that represents the Eclipse SDK, &amp;lsquo;org.</description>
+    </item>
+    
+    <item>
+      <title>[Eclipse][P2]P2 replication plug-in</title>
+      <link>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</link>
+      <pubDate>Fri, 25 Dec 2009 16:43:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</guid>
+      <description>I wrote a plug-in to simplify the process to install the same plug-ins in different platform or different workstation.
+Anyone is interested in it, pls follow below guide to freely use it.
+http://code.google.com/p/kane-toolkit/wiki/P2Replication
+Enjoy it.</description>
+    </item>
+    
+    <item>
+      <title>[Eclipse][P2]Learn p2 step by step</title>
+      <link>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</link>
+      <pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid>
+      <description>Learn p2 step by step Kane   Learn P2 step by step
+ p2 concept p2 install p2 install practice p2 repository publish customized p2 touchpoint p2 repository publish practice Example Code Reference    p2 concept 首先来理解p2引入的几个概念[1]
+ p2 / Agent
+ The provisioning infrastructure on client machines
+ Installable Unit (IU)
+ Metadata that describes things that can be installed/configured
+ Artifact
+ The actual content being installed/configured(e.</description>
+    </item>
+    
+    <item>
+      <title>Simulate p2 self host in Eclipse run</title>
+      <link>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</link>
+      <pubDate>Tue, 27 Oct 2009 16:12:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</guid>
+      <description>-Dosgi.install.area=-Declipse.p2.profile=</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jenkins Cli on The Road</title>
+    <link>https://kane.mx/tags/jenkins-cli/</link>
+    <description>Recent content in Jenkins Cli on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Jul 2015 09:32:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/jenkins-cli/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Daemon hell in Jenkins</title>
+      <link>https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/</link>
+      <pubDate>Tue, 21 Jul 2015 09:32:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/</guid>
+      <description>Recently I wrote a Linux like initd script to start/stop my web application.
+The script works well when running it in shell of linux. The web application will run in background by daemon.
+However I found both daemon and web application(java) exited immediately if I started the script in Jenkins as a shell step of build process.
+I put below simple script in &amp;lsquo;Execute shell&amp;rsquo; block,
+daemon --name=test-daemon -- sleep 200sleep 60 The process &amp;lsquo;daemon&amp;rsquo; and &amp;lsquo;sleep 200&amp;rsquo; should exit after 200 seconds the &amp;lsquo;sleep&amp;rsquo; exits.</description>
+    </item>
+    
+    <item>
+      <title>Run groovy script via Jenkins CLI</title>
+      <link>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</link>
+      <pubDate>Mon, 13 May 2013 13:44:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</guid>
+      <description>Jenkins supports ssh authentication in CLI.
+Below is a command to verify that I am authenticated:
+java -jar jenkins-cli.jar -s http://myserver/jenkins who-am-i Authenticated as: myuser Authorities: authenticated However you still would meet permission error when running groovy script in CLI.
+java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &amp;#39;jenkins.model.Jenkins.instance.pluginManager.plugins.each { println(&amp;#34;${it.longName} - ${it.version}&amp;#34;) };&amp;#39; Exception in thread &amp;#34;main&amp;#34; java.lang.reflect.UndeclaredThrowableException at $Proxy2.main(Unknown Source) at hudson.cli.CLI.execute(CLI.java:271) at hudson.cli.CLI._main(CLI.java:417) at hudson.cli.CLI.main(CLI.java:322) It&amp;rsquo;s a bug of Jenkins.</description>
+    </item>
+    
+  </channel>
+</rss>

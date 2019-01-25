@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ssh on The Road</title>
+    <link>https://kane.mx/tags/ssh/</link>
+    <description>Recent content in Ssh on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 Feb 2012 17:47:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Acess Intranet without VPN</title>
+      <link>https://kane.mx/posts/archive/blogspot/acess-intranet-without-vpn/</link>
+      <pubDate>Fri, 17 Feb 2012 17:47:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/acess-intranet-without-vpn/</guid>
+      <description>Sometimes I need access the Intranet of company, however I don&amp;rsquo;t like to create VPN connection. The connection is slow, waste time to create the connection and have to change password due to security policy.
+My workstation is Linux, which has a lot of utility tools to help me access Intranet at home without VPN.
+Firstly I set up a ssh server on my personal computer. It&amp;rsquo;s quite easy if you are using Linux, for Windows I installed Copssh.</description>
+    </item>
+    
+    <item>
+      <title>[tip]ssh key</title>
+      <link>https://kane.mx/posts/archive/blogspot/ssh-key/</link>
+      <pubDate>Tue, 29 Dec 2009 11:33:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/ssh-key/</guid>
+      <description>Setup SSH without password.
+a) execute &amp;ldquo;ssh-keygen -t rsa&amp;rdquo; under your linux/unix login to get the RSA keys.
+(press Enter for all)
+You will get 2 files uner ~/.ssh/, id_rsa and id_rsa.pub
+b) Put the public key id_rsa.pub to your remote host: ~/.ssh/authorized_keys If the remote host share the same nfs, just try &amp;ldquo; cat id_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys&amp;rdquo;
+* Remember to modify hostname or ip info in ~/.ssh/authorized_keys to &amp;ldquo;&amp;rdquo;, so that you can login from any host without password in your NIS domain.</description>
+    </item>
+    
+    <item>
+      <title>[tip]ssh forward</title>
+      <link>https://kane.mx/posts/archive/blogspot/ssh-forward/</link>
+      <pubDate>Wed, 28 Oct 2009 15:29:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/ssh-forward/</guid>
+      <description>ssh -qTfnN -D LocalPort remotehost
+All the added options are for a ssh session that&amp;rsquo;s used for tunneling.
+-q :- be very quite, we are acting only as a tunnel.
+-T :- Do not allocate a pseudo tty, we are only acting a tunnel.
+-f :- move the ssh process to background, as we don&amp;rsquo;t want to interact with this ssh session directly.
+-N :- Do not execute remote command.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rcp on The Road</title>
+    <link>https://kane.mx/tags/rcp/</link>
+    <description>Recent content in Rcp on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 09 Mar 2007 13:46:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/rcp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Eclipse]get rid of the menus of eclipse platform</title>
+      <link>https://kane.mx/posts/archive/blogspot/get-rid-of-menus-of-eclipse-platform/</link>
+      <pubDate>Fri, 09 Mar 2007 13:46:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/get-rid-of-menus-of-eclipse-platform/</guid>
+      <description>When you develop a rich client application base on eclipse framework, and your application require eclipse platform feature, you would find that your application has some menu items contributed by eclipse platform. Those menu items are defined by several plug-ins&amp;rsquo; implementation of actionSet extention point. In fact Eclipse provides an activity mechanism to suppress the extension points which you don&amp;rsquo;t want to use. However, you must know the identification name of extension points which you want to suppress.</description>
+    </item>
+    
+    <item>
+      <title>[Eclipse]Eclipse update support</title>
+      <link>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</link>
+      <pubDate>Wed, 17 Jan 2007 13:51:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</guid>
+      <description>Those days my work is focus on eclipse&amp;rsquo;s update. Now I understand the general mechanism and meet some issues when using it in development work.
+The update mechanism includes four major types: install, enable, disable and uninstall. And all of those operations can be executed by command line, such as installing a feature can use following line:
+-application org.eclipse.update.core.standaloneUpdate -command install -featureId my.feature -version 1.0.0 -from file:/v:/local_updateSite/ -to file:/v:/eclipse/.
+The installation process would copy the feature and plugins which are included by the feature to the local site from the update site, then execute the feature&amp;rsquo;s global install handler if it has one.</description>
+    </item>
+    
+    <item>
+      <title>[Eclipse]The call sequence between partActivated and menu update</title>
+      <link>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</link>
+      <pubDate>Thu, 19 Oct 2006 12:42:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</guid>
+      <description>I met a defect that dynamically created menu items disappear after creating a new viewPart. It caused me overtime last Friday. Today I find the root cause.
+The scenario is:
+ open first document, the items are shown well
+ open another document, the items disappear
+  The requirement is that showing the menu items while current part is document, otherwise hide them.
+So our implementation is:
+ when current document part is deactivated, set menu items invisible</description>
+    </item>
+    
+  </channel>
+</rss>

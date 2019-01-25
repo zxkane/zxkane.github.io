@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Code Signing on The Road</title>
+    <link>https://kane.mx/tags/code-signing/</link>
+    <description>Recent content in Code Signing on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Jul 2011 21:03:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/code-signing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using the certificate of Windows code signing to sign jars</title>
+      <link>https://kane.mx/posts/archive/blogspot/using-certificate-of-windows-code/</link>
+      <pubDate>Mon, 18 Jul 2011 21:03:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/using-certificate-of-windows-code/</guid>
+      <description>I did sign the jars via reusing the existing certificate of Windows code signing several months ago. Writing it down for further reference.
+Whatever your purpose of reusing the existing Windows code certificate, I only document the way from technical perspective.
+After buying the certificate of Windows code signing from CA, you will get a .pvk file that stores both the certificate and private key. PVK file is the PKCS12 format[1], however java uses JKS format by default.</description>
+    </item>
+    
+  </channel>
+</rss>

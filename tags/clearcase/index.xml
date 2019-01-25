@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clearcase on The Road</title>
+    <link>https://kane.mx/tags/clearcase/</link>
+    <description>Recent content in Clearcase on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Oct 2011 19:45:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/clearcase/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Migration Clearcase to Git -- part 2</title>
+      <link>https://kane.mx/posts/archive/blogspot/migration-clearcase-to-git-part-2/</link>
+      <pubDate>Tue, 25 Oct 2011 19:45:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/migration-clearcase-to-git-part-2/</guid>
+      <description>Several days ago I had a post to record the unsuccessful experience to migrate source code from Clearcase to Git.
+We have a new way after doing some brain storms. This way still is not a perfect solution, but it&amp;rsquo;s much better than previous trial.
+ Use clearexport_ccase to export the source folder to intermittent data. See documentation of Clearcase admin. Create a temporary vob for importing the data later. See example.</description>
+    </item>
+    
+    <item>
+      <title>Migrate Clearcase to Git</title>
+      <link>https://kane.mx/posts/archive/blogspot/migrate-clearcase-to-git/</link>
+      <pubDate>Mon, 17 Oct 2011 19:50:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/migrate-clearcase-to-git/</guid>
+      <description>I tried to migrate the source code of project from Clearcase to Git repository. As far as I know there is no elegant solution for such migration. For purpose of this migration, I want to keep the history and label of files in Clearcase after migrating to Git repository.
+There are mature tools to migrate CVS/SVN repository to Git, so I tried to use Subversion as a bridge for my migration.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Configuration on The Road</title>
+    <link>https://kane.mx/tags/configuration/</link>
+    <description>Recent content in Configuration on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Feb 2012 11:36:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/configuration/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to reuse the existing OpenID accounts after the host name of Gerrit server is changed</title>
+      <link>https://kane.mx/posts/archive/blogspot/how-to-reuse-existing-openid-accounts/</link>
+      <pubDate>Wed, 15 Feb 2012 11:36:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/how-to-reuse-existing-openid-accounts/</guid>
+      <description>An internal Gerrit server was moved, so the hostname of server is changed. However we are using OpenID for user control, the OpenID provider(such as Google account) will generate a new token for the new server(hostname changing will impact the identity token of Google account) when we login Gerrit with same OpenID account. Gerrit will create a new internal account by default even though my OpenID account has existed in the system and has a lot of activities.</description>
+    </item>
+    
+    <item>
+      <title>JRE/JDK&#39;s certificate issue and solution</title>
+      <link>https://kane.mx/posts/archive/blogspot/jrejdks-certificate-issue-and-solution/</link>
+      <pubDate>Thu, 24 Nov 2011 15:58:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/jrejdks-certificate-issue-and-solution/</guid>
+      <description>The problem came from I tried to set up send mail server(SMTP) for my Gerrit server. My Gerrit server is using OpenID for user authorization, so I registered a new email account to send notification from Gerrit.
+Most of email service providers require the secure authorization when using its SMTP server to send mail. However the root CA of my email provider is not added into the default certificate of JRE.</description>
+    </item>
+    
+  </channel>
+</rss>

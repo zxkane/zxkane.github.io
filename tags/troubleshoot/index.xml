@@ -20,5 +20,15 @@
       <description>最近在提交前端代码后，前端代码的自动发布老是失败。失败的原因多是编译Docker镜像时在执行COPY语句拷贝文件到镜像文件系统时，扔出了&amp;r</description>
     </item>
     
+    <item>
+      <title>The symptoms of Java broken in Mac OSX 10.10 and fix solution</title>
+      <link>https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/</link>
+      <pubDate>Mon, 13 Jul 2015 19:11:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/</guid>
+      <description>After uninstalling some applications from my Mac OSX, I found the applications that depends on JRE totally does not work. I noticed below symptoms,
+ Eclipse Mars can not be launched, even though I specified the launching vm to another one(`java -version` still work). The SWT native library failed to resolve the dependencies to &amp;lsquo;/System/Library/Frameworks/JavaVM.framework/Versions/A/JavaVM&amp;rsquo; which does not exists. I tried to reinstall Oracle 1.8.0_u45 via both brew and dmg image downloaded from Oracle website, both ways were failed as well.</description>
+    </item>
+    
   </channel>
 </rss>

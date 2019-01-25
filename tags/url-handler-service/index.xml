@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Url Handler Service on The Road</title>
+    <link>https://kane.mx/tags/url-handler-service/</link>
+    <description>Recent content in Url Handler Service on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Apr 2008 14:20:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/url-handler-service/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[OSGi][Equinox]URL Handlers Service</title>
+      <link>https://kane.mx/posts/archive/blogspot/url-handlers-service/</link>
+      <pubDate>Wed, 16 Apr 2008 14:20:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/url-handlers-service/</guid>
+      <description>OSGi provides a mechanism to let user contribute custom schemes automatically. It avoid some restriction with Java facilities for extending the handlers. The more detail could be found from OSGi specification R4, which has description how OSGi implements URL Handler Service.
+Use a sample to illustrate how to contribute your scheme(protocol):
+1. register your URLStreamHandlerService implementation, which must contain a property named &amp;ldquo;url.handler.protocol&amp;rdquo;. below register my scheme &amp;lsquo;smb&amp;rsquo;
+public void start(BundleContext context) throws Exception {</description>
+    </item>
+    
+  </channel>
+</rss>

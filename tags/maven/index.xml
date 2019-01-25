@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Maven on The Road</title>
+    <link>https://kane.mx/tags/maven/</link>
+    <description>Recent content in Maven on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Nov 2011 16:16:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/maven/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The tips of Maven/Tycho building crossplatform RCP and repository</title>
+      <link>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</link>
+      <pubDate>Tue, 08 Nov 2011 16:16:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</guid>
+      <description>I successfully converted our product build from PDE build to Maven/Tycho. Something is worth to be documented here.
+There are several examples and posts to demonstrate how using Tycho building your Eclipse plug-ins, features, applications and products. The most helpful example is the demo of Tycho project.
+Below are some traps I met when building my project by Tycho,
+ product build
+Our product is based on plug-ins, however we added the &amp;lsquo;featurelist&amp;rsquo; in build.</description>
+    </item>
+    
+  </channel>
+</rss>

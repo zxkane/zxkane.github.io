@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Daemon on The Road</title>
+    <link>https://kane.mx/tags/daemon/</link>
+    <description>Recent content in Daemon on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Jul 2015 09:32:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/daemon/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Daemon hell in Jenkins</title>
+      <link>https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/</link>
+      <pubDate>Tue, 21 Jul 2015 09:32:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/</guid>
+      <description>Recently I wrote a Linux like initd script to start/stop my web application.
+The script works well when running it in shell of linux. The web application will run in background by daemon.
+However I found both daemon and web application(java) exited immediately if I started the script in Jenkins as a shell step of build process.
+I put below simple script in &amp;lsquo;Execute shell&amp;rsquo; block,
+daemon --name=test-daemon -- sleep 200sleep 60 The process &amp;lsquo;daemon&amp;rsquo; and &amp;lsquo;sleep 200&amp;rsquo; should exit after 200 seconds the &amp;lsquo;sleep&amp;rsquo; exits.</description>
+    </item>
+    
+  </channel>
+</rss>

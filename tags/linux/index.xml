@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on The Road</title>
+    <link>https://kane.mx/tags/linux/</link>
+    <description>Recent content in Linux on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Feb 2009 17:40:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[tip]Turn off automatically scanning disk when reboot</title>
+      <link>https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/</link>
+      <pubDate>Wed, 11 Feb 2009 17:40:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/</guid>
+      <description>tune2fs -i 0 -c 0 /dev/sdx</description>
+    </item>
+    
+    <item>
+      <title>[tip]convert dos format to unix</title>
+      <link>https://kane.mx/posts/archive/blogspot/tipconvert-dos-format-to-unix/</link>
+      <pubDate>Fri, 23 May 2008 18:03:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/tipconvert-dos-format-to-unix/</guid>
+      <description>In vi/vim,
+﻿set file format=unix
+or dos2unix, unix2dos</description>
+    </item>
+    
+    <item>
+      <title>[tip]Makefile</title>
+      <link>https://kane.mx/posts/archive/blogspot/makefile-tip/</link>
+      <pubDate>Thu, 22 May 2008 20:37:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/makefile-tip/</guid>
+      <description>Build c/c++ project always need third party library on linux, such as gtk+, glib. Writing their absolute path in Makefile is not flexible way. You can use pkg-config instead of the absolute path. Below is code snippet:
+GTK_LIB=$(shell pkg-config &amp;ndash;libs gtk+-2.0)
+GTK_INC=$(shell pkg-config &amp;ndash;cflags gtk+-2.0)
+gcc -o yourlibrary.so $(GTK_INC) $(GTK_LIB)</description>
+    </item>
+    
+    <item>
+      <title>[shell]Learning Note - 3/19/08</title>
+      <link>https://kane.mx/posts/archive/blogspot/linux-shelllearning-note-31908/</link>
+      <pubDate>Wed, 19 Mar 2008 14:35:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/archive/blogspot/linux-shelllearning-note-31908/</guid>
+      <description>1&amp;gt; 是输出正确数据， 2&amp;gt; 则是错误数据输出项目, 若要同时写入同一个档案需要使用 2&amp;gt;&amp;amp;1 /dev/null 是什么呢？基本上，那就有点像是一个『黑洞』的垃圾桶功能！当你输入的任何东西导向到这个虚拟的垃圾桶装置时，『他就会凭空消失不见了～～』</description>
+    </item>
+    
+  </channel>
+</rss>
