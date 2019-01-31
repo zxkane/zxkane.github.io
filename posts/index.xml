@@ -6,10 +6,74 @@
     <description>Recent content in Posts on The Road</description>
     <meta name="generator" content="Hugo 0.53" />
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0800</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IAM最佳实践</title>
+      <link>https://kane.mx/posts/effective-cloud-computing-series/iam-best-practice/</link>
+      <pubDate>Fri, 01 Feb 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/posts/effective-cloud-computing-series/iam-best-practice/</guid>
+      <description>&lt;p&gt;企业使用公有云服务的第一件事情就是创建云帐号，有了帐号之后如何让企业员工安全合规的使用云帐号下的各种资源是开启云之旅后的第一个考验。&lt;/p&gt;
+
+&lt;p&gt;云计算厂商针对企业上云后面临的第一个需求已经推出了完善的解决方案&amp;ndash;&lt;a href=&#34;https://en.wikipedia.org/wiki/Identity_management&#34;&gt;Identity and Access Management&lt;/a&gt;。&lt;a href=&#34;https://en.wikipedia.org/wiki/Identity_management&#34;&gt;IAM&lt;/a&gt;可以帮助云帐号安全地控制对云计算服务资源的访问。企业可以使用IAM控制对哪个用户进行身份验证 (登录) 和授权 (具有权限) 以使用资源。&lt;/p&gt;
+
+&lt;p&gt;云厂商是否提供完善的IAM服务可以作为整体产品解决方案是否成熟的一个衡量指标，比如AWS的&lt;a href=&#34;https://docs.aws.amazon.com/zh_cn/IAM/latest/UserGuide/introduction.html&#34;&gt;IAM&lt;/a&gt;和阿里云的&lt;a href=&#34;https://help.aliyun.com/document_detail/28627.html&#34;&gt;访问控制&lt;/a&gt;都是较为成熟完善的产品。国内某个以AI能力为卖点的云厂商，在IAM产品方面几乎为零，很难相信对安全合规有需求的企业会完整使用他的云产品作为解决方案。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Identity_management&#34;&gt;IAM&lt;/a&gt;通常提供以下功能:&lt;/p&gt;
+
+&lt;h3 id=&#34;对云账户的共享访问权限&#34;&gt;对云账户的共享访问权限&lt;/h3&gt;
+
+&lt;p&gt;允许在一个云账户下创建并管理多个用户身份，并允许给单个身份或一组身份（既可以是当前云帐号下也可以是其他云帐号下）分配不同的权限策略，从而实现不同用户拥有不同的云资源访问权限，而不必共享云帐号根用户的密码或访问密钥。&lt;/p&gt;
+
+&lt;h3 id=&#34;精细权限&#34;&gt;精细权限&lt;/h3&gt;
+
+&lt;p&gt;可以针对不同资源向不同人员授予不同权限。可以要求用户必须使用安全信道（如 SSL）、在指定时间范围、或在指定源 IP 条件下才能操作指定的云资源。&lt;/p&gt;
+
+&lt;h3 id=&#34;多重验证-mfa&#34;&gt;多重验证 (MFA)&lt;/h3&gt;
+
+&lt;p&gt;可以向云账户和各个用户添加双重身份验证以实现更高安全性。借助&lt;a href=&#34;https://en.wikipedia.org/wiki/Multi-factor_authentication&#34;&gt;MFA&lt;/a&gt;，用户不仅必须提供使用账户所需的密码或访问密钥，还必须提供来自经过特殊配置的设备的代码。&lt;/p&gt;
+
+&lt;h3 id=&#34;联合身份&#34;&gt;联合身份&lt;/h3&gt;
+
+&lt;p&gt;可以允许已在其他位置（例如，在企业网络中或通过 Internet 身份提供商）获得密码的用户获取对云账户的用户访问权限。&lt;/p&gt;
+
+&lt;p&gt;后面会有专门的文章来讲如何实践联合身份。&lt;/p&gt;
+
+&lt;h3 id=&#34;统一账单&#34;&gt;统一账单&lt;/h3&gt;
+
+&lt;p&gt;云账户接收包括所有用户的资源操作所发生费用的统一账单。&lt;/p&gt;
+
+&lt;p&gt;尽管&lt;a href=&#34;https://en.wikipedia.org/wiki/Identity_management&#34;&gt;IAM&lt;/a&gt;提供了上面种种功能，云帐号的管理者仍可通过一些最佳实践来更好的使用IAM产品来提升安全级别和减少运维成本。&lt;/p&gt;
+
+&lt;h2 id=&#34;iam最佳实践&#34;&gt;IAM最佳实践&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;尽量不要使用云帐号的根用户，&lt;strong&gt;不要为根用户创建AK&lt;/strong&gt;。云帐号管理员也使用各自独立的子账号。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;为企业中每一个需要使用云服务的员工单独创建子账户，且默认不允许创建AK&lt;/strong&gt;。便于员工离职的时候，通过删除帐号来完全清理用户在云计算平台的各种权限。&lt;/li&gt;
+&lt;li&gt;密码安全实践，
+
+&lt;ul&gt;
+&lt;li&gt;限制密码强度&lt;strong&gt;不少于8位&lt;/strong&gt;，必须&lt;strong&gt;由大小写字母、数字和符号中的三种组成&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;强制密码&lt;strong&gt;过期时间不超过90天&lt;/strong&gt;，且过期后不可登录。&lt;/li&gt;
+&lt;li&gt;新密码至少&lt;strong&gt;禁止使用前3次密码&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;设置密码重试约束，例如，&lt;strong&gt;一小时内使用错误密码最大尝试9次登录&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;强制所有用户启用&lt;a href=&#34;https://en.wikipedia.org/wiki/Multi-factor_authentication&#34;&gt;两步认证&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;对访问网络有限制的企业，可以开启登录IP限制。&lt;/li&gt;
+&lt;li&gt;[&lt;strong&gt;推荐做法&lt;/strong&gt;]已有SSO单点登录系统的企业，可以通过&lt;a href=&#34;https://en.wikipedia.org/wiki/SAML_2.0&#34;&gt;SAML 2.0标准&lt;/a&gt;实现从企业本地账号系统登录到阿里云，从而满足企业的统一用户登录认证要求。&lt;/li&gt;
+&lt;li&gt;细粒度的权限管理，
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;为各种云资源创建最细粒度的权限策略&lt;/strong&gt;。例如，分别为RDS实例&lt;code&gt;rds-instance-1&lt;/code&gt;创建只读权限策略&lt;code&gt;rds-instance-1-readonly-access&lt;/code&gt;，RDS实例&lt;code&gt;rds-instance-2&lt;/code&gt;创建只读权限策略&lt;code&gt;rds-instance-2-readonly-access&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;根据职能、部门等维度为云帐号子用户创建用户组&lt;/strong&gt;。例如，按项目创建用户组，&lt;code&gt;group-project-a&lt;/code&gt;，&lt;code&gt;group-project-b&lt;/code&gt;。如果&lt;code&gt;project-a&lt;/code&gt;用户需要访问&lt;code&gt;rds-instance-1&lt;/code&gt;的信息，将自定义权限&lt;code&gt;rds-instance-1-readonly-access&lt;/code&gt;授权给&lt;code&gt;group-project-a&lt;/code&gt;。再将相关用户加到用户组&lt;code&gt;group-project-a&lt;/code&gt;中，这样这些用户就具有只读访问RDS实例&lt;code&gt;rds-instance-1&lt;/code&gt;的权限。而不是将所有RDS的读写权限都授予这些用户，&lt;strong&gt;最大限度的保证用户不获取超过实际需要的权限&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;在实际场景中，通常会通过云计算服务的API来完成某些周期性任务，比如每日RDS中的慢查询统计、云帐号每日花费统计等。这些任务都需要一个云帐号的AK来完成API的身份认证。最佳的做法是，&lt;strong&gt;为每类相关的任务创建一个&lt;code&gt;功能性子账号&lt;/code&gt;&lt;/strong&gt;，禁用他们的web登录，且遵循特殊的命名规范(&lt;code&gt;functional-&lt;/code&gt;开头)，比如&lt;code&gt;functional-rds-stats&lt;/code&gt;、&lt;code&gt;functional-cost-stats&lt;/code&gt;。创建最小的权限策略，然后分配给这些功能性用户。例如，&lt;code&gt;functional-rds-stats&lt;/code&gt;仅被授予RDS只读权限，&lt;code&gt;functional-cost-stats&lt;/code&gt;仅被授予费用的只读权限。为这些子账号创建AK，每类任务使用不同的AK来完成API认证，而不是都使用同一个AK。这样的好处是，不同类型任务的AK具有不同的权限，最大限度的保护了云帐号的安全，并且这些AK不跟实际的员工子账号关联，不会因为员工帐号的变更而受影响。如有更高的安全合规的要求下，可以定期作废已有AK，创建新AK替换。至于AK怎样安全管理，之后会有专门的文章来详解。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     
     <item>
       <title>不要自建Kubernetes</title>
