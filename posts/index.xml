@@ -6,7 +6,7 @@
     <description>Recent content in Posts on The Road</description>
     <meta name="generator" content="Hugo 0.53" />
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>IAM最佳实践</title>
       <link>https://kane.mx/posts/effective-cloud-computing-series/iam-best-practice/</link>
-      <pubDate>Fri, 01 Feb 2019 00:00:00 +0800</pubDate>
+      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/posts/effective-cloud-computing-series/iam-best-practice/</guid>
       <description>&lt;p&gt;企业使用公有云服务的第一件事情就是创建云帐号，有了帐号之后如何让企业员工安全合规的使用云帐号下的各种资源是开启云之旅后的第一个考验。&lt;/p&gt;
@@ -47,7 +47,9 @@
 
 &lt;p&gt;云账户接收包括所有用户的资源操作所发生费用的统一账单。&lt;/p&gt;
 
+&lt;blockquote&gt;
 &lt;p&gt;尽管&lt;a href=&#34;https://en.wikipedia.org/wiki/Identity_management&#34;&gt;IAM&lt;/a&gt;提供了上面种种功能，云帐号的管理者仍可通过一些最佳实践来更好的使用IAM产品来提升安全级别和减少运维成本。&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h2 id=&#34;iam最佳实践&#34;&gt;IAM最佳实践&lt;/h2&gt;
 

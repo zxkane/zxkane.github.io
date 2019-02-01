@@ -6,7 +6,7 @@
     <description>Recent content in Aws on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>IAM最佳实践</title>
       <link>https://kane.mx/posts/effective-cloud-computing-series/iam-best-practice/</link>
-      <pubDate>Fri, 01 Feb 2019 00:00:00 +0800</pubDate>
+      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/posts/effective-cloud-computing-series/iam-best-practice/</guid>
       <description>&lt;p&gt;企业使用公有云服务的第一件事情就是创建云帐号，有了帐号之后如何让企业员工安全合规的使用云帐号下的各种资源是开启云之旅后的第一个考验。&lt;/p&gt;
