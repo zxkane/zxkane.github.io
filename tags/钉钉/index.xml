@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>钉钉 on The Road</title>
+    <link>https://kane.mx/tags/%E9%92%89%E9%92%89/</link>
+    <description>Recent content in 钉钉 on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/%E9%92%89%E9%92%89/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>为Kubernetes中任意应用添加基于oauth2的认证保护</title>
+      <link>https://kane.mx/posts/effective-cloud-computing-series/oauth2-proxy-on-kubernetes/</link>
+      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/effective-cloud-computing-series/oauth2-proxy-on-kubernetes/</guid>
+      <description>&lt;p&gt;企业随着业务的发展，必然会部署各种各样的IT系统。出于安全性的考虑，一些系统仅可企业内部使用，甚至仅开放给企业部分部门员工使用。&lt;/p&gt;
+
+&lt;p&gt;这些IT系统大致可分为两类，&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;系统本身不支持任何认证机制，例如资讯或文档类系统。需要增加认证保护，能够限制非企业员工访问即可。系统运维通常的做法是，为站点设置&lt;a href=&#34;https://en.wikipedia.org/wiki/Basic_access_authentication&#34;&gt;HTTP Basic认证&lt;/a&gt;保护。由于&lt;a href=&#34;https://en.wikipedia.org/wiki/Basic_access_authentication&#34;&gt;HTTP Basic认证&lt;/a&gt;是通过预设的用户、密码认证，认证信息比较容易泄露。即使定期更换密码，但需要额外的机制通知用户密码的变更，用户体验也不好。&lt;/li&gt;
+&lt;li&gt;系统自身支持认证，甚至支持多种认证机制。比如最常用的开源CI/CD工具，&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins&lt;/a&gt;内置支持本地数据库认证、通过&lt;a href=&#34;https://plugins.jenkins.io/#&#34;&gt;插件&lt;/a&gt;支持多种第三方系统集成认证。如果大量的IT系统都有一套独立的用户管理，随着企业的员工的变更，用户的增删等操作对系统管理员来说是不小的工作量。同时，也很容易由于人为疏忽，造成资产、数据的安全隐患。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;假设企业自身已经有了一套OA系统包含员工、组织结构管理，例如，国内目前最为普及流行的&lt;a href=&#34;https://www.dingtalk.com/&#34;&gt;钉钉&lt;/a&gt;或&lt;a href=&#34;https://work.weixin.qq.com/&#34;&gt;企业微信&lt;/a&gt;。我们完全可以提供一套基于&lt;a href=&#34;https://oauth.net/2/&#34;&gt;oauth 2.0协议&lt;/a&gt;的认证方式，让以上两类IT系统使用企业已有的OA系统(&lt;a href=&#34;https://www.dingtalk.com/&#34;&gt;钉钉&lt;/a&gt;或&lt;a href=&#34;https://work.weixin.qq.com/&#34;&gt;企业微信&lt;/a&gt;)来实现登录认证。做到这一点后，企业无论有多少IT系统都不再需要额外管理用户的成本，并且也避免了数据安全隐患。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
