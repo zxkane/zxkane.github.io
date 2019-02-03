@@ -6,17 +6,17 @@
     <description>Recent content in Dingtalk on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 03 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/dingtalk/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>为Kubernetes中任意应用添加基于oauth2的认证保护</title>
-      <link>https://kane.mx/posts/effective-cloud-computing-series/oauth2-proxy-on-kubernetes/</link>
-      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+      <title>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</title>
+      <link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</link>
+      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://kane.mx/posts/effective-cloud-computing-series/oauth2-proxy-on-kubernetes/</guid>
+      <guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</guid>
       <description>&lt;p&gt;企业随着业务的发展，必然会部署各种各样的IT系统。出于安全性的考虑，一些系统仅可企业内部使用，甚至仅开放给企业部分部门员工使用。&lt;/p&gt;
 
 &lt;p&gt;这些IT系统大致可分为两类，&lt;/p&gt;

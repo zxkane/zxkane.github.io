@@ -6,17 +6,17 @@
     <description>Recent content in Kubernetes on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 03 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>为Kubernetes中任意应用添加基于oauth2的认证保护</title>
-      <link>https://kane.mx/posts/effective-cloud-computing-series/oauth2-proxy-on-kubernetes/</link>
-      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+      <title>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</title>
+      <link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</link>
+      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://kane.mx/posts/effective-cloud-computing-series/oauth2-proxy-on-kubernetes/</guid>
+      <guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</guid>
       <description>&lt;p&gt;企业随着业务的发展，必然会部署各种各样的IT系统。出于安全性的考虑，一些系统仅可企业内部使用，甚至仅开放给企业部分部门员工使用。&lt;/p&gt;
 
 &lt;p&gt;这些IT系统大致可分为两类，&lt;/p&gt;
@@ -31,10 +31,10 @@
     
     <item>
       <title>不要自建Kubernetes</title>
-      <link>https://kane.mx/posts/effective-cloud-computing-series/using-kubernetes-on-cloud/</link>
+      <link>https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/</link>
       <pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://kane.mx/posts/effective-cloud-computing-series/using-kubernetes-on-cloud/</guid>
+      <guid>https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/</guid>
       <description>&lt;p&gt;这是“如何高效使用云服务”系列文章的首篇分享。可能有朋友好奇为什么不是从云计算最基础的服务&amp;ndash;计算资源&lt;a href=&#34;https://cn.aliyun.com/product/ecs&#34;&gt;ECS&lt;/a&gt;/&lt;a href=&#34;https://aws.amazon.com/cn/ec2/&#34;&gt;EC2&lt;/a&gt;讲起呢？在&lt;a href=&#34;https://pivotal.io/cloud-native&#34;&gt;Cloud Native&lt;/a&gt;已经被越来越接受的今天，基于&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;部署、编排应用的方式已经是业界的事实标准。无论是互联网巨头，传统500强企业，还是创业团队都在使用或规划使用&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;作为应用程序的自动化部署、可扩展管理平台。在云计算平台，虚拟机越来越不需要单独的管理，在绝大多数的业务场景下，它们只是作为容器集群所管理的计算资源。甚至虚拟机的创建到销毁整个生命周期管理都可以由&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;根据集群的负载来自动完成。&lt;/p&gt;
 
 &lt;p&gt;所有主流的云计算厂商都在解决方案中力推托管的&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;，&lt;a href=&#34;https://aws.amazon.com/cn/&#34;&gt;AWS&lt;/a&gt;的&lt;a href=&#34;https://aws.amazon.com/eks&#34;&gt;EKS&lt;/a&gt;，&lt;a href=&#34;https://azure.microsoft.com/en-us/&#34;&gt;Azure&lt;/a&gt;上的&lt;a href=&#34;https://azure.microsoft.com/en-us/services/kubernetes-service/&#34;&gt;AKS&lt;/a&gt;，当然少不了Google家&lt;a href=&#34;https://cloud.google.com/&#34;&gt;GCP&lt;/a&gt;上的&lt;a href=&#34;https://cloud.google.com/kubernetes-engine/&#34;&gt;Kubernetes Engine&lt;/a&gt;。国内&lt;a href=&#34;https://www.aliyun.com/product/kubernetes&#34;&gt;阿里云&lt;/a&gt;，&lt;a href=&#34;https://cloud.tencent.com/product/tke&#34;&gt;腾讯云&lt;/a&gt;等每一个公有云玩家也都基于开源&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;推出了托管服务。如果一家云计算厂商在提供托管&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;这一服务上没跟上业界的步伐，将来极大可能被淘汰出这个市场。&lt;/p&gt;</description>
