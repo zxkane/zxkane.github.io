@@ -6,10 +6,21 @@
     <description>Recent content in 云计算 on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>无服务器计算101</title>
+      <link>https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Serverless_computing&#34;&gt;Serverless Computing(无服务器计算)&lt;/a&gt;是目前最被看好的云端计算执行模型。其最大的好处是提供分布式弹性可伸缩的计算执行环境，仅为实际使用资源付费，并且将应用维护者从常规的运维事务中解放出来，更利于专注到具体的业务上。&lt;/p&gt;
+
+&lt;p&gt;在主流的应用部署方式下，无论是使用&lt;a href=&#34;https://aws.amazon.com/cn/ec2&#34;&gt;云主机&lt;/a&gt;还是&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/&#34;&gt;Kubernetes&lt;/a&gt;作为运行环境，都会有大量运维层面的事务需要考虑和处理，并且应用程序需要按照分布式程序的设计准则来应对应用的水平伸缩。同时随着云计算服务的发展和完善，云计算厂商提供了越来越多的基础服务，例如API网关、对象存储、消息队列、日志、监控等服务，函数计算可以完美的同其他云服务集成，帮助用户快速实现出生产级别的弹性可伸缩的应用。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</title>
