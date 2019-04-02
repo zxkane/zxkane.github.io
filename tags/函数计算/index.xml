@@ -6,10 +6,19 @@
     <description>Recent content in 函数计算 on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>基于函数计算的钉钉回调函数接口</title>
+      <link>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</guid>
+      <description>&lt;p&gt;由于企业内部管理的需要，用到了&lt;a href=&#34;https://open-doc.dingtalk.com/microapp/serverapi2/lo5n6i&#34;&gt;钉钉的业务事件回调&lt;/a&gt;能力，正好将这个轻量级的接口使用&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/&#34;&gt;无服务器技术&lt;/a&gt;来实现部署，以应对流量无规律下的动态扩展伸缩、按需使用、按量计费等需求。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>无服务器计算101</title>

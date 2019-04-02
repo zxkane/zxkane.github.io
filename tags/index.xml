@@ -50,7 +50,7 @@
     <item>
       <title>Aws</title>
       <link>https://kane.mx/tags/aws/</link>
-      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/aws/</guid>
       <description></description>
@@ -212,7 +212,7 @@
     <item>
       <title>Faas</title>
       <link>https://kane.mx/tags/faas/</link>
-      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/faas/</guid>
       <description></description>
@@ -359,6 +359,15 @@
       <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lambda</title>
+      <link>https://kane.mx/tags/lambda/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/lambda/</guid>
       <description></description>
     </item>
     
@@ -599,7 +608,7 @@
     <item>
       <title>Serverless Computing</title>
       <link>https://kane.mx/tags/serverless-computing/</link>
-      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/serverless-computing/</guid>
       <description></description>
@@ -842,7 +851,7 @@
     <item>
       <title>云计算</title>
       <link>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</link>
-      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</guid>
       <description></description>
@@ -869,7 +878,7 @@
     <item>
       <title>函数计算</title>
       <link>https://kane.mx/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/</link>
-      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/</guid>
       <description></description>
@@ -941,7 +950,7 @@
     <item>
       <title>阿里云</title>
       <link>https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
-      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</guid>
       <description></description>

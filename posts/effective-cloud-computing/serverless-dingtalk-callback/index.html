@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<title>
+	基于函数计算的钉钉回调函数接口
+</title>
+		<style>
+	body {
+		display: block;
+		--colorBG: "#40e0d0, #ff8c00, #ff0080";
+		
+			background: linear-gradient(to right, var(--colorBG)) !important;
+		
+	}
+
+	body, body.pushable {
+		background-repeat: no-repeat;
+	  	background-attachment: fixed;
+	  	background-size: cover !important;
+	}
+</style>
+
+		<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+	
+	
+	
+	<meta name="author" content="Kane" />
+	<meta name="description" content="基于阿里云和AWS生产级别的钉钉回调函数接口" />
+
+
+
+<meta name="generator" content="Hugo 0.54.0" />
+
+
+<link rel="shortcut icon" href="/img/favicon.ico">
+
+
+
+
+		
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+
+ <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Inconsolata" rel="stylesheet"> 
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+
+
+
+	<link rel="stylesheet" type="text/css" href="/css/highlight.css">
+
+
+
+
+	
+		<link rel="stylesheet" type="text/css" href="/css/highlight.css">
+	
+
+
+
+<style>
+	body.pushable {
+		display: block;
+		
+			background: linear-gradient(to right, var(--colorBG)) !important;
+		 ;
+	}
+</style>
+
+
+
+<script>
+	var colorBG =  true 
+	
+	var isMobile = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+	console.log("The client device is a "+(isMobile?"mobile":"PC")+".")
+</script>
+
+	</head>
+
+	<body>
+		<script>
+var prevBgIndex = 0;
+var bodyBgSwitchIndex = 0;
+
+
+
+
+
+
+	var gradients = [
+	  [],
+	  ['#40e0d0', '#ff8c00', '#ff0080'], 
+	  ['#3e5151', '#decba4'], 
+	  ['#11998e', '#38ef7d'], 
+	  ['#108dc7', '#ef8e38'], 
+	  ['#fc5c7d', '#6a82fb'], 
+	  ['#fc466b', '#3f5efb'], 
+	  ['#c94b4b', '#4b134f'], 
+	  ['#23074d', '#cc5333'] 
+	];
+	document.body.style.setProperty('--colorBG', connect(gradients[getRandomInt(0, gradients.length)]));
+
+
+	function getRandomInt(min, max) {
+	  min = Math.ceil(min);
+	  max = Math.floor(max);
+	  var random;
+	  while (1) {
+	    random = Math.floor(Math.random() * (max - min)) + min;
+	    if (random !== prevBgIndex) {
+	      prevBgIndex = random;
+	      break;
+	    }
+	  }
+	  return random;
+	}
+
+	function connect(arr) {
+	  var str = '';
+	  for (var i = 0; i < arr.length; i++) {
+	    if (i !== arr.length - 1) {
+	      str += arr[i] + ', ';
+	    } else {
+	      str += arr[i];
+	    }
+	  }
+	  return str;
+	}
+</script>
+
+
+
+
+		<div id="sidebar" class="ui sidebar inverted vertical menu">
+	
+	<section id="author" class="ui top attached center aligned inverted segment">
+		
+<div class="ui small circular image">
+	
+		<img src="/img/portrait.jpg">
+	
+</div>
+
+
+<h3 class="ui header">
+	Kane
+	<div class="sub header">Twin boys&#39; father, open source mania.</div>
+</h3>
+
+	</section>
+
+	
+	
+		<section class="ui attached center aligned inverted segment sidebar-dream-tags">
+			
+			
+			
+			
+
+
+
+
+	
+	
+		
+			
+			<a class="ui label purple " href="/tags/eclipse" title="eclipse">eclipse</a>
+		
+			
+			<a class="ui label pink " href="/tags/equinox" title="equinox">equinox</a>
+		
+			
+			<a class="ui label pink " href="/tags/tip" title="tip">tip</a>
+		
+			
+			<a class="ui label green " href="/tags/osgi" title="osgi">osgi</a>
+		
+			
+			<a class="ui label olive " href="/tags/p2" title="p2">p2</a>
+		
+			
+			<a class="ui label pink " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+		
+			
+			<a class="ui label pink " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+		
+			
+			<a class="ui label violet " href="/tags/java" title="java">java</a>
+		
+			
+			<a class="ui label blue " href="/tags/docker" title="docker">docker</a>
+		
+			
+			<a class="ui label yellow " href="/tags/linux" title="linux">linux</a>
+		
+	
+
+
+		</section>
+	
+
+	
+	
+		<section class="ui attached inverted segment sidebar-dream-categories both flexbox">
+			<div class="ui inverted accordion">
+				
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/blogging">blogging</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/2018/2018-12-13-bj-archsummit-review/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>2018北京ArchSummit回顾</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>如何修复Jenkins CI无法读取存在的任务配置</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>MongoDB中如何找出慢查询</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Docker Swarm mode(v1.12.x)的一些使用限制</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>基于Angularjs单页面应用的SEO优化</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/clustered-session-under-spring-framework/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Spring框架下的分布式session管理</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/how-we-build-videome/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>V秘是如何构建的</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/aliyun-ossfs-sucks/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>说一说阿里云ossfs</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/weixin-temporary-materials/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>如何使用微信公众平台的临时素材</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>单页面应用(single page application)中使用微信支付</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>文件系统的Inode耗尽，会导致Docker编译镜像出现&#39;No space left on device&#39;错误</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/effective-cloud-computing">effective-cloud-computing</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>基于函数计算的钉钉回调函数接口</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>无服务器计算101</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/iam-best-practice/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>IAM最佳实践</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>不要自建Kubernetes</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/preface/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>真的会用云服务吗？</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/kubernetes">kubernetes</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>不要自建Kubernetes</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/serverless-computing">serverless-computing</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>基于函数计算的钉钉回调函数接口</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>无服务器计算101</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/trip">trip</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/food-and-drinking/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Food and Drinking</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/working-workspace/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Working Workspace</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/transportation/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Transportation</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/working-style/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Working style</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/day-1/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>day 1</p>
+				</div>
+			</a>
+		
+	</div>
+
+
+			</div>
+		</section>
+	
+
+	
+	<section id="footer" class="ui bottom attached center aligned inverted segment">
+		
+
+	<p>© 2019 The Road</p>
+
+
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with <a href="https://github.com/UtkarshVerma/hugo-dream-plus" target="_blank">Dream Plus</a> theme.</p>
+
+	</section>
+</div>
+
+
+		<div class="pusher">
+			<div class="flipper">
+				<div class="front">
+					
+	<nav class="ui top secondary menu bar">
+	
+	<div class="item">
+		<i class="inverted big link bullseye icon dream-flip-toggle" title="About Me"></i>
+	</div>
+
+	
+	
+		<div class="item">
+			<a href="/">
+				<i class="inverted big link home icon" title="Home"></i>
+			</a>
+		</div>
+	
+
+	
+	
+
+	
+	
+		<div class="item">
+			<a href="/tags">
+				<i class="inverted big link tags icon" title="All Tags"></i>
+			</a>
+		</div>
+	
+
+	
+	
+		<div class="item">
+			<a href="/categories">
+				<i class="inverted big link cubes icon" title="All Categories"></i>
+			</a>
+    	</div>
+	
+
+	
+	
+
+	
+	
+		<div class="ui container tablet computer only grid">
+			<div class="item" onClick="$('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');">
+				<i class="inverted big link sidebar icon" title="Show Sidebar"></i>
+			</div>
+		</div>
+	
+
+	
+	
+		<div class="item right">
+			<a href="/posts/index.xml">
+				<i class="inverted big link rss icon" title="RSS Feed"></i>
+			</a>
+		</div>
+	
+</nav>
+
+
+	<div class="ui centered grid">
+		
+		<div class="sixteen wide mobile only column">
+				<div class="ui inverted accordion">
+	<div id="header" class="ui inverted segment column box">		
+		
+		<header id="author" class="ui top attached center aligned inverted segment">
+			
+<div class="ui small circular image">
+	
+		<img src="/img/portrait.jpg">
+	
+</div>
+
+
+<h3 class="ui header">
+	Kane
+	<div class="sub header">Twin boys&#39; father, open source mania.</div>
+</h3>
+
+		</header>
+
+		
+		<div class=" title header-title">
+			
+				<div id="tag-category-pop" class="ui red right corner label">
+					<i class="hand point icon down" title="Show/hide tags and categories"></i>
+				</div>
+			
+		</div>
+		
+		
+		<div id="tag-category" class=" content">
+			
+				<section class="ui attached center aligned inverted segment dream-tags none flexbox">
+					
+					
+					
+
+
+
+
+	
+	
+		
+			
+			<a class="ui label purple " href="/tags/eclipse" title="eclipse">eclipse</a>
+		
+			
+			<a class="ui label orange " href="/tags/equinox" title="equinox">equinox</a>
+		
+			
+			<a class="ui label violet " href="/tags/tip" title="tip">tip</a>
+		
+			
+			<a class="ui label teal " href="/tags/osgi" title="osgi">osgi</a>
+		
+			
+			<a class="ui label orange " href="/tags/p2" title="p2">p2</a>
+		
+			
+			<a class="ui label teal " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+		
+			
+			<a class="ui label pink " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+		
+			
+			<a class="ui label yellow " href="/tags/java" title="java">java</a>
+		
+			
+			<a class="ui label teal " href="/tags/docker" title="docker">docker</a>
+		
+			
+			<a class="ui label blue " href="/tags/linux" title="linux">linux</a>
+		
+	
+
+
+				</section>
+			
+
+			
+				<section class="ui attached inverted segment dream-categories both flexbox">
+					<div class="inverted accordion">
+						
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/blogging">blogging</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/2018/2018-12-13-bj-archsummit-review/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>2018北京ArchSummit回顾</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>如何修复Jenkins CI无法读取存在的任务配置</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>MongoDB中如何找出慢查询</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Docker Swarm mode(v1.12.x)的一些使用限制</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>基于Angularjs单页面应用的SEO优化</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/clustered-session-under-spring-framework/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Spring框架下的分布式session管理</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/how-we-build-videome/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>V秘是如何构建的</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/aliyun-ossfs-sucks/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>说一说阿里云ossfs</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/weixin-temporary-materials/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>如何使用微信公众平台的临时素材</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>单页面应用(single page application)中使用微信支付</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>文件系统的Inode耗尽，会导致Docker编译镜像出现&#39;No space left on device&#39;错误</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/effective-cloud-computing">effective-cloud-computing</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>基于函数计算的钉钉回调函数接口</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>无服务器计算101</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/iam-best-practice/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>IAM最佳实践</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>不要自建Kubernetes</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/preface/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>真的会用云服务吗？</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/kubernetes">kubernetes</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>不要自建Kubernetes</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/serverless-computing">serverless-computing</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>基于函数计算的钉钉回调函数接口</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>无服务器计算101</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/trip">trip</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/food-and-drinking/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Food and Drinking</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/working-workspace/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Working Workspace</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/transportation/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Transportation</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/working-style/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Working style</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/day-1/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>day 1</p>
+				</div>
+			</a>
+		
+	</div>
+
+
+					</div>
+				</section>
+			
+		</div>
+
+		
+		<footer class="ui bottom attached center aligned inverted segment">
+			
+
+	<p>© 2019 The Road</p>
+
+
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with <a href="https://github.com/UtkarshVerma/hugo-dream-plus" target="_blank">Dream Plus</a> theme.</p>
+
+		</footer>
+	</div>
+</div>
+
+		</div>
+
+		<div class="sixteen wide mobile fifteen wide tablet twelve wide computer column post-list">
+			
+			<section class="ui secondary top attached black segment post-head">
+				<h1 class="post-title">
+					基于函数计算的钉钉回调函数接口
+				</h1>
+
+				<div class="sub header">
+					<div><span><i class="calendar outline icon"></i>Apr 2, 2019</span></div>
+					
+					<div><span><i class="clock outline icon"></i>3 min read</span></div>
+					<div><span><i class="angle double up icon"></i>Last updated on Apr 1, 2019</span></div>
+				</div>
+				<hr>
+
+				
+
+				<article class="post-content twemoji">
+					<p>由于企业内部管理的需要，用到了<a href="https://open-doc.dingtalk.com/microapp/serverapi2/lo5n6i">钉钉的业务事件回调</a>能力，正好将这个轻量级的接口使用<a href="/posts/effective-cloud-computing/serverless-computing-101/">无服务器技术</a>来实现部署，以应对流量无规律下的动态扩展伸缩、按需使用、按量计费等需求。</p>
+
+<h3 id="阿里云函数计算版本">阿里云函数计算版本&nbsp;<a class="anchor" href="#阿里云函数计算版本"><i class="small linkify icon"></i></a> </h3>
+
+<p>由于公司系统部署在阿里云，首先选择使用<a href="https://www.aliyun.com/product/fc">阿里云函数计算</a>来实现及部署。该接口使用了JVM上语言Kotlin开发，虽然阿里云函数计算官方支持的<a href="https://help.aliyun.com/document_detail/74712.html">开发语言有Java但没有Kotlin</a>。其实无论Java或Kotlin最终部署文件都是Java Class字节码，加上Kotlin与Java良好的互操作性，实测函数计算可以完美支持Kotlin开发(个人认为任意JVM上的开发语言都是支持的)。</p>
+
+<p>同时该函数使用了<a href="https://www.aliyun.com/product/ots">表格存储</a>来持久化回调事件。表格存储是个按量计费的分布式存储，有兴趣的可以自行查阅文档了解更多。</p>
+
+<p>该函数通过<a href="https://www.aliyun.com/product/apigateway">API网关</a>和<a href="https://help.aliyun.com/document_detail/100092.html">表格存储触发器</a>来触发。访问日志和执行日志被存储在<a href="https://www.aliyun.com/product/sls">日志服务</a>中。</p>
+
+<p>函数的本地测试和线上部署，使用了函数计算提供的命令行工具<a href="https://help.aliyun.com/document_detail/64204.html">Fun</a>。基于<a href="https://github.com/aliyun/fun/blob/master/docs/specs/2018-04-03-zh-cn.md?spm=a2c4g.11186623.2.24.717428femnY0Et&amp;file=2018-04-03-zh-cn.md">Fun定义的阿里云Serverless模型</a>实现了对函数们使用资源的声明和编排，集成<a href="https://about.gitlab.com/product/continuous-integration/">Gitlab CI</a>实现了<a href="https://github.com/zxkane/dingtalk-callback-on-aliyunfc/blob/master/.gitlab-ci.yml">函数的CI/CD自动化发布流程</a>。</p>
+
+<p>不涉及公司业务的代码已<a href="https://github.com/zxkane/dingtalk-callback-on-aliyunfc">开源在Github</a>，有兴趣的可以作为参考。</p>
+
+<p>目前<a href="https://help.aliyun.com/document_detail/54301.html">函数计算</a>和<a href="https://help.aliyun.com/document_detail/52733.html">表格存储</a>有各自的免费配额，在业务量不大的情况下，该服务完全免费。</p>
+
+<h3 id="aws-lambda版本">AWS Lambda版本&nbsp;<a class="anchor" href="#aws-lambda版本"><i class="small linkify icon"></i></a> </h3>
+
+<p><a href="https://aws.amazon.com/lambda/">AWS Lambda</a>是目前全球使用最为广泛的serverless服务，同时也是函数计算发展方向的引领者。</p>
+
+<p>由于一些个人原因，笔者最近接触了部分AWS服务，同时尝试将钉钉回调函数移植到了<a href="https://aws.amazon.com/lambda/">AWS Lambda</a>上。阿里云上使用的云服务改为由AWS上对应服务来实现，例如存储使用了<a href="https://aws.amazon.com/dynamodb/">DynamoDB</a>，日志使用<a href="https://aws.amazon.com/cloudwatch/">CloudWatch</a>收集和查询。</p>
+
+<p>本地测试和部署工具，使用的是<a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">SAM CLI</a>，持续集成和持续部署使用的是<a href="https://aws.amazon.com/codebuild/">AWS CodeBuild</a>和<a href="https://aws.amazon.com/codepipeline/">AWS CodePipeline</a>。此外AWS通过<a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation</a>提供一种非常强大的能力，可以将AWS上的各种资源通过配置声明的方式来管理(也就是现在非常热门的一个概念&ndash;<a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infrastructure as Code</a>)。<a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation</a>会为每次一个或多个资源的变更生成ChangeSet，提供查看对比、版本管理、遇到变更错误整体回退等能力。所以，AWS版本也将该项目的CI/CD部署用到的<a href="https://aws.amazon.com/codebuild/">AWS CodeBuild</a>、<a href="https://aws.amazon.com/codepipeline/">AWS CodePipeline</a>、<a href="https://aws.amazon.com/dynamodb/">Amazon DynamoDB</a>等资源通过CloudFormation的配置管理起来。</p>
+
+<p>配置代码段如下，
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">55
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">56
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">57
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">58
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">59
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">60
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">61
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">62
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">63
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">64
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">65
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">66
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">67
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">68
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">69
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">70
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">71
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">72
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">73
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">74
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">75
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">76
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">77
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">78
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">79
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">80
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">81
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">82
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">83
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">84
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">99
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">Description: Create a CodePipeline to include Github source, CodeBuild and Lambda deployment.
+
+Parameters:
+  AppBaseName:
+    Type: String
+    Description: App base name
+    Default: dingtalk-callback
+  ArtifactStoreS3Location:
+    Type: String
+    Description: Name of the S3 bucket to store CodePipeline artificat.
+  BranchName:
+    Description: GitHub branch name
+    Type: String
+    Default: master
+  RepositoryName:
+    Description: GitHub repository name
+    Type: String
+    Default: dingtalk-callback-on-aws
+  GitHubOAuthToken:
+    Type: String
+    NoEcho: <span style="color:#66d9ef">true</span>
+
+Resources:
+  BuildDingtalkProject:
+    Type: AWS::Project
+    Properties:
+      Name:
+        Fn: ${AppBaseName}-build-${AWS::StackName}
+      Description: Build, test, package dingtalk callback project
+      ServiceRole:
+        Fn: [ CodeBuildRole, Arn ]
+      Artifacts:
+        Type: S3
+        Location:
+          Ref: ArtifactStoreS3Location
+        Name:
+          Fn: ${AppBaseName}-build-${AWS::StackName}
+        NamespaceType: BUILD_ID
+        Path: 
+          Fn: ${AppBaseName}/artifacts
+        Packaging: NONE
+        OverrideArtifactName: <span style="color:#66d9ef">true</span>
+        EncryptionDisabled: <span style="color:#66d9ef">true</span>
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/java:openjdk-<span style="color:#ae81ff">11</span>
+        PrivilegedMode: <span style="color:#66d9ef">false</span>
+        ImagePullCredentialsType: CODEBUILD
+        EnvironmentVariables:
+          - Name: s3_bucket
+            Value:
+              Ref: ArtifactStoreS3Location
+      Source:
+
+<span style="display:block;width:100%;background-color:#3c3d38">  DingtalkCallbackPipeline:
+</span><span style="display:block;width:100%;background-color:#3c3d38">    Type: <span style="color:#e6db74">&#39;AWS::Pipeline&#39;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    Properties:
+</span><span style="display:block;width:100%;background-color:#3c3d38">      Name:
+</span><span style="display:block;width:100%;background-color:#3c3d38">        Fn: ${AppBaseName}-pipeline-${AWS::StackName}
+</span><span style="display:block;width:100%;background-color:#3c3d38">      RoleArn:
+</span><span style="display:block;width:100%;background-color:#3c3d38">        Fn: [ CodePipelineRole, Arn ]
+</span><span style="display:block;width:100%;background-color:#3c3d38">      Stages:
+</span><span style="display:block;width:100%;background-color:#3c3d38">        - Name: Source
+</span><span style="display:block;width:100%;background-color:#3c3d38">          Actions:
+</span><span style="display:block;width:100%;background-color:#3c3d38">            - Name: SourceAction
+</span><span style="display:block;width:100%;background-color:#3c3d38">              ActionTypeId:
+</span><span style="display:block;width:100%;background-color:#3c3d38">                Category: Source
+</span><span style="display:block;width:100%;background-color:#3c3d38">                Owner: ThirdParty
+</span><span style="display:block;width:100%;background-color:#3c3d38">                Version: <span style="color:#ae81ff">1</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">                Provider: GitHub
+</span><span style="display:block;width:100%;background-color:#3c3d38">              OutputArtifacts:
+</span><span style="display:block;width:100%;background-color:#3c3d38">                - Name: 
+</span><span style="display:block;width:100%;background-color:#3c3d38">                    Fn: ${AppBaseName}-source-changed
+</span><span style="display:block;width:100%;background-color:#3c3d38">              Configuration:
+</span><span style="display:block;width:100%;background-color:#3c3d38">                Owner: !Ref GitHubOwner
+</span><span style="display:block;width:100%;background-color:#3c3d38">                Repo: !Ref RepositoryName
+</span><span style="display:block;width:100%;background-color:#3c3d38">                Branch: !Ref BranchName
+</span><span style="display:block;width:100%;background-color:#3c3d38">                OAuthToken: !Ref GitHubOAuthToken
+</span><span style="display:block;width:100%;background-color:#3c3d38">                PollForSourceChanges: <span style="color:#66d9ef">false</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">              RunOrder: <span style="color:#ae81ff">1</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">        - Name: Build
+</span><span style="display:block;width:100%;background-color:#3c3d38">          Actions:
+</span><span style="display:block;width:100%;background-color:#3c3d38">            - Name: Build_Test_Package
+</span>              InputArtifacts:
+                - Name:
+                    Fn: ${AppBaseName}-source-changed
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: <span style="color:#ae81ff">1</span>
+                Provider: CodeBuild
+              OutputArtifacts:
+                - Name: 
+                    Fn: ${AppBaseName}-packaged-yml
+              Configuration:
+                ProjectName:
+                  Ref: BuildDingtalkProject
+              RunOrder: <span style="color:#ae81ff">1</span></code></pre></td></tr></table>
+</div>
+</div></p>
+
+<p>AWS版本完整的代码、CloudFormation配置以及部署文档可以通过<a href="https://github.com/zxkane/dingtalk-callback-on-aws">这里</a>查看。</p>
+				</article>				
+			</section>
+
+			
+			<section class="ui secondary attached segment dream-tags">
+				
+					
+
+
+
+
+	
+		<a class="ui label purple " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+	
+		<a class="ui label red " href="/tags/faas" title="FaaS">FaaS</a>
+	
+		<a class="ui label violet " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+	
+		<a class="ui label purple " href="/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97" title="函数计算">函数计算</a>
+	
+		<a class="ui label olive " href="/tags/aws" title="AWS">AWS</a>
+	
+		<a class="ui label yellow " href="/tags/lambda" title="Lambda">Lambda</a>
+	
+		<a class="ui label olive " href="/tags/serverless-computing" title="Serverless Computing">Serverless Computing</a>
+	
+
+
+				
+			</section>
+
+			
+			
+				<section class="ui secondary bottom attached segment share row box">
+					
+
+
+
+
+
+
+
+
+<div class="author">
+	
+	<img class="avatar" src="/img/portrait.jpg">
+	
+</div>
+<div class="info grow flexbox">
+	
+	<p class="name">Kane</p>
+	
+	<p class="desc">Twin boys&#39; father, open source mania.</p>
+</div>
+
+
+<section class="buttons row box">
+	<div class="facebook none flexbox" href="#" onclick="window.open(
+			'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+			'facebook-share-dialog',
+			'width=626,height=436'); return false;">
+		<button class="ui facebook button"><i class="facebook icon"></i>Share</button>
+	</div>
+	<div class="twitter none flexbox" onclick="window.open('https://twitter.com/intent/tweet?text=Read &quot;基于函数计算的钉钉回调函数接口  https:\/\/kane.mx\/posts\/effective-cloud-computing\/serverless-dingtalk-callback\/','_self')">
+		<button class="ui twitter button"><i class="twitter icon"></i>Tweet</button>
+	</div>
+</section>
+
+				</section>
+			
+
+			
+			
+			
+
+			
+			
+
+			
+			
+				
+<script src="https://utteranc.es/client.js"
+        repo="zxkane/articles"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+			
+		</div>
+	</div>
+
+				</div>
+				<div class="back">
+					
+<nav class="ui top secondary menu bar">
+	<div class="item">
+		<i class="inverted big link bullseye icon dream-flip-toggle" title="About Me"></i>
+	</div>
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+	
+	
+	
+	
+	
+	
+	
+		
+		
+			<div class="item">
+				<a href="https://github.com/zxkane" target="	_blank">
+					<i id="ico" class="inverted big link github icon" title="GitHub"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+			<div class="item">
+				<a href="mailto:me@kane.mx" target="	_blank">
+					<i id="ico" class="inverted big link mail icon" title="Email"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+			<div class="item">
+				<a href="https://www.stackoverflow.com/users/390513/kane" target="	_blank">
+					<i id="ico" class="inverted big link stack overflow icon" title="Stack Overflow"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+	
+		
+		
+	
+</nav>
+
+
+
+<div class="ui centered grid about">
+	<div class="sixteen wide mobile fifteen wide tablet fifteen wide computer column about">
+		<section class="ui stacked segments">
+			<div class="ui inverted segment">
+				<article class="twemoji">
+					<h1>So, Who Am I?</h1>
+
+<hr />
+
+<p><br>
+I’m the father of <strong>twin sons</strong>. Live in Beijing. Also I&rsquo;m the *uix user, a full stack software engineer, devops and cloud native evangelist.</p>
+
+<p>Curious about me? Use the social links above to check out my profiles.</p>
+
+				</article>
+			</div>
+		</section>
+	</div>
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+	
+	
+
+		
+
+<script src="/js/site.js"></script>
+
+
+
+	<script src="https://twemoji.maxcdn.com/2/twemoji.min.js?2.6"></script>
+
+
+
+
+
+
+
+
+	
+	<script>
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-11561366-2', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+		
+
+
+		
+
+	<script>
+		(function () {
+		  console.log("Twemoji up and making stuff colourful!");
+		  for (var b = document.getElementsByClassName("twemoji"), a = 0; a < b.length; a++) {
+			twemoji.parse(b[a]);
+		  }
+		})();
+	</script>
+
+
+	</body>
+</html>

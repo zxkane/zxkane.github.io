@@ -6,10 +6,249 @@
     <description>Recent content in Posts on The Road</description>
     <meta name="generator" content="Hugo 0.54.0" />
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>基于函数计算的钉钉回调函数接口</title>
+      <link>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</guid>
+      <description>&lt;p&gt;由于企业内部管理的需要，用到了&lt;a href=&#34;https://open-doc.dingtalk.com/microapp/serverapi2/lo5n6i&#34;&gt;钉钉的业务事件回调&lt;/a&gt;能力，正好将这个轻量级的接口使用&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/&#34;&gt;无服务器技术&lt;/a&gt;来实现部署，以应对流量无规律下的动态扩展伸缩、按需使用、按量计费等需求。&lt;/p&gt;
+
+&lt;h3 id=&#34;阿里云函数计算版本&#34;&gt;阿里云函数计算版本&lt;/h3&gt;
+
+&lt;p&gt;由于公司系统部署在阿里云，首先选择使用&lt;a href=&#34;https://www.aliyun.com/product/fc&#34;&gt;阿里云函数计算&lt;/a&gt;来实现及部署。该接口使用了JVM上语言Kotlin开发，虽然阿里云函数计算官方支持的&lt;a href=&#34;https://help.aliyun.com/document_detail/74712.html&#34;&gt;开发语言有Java但没有Kotlin&lt;/a&gt;。其实无论Java或Kotlin最终部署文件都是Java Class字节码，加上Kotlin与Java良好的互操作性，实测函数计算可以完美支持Kotlin开发(个人认为任意JVM上的开发语言都是支持的)。&lt;/p&gt;
+
+&lt;p&gt;同时该函数使用了&lt;a href=&#34;https://www.aliyun.com/product/ots&#34;&gt;表格存储&lt;/a&gt;来持久化回调事件。表格存储是个按量计费的分布式存储，有兴趣的可以自行查阅文档了解更多。&lt;/p&gt;
+
+&lt;p&gt;该函数通过&lt;a href=&#34;https://www.aliyun.com/product/apigateway&#34;&gt;API网关&lt;/a&gt;和&lt;a href=&#34;https://help.aliyun.com/document_detail/100092.html&#34;&gt;表格存储触发器&lt;/a&gt;来触发。访问日志和执行日志被存储在&lt;a href=&#34;https://www.aliyun.com/product/sls&#34;&gt;日志服务&lt;/a&gt;中。&lt;/p&gt;
+
+&lt;p&gt;函数的本地测试和线上部署，使用了函数计算提供的命令行工具&lt;a href=&#34;https://help.aliyun.com/document_detail/64204.html&#34;&gt;Fun&lt;/a&gt;。基于&lt;a href=&#34;https://github.com/aliyun/fun/blob/master/docs/specs/2018-04-03-zh-cn.md?spm=a2c4g.11186623.2.24.717428femnY0Et&amp;amp;file=2018-04-03-zh-cn.md&#34;&gt;Fun定义的阿里云Serverless模型&lt;/a&gt;实现了对函数们使用资源的声明和编排，集成&lt;a href=&#34;https://about.gitlab.com/product/continuous-integration/&#34;&gt;Gitlab CI&lt;/a&gt;实现了&lt;a href=&#34;https://github.com/zxkane/dingtalk-callback-on-aliyunfc/blob/master/.gitlab-ci.yml&#34;&gt;函数的CI/CD自动化发布流程&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;不涉及公司业务的代码已&lt;a href=&#34;https://github.com/zxkane/dingtalk-callback-on-aliyunfc&#34;&gt;开源在Github&lt;/a&gt;，有兴趣的可以作为参考。&lt;/p&gt;
+
+&lt;p&gt;目前&lt;a href=&#34;https://help.aliyun.com/document_detail/54301.html&#34;&gt;函数计算&lt;/a&gt;和&lt;a href=&#34;https://help.aliyun.com/document_detail/52733.html&#34;&gt;表格存储&lt;/a&gt;有各自的免费配额，在业务量不大的情况下，该服务完全免费。&lt;/p&gt;
+
+&lt;h3 id=&#34;aws-lambda版本&#34;&gt;AWS Lambda版本&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/lambda/&#34;&gt;AWS Lambda&lt;/a&gt;是目前全球使用最为广泛的serverless服务，同时也是函数计算发展方向的引领者。&lt;/p&gt;
+
+&lt;p&gt;由于一些个人原因，笔者最近接触了部分AWS服务，同时尝试将钉钉回调函数移植到了&lt;a href=&#34;https://aws.amazon.com/lambda/&#34;&gt;AWS Lambda&lt;/a&gt;上。阿里云上使用的云服务改为由AWS上对应服务来实现，例如存储使用了&lt;a href=&#34;https://aws.amazon.com/dynamodb/&#34;&gt;DynamoDB&lt;/a&gt;，日志使用&lt;a href=&#34;https://aws.amazon.com/cloudwatch/&#34;&gt;CloudWatch&lt;/a&gt;收集和查询。&lt;/p&gt;
+
+&lt;p&gt;本地测试和部署工具，使用的是&lt;a href=&#34;https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html&#34;&gt;SAM CLI&lt;/a&gt;，持续集成和持续部署使用的是&lt;a href=&#34;https://aws.amazon.com/codebuild/&#34;&gt;AWS CodeBuild&lt;/a&gt;和&lt;a href=&#34;https://aws.amazon.com/codepipeline/&#34;&gt;AWS CodePipeline&lt;/a&gt;。此外AWS通过&lt;a href=&#34;https://aws.amazon.com/cloudformation/&#34;&gt;AWS CloudFormation&lt;/a&gt;提供一种非常强大的能力，可以将AWS上的各种资源通过配置声明的方式来管理(也就是现在非常热门的一个概念&amp;ndash;&lt;a href=&#34;https://en.wikipedia.org/wiki/Infrastructure_as_code&#34;&gt;Infrastructure as Code&lt;/a&gt;)。&lt;a href=&#34;https://aws.amazon.com/cloudformation/&#34;&gt;AWS CloudFormation&lt;/a&gt;会为每次一个或多个资源的变更生成ChangeSet，提供查看对比、版本管理、遇到变更错误整体回退等能力。所以，AWS版本也将该项目的CI/CD部署用到的&lt;a href=&#34;https://aws.amazon.com/codebuild/&#34;&gt;AWS CodeBuild&lt;/a&gt;、&lt;a href=&#34;https://aws.amazon.com/codepipeline/&#34;&gt;AWS CodePipeline&lt;/a&gt;、&lt;a href=&#34;https://aws.amazon.com/dynamodb/&#34;&gt;Amazon DynamoDB&lt;/a&gt;等资源通过CloudFormation的配置管理起来。&lt;/p&gt;
+
+&lt;p&gt;配置代码段如下，
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt; 1
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt; 2
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt; 3
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt; 4
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt; 5
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt; 6
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt; 7
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt; 8
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt; 9
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;10
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;11
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;12
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;13
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;14
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;15
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;16
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;17
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;18
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;19
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;20
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;21
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;22
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;23
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;24
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;25
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;26
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;27
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;28
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;29
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;30
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;31
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;32
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;33
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;34
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;35
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;36
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;37
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;38
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;39
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;40
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;41
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;42
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;43
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;44
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;45
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;46
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;47
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;48
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;49
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;50
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;51
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;52
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;53
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;54
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;55
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;56
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;57
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;58
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;59
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;60
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;61
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;62
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;63
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;64
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;65
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;66
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;67
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;68
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;69
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;70
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;71
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;72
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;73
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;74
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;75
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;76
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;77
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;78
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;79
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;80
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;81
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;82
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;83
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;84
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;85
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;86
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;87
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;88
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;89
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;90
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;91
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;92
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;93
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;94
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;95
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;96
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;97
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;98
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;99
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;Description: Create a CodePipeline to include Github source, CodeBuild and Lambda deployment.
+
+Parameters:
+  AppBaseName:
+    Type: String
+    Description: App base name
+    Default: dingtalk-callback
+  ArtifactStoreS3Location:
+    Type: String
+    Description: Name of the S3 bucket to store CodePipeline artificat.
+  BranchName:
+    Description: GitHub branch name
+    Type: String
+    Default: master
+  RepositoryName:
+    Description: GitHub repository name
+    Type: String
+    Default: dingtalk-callback-on-aws
+  GitHubOAuthToken:
+    Type: String
+    NoEcho: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+
+Resources:
+  BuildDingtalkProject:
+    Type: AWS::Project
+    Properties:
+      Name:
+        Fn: ${AppBaseName}-build-${AWS::StackName}
+      Description: Build, test, package dingtalk callback project
+      ServiceRole:
+        Fn: [ CodeBuildRole, Arn ]
+      Artifacts:
+        Type: S3
+        Location:
+          Ref: ArtifactStoreS3Location
+        Name:
+          Fn: ${AppBaseName}-build-${AWS::StackName}
+        NamespaceType: BUILD_ID
+        Path: 
+          Fn: ${AppBaseName}/artifacts
+        Packaging: NONE
+        OverrideArtifactName: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+        EncryptionDisabled: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/java:openjdk-&lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;
+        PrivilegedMode: &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;
+        ImagePullCredentialsType: CODEBUILD
+        EnvironmentVariables:
+          - Name: s3_bucket
+            Value:
+              Ref: ArtifactStoreS3Location
+      Source:
+
+&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;  DingtalkCallbackPipeline:
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;    Type: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;AWS::Pipeline&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;    Properties:
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;      Name:
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;        Fn: ${AppBaseName}-pipeline-${AWS::StackName}
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;      RoleArn:
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;        Fn: [ CodePipelineRole, Arn ]
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;      Stages:
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;        - Name: Source
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;          Actions:
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;            - Name: SourceAction
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;              ActionTypeId:
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;                Category: Source
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;                Owner: ThirdParty
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;                Version: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;                Provider: GitHub
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;              OutputArtifacts:
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;                - Name: 
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;                    Fn: ${AppBaseName}-source-changed
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;              Configuration:
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;                Owner: !Ref GitHubOwner
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;                Repo: !Ref RepositoryName
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;                Branch: !Ref BranchName
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;                OAuthToken: !Ref GitHubOAuthToken
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;                PollForSourceChanges: &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;              RunOrder: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;        - Name: Build
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;          Actions:
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;            - Name: Build_Test_Package
+&lt;/span&gt;              InputArtifacts:
+                - Name:
+                    Fn: ${AppBaseName}-source-changed
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+                Provider: CodeBuild
+              OutputArtifacts:
+                - Name: 
+                    Fn: ${AppBaseName}-packaged-yml
+              Configuration:
+                ProjectName:
+                  Ref: BuildDingtalkProject
+              RunOrder: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;AWS版本完整的代码、CloudFormation配置以及部署文档可以通过&lt;a href=&#34;https://github.com/zxkane/dingtalk-callback-on-aws&#34;&gt;这里&lt;/a&gt;查看。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>无服务器计算101</title>
@@ -360,104 +599,104 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 
 &lt;p&gt;参照&lt;a href=&#34;https://docs.mongodb.com/manual/reference/method/db.setProfilingLevel/&#34;&gt;db.setProfileLevel()&lt;/a&gt;的文档，通过以下命令就可以记录执行时长超过&lt;strong&gt;300ms&lt;/strong&gt;的查询。&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;setProfilingLevel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;300&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;db&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;setProfilingLevel&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;300&lt;/span&gt;)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;当慢查询被重现后，可以通过查找&lt;code&gt;system.profile&lt;/code&gt; collection来查看执行时长超过&lt;strong&gt;300ms&lt;/strong&gt;的查询。&lt;/p&gt;
 
 &lt;p&gt;被profiler记录下来慢查询record看起来如下，&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;       
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;op&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;query&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;ns&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;myCollection&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;query&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;     
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;builds&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;    
-                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;$elemMatch&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;builtTime&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;$and&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;      
-                                        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;               
-                                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;createdTime&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                                                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;$lt&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;ISODate(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;2016-09-20T2000.796Z&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
-                                                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                                &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;ntoreturn&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;ntoskip&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;nscanned&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;nscannedObjects&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;18231&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;keyUpdates&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;writeConflicts&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;numYield&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;577&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;locks&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;     
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;Global&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;    
-                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;acquireCount&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;r&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;NumberLong(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1156&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
-                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;      
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;Database&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;  
-                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;acquireCount&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;r&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;NumberLong(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;578&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
-                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;      
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;Collection&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;acquireCount&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;r&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;NumberLong(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;578&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
-                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;nreturned&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;responseLength&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;98076&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;millis&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;11161&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;execStats&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;stage&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;COLLSCAN&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;filter&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;builds&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;$elemMatch&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;$and&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
-                                                &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                                                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;$and&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
-                                                                &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                                                                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;createdTime&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                                                                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;$lt&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;ISODate(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;2016-09-20T2000.796Z&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;
-                                                                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                                                                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                                                        &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-                                                &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-                                                &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                                                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;builtTime&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                                                                &lt;span class=&#34;nt&#34;&gt;&amp;#34;$eq&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;
-                                                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                                                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                                        &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-                                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;nReturned&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;executionTimeMillisEstimate&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;11080&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;works&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;18233&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;advanced&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;needTime&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;18230&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;needFetch&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;saveState&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;577&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;restoreState&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;577&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;isEOF&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;invalidates&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;direction&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;forward&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                &lt;span class=&#34;nt&#34;&gt;&amp;#34;docsExamined&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;18231&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;      
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;ts&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;ISODate(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;2016-09-20T2314.313Z&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;client&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;10.171.127.66&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;allUsers&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
-                &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;user&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;dbuser&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-                        &lt;span class=&#34;nt&#34;&gt;&amp;#34;db&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;mydb&amp;#34;&lt;/span&gt;
-                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;#34;user&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;dbuser@mydb&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;   &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{       
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;op&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;query&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;ns&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;myCollection&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;query&amp;#34;&lt;/span&gt; : {     
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;builds&amp;#34;&lt;/span&gt; : {    
+                        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;$elemMatch&amp;#34;&lt;/span&gt; : {
+                                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;builtTime&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;,
+                                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;$and&amp;#34;&lt;/span&gt; : [      
+                                        {               
+                                                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;createdTime&amp;#34;&lt;/span&gt; : {
+                                                        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;$lt&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;ISODate(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2016-09-20T2000.796Z&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;)&lt;/span&gt;
+                                                }
+                                        }
+                                ]
+                        }
+                }
+        },
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;ntoreturn&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;ntoskip&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;nscanned&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;nscannedObjects&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;18231&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;keyUpdates&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;writeConflicts&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;numYield&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;577&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;locks&amp;#34;&lt;/span&gt; : {     
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;Global&amp;#34;&lt;/span&gt; : {    
+                        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;acquireCount&amp;#34;&lt;/span&gt; : {
+                                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;r&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;NumberLong(&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1156&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;)&lt;/span&gt;
+                        }
+                },      
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;Database&amp;#34;&lt;/span&gt; : {  
+                        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;acquireCount&amp;#34;&lt;/span&gt; : {
+                                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;r&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;NumberLong(&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;578&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;)&lt;/span&gt;
+                        }
+                },      
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;Collection&amp;#34;&lt;/span&gt; : {
+                        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;acquireCount&amp;#34;&lt;/span&gt; : {
+                                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;r&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;NumberLong(&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;578&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;)&lt;/span&gt;
+                        }
+                }
+        },
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;nreturned&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;responseLength&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;98076&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;millis&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;11161&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;execStats&amp;#34;&lt;/span&gt; : {
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;stage&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;COLLSCAN&amp;#34;&lt;/span&gt;,
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;filter&amp;#34;&lt;/span&gt; : {
+                        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;builds&amp;#34;&lt;/span&gt; : {
+                                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;$elemMatch&amp;#34;&lt;/span&gt; : {
+                                        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;$and&amp;#34;&lt;/span&gt; : [
+                                                {
+                                                        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;$and&amp;#34;&lt;/span&gt; : [
+                                                                {
+                                                                        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;createdTime&amp;#34;&lt;/span&gt; : {
+                                                                                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;$lt&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;ISODate(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2016-09-20T2000.796Z&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;)&lt;/span&gt;
+                                                                        }
+                                                                }
+                                                        ]
+                                                },
+                                                {
+                                                        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;builtTime&amp;#34;&lt;/span&gt; : {
+                                                                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;$eq&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;
+                                                        }
+                                                }
+                                        ]
+                                }
+                        }
+                },
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;nReturned&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;executionTimeMillisEstimate&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;11080&lt;/span&gt;,
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;works&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;18233&lt;/span&gt;,
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;advanced&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;needTime&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;18230&lt;/span&gt;,
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;needFetch&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;saveState&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;577&lt;/span&gt;,
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;restoreState&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;577&lt;/span&gt;,
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;isEOF&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;invalidates&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;direction&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;forward&amp;#34;&lt;/span&gt;,
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;docsExamined&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;18231&lt;/span&gt;
+        },      
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;ts&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;ISODate(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2016-09-20T2314.313Z&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;)&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;client&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;10.171.127.66&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;allUsers&amp;#34;&lt;/span&gt; : [
+                {
+                        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;user&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dbuser&amp;#34;&lt;/span&gt;,
+                        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;db&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;mydb&amp;#34;&lt;/span&gt;
+                }
+        ],
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;user&amp;#34;&lt;/span&gt; : &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dbuser@mydb&amp;#34;&lt;/span&gt;
+}   &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;上面的数据具体解读如下，&lt;/p&gt;
 
@@ -486,11 +725,11 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 
 &lt;ol&gt;
 &lt;li&gt;无法将服务的published端口只绑定到特点的网卡上。比如我们的云主机（同时也是Swarm manager/node）有&lt;strong&gt;eth0&lt;/strong&gt;和&lt;strong&gt;eth1&lt;/strong&gt;两块网卡，分别连接内网和外网。我们计划在&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm&lt;/a&gt;中运行一个&lt;strong&gt;nginx&lt;/strong&gt;服务，通过80/443端口提供HTTP/HTTPS服务。当我们希望将&lt;strong&gt;nginx&lt;/strong&gt;中的Web服务暴露在云主机上时，我们通过以下命令创建&lt;strong&gt;nginx&lt;/strong&gt;服务。然而我们无法选择将published的&lt;strong&gt;80&lt;/strong&gt;端口绑定在哪个interface上。&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm&lt;/a&gt;会自动将服务监听到Swarm node的所有80端口上。如果我们只想将这个服务暴露在内网interface暂时无法实现。
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker service create --name vme-nginx --network vme-network --replicas &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;       --publish &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt;:80 --publish &lt;span class=&#34;m&#34;&gt;443&lt;/span&gt;:443 &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;       nginx:1.11&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker service create --name vme-nginx --network vme-network --replicas &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;       --publish &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;:80 --publish &lt;span style=&#34;color:#ae81ff&#34;&gt;443&lt;/span&gt;:443 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;       nginx:1.11&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;无法为&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm&lt;/a&gt;内运行的服务设置主机名。通过&lt;a href=&#34;https://docs.docker.com/engine/reference/run/&#34;&gt;docker run命令&lt;/a&gt;执行的容器可以设置hostname。比如，
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run --hostname vme-nginx nginx:1.11&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run --hostname vme-nginx nginx:1.11&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 但是&lt;a href=&#34;https://docs.docker.com/engine/reference/commandline/service_create/&#34;&gt;docker service create命令&lt;/a&gt;缺少等价的参数为容器指定hostname。一些依赖于&lt;strong&gt;hostname&lt;/strong&gt;的服务将无法部署在&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm&lt;/a&gt;中，比如clustered rabbitmq。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://docs.docker.com/compose/&#34;&gt;Docker compose&lt;/a&gt;还不能与&lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;Docker Swarm&lt;/a&gt;完美集成。目前有一个experimental的&lt;a href=&#34;https://docs.docker.com/compose/bundles/&#34;&gt;Docker Stacks and Distributed Application Bundles&lt;/a&gt;在尝试做更好的整合。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;docker service update&lt;/strong&gt;有时不能更新正在运行中的container。更多讨论见&lt;a href=&#34;https://github.com/docker/swarmkit/issues/1619&#34;&gt;这个issue&lt;/a&gt;。&lt;/li&gt;
@@ -518,14 +757,14 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 
 &lt;p&gt;具体方法如下，&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@swarm1:~# uname -r 
-&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;.13.0-32-generic
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@swarm1:~# uname -r 
+&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;.13.0-32-generic
 
 root@swarm1:~# apt-get install linux-generic-lts-vivid
 root@swarm1:~# reboot
 
 root@swarm1:~# uname -r
-&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;.19.0-69-generic&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;.19.0-69-generic&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;至于这个错误的根本原因是&lt;a href=&#34;https://www.docker.com&#34;&gt;Docker&lt;/a&gt;的bug还是对Linux Kernel有特殊的要求，需要Docker开发进一步确认。如果对此问题有更多兴趣，可以关注&lt;a href=&#34;https://github.com/docker/docker/issues/25039&#34;&gt;docker issue #25039&lt;/a&gt;。&lt;/p&gt;
 </description>
@@ -557,12 +796,12 @@ root@swarm1:~# uname -r
 
 &lt;p&gt;&lt;a href=&#34;https://angularjs.org/&#34;&gt;Angularjs&lt;/a&gt;提供了一种&lt;a href=&#34;https://docs.angularjs.org/guide/$location&#34;&gt;HTML5 mode&lt;/a&gt;模式可以利用HTML5 History API来实现页面内路由。打开的方法如下，&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;nx&#34;&gt;$locationProvider&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;html5Mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;$locationProvider&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;html5Mode&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;同时在&lt;code&gt;index.html&lt;/code&gt;页面加上如下标签，&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;base&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;base&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;在打开&lt;a href=&#34;https://docs.angularjs.org/guide/$location&#34;&gt;HTML5 mode&lt;/a&gt;后的&lt;a href=&#34;https://angularjs.org/&#34;&gt;Angularjs&lt;/a&gt;应用的链接看起来就是这样了，&lt;/p&gt;
 
@@ -577,7 +816,7 @@ root@swarm1:~# uname -r
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Apache Rewrites&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;	&amp;lt;VirtualHost *:80&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;	&amp;lt;VirtualHost *:80&amp;gt;
 	    ServerName my-app
 	
 	    DocumentRoot /path/to/app
@@ -598,20 +837,20 @@ root@swarm1:~# uname -r
 
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Nginx Rewrites&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nginx&#34; data-lang=&#34;nginx&#34;&gt;	&lt;span class=&#34;k&#34;&gt;server&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-	    &lt;span class=&#34;kn&#34;&gt;server_name&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;my-app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-nginx&#34; data-lang=&#34;nginx&#34;&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;server&lt;/span&gt; {
+	    &lt;span style=&#34;color:#f92672&#34;&gt;server_name&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;my-app&lt;/span&gt;;
 	
-	    &lt;span class=&#34;kn&#34;&gt;root&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/path/to/app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+	    &lt;span style=&#34;color:#f92672&#34;&gt;root&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/path/to/app&lt;/span&gt;;
 	
-	    &lt;span class=&#34;kn&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-	        &lt;span class=&#34;kn&#34;&gt;try_files&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$uri&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$uri/&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/index.html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-	    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+	    &lt;span style=&#34;color:#f92672&#34;&gt;location&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/&lt;/span&gt; {
+	        &lt;span style=&#34;color:#f92672&#34;&gt;try_files&lt;/span&gt; $uri $uri/ &lt;span style=&#34;color:#e6db74&#34;&gt;/index.html&lt;/span&gt;;
+	    }
+	}
 	&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Azure IIS Rewrites&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;	&amp;lt;system.webServer&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;	&amp;lt;system.webServer&amp;gt;
 	  &amp;lt;rewrite&amp;gt;
 	    &amp;lt;rules&amp;gt; 
 	      &amp;lt;rule name=&amp;#34;Main Rule&amp;#34; stopProcessing=&amp;#34;true&amp;#34;&amp;gt;
@@ -629,33 +868,33 @@ root@swarm1:~# uname -r
 
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Express Rewrites&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;	&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-	&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;express&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;require&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;express&lt;/span&gt;();
 	
-	&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/js&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;__dirname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;/js&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-	&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/dist&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;__dirname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;/../dist&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-	&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/css&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;__dirname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;/css&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-	&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/partials&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;__dirname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;/partials&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;use&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/js&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;express&lt;/span&gt;.&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;__dirname&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/js&amp;#39;&lt;/span&gt;));
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;use&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/dist&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;express&lt;/span&gt;.&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;__dirname&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/../dist&amp;#39;&lt;/span&gt;));
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;use&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/css&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;express&lt;/span&gt;.&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;__dirname&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/css&amp;#39;&lt;/span&gt;));
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;use&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/partials&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;express&lt;/span&gt;.&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;__dirname&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/partials&amp;#39;&lt;/span&gt;));
 	
-	&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;all&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/*&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-	    &lt;span class=&#34;c1&#34;&gt;// Just send the index.html for other files to support HTML5Mode
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	    &lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sendFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;__dirname&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-	&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;all&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/*&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;next&lt;/span&gt;) {
+	    &lt;span style=&#34;color:#75715e&#34;&gt;// Just send the index.html for other files to support HTML5Mode
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	    &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;sendFile&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;, { &lt;span style=&#34;color:#a6e22e&#34;&gt;root&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;__dirname&lt;/span&gt; });
+	});
 	
-	&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;listen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3006&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//the port you want to use
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;listen&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3006&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//the port you want to use
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;ASP.Net C# Rewrites&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;	&lt;span class=&#34;k&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ROOT_DOCUMENT&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;/default.aspx&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; ROOT_DOCUMENT = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/default.aspx&amp;#34;&lt;/span&gt;;
 	
-	&lt;span class=&#34;k&#34;&gt;protected&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Application_BeginRequest&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Object&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sender&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;EventArgs&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;e&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-	&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-	    &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Url&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LocalPath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-	    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IO&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;File&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Exists&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Server&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MapPath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-	        &lt;span class=&#34;n&#34;&gt;Context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RewritePath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ROOT_DOCUMENT&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Application_BeginRequest( Object sender, EventArgs e )
+	{
+	    &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; url = Request.Url.LocalPath;
+	    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ( !System.IO.File.Exists( Context.Server.MapPath( url ) ) )
+	        Context.RewritePath( ROOT_DOCUMENT );
+	}
 	&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
@@ -856,8 +1095,8 @@ root@swarm1:~# uname -r
 
 &lt;p&gt;I put below simple script in &amp;lsquo;Execute shell&amp;rsquo; block,&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; 
-daemon --name&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;test-daemon -- sleep 200sleep &lt;span class=&#34;m&#34;&gt;60&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; 
+daemon --name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;test-daemon -- sleep 200sleep &lt;span style=&#34;color:#ae81ff&#34;&gt;60&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The process &amp;lsquo;daemon&amp;rsquo; and &amp;lsquo;sleep 200&amp;rsquo; should exit after 200 seconds the &amp;lsquo;sleep&amp;rsquo; exits. The jenkins job will be finished in 60 secs.&lt;/p&gt;
 
@@ -907,7 +1146,7 @@ But both the process &amp;lsquo;daemon&amp;rsquo; and &amp;lsquo;sleep 200&amp;r
 
 &lt;p&gt;Below is a command to verify that I am authenticated:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; 
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; 
 java -jar jenkins-cli.jar -s http://myserver/jenkins who-am-i
 
     Authenticated as: myuser
@@ -916,18 +1155,18 @@ java -jar jenkins-cli.jar -s http://myserver/jenkins who-am-i
 
 &lt;p&gt;However you still would meet permission error when running groovy script in CLI.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;   
-java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &lt;span class=&#34;s1&#34;&gt;&amp;#39;jenkins.model.Jenkins.instance.pluginManager.plugins.each { println(&amp;#34;${it.longName} - ${it.version}&amp;#34;) };&amp;#39;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;   
+java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;jenkins.model.Jenkins.instance.pluginManager.plugins.each { println(&amp;#34;${it.longName} - ${it.version}&amp;#34;) };&amp;#39;&lt;/span&gt;
 
-Exception in thread &lt;span class=&#34;s2&#34;&gt;&amp;#34;main&amp;#34;&lt;/span&gt; java.lang.reflect.UndeclaredThrowableException
-at &lt;span class=&#34;nv&#34;&gt;$Proxy2&lt;/span&gt;.main&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Unknown Source&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-at hudson.cli.CLI.execute&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;CLI.java:271&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-at hudson.cli.CLI._main&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;CLI.java:417&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-at hudson.cli.CLI.main&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;CLI.java:322&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Exception in thread &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;main&amp;#34;&lt;/span&gt; java.lang.reflect.UndeclaredThrowableException
+at $Proxy2.main&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;Unknown Source&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+at hudson.cli.CLI.execute&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;CLI.java:271&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+at hudson.cli.CLI._main&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;CLI.java:417&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+at hudson.cli.CLI.main&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;CLI.java:322&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;It&amp;rsquo;s a bug of Jenkins. &lt;strong&gt;The workaround is create a groovy script, then run that script via Jenkins CLI&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; 
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; 
 java -jar jenkins-cli.jar -s http://myserver/jenkins/ groovy test_script.gsh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
@@ -1342,12 +1581,12 @@ Add below signjar plugin into parent pom.xml, however I met the md5 error when m
 
 &lt;p&gt;Since 6.0 JDK supports PKCS12 directly, you can use &amp;lsquo;jarsigner&amp;rsquo; and PVK file to sign jars directly[2].&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;  
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;  
 jarsigner -keystore /working/mystore.pvk -storetype pkcs12 -storepass myspass -keypass j638klm -signedjar sbundle.jar bundle.jar jane  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Or using keytool to convert the PKCS#12 to JKS format[3] if using Eclipse PDE build to sign your jars.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; 
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; 
 keytool -importkeystore -srckeystore KEYSTORE.pvk -destkeystore KEYSTORE.jks  -srcstoretype PKCS12 -deststoretype JKS -srcstorepass mysecret -deststorepass mysecret -srcalias myalias -destalias myalias -srckeypass mykeypass -destkeypass mykeypass -noprompt   &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;[1] &lt;a href=&#34;http://en.wikipedia.org/wiki/PKCS&#34;&gt;http://en.wikipedia.org/wiki/PKCS&lt;/a&gt;&lt;br /&gt;

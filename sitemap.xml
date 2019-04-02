@@ -3,6 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</loc>
+    <lastmod>2019-04-01T22:52:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/</loc>
     <lastmod>2019-04-01T11:09:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -647,7 +654,7 @@
   
   <url>
     <loc>https://kane.mx/tags/aws/</loc>
-    <lastmod>2019-04-01T14:21:50+08:00</lastmod>
+    <lastmod>2019-04-01T22:52:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -773,7 +780,7 @@
   
   <url>
     <loc>https://kane.mx/categories/effective-cloud-computing/</loc>
-    <lastmod>2019-04-01T11:09:15+08:00</lastmod>
+    <lastmod>2019-04-01T22:52:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -794,7 +801,7 @@
   
   <url>
     <loc>https://kane.mx/tags/faas/</loc>
-    <lastmod>2019-04-01T11:09:15+08:00</lastmod>
+    <lastmod>2019-04-01T22:52:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -905,6 +912,13 @@
   </url>
   
   <url>
+    <loc>https://kane.mx/tags/kubernetes/</loc>
+    <lastmod>2019-04-01T14:21:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://kane.mx/categories/kubernetes/</loc>
     <lastmod>2019-04-01T14:21:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -912,8 +926,8 @@
   </url>
   
   <url>
-    <loc>https://kane.mx/tags/kubernetes/</loc>
-    <lastmod>2019-04-01T14:21:50+08:00</lastmod>
+    <loc>https://kane.mx/tags/lambda/</loc>
+    <lastmod>2019-04-01T22:52:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1067,7 +1081,7 @@
   
   <url>
     <loc>https://kane.mx/posts/</loc>
-    <lastmod>2019-04-01T11:09:15+08:00</lastmod>
+    <lastmod>2019-04-01T22:52:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1108,15 +1122,15 @@
   </url>
   
   <url>
-    <loc>https://kane.mx/categories/serverless-computing/</loc>
-    <lastmod>2019-04-01T11:09:15+08:00</lastmod>
+    <loc>https://kane.mx/tags/serverless-computing/</loc>
+    <lastmod>2019-04-01T22:52:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://kane.mx/tags/serverless-computing/</loc>
-    <lastmod>2019-04-01T11:09:15+08:00</lastmod>
+    <loc>https://kane.mx/categories/serverless-computing/</loc>
+    <lastmod>2019-04-01T22:52:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1193,7 +1207,7 @@
   
   <url>
     <loc>https://kane.mx/</loc>
-    <lastmod>2019-04-01T11:09:15+08:00</lastmod>
+    <lastmod>2019-04-01T22:52:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1326,7 +1340,7 @@
   
   <url>
     <loc>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</loc>
-    <lastmod>2019-04-01T11:09:15+08:00</lastmod>
+    <lastmod>2019-04-01T22:52:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1347,7 +1361,7 @@
   
   <url>
     <loc>https://kane.mx/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/</loc>
-    <lastmod>2019-04-01T11:09:15+08:00</lastmod>
+    <lastmod>2019-04-01T22:52:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1403,7 +1417,7 @@
   
   <url>
     <loc>https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
-    <lastmod>2019-04-01T11:09:15+08:00</lastmod>
+    <lastmod>2019-04-01T22:52:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
