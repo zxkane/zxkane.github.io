@@ -6,10 +6,91 @@
     <description>Recent content in Posts on The Road</description>
     <meta name="generator" content="Hugo 0.54.0" />
     <language>en-us</language>
-    <lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</title>
+      <link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</link>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</guid>
+      <description>&lt;p&gt;本文是&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/&#34;&gt;为Kubernetes中任意应用添加基于oauth2的认证保护&lt;/a&gt;的下篇，将图文详解如何使用基于&lt;a href=&#34;https://open-doc.dingtalk.com/microapp/serverapi2/kymkv6&#34;&gt;钉钉认证&lt;/a&gt;的&lt;a href=&#34;https://github.com/bitly/oauth2_proxy&#34;&gt;oauth2 proxy&lt;/a&gt;为自身本没有认证授权功能的Web站点实现认证及授权。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;示例是使用的&lt;a href=&#34;https://aws.amazon.com/eks/?nc1=f_ls&#34;&gt;AWS EKS&lt;/a&gt;服务作为K8S环境。鉴于K8S的应用运行时属性，该示例也可以部署在其他云厂商托管的K8S。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;示例模块简介&#34;&gt;示例模块简介&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/kubernetes/ingress-nginx&#34;&gt;Nginx Ingress Controller&lt;/a&gt;为K8S集群内Web应用提供反向代理，以及支持外部认证。&lt;/li&gt;
+&lt;li&gt;简单的Web站点，基于&lt;a href=&#34;https://hub.docker.com/_/nginx&#34;&gt;Nginx docker容器&lt;/a&gt;。该站点默认没有认证及授权功能，使用外部&lt;a href=&#34;https://open-doc.dingtalk.com/microapp/serverapi2/kymkv6&#34;&gt;钉钉&lt;/a&gt;应用作为认证及授权。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/zxkane/oauth2_proxy&#34;&gt;OAuth2 Proxy on Dingtalk&lt;/a&gt;提供基于&lt;a href=&#34;https://open-doc.dingtalk.com/microapp/serverapi2/kymkv6&#34;&gt;钉钉&lt;/a&gt;应用的扫码认证及授权，只有认证且授权的用户才可以访问上面的Web站点。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;默认设定&#34;&gt;默认设定&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Web站点域名&lt;code&gt;web.kane.mx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;认证服务域名&lt;code&gt;oauth.kane.mx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;准备-aws-eks-aws-eks-环境&#34;&gt;准备&lt;a href=&#34;https://aws.amazon.com/eks/?nc1=f_ls&#34;&gt;AWS EKS&lt;/a&gt;环境&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html&#34;&gt;创建EKS集群&lt;/a&gt;。由于&lt;a href=&#34;https://github.com/kubernetes/ingress-nginx&#34;&gt;Nginx Ingress&lt;/a&gt;服务是LoadBalancer类型，EKS创建NLB或ELB对应的targets时需要targets部署在public VPC subnets，所以为了简化部署EKS集群的VPC subnets都选择public subnet。新建的EKS集群允许公开访问。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.aws.amazon.com/eks/latest/userguide/managing-auth.html&#34;&gt;本地安装配置kubectl, aws-iam-authenticator&lt;/a&gt;用于远程管理集群。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html&#34;&gt;为集群添加worker节点&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.aws.amazon.com/eks/latest/userguide/helm.html&#34;&gt;配置Helm部署环境&lt;/a&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;钉钉应用准备&#34;&gt;钉钉应用准备&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;为企业或组织开通&lt;a href=&#34;https://open-dev.dingtalk.com/#/index&#34;&gt;钉钉开发平台&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;创建一个新的&lt;a href=&#34;https://open-dev.dingtalk.com/#/loginAndShareApp&#34;&gt;移动应用&lt;/a&gt;。回调域名填写&lt;code&gt;&amp;lt;http or https&amp;gt;/&amp;lt;认证服务域名&amp;gt;/oauth2/callback&lt;/code&gt;。记录下来应用的&lt;code&gt;appId&lt;/code&gt;和&lt;code&gt;appSecret&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;创建一个&lt;a href=&#34;https://open-dev.dingtalk.com/#/create-bench/self&#34;&gt;企业内部工作台应用&lt;/a&gt;。地址可以随意设置。服务器出口IP设置为&lt;code&gt;EKS集群中工作节点的公网IP&lt;/code&gt;或者&lt;code&gt;NAT EIP&lt;/code&gt;，取决于工作节点如何访问Internet。记录下来应用&lt;code&gt;appKey&lt;/code&gt;和&lt;code&gt;appSecret&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;部署示例应用&#34;&gt;部署示例应用&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;克隆&lt;a href=&#34;https://github.com/zxkane/hands-on-dingtalk-oauth2-proxy&#34;&gt;示例&lt;/a&gt;部署脚本&lt;/li&gt;
+&lt;li&gt;替换&lt;code&gt;values.yml&lt;/code&gt;中的&lt;code&gt;dingtalk_corpid&lt;/code&gt;为工作台应用的&lt;code&gt;appKey&lt;/code&gt;， &lt;code&gt;dingtalk_corpsecret&lt;/code&gt;为工作台应用的&lt;code&gt;appSecret&lt;/code&gt;。Note: 由于社区维护的&lt;a href=&#34;https://github.com/helm/charts/tree/master/stable/oauth2-proxy&#34;&gt;oauth2-proxy charts&lt;/a&gt;并不支持dingtalk扩展的SECRET ENV，所以将密钥配置到了&lt;code&gt;configmap&lt;/code&gt;中。用于生产环境的话，建议按&lt;a href=&#34;https://github.com/pilipa-cn/charts/commit/7ac0f67acc71577275f743bdcf9a870bd65361b0&#34;&gt;这个commit&lt;/a&gt;使用&lt;code&gt;secret&lt;/code&gt;保存应用secret。
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;oauth2-proxy:
+  config:
+    clientID: aaa
+    clientSecret: bbb
+    cookieSecret: ccc
+    configFile: |&lt;span style=&#34;color:#e6db74&#34;&gt;+
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;      email_domains = [ &amp;#34;*&amp;#34; ]&lt;/span&gt;
+      cookie_domain = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;kane.mx&amp;#34;&lt;/span&gt;
+      cookie_secure = &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;
+      dingtalk_corpid = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;appkey of dingtalk app&amp;gt;&amp;#34;&lt;/span&gt;
+      dingtalk_corpsecret = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;appsecret of dingtalk app&amp;gt;&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+如果仅希望企业部分部门的员工可以获得授权，在上面&lt;code&gt;configFile&lt;/code&gt;配置下添加如下配置，
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;dingtalk_departments = [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;xx公司/产品技术中心&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;xx公司/部门2/子部门3&amp;#34;&lt;/span&gt;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;替换部署应用的域名为你的域名&lt;/li&gt;
+&lt;li&gt;执行以下命令安装Helm部署依赖
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helm dep up&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;执行以下命令部署nginx ingress controller, web应用以及oauth2 proxy
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helm upgrade --install -f values.yaml --set oauth2-proxy.config.clientID&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;lt;移动应用appid&amp;gt;,oauth2-proxy.config.clientSecret&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;lt;移动应用appsecret&amp;gt; site-with-auth --wait ./&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;部署成功后，获取&lt;code&gt;NLB&lt;/code&gt;地址
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get svc -o jsonpath&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;{ $.status.loadBalancer.ingress[*].hostname }&amp;#39;&lt;/span&gt; &amp;lt;deployment name&amp;gt;-nginx-ingress-controller;echo
+a3afe672259c511e98e2a0a0d88fda3e-xx.elb.ap-southeast-1.amazonaws.com&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;部署成功后配置&#34;&gt;部署成功后配置&lt;/h3&gt;
+
+&lt;p&gt;将站点和oauth服务域名解析到上面部署创建的NLB上。&lt;/p&gt;
+
+&lt;h3 id=&#34;测试&#34;&gt;测试&lt;/h3&gt;
+
+&lt;p&gt;访问Web站点(如本示例中的&lt;code&gt;http://web.kane.mx&lt;/code&gt;)，未授权的情况下，调转到钉钉应用扫码登录界面。使用组织内成员的钉钉扫码授权后，将跳转回Web站点应用，可以正常浏览该域名下的页面。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>基于函数计算的钉钉回调函数接口</title>

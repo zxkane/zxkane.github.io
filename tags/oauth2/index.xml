@@ -6,10 +6,19 @@
     <description>Recent content in Oauth2 on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/oauth2/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</title>
+      <link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</link>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</guid>
+      <description>&lt;p&gt;本文是&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/&#34;&gt;为Kubernetes中任意应用添加基于oauth2的认证保护&lt;/a&gt;的下篇，将图文详解如何使用基于&lt;a href=&#34;https://open-doc.dingtalk.com/microapp/serverapi2/kymkv6&#34;&gt;钉钉认证&lt;/a&gt;的&lt;a href=&#34;https://github.com/bitly/oauth2_proxy&#34;&gt;oauth2 proxy&lt;/a&gt;为自身本没有认证授权功能的Web站点实现认证及授权。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</title>
