@@ -66,6 +66,15 @@
     </item>
     
     <item>
+      <title>Aws Lambda</title>
+      <link>https://kane.mx/tags/aws-lambda/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/aws-lambda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Build</title>
       <link>https://kane.mx/tags/build/</link>
       <pubDate>Tue, 08 Nov 2011 16:16:00 +0800</pubDate>
@@ -368,15 +377,6 @@
       <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Lambda</title>
-      <link>https://kane.mx/tags/lambda/</link>
-      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/lambda/</guid>
       <description></description>
     </item>
     
