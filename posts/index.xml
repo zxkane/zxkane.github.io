@@ -59,9 +59,24 @@
 
 &lt;ol&gt;
 &lt;li&gt;克隆&lt;a href=&#34;https://github.com/zxkane/hands-on-dingtalk-oauth2-proxy&#34;&gt;示例&lt;/a&gt;部署脚本。&lt;/li&gt;
-&lt;li&gt;替换&lt;code&gt;values.yml&lt;/code&gt;中的&lt;code&gt;dingtalk_corpid&lt;/code&gt;为工作台应用的&lt;code&gt;appKey&lt;/code&gt;， &lt;code&gt;dingtalk_corpsecret&lt;/code&gt;为工作台应用的&lt;code&gt;appSecret&lt;/code&gt;。
-    &lt;code&gt;由于社区维护的[oauth2-proxy charts][helm-charts-oauth2-proxy]并不支持dingtalk扩展的SECRET ENV，所以将密钥配置到了&lt;/code&gt;configmap&lt;code&gt;中。用于生产环境的话，建议按[这个commit][helm-charts-oauth2-proxy-dingtalk]使用&lt;/code&gt;secret&lt;code&gt;保存应用secret。&lt;/code&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;oauth2-proxy:
+&lt;li&gt;替换&lt;code&gt;values.yaml&lt;/code&gt;中的&lt;code&gt;dingtalk_corpid&lt;/code&gt;为工作台应用的&lt;code&gt;appKey&lt;/code&gt;， &lt;code&gt;dingtalk_corpsecret&lt;/code&gt;为工作台应用的&lt;code&gt;appSecret&lt;/code&gt;。
+    由于社区维护的&lt;a href=&#34;https://github.com/helm/charts/tree/master/stable/oauth2-proxy&#34;&gt;oauth2-proxy charts&lt;/a&gt;并不支持dingtalk扩展的SECRET ENV，所以将密钥配置到了&lt;code&gt;configmap&lt;/code&gt;中。用于生产环境的话，建议按&lt;a href=&#34;https://github.com/pilipa-cn/charts/commit/7ac0f67acc71577275f743bdcf9a870bd65361b0&#34;&gt;这个commit&lt;/a&gt;使用&lt;code&gt;secret&lt;/code&gt;保存应用secret。
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;62
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;63
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;64
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;65
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;66
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;67
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;68
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;69
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;70
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;71
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;72
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;oauth2-proxy:
   config:
     clientID: aaa
     clientSecret: bbb
@@ -70,17 +85,40 @@
 &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;      email_domains = [ &amp;#34;*&amp;#34; ]&lt;/span&gt;
       cookie_domain = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;kane.mx&amp;#34;&lt;/span&gt;
       cookie_secure = &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;
-      dingtalk_corpid = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;appkey of dingtalk app&amp;gt;&amp;#34;&lt;/span&gt;
-      dingtalk_corpsecret = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;appsecret of dingtalk app&amp;gt;&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;      dingtalk_corpid = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;appkey of dingtalk app&amp;gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;      dingtalk_corpsecret = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;appsecret of dingtalk app&amp;gt;&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 如果仅希望企业部分部门的员工可以获得授权，在上面&lt;code&gt;configFile&lt;/code&gt;配置下添加如下配置，
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;dingtalk_departments = [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;xx公司/产品技术中心&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;xx公司/部门2/子部门3&amp;#34;&lt;/span&gt;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;替换部署应用的域名为你的域名。&lt;/li&gt;
 &lt;li&gt;执行以下命令安装Helm部署依赖。
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helm dep up&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;执行以下命令部署nginx ingress controller, web应用以及oauth2 proxy
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helm upgrade --install -f values.yaml --set oauth2-proxy.config.clientID&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;lt;移动应用appid&amp;gt;,oauth2-proxy.config.clientSecret&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;lt;移动应用appsecret&amp;gt; site-with-auth --wait ./&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;部署成功后，获取&lt;code&gt;NLB&lt;/code&gt;地址
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get svc -o jsonpath&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;{ $.status.loadBalancer.ingress[*].hostname }&amp;#39;&lt;/span&gt; &amp;lt;deployment name&amp;gt;-nginx-ingress-controller;echo
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helm upgrade --install -f values.yaml --set oauth2-proxy.config.clientID&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;lt;移动应用appid&amp;gt;,oauth2-proxy.config.clientSecret&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;lt;移动应用appsecret&amp;gt; site-with-auth --wait ./&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+如果集群中已经部署了&lt;code&gt;Nginx Ingress Controller&lt;/code&gt;，修改&lt;code&gt;values.yaml&lt;/code&gt;如下将忽略部署Nginx ingress，
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;47
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;48
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;49
+&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;50
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;51
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;52
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;53
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;affinity: {}
+
+nginx-ingress:
+&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;  enabled: &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;
+&lt;/span&gt;  controller:
+    ingressClass: nginx
+    config:&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;部署成功后，获取&lt;code&gt;ELB&lt;/code&gt;地址。
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;kubectl get svc -o jsonpath&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;{ $.status.loadBalancer.ingress[*].hostname }&amp;#39;&lt;/span&gt; &amp;lt;deployment name&amp;gt;-nginx-ingress-controller;echo
 a3afe672259c511e98e2a0a0d88fda3e-xx.elb.ap-southeast-1.amazonaws.com&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -393,7 +431,7 @@ Resources:
 &lt;li&gt;&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins&lt;/a&gt;可以通过&lt;a href=&#34;https://plugins.jenkins.io/reverse-proxy-auth-plugin&#34;&gt;反向代理插件&lt;/a&gt;实现使用oauth2认证登录。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;在下篇中，我们将图文详解如何一步步实现为一个无认证的企业文档Web应用添加基于&lt;a href=&#34;https://open-doc.dingtalk.com/microapp/serverapi2/vt6khw&#34;&gt;钉钉的统一认证&lt;/a&gt;。&lt;/p&gt;</description>
+&lt;p&gt;在&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/&#34;&gt;下篇&lt;/a&gt;中，我们将图文详解如何一步步实现为一个无认证的企业文档Web应用添加基于&lt;a href=&#34;https://open-doc.dingtalk.com/microapp/serverapi2/vt6khw&#34;&gt;钉钉的统一认证&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     
     <item>
