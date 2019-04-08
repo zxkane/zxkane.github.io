@@ -52,14 +52,15 @@
 &lt;ol&gt;
 &lt;li&gt;为企业或组织开通&lt;a href=&#34;https://open-dev.dingtalk.com/#/index&#34;&gt;钉钉开发平台&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;创建一个新的&lt;a href=&#34;https://open-dev.dingtalk.com/#/loginAndShareApp&#34;&gt;移动应用&lt;/a&gt;。回调域名填写&lt;code&gt;&amp;lt;http or https&amp;gt;/&amp;lt;认证服务域名&amp;gt;/oauth2/callback&lt;/code&gt;。记录下来应用的&lt;code&gt;appId&lt;/code&gt;和&lt;code&gt;appSecret&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;创建一个&lt;a href=&#34;https://open-dev.dingtalk.com/#/create-bench/self&#34;&gt;企业内部工作台应用&lt;/a&gt;。地址可以随意设置。服务器出口IP设置为&lt;code&gt;EKS集群中工作节点的公网IP&lt;/code&gt;或者&lt;code&gt;NAT EIP&lt;/code&gt;，取决于工作节点如何访问Internet。记录下来应用&lt;code&gt;appKey&lt;/code&gt;和&lt;code&gt;appSecret&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;创建一个&lt;a href=&#34;https://open-dev.dingtalk.com/#/create-bench/self&#34;&gt;企业内部工作台应用&lt;/a&gt;。地址可以随意设置。服务器出口IP设置为&lt;code&gt;EKS集群中工作节点的公网IP&lt;/code&gt;或者&lt;code&gt;NAT EIP&lt;/code&gt;，取决于工作节点如何访问Internet。并记录下来应用&lt;code&gt;appKey&lt;/code&gt;和&lt;code&gt;appSecret&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&#34;部署示例应用&#34;&gt;部署示例应用&lt;/h3&gt;
 
 &lt;ol&gt;
-&lt;li&gt;克隆&lt;a href=&#34;https://github.com/zxkane/hands-on-dingtalk-oauth2-proxy&#34;&gt;示例&lt;/a&gt;部署脚本&lt;/li&gt;
-&lt;li&gt;替换&lt;code&gt;values.yml&lt;/code&gt;中的&lt;code&gt;dingtalk_corpid&lt;/code&gt;为工作台应用的&lt;code&gt;appKey&lt;/code&gt;， &lt;code&gt;dingtalk_corpsecret&lt;/code&gt;为工作台应用的&lt;code&gt;appSecret&lt;/code&gt;。Note: 由于社区维护的&lt;a href=&#34;https://github.com/helm/charts/tree/master/stable/oauth2-proxy&#34;&gt;oauth2-proxy charts&lt;/a&gt;并不支持dingtalk扩展的SECRET ENV，所以将密钥配置到了&lt;code&gt;configmap&lt;/code&gt;中。用于生产环境的话，建议按&lt;a href=&#34;https://github.com/pilipa-cn/charts/commit/7ac0f67acc71577275f743bdcf9a870bd65361b0&#34;&gt;这个commit&lt;/a&gt;使用&lt;code&gt;secret&lt;/code&gt;保存应用secret。
+&lt;li&gt;克隆&lt;a href=&#34;https://github.com/zxkane/hands-on-dingtalk-oauth2-proxy&#34;&gt;示例&lt;/a&gt;部署脚本。&lt;/li&gt;
+&lt;li&gt;替换&lt;code&gt;values.yml&lt;/code&gt;中的&lt;code&gt;dingtalk_corpid&lt;/code&gt;为工作台应用的&lt;code&gt;appKey&lt;/code&gt;， &lt;code&gt;dingtalk_corpsecret&lt;/code&gt;为工作台应用的&lt;code&gt;appSecret&lt;/code&gt;。
+    &lt;code&gt;由于社区维护的[oauth2-proxy charts][helm-charts-oauth2-proxy]并不支持dingtalk扩展的SECRET ENV，所以将密钥配置到了&lt;/code&gt;configmap&lt;code&gt;中。用于生产环境的话，建议按[这个commit][helm-charts-oauth2-proxy-dingtalk]使用&lt;/code&gt;secret&lt;code&gt;保存应用secret。&lt;/code&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;oauth2-proxy:
   config:
     clientID: aaa
@@ -73,8 +74,8 @@
       dingtalk_corpsecret = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;appsecret of dingtalk app&amp;gt;&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 如果仅希望企业部分部门的员工可以获得授权，在上面&lt;code&gt;configFile&lt;/code&gt;配置下添加如下配置，
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;dingtalk_departments = [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;xx公司/产品技术中心&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;xx公司/部门2/子部门3&amp;#34;&lt;/span&gt;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;替换部署应用的域名为你的域名&lt;/li&gt;
-&lt;li&gt;执行以下命令安装Helm部署依赖
+&lt;li&gt;替换部署应用的域名为你的域名。&lt;/li&gt;
+&lt;li&gt;执行以下命令安装Helm部署依赖。
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helm dep up&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;执行以下命令部署nginx ingress controller, web应用以及oauth2 proxy
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helm upgrade --install -f values.yaml --set oauth2-proxy.config.clientID&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;lt;移动应用appid&amp;gt;,oauth2-proxy.config.clientSecret&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&amp;lt;移动应用appsecret&amp;gt; site-with-auth --wait ./&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
@@ -85,7 +86,7 @@ a3afe672259c511e98e2a0a0d88fda3e-xx.elb.ap-southeast-1.amazonaws.com&lt;/code&gt
 
 &lt;h3 id=&#34;部署成功后配置&#34;&gt;部署成功后配置&lt;/h3&gt;
 
-&lt;p&gt;将站点和oauth服务域名解析到上面部署创建的NLB上。&lt;/p&gt;
+&lt;p&gt;将站点和oauth服务域名解析到上面部署创建的ELB上。&lt;/p&gt;
 
 &lt;h3 id=&#34;测试&#34;&gt;测试&lt;/h3&gt;
 
