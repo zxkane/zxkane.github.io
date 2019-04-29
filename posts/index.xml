@@ -6,10 +6,55 @@
     <description>Recent content in Posts on The Road</description>
     <meta name="generator" content="Hugo 0.54.0" />
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Apr 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spring Cloud or Cloud Native</title>
+      <link>https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/</link>
+      <pubDate>Mon, 29 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/</guid>
+      <description>&lt;p&gt;基于Java的&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;是由Java最大开源生态&lt;a href=&#34;https://spring.io/&#34;&gt;Spring&lt;/a&gt;社区推出的Out-of-Box分布式&lt;a href=&#34;https://en.wikipedia.org/wiki/Microservices&#34;&gt;微服务&lt;/a&gt;解决方案，&lt;a href=&#34;https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Angel-Release-Notes/6e0e1ba3d510d4a30b95c1468007b22f2427fa25&#34;&gt;自2016年发布&lt;/a&gt;起就被众多开发者看好。Java作为广为流行的服务端编程语言，&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;也就越来越多的被用于微服务开发。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;集成了&lt;a href=&#34;https://netflix.github.io/&#34;&gt;Netflix OSS&lt;/a&gt;开源项目实现了很多功能(或作为实现之一)，包括服务治理、网关路由、客户端负载均衡、服务间调用、断路器等。&lt;a href=&#34;https://spring.io/projects/spring-cloud-netflix&#34;&gt;Spring Cloud Netflix&lt;/a&gt;将很多生产级别微服务能力开箱即用的带到了Spring Cloud架构下的微服务中，帮助开发者快速的构建满足&lt;a href=&#34;https://12factor.net/&#34;&gt;12要素&lt;/a&gt;的应用。&lt;/p&gt;
+
+&lt;p&gt;在去年底发布的&lt;a href=&#34;https://spring.io/blog/2018/12/12/spring-cloud-greenwich-rc1-available-now#spring-cloud-netflix-projects-entering-maintenance-mode&#34;&gt;Spring Cloud Greenwich版本&lt;/a&gt;中宣布&lt;a href=&#34;https://spring.io/projects/spring-cloud-netflix&#34;&gt;Spring Cloud Netflix&lt;/a&gt;中重要的组件&lt;a href=&#34;https://github.com/Netflix/Hystrix#hystrix-status&#34;&gt;Hystrix&lt;/a&gt;、&lt;a href=&#34;https://github.com/Netflix/ribbon#project-status-on-maintenance&#34;&gt;Ribbon&lt;/a&gt;、&lt;code&gt;Zuul 1&lt;/code&gt;等由于上游开源项目进入维护状态，对应的Spring Cloud Netflix项目也进入到维护状态。这些项目将&lt;strong&gt;不再适合&lt;/strong&gt;用于长期维护的产品中！&lt;/p&gt;
+
+&lt;p&gt;同时随着近年云计算的发展，特别是&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;成为容器编排平台的事实标准，加上&lt;a href=&#34;https://www.nginx.com/blog/what-is-a-service-mesh/&#34;&gt;Service Mesh(服务网格)&lt;/a&gt;对微服务的服务治理和流量控制，为&lt;a href=&#34;https://www.redhat.com/en/topics/cloud-native-apps&#34;&gt;云原生应用&lt;/a&gt;提供了更为现代、平台无关的解决方案。&lt;/p&gt;
+
+&lt;p&gt;让我们逐一看看在&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;加上Serivce Mesh(例如&lt;a href=&#34;https://istio.io/&#34;&gt;Istio&lt;/a&gt;)如何实现微服务的服务发现、路由、链路追踪、断路器等功能。&lt;/p&gt;
+
+&lt;h3 id=&#34;配置中心&#34;&gt;配置中心&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://spring.io/projects/spring-cloud-config&#34;&gt;Spring Cloud Config&lt;/a&gt;默认提供了多种配置管理后端，例如&lt;code&gt;Git&lt;/code&gt;、&lt;code&gt;Vault&lt;/code&gt;、&lt;code&gt;JDBC Backend&lt;/code&gt;等。同时也有很多开源方案可以作为替换方案，比如&lt;a href=&#34;https://github.com/alibaba/nacos&#34;&gt;Alibaba Nacos&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;作为部署在&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;中的应用，最佳实践是平衡&lt;a href=&#34;https://kubernetes.io/docs/user-guide/configmap/&#34;&gt;Configmap&lt;/a&gt;和&lt;a href=&#34;https://spring.io/projects/spring-cloud-config&#34;&gt;Spring Cloud Config&lt;/a&gt;。将涉及程序功能的配置放置在&lt;a href=&#34;https://kubernetes.io/docs/user-guide/configmap/&#34;&gt;Configmap&lt;/a&gt;和Secret，随同微服务的发布一起做版本管理，可以做到&lt;strong&gt;随着应用回退的时候同时回退到历史对应的配置版本&lt;/strong&gt;，而不会因为历史版本的代码被最新版本的配置所中断。&lt;a href=&#34;https://github.com/spring-cloud/spring-cloud-kubernetes&#34;&gt;Spring Cloud Kuberentes&lt;/a&gt;项目很好的支持了Spring Cloud应用从&lt;a href=&#34;https://github.com/spring-cloud/spring-cloud-kubernetes#kubernetes-propertysource-implementations&#34;&gt;Configmap&lt;/a&gt;和&lt;a href=&#34;https://github.com/spring-cloud/spring-cloud-kubernetes#secrets-propertysource&#34;&gt;Secret&lt;/a&gt;中读取配置项。而涉及业务的配置选项，将可以考虑放到Spring Cloud Config后端实现统一管理。如果应用是部署在阿里云，使用阿里云托管的配置服务和&lt;a href=&#34;https://github.com/alibaba/nacos&#34;&gt;Spring Cloud Config &amp;ndash; Nacos&lt;/a&gt;将是很好的选择。&lt;/p&gt;
+
+&lt;h3 id=&#34;服务发现&#34;&gt;服务发现&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/services-networking/service/#discovering-services&#34;&gt;Kubernetes Services&lt;/a&gt;提供了集群内原生的服务发现能力，是&lt;a href=&#34;https://spring.io/projects/spring-cloud-netflix&#34;&gt;Eureka&lt;/a&gt;或&lt;a href=&#34;https://spring.io/projects/spring-cloud-zookeeper&#34;&gt;Spring Cloud Zookeeper&lt;/a&gt;等服务发现服务的很好替代品。基于K8S Services的服务发现，很容易通过Service Mesh能力实现限流、A/B测试、金丝雀发布、断路器、chaos注入等服务治理能力。同时对微服务应用来说，不用在应用端添加对应三方库来实现服务注册及发现，减少了应用端开发需求。&lt;/p&gt;
+
+&lt;h3 id=&#34;各种流量治理场景&#34;&gt;各种流量治理场景&lt;/h3&gt;
+
+&lt;p&gt;应用被服务化后，一定会面临流量治理的问题。对于各种服务间如何实现限流、A/B测试、金丝雀发布、断路器、chaos注入测试、链接追踪等，这其实是一类通用的问题。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;提供的是一种客户端解决思路，需要每个应用引入对应功能的libraries的支持。即使通过&lt;a href=&#34;https://www.baeldung.com/spring-boot-starters&#34;&gt;spring boot starter&lt;/a&gt;提供了近似开箱即用的能力，但是每个应用仍然需要自行添加对应的能力，版本更新、安全漏洞fix等场景都需要手动升级、测试、打包、部署。在异构编程语言实现的微服务架构下，未必每种编程框架都能提供很好的对应能力支持。除非有特别的服务治理策略，不推荐在微服务自身来实现服务流量的控制。&lt;/p&gt;
+
+&lt;p&gt;Service Mesh(例如&lt;a href=&#34;https://istio.io/&#34;&gt;Istio&lt;/a&gt;或&lt;a href=&#34;https://linkerd.io/&#34;&gt;Linkerd&lt;/a&gt;)从整个服务治理层面对上述需求提供了统一的解决方案，而不需要微服务做自身的升级或改动。在基于Kuberentes部署运行的微服务应用，Service Mesh提供了统一的服务治理方案，将用户从不同的微服务中自身维护服务治理功能中解放出来，从平台层面提供更加统一一致的解决方案。&lt;/p&gt;
+
+&lt;p&gt;在去年的SpringOne Platform 2018上也有一个Topic &lt;a href=&#34;https://youtu.be/AMJQO9zs2eo&#34;&gt;A Tale of Two Frameworks: Spring Cloud and Istio&lt;/a&gt; 探讨什么场景应该使用Service Mesh，什么时候使用Spring Cloud服务治理组件，有兴趣的朋友可以看一看。&lt;/p&gt;
+
+
+&lt;div class=&#34;youtube container&#34;&gt;
+    &lt;iframe class=&#34;youtube&#34; type=&#34;text/html&#34;
+        src=&#34;https://www.youtube.com/embed/AMJQO9zs2eo&#34;
+        allowfullscreen frameborder=&#34;0&#34;&gt;
+    &lt;/iframe&gt;
+&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</title>
