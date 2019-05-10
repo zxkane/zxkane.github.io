@@ -6,10 +6,21 @@
     <description>Recent content in 会议 on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/%E4%BC%9A%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>QCon2019北京站回顾</title>
+      <link>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</link>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</guid>
+      <description>&lt;p&gt;这周参加了&lt;a href=&#34;https://2019.qconbeijing.com/&#34;&gt;QCon 2019北京站&lt;/a&gt;，这里记录下部分印象深刻的主题以及个人感受。&lt;/p&gt;
+
+&lt;p&gt;QCon是由InfoQ主办的综合性技术盛会，主题涵盖了大前端、高可用架构、容器技术、大数据、机器学习等各种热门技术主题。其中也不乏&lt;a href=&#34;https://2019.qconbeijing.com/track/501&#34;&gt;下一代分布式应用&lt;/a&gt;、&lt;a href=&#34;https://2019.qconbeijing.com/track/565&#34;&gt;混沌工程&lt;/a&gt;等前沿有意思的主题，后面会详细介绍相关的主题演讲。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>2018北京ArchSummit回顾</title>

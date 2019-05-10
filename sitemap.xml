@@ -3,6 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</loc>
+    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/</loc>
     <lastmod>2019-04-29T15:47:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -689,7 +696,7 @@
   
   <url>
     <loc>https://kane.mx/categories/blogging/</loc>
-    <lastmod>2019-01-25T00:02:05+08:00</lastmod>
+    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -710,7 +717,7 @@
   
   <url>
     <loc>https://kane.mx/categories/</loc>
-    <lastmod>2019-01-25T00:02:05+08:00</lastmod>
+    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -760,6 +767,13 @@
   <url>
     <loc>https://kane.mx/tags/debug/</loc>
     <lastmod>2019-01-25T18:17:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/devops/</loc>
+    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1109,7 +1123,7 @@
   
   <url>
     <loc>https://kane.mx/posts/</loc>
-    <lastmod>2019-04-29T15:47:31+08:00</lastmod>
+    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1124,6 +1138,13 @@
   <url>
     <loc>https://kane.mx/tags/python/</loc>
     <lastmod>2019-01-25T18:17:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/qcon/</loc>
+    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1256,7 +1277,7 @@
   
   <url>
     <loc>https://kane.mx/</loc>
-    <lastmod>2019-04-29T15:47:31+08:00</lastmod>
+    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1396,7 +1417,7 @@
   
   <url>
     <loc>https://kane.mx/tags/%E4%BC%9A%E8%AE%AE/</loc>
-    <lastmod>2019-01-25T00:02:05+08:00</lastmod>
+    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1411,6 +1432,13 @@
   <url>
     <loc>https://kane.mx/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/</loc>
     <lastmod>2019-04-08T23:38:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E5%B7%A5%E7%A8%8B%E6%95%88%E7%8E%87/</loc>
+    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1438,7 +1466,7 @@
   
   <url>
     <loc>https://kane.mx/tags/%E6%9E%B6%E6%9E%84/</loc>
-    <lastmod>2019-01-25T00:02:05+08:00</lastmod>
+    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1446,6 +1474,13 @@
   <url>
     <loc>https://kane.mx/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/</loc>
     <lastmod>2019-01-25T18:17:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E6%B7%B7%E6%B2%8C%E5%B7%A5%E7%A8%8B/</loc>
+    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

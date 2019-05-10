@@ -156,6 +156,15 @@
     </item>
     
     <item>
+      <title>Devops</title>
+      <link>https://kane.mx/tags/devops/</link>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Dingtalk</title>
       <link>https://kane.mx/tags/dingtalk/</link>
       <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
@@ -597,6 +606,15 @@
     </item>
     
     <item>
+      <title>Qcon</title>
+      <link>https://kane.mx/tags/qcon/</link>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/qcon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Rcp</title>
       <link>https://kane.mx/tags/rcp/</link>
       <pubDate>Fri, 09 Mar 2007 13:46:00 +0800</pubDate>
@@ -905,7 +923,7 @@
     <item>
       <title>会议</title>
       <link>https://kane.mx/tags/%E4%BC%9A%E8%AE%AE/</link>
-      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/%E4%BC%9A%E8%AE%AE/</guid>
       <description></description>
@@ -926,6 +944,15 @@
       <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>工程效率</title>
+      <link>https://kane.mx/tags/%E5%B7%A5%E7%A8%8B%E6%95%88%E7%8E%87/</link>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/%E5%B7%A5%E7%A8%8B%E6%95%88%E7%8E%87/</guid>
       <description></description>
     </item>
     
@@ -959,7 +986,7 @@
     <item>
       <title>架构</title>
       <link>https://kane.mx/tags/%E6%9E%B6%E6%9E%84/</link>
-      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/%E6%9E%B6%E6%9E%84/</guid>
       <description></description>
@@ -971,6 +998,15 @@
       <pubDate>Tue, 03 Apr 2007 13:16:00 +0800</pubDate>
       
       <guid>https://kane.mx/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>混沌工程</title>
+      <link>https://kane.mx/tags/%E6%B7%B7%E6%B2%8C%E5%B7%A5%E7%A8%8B/</link>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/%E6%B7%B7%E6%B2%8C%E5%B7%A5%E7%A8%8B/</guid>
       <description></description>
     </item>
     

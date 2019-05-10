@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<title>
+	QCon2019北京站回顾
+</title>
+		<style>
+	body {
+		display: block;
+		--colorBG: "#40e0d0, #ff8c00, #ff0080";
+		
+			background-image: var(--bgImage) !important;
+		
+	}
+
+	body, body.pushable {
+		background-repeat: no-repeat;
+	  	background-attachment: fixed;
+	  	background-size: cover !important;
+	}
+</style>
+
+		<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+	
+	
+	
+	<meta name="author" content="Kane" />
+	<meta name="description" content="SOFTWARE IS CHANGING THE WORLD" />
+
+
+
+<meta name="generator" content="Hugo 0.54.0" />
+
+
+<link rel="shortcut icon" href="/img/favicon.ico">
+
+
+
+
+		
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+
+ <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Inconsolata" rel="stylesheet"> 
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+
+
+
+	<link rel="stylesheet" type="text/css" href="/css/highlight.css">
+
+
+
+
+	
+		<link rel="stylesheet" type="text/css" href="/css/highlight.css">
+	
+
+
+
+<style>
+	body.pushable {
+		display: block;
+		
+			background-image: var(--bgImage) !important;
+		 ;
+	}
+</style>
+
+
+
+<script>
+	var colorBG =  false 
+	
+	var isMobile = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+	console.log("The client device is a "+(isMobile?"mobile":"PC")+".")
+</script>
+
+	</head>
+
+	<body>
+		<script>
+var prevBgIndex = 0;
+var bodyBgSwitchIndex = 0;
+
+
+
+
+
+
+	
+		var images = ["https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/sunset.jpeg","https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/pia23059.jpg","https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw1912a.jpg","https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/stationmoon.jpg","https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw1911a.jpg","https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/3.3-445a2747.jpg"];
+		var randomNumber = getRandomInt(0, images.length);
+		bgImage = "url(" + images[randomNumber] + ")";
+	
+
+	console.log("Current background: " + bgImage.substring(bgImage.indexOf("bg"), bgImage.length));
+	document.body.style.setProperty('--blurEff',  0.4 );
+	document.body.style.setProperty('--bgImage', bgImage);
+
+
+	function getRandomInt(min, max) {
+	  min = Math.ceil(min);
+	  max = Math.floor(max);
+	  var random;
+	  while (1) {
+	    random = Math.floor(Math.random() * (max - min)) + min;
+	    if (random !== prevBgIndex) {
+	      prevBgIndex = random;
+	      break;
+	    }
+	  }
+	  return random;
+	}
+
+	function connect(arr) {
+	  var str = '';
+	  for (var i = 0; i < arr.length; i++) {
+	    if (i !== arr.length - 1) {
+	      str += arr[i] + ', ';
+	    } else {
+	      str += arr[i];
+	    }
+	  }
+	  return str;
+	}
+</script>
+
+
+
+	<div class="blur-overlay"></div>
+
+
+		<div id="sidebar" class="ui sidebar inverted vertical menu">
+	
+	<section id="author" class="ui top attached center aligned inverted segment">
+		
+<div class="ui small circular image">
+	
+		<img src="/img/portrait.jpg">
+	
+</div>
+
+
+<h3 class="ui header">
+	Kane
+	<div class="sub header">Twin boys&#39; father, open source mania.</div>
+</h3>
+
+	</section>
+
+	
+	
+		<section class="ui attached center aligned inverted segment sidebar-dream-tags">
+			
+			
+			
+			
+
+
+
+
+	
+	
+		
+			
+			<a class="ui label yellow " href="/tags/eclipse" title="eclipse">eclipse</a>
+		
+			
+			<a class="ui label blue " href="/tags/equinox" title="equinox">equinox</a>
+		
+			
+			<a class="ui label brown " href="/tags/tip" title="tip">tip</a>
+		
+			
+			<a class="ui label green " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+		
+			
+			<a class="ui label green " href="/tags/osgi" title="osgi">osgi</a>
+		
+			
+			<a class="ui label brown " href="/tags/p2" title="p2">p2</a>
+		
+			
+			<a class="ui label teal " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+		
+			
+			<a class="ui label violet " href="/tags/java" title="java">java</a>
+		
+			
+			<a class="ui label yellow " href="/tags/aws" title="aws">aws</a>
+		
+			
+			<a class="ui label olive " href="/tags/docker" title="docker">docker</a>
+		
+	
+
+
+		</section>
+	
+
+	
+	
+		<section class="ui attached inverted segment sidebar-dream-categories both flexbox">
+			<div class="ui inverted accordion">
+				
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/blogging">blogging</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/2019/2019-qconbeijing-reviews/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>QCon2019北京站回顾</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2018/2018-12-13-bj-archsummit-review/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>2018北京ArchSummit回顾</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>如何修复Jenkins CI无法读取存在的任务配置</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>MongoDB中如何找出慢查询</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Docker Swarm mode(v1.12.x)的一些使用限制</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>基于Angularjs单页面应用的SEO优化</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/clustered-session-under-spring-framework/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Spring框架下的分布式session管理</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/how-we-build-videome/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>V秘是如何构建的</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/aliyun-ossfs-sucks/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>说一说阿里云ossfs</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/weixin-temporary-materials/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>如何使用微信公众平台的临时素材</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>单页面应用(single page application)中使用微信支付</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>文件系统的Inode耗尽，会导致Docker编译镜像出现&#39;No space left on device&#39;错误</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/effective-cloud-computing">effective-cloud-computing</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Spring Cloud or Cloud Native</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>基于函数计算的钉钉回调函数接口</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>无服务器计算101</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/iam-best-practice/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>IAM最佳实践</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>不要自建Kubernetes</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/preface/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>真的会用云服务吗？</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/kubernetes">kubernetes</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Spring Cloud or Cloud Native</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>不要自建Kubernetes</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/serverless-computing">serverless-computing</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>基于函数计算的钉钉回调函数接口</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>无服务器计算101</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/trip">trip</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/food-and-drinking/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Food and Drinking</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/working-workspace/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Working Workspace</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/transportation/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Transportation</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/working-style/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Working style</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/day-1/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>day 1</p>
+				</div>
+			</a>
+		
+	</div>
+
+
+			</div>
+		</section>
+	
+
+	
+	<section id="footer" class="ui bottom attached center aligned inverted segment">
+		
+
+	<p>© 2019 The Road</p>
+
+
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with <a href="https://github.com/UtkarshVerma/hugo-dream-plus" target="_blank">Dream Plus</a> theme.</p>
+
+	</section>
+</div>
+
+
+		<div class="pusher">
+			<div class="flipper">
+				<div class="front">
+					
+	<nav class="ui top secondary menu bar">
+	
+	<div class="item">
+		<i class="inverted big link bullseye icon dream-flip-toggle" title="About Me"></i>
+	</div>
+
+	
+	
+		<div class="item">
+			<a href="/">
+				<i class="inverted big link home icon" title="Home"></i>
+			</a>
+		</div>
+	
+
+	
+	
+
+	
+	
+		<div class="item">
+			<a href="/tags">
+				<i class="inverted big link tags icon" title="All Tags"></i>
+			</a>
+		</div>
+	
+
+	
+	
+		<div class="item">
+			<a href="/categories">
+				<i class="inverted big link cubes icon" title="All Categories"></i>
+			</a>
+    	</div>
+	
+
+	
+	
+
+	
+	
+		<div class="ui container tablet computer only grid">
+			<div class="item" onClick="$('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');">
+				<i class="inverted big link sidebar icon" title="Show Sidebar"></i>
+			</div>
+		</div>
+	
+
+	
+	
+		<div class="item right">
+			<a href="/posts/index.xml">
+				<i class="inverted big link rss icon" title="RSS Feed"></i>
+			</a>
+		</div>
+	
+</nav>
+
+
+	<div class="ui centered grid">
+		
+		<div class="sixteen wide mobile only column">
+				<div class="ui inverted accordion">
+	<div id="header" class="ui inverted segment column box">		
+		
+		<header id="author" class="ui top attached center aligned inverted segment">
+			
+<div class="ui small circular image">
+	
+		<img src="/img/portrait.jpg">
+	
+</div>
+
+
+<h3 class="ui header">
+	Kane
+	<div class="sub header">Twin boys&#39; father, open source mania.</div>
+</h3>
+
+		</header>
+
+		
+		<div class=" title header-title">
+			
+				<div id="tag-category-pop" class="ui red right corner label">
+					<i class="hand point icon down" title="Show/hide tags and categories"></i>
+				</div>
+			
+		</div>
+		
+		
+		<div id="tag-category" class=" content">
+			
+				<section class="ui attached center aligned inverted segment dream-tags none flexbox">
+					
+					
+					
+
+
+
+
+	
+	
+		
+			
+			<a class="ui label teal " href="/tags/eclipse" title="eclipse">eclipse</a>
+		
+			
+			<a class="ui label pink " href="/tags/equinox" title="equinox">equinox</a>
+		
+			
+			<a class="ui label red " href="/tags/tip" title="tip">tip</a>
+		
+			
+			<a class="ui label green " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+		
+			
+			<a class="ui label olive " href="/tags/osgi" title="osgi">osgi</a>
+		
+			
+			<a class="ui label teal " href="/tags/p2" title="p2">p2</a>
+		
+			
+			<a class="ui label orange " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+		
+			
+			<a class="ui label orange " href="/tags/java" title="java">java</a>
+		
+			
+			<a class="ui label red " href="/tags/aws" title="aws">aws</a>
+		
+			
+			<a class="ui label orange " href="/tags/docker" title="docker">docker</a>
+		
+	
+
+
+				</section>
+			
+
+			
+				<section class="ui attached inverted segment dream-categories both flexbox">
+					<div class="inverted accordion">
+						
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/blogging">blogging</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/2019/2019-qconbeijing-reviews/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>QCon2019北京站回顾</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2018/2018-12-13-bj-archsummit-review/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>2018北京ArchSummit回顾</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>如何修复Jenkins CI无法读取存在的任务配置</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>MongoDB中如何找出慢查询</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Docker Swarm mode(v1.12.x)的一些使用限制</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>基于Angularjs单页面应用的SEO优化</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/clustered-session-under-spring-framework/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Spring框架下的分布式session管理</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/how-we-build-videome/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>V秘是如何构建的</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/aliyun-ossfs-sucks/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>说一说阿里云ossfs</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/weixin-temporary-materials/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>如何使用微信公众平台的临时素材</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>单页面应用(single page application)中使用微信支付</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>文件系统的Inode耗尽，会导致Docker编译镜像出现&#39;No space left on device&#39;错误</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/effective-cloud-computing">effective-cloud-computing</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Spring Cloud or Cloud Native</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>基于函数计算的钉钉回调函数接口</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>无服务器计算101</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/iam-best-practice/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>IAM最佳实践</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>不要自建Kubernetes</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/preface/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>真的会用云服务吗？</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/kubernetes">kubernetes</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Spring Cloud or Cloud Native</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>不要自建Kubernetes</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/serverless-computing">serverless-computing</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>基于函数计算的钉钉回调函数接口</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>无服务器计算101</p>
+				</div>
+			</a>
+		
+	</div>
+
+	
+	<div class="title">
+		<i class="dropdown icon"></i>
+		<a class="link" href="/categories/trip">trip</a>
+	</div>
+
+	
+	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/food-and-drinking/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Food and Drinking</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/working-workspace/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Working Workspace</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/transportation/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Transportation</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/working-style/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>Working style</p>
+				</div>
+			</a>
+		
+			<a class="item" href="https://kane.mx/posts/archive/blogspot/day-1/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>day 1</p>
+				</div>
+			</a>
+		
+	</div>
+
+
+					</div>
+				</section>
+			
+		</div>
+
+		
+		<footer class="ui bottom attached center aligned inverted segment">
+			
+
+	<p>© 2019 The Road</p>
+
+
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with <a href="https://github.com/UtkarshVerma/hugo-dream-plus" target="_blank">Dream Plus</a> theme.</p>
+
+		</footer>
+	</div>
+</div>
+
+		</div>
+
+		<div class="sixteen wide mobile fifteen wide tablet twelve wide computer column post-list">
+			
+			<section class="ui secondary top attached black segment post-head">
+				<h1 class="post-title">
+					QCon2019北京站回顾
+				</h1>
+
+				<div class="sub header">
+					<div><span><i class="calendar outline icon"></i>May 9, 2019</span></div>
+					
+					<div><span><i class="clock outline icon"></i>5 min read</span></div>
+					<div><span><i class="angle double up icon"></i>Last updated on May 10, 2019</span></div>
+				</div>
+				<hr>
+
+				
+
+				<article class="post-content twemoji">
+					<p>这周参加了<a href="https://2019.qconbeijing.com/">QCon 2019北京站</a>，这里记录下部分印象深刻的主题以及个人感受。</p>
+
+<p>QCon是由InfoQ主办的综合性技术盛会，主题涵盖了大前端、高可用架构、容器技术、大数据、机器学习等各种热门技术主题。其中也不乏<a href="https://2019.qconbeijing.com/track/501">下一代分布式应用</a>、<a href="https://2019.qconbeijing.com/track/565">混沌工程</a>等前沿有意思的主题，后面会详细介绍相关的主题演讲。</p>
+
+<h3 id="工程效率提升">工程效率提升&nbsp;<a class="anchor" href="#工程效率提升"><i class="small linkify icon"></i></a> </h3>
+
+<p>这是在QCon第一日个人感兴趣且非常有意思的一个<a href="https://2019.qconbeijing.com/track/499">系列主题</a>。无论是创业公司、独角兽企业还是互联网巨头都希望不断提升工程效率，3个相关的分享分别来自BAT，可见互联网巨头们对团队效率提升的渴望和重视。</p>
+
+<h4 id="10倍速原则对工程生产力建设的方向性影响-qiaoliang-talk"><a href="https://2019.qconbeijing.com/presentation/1505">10倍速原则对工程生产力建设的方向性影响</a>&nbsp;<a class="anchor" href="#10倍速原则对工程生产力建设的方向性影响-qiaoliang-talk"><i class="small linkify icon"></i></a> </h4>
+
+<p>这个talk来自腾讯的高级顾问乔梁，这位老兄已经连续10年在QCon上分享持续集成、持续交付等工程效率相关的主题了！他的演讲始于对成功企业的<strong>一万次实验法则</strong>方法论，
+<figure>
+    <img src="/posts/2019/2019-qconbeijing-images/1%e4%b8%87%e6%ac%a1%e6%b3%95%e5%88%99.jpeg"
+         alt="1万次实验法则"/> 
+</figure>
+
+而大量高效的实验基于一个<strong>双环模型</strong>的快速验证环。
+<figure>
+    <img src="/posts/2019/2019-qconbeijing-images/%e5%8f%8c%e7%8e%af%e6%a8%a1%e5%9e%8b.jpeg"
+         alt="双环模型"/> 
+</figure>
+
+最终工程生产力是由<strong>工作流程</strong>、<strong>支撑工具</strong>和<strong>工程素养</strong>三方面一起决定的。
+<figure>
+    <img src="/posts/2019/2019-qconbeijing-images/%e5%b7%a5%e7%a8%8b%e7%94%9f%e4%ba%a7%e5%8a%9b.jpeg"
+         alt="工程生产力"/> 
+</figure>
+</p>
+
+<blockquote>
+<p>非常认可决定工程效率的这三要素，个人认为<strong>工程素养</strong>是其他两个要素的基石，<a href="https://book.douban.com/subject/30356081/">奈飞文化手册</a>中开篇强调的只招聘<strong>成年人</strong>就是很好的诠释。</p>
+</blockquote>
+
+<h4 id="百度工程能力提升之道-baidu-talk"><a href="https://2019.qconbeijing.com/presentation/1487">百度工程能力提升之道</a>&nbsp;<a class="anchor" href="#百度工程能力提升之道-baidu-talk"><i class="small linkify icon"></i></a> </h4>
+
+<p>这个分享来自百度研发效能部门的产品经理，从<strong>人</strong>、<strong>技</strong>、<strong>法</strong>三方面强调工程能力提升的策略模型。其实这个模型就是对应着上面<a href="#10倍速原则对工程生产力建设的方向性影响-qiaoliang-talk">乔梁分享的工程生产力三要素</a>。
+<figure>
+    <img src="/posts/2019/2019-qconbeijing-images/%e6%8f%90%e5%8d%87%e5%b7%a5%e7%a8%8b%e8%83%bd%e5%8a%9b%e7%ad%96%e7%95%a5.jpeg"
+         alt="提升工程能力的策略"/> 
+</figure>
+
+关于对工程师的培养和技术规范，百度发布了&rdquo;百度工程师手册&rdquo;，据说可以从网络上下载到。大量工具的细节分享涉及的都是百度内部工具，不过工具针对的思路还是可以借鉴的。</p>
+
+<h4 id="菜鸟集团研发效能变革实践-cainiao-talk"><a href="https://2019.qconbeijing.com/presentation/1439">菜鸟集团研发效能变革实践</a>&nbsp;<a class="anchor" href="#菜鸟集团研发效能变革实践-cainiao-talk"><i class="small linkify icon"></i></a> </h4>
+
+<p>这个分享来自阿里系的菜鸟集团，特别强调数据化驱动的研发效能提升，里面很有意思的一点是建立成本模型来评估效能的好坏。</p>
+
+<blockquote>
+<p>作为效能部门负责人，有数据特别是成本数据，让高层管理者buy-in你的想法，这应该是个非常好的角度。</p>
+</blockquote>
+
+<h3 id="高可用架构">高可用架构&nbsp;<a class="anchor" href="#高可用架构"><i class="small linkify icon"></i></a> </h3>
+
+<h4 id="声明式自愈系统-高可用分布式系统的设计之道-declarative-system-talk"><a href="https://2019.qconbeijing.com/presentation/1511">声明式自愈系统——高可用分布式系统的设计之道</a>&nbsp;<a class="anchor" href="#声明式自愈系统-高可用分布式系统的设计之道-declarative-system-talk"><i class="small linkify icon"></i></a> </h4>
+
+<p>这个分享比较理论化的介绍声明式的、可自愈的分布式系统原理和实践，其实业界已经有个非常好的参考实现 &ndash; 就是<a href="https://kubernetes.io">Kubernetes</a> 😃。</p>
+
+<h4 id="超大规模高可用性云端系统构建之禅-caichao-talk"><a href="https://2019.qconbeijing.com/presentation/1437">超大规模高可用性云端系统构建之禅</a>&nbsp;<a class="anchor" href="#超大规模高可用性云端系统构建之禅-caichao-talk"><i class="small linkify icon"></i></a> </h4>
+
+<p>这是一个非常实用的工程实践分享，列举了大量大规模云原生应用一定会面临的挑战，以及简单又实用的解决方法。每一个云原生应用开发者都应该看看这个<a href="https://static001.geekbang.org/con/38/pdf/2428705636/file/%E8%B6%85%E5%A4%A7%E8%A7%84%E6%A8%A1%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7%E4%BA%91%E7%AB%AF%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA%E4%B9%8B%E7%A6%85-%E8%94%A1%E8%B6%85.pdf">slide</a>，学习前人实践的经验。另外为讲演者蔡超做个推广，对Go语言有兴趣的同学，可以考虑学习蔡超的极客时间课程<a href="https://time.geekbang.org/course/intro/160">Go语言从入门到实战</a>。</p>
+
+<h3 id="运维架构">运维架构&nbsp;<a class="anchor" href="#运维架构"><i class="small linkify icon"></i></a> </h3>
+
+<h4 id="kubernetes-日志平台建设最佳实践-aliyun-sls-talk"><a href="https://2019.qconbeijing.com/presentation/1448">Kubernetes 日志平台建设最佳实践</a>&nbsp;<a class="anchor" href="#kubernetes-日志平台建设最佳实践-aliyun-sls-talk"><i class="small linkify icon"></i></a> </h4>
+
+<p>这个分享介绍了Kubernetes上日志方案的解决思路，及它的实践 &ndash; 阿里云的日志服务。对于很多有基础服务建设的团队可以作为很好的参考方案。对于已经托管在阿里云上的应用，建议就不要重复建设低端的轮子了，阿里云日志服务应该做为团队的首选。不论在性能同其他云托管服务集成上，都远远好于自建的方案。</p>
+
+<h4 id="多云管下的自动化运维架构-multi-clouds-talk"><a href="https://2019.qconbeijing.com/presentation/1653">多云管下的自动化运维架构</a>&nbsp;<a class="anchor" href="#多云管下的自动化运维架构-multi-clouds-talk"><i class="small linkify icon"></i></a> </h4>
+
+<p>多云是现在一些厂商力推的话题，个人认为是市场排名靠后的总要找些方法来提升自己产品的竞争力😏。分享者企业做了一套ops平台来管理多云的资源，他们通过adapter方式来将不同云厂商的差异和资源进行了抽象。这其中涉及大量处理产品间差异性和被动适配的工作，个人不太认同这种方式。并且丢掉了infra as code这类重要的特性，对于有这种需求的大型企业来说不是一个完美的方案。</p>
+
+<h3 id="混沌工程-chaos-engineering-themes"><a href="https://2019.qconbeijing.com/track/565">混沌工程</a>&nbsp;<a class="anchor" href="#混沌工程-chaos-engineering-themes"><i class="small linkify icon"></i></a> </h3>
+
+<p>混沌工程这个话题非常有意思，同时也是较新的一种实践工程。从最早的提出、系统实践到现在还不到10年时间。来自阿里巴巴的<a href="https://2019.qconbeijing.com/presentation/1479">云原生架构下的混沌工程实践</a>和AWS的<a href="https://2019.qconbeijing.com/presentation/1741">AWS 云上混沌工程实践之对照实验设计和实施</a>两个分享介绍了从混沌工程的起源到如何全方位的实践用于提升云原生应用的&rdquo;韧性&rdquo;，非常值得学习。<a href="#超大规模高可用性云端系统构建之禅-caichao-talk">蔡超的超大规模高可用性云端系统构建</a>也提到了使用混沌工程来提升系统的高可用性，在云原生应用越来越普及的情况下，被动的设计高可用系统肯定不如主动(甚至持续的自动化)可控的注入混乱来逐渐提升系统的高可用性。目前chaos engineering的工具/平台支持还不太完善，这个方向看起来是技术创业很好的切入点😏。最后切记一点，<strong>混沌工程最终一定要在生产系统上实施</strong>。
+<figure>
+    <img src="/posts/2019/2019-qconbeijing-images/%e6%b7%b7%e5%8a%a8%e5%b7%a5%e7%a8%8b%e5%ae%9e%e8%b7%b5.jpeg"
+         alt="混动工程实践"/> 
+</figure>
+</p>
+
+<h3 id="下一代分布式应用-next-gen-ha-system"><a href="https://2019.qconbeijing.com/track/501">下一代分布式应用</a>&nbsp;<a class="anchor" href="#下一代分布式应用-next-gen-ha-system"><i class="small linkify icon"></i></a> </h3>
+
+<p>这个主题虽说命名为下一代分布式应用，主要分享的大多是服务间流量治理问题，特别是Service Mesh下实践经验。其中来自阿里李云的<a href="https://2019.qconbeijing.com/presentation/1501">分布式应用的未来——Distributionless</a>特别值得一提。这个分享并没有实际的案例或经验分享，他重点分享的是对于Cloud Native本质和趋势的看法，这些观点我个人特别认同(<code>好像找到知音似的😀</code>)！完整的slide<a href="https://static001.geekbang.org/con/38/pdf/3913410004/file/%E5%88%86%E5%B8%83%E5%BC%8F%E5%BA%94%E7%94%A8%E7%9A%84%E6%9C%AA%E6%9D%A5&amp;mdash;&amp;mdash;Distributionless-%E6%9D%8E%E4%BA%91.pdf">这里下载</a>。
+<figure>
+    <img src="/posts/2019/2019-qconbeijing-images/CloudNative%e6%9c%ac%e8%b4%a8.jpeg"
+         alt="CloudNative的本质"/> 
+</figure>
+
+<figure>
+    <img src="/posts/2019/2019-qconbeijing-images/CloudNative%e7%9a%84%e8%b6%8b%e5%8a%bf.jpeg"
+         alt="CloudNative的趋势"/> 
+</figure>
+
+<figure>
+    <img src="/posts/2019/2019-qconbeijing-images/%e4%b8%8eCloudNative%e5%90%8c%e8%a1%8c.jpeg"
+         alt="与CloudNative同行"/> 
+</figure>
+</p>
+
+<h3 id="用户增长">用户增长&nbsp;<a class="anchor" href="#用户增长"><i class="small linkify icon"></i></a> </h3>
+
+<p>来自云测的陈冠诚在<a href="https://2019.qconbeijing.com/presentation/1650">智能优化 &amp; A/B 测试 - 实验驱动用户增长的理论与技术实践</a>分享了A/B测试实验对用户增长的理论及实践，顺便也推广了他家云测的A/B测试SaaS服务。听圈内的朋友分享，云测的A/B测试服务确实比较简单好用，方便产品后台创建测试并分析结果，对增长有需求的小伙伴可以考虑体验下，减少不必要的重复建设轮子。</p>
+				</article>				
+			</section>
+
+			
+			<section class="ui secondary attached segment dream-tags">
+				
+					
+
+
+
+
+	
+		<a class="ui label yellow " href="/tags/%E4%BC%9A%E8%AE%AE" title="会议">会议</a>
+	
+		<a class="ui label violet " href="/tags/qcon" title="QCon">QCon</a>
+	
+		<a class="ui label teal " href="/tags/devops" title="devops">devops</a>
+	
+		<a class="ui label purple " href="/tags/%E6%9E%B6%E6%9E%84" title="架构">架构</a>
+	
+		<a class="ui label orange " href="/tags/%E6%B7%B7%E6%B2%8C%E5%B7%A5%E7%A8%8B" title="混沌工程">混沌工程</a>
+	
+		<a class="ui label olive " href="/tags/%E5%B7%A5%E7%A8%8B%E6%95%88%E7%8E%87" title="工程效率">工程效率</a>
+	
+
+
+				
+			</section>
+
+			
+			
+				<section class="ui secondary bottom attached segment share row box">
+					
+
+
+
+
+
+
+
+
+<div class="author">
+	
+	<img class="avatar" src="/img/portrait.jpg">
+	
+</div>
+<div class="info grow flexbox">
+	
+	<p class="name">Kane</p>
+	
+	<p class="desc">Twin boys&#39; father, open source mania.</p>
+</div>
+
+
+<section class="buttons row box">
+	<div class="facebook none flexbox" href="#" onclick="window.open(
+			'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+			'facebook-share-dialog',
+			'width=626,height=436'); return false;">
+		<button class="ui facebook button"><i class="facebook icon"></i>Share</button>
+	</div>
+	<div class="twitter none flexbox" onclick="window.open('https://twitter.com/intent/tweet?text=Read &quot;QCon2019北京站回顾  https:\/\/kane.mx\/posts\/2019\/2019-qconbeijing-reviews\/','_self')">
+		<button class="ui twitter button"><i class="twitter icon"></i>Tweet</button>
+	</div>
+</section>
+
+				</section>
+			
+
+			
+			
+			
+
+			
+			
+
+			
+			
+				
+<script src="https://utteranc.es/client.js"
+        repo="zxkane/articles"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+			
+		</div>
+	</div>
+
+				</div>
+				<div class="back">
+					
+<nav class="ui top secondary menu bar">
+	<div class="item">
+		<i class="inverted big link bullseye icon dream-flip-toggle" title="About Me"></i>
+	</div>
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+	
+	
+	
+	
+	
+	
+	
+		
+		
+			<div class="item">
+				<a href="https://github.com/zxkane" target="	_blank">
+					<i id="ico" class="inverted big link github icon" title="GitHub"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+			<div class="item">
+				<a href="mailto:me@kane.mx" target="	_blank">
+					<i id="ico" class="inverted big link mail icon" title="Email"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+			<div class="item">
+				<a href="https://www.stackoverflow.com/users/390513/kane" target="	_blank">
+					<i id="ico" class="inverted big link stack overflow icon" title="Stack Overflow"></i>
+				</a>
+			</div>
+		
+	
+		
+		
+	
+		
+		
+	
+</nav>
+
+
+
+<div class="ui centered grid about">
+	<div class="sixteen wide mobile fifteen wide tablet fifteen wide computer column about">
+		<section class="ui stacked segments">
+			<div class="ui inverted segment">
+				<article class="twemoji">
+					<h1>So, Who Am I?</h1>
+
+<hr />
+
+<p><br>
+I’m the father of <strong>twin sons</strong>. Live in Beijing. Also I&rsquo;m the *uix user, a full stack software engineer, devops and cloud native evangelist.</p>
+
+<p>Curious about me? Use the social links above to check out my profiles.</p>
+
+				</article>
+			</div>
+		</section>
+	</div>
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+	
+	
+
+		
+
+<script src="/js/site.js"></script>
+
+
+
+	<script src="https://twemoji.maxcdn.com/2/twemoji.min.js?2.6"></script>
+
+
+
+
+
+
+
+
+	
+	<script>
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-11561366-2', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+		
+
+
+		
+
+	<script>
+		(function () {
+		  console.log("Twemoji up and making stuff colourful!");
+		  for (var b = document.getElementsByClassName("twemoji"), a = 0; a < b.length; a++) {
+			twemoji.parse(b[a]);
+		  }
+		})();
+	</script>
+
+
+	</body>
+</html>
