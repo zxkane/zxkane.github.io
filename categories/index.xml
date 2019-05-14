@@ -6,7 +6,7 @@
     <description>Recent content in Categories on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Blogging</title>
       <link>https://kane.mx/categories/blogging/</link>
-      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/categories/blogging/</guid>
       <description></description>
@@ -41,7 +41,7 @@
     <item>
       <title>Serverless Computing</title>
       <link>https://kane.mx/categories/serverless-computing/</link>
-      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/categories/serverless-computing/</guid>
       <description></description>

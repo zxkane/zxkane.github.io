@@ -3,6 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kane.mx/posts/2019/aws-lambda-layers/</loc>
+    <lastmod>2019-05-14T17:01:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</loc>
     <lastmod>2019-05-10T15:26:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -675,7 +682,7 @@
   
   <url>
     <loc>https://kane.mx/tags/aws/</loc>
-    <lastmod>2019-04-08T23:32:58+08:00</lastmod>
+    <lastmod>2019-05-14T17:01:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -689,14 +696,14 @@
   
   <url>
     <loc>https://kane.mx/tags/aws-lambda/</loc>
-    <lastmod>2019-04-08T23:38:21+08:00</lastmod>
+    <lastmod>2019-05-14T17:01:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/categories/blogging/</loc>
-    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
+    <lastmod>2019-05-14T17:01:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -717,7 +724,7 @@
   
   <url>
     <loc>https://kane.mx/categories/</loc>
-    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
+    <lastmod>2019-05-14T17:01:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -843,7 +850,7 @@
   
   <url>
     <loc>https://kane.mx/tags/faas/</loc>
-    <lastmod>2019-04-08T23:38:21+08:00</lastmod>
+    <lastmod>2019-05-14T17:01:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1123,7 +1130,7 @@
   
   <url>
     <loc>https://kane.mx/posts/</loc>
-    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
+    <lastmod>2019-05-14T17:01:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1172,14 +1179,14 @@
   
   <url>
     <loc>https://kane.mx/tags/serverless-computing/</loc>
-    <lastmod>2019-04-08T23:38:21+08:00</lastmod>
+    <lastmod>2019-05-14T17:01:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/categories/serverless-computing/</loc>
-    <lastmod>2019-04-08T23:38:21+08:00</lastmod>
+    <lastmod>2019-05-14T17:01:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1277,7 +1284,7 @@
   
   <url>
     <loc>https://kane.mx/</loc>
-    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
+    <lastmod>2019-05-14T17:01:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -1410,7 +1417,7 @@
   
   <url>
     <loc>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</loc>
-    <lastmod>2019-04-29T15:47:31+08:00</lastmod>
+    <lastmod>2019-05-14T17:01:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

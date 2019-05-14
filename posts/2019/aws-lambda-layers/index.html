@@ -2,7 +2,7 @@
 <html lang="en-us">
 	<head>
 		<title>
-	Food and Drinking
+	AWS Lambda Layer实践
 </title>
 		<style>
 	body {
@@ -29,10 +29,7 @@
 	
 	
 	<meta name="author" content="Kane" />
-	<meta name="description" content="Honestly speaking, you have eaten the best delicious food if you&amp;rsquo;re living in China. Though we have more and more concerns on the safety of food, we have to recognize that Chinese food is more delicious than others.
-The cuisine is simple in Austria. People always use pork, beef, flour, tomato, potato and few green vegetables. So they surprised Chinese cost several hours to make the food.
-
-Gulasch, it&amp;rsquo;s good tasted after eating pizza several times" />
+	<meta name="description" content="使用Lambda Layer共享基础依赖、三方库或自定义runtime" />
 
 
 
@@ -179,34 +176,34 @@ var bodyBgSwitchIndex = 0;
 	
 		
 			
-			<a class="ui label red " href="/tags/eclipse" title="eclipse">eclipse</a>
+			<a class="ui label brown " href="/tags/eclipse" title="eclipse">eclipse</a>
 		
 			
-			<a class="ui label violet " href="/tags/equinox" title="equinox">equinox</a>
+			<a class="ui label blue " href="/tags/equinox" title="equinox">equinox</a>
 		
 			
-			<a class="ui label purple " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+			<a class="ui label green " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
 		
 			
-			<a class="ui label teal " href="/tags/tip" title="tip">tip</a>
+			<a class="ui label brown " href="/tags/tip" title="tip">tip</a>
 		
 			
-			<a class="ui label brown " href="/tags/osgi" title="osgi">osgi</a>
+			<a class="ui label red " href="/tags/osgi" title="osgi">osgi</a>
 		
 			
-			<a class="ui label teal " href="/tags/p2" title="p2">p2</a>
+			<a class="ui label pink " href="/tags/p2" title="p2">p2</a>
 		
 			
-			<a class="ui label green " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+			<a class="ui label olive " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
 		
 			
-			<a class="ui label pink " href="/tags/aws" title="aws">aws</a>
+			<a class="ui label green " href="/tags/aws" title="aws">aws</a>
 		
 			
-			<a class="ui label yellow " href="/tags/java" title="java">java</a>
+			<a class="ui label purple " href="/tags/java" title="java">java</a>
 		
 			
-			<a class="ui label pink " href="/tags/docker" title="docker">docker</a>
+			<a class="ui label purple " href="/tags/docker" title="docker">docker</a>
 		
 	
 
@@ -639,34 +636,34 @@ var bodyBgSwitchIndex = 0;
 	
 		
 			
-			<a class="ui label purple " href="/tags/eclipse" title="eclipse">eclipse</a>
+			<a class="ui label orange " href="/tags/eclipse" title="eclipse">eclipse</a>
 		
 			
 			<a class="ui label red " href="/tags/equinox" title="equinox">equinox</a>
 		
 			
-			<a class="ui label olive " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+			<a class="ui label yellow " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
 		
 			
 			<a class="ui label blue " href="/tags/tip" title="tip">tip</a>
 		
 			
-			<a class="ui label yellow " href="/tags/osgi" title="osgi">osgi</a>
+			<a class="ui label olive " href="/tags/osgi" title="osgi">osgi</a>
 		
 			
-			<a class="ui label pink " href="/tags/p2" title="p2">p2</a>
+			<a class="ui label purple " href="/tags/p2" title="p2">p2</a>
 		
 			
-			<a class="ui label violet " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+			<a class="ui label yellow " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
 		
 			
-			<a class="ui label yellow " href="/tags/aws" title="aws">aws</a>
+			<a class="ui label brown " href="/tags/aws" title="aws">aws</a>
 		
 			
-			<a class="ui label yellow " href="/tags/java" title="java">java</a>
+			<a class="ui label red " href="/tags/java" title="java">java</a>
 		
 			
-			<a class="ui label orange " href="/tags/docker" title="docker">docker</a>
+			<a class="ui label yellow " href="/tags/docker" title="docker">docker</a>
 		
 	
 
@@ -996,50 +993,108 @@ var bodyBgSwitchIndex = 0;
 			
 			<section class="ui secondary top attached black segment post-head">
 				<h1 class="post-title">
-					Food and Drinking
+					AWS Lambda Layer实践
 				</h1>
 
 				<div class="sub header">
-					<div><span><i class="calendar outline icon"></i>Aug 30, 2010</span></div>
+					<div><span><i class="calendar outline icon"></i>May 14, 2019</span></div>
 					
-					<div><span><i class="clock outline icon"></i>1 min read</span></div>
-					<div><span><i class="angle double up icon"></i>Last updated on Jan 25, 2019</span></div>
+					<div><span><i class="clock outline icon"></i>2 min read</span></div>
+					<div><span><i class="angle double up icon"></i>Last updated on May 14, 2019</span></div>
 				</div>
 				<hr>
 
 				
 
 				<article class="post-content twemoji">
-					<p>Honestly speaking, you have eaten the best delicious food if you&rsquo;re living in China. Though we have more and more concerns on the safety of food, we have to recognize that Chinese food is more delicious than others.</p>
+					<p>在<a href="/posts/effective-cloud-computing/serverless-dingtalk-callback/">基于函数计算的钉钉回调函数接口</a>中使用钉钉回调函数案例实践了<a href="https://aws.amazon.com/lambda/">AWS Lambda</a>无服务函数。该示例中，我们将自定义的函数代码及依赖的第三方库（比如json处理库jackson, 钉钉openapi加密库, aws dynamodb client等）整体打包为一个部署包，上传到lamdba代码仓库用于函数执行。</p>
 
-<p>The cuisine is simple in Austria. People always use pork, beef, flour, tomato, potato and few green vegetables. So they surprised Chinese cost several hours to make the food.</p>
+<p>然而实际项目中，其实有大量的相关函数可能会共享这些基础依赖库、三方函数库(比如headless chrome(Puppeteer), pandoc, OCR library &ndash; Tesseract等等)或者使用自定义runtime(如官方未支持的java11)的需求。AWS Lambda在去年底发布了<a href="https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/">Lambda layers功能</a>来满足上述这些实际开发中的需求。</p>
 
-<p><a href="http://lh4.ggpht.com/_5seoFihTGKg/TGhDMuC9-GI/AAAAAAAAEts/07UdMerwnek/s1600/DSC01486.JPG"><img src="http://lh4.ggpht.com/_5seoFihTGKg/TGhDMuC9-GI/AAAAAAAAEts/07UdMerwnek/s320/DSC01486.JPG" alt="" /></a></p>
+<p>接下来，让我们看看如何将<a href="/posts/effective-cloud-computing/serverless-dingtalk-callback/">前文</a>中的<a href="https://github.com/zxkane/dingtalk-callback-on-aws/blob/267b5f11851148f5a23a834b8b7ecd4d3b247ce7/build.gradle.kts#L71-L91">函数依赖</a>放置到一个单独的layer中，作为不同函数的共享依赖库。</p>
 
-<p>Gulasch, it&rsquo;s good tasted after eating pizza several times</p>
+<p>在我们的构建配置<code>build.gradle</code>中，将<a href="https://github.com/zxkane/dingtalk-callback-on-aws/blob/c6a293ac58b6892278c296daa237453279f50064/build.gradle.kts#L153-L157">函数的共享依赖拷贝</a>到java runtime<a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html#configuration-layers-path">特定的目录结构</a><code>java/lib/</code>下，</p>
 
-<p><a href="http://lh3.ggpht.com/_5seoFihTGKg/THA4tivsMbI/AAAAAAAAFfM/icqAdSenGh8/s1600/DSC02235.JPG"><img src="http://lh3.ggpht.com/_5seoFihTGKg/THA4tivsMbI/AAAAAAAAFfM/icqAdSenGh8/s320/DSC02235.JPG" alt="" /></a></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">153
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">154
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">155
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">156
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">157
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">tasks<span style="color:#f92672">.</span><span style="color:#a6e22e">register</span><span style="color:#f92672">&lt;</span>Copy<span style="color:#f92672">&gt;(</span><span style="color:#e6db74">&#34;depsLayer&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    into<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;$buildDir/deps/java/lib&#34;</span><span style="color:#f92672">)</span>
+    from<span style="color:#f92672">(</span>configurations<span style="color:#f92672">.</span><span style="color:#a6e22e">compileClasspath</span><span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">())</span>
+    from<span style="color:#f92672">(</span>configurations<span style="color:#f92672">.</span><span style="color:#a6e22e">runtimeClasspath</span><span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">())</span>
+<span style="color:#f92672">}</span></code></pre></td></tr></table>
+</div>
+</div>
 
-<p>pasta</p>
+<p>接下来将共享的依赖创建为一个lambda layer，并且让callback函数依赖这个共享layer，不再将所有的依赖打包为一个很大的部署包减小每次变更需要发布的包大小。</p>
 
-<p>About the drinking, most of them directly drink the water from water pipe. And some of them like the special water that mixes water with gas. The coffee and beer are the favorite of local citizens. You can find more than one hundred beer brand in the city, and some of them have been found for centuries. Indeed they&rsquo;re good tasted.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">49
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  DependenciesLayer:
+    Type: AWS::LayerVersion
+    Properties:
+      LayerName: DingTalkDependencies
+      Description: DingTalk Dependencies Layer
+      ContentUri: <span style="color:#e6db74">&#39;build/deps&#39;</span>
+      CompatibleRuntimes:
+        - java8
+      LicenseInfo: <span style="color:#e6db74">&#39;Available under the MIT-0 license.&#39;</span>
+      RetentionPolicy: Retain
 
-<p><a href="http://lh4.ggpht.com/_5seoFihTGKg/TGhDHwbEImI/AAAAAAAAEts/2agQjADYhME/s1600/IMAG0062.jpg"><img src="http://lh4.ggpht.com/_5seoFihTGKg/TGhDHwbEImI/AAAAAAAAEts/2agQjADYhME/s320/IMAG0062.jpg" alt="" /></a></p>
+  CallbackFunction:
+    Type: AWS::Function <span style="color:#75715e"># More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction</span>
+    Properties:
+      CodeUri: build/libs/dingtalk-callback-<span style="color:#ae81ff">1.0</span>.<span style="color:#ae81ff">0</span>-SNAPSHOT.jar
+      Handler: com.github.zxkane.dingtalk.Callback::handleRequest
+      Layers:
+        - !Ref DependenciesLayer
+      Policies:</code></pre></td></tr></table>
+</div>
+</div>
 
-<p>special water</p>
+<p>在console查看部署后的函数，如下图，可以看到函数新增了一个layer。</p>
 
-<p><a href="http://lh5.ggpht.com/_5seoFihTGKg/TGhDLmzGr1I/AAAAAAAAEts/xxBc93WCpjU/s1600/DSC01484.JPG"><img src="http://lh5.ggpht.com/_5seoFihTGKg/TGhDLmzGr1I/AAAAAAAAEts/xxBc93WCpjU/s320/DSC01484.JPG" alt="" /></a></p>
+<figure>
+    <img src="/posts/2019/aws-lambda-layers/lambda-with-layers.png"
+         alt="lambda with layers"/> 
+</figure>
 
-<p>Die Weissf</p>
 
-<p><a href="http://lh5.ggpht.com/_5seoFihTGKg/TGHFar39TQI/AAAAAAAAEWI/zuSA9t4mxbs/s1600/DSC01410.JPG"><img src="http://lh5.ggpht.com/_5seoFihTGKg/TGHFar39TQI/AAAAAAAAEWI/zuSA9t4mxbs/s320/DSC01410.JPG" alt="" /></a></p>
+<p>同其他的语言、技术一样，<a href="https://github.com/mthenw/awesome-layers">Awesome Layers</a>项目收集了目前一些常用且维护较好的layer，自创轮子之前可以先参考下😀。</p>
 
-<p>Wieninger, it comes from Vienna</p>
+<p>使用layer同样有以下限制，使用前需要注意，</p>
 
-<p><a href="http://lh6.ggpht.com/_5seoFihTGKg/TG7mpCBHSbI/AAAAAAAAFYk/csiGmZc-dKY/s1600/DSC02115.JPG"><img src="http://lh6.ggpht.com/_5seoFihTGKg/TG7mpCBHSbI/AAAAAAAAFYk/csiGmZc-dKY/s320/DSC02115.JPG" alt="" /></a></p>
-
-<p>Stiegl, local famous brand</p>
-
+<ul>
+<li>依赖的layer数不能超过5个</li>
+<li>函数以及依赖的所有layers解压后不可以超过250MB</li>
+</ul>
 				</article>				
 			</section>
 
@@ -1052,11 +1107,15 @@ var bodyBgSwitchIndex = 0;
 
 
 	
-		<a class="ui label purple " href="/tags/salzburg" title="salzburg">salzburg</a>
+		<a class="ui label teal " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
 	
-		<a class="ui label violet " href="/tags/travel" title="travel">travel</a>
+		<a class="ui label brown " href="/tags/faas" title="FaaS">FaaS</a>
 	
-		<a class="ui label blue " href="/tags/tour" title="tour">tour</a>
+		<a class="ui label teal " href="/tags/aws" title="AWS">AWS</a>
+	
+		<a class="ui label green " href="/tags/aws-lambda" title="AWS Lambda">AWS Lambda</a>
+	
+		<a class="ui label olive " href="/tags/serverless-computing" title="Serverless Computing">Serverless Computing</a>
 	
 
 
@@ -1095,7 +1154,7 @@ var bodyBgSwitchIndex = 0;
 			'width=626,height=436'); return false;">
 		<button class="ui facebook button"><i class="facebook icon"></i>Share</button>
 	</div>
-	<div class="twitter none flexbox" onclick="window.open('https://twitter.com/intent/tweet?text=Read &quot;Food and Drinking  https:\/\/kane.mx\/posts\/archive\/blogspot\/food-and-drinking\/','_self')">
+	<div class="twitter none flexbox" onclick="window.open('https://twitter.com/intent/tweet?text=Read &quot;AWS Lambda Layer实践  https:\/\/kane.mx\/posts\/2019\/aws-lambda-layers\/','_self')">
 		<button class="ui twitter button"><i class="twitter icon"></i>Tweet</button>
 	</div>
 </section>

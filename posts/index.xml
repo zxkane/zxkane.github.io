@@ -6,10 +6,106 @@
     <description>Recent content in Posts on The Road</description>
     <meta name="generator" content="Hugo 0.54.0" />
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AWS Lambda Layer实践</title>
+      <link>https://kane.mx/posts/2019/aws-lambda-layers/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/aws-lambda-layers/</guid>
+      <description>&lt;p&gt;在&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;基于函数计算的钉钉回调函数接口&lt;/a&gt;中使用钉钉回调函数案例实践了&lt;a href=&#34;https://aws.amazon.com/lambda/&#34;&gt;AWS Lambda&lt;/a&gt;无服务函数。该示例中，我们将自定义的函数代码及依赖的第三方库（比如json处理库jackson, 钉钉openapi加密库, aws dynamodb client等）整体打包为一个部署包，上传到lamdba代码仓库用于函数执行。&lt;/p&gt;
+
+&lt;p&gt;然而实际项目中，其实有大量的相关函数可能会共享这些基础依赖库、三方函数库(比如headless chrome(Puppeteer), pandoc, OCR library &amp;ndash; Tesseract等等)或者使用自定义runtime(如官方未支持的java11)的需求。AWS Lambda在去年底发布了&lt;a href=&#34;https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/&#34;&gt;Lambda layers功能&lt;/a&gt;来满足上述这些实际开发中的需求。&lt;/p&gt;
+
+&lt;p&gt;接下来，让我们看看如何将&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;前文&lt;/a&gt;中的&lt;a href=&#34;https://github.com/zxkane/dingtalk-callback-on-aws/blob/267b5f11851148f5a23a834b8b7ecd4d3b247ce7/build.gradle.kts#L71-L91&#34;&gt;函数依赖&lt;/a&gt;放置到一个单独的layer中，作为不同函数的共享依赖库。&lt;/p&gt;
+
+&lt;p&gt;在我们的构建配置&lt;code&gt;build.gradle&lt;/code&gt;中，将&lt;a href=&#34;https://github.com/zxkane/dingtalk-callback-on-aws/blob/c6a293ac58b6892278c296daa237453279f50064/build.gradle.kts#L153-L157&#34;&gt;函数的共享依赖拷贝&lt;/a&gt;到java runtime&lt;a href=&#34;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html#configuration-layers-path&#34;&gt;特定的目录结构&lt;/a&gt;&lt;code&gt;java/lib/&lt;/code&gt;下，&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-gradle&#34; data-lang=&#34;gradle&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;153
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;154
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;155
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;156
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;157
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-gradle&#34; data-lang=&#34;gradle&#34;&gt;tasks&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;register&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;Copy&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;depsLayer&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+    into&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;$buildDir/deps/java/lib&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+    from&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;configurations&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;compileClasspath&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;get&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;())&lt;/span&gt;
+    from&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;configurations&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;runtimeClasspath&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;get&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;())&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;接下来将共享的依赖创建为一个lambda layer，并且让callback函数依赖这个共享layer，不再将所有的依赖打包为一个很大的部署包减小每次变更需要发布的包大小。&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;31
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;32
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;33
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;34
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;35
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;36
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;37
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;38
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;39
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;40
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;41
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;42
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;43
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;44
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;45
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;46
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;47
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;48
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79&#34;&gt;49
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;  DependenciesLayer:
+    Type: AWS::LayerVersion
+    Properties:
+      LayerName: DingTalkDependencies
+      Description: DingTalk Dependencies Layer
+      ContentUri: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;build/deps&amp;#39;&lt;/span&gt;
+      CompatibleRuntimes:
+        - java8
+      LicenseInfo: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Available under the MIT-0 license.&amp;#39;&lt;/span&gt;
+      RetentionPolicy: Retain
+
+  CallbackFunction:
+    Type: AWS::Function &lt;span style=&#34;color:#75715e&#34;&gt;# More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction&lt;/span&gt;
+    Properties:
+      CodeUri: build/libs/dingtalk-callback-&lt;span style=&#34;color:#ae81ff&#34;&gt;1.0&lt;/span&gt;.&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;-SNAPSHOT.jar
+      Handler: com.github.zxkane.dingtalk.Callback::handleRequest
+      Layers:
+        - !Ref DependenciesLayer
+      Policies:&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在console查看部署后的函数，如下图，可以看到函数新增了一个layer。&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&#34;https://kane.mx/posts/2019/aws-lambda-layers/lambda-with-layers.png&#34;
+         alt=&#34;lambda with layers&#34;/&gt; 
+&lt;/figure&gt;
+
+
+&lt;p&gt;同其他的语言、技术一样，&lt;a href=&#34;https://github.com/mthenw/awesome-layers&#34;&gt;Awesome Layers&lt;/a&gt;项目收集了目前一些常用且维护较好的layer，自创轮子之前可以先参考下😀。&lt;/p&gt;
+
+&lt;p&gt;使用layer同样有以下限制，使用前需要注意，&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;依赖的layer数不能超过5个&lt;/li&gt;
+&lt;li&gt;函数以及依赖的所有layers解压后不可以超过250MB&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     
     <item>
       <title>QCon2019北京站回顾</title>

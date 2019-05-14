@@ -6,10 +6,23 @@
     <description>Recent content in Blogging on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/categories/blogging/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AWS Lambda Layer实践</title>
+      <link>https://kane.mx/posts/2019/aws-lambda-layers/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/aws-lambda-layers/</guid>
+      <description>&lt;p&gt;在&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;基于函数计算的钉钉回调函数接口&lt;/a&gt;中使用钉钉回调函数案例实践了&lt;a href=&#34;https://aws.amazon.com/lambda/&#34;&gt;AWS Lambda&lt;/a&gt;无服务函数。该示例中，我们将自定义的函数代码及依赖的第三方库（比如json处理库jackson, 钉钉openapi加密库, aws dynamodb client等）整体打包为一个部署包，上传到lamdba代码仓库用于函数执行。&lt;/p&gt;
+
+&lt;p&gt;然而实际项目中，其实有大量的相关函数可能会共享这些基础依赖库、三方函数库(比如headless chrome(Puppeteer), pandoc, OCR library &amp;ndash; Tesseract等等)或者使用自定义runtime(如官方未支持的java11)的需求。AWS Lambda在去年底发布了&lt;a href=&#34;https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/&#34;&gt;Lambda layers功能&lt;/a&gt;来满足上述这些实际开发中的需求。&lt;/p&gt;
+
+&lt;p&gt;接下来，让我们看看如何将&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;前文&lt;/a&gt;中的&lt;a href=&#34;https://github.com/zxkane/dingtalk-callback-on-aws/blob/267b5f11851148f5a23a834b8b7ecd4d3b247ce7/build.gradle.kts#L71-L91&#34;&gt;函数依赖&lt;/a&gt;放置到一个单独的layer中，作为不同函数的共享依赖库。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>QCon2019北京站回顾</title>
