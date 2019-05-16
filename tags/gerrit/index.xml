@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gerrit on The Road</title>
+    <title>gerrit on The Road</title>
     <link>https://kane.mx/tags/gerrit/</link>
-    <description>Recent content in Gerrit on The Road</description>
+    <description>Recent content in gerrit on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 15 Feb 2012 11:36:00 +0800</lastBuildDate>

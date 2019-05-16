@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Php on The Road</title>
+    <title>php on The Road</title>
     <link>https://kane.mx/tags/php/</link>
-    <description>Recent content in Php on The Road</description>
+    <description>Recent content in php on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 28 Jul 2012 20:49:00 +0800</lastBuildDate>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Qcon on The Road</title>
+    <title>QCon on The Road</title>
     <link>https://kane.mx/tags/qcon/</link>
-    <description>Recent content in Qcon on The Road</description>
+    <description>Recent content in QCon on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 09 May 2019 00:00:00 +0000</lastBuildDate>

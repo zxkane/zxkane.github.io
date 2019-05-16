@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Lucene on The Road</title>
+    <title>lucene on The Road</title>
     <link>https://kane.mx/tags/lucene/</link>
-    <description>Recent content in Lucene on The Road</description>
+    <description>Recent content in lucene on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 11 May 2013 13:16:00 +0800</lastBuildDate>

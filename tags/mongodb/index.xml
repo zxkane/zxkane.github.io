@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mongodb on The Road</title>
+    <title>MongoDB on The Road</title>
     <link>https://kane.mx/tags/mongodb/</link>
-    <description>Recent content in Mongodb on The Road</description>
+    <description>Recent content in MongoDB on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 29 Sep 2016 00:00:00 +0000</lastBuildDate>

@@ -6,10 +6,21 @@
     <description>Recent content in 云计算 on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 16 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Serverless framework 101</title>
+      <link>https://kane.mx/posts/2019/serverless-framework/</link>
+      <pubDate>Thu, 16 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/serverless-framework/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://serverless.com/&#34;&gt;Serverless Framework&lt;/a&gt;是一个开源命令行工具。他提供函数脚手架、流程自动化、最佳实践等帮助开发、部署跨云厂商的托管无服务器计算服务(官方已支持aws, Azure, GCP, IBM Cloud等各种厂商的无服务器计算)。同时支持使用插件来扩展各种功能，比如支持更多云厂商无服务器计算服务，例如&lt;a href=&#34;https://github.com/aliyun/serverless-aliyun-function-compute&#34;&gt;阿里云的函数计算&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;这里使用&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;基于函数计算的钉钉回调函数接口&lt;/a&gt;示例来演示如何使用&lt;a href=&#34;https://serverless.com/&#34;&gt;Serverless Framework&lt;/a&gt;将一个无服务器函数部署到&lt;a href=&#34;https://aws.amazon.com/lambda&#34;&gt;AWS Lambda&lt;/a&gt;。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>AWS Lambda Layer实践</title>
