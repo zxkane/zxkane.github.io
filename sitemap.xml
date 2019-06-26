@@ -4,7 +4,56 @@
   
   <url>
     <loc>https://kane.mx/tags/aws/</loc>
-    <lastmod>2019-05-16T16:21:05+08:00</lastmod>
+    <lastmod>2019-06-26T23:52:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/categories/</loc>
+    <lastmod>2019-06-26T23:52:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/</loc>
+    <lastmod>2019-06-26T23:52:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/</loc>
+    <lastmod>2019-06-26T23:52:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/</loc>
+    <lastmod>2019-06-26T23:52:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/categories/blogging/</loc>
+    <lastmod>2019-06-26T23:52:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</loc>
+    <lastmod>2019-06-26T23:52:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2019/aws-vs-aliyun/</loc>
+    <lastmod>2019-06-26T23:52:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
+    <lastmod>2019-06-26T23:52:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -15,19 +64,7 @@
   </url>
   
   <url>
-    <loc>https://kane.mx/categories/</loc>
-    <lastmod>2019-05-16T16:21:05+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://kane.mx/tags/faas/</loc>
-    <lastmod>2019-05-16T16:21:05+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/posts/</loc>
     <lastmod>2019-05-16T16:21:05+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -46,31 +83,7 @@
   </url>
   
   <url>
-    <loc>https://kane.mx/tags/</loc>
-    <lastmod>2019-05-16T16:21:05+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/</loc>
-    <lastmod>2019-05-16T16:21:05+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/categories/blogging/</loc>
-    <lastmod>2019-05-16T16:21:05+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://kane.mx/categories/serverless-computing/</loc>
-    <lastmod>2019-05-16T16:21:05+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</loc>
     <lastmod>2019-05-16T16:21:05+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -145,13 +158,13 @@
   </url>
   
   <url>
-    <loc>https://kane.mx/categories/kubernetes/</loc>
+    <loc>https://kane.mx/tags/kubernetes/</loc>
     <lastmod>2019-04-29T15:47:31+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://kane.mx/tags/kubernetes/</loc>
+    <loc>https://kane.mx/categories/kubernetes/</loc>
     <lastmod>2019-04-29T15:47:31+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -222,12 +235,6 @@
     <lastmod>2019-04-08T23:38:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
-    <lastmod>2019-04-08T23:38:21+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

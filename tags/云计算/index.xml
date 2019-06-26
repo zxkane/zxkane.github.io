@@ -6,10 +6,23 @@
     <description>Recent content in 云计算 on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 26 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>公有云对比</title>
+      <link>https://kane.mx/posts/2019/aws-vs-aliyun/</link>
+      <pubDate>Wed, 26 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/aws-vs-aliyun/</guid>
+      <description>&lt;p&gt;AWS是全球云计算领域的领跑者，它在计算、存储、网络等方面都做出了很多创新，同时也是其他云计算厂商学习及模仿的对象。&lt;/p&gt;
+
+&lt;p&gt;阿里云是目前国内市场份额最大的云计算厂商，其份额&lt;a href=&#34;http://www.sohu.com/a/302064020_465914&#34;&gt;超过了第二至五位厂商的总和&lt;/a&gt;，份额领先优势比AWS在全球还要显著，同时&lt;a href=&#34;https://www.canalys.com/newsroom/cloud-market-share-q4-2018-and-full-year-2018&#34;&gt;全球份额也超过IBM来到第四&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;本文将对AWS和阿里云核心服务做一个简要对比，以及这两家厂商发展方向的一些个人见解。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Serverless framework 101</title>
