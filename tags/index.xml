@@ -6,7 +6,7 @@
     <description>Recent content in Tags on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,18 +14,90 @@
     <item>
       <title>AWS</title>
       <link>https://kane.mx/tags/aws/</link>
-      <pubDate>Wed, 26 Jun 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/aws/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>AWS Lambda</title>
+      <link>https://kane.mx/tags/aws-lambda/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/aws-lambda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FaaS</title>
+      <link>https://kane.mx/tags/faas/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/faas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Serverless Computing</title>
+      <link>https://kane.mx/tags/serverless-computing/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/serverless-computing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring</title>
+      <link>https://kane.mx/tags/spring/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/spring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud Function</title>
+      <link>https://kane.mx/tags/spring-cloud-function/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/spring-cloud-function/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dingtalk</title>
+      <link>https://kane.mx/tags/dingtalk/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/dingtalk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>云计算</title>
       <link>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</link>
-      <pubDate>Wed, 26 Jun 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>函数计算</title>
+      <link>https://kane.mx/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>钉钉</title>
+      <link>https://kane.mx/tags/%E9%92%89%E9%92%89/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/%E9%92%89%E9%92%89/</guid>
       <description></description>
     </item>
     
@@ -35,33 +107,6 @@
       <pubDate>Wed, 26 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>AWS Lambda</title>
-      <link>https://kane.mx/tags/aws-lambda/</link>
-      <pubDate>Thu, 16 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/aws-lambda/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>FaaS</title>
-      <link>https://kane.mx/tags/faas/</link>
-      <pubDate>Thu, 16 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/faas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Serverless Computing</title>
-      <link>https://kane.mx/tags/serverless-computing/</link>
-      <pubDate>Thu, 16 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/serverless-computing/</guid>
       <description></description>
     </item>
     
@@ -147,15 +192,6 @@
     </item>
     
     <item>
-      <title>spring</title>
-      <link>https://kane.mx/tags/spring/</link>
-      <pubDate>Mon, 29 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/spring/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>spring cloud</title>
       <link>https://kane.mx/tags/spring-cloud/</link>
       <pubDate>Mon, 29 Apr 2019 00:00:00 +0000</pubDate>
@@ -183,38 +219,11 @@
     </item>
     
     <item>
-      <title>dingtalk</title>
-      <link>https://kane.mx/tags/dingtalk/</link>
-      <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/dingtalk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>oauth2</title>
       <link>https://kane.mx/tags/oauth2/</link>
       <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/oauth2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>钉钉</title>
-      <link>https://kane.mx/tags/%E9%92%89%E9%92%89/</link>
-      <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/%E9%92%89%E9%92%89/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>函数计算</title>
-      <link>https://kane.mx/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/</link>
-      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/</guid>
       <description></description>
     </item>
     

@@ -5,10 +5,60 @@
     <description>Recent content in Posts on The Road</description>
     <meta name="generator" content="Hugo 0.55.6" />
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spring Cloud Function -- 跨Serverless平台的函数计算框架</title>
+      <link>https://kane.mx/posts/effective-cloud-computing/spring-cloud-function-for-aws/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/effective-cloud-computing/spring-cloud-function-for-aws/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://kane.mx/posts/2019/serverless-framework/&#34;&gt;基于serverless框架的钉钉回调函数&lt;/a&gt;中介绍了serverless framework，一款支持跨云厂商/Serverless平台的部署工具。但是函数代码还是需要针对不同的serverless平台作对应的适配。而&lt;a href=&#34;https://spring.io/projects/spring-cloud-function&#34;&gt;Spring Clound Function&lt;/a&gt;就是针对这种情况专门开发的跨serverless平台的框架，实现一套代码通过不同的打包实现跨serverless平台。Spring Clound Function目前支持AWS Lambda, Microsoft Azure Function以及Apache OpenWhisk。&lt;/p&gt;
+
+&lt;p&gt;这里我们继续使用&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;无函数版本的钉钉回掉函数&lt;/a&gt;来演示&lt;a href=&#34;https://spring.io/projects/spring-cloud-function&#34;&gt;Spring Clound Function&lt;/a&gt; for AWS的使用。&lt;/p&gt;
+
+&lt;p&gt;首先将&lt;code&gt;spring cloud function for aws adapter&lt;/code&gt;添加到项目依赖，&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-kotlin&#34; data-lang=&#34;kotlin&#34;&gt;implementation(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;org.springframework.cloud${springCloudFunctionVersion}&amp;#34;&lt;/span&gt;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;其次创建函数&lt;code&gt;Handler&lt;/code&gt;，实现Spring Cloud Function跨函数计算实现抽象的&lt;code&gt;SpringBootRequestHandler&lt;/code&gt;类，或者是继承自它的trigger类，例如&lt;code&gt;SpringBootApiGatewayRequestHandler&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-kotlin&#34; data-lang=&#34;kotlin&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; org.springframework.cloud.function.adapter.aws.SpringBootApiGatewayRequestHandler
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Handler&lt;/span&gt; : SpringBootApiGatewayRequestHandler()&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;接下来创建Spring Boot应用程序，并将serverless实现函数注册为&lt;code&gt;Spring Bean&lt;/code&gt;，函数的实现部分就是serverless函数具体做的业务逻辑。&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-kotlin&#34; data-lang=&#34;kotlin&#34;&gt;@SpringBootApplication
+&lt;span style=&#34;color:#66d9ef&#34;&gt;open&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;DingtalkCallbackApplication&lt;/span&gt; {
+
+    @Bean
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;open&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;fun&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;dingtalkCallback&lt;/span&gt;(): Function&amp;lt;Message&amp;lt;EncryptedEvent&amp;gt;, Map&amp;lt;String, String&amp;gt;&amp;gt; {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; callback = Callback()
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Function {
+            callback.handleRequest(it)
+        }
+    }
+}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;fun&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(args: Array&amp;lt;String&amp;gt;) {
+    SpringApplication.run(DingtalkCallbackApplication&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt;.java, *args)
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;最后将函数打包为fat jar（如果将依赖打包为lambda layer，可不用打包为fat jar）作为lambda的代码。&lt;/p&gt;
+
+&lt;p&gt;函数的部署同其他的lambda函数没有任何区别，这个示例中沿用了之前的SAM/CloudFormation配置或者&lt;a href=&#34;https://serverless.com/&#34;&gt;serverless framework&lt;/a&gt;部署配置。&lt;/p&gt;
+
+&lt;p&gt;完整的可运行、部署代码请访问&lt;a href=&#34;https://github.com/zxkane/dingtalk-callback-on-aws/tree/spring-cloud-function&#34;&gt;这个分支&lt;/a&gt;。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;总体来说，&lt;a href=&#34;https://spring.io/projects/spring-cloud-function&#34;&gt;Spring Clound Function&lt;/a&gt;的实现原理并不复杂，定义统一的函数实现入口，通过不同serverless平台的adapter对接不同平台的API接口，做到编写一次函数实现，通过打包不同的adapter做到跨serverless平台运行。&lt;/p&gt;
+
+&lt;p&gt;但个人认为现实中这样的场景并不多。并且serverless函数触发方式很多，例如AWS上的APIGateway、Kinesis、CloudWatch、IoT等服务，与这些服务对接或API调用其实也产生了耦合，并不能简单的迁移到三方的serverless平台去执行。同时，开发者需要引入spring/spring boot/spring cloud相关的依赖，增加了程序的复杂度，又延长了lambda函数clod start需要的时间。另外，开发者需要学习spring cloud function相关的知识，无形中增加了复杂度。总之使用spring cloud function作为函数计算框架收益并不高，整个项目给人感觉比较鸡肋。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
     
     <item>
       <title>公有云对比</title>

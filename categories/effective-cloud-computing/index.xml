@@ -6,10 +6,19 @@
     <description>Recent content in effective-cloud-computing on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/categories/effective-cloud-computing/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spring Cloud Function -- 跨Serverless平台的函数计算框架</title>
+      <link>https://kane.mx/posts/effective-cloud-computing/spring-cloud-function-for-aws/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/effective-cloud-computing/spring-cloud-function-for-aws/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://kane.mx/posts/2019/serverless-framework/&#34;&gt;基于serverless框架的钉钉回调函数&lt;/a&gt;中介绍了serverless framework，一款支持跨云厂商/Serverless平台的部署工具。但是函数代码还是需要针对不同的serverless平台作对应的适配。而&lt;a href=&#34;https://spring.io/projects/spring-cloud-function&#34;&gt;Spring Clound Function&lt;/a&gt;就是针对这种情况专门开发的跨serverless平台的框架，实现一套代码通过不同的打包实现跨serverless平台。Spring Clound Function目前支持AWS Lambda, Microsoft Azure Function以及Apache OpenWhisk。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Spring Cloud or Cloud Native</title>
