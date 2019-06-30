@@ -6,10 +6,19 @@
     <description>Recent content in Categories on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>blogging</title>
+      <link>https://kane.mx/categories/blogging/</link>
+      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/categories/blogging/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>effective-cloud-computing</title>
@@ -26,15 +35,6 @@
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/categories/serverless-computing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>blogging</title>
-      <link>https://kane.mx/categories/blogging/</link>
-      <pubDate>Wed, 26 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/categories/blogging/</guid>
       <description></description>
     </item>
     

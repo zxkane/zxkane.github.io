@@ -6,10 +6,21 @@
     <description>Recent content in AWS on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用AWS S3作为MacOSX时间机器(Time Machine)的备份存储</title>
+      <link>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</link>
+      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</guid>
+      <description>&lt;p&gt;个人电脑数据备份一直都是一个强烈的需求。使用网盘等云存储产品可以部分满足数据的备份需求，仍然无法做到使用便利性和很高的数据安全保障。&lt;/p&gt;
+
+&lt;p&gt;MacOSX上系统内置了备份解决方案 &amp;ndash; &lt;a href=&#34;https://support.apple.com/zh-cn/HT201250&#34;&gt;时间机器(Time Machine)&lt;/a&gt;。Time Machine支持AirPort Time Capsule，NAS存储或者外置的存储设备。然而这些备份方案都依赖于硬件设备，有容量限制或不便于移动。在云计算已经大行其道的今天，有没有使用云计算厂商对象存储作为目标存储的备份方案，为MacOSX数据备份提供无限容量、高度的安全性的云方案？经过一番搜索，既找到了开源免费的工具&lt;a href=&#34;https://restic.net/&#34;&gt;Restic&lt;/a&gt;，也有付费软件&lt;a href=&#34;https://www.arqbackup.com/&#34;&gt;Arq&lt;/a&gt;。无论Restic还是Arq提供的是独立的三方工具来实现备份到云端存储或从云端恢复，有没有将Time Machine和云端储存结合在一起的方案呢？&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Spring Cloud Function -- 跨Serverless平台的函数计算框架</title>

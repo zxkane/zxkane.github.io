@@ -5,10 +5,91 @@
     <description>Recent content in Posts on The Road</description>
     <meta name="generator" content="Hugo 0.55.6" />
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Jun 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用AWS S3作为MacOSX时间机器(Time Machine)的备份存储</title>
+      <link>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</link>
+      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</guid>
+      <description>&lt;p&gt;个人电脑数据备份一直都是一个强烈的需求。使用网盘等云存储产品可以部分满足数据的备份需求，仍然无法做到使用便利性和很高的数据安全保障。&lt;/p&gt;
+
+&lt;p&gt;MacOSX上系统内置了备份解决方案 &amp;ndash; &lt;a href=&#34;https://support.apple.com/zh-cn/HT201250&#34;&gt;时间机器(Time Machine)&lt;/a&gt;。Time Machine支持AirPort Time Capsule，NAS存储或者外置的存储设备。然而这些备份方案都依赖于硬件设备，有容量限制或不便于移动。在云计算已经大行其道的今天，有没有使用云计算厂商对象存储作为目标存储的备份方案，为MacOSX数据备份提供无限容量、高度的安全性的云方案？经过一番搜索，既找到了开源免费的工具&lt;a href=&#34;https://restic.net/&#34;&gt;Restic&lt;/a&gt;，也有付费软件&lt;a href=&#34;https://www.arqbackup.com/&#34;&gt;Arq&lt;/a&gt;。无论Restic还是Arq提供的是独立的三方工具来实现备份到云端存储或从云端恢复，有没有将Time Machine和云端储存结合在一起的方案呢？&lt;/p&gt;
+
+&lt;p&gt;TimeMchine支持将外置存储作为备份设备，这里介绍的方法就是将远端云计算厂商的对象存储挂载为本地设备，设置Time Machine将它作为目标备份设备，实现将备份放到云厂商的对象储存。&lt;/p&gt;
+
+&lt;p&gt;接下来我将一步步演示如何将AWS S3对象存储的bucket作为Time Machine备份的设备。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;此方法适用于将任意云厂商的对象存储作为备份存储，只要该厂商的对象存储支持被MacOSX挂载为本地磁盘。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;有很多成熟的方案将AWS S3挂载为MacOSX磁盘，例如&lt;a href=&#34;https://amazonaws-china.com/cn/blogs/china/s3fs-amazon-ec2-linux/&#34;&gt;S3fs&lt;/a&gt;、&lt;a href=&#34;https://github.com/kahing/goofys&#34;&gt;Goofys&lt;/a&gt;。本文推荐的方案是&lt;a href=&#34;https://juicefs.com&#34;&gt;Juicefs&lt;/a&gt;，Juicefs为对象存储的元数据提供了缓存，能极大的优化对挂载磁盘的list，get等操作。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;首先按照&lt;a href=&#34;https://juicefs.com/docs/zh/getting_started.html#system-requirement&#34;&gt;Juicefs 文档&lt;/a&gt;安装必要的依赖和Juicefs客户端。接下来在Juicefs注册完成后，创建一个文件系统保存备份数据。注意：这里的bucket名称需要同随后创建或已有的bucket名称一致。
+&lt;figure&gt;
+    &lt;img src=&#34;https://kane.mx/posts/2019/using-s3-as-driver-for-mac-time-machine-backup/create-juicefs-fs.png&#34;
+         alt=&#34;创建Juicefs文件系统&#34;/&gt; 
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;创建新的AWS S3 bucket(或者使用已有的bucket)，同时为该bucket专门创建用于Juicefs客户端使用的IAM用户。强烈建议不要使用云帐号的access token用于挂载，最佳实践是为不同的用途创建单独的IAM用户。更多IAM用户实践，请参考文章&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/iam-best-practice/&#34;&gt;IAM最佳实践&lt;/a&gt;。下面是使用AWS CLI创建新S3 bucket及IAM用户的参考命令，
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 创建S3 bucket&lt;/span&gt;
+aws s3 mb s3://my-bucket-for-mac-backup
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# 创建IAM用户&lt;/span&gt;
+aws iam create-user --user-name juicefs
+&lt;span style=&#34;color:#75715e&#34;&gt;# 为juicefs用户授予读写备份S3 bucket权限&lt;/span&gt;
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;{
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    &amp;#34;UserName&amp;#34;: &amp;#34;juicefs&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    &amp;#34;PolicyName&amp;#34;: &amp;#34;mac-backup-bucket-all-permissions&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    &amp;#34;PolicyDocument&amp;#34;: &amp;#34;{ \&amp;#34;Version\&amp;#34;: \&amp;#34;2012-10-17\&amp;#34;, \&amp;#34;Statement\&amp;#34;: [ { \&amp;#34;Effect\&amp;#34;: \&amp;#34;Allow\&amp;#34;, \&amp;#34;Action\&amp;#34;: \&amp;#34;s3:*\&amp;#34;, \&amp;#34;Resource\&amp;#34;: [ \&amp;#34;arns3:::my-bucket-for-mac-backup/*\&amp;#34;, \&amp;#34;arns3:::my-bucket-for-mac-backup\&amp;#34; ] } ] }&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;  1 {
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;}&amp;#39;&lt;/span&gt; &amp;gt; policy.json
+aws iam put-user-policy --cli-input-json file://policy.json
+&lt;span style=&#34;color:#75715e&#34;&gt;# 为juicefs用户创建access token用于juicefs客户端挂载bucket&lt;/span&gt;
+aws iam create-access-key --user-name juicefs
+&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AccessKey&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;UserName&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;juicefs&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AccessKeyId&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;key id&amp;gt;&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Status&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Active&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SecretAccessKey&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;access key&amp;gt;&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CreateDate&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2019-06-30T1541Z&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;按照&lt;a href=&#34;https://juicefs.com/docs/zh/getting_started.html#mount-filesystem&#34;&gt;Juicefs文档挂载&lt;/a&gt;挂载S3 bucket。&lt;/li&gt;
+&lt;li&gt;进入挂载后的目录(如&lt;code&gt;/jfs&lt;/code&gt;)，创建&lt;strong&gt;Sparse Image&lt;/strong&gt;用于Time Machine写入备份。
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cd /jfs
+hdiutil create -size 600g -type SPARSEBUNDLE -fs &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;HFS+J&amp;#34;&lt;/span&gt; Time Machine.sparsebundle&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+上面命令将创建一个名为&lt;code&gt;TimeMachine&lt;/code&gt;600 GB大小的镜像(初始仅占用数百MB，实际文件磁盘空间只有当文件写入后才会占用)。根据你的需要随意调整镜像大小，通常建议设置为Mac磁盘大小的两倍。
+不熟悉命令行的用户，也可以使用磁盘工具(Disk Utility)创建。
+&lt;figure&gt;
+    &lt;img src=&#34;https://kane.mx/posts/2019/using-s3-as-driver-for-mac-time-machine-backup/create-sparse-image.png&#34;
+         alt=&#34;创建Sparse Image&#34;/&gt; 
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;通过Finder挂载之前创建的Sparse Image
+&lt;figure&gt;
+    &lt;img src=&#34;https://kane.mx/posts/2019/using-s3-as-driver-for-mac-time-machine-backup/mount-sparse-image.png&#34;
+         alt=&#34;挂载Sparse Image&#34;/&gt; 
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;现在是魔术步骤，告诉Time Machine使用之前创建的虚拟设备作为备份磁盘。
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo tmutil setdestination /Volumes/Time MachineDisk&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure&gt;
+    &lt;img src=&#34;https://kane.mx/posts/2019/using-s3-as-driver-for-mac-time-machine-backup/time-machine.png&#34;
+         alt=&#34;Time Machine备份&#34;/&gt; 
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;由于S3 Bucket用于备份数据，建议开启S3 智能分层存储或者IA储存，降低花费。同时可以启用S3 KMS加密云端保存的数据，提升数据安全性。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Spring Cloud Function -- 跨Serverless平台的函数计算框架</title>

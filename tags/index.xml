@@ -6,7 +6,7 @@
     <description>Recent content in Tags on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,36 @@
     <item>
       <title>AWS</title>
       <link>https://kane.mx/tags/aws/</link>
-      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS S3</title>
+      <link>https://kane.mx/tags/aws-s3/</link>
+      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/aws-s3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MacOSX</title>
+      <link>https://kane.mx/tags/macosx/</link>
+      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/macosx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tips</title>
+      <link>https://kane.mx/tags/tips/</link>
+      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/tips/</guid>
       <description></description>
     </item>
     
@@ -48,15 +75,6 @@
     </item>
     
     <item>
-      <title>Spring</title>
-      <link>https://kane.mx/tags/spring/</link>
-      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/spring/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Spring Cloud Function</title>
       <link>https://kane.mx/tags/spring-cloud-function/</link>
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
@@ -71,6 +89,15 @@
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/dingtalk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spring</title>
+      <link>https://kane.mx/tags/spring/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/spring/</guid>
       <description></description>
     </item>
     
