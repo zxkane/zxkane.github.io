@@ -176,31 +176,31 @@ var bodyBgSwitchIndex = 0;
 	
 		
 			
-			<a class="ui label green " href="/tags/eclipse" title="eclipse">eclipse</a>
+			<a class="ui label brown " href="/tags/eclipse" title="eclipse">eclipse</a>
 		
 			
 			<a class="ui label red " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
 		
 			
-			<a class="ui label red " href="/tags/equinox" title="equinox">equinox</a>
+			<a class="ui label violet " href="/tags/equinox" title="equinox">equinox</a>
 		
 			
-			<a class="ui label blue " href="/tags/aws" title="aws">aws</a>
+			<a class="ui label violet " href="/tags/aws" title="aws">aws</a>
 		
 			
-			<a class="ui label olive " href="/tags/tip" title="tip">tip</a>
+			<a class="ui label purple " href="/tags/tip" title="tip">tip</a>
 		
 			
-			<a class="ui label green " href="/tags/osgi" title="osgi">osgi</a>
+			<a class="ui label purple " href="/tags/osgi" title="osgi">osgi</a>
 		
 			
-			<a class="ui label blue " href="/tags/p2" title="p2">p2</a>
+			<a class="ui label orange " href="/tags/p2" title="p2">p2</a>
 		
 			
-			<a class="ui label olive " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+			<a class="ui label orange " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
 		
 			
-			<a class="ui label blue " href="/tags/faas" title="faas">faas</a>
+			<a class="ui label violet " href="/tags/faas" title="faas">faas</a>
 		
 			
 			<a class="ui label blue " href="/tags/java" title="java">java</a>
@@ -678,34 +678,34 @@ var bodyBgSwitchIndex = 0;
 	
 		
 			
-			<a class="ui label orange " href="/tags/eclipse" title="eclipse">eclipse</a>
+			<a class="ui label purple " href="/tags/eclipse" title="eclipse">eclipse</a>
 		
 			
-			<a class="ui label purple " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+			<a class="ui label teal " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
 		
 			
-			<a class="ui label blue " href="/tags/equinox" title="equinox">equinox</a>
+			<a class="ui label pink " href="/tags/equinox" title="equinox">equinox</a>
 		
 			
-			<a class="ui label green " href="/tags/aws" title="aws">aws</a>
+			<a class="ui label teal " href="/tags/aws" title="aws">aws</a>
 		
 			
-			<a class="ui label orange " href="/tags/tip" title="tip">tip</a>
+			<a class="ui label red " href="/tags/tip" title="tip">tip</a>
 		
 			
-			<a class="ui label olive " href="/tags/osgi" title="osgi">osgi</a>
+			<a class="ui label purple " href="/tags/osgi" title="osgi">osgi</a>
 		
 			
-			<a class="ui label violet " href="/tags/p2" title="p2">p2</a>
+			<a class="ui label yellow " href="/tags/p2" title="p2">p2</a>
 		
 			
-			<a class="ui label yellow " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+			<a class="ui label blue " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
 		
 			
-			<a class="ui label purple " href="/tags/faas" title="faas">faas</a>
+			<a class="ui label green " href="/tags/faas" title="faas">faas</a>
 		
 			
-			<a class="ui label teal " href="/tags/java" title="java">java</a>
+			<a class="ui label pink " href="/tags/java" title="java">java</a>
 		
 	
 
@@ -1108,7 +1108,7 @@ var bodyBgSwitchIndex = 0;
 <ol>
 <li>首先按照<a href="https://juicefs.com/docs/zh/getting_started.html#system-requirement">Juicefs 文档</a>安装必要的依赖和Juicefs客户端。接下来在Juicefs注册完成后，创建一个文件系统保存备份数据。注意：这里的bucket名称需要同随后创建或已有的bucket名称一致。
 <figure>
-    <img src="/posts/2019/using-s3-as-driver-for-mac-time-machine-backup/create-juicefs-fs.png"
+    <img src="/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/create-juicefs-fs.png"
          alt="创建Juicefs文件系统"/> 
 </figure>
 </li>
@@ -1144,20 +1144,20 @@ hdiutil create -size 600g -type SPARSEBUNDLE -fs <span style="color:#e6db74">&#3
 上面命令将创建一个名为<code>TimeMachine</code>600 GB大小的镜像(初始仅占用数百MB，实际文件磁盘空间只有当文件写入后才会占用)。根据你的需要随意调整镜像大小，通常建议设置为Mac磁盘大小的两倍。
 不熟悉命令行的用户，也可以使用磁盘工具(Disk Utility)创建。
 <figure>
-    <img src="/posts/2019/using-s3-as-driver-for-mac-time-machine-backup/create-sparse-image.png"
+    <img src="/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/create-sparse-image.png"
          alt="创建Sparse Image"/> 
 </figure>
 </li>
 <li>通过Finder挂载之前创建的Sparse Image
 <figure>
-    <img src="/posts/2019/using-s3-as-driver-for-mac-time-machine-backup/mount-sparse-image.png"
+    <img src="/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/mount-sparse-image.png"
          alt="挂载Sparse Image"/> 
 </figure>
 </li>
 <li>现在是魔术步骤，告诉Time Machine使用之前创建的虚拟设备作为备份磁盘。
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo tmutil setdestination /Volumes/Time MachineDisk</code></pre></div>
 <figure>
-    <img src="/posts/2019/using-s3-as-driver-for-mac-time-machine-backup/time-machine.png"
+    <img src="/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/time-machine.png"
          alt="Time Machine备份"/> 
 </figure>
 </li>
@@ -1176,13 +1176,13 @@ hdiutil create -size 600g -type SPARSEBUNDLE -fs <span style="color:#e6db74">&#3
 
 
 	
-		<a class="ui label olive " href="/tags/macosx" title="MacOSX">MacOSX</a>
+		<a class="ui label blue " href="/tags/macosx" title="MacOSX">MacOSX</a>
 	
-		<a class="ui label violet " href="/tags/aws" title="AWS">AWS</a>
+		<a class="ui label purple " href="/tags/aws" title="AWS">AWS</a>
 	
-		<a class="ui label teal " href="/tags/aws-s3" title="AWS S3">AWS S3</a>
+		<a class="ui label pink " href="/tags/aws-s3" title="AWS S3">AWS S3</a>
 	
-		<a class="ui label teal " href="/tags/tips" title="Tips">Tips</a>
+		<a class="ui label green " href="/tags/tips" title="Tips">Tips</a>
 	
 
 

@@ -33,7 +33,7 @@
 &lt;ol&gt;
 &lt;li&gt;首先按照&lt;a href=&#34;https://juicefs.com/docs/zh/getting_started.html#system-requirement&#34;&gt;Juicefs 文档&lt;/a&gt;安装必要的依赖和Juicefs客户端。接下来在Juicefs注册完成后，创建一个文件系统保存备份数据。注意：这里的bucket名称需要同随后创建或已有的bucket名称一致。
 &lt;figure&gt;
-    &lt;img src=&#34;https://kane.mx/posts/2019/using-s3-as-driver-for-mac-time-machine-backup/create-juicefs-fs.png&#34;
+    &lt;img src=&#34;https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/create-juicefs-fs.png&#34;
          alt=&#34;创建Juicefs文件系统&#34;/&gt; 
 &lt;/figure&gt;
 &lt;/li&gt;
@@ -69,20 +69,20 @@ hdiutil create -size 600g -type SPARSEBUNDLE -fs &lt;span style=&#34;color:#e6db
 上面命令将创建一个名为&lt;code&gt;TimeMachine&lt;/code&gt;600 GB大小的镜像(初始仅占用数百MB，实际文件磁盘空间只有当文件写入后才会占用)。根据你的需要随意调整镜像大小，通常建议设置为Mac磁盘大小的两倍。
 不熟悉命令行的用户，也可以使用磁盘工具(Disk Utility)创建。
 &lt;figure&gt;
-    &lt;img src=&#34;https://kane.mx/posts/2019/using-s3-as-driver-for-mac-time-machine-backup/create-sparse-image.png&#34;
+    &lt;img src=&#34;https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/create-sparse-image.png&#34;
          alt=&#34;创建Sparse Image&#34;/&gt; 
 &lt;/figure&gt;
 &lt;/li&gt;
 &lt;li&gt;通过Finder挂载之前创建的Sparse Image
 &lt;figure&gt;
-    &lt;img src=&#34;https://kane.mx/posts/2019/using-s3-as-driver-for-mac-time-machine-backup/mount-sparse-image.png&#34;
+    &lt;img src=&#34;https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/mount-sparse-image.png&#34;
          alt=&#34;挂载Sparse Image&#34;/&gt; 
 &lt;/figure&gt;
 &lt;/li&gt;
 &lt;li&gt;现在是魔术步骤，告诉Time Machine使用之前创建的虚拟设备作为备份磁盘。
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo tmutil setdestination /Volumes/Time MachineDisk&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;figure&gt;
-    &lt;img src=&#34;https://kane.mx/posts/2019/using-s3-as-driver-for-mac-time-machine-backup/time-machine.png&#34;
+    &lt;img src=&#34;https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/time-machine.png&#34;
          alt=&#34;Time Machine备份&#34;/&gt; 
 &lt;/figure&gt;
 &lt;/li&gt;

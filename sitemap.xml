@@ -4,61 +4,61 @@
   
   <url>
     <loc>https://kane.mx/tags/aws/</loc>
-    <lastmod>2019-07-01T00:24:41+08:00</lastmod>
+    <lastmod>2019-07-01T00:30:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/tags/aws-s3/</loc>
-    <lastmod>2019-07-01T00:24:41+08:00</lastmod>
+    <lastmod>2019-07-01T00:30:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/categories/</loc>
-    <lastmod>2019-07-01T00:24:41+08:00</lastmod>
+    <lastmod>2019-07-01T00:30:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/tags/macosx/</loc>
-    <lastmod>2019-07-01T00:24:41+08:00</lastmod>
+    <lastmod>2019-07-01T00:30:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/posts/</loc>
-    <lastmod>2019-07-01T00:24:41+08:00</lastmod>
+    <lastmod>2019-07-01T00:30:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/tags/</loc>
-    <lastmod>2019-07-01T00:24:41+08:00</lastmod>
+    <lastmod>2019-07-01T00:30:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/</loc>
-    <lastmod>2019-07-01T00:24:41+08:00</lastmod>
+    <lastmod>2019-07-01T00:30:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/tags/tips/</loc>
-    <lastmod>2019-07-01T00:24:41+08:00</lastmod>
+    <lastmod>2019-07-01T00:30:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/categories/blogging/</loc>
-    <lastmod>2019-07-01T00:24:41+08:00</lastmod>
+    <lastmod>2019-07-01T00:30:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</loc>
-    <lastmod>2019-07-01T00:24:41+08:00</lastmod>
+    <lastmod>2019-07-01T00:30:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -220,13 +220,13 @@
   </url>
   
   <url>
-    <loc>https://kane.mx/categories/kubernetes/</loc>
+    <loc>https://kane.mx/tags/kubernetes/</loc>
     <lastmod>2019-04-29T15:47:31+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://kane.mx/tags/kubernetes/</loc>
+    <loc>https://kane.mx/categories/kubernetes/</loc>
     <lastmod>2019-04-29T15:47:31+08:00</lastmod>
     <priority>0</priority>
   </url>
