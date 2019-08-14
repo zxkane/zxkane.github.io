@@ -6,7 +6,7 @@
     <description>Recent content in Tags on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,27 @@
     <item>
       <title>AWS</title>
       <link>https://kane.mx/tags/aws/</link>
-      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Amazon Alexa</title>
+      <link>https://kane.mx/tags/amazon-alexa/</link>
+      <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/amazon-alexa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>troubleshoot</title>
+      <link>https://kane.mx/tags/troubleshoot/</link>
+      <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/troubleshoot/</guid>
       <description></description>
     </item>
     
@@ -75,6 +93,15 @@
     </item>
     
     <item>
+      <title>Spring</title>
+      <link>https://kane.mx/tags/spring/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/spring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Spring Cloud Function</title>
       <link>https://kane.mx/tags/spring-cloud-function/</link>
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
@@ -89,15 +116,6 @@
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/dingtalk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>spring</title>
-      <link>https://kane.mx/tags/spring/</link>
-      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/spring/</guid>
       <description></description>
     </item>
     
@@ -264,7 +282,7 @@
     </item>
     
     <item>
-      <title>jenkins</title>
+      <title>Jenkins</title>
       <link>https://kane.mx/tags/jenkins/</link>
       <pubDate>Wed, 12 Oct 2016 00:00:00 +0000</pubDate>
       
@@ -512,15 +530,6 @@
       <pubDate>Sun, 24 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/%E6%94%AF%E4%BB%98/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>troubleshoot</title>
-      <link>https://kane.mx/tags/troubleshoot/</link>
-      <pubDate>Thu, 21 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/troubleshoot/</guid>
       <description></description>
     </item>
     
