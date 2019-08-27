@@ -6,10 +6,21 @@
     <description>Recent content in AWS Lambda on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 27 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/aws-lambda/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>无服务器架构的域名重定向服务</title>
+      <link>https://kane.mx/posts/effective-cloud-computing/serverless-domain-redirect/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/effective-cloud-computing/serverless-domain-redirect/</guid>
+      <description>&lt;p&gt;业务时常有需求将某个域名(A)的访问重定向到其他域名(B)，即使实现这样一个很简单的需求通常也需要部署Web服务器（例如Nginx），为域名A的请求返回302响应，并提供新的Location地址重定向到域名B。现在基于云计算服务，我们可以使用一些托管服务来实现同样的事情，无需管理服务器和维护应用，同时做到最低成本实现该需求。&lt;/p&gt;
+
+&lt;p&gt;接下来将介绍如何利用AWS上的服务实现该需求。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Spring Cloud Function -- 跨Serverless平台的函数计算框架</title>

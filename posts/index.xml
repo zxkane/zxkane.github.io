@@ -5,10 +5,32 @@
     <description>Recent content in Posts on The Road</description>
     <meta name="generator" content="Hugo 0.56.3" />
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 27 Aug 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>无服务器架构的域名重定向服务</title>
+      <link>https://kane.mx/posts/effective-cloud-computing/serverless-domain-redirect/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/effective-cloud-computing/serverless-domain-redirect/</guid>
+      <description>&lt;p&gt;业务时常有需求将某个域名(A)的访问重定向到其他域名(B)，即使实现这样一个很简单的需求通常也需要部署Web服务器（例如Nginx），为域名A的请求返回302响应，并提供新的Location地址重定向到域名B。现在基于云计算服务，我们可以使用一些托管服务来实现同样的事情，无需管理服务器和维护应用，同时做到最低成本实现该需求。&lt;/p&gt;
+
+&lt;p&gt;接下来将介绍如何利用AWS上的服务实现该需求。&lt;/p&gt;
+
+&lt;h3 id=&#34;使用aws-s3和aws-cloudfront实现域名重定向&#34;&gt;使用AWS S3和AWS CloudFront实现域名重定向&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;创建一个新的S3 bucket，例如 &lt;code&gt;redirect.domain.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;配置新bucket属性，开启静态网站托管，同时配置为重定向请求到期望的域名 &lt;code&gt;redirected-host.domain.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;创建新的CloudFront分发，设置第一步创建的S3 bucket作为&lt;a href=&#34;https://docs.aws.amazon.com/zh_cn/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html&#34;&gt;自定义源站(不可以配置源站为S3 bucket)&lt;/a&gt;。并且配置使用自定义域名 &lt;code&gt;redirect.domain.com&lt;/code&gt;。注意，配置自定义CNames需要提供域名对应的SSL证书，可以使用AWS Certificate Manager创建免费的SSL/TLS证书&lt;/li&gt;
+&lt;li&gt;在域名&lt;code&gt;domain.com&lt;/code&gt;解析服务商为域名&lt;code&gt;redirect.domain.com&lt;/code&gt;创建新的解析记录&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;我创建了一个基于&lt;a href=&#34;https://aws.amazon.com/cdk/?nc1=h_ls&#34;&gt;AWS CDK&lt;/a&gt;的&lt;a href=&#34;https://github.com/zxkane/serverless-domain-redirect#use-aws-s3-and-cloudfront-for-domain-redirect&#34;&gt;Github项目&lt;/a&gt;，利用AWS Infrastructure as Code的强大能力一键部署这套无服务器环境，有需要的可以作为实现参考。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Amazon Alexa Android版本国内登录问题</title>

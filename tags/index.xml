@@ -6,7 +6,7 @@
     <description>Recent content in Tags on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 27 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,45 @@
     <item>
       <title>AWS</title>
       <link>https://kane.mx/tags/aws/</link>
-      <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS CDK</title>
+      <link>https://kane.mx/tags/aws-cdk/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/aws-cdk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS Lambda</title>
+      <link>https://kane.mx/tags/aws-lambda/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/aws-lambda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS S3</title>
+      <link>https://kane.mx/tags/aws-s3/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/aws-s3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>云计算</title>
+      <link>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</guid>
       <description></description>
     </item>
     
@@ -39,15 +75,6 @@
     </item>
     
     <item>
-      <title>AWS S3</title>
-      <link>https://kane.mx/tags/aws-s3/</link>
-      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/aws-s3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>MacOSX</title>
       <link>https://kane.mx/tags/macosx/</link>
       <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
@@ -62,15 +89,6 @@
       <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/tips/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>AWS Lambda</title>
-      <link>https://kane.mx/tags/aws-lambda/</link>
-      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/aws-lambda/</guid>
       <description></description>
     </item>
     
@@ -116,15 +134,6 @@
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/dingtalk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>云计算</title>
-      <link>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</link>
-      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</guid>
       <description></description>
     </item>
     
