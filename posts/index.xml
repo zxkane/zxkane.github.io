@@ -29,7 +29,16 @@
 &lt;li&gt;在域名&lt;code&gt;domain.com&lt;/code&gt;解析服务商为域名&lt;code&gt;redirect.domain.com&lt;/code&gt;创建新的解析记录&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;我创建了一个基于&lt;a href=&#34;https://aws.amazon.com/cdk/?nc1=h_ls&#34;&gt;AWS CDK&lt;/a&gt;的&lt;a href=&#34;https://github.com/zxkane/serverless-domain-redirect#use-aws-s3-and-cloudfront-for-domain-redirect&#34;&gt;Github项目&lt;/a&gt;，利用AWS Infrastructure as Code的强大能力一键部署这套无服务器环境，有需要的可以作为实现参考。&lt;/p&gt;</description>
+&lt;h3 id=&#34;使用aws-lambda和api-gateway实现域名重定向&#34;&gt;使用AWS Lambda和API Gateway实现域名重定向&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;创建一个Lambda函数来返回302请求或者HTML页面，在页面中通过Javascript实现重定向页面&lt;/li&gt;
+&lt;li&gt;为该Lambda函数创建API Gateway触发器&lt;/li&gt;
+&lt;li&gt;为该API Gateway接口创建自定义域名&lt;/li&gt;
+&lt;li&gt;在域名&lt;code&gt;domain.com&lt;/code&gt;解析服务商为域名&lt;code&gt;redirect.domain.com&lt;/code&gt;创建新的解析记录&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;我创建了一个基于&lt;a href=&#34;https://aws.amazon.com/cdk/?nc1=h_ls&#34;&gt;AWS CDK&lt;/a&gt;的&lt;a href=&#34;https://github.com/zxkane/serverless-domain-redirect#use-aws-s3-and-cloudfront-for-domain-redirect&#34;&gt;Github项目&lt;/a&gt;，利用AWS Infrastructure as Code的强大能力一键部署以上两种无服务器环境，有需要的可以作为实现参考。&lt;/p&gt;</description>
     </item>
     
     <item>
