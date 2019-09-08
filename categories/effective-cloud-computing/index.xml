@@ -6,10 +6,19 @@
     <description>Recent content in effective-cloud-computing on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 27 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 08 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/categories/effective-cloud-computing/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AWS CDK简介</title>
+      <link>https://kane.mx/posts/2019/aws-cdk/</link>
+      <pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/aws-cdk/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Infrastructure_as_code&#34;&gt;Infrastructure as Code&lt;/a&gt;(架构即代码)一直是衡量公有云是否支持良好运维能力的重要指标。作为云计算领先的AWS，通过服务&lt;a href=&#34;https://aws.amazon.com/cn/cloudformation/&#34;&gt;CloudFormation&lt;/a&gt;来编排云环境中的基础设施资源。不过由于CloudFormation是使用YAML/JSON编写的声明式语言，不善于处理逻辑，编写繁琐且不利于调试排错，对于新上手的Devops工程师来说也有不小的学习曲线。三方开源的工具&lt;a href=&#34;https://en.wikipedia.org/wiki/Terraform_(software)&#34;&gt;Terraform&lt;/a&gt;同样没有很好解决&lt;a href=&#34;https://aws.amazon.com/cn/cloudformation/&#34;&gt;CloudFormation&lt;/a&gt;存在的这些问题。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>无服务器架构的域名重定向服务</title>
