@@ -33,7 +33,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.56.3" />
 
 
 <link rel="shortcut icon" href="/img/favicon.ico">
@@ -176,34 +176,34 @@ var bodyBgSwitchIndex = 0;
 	
 		
 			
-			<a class="ui label olive " href="/tags/eclipse" title="eclipse">eclipse</a>
+			<a class="ui label pink " href="/tags/eclipse" title="eclipse">eclipse</a>
 		
 			
 			<a class="ui label red " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
 		
 			
-			<a class="ui label purple " href="/tags/aws" title="aws">aws</a>
+			<a class="ui label red " href="/tags/aws" title="aws">aws</a>
 		
 			
-			<a class="ui label orange " href="/tags/equinox" title="equinox">equinox</a>
+			<a class="ui label pink " href="/tags/equinox" title="equinox">equinox</a>
 		
 			
-			<a class="ui label red " href="/tags/tip" title="tip">tip</a>
+			<a class="ui label pink " href="/tags/tip" title="tip">tip</a>
 		
 			
-			<a class="ui label pink " href="/tags/osgi" title="osgi">osgi</a>
+			<a class="ui label teal " href="/tags/osgi" title="osgi">osgi</a>
 		
 			
-			<a class="ui label teal " href="/tags/p2" title="p2">p2</a>
+			<a class="ui label red " href="/tags/p2" title="p2">p2</a>
 		
 			
-			<a class="ui label orange " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+			<a class="ui label teal " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
 		
 			
-			<a class="ui label green " href="/tags/aws-lambda" title="aws-lambda">aws-lambda</a>
+			<a class="ui label blue " href="/tags/aws-lambda" title="aws-lambda">aws-lambda</a>
 		
 			
-			<a class="ui label blue " href="/tags/faas" title="faas">faas</a>
+			<a class="ui label orange " href="/tags/faas" title="faas">faas</a>
 		
 	
 
@@ -713,34 +713,34 @@ var bodyBgSwitchIndex = 0;
 	
 		
 			
-			<a class="ui label brown " href="/tags/eclipse" title="eclipse">eclipse</a>
+			<a class="ui label yellow " href="/tags/eclipse" title="eclipse">eclipse</a>
 		
 			
-			<a class="ui label violet " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+			<a class="ui label pink " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
 		
 			
-			<a class="ui label red " href="/tags/aws" title="aws">aws</a>
+			<a class="ui label yellow " href="/tags/aws" title="aws">aws</a>
 		
 			
-			<a class="ui label pink " href="/tags/equinox" title="equinox">equinox</a>
+			<a class="ui label yellow " href="/tags/equinox" title="equinox">equinox</a>
 		
 			
-			<a class="ui label teal " href="/tags/tip" title="tip">tip</a>
+			<a class="ui label brown " href="/tags/tip" title="tip">tip</a>
 		
 			
-			<a class="ui label olive " href="/tags/osgi" title="osgi">osgi</a>
+			<a class="ui label yellow " href="/tags/osgi" title="osgi">osgi</a>
 		
 			
-			<a class="ui label violet " href="/tags/p2" title="p2">p2</a>
+			<a class="ui label yellow " href="/tags/p2" title="p2">p2</a>
 		
 			
-			<a class="ui label red " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+			<a class="ui label violet " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
 		
 			
-			<a class="ui label purple " href="/tags/aws-lambda" title="aws-lambda">aws-lambda</a>
+			<a class="ui label olive " href="/tags/aws-lambda" title="aws-lambda">aws-lambda</a>
 		
 			
-			<a class="ui label purple " href="/tags/faas" title="faas">faas</a>
+			<a class="ui label pink " href="/tags/faas" title="faas">faas</a>
 		
 	
 
@@ -1154,7 +1154,7 @@ var bodyBgSwitchIndex = 0;
 					<div><span><i class="calendar outline icon"></i>Sep 8, 2019</span></div>
 					
 					<div><span><i class="clock outline icon"></i>3 min read</span></div>
-					<div><span><i class="angle double up icon"></i>Last updated on Sep 9, 2019</span></div>
+					<div><span><i class="angle double up icon"></i>Last updated on Sep 11, 2019</span></div>
 				</div>
 				<hr>
 
@@ -1195,11 +1195,11 @@ var bodyBgSwitchIndex = 0;
 
 <p>总体的来说，<a href="https://aws.amazon.com/cn/cdk/">AWS CDK</a>是一个非常值得采用的云中资源编排和管理方式，高效的管理了AWS上的资源。</p>
 
-<p>由于项目还在相对早期，在使用中有以下一些问题值得注意。</p>
+<p>由于CDK还在相对早期，成熟度还不是那么完美。我在使用中发现下面一些值得注意的问题。</p>
 
 <ol>
 <li>CDK程序最终还是创建了CloudFormation配置，提交到CloudFormation完成资源变更。核心的用户体验，需要依赖CloudFormation的能力。CloudFormation的创建或回退超时过长，时常影响资源部署体验。另外，清理资源的时候，遇到部分资源无法清理且缺少明确提示。比如Aurora集群。</li>
-<li>CDK类库缺少配置校验。只能通过CloudFormation部署后，才会被资源方发现并返回错误。</li>
+<li>CDK类库缺少配置校验。这类错误只能通过CloudFormation部署后，才会被资源方发现并返回错误。导致整个创建的堆栈回退，调试大型的部署栈将花费比较长的时间。建议将整个部署拆分为多个小的堆栈，减小每次部署时间，方便调试。</li>
 <li>文档还比较简陋。缺少较为深入的示例。增加了开发人员的学习曲线。</li>
 <li>新版本向后兼容性不够好，时常新版本有break changes。在1.0GA之后发布的版本break changes相对减少，但仍然有出现。</li>
 </ol>
@@ -1215,11 +1215,11 @@ var bodyBgSwitchIndex = 0;
 
 
 	
-		<a class="ui label orange " href="/tags/aws" title="AWS">AWS</a>
+		<a class="ui label purple " href="/tags/aws" title="AWS">AWS</a>
 	
-		<a class="ui label blue " href="/tags/amazon-cdk" title="Amazon CDK">Amazon CDK</a>
+		<a class="ui label brown " href="/tags/amazon-cdk" title="Amazon CDK">Amazon CDK</a>
 	
-		<a class="ui label violet " href="/tags/infrastructure-as-code" title="Infrastructure as Code">Infrastructure as Code</a>
+		<a class="ui label pink " href="/tags/infrastructure-as-code" title="Infrastructure as Code">Infrastructure as Code</a>
 	
 
 

@@ -3,7 +3,7 @@
     <title>Posts on The Road</title>
     <link>https://kane.mx/posts/</link>
     <description>Recent content in Posts on The Road</description>
-    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="generator" content="Hugo 0.56.3" />
     <language>en-us</language>
     <lastBuildDate>Sun, 08 Sep 2019 00:00:00 +0000</lastBuildDate>
     
@@ -50,11 +50,11 @@
 
 &lt;p&gt;总体的来说，&lt;a href=&#34;https://aws.amazon.com/cn/cdk/&#34;&gt;AWS CDK&lt;/a&gt;是一个非常值得采用的云中资源编排和管理方式，高效的管理了AWS上的资源。&lt;/p&gt;
 
-&lt;p&gt;由于项目还在相对早期，在使用中有以下一些问题值得注意。&lt;/p&gt;
+&lt;p&gt;由于CDK还在相对早期，成熟度还不是那么完美。我在使用中发现下面一些值得注意的问题。&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;CDK程序最终还是创建了CloudFormation配置，提交到CloudFormation完成资源变更。核心的用户体验，需要依赖CloudFormation的能力。CloudFormation的创建或回退超时过长，时常影响资源部署体验。另外，清理资源的时候，遇到部分资源无法清理且缺少明确提示。比如Aurora集群。&lt;/li&gt;
-&lt;li&gt;CDK类库缺少配置校验。只能通过CloudFormation部署后，才会被资源方发现并返回错误。&lt;/li&gt;
+&lt;li&gt;CDK类库缺少配置校验。这类错误只能通过CloudFormation部署后，才会被资源方发现并返回错误。导致整个创建的堆栈回退，调试大型的部署栈将花费比较长的时间。建议将整个部署拆分为多个小的堆栈，减小每次部署时间，方便调试。&lt;/li&gt;
 &lt;li&gt;文档还比较简陋。缺少较为深入的示例。增加了开发人员的学习曲线。&lt;/li&gt;
 &lt;li&gt;新版本向后兼容性不够好，时常新版本有break changes。在1.0GA之后发布的版本break changes相对减少，但仍然有出现。&lt;/li&gt;
 &lt;/ol&gt;</description>
@@ -2053,8 +2053,7 @@ java -jar jenkins-cli.jar -s http://myserver/jenkins/ groovy test_script.gsh&
 &lt;p&gt;Following &lt;a href=&#34;http://www.eclipse.org/equinox/server/http_in_equinox.php&#34;&gt;the guide&lt;/a&gt; of Equinox server, I can&amp;rsquo;t running a Jetty server with my servlet in Eclipse Indigo. Obviously &lt;a href=&#34;http://www.eclipse.org/equinox/server/http_in_equinox.php&#34;&gt;the guide&lt;/a&gt; is out of date.&lt;/p&gt;
 
 &lt;p&gt;After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.&lt;br /&gt;
- &lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi&#34;&gt;&lt;/script&gt;
-&lt;/p&gt;
+ &lt;script type=&#34;application/javascript&#34; src=&#34;//gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;You only need create a run configuration of OSGi framework, add your bundles with servlets and above bundles.&lt;/p&gt;
 </description>
@@ -2074,20 +2073,17 @@ java -jar jenkins-cli.jar -s http://myserver/jenkins/ groovy test_script.gsh&
 Then register a free domain name and configure it in my router. And let router forward port &lt;code&gt;22&lt;/code&gt;(or any port you wan to use) to my personal computer.&lt;br /&gt;
 In my working Linux machine, create a ssh tunnel to my personal computer. Must use the &lt;a href=&#34;https://kane.mx/posts/archive/blogspot/ssh-key/&#34;&gt;public/private key for authenticating&lt;/a&gt;. For example,&lt;/p&gt;
 
-&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/zxkane/1876750.js?file=ssh-tunnel0.sh&#34;&gt;&lt;/script&gt;
-
+&lt;script type=&#34;application/javascript&#34; src=&#34;//gist.github.com/zxkane/1876750.js?file=ssh-tunnel0.sh&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;It means remote server can access my workstation&amp;rsquo;s port &lt;code&gt;22&lt;/code&gt; via accessing its port &lt;code&gt;1002&lt;/code&gt; after the ssh tunnel is created successfully. Above command line also forwards the ports &lt;code&gt;5900&lt;/code&gt; and &lt;code&gt;6500&lt;/code&gt;. The default VNC session will listen the port &lt;code&gt;5900&lt;/code&gt;.&lt;br /&gt;
 But it only works when my personal computer is running. And the connection can&amp;rsquo;t be reconnected after it fails once.&lt;br /&gt;
 The graceful solution is installing &amp;lsquo;autossh&amp;rsquo; in my Linux, which is an utility to retry the ssh connection with an interval if it&amp;rsquo;s disconnected or failed.&lt;/p&gt;
 
-&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/zxkane/1876750.js?file=ssh-tunnel1.sh&#34;&gt;&lt;/script&gt;
-
+&lt;script type=&#34;application/javascript&#34; src=&#34;//gist.github.com/zxkane/1876750.js?file=ssh-tunnel1.sh&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;Then create a script and running it when OS is booted. The script will be executed by root user, so we need configure it ran by the normal user.&lt;/p&gt;
 
-&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/zxkane/1876750.js?file=ssh-tunnel2.sh&#34;&gt;&lt;/script&gt;
-
+&lt;script type=&#34;application/javascript&#34; src=&#34;//gist.github.com/zxkane/1876750.js?file=ssh-tunnel2.sh&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;After my personal computer is booted a while(&lt;strong&gt;the default interval of autossh is 300 seconds&lt;/strong&gt;), I can use &lt;code&gt;localhost:10002&lt;/code&gt; to login my workstation, &lt;code&gt;localhost:5900&lt;/code&gt; to access my VNC session. Of course you can use &amp;lsquo;froxyproxy&amp;rsquo; of Firefox via a localport to access web page of Intranet.&lt;/p&gt;
 </description>

@@ -12,20 +12,20 @@
     
     
     <item>
-      <title>Amazon CDK</title>
-      <link>https://kane.mx/tags/amazon-cdk/</link>
-      <pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/amazon-cdk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>AWS</title>
       <link>https://kane.mx/tags/aws/</link>
       <pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Amazon CDK</title>
+      <link>https://kane.mx/tags/amazon-cdk/</link>
+      <pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/amazon-cdk/</guid>
       <description></description>
     </item>
     
@@ -111,15 +111,6 @@
     </item>
     
     <item>
-      <title>dingtalk</title>
-      <link>https://kane.mx/tags/dingtalk/</link>
-      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/dingtalk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>FaaS</title>
       <link>https://kane.mx/tags/faas/</link>
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
@@ -156,6 +147,15 @@
     </item>
     
     <item>
+      <title>dingtalk</title>
+      <link>https://kane.mx/tags/dingtalk/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/dingtalk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>函数计算</title>
       <link>https://kane.mx/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/</link>
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
@@ -183,20 +183,20 @@
     </item>
     
     <item>
-      <title>devops</title>
-      <link>https://kane.mx/tags/devops/</link>
-      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>QCon</title>
       <link>https://kane.mx/tags/qcon/</link>
       <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/qcon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>devops</title>
+      <link>https://kane.mx/tags/devops/</link>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/devops/</guid>
       <description></description>
     </item>
     
@@ -777,6 +777,15 @@
     </item>
     
     <item>
+      <title>OpenID</title>
+      <link>https://kane.mx/tags/openid/</link>
+      <pubDate>Wed, 15 Feb 2012 11:36:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/tags/openid/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>configuration</title>
       <link>https://kane.mx/tags/configuration/</link>
       <pubDate>Wed, 15 Feb 2012 11:36:00 +0800</pubDate>
@@ -791,15 +800,6 @@
       <pubDate>Wed, 15 Feb 2012 11:36:00 +0800</pubDate>
       
       <guid>https://kane.mx/tags/gerrit/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>OpenID</title>
-      <link>https://kane.mx/tags/openid/</link>
-      <pubDate>Wed, 15 Feb 2012 11:36:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/tags/openid/</guid>
       <description></description>
     </item>
     
@@ -822,15 +822,6 @@
     </item>
     
     <item>
-      <title>build</title>
-      <link>https://kane.mx/tags/build/</link>
-      <pubDate>Tue, 08 Nov 2011 16:16:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/tags/build/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Maven</title>
       <link>https://kane.mx/tags/maven/</link>
       <pubDate>Tue, 08 Nov 2011 16:16:00 +0800</pubDate>
@@ -845,6 +836,15 @@
       <pubDate>Tue, 08 Nov 2011 16:16:00 +0800</pubDate>
       
       <guid>https://kane.mx/tags/tycho/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>build</title>
+      <link>https://kane.mx/tags/build/</link>
+      <pubDate>Tue, 08 Nov 2011 16:16:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/tags/build/</guid>
       <description></description>
     </item>
     
@@ -885,20 +885,20 @@
     </item>
     
     <item>
-      <title>compile</title>
-      <link>https://kane.mx/tags/compile/</link>
-      <pubDate>Fri, 12 Aug 2011 10:51:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/tags/compile/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>MinGW</title>
       <link>https://kane.mx/tags/mingw/</link>
       <pubDate>Fri, 12 Aug 2011 10:51:00 +0800</pubDate>
       
       <guid>https://kane.mx/tags/mingw/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>compile</title>
+      <link>https://kane.mx/tags/compile/</link>
+      <pubDate>Fri, 12 Aug 2011 10:51:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/tags/compile/</guid>
       <description></description>
     </item>
     
