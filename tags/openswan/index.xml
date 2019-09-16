@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Openswan on The Road</title>
+    <link>https://kane.mx/tags/openswan/</link>
+    <description>Recent content in Openswan on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 16 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/openswan/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Openswan连接AWS VPC</title>
+      <link>https://kane.mx/posts/2019/using-openswan-connect-aws-vpn/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/using-openswan-connect-aws-vpn/</guid>
+      <description>&lt;p&gt;业务上云之后，经常也有需求将多云、数据中心或办公室的私有网络同云端的私有网络建立连接。&lt;a href=&#34;https://docs.aws.amazon.com/zh_cn/vpn/latest/s2svpn/VPC_VPN.html&#34;&gt;AWS Site-to-Site VPN&lt;/a&gt;正是AWS提供的托管VPN服务，我们可以在另一端的私有网络通过&lt;a href=&#34;https://www.openswan.org/&#34;&gt;Openswan&lt;/a&gt;同AWS VPC网络建立基于IPSec协议的安全连接。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

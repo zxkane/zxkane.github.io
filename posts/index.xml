@@ -3,12 +3,57 @@
     <title>Posts on The Road</title>
     <link>https://kane.mx/posts/</link>
     <description>Recent content in Posts on The Road</description>
-    <meta name="generator" content="Hugo 0.56.3" />
+    <meta name="generator" content="Hugo 0.57.2" />
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用Openswan连接AWS VPC</title>
+      <link>https://kane.mx/posts/2019/using-openswan-connect-aws-vpn/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/using-openswan-connect-aws-vpn/</guid>
+      <description>&lt;p&gt;业务上云之后，经常也有需求将多云、数据中心或办公室的私有网络同云端的私有网络建立连接。&lt;a href=&#34;https://docs.aws.amazon.com/zh_cn/vpn/latest/s2svpn/VPC_VPN.html&#34;&gt;AWS Site-to-Site VPN&lt;/a&gt;正是AWS提供的托管VPN服务，我们可以在另一端的私有网络通过&lt;a href=&#34;https://www.openswan.org/&#34;&gt;Openswan&lt;/a&gt;同AWS VPC网络建立基于IPSec协议的安全连接。&lt;/p&gt;
+
+&lt;p&gt;下面是配置的详细步骤，&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;如果是创建数据中心或办公室的连接，数据中心或办公室需要有公网IP。如果是在其他公有云上，需要创建带公网IP的EC2，或使用EIP。
+
+&lt;ol&gt;
+&lt;li&gt;如果使用AWS EC2配置Openswan，需要禁用 EC2 的 Source/Destination Check。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;在AWS上创建Virtual Private Gateway 和 Customer Gateway(指定对端的公网IP作为静态路由)。&lt;/li&gt;
+&lt;li&gt;在AWS上创建Site-to-Site VPN连接，使用第一步和第二步创建的Virtual Private Gateway和Customer Gateway。&lt;/li&gt;
+&lt;li&gt;在对端机器上安装&lt;code&gt;openswan&lt;/code&gt;。
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo yum install openswan&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;编辑&lt;code&gt;/etc/sysctl.conf&lt;/code&gt;文件，确保有以下配置，
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-properties&#34; data-lang=&#34;properties&#34;&gt;net.ipv4.ip_forward = 1
+net.ipv4.conf.default.rp_filter = 0
+net.ipv4.conf.default.accept_source_route = 0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;重新加载sysctl配置并重启network服务。
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo sysctl -p
+sudo service network restart&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;编辑&lt;code&gt;/etc/ipsec.conf&lt;/code&gt;确保&lt;code&gt;include /etc/ipsec.d/*.conf&lt;/code&gt;没有被注释。&lt;/li&gt;
+&lt;li&gt;创建&lt;code&gt;/etc/ipsec.d/aws.conf&lt;/code&gt;文件，内容拷贝来自第三步创建的连接Openswan建议配置。&lt;/li&gt;
+&lt;li&gt;创建&lt;code&gt;/etc/ipsec.d/aws.secrets&lt;/code&gt;文件，内容拷贝来自第三步创建的连接Openswan配置。&lt;/li&gt;
+&lt;li&gt;启动ipsec服务。
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Start the ipsec service.&lt;/span&gt;
+sudo service ipsec start
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# Check the logs.&lt;/span&gt;
+sudo service ipsec status
+sudo ipsec auto --status&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;以上配置在Amazon Linux, Centos 6.9上验证通过。但是在Amazon Linux 2、Centos 7等较新的Linux发行版本上，启动&lt;code&gt;ipsec&lt;/code&gt;服务遇到如下错误，
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-log&#34; data-lang=&#34;log&#34;&gt;Starting Internet Key Exchange (IKE) Protocol Daemon for IPsec...
+ERROR: /etc/ipsec.d/aws.conf: 12: keyword auth, invalid value: esp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+解决方法是，从 AWS Site-to-Site VPN 下载的 Openswan 配置中删掉不支持的配置行&lt;code&gt;auth=esp&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>AWS CDK简介</title>
@@ -2053,7 +2098,8 @@ java -jar jenkins-cli.jar -s http://myserver/jenkins/ groovy test_script.gsh&
 &lt;p&gt;Following &lt;a href=&#34;http://www.eclipse.org/equinox/server/http_in_equinox.php&#34;&gt;the guide&lt;/a&gt; of Equinox server, I can&amp;rsquo;t running a Jetty server with my servlet in Eclipse Indigo. Obviously &lt;a href=&#34;http://www.eclipse.org/equinox/server/http_in_equinox.php&#34;&gt;the guide&lt;/a&gt; is out of date.&lt;/p&gt;
 
 &lt;p&gt;After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.&lt;br /&gt;
- &lt;script type=&#34;application/javascript&#34; src=&#34;//gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+ &lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi&#34;&gt;&lt;/script&gt;
+&lt;/p&gt;
 
 &lt;p&gt;You only need create a run configuration of OSGi framework, add your bundles with servlets and above bundles.&lt;/p&gt;
 </description>
@@ -2073,17 +2119,20 @@ java -jar jenkins-cli.jar -s http://myserver/jenkins/ groovy test_script.gsh&
 Then register a free domain name and configure it in my router. And let router forward port &lt;code&gt;22&lt;/code&gt;(or any port you wan to use) to my personal computer.&lt;br /&gt;
 In my working Linux machine, create a ssh tunnel to my personal computer. Must use the &lt;a href=&#34;https://kane.mx/posts/archive/blogspot/ssh-key/&#34;&gt;public/private key for authenticating&lt;/a&gt;. For example,&lt;/p&gt;
 
-&lt;script type=&#34;application/javascript&#34; src=&#34;//gist.github.com/zxkane/1876750.js?file=ssh-tunnel0.sh&#34;&gt;&lt;/script&gt;
+&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/zxkane/1876750.js?file=ssh-tunnel0.sh&#34;&gt;&lt;/script&gt;
+
 
 &lt;p&gt;It means remote server can access my workstation&amp;rsquo;s port &lt;code&gt;22&lt;/code&gt; via accessing its port &lt;code&gt;1002&lt;/code&gt; after the ssh tunnel is created successfully. Above command line also forwards the ports &lt;code&gt;5900&lt;/code&gt; and &lt;code&gt;6500&lt;/code&gt;. The default VNC session will listen the port &lt;code&gt;5900&lt;/code&gt;.&lt;br /&gt;
 But it only works when my personal computer is running. And the connection can&amp;rsquo;t be reconnected after it fails once.&lt;br /&gt;
 The graceful solution is installing &amp;lsquo;autossh&amp;rsquo; in my Linux, which is an utility to retry the ssh connection with an interval if it&amp;rsquo;s disconnected or failed.&lt;/p&gt;
 
-&lt;script type=&#34;application/javascript&#34; src=&#34;//gist.github.com/zxkane/1876750.js?file=ssh-tunnel1.sh&#34;&gt;&lt;/script&gt;
+&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/zxkane/1876750.js?file=ssh-tunnel1.sh&#34;&gt;&lt;/script&gt;
+
 
 &lt;p&gt;Then create a script and running it when OS is booted. The script will be executed by root user, so we need configure it ran by the normal user.&lt;/p&gt;
 
-&lt;script type=&#34;application/javascript&#34; src=&#34;//gist.github.com/zxkane/1876750.js?file=ssh-tunnel2.sh&#34;&gt;&lt;/script&gt;
+&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/zxkane/1876750.js?file=ssh-tunnel2.sh&#34;&gt;&lt;/script&gt;
+
 
 &lt;p&gt;After my personal computer is booted a while(&lt;strong&gt;the default interval of autossh is 300 seconds&lt;/strong&gt;), I can use &lt;code&gt;localhost:10002&lt;/code&gt; to login my workstation, &lt;code&gt;localhost:5900&lt;/code&gt; to access my VNC session. Of course you can use &amp;lsquo;froxyproxy&amp;rsquo; of Firefox via a localport to access web page of Intranet.&lt;/p&gt;
 </description>
