@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Serverless on The Road</title>
+    <link>https://kane.mx/tags/serverless/</link>
+    <description>Recent content in Serverless on The Road</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 Nov 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://kane.mx/tags/serverless/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AWS RDS数据库日志分析及展示</title>
+      <link>https://kane.mx/posts/2019/rds-log-analysis/</link>
+      <pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/rds-log-analysis/</guid>
+      <description>&lt;p&gt;托管的RDS数据库已经是云计算服务中非常成熟的服务，绝大部分的云计算用户会采用RDS服务来提升数据库服务的可用性同时减少数据库的各类运维事务。&lt;/p&gt;
+
+&lt;p&gt;AWS RDS服务支持开启和查询各类的数据库日志，包括常规日志、慢日志、错误日志和审计日志。但RDS服务默认提供的日志查看工具仅仅类似文本查看器，无法针对日志数据做统计和查看历史滚动的存档。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

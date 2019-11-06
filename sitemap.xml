@@ -1,30 +1,72 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://kane.mx/tags/aws/</loc>
-    <lastmod>2019-09-17T00:12:10+08:00</lastmod>
+    <loc>https://kane.mx/tags/analysis/</loc>
+    <lastmod>2019-11-06T00:02:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://kane.mx/tags/aws-vpn/</loc>
-    <lastmod>2019-09-17T00:12:10+08:00</lastmod>
+    <loc>https://kane.mx/tags/aws/</loc>
+    <lastmod>2019-11-06T00:02:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2019/rds-log-analysis/</loc>
+    <lastmod>2019-11-06T00:02:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/categories/blogging/</loc>
-    <lastmod>2019-09-17T00:12:10+08:00</lastmod>
+    <lastmod>2019-11-06T00:02:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/categories/</loc>
+    <lastmod>2019-11-06T00:02:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/</loc>
+    <lastmod>2019-11-06T00:02:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/serverless/</loc>
+    <lastmod>2019-11-06T00:02:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/</loc>
+    <lastmod>2019-11-06T00:02:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/</loc>
+    <lastmod>2019-11-06T00:02:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/aws-vpn/</loc>
     <lastmod>2019-09-17T00:12:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -38,28 +80,7 @@
   </url>
   
   <url>
-    <loc>https://kane.mx/posts/</loc>
-    <lastmod>2019-09-17T00:12:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://kane.mx/tags/site-to-site-vpn/</loc>
-    <lastmod>2019-09-17T00:12:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/</loc>
-    <lastmod>2019-09-17T00:12:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/</loc>
     <lastmod>2019-09-17T00:12:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -325,14 +346,14 @@
   </url>
   
   <url>
-    <loc>https://kane.mx/tags/kubernetes/</loc>
+    <loc>https://kane.mx/categories/kubernetes/</loc>
     <lastmod>2019-04-29T15:47:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://kane.mx/categories/kubernetes/</loc>
+    <loc>https://kane.mx/tags/kubernetes/</loc>
     <lastmod>2019-04-29T15:47:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

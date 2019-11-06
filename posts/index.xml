@@ -3,12 +3,27 @@
     <title>Posts on The Road</title>
     <link>https://kane.mx/posts/</link>
     <description>Recent content in Posts on The Road</description>
-    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 05 Nov 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AWS RDS数据库日志分析及展示</title>
+      <link>https://kane.mx/posts/2019/rds-log-analysis/</link>
+      <pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/rds-log-analysis/</guid>
+      <description>&lt;p&gt;托管的RDS数据库已经是云计算服务中非常成熟的服务，绝大部分的云计算用户会采用RDS服务来提升数据库服务的可用性同时减少数据库的各类运维事务。&lt;/p&gt;
+
+&lt;p&gt;AWS RDS服务支持开启和查询各类的数据库日志，包括常规日志、慢日志、错误日志和审计日志。但RDS服务默认提供的日志查看工具仅仅类似文本查看器，无法针对日志数据做统计和查看历史滚动的存档。&lt;/p&gt;
+
+&lt;p&gt;本文将介绍如何使用AWS上云原生的服务搭建无服务架构的实时日志分析报表系统。该系统的实现思路来自于AWS中国的&lt;a href=&#34;https://aws.amazon.com/cn/blogs/china/cloudwatch-logs-kinesis-firehose-athena-quicksight-amazon-aurora/&#34;&gt;一篇博客&lt;/a&gt;，该文介绍了使用 CloudWatch Logs，Kinesis Firehose，Athena 和 Quicksight 实现实时分析 Amazon Aurora 数据库审计日志。&lt;/p&gt;
+
+&lt;p&gt;这里提供了一个完整的&lt;a href=&#34;https://github.com/zxkane/cdk-collections/tree/master/rds-audit-log&#34;&gt;AWS CDK应用&lt;/a&gt;实现了博客中介绍的服务搭建思路，RDS审计日志通过 CloudWatch Log -&amp;gt; Kinesis Firehose -&amp;gt; S3 这样一个数据管道被过滤，转换，压缩最终保存到S3上，可被无服务分析服务Athena使用。同时创建了一个Lambda函数模拟应用访问数据库，它周期性的连接上应用中创建的RDS Aurora数据库并执行查询或变更Sql。在整个应用在被部署成功后数分钟，及可通过Athena数据表查询统计Aurora审计日志。Enjoy it😆😆&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>使用Openswan连接AWS VPC</title>
@@ -84,7 +99,8 @@ ERROR: /etc/ipsec.d/aws.conf: 12: keyword auth, invalid value: esp&lt;/code&gt;&
           &lt;span style=&#34;color:#a6e22e&#34;&gt;subnetType&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;SubnetType.PRIVATE&lt;/span&gt;
         }
       ]
-    });&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    });
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;我创建了两个示例项目使用了&lt;a href=&#34;https://aws.amazon.com/cn/cdk/&#34;&gt;AWS CDK&lt;/a&gt;快速创建应用环境且部署应用，&lt;/p&gt;
 
@@ -490,7 +506,7 @@ resources:  &lt;span style=&#34;color:#75715e&#34;&gt;# CloudFormation template 
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;156
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;157
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
 &lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-gradle&#34; data-lang=&#34;gradle&#34;&gt;tasks&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;register&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;Copy&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;depsLayer&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
     into&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;$buildDir/deps/java/lib&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
     from&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;configurations&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;compileClasspath&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;get&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;())&lt;/span&gt;
@@ -523,7 +539,7 @@ resources:  &lt;span style=&#34;color:#75715e&#34;&gt;# CloudFormation template 
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;48
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;49
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
 &lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;  DependenciesLayer:
     Type: AWS::LayerVersion
     Properties:
@@ -783,7 +799,7 @@ resources:  &lt;span style=&#34;color:#75715e&#34;&gt;# CloudFormation template 
 &lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;71
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:block;width:100%;background-color:#3c3d38&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;72
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
 &lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;oauth2-proxy:
   config:
     clientID: aaa
@@ -815,7 +831,7 @@ resources:  &lt;span style=&#34;color:#75715e&#34;&gt;# CloudFormation template 
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;52
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;53
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
 &lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;affinity: {}
 
 nginx-ingress:
@@ -972,7 +988,7 @@ a3afe672259c511e98e2a0a0d88fda3e-xx.elb.ap-southeast-1.amazonaws.com&lt;/code&gt
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;98
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;99
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
 &lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;Description: Create a CodePipeline to include Github source, CodeBuild and Lambda deployment.
 
 Parameters:
@@ -3745,6 +3761,22 @@ Then there are 3 steps in local env:&lt;br /&gt;
 &lt;p&gt;update:&lt;br /&gt;
 a simpler way:&lt;br /&gt;
 -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://kane.mx/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/about/</guid>
+      <description>&lt;h1&gt;So, Who Am I?&lt;/h1&gt;
+
+----
+&lt;br&gt;
+I’m the father of **twin sons**. Live in Beijing. Also I&#39;m the *uix user, a full stack software engineer, devops and cloud native evangelist.
+
+Curious about me? Use the social links above to check out my profiles.
 </description>
     </item>
     
