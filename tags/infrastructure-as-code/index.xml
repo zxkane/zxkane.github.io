@@ -6,10 +6,19 @@
     <description>Recent content in Infrastructure as Code on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/infrastructure-as-code/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>实战Aliyun EDAS应用迁移AWS</title>
+      <link>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</guid>
+      <description>近期实践了将阿里云EDAS微服务应用迁移到AWS上，在这里分享一下迁移方案。 该方案涉及了以下三个方面， 微服务应用集群。在AWS上采用的ECS</description>
+    </item>
     
     <item>
       <title>AWS CDK简介</title>

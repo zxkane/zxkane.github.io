@@ -5,10 +5,37 @@
     <description>Recent content in Posts on The Road</description>
     <meta name="generator" content="Hugo 0.59.1" />
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>实战Aliyun EDAS应用迁移AWS</title>
+      <link>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</guid>
+      <description>&lt;p&gt;近期实践了将阿里云EDAS微服务应用迁移到AWS上，在这里分享一下迁移方案。&lt;/p&gt;
+
+&lt;p&gt;该方案涉及了以下三个方面，&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;微服务应用集群。在AWS上采用的&lt;a href=&#34;https://aws.amazon.com/cn/ecs/&#34;&gt;ECS&lt;/a&gt;集群部署微服务应用，通过&lt;a href=&#34;https://aws.amazon.com/cn/cloud-map/&#34;&gt;Cloudmap&lt;/a&gt;实现服务注册发现，&lt;a href=&#34;https://aws.amazon.com/cn/app-mesh/&#34;&gt;App Mesh&lt;/a&gt;实现服务间流量控制。更加详尽的微服务迁移要点和对应方案，详见下面的deck。&lt;/li&gt;
+&lt;li&gt;Devops pipeline。使用托管的&lt;a href=&#34;https://aws.amazon.com/cn/codepipeline/&#34;&gt;CodePipeline&lt;/a&gt;，&lt;a href=&#34;https://aws.amazon.com/cn/codebuild/&#34;&gt;CodeBuild&lt;/a&gt;实现CI/CD。&lt;/li&gt;
+&lt;li&gt;Infra as Code。利用AWS强大的&lt;a href=&#34;https://en.wikipedia.org/wiki/Infrastructure_as_code&#34;&gt;Infra as Code&lt;/a&gt;能力，将云上的基础设施和微服务应用编排通过&lt;a href=&#34;https://kane.mx/posts/2019/aws-cdk/&#34;&gt;CDK&lt;/a&gt;代码实现。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;下面是迁移方案的deck。完整且可部署的PoC代码，点&lt;a href=&#34;https://github.com/zxkane/alibabacloud-microservice-demo&#34;&gt;这里&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&#34;responsive-wrap&#34;&gt;
+  &lt;iframe src=&#34;https://docs.google.com/presentation/d/e/2PACX-1vRrD1lBxjbGsI0xIX8XTzUyJzDqnaqW97d6jGASdatRPYUkciSwxbeCJFQv-gwZLcZ31DFPXQtvmob1/embed?start=false&amp;amp;loop=false&amp;amp;delayms=5000&#34; frameborder=&#34;0&#34; width=&#34;960&#34; height=&#34;569&#34; allowfullscreen=&#34;true&#34; mozallowfullscreen=&#34;true&#34; webkitallowfullscreen=&#34;true&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
     
     <item>
       <title>AWS RDS数据库日志分析及展示</title>
