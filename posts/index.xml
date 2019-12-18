@@ -5,10 +5,67 @@
     <description>Recent content in Posts on The Road</description>
     <meta name="generator" content="Hugo 0.59.1" />
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Dec 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>免费邮件转发服务</title>
+      <link>https://kane.mx/posts/2019/email-forwarding/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2019/email-forwarding/</guid>
+      <description>&lt;p&gt;在拥有域名后，通常希望创建一些自有域名下的邮箱来收取不同用途的邮件，同时不希望为这部分功能付费😃。使用免费的企业邮箱(比如网易企业邮箱、阿里云企业邮箱)是一种选择。这时就需要配置邮件地址和邮件客户端来收取邮件，如果有多个邮箱地址，配置会特别麻烦。有时，这些企业邮箱的收件服务会莫名其妙的丢失一些邮件。&lt;/p&gt;
+
+&lt;p&gt;这种场景下，&lt;strong&gt;邮件转发服务&lt;/strong&gt;是一种非常好的解决方案。无需搭建邮件服务器或申请免费邮件服务，只需要配置域名的&lt;strong&gt;邮件MX&lt;/strong&gt;解析到转发邮件收发件服务，同时使用&lt;strong&gt;DNS TXT&lt;/strong&gt; record配置转发规则，即可将所以发送的自有域名下的邮件转发到已有的邮箱地址！🆒&lt;/p&gt;
+
+&lt;p&gt;特别安利&lt;a href=&#34;https://github.com/forwardemail/free-email-forwarding&#34;&gt;Forward Email&lt;/a&gt;服务，一个免费而且是&lt;strong&gt;开源&lt;/strong&gt;的邮件转发服务。&lt;/p&gt;
+
+&lt;p&gt;如上面介绍的，只需要为域名&lt;code&gt;mydomain.com&lt;/code&gt;创建如下3条DNS解析记录，&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;TTL&lt;/th&gt;
+&lt;th&gt;记录类型&lt;/th&gt;
+&lt;th&gt;优先级&lt;/th&gt;
+&lt;th&gt;记录的内容&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;@ 或者 空白&lt;/td&gt;
+&lt;td&gt;3600&lt;/td&gt;
+&lt;td&gt;MX&lt;/td&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;mx1.forwardemail.net&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;@ 或者 空白&lt;/td&gt;
+&lt;td&gt;3600&lt;/td&gt;
+&lt;td&gt;MX&lt;/td&gt;
+&lt;td&gt;20&lt;/td&gt;
+&lt;td&gt;mx2.forwardemail.net&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;@ 或者 空白&lt;/td&gt;
+&lt;td&gt;3600&lt;/td&gt;
+&lt;td&gt;TXT&lt;/td&gt;
+&lt;td&gt;20&lt;/td&gt;
+&lt;td&gt;forward-email=niftylettuce@gmail.com&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;所有发往&lt;code&gt;@mydomain.com&lt;/code&gt;的邮件将被转发到邮箱&lt;code&gt;niftylettuce@gmail.com&lt;/code&gt;。✌&lt;/p&gt;
+
+&lt;p&gt;更多配置选项请查看&lt;a href=&#34;https://github.com/forwardemail/free-email-forwarding#how-do-i-get-started-and-set-up-email-forwarding&#34;&gt;文档&lt;/a&gt;。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>实战Aliyun EDAS应用迁移AWS</title>

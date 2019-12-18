@@ -3,78 +3,99 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://kane.mx/tags/aws/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://kane.mx/categories/blogging/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/categories/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/edas/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/infrastructure-as-code/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/microservice/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/migration/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/posts/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/tags/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2019/email-forwarding/</loc>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/%E9%82%AE%E4%BB%B6%E8%BD%AC%E5%8F%91/</loc>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/aws/</loc>
+    <lastmod>2019-12-03T00:08:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/edas/</loc>
+    <lastmod>2019-12-03T00:08:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/infrastructure-as-code/</loc>
+    <lastmod>2019-12-03T00:08:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/microservice/</loc>
+    <lastmod>2019-12-03T00:08:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/migration/</loc>
+    <lastmod>2019-12-03T00:08:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-03T00:08:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -374,14 +395,14 @@
   </url>
   
   <url>
-    <loc>https://kane.mx/categories/kubernetes/</loc>
+    <loc>https://kane.mx/tags/kubernetes/</loc>
     <lastmod>2019-04-29T15:47:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://kane.mx/tags/kubernetes/</loc>
+    <loc>https://kane.mx/categories/kubernetes/</loc>
     <lastmod>2019-04-29T15:47:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
