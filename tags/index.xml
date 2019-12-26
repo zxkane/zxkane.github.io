@@ -6,7 +6,7 @@
     <description>Recent content in Tags on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 26 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,45 @@
     <item>
       <title>AWS</title>
       <link>https://kane.mx/tags/aws/</link>
-      <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 26 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS ECS</title>
+      <link>https://kane.mx/tags/aws-ecs/</link>
+      <pubDate>Thu, 26 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/aws-ecs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS Fargate</title>
+      <link>https://kane.mx/tags/aws-fargate/</link>
+      <pubDate>Thu, 26 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/aws-fargate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS Toolkit</title>
+      <link>https://kane.mx/tags/aws-toolkit/</link>
+      <pubDate>Thu, 26 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/aws-toolkit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IntelliJ IDEs</title>
+      <link>https://kane.mx/tags/intellij-ides/</link>
+      <pubDate>Thu, 26 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/intellij-ides/</guid>
       <description></description>
     </item>
     
@@ -183,7 +219,7 @@
     </item>
     
     <item>
-      <title>Troubleshoot</title>
+      <title>troubleshoot</title>
       <link>https://kane.mx/tags/troubleshoot/</link>
       <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
       
