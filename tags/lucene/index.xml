@@ -20,7 +20,7 @@
       <description>The index has a field named &amp;lsquo;create_time&amp;rsquo; that is the timestamp of document created time. The query string can boost the latest created document like below,
 {!boost b=recip(ms(NOW,create_time),3.16e-11,0.08,0.05)}name:keyword
 There is another field named &amp;lsquo;important&amp;rsquo; that indicates whether the document is important or not. The query string can boost the document is important like below,
-q={!boost b=$importfunc}name:keyword&amp;amp;importfunc=query({!v=&amp;lsquo;important:true&amp;rsquo;})
+q={!boost b=$importfunc}name:keyword&amp;amp;importfunc=query({!v=&#39;important:true&amp;rsquo;})
 Above query string uses a sub query in boost function.
 Finally I want to boost both above two fields, and &amp;lsquo;important&amp;rsquo; field has higher priority.</description>
     </item>

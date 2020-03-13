@@ -18,7 +18,6 @@
       
       <guid>https://kane.mx/posts/effective-cloud-computing/serverless-domain-redirect/</guid>
       <description>&lt;p&gt;业务时常有需求将某个域名(A)的访问重定向到其他域名(B)，即使实现这样一个很简单的需求通常也需要部署Web服务器（例如Nginx），为域名A的请求返回302响应，并提供新的Location地址重定向到域名B。现在基于云计算服务，我们可以使用一些托管服务来实现同样的事情，无需管理服务器和维护应用，同时做到最低成本实现该需求。&lt;/p&gt;
-
 &lt;p&gt;接下来将介绍如何利用AWS上的服务实现该需求。&lt;/p&gt;</description>
     </item>
     
@@ -38,7 +37,6 @@
       
       <guid>https://kane.mx/posts/2019/serverless-framework/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://serverless.com/&#34;&gt;Serverless Framework&lt;/a&gt;是一个开源命令行工具。他提供函数脚手架、流程自动化、最佳实践等帮助开发、部署跨云厂商的托管无服务器计算服务(官方已支持aws, Azure, GCP, IBM Cloud等各种厂商的无服务器计算)。同时支持使用插件来扩展各种功能，比如支持更多云厂商无服务器计算服务，例如&lt;a href=&#34;https://github.com/aliyun/serverless-aliyun-function-compute&#34;&gt;阿里云的函数计算&lt;/a&gt;。&lt;/p&gt;
-
 &lt;p&gt;这里使用&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;基于函数计算的钉钉回调函数接口&lt;/a&gt;示例来演示如何使用&lt;a href=&#34;https://serverless.com/&#34;&gt;Serverless Framework&lt;/a&gt;将一个无服务器函数部署到&lt;a href=&#34;https://aws.amazon.com/lambda&#34;&gt;AWS Lambda&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     
@@ -49,9 +47,7 @@
       
       <guid>https://kane.mx/posts/2019/aws-lambda-layers/</guid>
       <description>&lt;p&gt;在&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;基于函数计算的钉钉回调函数接口&lt;/a&gt;中使用钉钉回调函数案例实践了&lt;a href=&#34;https://aws.amazon.com/lambda/&#34;&gt;AWS Lambda&lt;/a&gt;无服务函数。该示例中，我们将自定义的函数代码及依赖的第三方库（比如json处理库jackson, 钉钉openapi加密库, aws dynamodb client等）整体打包为一个部署包，上传到lamdba代码仓库用于函数执行。&lt;/p&gt;
-
 &lt;p&gt;然而实际项目中，其实有大量的相关函数可能会共享这些基础依赖库、三方函数库(比如headless chrome(Puppeteer), pandoc, OCR library &amp;ndash; Tesseract等等)或者使用自定义runtime(如官方未支持的java11)的需求。AWS Lambda在去年底发布了&lt;a href=&#34;https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/&#34;&gt;Lambda layers功能&lt;/a&gt;来满足上述这些实际开发中的需求。&lt;/p&gt;
-
 &lt;p&gt;接下来，让我们看看如何将&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;前文&lt;/a&gt;中的&lt;a href=&#34;https://github.com/zxkane/dingtalk-callback-on-aws/blob/267b5f11851148f5a23a834b8b7ecd4d3b247ce7/build.gradle.kts#L71-L91&#34;&gt;函数依赖&lt;/a&gt;放置到一个单独的layer中，作为不同函数的共享依赖库。&lt;/p&gt;</description>
     </item>
     

@@ -20,7 +20,7 @@
       <description>I successfully converted our product build from PDE build to Maven/Tycho. Something is worth to be documented here.
 There are several examples and posts to demonstrate how using Tycho building your Eclipse plug-ins, features, applications and products. The most helpful example is the demo of Tycho project.
 Below are some traps I met when building my project by Tycho,
- product build
+  product build
 Our product is based on plug-ins, however we added the &amp;lsquo;featurelist&amp;rsquo; in build.</description>
     </item>
     

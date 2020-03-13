@@ -40,11 +40,10 @@ The installation process would copy the feature and plugins which are included b
       <guid>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</guid>
       <description>I met a defect that dynamically created menu items disappear after creating a new viewPart. It caused me overtime last Friday. Today I find the root cause.
 The scenario is:
- open first document, the items are shown well
- open another document, the items disappear
+  open first document, the items are shown well
+  open another document, the items disappear
   The requirement is that showing the menu items while current part is document, otherwise hide them.
-So our implementation is:
- when current document part is deactivated, set menu items invisible</description>
+So our implementation is:</description>
     </item>
     
   </channel>

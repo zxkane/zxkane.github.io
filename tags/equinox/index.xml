@@ -49,14 +49,13 @@ Then Equinox launcher would install the bundles specified by vm&amp;rsquo;s syst
       <pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate>
       
       <guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid>
-      <description>Learn p2 step by step Kane   Learn P2 step by step
+      <description>Learn p2 step by step Kane    Learn P2 step by step
  p2 concept p2 install p2 install practice p2 repository publish customized p2 touchpoint p2 repository publish practice Example Code Reference    p2 concept 首先来理解p2引入的几个概念[1]
- p2 / Agent
- The provisioning infrastructure on client machines
- Installable Unit (IU)
- Metadata that describes things that can be installed/configured
- Artifact
- The actual content being installed/configured(e.</description>
+  p2 / Agent
+  The provisioning infrastructure on client machines
+  Installable Unit (IU)
+  Metadata that describes things that can be installed/configured
+  Artifact</description>
     </item>
     
     <item>
@@ -100,8 +99,8 @@ Kane</description>
 See http://wiki.eclipse.org/Adaptor_Hooks for more detail
 BaseClassLoadingHook would search the native code on itself. If it find the file in that jar file, it would extract the native library into its storage folder.
 EclipseClassLoadingHook defines some variables to search the native library. Belows are built-in variables:
-result.add(&amp;ldquo;ws/&amp;rdquo; + info.getWS() + &amp;ldquo;/&amp;rdquo;); //$NON-NLS-1$ //$NON-NLS-2$
-result.add(&amp;ldquo;os/&amp;rdquo; + info.getOS() + &amp;ldquo;/&amp;rdquo; + info.getOSArch() + &amp;ldquo;/&amp;rdquo;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$</description>
+result.add(&amp;ldquo;ws/&amp;rdquo; + info.getWS() + &amp;ldquo;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$
+result.add(&amp;ldquo;os/&amp;rdquo; + info.getOS() + &amp;ldquo;/&amp;rdquo; + info.getOSArch() + &amp;ldquo;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$</description>
     </item>
     
     <item>

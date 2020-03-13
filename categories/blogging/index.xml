@@ -6,10 +6,19 @@
     <description>Recent content in blogging on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 13 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/categories/blogging/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AWS发布更快、更便宜、更易用的HTTP APIs</title>
+      <link>https://kane.mx/posts/2020/new-http-apis-of-api-gateway/</link>
+      <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2020/new-http-apis-of-api-gateway/</guid>
+      <description>&lt;p&gt;AWS在3月12日&lt;a href=&#34;https://aws.amazon.com/blogs/compute/building-better-apis-http-apis-now-generally-available/&#34;&gt;正式发布了新一代的API网关 &amp;ndash; HTTP APIs&lt;/a&gt;。AWS发布的第一代API Gateway服务已经快5年了，通过这些年来大规模服务客户的心得以及客户反馈，由此重新构建了更快（相比第一代网关60%的延迟减少）、更便宜（至少节省71%的费用）、更易用的第二代网关服务。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>AWS Cloud Debugging初探</title>
@@ -27,7 +36,6 @@
       
       <guid>https://kane.mx/posts/2019/aws-batch/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;是一个全托管的批处理调度服务，它可为用户管理所有基础设施，从而避免了预置、管理、监控和扩展批处理计算作业所带来的复杂性。当然&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;已与 AWS 平台原生集成，让用户能够利用 AWS 的扩展、联网和访问管理功能。让用户轻松运行能够安全地从 AWS 数据存储（如 Amazon S3 和 Amazon DynamoDB）中检索数据并向其中写入数据的作业。&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;可根据所提交的批处理作业的数量和资源要求预置计算资源并优化作业分配。能够将计算资源动态扩展至运行批处理作业所需的任何数量，从而不必受固定容量集群的限制。&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;还可以利用 Spot 实例，从而进一步降低运行批处理作业产生的费用。&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;服务本身是&lt;strong&gt;免费&lt;/strong&gt;的，仅收取实际使用的 EC2 实例费用。&lt;/p&gt;</description>
     </item>
     
@@ -56,7 +64,6 @@
       
       <guid>https://kane.mx/posts/2019/rds-log-analysis/</guid>
       <description>&lt;p&gt;托管的RDS数据库已经是云计算服务中非常成熟的服务，绝大部分的云计算用户会采用RDS服务来提升数据库服务的可用性同时减少数据库的各类运维事务。&lt;/p&gt;
-
 &lt;p&gt;AWS RDS服务支持开启和查询各类的数据库日志，包括常规日志、慢日志、错误日志和审计日志。但RDS服务默认提供的日志查看工具仅仅类似文本查看器，无法针对日志数据做统计和查看历史滚动的存档。&lt;/p&gt;</description>
     </item>
     
@@ -85,7 +92,6 @@
       
       <guid>https://kane.mx/posts/2019/alexa-login-issue/</guid>
       <description>&lt;p&gt;近期需要做一些Alexa上的开发，在手机上安装了Amazon Alexa，一直得到下面这样的错误提示而无法登录。&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;Connection Timed Out.&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -98,7 +104,6 @@
       
       <guid>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</guid>
       <description>&lt;p&gt;个人电脑数据备份一直都是一个强烈的需求。使用网盘等云存储产品可以部分满足数据的备份需求，仍然无法做到使用便利性和很高的数据安全保障。&lt;/p&gt;
-
 &lt;p&gt;MacOSX上系统内置了备份解决方案 &amp;ndash; &lt;a href=&#34;https://support.apple.com/zh-cn/HT201250&#34;&gt;时间机器(Time Machine)&lt;/a&gt;。Time Machine支持AirPort Time Capsule，NAS存储或者外置的存储设备。然而这些备份方案都依赖于硬件设备，有容量限制或不便于移动。在云计算已经大行其道的今天，有没有使用云计算厂商对象存储作为目标存储的备份方案，为MacOSX数据备份提供无限容量、高度的安全性的云方案？经过一番搜索，既找到了开源免费的工具&lt;a href=&#34;https://restic.net/&#34;&gt;Restic&lt;/a&gt;，也有付费软件&lt;a href=&#34;https://www.arqbackup.com/&#34;&gt;Arq&lt;/a&gt;。无论Restic还是Arq提供的是独立的三方工具来实现备份到云端存储或从云端恢复，有没有将Time Machine和云端储存结合在一起的方案呢？&lt;/p&gt;</description>
     </item>
     
@@ -109,9 +114,7 @@
       
       <guid>https://kane.mx/posts/2019/aws-vs-aliyun/</guid>
       <description>&lt;p&gt;AWS是全球云计算领域的领跑者，它在计算、存储、网络等方面都做出了很多创新，同时也是其他云计算厂商学习及模仿的对象。&lt;/p&gt;
-
 &lt;p&gt;阿里云是目前国内市场份额最大的云计算厂商，其份额&lt;a href=&#34;http://www.sohu.com/a/302064020_465914&#34;&gt;超过了第二至五位厂商的总和&lt;/a&gt;，份额领先优势比AWS在全球还要显著，同时&lt;a href=&#34;https://www.canalys.com/newsroom/cloud-market-share-q4-2018-and-full-year-2018&#34;&gt;全球份额也超过IBM来到第四&lt;/a&gt;。&lt;/p&gt;
-
 &lt;p&gt;本文将对AWS和阿里云核心服务做一个简要对比，以及这两家厂商发展方向的一些个人见解。&lt;/p&gt;</description>
     </item>
     
@@ -122,7 +125,6 @@
       
       <guid>https://kane.mx/posts/2019/serverless-framework/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://serverless.com/&#34;&gt;Serverless Framework&lt;/a&gt;是一个开源命令行工具。他提供函数脚手架、流程自动化、最佳实践等帮助开发、部署跨云厂商的托管无服务器计算服务(官方已支持aws, Azure, GCP, IBM Cloud等各种厂商的无服务器计算)。同时支持使用插件来扩展各种功能，比如支持更多云厂商无服务器计算服务，例如&lt;a href=&#34;https://github.com/aliyun/serverless-aliyun-function-compute&#34;&gt;阿里云的函数计算&lt;/a&gt;。&lt;/p&gt;
-
 &lt;p&gt;这里使用&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;基于函数计算的钉钉回调函数接口&lt;/a&gt;示例来演示如何使用&lt;a href=&#34;https://serverless.com/&#34;&gt;Serverless Framework&lt;/a&gt;将一个无服务器函数部署到&lt;a href=&#34;https://aws.amazon.com/lambda&#34;&gt;AWS Lambda&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     
@@ -133,9 +135,7 @@
       
       <guid>https://kane.mx/posts/2019/aws-lambda-layers/</guid>
       <description>&lt;p&gt;在&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;基于函数计算的钉钉回调函数接口&lt;/a&gt;中使用钉钉回调函数案例实践了&lt;a href=&#34;https://aws.amazon.com/lambda/&#34;&gt;AWS Lambda&lt;/a&gt;无服务函数。该示例中，我们将自定义的函数代码及依赖的第三方库（比如json处理库jackson, 钉钉openapi加密库, aws dynamodb client等）整体打包为一个部署包，上传到lamdba代码仓库用于函数执行。&lt;/p&gt;
-
 &lt;p&gt;然而实际项目中，其实有大量的相关函数可能会共享这些基础依赖库、三方函数库(比如headless chrome(Puppeteer), pandoc, OCR library &amp;ndash; Tesseract等等)或者使用自定义runtime(如官方未支持的java11)的需求。AWS Lambda在去年底发布了&lt;a href=&#34;https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/&#34;&gt;Lambda layers功能&lt;/a&gt;来满足上述这些实际开发中的需求。&lt;/p&gt;
-
 &lt;p&gt;接下来，让我们看看如何将&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;前文&lt;/a&gt;中的&lt;a href=&#34;https://github.com/zxkane/dingtalk-callback-on-aws/blob/267b5f11851148f5a23a834b8b7ecd4d3b247ce7/build.gradle.kts#L71-L91&#34;&gt;函数依赖&lt;/a&gt;放置到一个单独的layer中，作为不同函数的共享依赖库。&lt;/p&gt;</description>
     </item>
     
@@ -146,7 +146,6 @@
       
       <guid>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</guid>
       <description>&lt;p&gt;这周参加了&lt;a href=&#34;https://2019.qconbeijing.com/&#34;&gt;QCon 2019北京站&lt;/a&gt;，这里记录下部分印象深刻的主题以及个人感受。&lt;/p&gt;
-
 &lt;p&gt;QCon是由InfoQ主办的综合性技术盛会，主题涵盖了大前端、高可用架构、容器技术、大数据、机器学习等各种热门技术主题。其中也不乏&lt;a href=&#34;https://2019.qconbeijing.com/track/501&#34;&gt;下一代分布式应用&lt;/a&gt;、&lt;a href=&#34;https://2019.qconbeijing.com/track/565&#34;&gt;混沌工程&lt;/a&gt;等前沿有意思的主题，后面会详细介绍相关的主题演讲。&lt;/p&gt;</description>
     </item>
     

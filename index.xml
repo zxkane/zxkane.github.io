@@ -6,10 +6,19 @@
     <description>Recent content on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 13 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AWS发布更快、更便宜、更易用的HTTP APIs</title>
+      <link>https://kane.mx/posts/2020/new-http-apis-of-api-gateway/</link>
+      <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2020/new-http-apis-of-api-gateway/</guid>
+      <description>&lt;p&gt;AWS在3月12日&lt;a href=&#34;https://aws.amazon.com/blogs/compute/building-better-apis-http-apis-now-generally-available/&#34;&gt;正式发布了新一代的API网关 &amp;ndash; HTTP APIs&lt;/a&gt;。AWS发布的第一代API Gateway服务已经快5年了，通过这些年来大规模服务客户的心得以及客户反馈，由此重新构建了更快（相比第一代网关60%的延迟减少）、更便宜（至少节省71%的费用）、更易用的第二代网关服务。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>AWS Cloud Debugging初探</title>
@@ -27,7 +36,6 @@
       
       <guid>https://kane.mx/posts/2019/aws-batch/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;是一个全托管的批处理调度服务，它可为用户管理所有基础设施，从而避免了预置、管理、监控和扩展批处理计算作业所带来的复杂性。当然&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;已与 AWS 平台原生集成，让用户能够利用 AWS 的扩展、联网和访问管理功能。让用户轻松运行能够安全地从 AWS 数据存储（如 Amazon S3 和 Amazon DynamoDB）中检索数据并向其中写入数据的作业。&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;可根据所提交的批处理作业的数量和资源要求预置计算资源并优化作业分配。能够将计算资源动态扩展至运行批处理作业所需的任何数量，从而不必受固定容量集群的限制。&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;还可以利用 Spot 实例，从而进一步降低运行批处理作业产生的费用。&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;服务本身是&lt;strong&gt;免费&lt;/strong&gt;的，仅收取实际使用的 EC2 实例费用。&lt;/p&gt;</description>
     </item>
     
@@ -56,7 +64,6 @@
       
       <guid>https://kane.mx/posts/2019/rds-log-analysis/</guid>
       <description>&lt;p&gt;托管的RDS数据库已经是云计算服务中非常成熟的服务，绝大部分的云计算用户会采用RDS服务来提升数据库服务的可用性同时减少数据库的各类运维事务。&lt;/p&gt;
-
 &lt;p&gt;AWS RDS服务支持开启和查询各类的数据库日志，包括常规日志、慢日志、错误日志和审计日志。但RDS服务默认提供的日志查看工具仅仅类似文本查看器，无法针对日志数据做统计和查看历史滚动的存档。&lt;/p&gt;</description>
     </item>
     
@@ -85,7 +92,6 @@
       
       <guid>https://kane.mx/posts/effective-cloud-computing/serverless-domain-redirect/</guid>
       <description>&lt;p&gt;业务时常有需求将某个域名(A)的访问重定向到其他域名(B)，即使实现这样一个很简单的需求通常也需要部署Web服务器（例如Nginx），为域名A的请求返回302响应，并提供新的Location地址重定向到域名B。现在基于云计算服务，我们可以使用一些托管服务来实现同样的事情，无需管理服务器和维护应用，同时做到最低成本实现该需求。&lt;/p&gt;
-
 &lt;p&gt;接下来将介绍如何利用AWS上的服务实现该需求。&lt;/p&gt;</description>
     </item>
     
@@ -96,7 +102,6 @@
       
       <guid>https://kane.mx/posts/2019/alexa-login-issue/</guid>
       <description>&lt;p&gt;近期需要做一些Alexa上的开发，在手机上安装了Amazon Alexa，一直得到下面这样的错误提示而无法登录。&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;Connection Timed Out.&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -109,7 +114,6 @@
       
       <guid>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</guid>
       <description>&lt;p&gt;个人电脑数据备份一直都是一个强烈的需求。使用网盘等云存储产品可以部分满足数据的备份需求，仍然无法做到使用便利性和很高的数据安全保障。&lt;/p&gt;
-
 &lt;p&gt;MacOSX上系统内置了备份解决方案 &amp;ndash; &lt;a href=&#34;https://support.apple.com/zh-cn/HT201250&#34;&gt;时间机器(Time Machine)&lt;/a&gt;。Time Machine支持AirPort Time Capsule，NAS存储或者外置的存储设备。然而这些备份方案都依赖于硬件设备，有容量限制或不便于移动。在云计算已经大行其道的今天，有没有使用云计算厂商对象存储作为目标存储的备份方案，为MacOSX数据备份提供无限容量、高度的安全性的云方案？经过一番搜索，既找到了开源免费的工具&lt;a href=&#34;https://restic.net/&#34;&gt;Restic&lt;/a&gt;，也有付费软件&lt;a href=&#34;https://www.arqbackup.com/&#34;&gt;Arq&lt;/a&gt;。无论Restic还是Arq提供的是独立的三方工具来实现备份到云端存储或从云端恢复，有没有将Time Machine和云端储存结合在一起的方案呢？&lt;/p&gt;</description>
     </item>
     
@@ -129,9 +133,7 @@
       
       <guid>https://kane.mx/posts/2019/aws-vs-aliyun/</guid>
       <description>&lt;p&gt;AWS是全球云计算领域的领跑者，它在计算、存储、网络等方面都做出了很多创新，同时也是其他云计算厂商学习及模仿的对象。&lt;/p&gt;
-
 &lt;p&gt;阿里云是目前国内市场份额最大的云计算厂商，其份额&lt;a href=&#34;http://www.sohu.com/a/302064020_465914&#34;&gt;超过了第二至五位厂商的总和&lt;/a&gt;，份额领先优势比AWS在全球还要显著，同时&lt;a href=&#34;https://www.canalys.com/newsroom/cloud-market-share-q4-2018-and-full-year-2018&#34;&gt;全球份额也超过IBM来到第四&lt;/a&gt;。&lt;/p&gt;
-
 &lt;p&gt;本文将对AWS和阿里云核心服务做一个简要对比，以及这两家厂商发展方向的一些个人见解。&lt;/p&gt;</description>
     </item>
     
@@ -142,7 +144,6 @@
       
       <guid>https://kane.mx/posts/2019/serverless-framework/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://serverless.com/&#34;&gt;Serverless Framework&lt;/a&gt;是一个开源命令行工具。他提供函数脚手架、流程自动化、最佳实践等帮助开发、部署跨云厂商的托管无服务器计算服务(官方已支持aws, Azure, GCP, IBM Cloud等各种厂商的无服务器计算)。同时支持使用插件来扩展各种功能，比如支持更多云厂商无服务器计算服务，例如&lt;a href=&#34;https://github.com/aliyun/serverless-aliyun-function-compute&#34;&gt;阿里云的函数计算&lt;/a&gt;。&lt;/p&gt;
-
 &lt;p&gt;这里使用&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;基于函数计算的钉钉回调函数接口&lt;/a&gt;示例来演示如何使用&lt;a href=&#34;https://serverless.com/&#34;&gt;Serverless Framework&lt;/a&gt;将一个无服务器函数部署到&lt;a href=&#34;https://aws.amazon.com/lambda&#34;&gt;AWS Lambda&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     
@@ -153,9 +154,7 @@
       
       <guid>https://kane.mx/posts/2019/aws-lambda-layers/</guid>
       <description>&lt;p&gt;在&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;基于函数计算的钉钉回调函数接口&lt;/a&gt;中使用钉钉回调函数案例实践了&lt;a href=&#34;https://aws.amazon.com/lambda/&#34;&gt;AWS Lambda&lt;/a&gt;无服务函数。该示例中，我们将自定义的函数代码及依赖的第三方库（比如json处理库jackson, 钉钉openapi加密库, aws dynamodb client等）整体打包为一个部署包，上传到lamdba代码仓库用于函数执行。&lt;/p&gt;
-
 &lt;p&gt;然而实际项目中，其实有大量的相关函数可能会共享这些基础依赖库、三方函数库(比如headless chrome(Puppeteer), pandoc, OCR library &amp;ndash; Tesseract等等)或者使用自定义runtime(如官方未支持的java11)的需求。AWS Lambda在去年底发布了&lt;a href=&#34;https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/&#34;&gt;Lambda layers功能&lt;/a&gt;来满足上述这些实际开发中的需求。&lt;/p&gt;
-
 &lt;p&gt;接下来，让我们看看如何将&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/&#34;&gt;前文&lt;/a&gt;中的&lt;a href=&#34;https://github.com/zxkane/dingtalk-callback-on-aws/blob/267b5f11851148f5a23a834b8b7ecd4d3b247ce7/build.gradle.kts#L71-L91&#34;&gt;函数依赖&lt;/a&gt;放置到一个单独的layer中，作为不同函数的共享依赖库。&lt;/p&gt;</description>
     </item>
     
@@ -166,7 +165,6 @@
       
       <guid>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</guid>
       <description>&lt;p&gt;这周参加了&lt;a href=&#34;https://2019.qconbeijing.com/&#34;&gt;QCon 2019北京站&lt;/a&gt;，这里记录下部分印象深刻的主题以及个人感受。&lt;/p&gt;
-
 &lt;p&gt;QCon是由InfoQ主办的综合性技术盛会，主题涵盖了大前端、高可用架构、容器技术、大数据、机器学习等各种热门技术主题。其中也不乏&lt;a href=&#34;https://2019.qconbeijing.com/track/501&#34;&gt;下一代分布式应用&lt;/a&gt;、&lt;a href=&#34;https://2019.qconbeijing.com/track/565&#34;&gt;混沌工程&lt;/a&gt;等前沿有意思的主题，后面会详细介绍相关的主题演讲。&lt;/p&gt;</description>
     </item>
     
@@ -177,11 +175,8 @@
       
       <guid>https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/</guid>
       <description>&lt;p&gt;基于Java的&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;是由Java最大开源生态&lt;a href=&#34;https://spring.io/&#34;&gt;Spring&lt;/a&gt;社区推出的Out-of-Box分布式&lt;a href=&#34;https://en.wikipedia.org/wiki/Microservices&#34;&gt;微服务&lt;/a&gt;解决方案，&lt;a href=&#34;https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Angel-Release-Notes/6e0e1ba3d510d4a30b95c1468007b22f2427fa25&#34;&gt;自2016年发布&lt;/a&gt;起就被众多开发者看好。Java作为广为流行的服务端编程语言，&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;也就越来越多的被用于微服务开发。&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;集成了&lt;a href=&#34;https://netflix.github.io/&#34;&gt;Netflix OSS&lt;/a&gt;开源项目实现了很多功能(或作为实现之一)，包括服务治理、网关路由、客户端负载均衡、服务间调用、断路器等。&lt;a href=&#34;https://spring.io/projects/spring-cloud-netflix&#34;&gt;Spring Cloud Netflix&lt;/a&gt;将很多生产级别微服务能力开箱即用的带到了Spring Cloud架构下的微服务中，帮助开发者快速的构建满足&lt;a href=&#34;https://12factor.net/&#34;&gt;12要素&lt;/a&gt;的应用。&lt;/p&gt;
-
 &lt;p&gt;在去年底发布的&lt;a href=&#34;https://spring.io/blog/2018/12/12/spring-cloud-greenwich-rc1-available-now#spring-cloud-netflix-projects-entering-maintenance-mode&#34;&gt;Spring Cloud Greenwich版本&lt;/a&gt;中宣布&lt;a href=&#34;https://spring.io/projects/spring-cloud-netflix&#34;&gt;Spring Cloud Netflix&lt;/a&gt;中重要的组件&lt;a href=&#34;https://github.com/Netflix/Hystrix#hystrix-status&#34;&gt;Hystrix&lt;/a&gt;、&lt;a href=&#34;https://github.com/Netflix/ribbon#project-status-on-maintenance&#34;&gt;Ribbon&lt;/a&gt;、&lt;code&gt;Zuul 1&lt;/code&gt;等由于上游开源项目进入维护状态，对应的Spring Cloud Netflix项目也进入到维护状态。这些项目将&lt;strong&gt;不再适合&lt;/strong&gt;用于长期维护的产品中！&lt;/p&gt;
-
 &lt;p&gt;同时随着近年云计算的发展，特别是&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;成为容器编排平台的事实标准，加上&lt;a href=&#34;https://www.nginx.com/blog/what-is-a-service-mesh/&#34;&gt;Service Mesh(服务网格)&lt;/a&gt;对微服务的服务治理和流量控制，为&lt;a href=&#34;https://www.redhat.com/en/topics/cloud-native-apps&#34;&gt;云原生应用&lt;/a&gt;提供了更为现代、平台无关的解决方案。&lt;/p&gt;</description>
     </item>
     
@@ -210,7 +205,6 @@
       
       <guid>https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Serverless_computing&#34;&gt;Serverless Computing(无服务器计算)&lt;/a&gt;是目前最被看好的云端计算执行模型。其最大的好处是提供分布式弹性可伸缩的计算执行环境，仅为实际使用资源付费，并且将应用维护者从常规的运维事务中解放出来，更利于专注到具体的业务上。&lt;/p&gt;
-
 &lt;p&gt;在主流的应用部署方式下，无论是使用&lt;a href=&#34;https://aws.amazon.com/cn/ec2&#34;&gt;云主机&lt;/a&gt;还是&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/&#34;&gt;Kubernetes&lt;/a&gt;作为运行环境，都会有大量运维层面的事务需要考虑和处理，并且应用程序需要按照分布式程序的设计准则来应对应用的水平伸缩。同时随着云计算服务的发展和完善，云计算厂商提供了越来越多的基础服务，例如API网关、对象存储、消息队列、日志、监控等服务，函数计算可以完美的同其他云服务集成，帮助用户快速实现出生产级别的弹性可伸缩的应用。&lt;/p&gt;</description>
     </item>
     
@@ -221,14 +215,11 @@
       
       <guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</guid>
       <description>&lt;p&gt;企业随着业务的发展，必然会部署各种各样的IT系统。出于安全性的考虑，一些系统仅可企业内部使用，甚至仅开放给企业部分部门员工使用。&lt;/p&gt;
-
 &lt;p&gt;这些IT系统大致可分为两类，&lt;/p&gt;
-
 &lt;ol&gt;
 &lt;li&gt;系统本身不支持任何认证机制，例如资讯或文档类系统。需要增加认证保护，能够限制非企业员工访问即可。系统运维通常的做法是，为站点设置&lt;a href=&#34;https://en.wikipedia.org/wiki/Basic_access_authentication&#34;&gt;HTTP Basic认证&lt;/a&gt;保护。由于&lt;a href=&#34;https://en.wikipedia.org/wiki/Basic_access_authentication&#34;&gt;HTTP Basic认证&lt;/a&gt;是通过预设的用户、密码认证，认证信息比较容易泄露。即使定期更换密码，但需要额外的机制通知用户密码的变更，用户体验也不好。&lt;/li&gt;
 &lt;li&gt;系统自身支持认证，甚至支持多种认证机制。比如最常用的开源CI/CD工具，&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins&lt;/a&gt;内置支持本地数据库认证、通过&lt;a href=&#34;https://plugins.jenkins.io/#&#34;&gt;插件&lt;/a&gt;支持多种第三方系统集成认证。如果大量的IT系统都有一套独立的用户管理，随着企业的员工的变更，用户的增删等操作对系统管理员来说是不小的工作量。同时，也很容易由于人为疏忽，造成资产、数据的安全隐患。&lt;/li&gt;
 &lt;/ol&gt;
-
 &lt;p&gt;假设企业自身已经有了一套OA系统包含员工、组织结构管理，例如，国内目前最为普及流行的&lt;a href=&#34;https://www.dingtalk.com/&#34;&gt;钉钉&lt;/a&gt;或&lt;a href=&#34;https://work.weixin.qq.com/&#34;&gt;企业微信&lt;/a&gt;。我们完全可以提供一套基于&lt;a href=&#34;https://oauth.net/2/&#34;&gt;oauth 2.0协议&lt;/a&gt;的认证方式，让以上两类IT系统使用企业已有的OA系统(&lt;a href=&#34;https://www.dingtalk.com/&#34;&gt;钉钉&lt;/a&gt;或&lt;a href=&#34;https://work.weixin.qq.com/&#34;&gt;企业微信&lt;/a&gt;)来实现登录认证。做到这一点后，企业无论有多少IT系统都不再需要额外管理用户的成本，并且也避免了数据安全隐患。&lt;/p&gt;</description>
     </item>
     
@@ -239,9 +230,7 @@
       
       <guid>https://kane.mx/posts/effective-cloud-computing/iam-best-practice/</guid>
       <description>&lt;p&gt;企业使用公有云服务的第一件事情就是创建云帐号，有了帐号之后如何让企业员工安全合规的使用云帐号下的各种资源是开启云之旅后的第一个考验。&lt;/p&gt;
-
 &lt;p&gt;云计算厂商针对企业上云后面临的第一个需求已经推出了完善的解决方案&amp;ndash;&lt;a href=&#34;https://en.wikipedia.org/wiki/Identity_management&#34;&gt;Identity and Access Management&lt;/a&gt;。&lt;a href=&#34;https://en.wikipedia.org/wiki/Identity_management&#34;&gt;IAM&lt;/a&gt;可以帮助云帐号安全地控制对云计算服务资源的访问。企业可以使用IAM控制对哪个用户进行身份验证 (登录) 和授权 (具有权限) 以使用资源。&lt;/p&gt;
-
 &lt;p&gt;云厂商是否提供完善的IAM服务可以作为整体产品解决方案是否成熟的一个衡量指标，比如AWS的&lt;a href=&#34;https://docs.aws.amazon.com/zh_cn/IAM/latest/UserGuide/introduction.html&#34;&gt;IAM&lt;/a&gt;和阿里云的&lt;a href=&#34;https://help.aliyun.com/document_detail/28627.html&#34;&gt;访问控制&lt;/a&gt;都是较为成熟完善的产品。国内某个以AI能力为卖点的云厂商，在IAM产品方面几乎为零，很难相信对安全合规有需求的企业会完整使用他的云产品作为解决方案。&lt;/p&gt;</description>
     </item>
     
@@ -252,7 +241,6 @@
       
       <guid>https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/</guid>
       <description>&lt;p&gt;这是“如何高效使用云服务”系列文章的首篇分享。可能有朋友好奇为什么不是从云计算最基础的服务&amp;ndash;计算资源&lt;a href=&#34;https://cn.aliyun.com/product/ecs&#34;&gt;ECS&lt;/a&gt;/&lt;a href=&#34;https://aws.amazon.com/cn/ec2/&#34;&gt;EC2&lt;/a&gt;讲起呢？在&lt;a href=&#34;https://pivotal.io/cloud-native&#34;&gt;Cloud Native&lt;/a&gt;已经被越来越接受的今天，基于&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;部署、编排应用的方式已经是业界的事实标准。无论是互联网巨头，传统500强企业，还是创业团队都在使用或规划使用&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;作为应用程序的自动化部署、可扩展管理平台。在云计算平台，虚拟机越来越不需要单独的管理，在绝大多数的业务场景下，它们只是作为容器集群所管理的计算资源。甚至虚拟机的创建到销毁整个生命周期管理都可以由&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;根据集群的负载来自动完成。&lt;/p&gt;
-
 &lt;p&gt;所有主流的云计算厂商都在解决方案中力推托管的&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;，&lt;a href=&#34;https://aws.amazon.com/cn/&#34;&gt;AWS&lt;/a&gt;的&lt;a href=&#34;https://aws.amazon.com/eks&#34;&gt;EKS&lt;/a&gt;，&lt;a href=&#34;https://azure.microsoft.com/en-us/&#34;&gt;Azure&lt;/a&gt;上的&lt;a href=&#34;https://azure.microsoft.com/en-us/services/kubernetes-service/&#34;&gt;AKS&lt;/a&gt;，当然少不了Google家&lt;a href=&#34;https://cloud.google.com/&#34;&gt;GCP&lt;/a&gt;上的&lt;a href=&#34;https://cloud.google.com/kubernetes-engine/&#34;&gt;Kubernetes Engine&lt;/a&gt;。国内&lt;a href=&#34;https://www.aliyun.com/product/kubernetes&#34;&gt;阿里云&lt;/a&gt;，&lt;a href=&#34;https://cloud.tencent.com/product/tke&#34;&gt;腾讯云&lt;/a&gt;等每一个公有云玩家也都基于开源&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;推出了托管服务。如果一家云计算厂商在提供托管&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;这一服务上没跟上业界的步伐，将来极大可能被淘汰出这个市场。&lt;/p&gt;</description>
     </item>
     
@@ -417,7 +405,7 @@ java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &amp;#39;jenkins
       <description>The index has a field named &amp;lsquo;create_time&amp;rsquo; that is the timestamp of document created time. The query string can boost the latest created document like below,
 {!boost b=recip(ms(NOW,create_time),3.16e-11,0.08,0.05)}name:keyword
 There is another field named &amp;lsquo;important&amp;rsquo; that indicates whether the document is important or not. The query string can boost the document is important like below,
-q={!boost b=$importfunc}name:keyword&amp;amp;importfunc=query({!v=&amp;lsquo;important:true&amp;rsquo;})
+q={!boost b=$importfunc}name:keyword&amp;amp;importfunc=query({!v=&#39;important:true&amp;rsquo;})
 Above query string uses a sub query in boost function.
 Finally I want to boost both above two fields, and &amp;lsquo;important&amp;rsquo; field has higher priority.</description>
     </item>
@@ -430,7 +418,7 @@ Finally I want to boost both above two fields, and &amp;lsquo;important&amp;rsqu
       <guid>https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/</guid>
       <description>It&amp;rsquo;s a common and ugly problem when using non-ascii characters in Django.
 The general solution is below,
- put # -- coding: utf-8 -- at beginning of every python source files that are using utf-8 characters declare every string variable as unicode, such as str_var = u&amp;rsquo;中文字符&amp;rsquo; add a __unicode__ method in your model classes if you are running server on apache/mod_wsgi or ngnix, you need configure web server to use utf-8 encoding  </description>
+ put # -- coding: utf-8 -- at beginning of every python source files that are using utf-8 characters declare every string variable as unicode, such as str_var = u&#39;中文字符&amp;rsquo; add a __unicode__ method in your model classes if you are running server on apache/mod_wsgi or ngnix, you need configure web server to use utf-8 encoding  </description>
     </item>
     
     <item>
@@ -504,7 +492,7 @@ Most of email service providers require the secure authorization when using its 
       <description>I successfully converted our product build from PDE build to Maven/Tycho. Something is worth to be documented here.
 There are several examples and posts to demonstrate how using Tycho building your Eclipse plug-ins, features, applications and products. The most helpful example is the demo of Tycho project.
 Below are some traps I met when building my project by Tycho,
- product build
+  product build
 Our product is based on plug-ins, however we added the &amp;lsquo;featurelist&amp;rsquo; in build.</description>
     </item>
     
@@ -609,21 +597,10 @@ I searched a similar request on bugzilla, then I initialized my contribution in 
       
       <guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid>
       <description>Recently our installer met a strange bug, it didn&amp;rsquo;t uninstall all legacy bundles after updating to new version. Finally I found it&amp;rsquo;s due to a magic fragment is missing in the profile due to some causes.
- 
-
-
-
-installBundle(bundle:${artifact})
-
+ installBundle(bundle:${artifact})
 uninstallBundle(bundle:${artifact})
-
- 
-setStartLevel(startLevel:4);
-
-
-
-
-It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsquo;s a fragment IU and match all the eclipse&amp;rsquo;s plug-ins in that profile.</description>
+ setStartLevel(startLevel:4);
+It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsquo;s a fragment IU and match all the eclipse&amp;rsquo;s plug-ins in that profile. And this fragment defines the touch point actions for its hosts that will do installBundle action during &amp;lsquo;install&amp;rsquo; phrase and uninstallBundle action during &amp;lsquo;uninstall&amp;rsquo; phrase.</description>
     </item>
     
     <item>
@@ -634,8 +611,6 @@ It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsq
       <guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid>
       <description>You would see some interesting properties at the bottom of eclipse&amp;rsquo;s profile.
 For example,
-
-
 It attaches a property named &amp;lsquo;org.eclipse.equinox.p2.internal.inclusion.rules&amp;rsquo; with value &amp;lsquo;STRICT&amp;rsquo; on the IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; with version 3.6.1.M20100909-0800.
 It&amp;rsquo;s a very important property for the p2 engine. It means the IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; has been explicitly installed into the profile, so it&amp;rsquo;s not allowed be implicitly updated or removed.
 For example,
@@ -659,7 +634,7 @@ g++ -fno-stack-protector -o test.o test</description>
       
       <guid>https://kane.mx/posts/archive/blogspot/loop-name-for-for-clause-in-java/</guid>
       <description>Recently I just know such a useful syntax usage of java.
-aLoopName: for (;;) { // ... while (someCondition) // ... if (otherCondition) continue aLoopName;  </description>
+aLoopName: for (;;) { // ... while (someCondition) // ... if (otherCondition) continue aLoopName; </description>
     </item>
     
     <item>
@@ -670,7 +645,7 @@ aLoopName: for (;;) { // ... while (someCondition) // ... if (otherCondition) 
       <guid>https://kane.mx/posts/archive/blogspot/rename-command/</guid>
       <description>It&amp;rsquo;s a powerful command to rename files in a batch.
 Usage:
-rename &amp;rsquo;s/(\d+)$/$1\.txt/&amp;rsquo; * rename add &amp;lsquo;.txt&amp;rsquo; extension name for all files that ends with number.</description>
+rename &amp;lsquo;s/(\d+)$/$1\.txt/&amp;rsquo; * rename add &amp;lsquo;.txt&amp;rsquo; extension name for all files that ends with number.</description>
     </item>
     
     <item>
@@ -768,7 +743,7 @@ View more presentations from Sonatype.</description>
       <guid>https://kane.mx/posts/archive/blogspot/p2-replication-tool-lives-on-eclipse/</guid>
       <description>Days ago I updated my p2 replication tool. It&amp;rsquo;s easier to install it in your Eclipse.
 A new component named &amp;lsquo;Eclipse marketplace&amp;rsquo; is added into Eclipse SDK since Helios, which is an application store for Eclipse. People could be easy to install third party plug-ins into their Eclipse.
-You can launch marketplace via &amp;lsquo;Help&amp;rsquo; - &amp;lsquo;Eclipse Marketplace&amp;hellip;&amp;rsquo;, then search key word &amp;lsquo;p2&amp;rsquo; or &amp;lsquo;replication&amp;rsquo; to find the tool. Finally click next to install it.</description>
+You can launch marketplace via &amp;lsquo;Help&amp;rsquo; - &amp;lsquo;Eclipse Marketplace&amp;hellip;&#39;, then search key word &amp;lsquo;p2&amp;rsquo; or &amp;lsquo;replication&amp;rsquo; to find the tool. Finally click next to install it.</description>
     </item>
     
     <item>
@@ -841,7 +816,7 @@ And I also opened bug to request improving it.</description>
       <pubDate>Mon, 11 Jan 2010 14:57:00 +0800</pubDate>
       
       <guid>https://kane.mx/posts/archive/blogspot/how-to-get-name-of-running-test-case-in/</guid>
-      <description>public class NameRuleTest { @Rule public TestName name = new TestName(); @Test public void testA() { assertEquals(&amp;quot;testA&amp;quot;, name.getMethodName()); } @Test public void testB() { assertEquals(&amp;quot;testB&amp;quot;, name.getMethodName()); }}  </description>
+      <description>public class NameRuleTest { @Rule public TestName name = new TestName(); @Test public void testA() { assertEquals(&amp;quot;testA&amp;quot;, name.getMethodName()); } @Test public void testB() { assertEquals(&amp;quot;testB&amp;quot;, name.getMethodName()); }} </description>
     </item>
     
     <item>
@@ -864,8 +839,8 @@ P2 agreement page obtains all the units to be installed from the operands of pro
 a) execute &amp;ldquo;ssh-keygen -t rsa&amp;rdquo; under your linux/unix login to get the RSA keys.
 (press Enter for all)
 You will get 2 files uner ~/.ssh/, id_rsa and id_rsa.pub
-b) Put the public key id_rsa.pub to your remote host: ~/.ssh/authorized_keys If the remote host share the same nfs, just try &amp;ldquo; cat id_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys&amp;rdquo;
-* Remember to modify hostname or ip info in ~/.ssh/authorized_keys to &amp;ldquo;&amp;rdquo;, so that you can login from any host without password in your NIS domain.</description>
+b) Put the public key id_rsa.pub to your remote host: ~/.ssh/authorized_keys If the remote host share the same nfs, just try &amp;quot; cat id_rsa.pub &amp;raquo; ~/.ssh/authorized_keys&amp;rdquo;
+* Remember to modify hostname or ip info in ~/.ssh/authorized_keys to &amp;ldquo;&amp;quot;, so that you can login from any host without password in your NIS domain.</description>
     </item>
     
     <item>
@@ -896,14 +871,13 @@ Then Equinox launcher would install the bundles specified by vm&amp;rsquo;s syst
       <pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate>
       
       <guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid>
-      <description>Learn p2 step by step Kane   Learn P2 step by step
+      <description>Learn p2 step by step Kane    Learn P2 step by step
  p2 concept p2 install p2 install practice p2 repository publish customized p2 touchpoint p2 repository publish practice Example Code Reference    p2 concept 首先来理解p2引入的几个概念[1]
- p2 / Agent
- The provisioning infrastructure on client machines
- Installable Unit (IU)
- Metadata that describes things that can be installed/configured
- Artifact
- The actual content being installed/configured(e.</description>
+  p2 / Agent
+  The provisioning infrastructure on client machines
+  Installable Unit (IU)
+  Metadata that describes things that can be installed/configured
+  Artifact</description>
     </item>
     
     <item>
@@ -926,7 +900,7 @@ All the added options are for a ssh session that&amp;rsquo;s used for tunneling.
       <pubDate>Tue, 27 Oct 2009 16:12:00 +0800</pubDate>
       
       <guid>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</guid>
-      <description>-Dosgi.install.area=-Declipse.p2.profile=</description>
+      <description>-Dosgi.install.area=&amp;lt;launcher&amp;rsquo;s folder&amp;gt;</description>
     </item>
     
     <item>
@@ -966,8 +940,8 @@ It also allows to add/remove ip address from white list, which are accessed with
       
       <guid>https://kane.mx/posts/archive/blogspot/how-to-set-default-input-method-for/</guid>
       <description>add below lines in ~/.gnomerc
-export XMODIFIERS=&amp;ldquo;@im=fcitx&amp;rdquo;
-export GTK_IM_MODULE=&amp;ldquo;xim&amp;rdquo;</description>
+export XMODIFIERS=&amp;rdquo;@im=fcitx&amp;rdquo;
+export GTK_IM_MODULE=&amp;quot;xim&amp;rdquo;</description>
     </item>
     
     <item>
@@ -1032,8 +1006,8 @@ Kane</description>
 See http://wiki.eclipse.org/Adaptor_Hooks for more detail
 BaseClassLoadingHook would search the native code on itself. If it find the file in that jar file, it would extract the native library into its storage folder.
 EclipseClassLoadingHook defines some variables to search the native library. Belows are built-in variables:
-result.add(&amp;ldquo;ws/&amp;rdquo; + info.getWS() + &amp;ldquo;/&amp;rdquo;); //$NON-NLS-1$ //$NON-NLS-2$
-result.add(&amp;ldquo;os/&amp;rdquo; + info.getOS() + &amp;ldquo;/&amp;rdquo; + info.getOSArch() + &amp;ldquo;/&amp;rdquo;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$</description>
+result.add(&amp;ldquo;ws/&amp;rdquo; + info.getWS() + &amp;ldquo;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$
+result.add(&amp;ldquo;os/&amp;rdquo; + info.getOS() + &amp;ldquo;/&amp;rdquo; + info.getOSArch() + &amp;ldquo;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$</description>
     </item>
     
     <item>
@@ -1121,7 +1095,7 @@ If you want to use the qualifier string, you must define your feature and plug-i
       <description>最近几天被一个注册表相关的defect搞的焦头烂额。
 背景是这样的，产品在安装的时候需要通过修改注册表注册文件关联等信息。在先前安装程序基于InstallShield时工作正确，但在最近安装程序改用MSI后，我们写入注册表的信息没有被写到所期望的位置。
 通过各种试验，查找资料，终于搞明白原因。我们修改注册表的进程不是当前用户进程，而是系统进程，因此写入到HKEY_CURRENT_USER下的数据不能被写入到当前登陆用户下。
-We should not use &amp;ldquo;HKEY_CURRENT_USER&amp;rdquo; to retrival current user&amp;rsquo;s registry key value. Because Windows Services always startup before user login. It may happen some error or loading the wrong setting profile. If you still insist on using the current user registry key setting, please refer &amp;ldquo;RegOpenCurrentUser&amp;rdquo;.
+We should not use &amp;ldquo;HKEY_CURRENT_USER&amp;rdquo; to retrival current user&amp;rsquo;s registry key value. Because Windows Services always startup before user login. It may happen some error or loading the wrong setting profile. If you still insist on using the current user registry key setting, please refer &amp;ldquo;RegOpenCurrentUser&amp;quot;.
 最后只好将这些数据写到了Local Machine键值下。</description>
     </item>
     
@@ -1143,7 +1117,7 @@ We should not use &amp;ldquo;HKEY_CURRENT_USER&amp;rdquo; to retrival current us
       <description>java程序开发中经常用到JNI调用本地library, 同时又希望将library同class文件编译成一个jar文件以方便deploy.
 但是JDK的classloader不支持从jar文件中加载library, 一个变通的方法就是jar里的library以临时文件的方式写到临时目录或java.library目录.
 附上两篇文档链接 :
-[](http://www.javaworld.com.tw/jute/post/view?bid=29&amp;amp;id=173624&amp;amp;tpg=1&amp;amp;ppg=1&amp;amp;sty=1&amp;amp;age=0#173624)**[Load Library inside a jar file](http://www.javaworld.com.tw/jute/post/view?bid=29&amp;amp;id=173624&amp;amp;tpg=1&amp;amp;ppg=1&amp;amp;sty=1&amp;amp;age=0#173624)
+[](http://www.javaworld.com.tw/jute/post/view?bid=29&amp;amp;id=173624&amp;amp;tpg=1&amp;amp;ppg=1&amp;amp;sty=1&amp;amp;age=0#173624)**Load Library inside a jar file
 **
 使用JNI时，装载本地库的小技巧</description>
     </item>
@@ -1168,11 +1142,10 @@ The installation process would copy the feature and plugins which are included b
       <guid>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</guid>
       <description>I met a defect that dynamically created menu items disappear after creating a new viewPart. It caused me overtime last Friday. Today I find the root cause.
 The scenario is:
- open first document, the items are shown well
- open another document, the items disappear
+  open first document, the items are shown well
+  open another document, the items disappear
   The requirement is that showing the menu items while current part is document, otherwise hide them.
-So our implementation is:
- when current document part is deactivated, set menu items invisible</description>
+So our implementation is:</description>
     </item>
     
     <item>
@@ -1193,7 +1166,7 @@ There are two important parameters for jvm. And we must launch remote java app w
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/about/</guid>
-      <description>So, Who Am I? ---- I’m the father of **twin sons**. Live in Beijing. Also I&#39;m the *uix user, a full stack software engineer, devops and cloud native evangelist. Curious about me? Use the social links above to check out my profiles. </description>
+      <description></description>
     </item>
     
   </channel>

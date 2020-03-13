@@ -29,7 +29,7 @@
       <description>I successfully converted our product build from PDE build to Maven/Tycho. Something is worth to be documented here.
 There are several examples and posts to demonstrate how using Tycho building your Eclipse plug-ins, features, applications and products. The most helpful example is the demo of Tycho project.
 Below are some traps I met when building my project by Tycho,
- product build
+  product build
 Our product is based on plug-ins, however we added the &amp;lsquo;featurelist&amp;rsquo; in build.</description>
     </item>
     
@@ -60,21 +60,10 @@ I searched a similar request on bugzilla, then I initialized my contribution in 
       
       <guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid>
       <description>Recently our installer met a strange bug, it didn&amp;rsquo;t uninstall all legacy bundles after updating to new version. Finally I found it&amp;rsquo;s due to a magic fragment is missing in the profile due to some causes.
- 
-
-
-
-installBundle(bundle:${artifact})
-
+ installBundle(bundle:${artifact})
 uninstallBundle(bundle:${artifact})
-
- 
-setStartLevel(startLevel:4);
-
-
-
-
-It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsquo;s a fragment IU and match all the eclipse&amp;rsquo;s plug-ins in that profile.</description>
+ setStartLevel(startLevel:4);
+It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsquo;s a fragment IU and match all the eclipse&amp;rsquo;s plug-ins in that profile. And this fragment defines the touch point actions for its hosts that will do installBundle action during &amp;lsquo;install&amp;rsquo; phrase and uninstallBundle action during &amp;lsquo;uninstall&amp;rsquo; phrase.</description>
     </item>
     
     <item>
@@ -85,8 +74,6 @@ It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsq
       <guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid>
       <description>You would see some interesting properties at the bottom of eclipse&amp;rsquo;s profile.
 For example,
-
-
 It attaches a property named &amp;lsquo;org.eclipse.equinox.p2.internal.inclusion.rules&amp;rsquo; with value &amp;lsquo;STRICT&amp;rsquo; on the IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; with version 3.6.1.M20100909-0800.
 It&amp;rsquo;s a very important property for the p2 engine. It means the IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; has been explicitly installed into the profile, so it&amp;rsquo;s not allowed be implicitly updated or removed.
 For example,
@@ -121,14 +108,13 @@ Then Equinox launcher would install the bundles specified by vm&amp;rsquo;s syst
       <pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate>
       
       <guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid>
-      <description>Learn p2 step by step Kane   Learn P2 step by step
+      <description>Learn p2 step by step Kane    Learn P2 step by step
  p2 concept p2 install p2 install practice p2 repository publish customized p2 touchpoint p2 repository publish practice Example Code Reference    p2 concept 首先来理解p2引入的几个概念[1]
- p2 / Agent
- The provisioning infrastructure on client machines
- Installable Unit (IU)
- Metadata that describes things that can be installed/configured
- Artifact
- The actual content being installed/configured(e.</description>
+  p2 / Agent
+  The provisioning infrastructure on client machines
+  Installable Unit (IU)
+  Metadata that describes things that can be installed/configured
+  Artifact</description>
     </item>
     
     <item>
@@ -137,7 +123,7 @@ Then Equinox launcher would install the bundles specified by vm&amp;rsquo;s syst
       <pubDate>Tue, 27 Oct 2009 16:12:00 +0800</pubDate>
       
       <guid>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</guid>
-      <description>-Dosgi.install.area=-Declipse.p2.profile=</description>
+      <description>-Dosgi.install.area=&amp;lt;launcher&amp;rsquo;s folder&amp;gt;</description>
     </item>
     
     <item>
@@ -192,8 +178,8 @@ Kane</description>
 See http://wiki.eclipse.org/Adaptor_Hooks for more detail
 BaseClassLoadingHook would search the native code on itself. If it find the file in that jar file, it would extract the native library into its storage folder.
 EclipseClassLoadingHook defines some variables to search the native library. Belows are built-in variables:
-result.add(&amp;ldquo;ws/&amp;rdquo; + info.getWS() + &amp;ldquo;/&amp;rdquo;); //$NON-NLS-1$ //$NON-NLS-2$
-result.add(&amp;ldquo;os/&amp;rdquo; + info.getOS() + &amp;ldquo;/&amp;rdquo; + info.getOSArch() + &amp;ldquo;/&amp;rdquo;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$</description>
+result.add(&amp;ldquo;ws/&amp;rdquo; + info.getWS() + &amp;ldquo;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$
+result.add(&amp;ldquo;os/&amp;rdquo; + info.getOS() + &amp;ldquo;/&amp;rdquo; + info.getOSArch() + &amp;ldquo;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$</description>
     </item>
     
     <item>
@@ -246,11 +232,10 @@ The installation process would copy the feature and plugins which are included b
       <guid>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</guid>
       <description>I met a defect that dynamically created menu items disappear after creating a new viewPart. It caused me overtime last Friday. Today I find the root cause.
 The scenario is:
- open first document, the items are shown well
- open another document, the items disappear
+  open first document, the items are shown well
+  open another document, the items disappear
   The requirement is that showing the menu items while current part is document, otherwise hide them.
-So our implementation is:
- when current document part is deactivated, set menu items invisible</description>
+So our implementation is:</description>
     </item>
     
     <item>

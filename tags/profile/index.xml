@@ -18,21 +18,10 @@
       
       <guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid>
       <description>Recently our installer met a strange bug, it didn&amp;rsquo;t uninstall all legacy bundles after updating to new version. Finally I found it&amp;rsquo;s due to a magic fragment is missing in the profile due to some causes.
- 
-
-
-
-installBundle(bundle:${artifact})
-
+ installBundle(bundle:${artifact})
 uninstallBundle(bundle:${artifact})
-
- 
-setStartLevel(startLevel:4);
-
-
-
-
-It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsquo;s a fragment IU and match all the eclipse&amp;rsquo;s plug-ins in that profile.</description>
+ setStartLevel(startLevel:4);
+It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsquo;s a fragment IU and match all the eclipse&amp;rsquo;s plug-ins in that profile. And this fragment defines the touch point actions for its hosts that will do installBundle action during &amp;lsquo;install&amp;rsquo; phrase and uninstallBundle action during &amp;lsquo;uninstall&amp;rsquo; phrase.</description>
     </item>
     
     <item>
@@ -43,8 +32,6 @@ It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsq
       <guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid>
       <description>You would see some interesting properties at the bottom of eclipse&amp;rsquo;s profile.
 For example,
-
-
 It attaches a property named &amp;lsquo;org.eclipse.equinox.p2.internal.inclusion.rules&amp;rsquo; with value &amp;lsquo;STRICT&amp;rsquo; on the IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; with version 3.6.1.M20100909-0800.
 It&amp;rsquo;s a very important property for the p2 engine. It means the IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; has been explicitly installed into the profile, so it&amp;rsquo;s not allowed be implicitly updated or removed.
 For example,
