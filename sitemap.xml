@@ -4,91 +4,119 @@
   
   <url>
     <loc>https://kane.mx/tags/aws/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/aws-api-gateway/</loc>
-    <lastmod>2020-03-13T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/posts/2020/new-http-apis-of-api-gateway/</loc>
-    <lastmod>2020-03-13T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-27T14:13:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/categories/blogging/</loc>
-    <lastmod>2020-03-13T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-27T14:13:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/categories/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-27T14:13:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://kane.mx/tags/faas/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <loc>https://kane.mx/tags/codecommit/</loc>
+    <lastmod>2020-03-27T14:13:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/devops/</loc>
+    <lastmod>2020-03-27T14:13:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/git/</loc>
+    <lastmod>2020-03-27T14:13:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/posts/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/serverless/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/serverless-computing/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/categories/serverless-computing/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-27T14:13:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/tags/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-27T14:13:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-27T14:13:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-27T14:13:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2020/codecommit-devops-model/</loc>
+    <lastmod>2020-03-27T14:13:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/aws-api-gateway/</loc>
+    <lastmod>2020-03-13T21:07:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2020/new-http-apis-of-api-gateway/</loc>
+    <lastmod>2020-03-13T21:07:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/faas/</loc>
+    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/serverless/</loc>
+    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/serverless-computing/</loc>
+    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/categories/serverless-computing/</loc>
+    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -123,7 +151,7 @@
   
   <url>
     <loc>https://kane.mx/categories/effective-cloud-computing/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -270,7 +298,7 @@
   
   <url>
     <loc>https://kane.mx/tags/aws-lambda/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -340,7 +368,7 @@
   
   <url>
     <loc>https://kane.mx/tags/dingtalk/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -375,14 +403,14 @@
   
   <url>
     <loc>https://kane.mx/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/tags/%E9%92%89%E9%92%89/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -396,7 +424,7 @@
   
   <url>
     <loc>https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -411,13 +439,6 @@
   <url>
     <loc>https://kane.mx/posts/2019/aws-lambda-layers/</loc>
     <lastmod>2019-05-14T17:01:12+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/devops/</loc>
-    <lastmod>2019-05-10T15:26:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -529,14 +550,14 @@
   
   <url>
     <loc>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/</loc>
-    <lastmod>2020-03-13T17:07:51+08:00</lastmod>
+    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -1166,13 +1187,6 @@
   
   <url>
     <loc>https://kane.mx/tags/clearcase/</loc>
-    <lastmod>2019-01-25T18:17:37+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/git/</loc>
     <lastmod>2019-01-25T18:17:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
