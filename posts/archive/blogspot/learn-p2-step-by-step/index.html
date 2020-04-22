@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.65.3" />
+<meta name="generator" content="Hugo 0.69.0" />
 
 
 <link rel="shortcut icon" href="/img/favicon.ico">
@@ -166,34 +166,34 @@ function getRandomInt(min, max) {
 	
 		
 			
-			<a class="ui label orange " href="/tags/eclipse" title="eclipse">eclipse</a>
+			<a class="ui label green " href="/tags/eclipse" title="eclipse">eclipse</a>
 		
 			
-			<a class="ui label pink " href="/tags/aws" title="aws">aws</a>
+			<a class="ui label red " href="/tags/aws" title="aws">aws</a>
 		
 			
-			<a class="ui label green " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+			<a class="ui label olive " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
 		
 			
-			<a class="ui label brown " href="/tags/equinox" title="equinox">equinox</a>
+			<a class="ui label yellow " href="/tags/equinox" title="equinox">equinox</a>
 		
 			
-			<a class="ui label red " href="/tags/tip" title="tip">tip</a>
+			<a class="ui label brown " href="/tags/tip" title="tip">tip</a>
 		
 			
 			<a class="ui label pink " href="/tags/osgi" title="osgi">osgi</a>
 		
 			
-			<a class="ui label purple " href="/tags/p2" title="p2">p2</a>
+			<a class="ui label yellow " href="/tags/p2" title="p2">p2</a>
 		
 			
-			<a class="ui label brown " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+			<a class="ui label yellow " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
 		
 			
-			<a class="ui label green " href="/tags/faas" title="faas">faas</a>
+			<a class="ui label brown " href="/tags/faas" title="faas">faas</a>
 		
 			
-			<a class="ui label orange " href="/tags/serverless-computing" title="serverless-computing">serverless-computing</a>
+			<a class="ui label yellow " href="/tags/serverless-computing" title="serverless-computing">serverless-computing</a>
 		
 	
 
@@ -214,6 +214,13 @@ function getRandomInt(min, max) {
 
 	
 	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/2020/zsh-performance-tuning/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>oh-my-zsh性能调优思路</p>
+				</div>
+			</a>
 		
 			<a class="item" href="https://kane.mx/posts/2020/codecommit-devops-model/">
 				<div>
@@ -783,28 +790,28 @@ function getRandomInt(min, max) {
 			<a class="ui label pink " href="/tags/eclipse" title="eclipse">eclipse</a>
 		
 			
-			<a class="ui label yellow " href="/tags/aws" title="aws">aws</a>
+			<a class="ui label pink " href="/tags/aws" title="aws">aws</a>
 		
 			
-			<a class="ui label purple " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+			<a class="ui label blue " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
 		
 			
-			<a class="ui label red " href="/tags/equinox" title="equinox">equinox</a>
+			<a class="ui label orange " href="/tags/equinox" title="equinox">equinox</a>
 		
 			
-			<a class="ui label blue " href="/tags/tip" title="tip">tip</a>
+			<a class="ui label orange " href="/tags/tip" title="tip">tip</a>
 		
 			
-			<a class="ui label red " href="/tags/osgi" title="osgi">osgi</a>
+			<a class="ui label teal " href="/tags/osgi" title="osgi">osgi</a>
 		
 			
-			<a class="ui label pink " href="/tags/p2" title="p2">p2</a>
+			<a class="ui label violet " href="/tags/p2" title="p2">p2</a>
 		
 			
-			<a class="ui label violet " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+			<a class="ui label orange " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
 		
 			
-			<a class="ui label orange " href="/tags/faas" title="faas">faas</a>
+			<a class="ui label brown " href="/tags/faas" title="faas">faas</a>
 		
 			
 			<a class="ui label yellow " href="/tags/serverless-computing" title="serverless-computing">serverless-computing</a>
@@ -827,6 +834,13 @@ function getRandomInt(min, max) {
 
 	
 	<div class="content">
+		
+			<a class="item" href="https://kane.mx/posts/2020/zsh-performance-tuning/">
+				<div>
+					<i class="cocktail icon"></i>
+					<p>oh-my-zsh性能调优思路</p>
+				</div>
+			</a>
 		
 			<a class="item" href="https://kane.mx/posts/2020/codecommit-devops-model/">
 				<div>
@@ -1433,7 +1447,7 @@ Planner和Engine完全就是p2内部的东西。任何p2的操作（安装，删
 <p>基于存在的‘com.example.mail.product’创建product configuration，将其设置为base on features, 同时在dependencies页面添加以下feature。feature的qaulifier id依赖于用到的Eclipsse版本，从下图看到我这里使用的是Eclipse 3.5.1。如果要让RCP程序具有安装插件的能力（包含p2和p2 UI），就需要依赖更多的feature。后面的example里面会实现这部分功能。另外注意：<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=291872" title="ID不能包括空格字符">ID不能包括空格字符</a>。</p>
 <p><a href="http://docs.google.com/File?id=ddqccrw2_873fx44c3ff_b"><img src="http://docs.google.com/File?id=ddqccrw2_873fx44c3ff_b" alt=""></a></p>
 <p>接下来使用Eclipse Product Export Wizard生成repository。记得要勾选上generate metadata repository。</p>
-<p>[](<a href="http://docs.google.com/File?id=ddqccrw2_874qnh7n3gc_b">http://docs.google.com/File?id=ddqccrw2_874qnh7n3gc_b</a>)</p>
+<p><a href="http://docs.google.com/File?id=ddqccrw2_874qnh7n3gc_b"></a></p>
 <p><a href="http://docs.google.com/File?id=ddqccrw2_875gfs4p3d2_b"><img src="http://docs.google.com/File?id=ddqccrw2_875gfs4p3d2_b" alt=""></a></p>
 <p>在成功创建了Mail Application的repository后，试用我们自己的p2 installer来安装这个应用程序。安装过程类似下面的截图。然后执行/folk/kzhu0/tmp/mailrcp/mail来运行Mail Application.</p>
 <p><a href="http://docs.google.com/File?id=ddqccrw2_877cm6fxcc6_b"><img src="http://docs.google.com/File?id=ddqccrw2_877cm6fxcc6_b" alt=""></a></p>
@@ -1484,9 +1498,9 @@ touchpoint类型和action都是通过extension point来扩展的。通过扩展�
 
 
 	
-		<a class="ui label orange " href="/tags/equinox" title="Equinox">Equinox</a>
+		<a class="ui label violet " href="/tags/equinox" title="Equinox">Equinox</a>
 	
-		<a class="ui label brown " href="/tags/p2" title="p2">p2</a>
+		<a class="ui label purple " href="/tags/p2" title="p2">p2</a>
 	
 		<a class="ui label olive " href="/tags/eclipse" title="Eclipse">Eclipse</a>
 	
@@ -1634,10 +1648,11 @@ touchpoint类型和action都是通过extension point来扩展的。通过扩展�
 		<section class="ui stacked segments">
 			<div class="ui inverted segment">
 				<article class="twemoji">
-					<!-- raw HTML omitted -->
+					<h1 id="so-who-am-i">So, Who Am I?</h1>
 <hr>
-<!-- raw HTML omitted -->
-<p>Curious about me? Use the social links above to check out my profiles.
+<p>I’m the father of <strong>twin sons</strong>. Live in Beijing. Also I&rsquo;m the *uix user, a full stack software engineer, devops and cloud native evangelist.</p>
+<p>Curious about me? Use the social links above to check out my profiles.</p>
+
 				</article>
 			</div>
 		</section>

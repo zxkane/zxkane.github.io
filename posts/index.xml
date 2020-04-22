@@ -3,12 +3,72 @@
     <title>Posts on The Road</title>
     <link>https://kane.mx/posts/</link>
     <description>Recent content in Posts on The Road</description>
-    <meta name="generator" content="Hugo 0.65.3" />
+    <meta name="generator" content="Hugo 0.69.0" />
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>oh-my-zsh性能调优思路</title>
+      <link>https://kane.mx/posts/2020/zsh-performance-tuning/</link>
+      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2020/zsh-performance-tuning/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/Z_shell&#34;&gt;Z shell&lt;/a&gt;搭配&lt;a href=&#34;https://ohmyz.sh/&#34;&gt;oh-my-zsh&lt;/a&gt;自定义配置已成为众多Linux/Macosx用户的标准terminal配置。&lt;/p&gt;
+&lt;p&gt;最近遇到在&lt;code&gt;zsh&lt;/code&gt;中执行任意命令都变得特别慢(哪怕简单执行&lt;code&gt;ls&lt;/code&gt;也要花费肉眼可见的1，2秒钟)，这里记录下如何排查&lt;a href=&#34;https://zh.wikipedia.org/wiki/Z_shell&#34;&gt;Z shell&lt;/a&gt;下启用&lt;a href=&#34;https://ohmyz.sh/&#34;&gt;oh-my-zsh&lt;/a&gt;的性能问题。&lt;/p&gt;
+&lt;h3 id=&#34;性能问题症状&#34;&gt;性能问题症状&lt;/h3&gt;
+&lt;p&gt;突然某天起在终端中执行任意命令，都至少要花费1，2秒（肉眼计数），该命令才会完成执行并退出到终端开始接受新的输入。&lt;/p&gt;
+&lt;p&gt;我当前主要使用的终端是&lt;a href=&#34;https://www.iterm2.com/&#34;&gt;iTerm2&lt;/a&gt;，执行命令后，在终端Tab的title bar上能显式的看到&lt;code&gt;git&lt;/code&gt;命令也被执行了。&lt;/p&gt;
+&lt;p&gt;尝试了其他的shell，比如&lt;code&gt;bash&lt;/code&gt;，是没有这个问题。基本断定问题同&lt;code&gt;zsh&lt;/code&gt;相关。更多问题描述乃至动画截屏，可以参见&lt;a href=&#34;https://github.com/ohmyzsh/ohmyzsh/issues/8833&#34;&gt;这个issue&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;zsh--oh-my-zsh-性能问题分析&#34;&gt;zsh + oh-my-zsh 性能问题分析&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://ohmyz.sh/&#34;&gt;oh-my-zsh&lt;/a&gt;其实就是提供&lt;a href=&#34;https://zh.wikipedia.org/wiki/Z_shell&#34;&gt;zsh&lt;/a&gt;的定制化配置，主要包括Theme主题和各种软件的插件。&lt;/p&gt;
+&lt;h4 id=&#34;oh-my-zsh-插件&#34;&gt;oh-my-zsh 插件&lt;/h4&gt;
+&lt;p&gt;通常&lt;a href=&#34;https://ohmyz.sh/&#34;&gt;oh-my-zsh&lt;/a&gt;中内置或三方社区提供的插件是导致性能降低甚至互相冲突的主要原因。排查思路也很简单，通过逐个禁用已加载的插件来测试是否可以解决问题。&lt;/p&gt;
+&lt;p&gt;用文本编辑器打开当前用户的&lt;code&gt;~/.zshrc&lt;/code&gt;配置，找到&lt;code&gt;plugins&lt;/code&gt;开头的配置行，例如，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;plugins&lt;span style=&#34;color:#f92672&#34;&gt;=(&lt;/span&gt;
+        git
+        osx
+&lt;span style=&#34;color:#75715e&#34;&gt;##      gradle&lt;/span&gt;
+        brew
+&lt;span style=&#34;color:#75715e&#34;&gt;##      command-not-found&lt;/span&gt;
+        github
+&lt;span style=&#34;color:#75715e&#34;&gt;#       gnu-utils&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;##      mvn&lt;/span&gt;
+        python
+        pip
+&lt;span style=&#34;color:#75715e&#34;&gt;#       screen&lt;/span&gt;
+        vi-mode
+        docker
+&lt;span style=&#34;color:#75715e&#34;&gt;##      docker-compose&lt;/span&gt;
+        node
+&lt;span style=&#34;color:#75715e&#34;&gt;##      spring&lt;/span&gt;
+        mosh
+&lt;span style=&#34;color:#75715e&#34;&gt;#       httpie&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;##      sudo&lt;/span&gt;
+        tmux
+&lt;span style=&#34;color:#75715e&#34;&gt;##      kubectl&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;##      helm&lt;/span&gt;
+        golang
+        history
+        history-substring-search
+        zsh-autosuggestions
+        zsh-syntax-highlighting
+&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过行首添加&lt;code&gt;#&lt;/code&gt;来禁用&lt;code&gt;oh-my-zsh&lt;/code&gt;插件，启动新的终端窗口或tab来验证是否该插件是引起问题的根源。&lt;/p&gt;
+&lt;p&gt;在我的配置中，出现过因为启用过多插件，导致新建终端需要10来秒钟。但因为创建终端不是一个高频的需求，这个性能通常来说还是可以忍受。&lt;/p&gt;
+&lt;h4 id=&#34;oh-my-zsh-主题&#34;&gt;oh-my-zsh 主题&lt;/h4&gt;
+&lt;p&gt;在我的这个问题中，即使将所有插件都禁用了，命令执行后退出速度还是没有改善，&lt;code&gt;git&lt;/code&gt;命令仍然有被执行。这时我尝试更换不同&lt;code&gt;oh-my-zsh&lt;/code&gt;内置主题来排查问题。但是使用了包括默认主题&lt;code&gt;robbyrussell&lt;/code&gt;，极简主题&lt;code&gt;ys&lt;/code&gt;在内的多个主题都无法解决该问题。&lt;/p&gt;
+&lt;p&gt;最后直接禁止&lt;code&gt;oh-my-zsh&lt;/code&gt;使用主题，问题没有了！&lt;/p&gt;
+&lt;p&gt;然而&lt;code&gt;oh-my-zsh&lt;/code&gt;主题是对zsh的极大增强，改善了默认的用户体验，没有主题扩展使用起来会非常不习惯。&lt;/p&gt;
+&lt;h3 id=&#34;小结&#34;&gt;小结&lt;/h3&gt;
+&lt;p&gt;最终试用了另一个社区维护的知名&lt;code&gt;zsh&lt;/code&gt;主题&lt;a href=&#34;https://github.com/sindresorhus/pure&#34;&gt;Pure&lt;/a&gt;，性能问题得到了解决✌️ 同时也满足了主题对zsh输入输出用户体验的增强 😊&lt;/p&gt;
+&lt;p&gt;希望这里分享的&lt;code&gt;oh-my-zsh&lt;/code&gt;性能的调优思路，可以帮助到有类似需要的各位。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;将来社区对这个&lt;a href=&#34;https://github.com/ohmyzsh/ohmyzsh/issues/8833&#34;&gt;问题&lt;/a&gt;如有进一步的反馈，将会做更新。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
     
     <item>
       <title>基于CodeCommit代码管理的无服务器架构Devops</title>
@@ -143,7 +203,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;所有发往&lt;code&gt;@mydomain.com&lt;/code&gt;的邮件将被转发到邮箱&lt;code&gt;niftylettuce@gmail.com&lt;/code&gt;。✌&lt;/p&gt;
+&lt;p&gt;所有发往&lt;code&gt;@mydomain.com&lt;/code&gt;的邮件将被转发到邮箱&lt;code&gt;niftylettuce@gmail.com&lt;/code&gt;。✌️&lt;/p&gt;
 &lt;p&gt;更多配置选项请查看&lt;a href=&#34;https://github.com/forwardemail/free-email-forwarding#how-do-i-get-started-and-set-up-email-forwarding&#34;&gt;文档&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     
@@ -2749,7 +2809,7 @@ Planner和Engine完全就是p2内部的东西。任何p2的操作（安装，删
 &lt;p&gt;基于存在的‘com.example.mail.product’创建product configuration，将其设置为base on features, 同时在dependencies页面添加以下feature。feature的qaulifier id依赖于用到的Eclipsse版本，从下图看到我这里使用的是Eclipse 3.5.1。如果要让RCP程序具有安装插件的能力（包含p2和p2 UI），就需要依赖更多的feature。后面的example里面会实现这部分功能。另外注意：&lt;a href=&#34;https://bugs.eclipse.org/bugs/show_bug.cgi?id=291872&#34; title=&#34;ID不能包括空格字符&#34;&gt;ID不能包括空格字符&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://docs.google.com/File?id=ddqccrw2_873fx44c3ff_b&#34;&gt;&lt;img src=&#34;http://docs.google.com/File?id=ddqccrw2_873fx44c3ff_b&#34; alt=&#34;&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;接下来使用Eclipse Product Export Wizard生成repository。记得要勾选上generate metadata repository。&lt;/p&gt;
-&lt;p&gt;[](&lt;a href=&#34;http://docs.google.com/File?id=ddqccrw2_874qnh7n3gc_b&#34;&gt;http://docs.google.com/File?id=ddqccrw2_874qnh7n3gc_b&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://docs.google.com/File?id=ddqccrw2_874qnh7n3gc_b&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://docs.google.com/File?id=ddqccrw2_875gfs4p3d2_b&#34;&gt;&lt;img src=&#34;http://docs.google.com/File?id=ddqccrw2_875gfs4p3d2_b&#34; alt=&#34;&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;在成功创建了Mail Application的repository后，试用我们自己的p2 installer来安装这个应用程序。安装过程类似下面的截图。然后执行/folk/kzhu0/tmp/mailrcp/mail来运行Mail Application.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://docs.google.com/File?id=ddqccrw2_877cm6fxcc6_b&#34;&gt;&lt;img src=&#34;http://docs.google.com/File?id=ddqccrw2_877cm6fxcc6_b&#34; alt=&#34;&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -3147,7 +3207,7 @@ super(url);&lt;br&gt;
       <description>&lt;p&gt;java程序开发中经常用到JNI调用本地library, 同时又希望将library同class文件编译成一个jar文件以方便deploy.&lt;/p&gt;
 &lt;p&gt;但是JDK的classloader不支持从jar文件中加载library, 一个变通的方法就是jar里的library以临时文件的方式写到临时目录或java.library目录.&lt;/p&gt;
 &lt;p&gt;附上两篇文档链接 :&lt;/p&gt;
-&lt;p&gt;[](&lt;a href=&#34;http://www.javaworld.com.tw/jute/post/view?bid=29&amp;amp;id=173624&amp;amp;tpg=1&amp;amp;ppg=1&amp;amp;sty=1&amp;amp;age=0#173624&#34;&gt;http://www.javaworld.com.tw/jute/post/view?bid=29&amp;amp;id=173624&amp;amp;tpg=1&amp;amp;ppg=1&amp;amp;sty=1&amp;amp;age=0#173624&lt;/a&gt;)**&lt;a href=&#34;http://www.javaworld.com.tw/jute/post/view?bid=29&amp;amp;id=173624&amp;amp;tpg=1&amp;amp;ppg=1&amp;amp;sty=1&amp;amp;age=0#173624&#34;&gt;Load Library inside a jar file&lt;/a&gt;&lt;br&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.javaworld.com.tw/jute/post/view?bid=29&amp;amp;id=173624&amp;amp;tpg=1&amp;amp;ppg=1&amp;amp;sty=1&amp;amp;age=0#173624&#34;&gt;&lt;/a&gt;**&lt;a href=&#34;http://www.javaworld.com.tw/jute/post/view?bid=29&amp;amp;id=173624&amp;amp;tpg=1&amp;amp;ppg=1&amp;amp;sty=1&amp;amp;age=0#173624&#34;&gt;Load Library inside a jar file&lt;/a&gt;&lt;br&gt;
 **&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://www.javaeye.com/topic/17713&#34; title=&#34;固定链接：使用JNI时，装载本地库的小技巧&#34;&gt;使用JNI时，装载本地库的小技巧&lt;/a&gt;&lt;/p&gt;
 </description>
@@ -3232,7 +3292,11 @@ a simpler way:&lt;br&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/about/</guid>
-      <description></description>
+      <description>&lt;h1 id=&#34;so-who-am-i&#34;&gt;So, Who Am I?&lt;/h1&gt;
+&lt;hr&gt;
+&lt;p&gt;I’m the father of &lt;strong&gt;twin sons&lt;/strong&gt;. Live in Beijing. Also I&amp;rsquo;m the *uix user, a full stack software engineer, devops and cloud native evangelist.&lt;/p&gt;
+&lt;p&gt;Curious about me? Use the social links above to check out my profiles.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

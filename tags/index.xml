@@ -6,10 +6,55 @@
     <description>Recent content in Tags on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>oh-my-zsh</title>
+      <link>https://kane.mx/tags/oh-my-zsh/</link>
+      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/oh-my-zsh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>performance</title>
+      <link>https://kane.mx/tags/performance/</link>
+      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/performance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>performance-tuning</title>
+      <link>https://kane.mx/tags/performance-tuning/</link>
+      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/performance-tuning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>trobule-shooting</title>
+      <link>https://kane.mx/tags/trobule-shooting/</link>
+      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/trobule-shooting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>zsh</title>
+      <link>https://kane.mx/tags/zsh/</link>
+      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/zsh/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>AWS</title>
@@ -503,24 +548,6 @@
       <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/mongodb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>performance</title>
-      <link>https://kane.mx/tags/performance/</link>
-      <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/performance/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>performance-tuning</title>
-      <link>https://kane.mx/tags/performance-tuning/</link>
-      <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/performance-tuning/</guid>
       <description></description>
     </item>
     

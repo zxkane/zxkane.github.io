@@ -6,10 +6,20 @@
     <description>Recent content in performance-tuning on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 29 Sep 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/performance-tuning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>oh-my-zsh性能调优思路</title>
+      <link>https://kane.mx/posts/2020/zsh-performance-tuning/</link>
+      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2020/zsh-performance-tuning/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/Z_shell&#34;&gt;Z shell&lt;/a&gt;搭配&lt;a href=&#34;https://ohmyz.sh/&#34;&gt;oh-my-zsh&lt;/a&gt;自定义配置已成为众多Linux/Macosx用户的标准terminal配置。&lt;/p&gt;
+&lt;p&gt;最近遇到在&lt;code&gt;zsh&lt;/code&gt;中执行任意命令都变得特别慢(哪怕简单执行&lt;code&gt;ls&lt;/code&gt;也要花费肉眼可见的1，2秒钟)，这里记录下如何排查&lt;a href=&#34;https://zh.wikipedia.org/wiki/Z_shell&#34;&gt;Z shell&lt;/a&gt;下启用&lt;a href=&#34;https://ohmyz.sh/&#34;&gt;oh-my-zsh&lt;/a&gt;的性能问题。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>MongoDB中如何找出慢查询</title>

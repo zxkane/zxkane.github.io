@@ -51,7 +51,7 @@ After buying the certificate of Windows code signing from CA, you will get a .pv
       <description>java程序开发中经常用到JNI调用本地library, 同时又希望将library同class文件编译成一个jar文件以方便deploy.
 但是JDK的classloader不支持从jar文件中加载library, 一个变通的方法就是jar里的library以临时文件的方式写到临时目录或java.library目录.
 附上两篇文档链接 :
-[](http://www.javaworld.com.tw/jute/post/view?bid=29&amp;amp;id=173624&amp;amp;tpg=1&amp;amp;ppg=1&amp;amp;sty=1&amp;amp;age=0#173624)**Load Library inside a jar file
+**Load Library inside a jar file
 **
 使用JNI时，装载本地库的小技巧</description>
     </item>
