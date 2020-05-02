@@ -2,7 +2,7 @@
 <html lang="en-us">
 	<head>
 		<title>
-	Tag | performance
+	Get the size of Docker image without pulling image
 </title>
 		<style>
 	body, body.pushable {
@@ -18,8 +18,10 @@
 
 
 	
+	
+	
 	<meta name="author" content="Kane" />
-	<meta name="description" content="" />
+	<meta name="description" content="Utility the Docker registry API to calculate the size of Docker image" />
 
 
 
@@ -29,8 +31,6 @@
 <link rel="shortcut icon" href="/img/favicon.ico">
 
 
-
-    <link rel="alternate" type="application/rss+xml" href="https://kane.mx/tags/performance/index.xml" title="The Road" />
 
 
 		
@@ -160,34 +160,34 @@ function getRandomInt(min, max) {
 	
 		
 			
-			<a class="ui label red " href="/tags/eclipse" title="eclipse">eclipse</a>
+			<a class="ui label blue " href="/tags/eclipse" title="eclipse">eclipse</a>
 		
 			
-			<a class="ui label blue " href="/tags/aws" title="aws">aws</a>
+			<a class="ui label orange " href="/tags/aws" title="aws">aws</a>
 		
 			
-			<a class="ui label teal " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+			<a class="ui label violet " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
 		
 			
-			<a class="ui label red " href="/tags/equinox" title="equinox">equinox</a>
+			<a class="ui label brown " href="/tags/equinox" title="equinox">equinox</a>
 		
 			
-			<a class="ui label yellow " href="/tags/tip" title="tip">tip</a>
+			<a class="ui label pink " href="/tags/tip" title="tip">tip</a>
 		
 			
-			<a class="ui label orange " href="/tags/osgi" title="osgi">osgi</a>
+			<a class="ui label purple " href="/tags/osgi" title="osgi">osgi</a>
 		
 			
-			<a class="ui label teal " href="/tags/p2" title="p2">p2</a>
+			<a class="ui label brown " href="/tags/p2" title="p2">p2</a>
 		
 			
 			<a class="ui label teal " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
 		
 			
-			<a class="ui label olive " href="/tags/faas" title="faas">faas</a>
+			<a class="ui label teal " href="/tags/faas" title="faas">faas</a>
 		
 			
-			<a class="ui label teal " href="/tags/serverless-computing" title="serverless-computing">serverless-computing</a>
+			<a class="ui label yellow " href="/tags/serverless-computing" title="serverless-computing">serverless-computing</a>
 		
 	
 
@@ -683,8 +683,6 @@ function getRandomInt(min, max) {
 			<div class="flipper">
 				<div class="front">
 					
-	
-		
 	<nav class="ui top secondary menu bar">
 	
 	<div class="item">
@@ -702,14 +700,14 @@ function getRandomInt(min, max) {
 
 	
 	
-		<div class="item">
-			<a href="/posts">
-				<i class="inverted big link archive icon" title="Archive"></i>
-			</a>
-		</div>
-	
 
 	
+	
+		<div class="item">
+			<a href="/tags">
+				<i class="inverted big link tags icon" title="All Tags"></i>
+			</a>
+		</div>
 	
 
 	
@@ -726,6 +724,12 @@ function getRandomInt(min, max) {
 
 	
 	
+		<div class="ui container tablet computer only grid">
+			<div class="item" onClick="$('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');">
+				<i class="inverted big link sidebar icon" title="Show Sidebar"></i>
+			</div>
+		</div>
+	
 
 	
 	
@@ -737,10 +741,11 @@ function getRandomInt(min, max) {
 	
 </nav>
 
-	
+
 	<div class="ui centered grid">
-		<div class="fifteen wide mobile fifteen wide tablet four wide computer column">
-			<div class="ui inverted accordion">
+		
+		<div class="sixteen wide mobile only column">
+				<div class="ui inverted accordion">
 	<div id="header" class="ui inverted segment column box">		
 		
 		<header id="author" class="ui top attached center aligned inverted segment">
@@ -760,16 +765,16 @@ function getRandomInt(min, max) {
 		</header>
 
 		
-		<div class="active title header-title">
+		<div class=" title header-title">
 			
 				<div id="tag-category-pop" class="ui red right corner label">
-					<i class="hand point icon up" title="Show/hide tags and categories"></i>
+					<i class="hand point icon down" title="Show/hide tags and categories"></i>
 				</div>
 			
 		</div>
 		
 		
-		<div id="tag-category" class="active content">
+		<div id="tag-category" class=" content">
 			
 				<section class="ui attached center aligned inverted segment dream-tags none flexbox">
 					
@@ -783,34 +788,34 @@ function getRandomInt(min, max) {
 	
 		
 			
-			<a class="ui label orange " href="/tags/eclipse" title="eclipse">eclipse</a>
+			<a class="ui label red " href="/tags/eclipse" title="eclipse">eclipse</a>
 		
 			
-			<a class="ui label red " href="/tags/aws" title="aws">aws</a>
+			<a class="ui label pink " href="/tags/aws" title="aws">aws</a>
 		
 			
-			<a class="ui label violet " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
+			<a class="ui label orange " href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97" title="云计算">云计算</a>
 		
 			
 			<a class="ui label violet " href="/tags/equinox" title="equinox">equinox</a>
 		
 			
-			<a class="ui label brown " href="/tags/tip" title="tip">tip</a>
+			<a class="ui label green " href="/tags/tip" title="tip">tip</a>
 		
 			
-			<a class="ui label blue " href="/tags/osgi" title="osgi">osgi</a>
+			<a class="ui label olive " href="/tags/osgi" title="osgi">osgi</a>
 		
 			
-			<a class="ui label olive " href="/tags/p2" title="p2">p2</a>
+			<a class="ui label violet " href="/tags/p2" title="p2">p2</a>
 		
 			
-			<a class="ui label blue " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
+			<a class="ui label olive " href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91" title="阿里云">阿里云</a>
 		
 			
-			<a class="ui label green " href="/tags/faas" title="faas">faas</a>
+			<a class="ui label yellow " href="/tags/faas" title="faas">faas</a>
 		
 			
-			<a class="ui label blue " href="/tags/serverless-computing" title="serverless-computing">serverless-computing</a>
+			<a class="ui label yellow " href="/tags/serverless-computing" title="serverless-computing">serverless-computing</a>
 		
 	
 
@@ -1303,45 +1308,112 @@ function getRandomInt(min, max) {
 </div>
 
 		</div>
-		
-		<div class="fifteen wide mobile fifteen wide tablet eleven wide computer column post-list">
-			<div class="cards row box">
+
+		<div class="sixteen wide mobile fifteen wide tablet twelve wide computer column post-list">
+			
+			<section class="ui secondary top attached black segment post-head">
+				<h1 class="post-title">
+					Get the size of Docker image without pulling image
+				</h1>
+
+				<div class="sub header">
+					<div><span><i class="calendar outline icon"></i>May 2, 2020</span></div>
+					
+					<div><span><i class="clock outline icon"></i>2 min read</span></div>
+					<div><span><i class="angle double up icon"></i>Last updated on May 2, 2020</span></div>
+				</div>
+				<hr>
+
+				
+
+				<article class="post-content twemoji">
+					<p>Recently I had a requirement to stats the size of some Docker images. It would be waste if pulling them all firstly then calculating the size of each image. Also you know the docker image consists of some Docker layers that probably are shared by other images. It&rsquo;s hard to get the disk usage if only sum the size of each image.</p>
+<p>Is there any way to get the size of Docker image without pulling it?</p>
+<p>It&rsquo;s definitely <strong>Yes</strong>. The docker images are hosted by <a href="https://docs.docker.com/registry/spec/api/">Docker Registry</a>, which is defined by <a href="https://docs.docker.com/registry/spec/api/">a public specification</a>. The latest V2 of Registry has <a href="https://docs.docker.com/registry/spec/api/#pulling-an-image">API</a> to fetch the manifest of an image that contains the size of every layer. Looks like it&rsquo;s very cool. Utilitying the manifest API of image will satisfie my requirement!</p>
+<p>One more thing you should note, the v2 of Docker registry still is compatible with <a href="https://docs.docker.com/registry/spec/manifest-v2-1/">schema specification V1</a>. You have to properly handle with the mixed responses of manifest when you query the manifest of an image.</p>
+<p>I created a <a href="https://gist.github.com/zxkane/23de226fee8806ee0ed8c05136972ce0">simple shell script</a> gracefully handling either v1 or v2 response of the image manifest, which can calculate the total layers size of a Docker image with specific tag, or the size of all tags of a Docker image.</p>
+<blockquote>
+<p>Above script was inspired by <a href="https://ops.tips/blog/inspecting-docker-image-without-pull/">this post</a>. Hope you enjoy it.</p>
+</blockquote>
+				</article>				
+			</section>
+
+			
+			<section class="ui secondary attached segment dream-tags">
 				
 					
 
 
-	
-	
-		
-	
 
 
-
-<article class="blog-card none flexbox">
 	
-	<img class="image" src="/img/default2.jpg"></img>
-	<div class="title-content twemoji">
-		<h3><a class="title" href=https://kane.mx/posts/archive/blogspot/p2-query-performance/>p2 query performance</a></h3>
-		<div class="intro twemoji">
-			
-				<br><br>
-			
-		</div>
-	</div>
-
+		<a class="ui label violet " href="/tags/docker" title="docker">docker</a>
 	
-	<div class="utility-info">
-		<ul class="utility-list">
-			
-			<div><span><i class="calendar icon"></i>Oct 17, 2011</span></div>
-			<div><span><i class="clock icon"></i>1 min read</span></div>
-		</ul>
-	</div>
-	<div class="color-overlay"></div>
-</article>
+		<a class="ui label red " href="/tags/tips" title="Tips">Tips</a>
+	
+
 
 				
-			</div>
+			</section>
+
+			
+			
+				<section class="ui secondary bottom attached segment share row box">
+					
+
+
+
+
+
+
+
+
+<div class="author">
+	
+	<img class="avatar" src="/img/portrait.jpg">
+	
+</div>
+<div class="info grow flexbox">
+	
+	<p class="name">Kane</p>
+	
+	<p class="desc">Twin boys&#39; father, open source mania.</p>
+</div>
+
+
+<section class="buttons row box">
+	<div class="facebook none flexbox" href="#" onclick="window.open(
+			'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+			'facebook-share-dialog',
+			'width=626,height=436'); return false;">
+		<button class="ui facebook button"><i class="facebook icon"></i>Share</button>
+	</div>
+	<div class="twitter none flexbox" onclick="window.open('https://twitter.com/intent/tweet?text=Read &quot;Get the size of Docker image without pulling image  https:\/\/kane.mx\/posts\/2020\/get-docker-image-size-without-pulling-image\/','_self')">
+		<button class="ui twitter button"><i class="twitter icon"></i>Tweet</button>
+	</div>
+</section>
+
+				</section>
+			
+
+			
+			
+			
+
+			
+			
+
+			
+			
+				
+<script src="https://utteranc.es/client.js"
+        repo="zxkane/articles"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+			
 		</div>
 	</div>
 

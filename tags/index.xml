@@ -6,10 +6,37 @@
     <description>Recent content in Tags on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 02 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>docker</title>
+      <link>https://kane.mx/tags/docker/</link>
+      <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tip</title>
+      <link>https://kane.mx/tags/tip/</link>
+      <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/tip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tips</title>
+      <link>https://kane.mx/tags/tips/</link>
+      <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/tips/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>oh-my-zsh</title>
@@ -336,24 +363,6 @@
     </item>
     
     <item>
-      <title>Tip</title>
-      <link>https://kane.mx/tags/tip/</link>
-      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/tip/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tips</title>
-      <link>https://kane.mx/tags/tips/</link>
-      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/tips/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>dingtalk</title>
       <link>https://kane.mx/tags/dingtalk/</link>
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
@@ -548,15 +557,6 @@
       <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/mongodb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://kane.mx/tags/docker/</link>
-      <pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/docker/</guid>
       <description></description>
     </item>
     

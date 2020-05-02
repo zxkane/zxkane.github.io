@@ -6,10 +6,20 @@
     <description>Recent content in Tips on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 02 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/tips/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Get the size of Docker image without pulling image</title>
+      <link>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</link>
+      <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</guid>
+      <description>&lt;p&gt;Recently I had a requirement to stats the size of some Docker images. It would be waste if pulling them all firstly then calculating the size of each image. Also you know the docker image consists of some Docker layers that probably are shared by other images. It&amp;rsquo;s hard to get the disk usage if only sum the size of each image.&lt;/p&gt;
+&lt;p&gt;Is there any way to get the size of Docker image without pulling it?&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>使用AWS S3作为MacOSX时间机器(Time Machine)的备份存储</title>
