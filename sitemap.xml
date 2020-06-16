@@ -3,14 +3,98 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://kane.mx/tags/analytics/</loc>
-    <lastmod>2020-05-05T00:19:19+08:00</lastmod>
+    <loc>https://kane.mx/tags/amazon-eks/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://kane.mx/tags/aws/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/aws-cdk/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/categories/blogging/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/categories/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/categories/effective-cloud-computing/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/helm/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/kubernetes/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/posts/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/sonatype-nexus/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/</loc>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/analytics/</loc>
     <lastmod>2020-05-05T00:19:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -25,20 +109,6 @@
   
   <url>
     <loc>https://kane.mx/tags/big-data/</loc>
-    <lastmod>2020-05-05T00:19:19+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/categories/blogging/</loc>
-    <lastmod>2020-05-05T00:19:19+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/categories/</loc>
     <lastmod>2020-05-05T00:19:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -60,34 +130,6 @@
   
   <url>
     <loc>https://kane.mx/tags/docker/</loc>
-    <lastmod>2020-05-05T00:19:19+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/categories/effective-cloud-computing/</loc>
-    <lastmod>2020-05-05T00:19:19+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/posts/</loc>
-    <lastmod>2020-05-05T00:19:19+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/</loc>
-    <lastmod>2020-05-05T00:19:19+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/</loc>
     <lastmod>2020-05-05T00:19:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -291,7 +333,7 @@
   
   <url>
     <loc>https://kane.mx/tags/infrastructure-as-code/</loc>
-    <lastmod>2019-12-26T00:05:23+08:00</lastmod>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -388,22 +430,8 @@
   </url>
   
   <url>
-    <loc>https://kane.mx/tags/amazon-cdk/</loc>
-    <lastmod>2019-09-11T17:32:50+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://kane.mx/posts/2019/aws-cdk/</loc>
-    <lastmod>2019-09-11T17:32:50+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/aws-cdk/</loc>
-    <lastmod>2019-08-28T17:56:33+08:00</lastmod>
+    <lastmod>2020-06-16T17:10:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -585,13 +613,6 @@
   
   <url>
     <loc>https://kane.mx/tags/istio/</loc>
-    <lastmod>2019-04-29T15:47:31+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/kubernetes/</loc>
     <lastmod>2019-04-29T15:47:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

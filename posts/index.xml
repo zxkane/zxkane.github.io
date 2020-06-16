@@ -3,12 +3,38 @@
     <title>Posts on The Road</title>
     <link>https://kane.mx/posts/</link>
     <description>Recent content in Posts on The Road</description>
-    <meta name="generator" content="Hugo 0.69.0" />
+    <meta name="generator" content="Hugo 0.70.0" />
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deploy Sonatype Nexus repository OSS on EKS</title>
+      <link>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.sonatype.com/nexus-repository-oss&#34;&gt;Sonatype Nexus repository OSS&lt;/a&gt; is an artifact repository that supports most software repositories such as Maven, Pypi, Npmjs, Rubygems, Yum, Apt, Docker registry and etc. In the enterprise Nexus repository is widely used for storing proprietary artifacts and caching the artifacts for speeding up the devops.&lt;/p&gt;
+&lt;p&gt;Building a production ready Nexus repository always is a requirement for devops team, it should satisfy below criterias at least,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;artifacts storage management&lt;/strong&gt; It&amp;rsquo;s difficult to predicate the storage usage of artifacts, allocating large volume is not cost optimized.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;the durability of nexus3 data storage&lt;/strong&gt; We need a way to make sure data storage of nexus when updating Nexus OSS to newer version or recover the service from unhealthy status.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;self healing capability when the service is down&lt;/strong&gt; A reliable way recovers the Nexus repository OSS when it&amp;rsquo;s unhealth.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There is a well-architected &lt;a href=&#34;https://github.com/zxkane/cdk-collections/tree/master/eks/sonatype-nexus3&#34;&gt;solution&lt;/a&gt; to quickly(~10 minutes) deploy &lt;a href=&#34;https://www.sonatype.com/nexus-repository-oss&#34;&gt;Nexus OSS&lt;/a&gt; leveraging below capabilities,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Host on EKS cluster using managed EC2 nodes with &lt;a href=&#34;https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html&#34;&gt;IRSA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Expose service via AWS Application load balancer managed by &lt;a href=&#34;https://github.com/kubernetes-sigs/aws-alb-ingress-controller&#34;&gt;ALB ingress controller&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Use dedicated S3 bucket for storing Nexus OSS blobstore with ulimited and on-demand storage&lt;/li&gt;
+&lt;li&gt;Use EFS, &lt;a href=&#34;https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html&#34;&gt;EFS CSI Driver&lt;/a&gt;, PV and PVC storing nexus data&lt;/li&gt;
+&lt;li&gt;Use &lt;a href=&#34;https://helm.sh/&#34;&gt;Helm&lt;/a&gt; to deploy &lt;a href=&#34;https://hub.helm.sh/charts/oteemo/sonatype-nexus&#34;&gt;Sonatype Nexus chart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Optional&lt;/code&gt; Use &lt;a href=&#34;https://github.com/kubernetes-sigs/external-dns&#34;&gt;External DNS&lt;/a&gt; to registry the domain record of Nexus repository to Route 53&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Optional&lt;/code&gt; Use AWS Certificate Manager to create SSL certificate of domain name of Nexus repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Enjoy it😏&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>无服务器架构的Docker镜像数据分析应用</title>
@@ -1877,7 +1903,7 @@ root@swarm1:~# uname -r
       <pubDate>Thu, 21 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</guid>
-      <description>&lt;p&gt;最近在提交前端代码后，前端代码的自动发布老是失败。失败的原因多是编译Docker镜像时在执行&lt;code&gt;COPY&lt;/code&gt;语句拷贝文件到镜像文件系统时，扔出了&amp;rsquo;No space left on device&#39;这个错误。这个错误根据描述非常好理解，就是docker文件系统所在磁盘没有了空间。&lt;/p&gt;
+      <description>&lt;p&gt;最近在提交前端代码后，前端代码的自动发布老是失败。失败的原因多是编译Docker镜像时在执行&lt;code&gt;COPY&lt;/code&gt;语句拷贝文件到镜像文件系统时，扔出了&amp;rsquo;No space left on device&amp;rsquo;这个错误。这个错误根据描述非常好理解，就是docker文件系统所在磁盘没有了空间。&lt;/p&gt;
 &lt;p&gt;但是通过&lt;code&gt;df -h&lt;/code&gt;命令，该磁盘至少还有3，4个G的剩余空间。而前端镜像的文件大小最多也不超过300M。在该磁盘通过&lt;code&gt;touch&lt;/code&gt;,&lt;code&gt;cp&lt;/code&gt;仍然可以创建文件。&lt;/p&gt;
 &lt;p&gt;所以这个问题非常奇怪，为什么&lt;code&gt;docker&lt;/code&gt;或者&lt;code&gt;操作系统&lt;/code&gt;抱怨磁盘没有了空间？在磁盘仍然剩余数个G的情况下？&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -1983,7 +2009,7 @@ java -jar jenkins-cli.jar -s http://myserver/jenkins/ groovy test_script.gsh&
 &lt;p&gt;The general solution is below,&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;put &lt;strong&gt;# -&lt;em&gt;- coding: utf-8 -&lt;/em&gt;-&lt;/strong&gt; at beginning of every python source files that are using utf-8 characters&lt;/li&gt;
-&lt;li&gt;declare every string variable as unicode, such as &lt;strong&gt;str_var = u&#39;中文字符&amp;rsquo;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;declare every string variable as unicode, such as &lt;strong&gt;str_var = u&amp;rsquo;中文字符&amp;rsquo;&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;add &lt;a href=&#34;https://docs.djangoproject.com/en/1.4/ref/models/instances/#django.db.models.Model.__unicode__&#34;&gt;a __unicode__&lt;/a&gt; method in your model classes&lt;/li&gt;
 &lt;li&gt;if you are running server on apache/mod_wsgi or ngnix, you need &lt;a href=&#34;https://docs.djangoproject.com/en/1.4/howto/deployment/modpython/#if-you-get-a-unicodeencodeerror&#34;&gt;configure web server to use utf-8 encoding&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
@@ -2906,11 +2932,11 @@ Planner和Engine完全就是p2内部的东西。任何p2的操作（安装，删
 iu.setTouchpointType(DesktopTouchpoint.TOUCHPOINT_TYPE);&lt;br&gt;
 touchpoint类型和action都是通过extension point来扩展的。通过扩展“org.eclipse.equinox.p2.engine.touchpoints”来添加新的touchpoint类型，扩展”org.eclipse.equinox.p2.engine.actions“将新的action同某个类型关联起来。&lt;/p&gt;
 &lt;h3 id=&#34;p2-repository-publish-practice&#34;&gt;p2 repository publish practice&lt;/h3&gt;
-&lt;p&gt;我们创建plug-in &amp;lsquo;com.example.p2.touchpoint&#39;来实现桌面快捷方式的扩展，并且创建&amp;rsquo;com.example.p2.feature&#39;包含touchpoint实现的plug-in。具体实现请参考p2 example源码。&lt;br&gt;
+&lt;p&gt;我们创建plug-in &amp;lsquo;com.example.p2.touchpoint&amp;rsquo;来实现桌面快捷方式的扩展，并且创建&amp;rsquo;com.example.p2.feature&amp;rsquo;包含touchpoint实现的plug-in。具体实现请参考p2 example源码。&lt;br&gt;
 然后为Mail Application添加p2相关feature的依赖，重新发布得到支持安装软件的新版本。并且用p2 example installer安装它。p.s: 个人感觉Eclipse在包含第三方plug-in时，层次有些问题。p2作为一个runtime的project（跟equinox, ECF同级），居然需要直接或间接依赖help, rcp.platform这样的上层模块。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://docs.google.com/File?id=ddqccrw2_879cjg6wrgg_b&#34;&gt;&lt;img src=&#34;http://docs.google.com/File?id=ddqccrw2_879cjg6wrgg_b&#34; alt=&#34;&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;接下来创建plug-in &amp;lsquo;com.example.mail.desktop&amp;rsquo; 和 feature &amp;lsquo;com.example.mail.desktop.feature&amp;rsquo;，作为提供桌面快捷方式的IU。用Eclipse Export Feature将&amp;rsquo;com.example.mail.desktop.feature&#39;导出，实际就是用PDE替我们编译打包:)。&lt;br&gt;
-运行‘com.example.p2.generator&#39;提供的headless publisher来生成我们定制的repository。’/folk/kzhu0/tmp/mail/desktop-deploy&#39;是先前desktop feature导出后的路径，而&amp;rsquo;/folk/kzhu0/tmp/mail/desktop&#39;是生成repository的路径。&lt;/p&gt;
+&lt;p&gt;接下来创建plug-in &amp;lsquo;com.example.mail.desktop&amp;rsquo; 和 feature &amp;lsquo;com.example.mail.desktop.feature&amp;rsquo;，作为提供桌面快捷方式的IU。用Eclipse Export Feature将&amp;rsquo;com.example.mail.desktop.feature&amp;rsquo;导出，实际就是用PDE替我们编译打包:)。&lt;br&gt;
+运行‘com.example.p2.generator&amp;rsquo;提供的headless publisher来生成我们定制的repository。’/folk/kzhu0/tmp/mail/desktop-deploy&amp;rsquo;是先前desktop feature导出后的路径，而&amp;rsquo;/folk/kzhu0/tmp/mail/desktop&amp;rsquo;是生成repository的路径。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://docs.google.com/File?id=ddqccrw2_880tk4fk8wd_b&#34;&gt;&lt;img src=&#34;http://docs.google.com/File?id=ddqccrw2_880tk4fk8wd_b&#34; alt=&#34;&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;运行新版本的Mail Application，在Help菜单下面会多出Install New Software选项。将自定义publisher生成的Desktop feature repository添加为新的软件源，安装Mail Desktop Feature。安装完成后，将在桌面找到Mail Application的快捷方式。在Installation Detail里面将会出现这次安装的内容。选中Desktop Feature后选择卸载，桌面的快捷方式文件将会被删除掉。当然也可以使用p2 example installer来为Mail Application安装desktop feature。p.s: example代码里只实现了创建linux/unix桌面快捷方式。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://docs.google.com/File?id=ddqccrw2_8814qg7wvhs_b&#34;&gt;&lt;img src=&#34;http://docs.google.com/File?id=ddqccrw2_8814qg7wvhs_b&#34; alt=&#34;&#34;&gt;&lt;/a&gt;&lt;/p&gt;

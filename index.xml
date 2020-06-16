@@ -6,10 +6,19 @@
     <description>Recent content on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deploy Sonatype Nexus repository OSS on EKS</title>
+      <link>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.sonatype.com/nexus-repository-oss&#34;&gt;Sonatype Nexus repository OSS&lt;/a&gt; is an artifact repository that supports most software repositories such as Maven, Pypi, Npmjs, Rubygems, Yum, Apt, Docker registry and etc. In the enterprise Nexus repository is widely used for storing proprietary artifacts and caching the artifacts for speeding up the devops.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>无服务器架构的Docker镜像数据分析应用</title>
@@ -492,7 +501,7 @@ Finally I want to boost both above two fields, and &amp;lsquo;important&amp;rsqu
       <guid>https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/</guid>
       <description>It&amp;rsquo;s a common and ugly problem when using non-ascii characters in Django.
 The general solution is below,
- put # -- coding: utf-8 -- at beginning of every python source files that are using utf-8 characters declare every string variable as unicode, such as str_var = u&#39;中文字符&amp;rsquo; add a __unicode__ method in your model classes if you are running server on apache/mod_wsgi or ngnix, you need configure web server to use utf-8 encoding  </description>
+ put # -- coding: utf-8 -- at beginning of every python source files that are using utf-8 characters declare every string variable as unicode, such as str_var = u&amp;rsquo;中文字符&amp;rsquo; add a __unicode__ method in your model classes if you are running server on apache/mod_wsgi or ngnix, you need configure web server to use utf-8 encoding  </description>
     </item>
     
     <item>

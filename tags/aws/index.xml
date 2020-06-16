@@ -6,10 +6,19 @@
     <description>Recent content in AWS on The Road</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kane.mx/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deploy Sonatype Nexus repository OSS on EKS</title>
+      <link>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.sonatype.com/nexus-repository-oss&#34;&gt;Sonatype Nexus repository OSS&lt;/a&gt; is an artifact repository that supports most software repositories such as Maven, Pypi, Npmjs, Rubygems, Yum, Apt, Docker registry and etc. In the enterprise Nexus repository is widely used for storing proprietary artifacts and caching the artifacts for speeding up the devops.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>无服务器架构的Docker镜像数据分析应用</title>
