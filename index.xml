@@ -728,7 +728,7 @@ aLoopName: for (;;) { // ... while (someCondition) // ... if (otherCondition) 
       <guid>https://kane.mx/posts/archive/blogspot/rename-command/</guid>
       <description>It&amp;rsquo;s a powerful command to rename files in a batch.
 Usage:
-rename &amp;lsquo;s/(\d+)$/$1\.txt/&amp;rsquo; * rename add &amp;lsquo;.txt&amp;rsquo; extension name for all files that ends with number.</description>
+rename &amp;rsquo;s/(\d+)$/$1\.txt/&amp;rsquo; * rename add &amp;lsquo;.txt&amp;rsquo; extension name for all files that ends with number.</description>
     </item>
     
     <item>
@@ -826,7 +826,7 @@ View more presentations from Sonatype.</description>
       <guid>https://kane.mx/posts/archive/blogspot/p2-replication-tool-lives-on-eclipse/</guid>
       <description>Days ago I updated my p2 replication tool. It&amp;rsquo;s easier to install it in your Eclipse.
 A new component named &amp;lsquo;Eclipse marketplace&amp;rsquo; is added into Eclipse SDK since Helios, which is an application store for Eclipse. People could be easy to install third party plug-ins into their Eclipse.
-You can launch marketplace via &amp;lsquo;Help&amp;rsquo; - &amp;lsquo;Eclipse Marketplace&amp;hellip;&#39;, then search key word &amp;lsquo;p2&amp;rsquo; or &amp;lsquo;replication&amp;rsquo; to find the tool. Finally click next to install it.</description>
+You can launch marketplace via &amp;lsquo;Help&amp;rsquo; - &amp;lsquo;Eclipse Marketplace&amp;hellip;&amp;rsquo;, then search key word &amp;lsquo;p2&amp;rsquo; or &amp;lsquo;replication&amp;rsquo; to find the tool. Finally click next to install it.</description>
     </item>
     
     <item>
@@ -923,7 +923,7 @@ a) execute &amp;ldquo;ssh-keygen -t rsa&amp;rdquo; under your linux/unix login t
 (press Enter for all)
 You will get 2 files uner ~/.ssh/, id_rsa and id_rsa.pub
 b) Put the public key id_rsa.pub to your remote host: ~/.ssh/authorized_keys If the remote host share the same nfs, just try &amp;quot; cat id_rsa.pub &amp;raquo; ~/.ssh/authorized_keys&amp;rdquo;
-* Remember to modify hostname or ip info in ~/.ssh/authorized_keys to &amp;ldquo;&amp;quot;, so that you can login from any host without password in your NIS domain.</description>
+* Remember to modify hostname or ip info in ~/.ssh/authorized_keys to &amp;ldquo;&amp;rdquo;, so that you can login from any host without password in your NIS domain.</description>
     </item>
     
     <item>
@@ -1178,7 +1178,7 @@ If you want to use the qualifier string, you must define your feature and plug-i
       <description>最近几天被一个注册表相关的defect搞的焦头烂额。
 背景是这样的，产品在安装的时候需要通过修改注册表注册文件关联等信息。在先前安装程序基于InstallShield时工作正确，但在最近安装程序改用MSI后，我们写入注册表的信息没有被写到所期望的位置。
 通过各种试验，查找资料，终于搞明白原因。我们修改注册表的进程不是当前用户进程，而是系统进程，因此写入到HKEY_CURRENT_USER下的数据不能被写入到当前登陆用户下。
-We should not use &amp;ldquo;HKEY_CURRENT_USER&amp;rdquo; to retrival current user&amp;rsquo;s registry key value. Because Windows Services always startup before user login. It may happen some error or loading the wrong setting profile. If you still insist on using the current user registry key setting, please refer &amp;ldquo;RegOpenCurrentUser&amp;quot;.
+We should not use &amp;ldquo;HKEY_CURRENT_USER&amp;rdquo; to retrival current user&amp;rsquo;s registry key value. Because Windows Services always startup before user login. It may happen some error or loading the wrong setting profile. If you still insist on using the current user registry key setting, please refer &amp;ldquo;RegOpenCurrentUser&amp;rdquo;.
 最后只好将这些数据写到了Local Machine键值下。</description>
     </item>
     
@@ -1249,7 +1249,7 @@ There are two important parameters for jvm. And we must launch remote java app w
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/about/</guid>
-      <description>So, Who Am I?  I’m the father of twin sons. Live in Beijing. Also I&amp;rsquo;m the *uix user, a full stack software engineer, devops and cloud native evangelist.
+      <description>So, Who Am I?  I’m the father of three boys. Live in Beijing. Also I&amp;rsquo;m the *uix user, a full stack software engineer, devops and cloud native evangelist.
 Curious about me? Use the social links above to check out my profiles.</description>
     </item>
     

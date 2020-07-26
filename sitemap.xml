@@ -157,13 +157,6 @@
   </url>
   
   <url>
-    <loc>https://kane.mx/tags/tip/</loc>
-    <lastmod>2020-05-03T00:13:32+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://kane.mx/tags/tips/</loc>
     <lastmod>2020-05-03T00:13:32+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -179,13 +172,6 @@
   
   <url>
     <loc>https://kane.mx/posts/2020/zsh-performance-tuning/</loc>
-    <lastmod>2020-04-22T12:48:57+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/performance/</loc>
     <lastmod>2020-04-22T12:48:57+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -256,13 +242,6 @@
   
   <url>
     <loc>https://kane.mx/tags/faas/</loc>
-    <lastmod>2020-03-13T21:15:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/serverless/</loc>
     <lastmod>2020-03-13T21:15:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -402,6 +381,13 @@
   </url>
   
   <url>
+    <loc>https://kane.mx/tags/serverless/</loc>
+    <lastmod>2019-11-06T00:02:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://kane.mx/tags/aws-vpn/</loc>
     <lastmod>2019-09-17T00:12:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -501,13 +487,6 @@
   
   <url>
     <loc>https://kane.mx/tags/spring/</loc>
-    <lastmod>2019-06-28T18:14:46+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/spring-cloud/</loc>
     <lastmod>2019-06-28T18:14:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -627,6 +606,13 @@
   
   <url>
     <loc>https://kane.mx/tags/service-mesh/</loc>
+    <lastmod>2019-04-29T15:47:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/spring-cloud/</loc>
     <lastmod>2019-04-29T15:47:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -768,13 +754,6 @@
   <url>
     <loc>https://kane.mx/tags/docker-swarm/</loc>
     <lastmod>2019-01-25T00:02:05+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://kane.mx/tags/ubuntu/</loc>
-    <lastmod>2019-01-25T18:17:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -1158,7 +1137,21 @@
   </url>
   
   <url>
+    <loc>https://kane.mx/tags/tip/</loc>
+    <lastmod>2019-01-25T18:17:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://kane.mx/tags/trick/</loc>
+    <lastmod>2019-01-25T18:17:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/ubuntu/</loc>
     <lastmod>2019-01-25T18:17:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1313,6 +1306,13 @@
   
   <url>
     <loc>https://kane.mx/posts/archive/blogspot/p2-query-performance/</loc>
+    <lastmod>2019-01-25T18:17:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://kane.mx/tags/performance/</loc>
     <lastmod>2019-01-25T18:17:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

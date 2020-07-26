@@ -129,15 +129,6 @@
     </item>
     
     <item>
-      <title>Tip</title>
-      <link>https://kane.mx/tags/tip/</link>
-      <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/tip/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Tips</title>
       <link>https://kane.mx/tags/tips/</link>
       <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
@@ -152,15 +143,6 @@
       <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/oh-my-zsh/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>performance</title>
-      <link>https://kane.mx/tags/performance/</link>
-      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/performance/</guid>
       <description></description>
     </item>
     
@@ -233,15 +215,6 @@
       <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/faas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Serverless</title>
-      <link>https://kane.mx/tags/serverless/</link>
-      <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/serverless/</guid>
       <description></description>
     </item>
     
@@ -363,6 +336,15 @@
     </item>
     
     <item>
+      <title>Serverless</title>
+      <link>https://kane.mx/tags/serverless/</link>
+      <pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/serverless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>AWS VPN</title>
       <link>https://kane.mx/tags/aws-vpn/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
@@ -449,15 +431,6 @@
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/spring/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>spring cloud</title>
-      <link>https://kane.mx/tags/spring-cloud/</link>
-      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/spring-cloud/</guid>
       <description></description>
     </item>
     
@@ -561,6 +534,15 @@
     </item>
     
     <item>
+      <title>spring cloud</title>
+      <link>https://kane.mx/tags/spring-cloud/</link>
+      <pubDate>Mon, 29 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kane.mx/tags/spring-cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>AWS EKS</title>
       <link>https://kane.mx/tags/aws-eks/</link>
       <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
@@ -629,15 +611,6 @@
       <pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>https://kane.mx/tags/docker-swarm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ubuntu</title>
-      <link>https://kane.mx/tags/ubuntu/</link>
-      <pubDate>Tue, 13 Sep 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/tags/ubuntu/</guid>
       <description></description>
     </item>
     
@@ -993,11 +966,29 @@
     </item>
     
     <item>
+      <title>Tip</title>
+      <link>https://kane.mx/tags/tip/</link>
+      <pubDate>Mon, 19 Mar 2012 20:04:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/tags/tip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Trick</title>
       <link>https://kane.mx/tags/trick/</link>
       <pubDate>Mon, 19 Mar 2012 20:04:00 +0800</pubDate>
       
       <guid>https://kane.mx/tags/trick/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu</title>
+      <link>https://kane.mx/tags/ubuntu/</link>
+      <pubDate>Mon, 19 Mar 2012 20:04:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/tags/ubuntu/</guid>
       <description></description>
     </item>
     
@@ -1124,6 +1115,15 @@
       <pubDate>Mon, 17 Oct 2011 19:34:00 +0800</pubDate>
       
       <guid>https://kane.mx/tags/p2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>performance</title>
+      <link>https://kane.mx/tags/performance/</link>
+      <pubDate>Mon, 17 Oct 2011 19:34:00 +0800</pubDate>
+      
+      <guid>https://kane.mx/tags/performance/</guid>
       <description></description>
     </item>
     
