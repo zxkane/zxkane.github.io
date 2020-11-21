@@ -1,27 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Jetty on The Road</title>
-    <link>https://kane.mx/tags/jetty/</link>
-    <description>Recent content in Jetty on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 05 Mar 2012 19:25:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/jetty/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Embedding an HTTP server in Equinox</title>
-      <link>https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/</link>
-      <pubDate>Mon, 05 Mar 2012 19:25:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/</guid>
-      <description>I want to create a test server for my application. Using embedding Http server in equinox is my first option.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jetty on The Road</title><link>https://kane.mx/tags/jetty/</link><description>Recent content in Jetty on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 05 Mar 2012 19:25:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/jetty/index.xml" rel="self" type="application/rss+xml"/><item><title>Embedding an HTTP server in Equinox</title><link>https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/</link><pubDate>Mon, 05 Mar 2012 19:25:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/</guid><description>I want to create a test server for my application. Using embedding Http server in equinox is my first option.
 I had experience using simple http service implementation of equinox, however I want to play with Jetty this time.
 Following the guide of Equinox server, I can&amp;rsquo;t running a Jetty server with my servlet in Eclipse Indigo. Obviously the guide is out of date.
-After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.</description>
-    </item>
-    
-  </channel>
-</rss>
+After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.</description></item></channel></rss>

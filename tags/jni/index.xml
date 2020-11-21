@@ -1,29 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>JNI on The Road</title>
-    <link>https://kane.mx/tags/jni/</link>
-    <description>Recent content in JNI on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 24 Jan 2007 14:19:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/jni/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>加载jar文件里的本地库</title>
-      <link>https://kane.mx/posts/archive/blogspot/jar/</link>
-      <pubDate>Wed, 24 Jan 2007 14:19:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/jar/</guid>
-      <description>java程序开发中经常用到JNI调用本地library, 同时又希望将library同class文件编译成一个jar文件以方便deploy.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JNI on The Road</title><link>https://kane.mx/tags/jni/</link><description>Recent content in JNI on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 24 Jan 2007 14:19:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/jni/index.xml" rel="self" type="application/rss+xml"/><item><title>加载jar文件里的本地库</title><link>https://kane.mx/posts/archive/blogspot/jar/</link><pubDate>Wed, 24 Jan 2007 14:19:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/jar/</guid><description>java程序开发中经常用到JNI调用本地library, 同时又希望将library同class文件编译成一个jar文件以方便deploy.
 但是JDK的classloader不支持从jar文件中加载library, 一个变通的方法就是jar里的library以临时文件的方式写到临时目录或java.library目录.
 附上两篇文档链接 :
 **Load Library inside a jar file
 **
-使用JNI时，装载本地库的小技巧</description>
-    </item>
-    
-  </channel>
-</rss>
+使用JNI时，装载本地库的小技巧</description></item></channel></rss>

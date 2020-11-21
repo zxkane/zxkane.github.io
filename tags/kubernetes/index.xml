@@ -1,70 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Kubernetes on The Road</title>
-    <link>https://kane.mx/tags/kubernetes/</link>
-    <description>Recent content in Kubernetes on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Deploy Sonatype Nexus repository OSS on EKS</title>
-      <link>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</link>
-      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.sonatype.com/nexus-repository-oss&#34;&gt;Sonatype Nexus repository OSS&lt;/a&gt; is an artifact repository that supports most software repositories such as Maven, Pypi, Npmjs, Rubygems, Yum, Apt, Docker registry and etc. In the enterprise Nexus repository is widely used for storing proprietary artifacts and caching the artifacts for speeding up the devops.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Spring Cloud or Cloud Native</title>
-      <link>https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/</link>
-      <pubDate>Mon, 29 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/</guid>
-      <description>&lt;p&gt;基于Java的&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;是由Java最大开源生态&lt;a href=&#34;https://spring.io/&#34;&gt;Spring&lt;/a&gt;社区推出的Out-of-Box分布式&lt;a href=&#34;https://en.wikipedia.org/wiki/Microservices&#34;&gt;微服务&lt;/a&gt;解决方案，&lt;a href=&#34;https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Angel-Release-Notes/6e0e1ba3d510d4a30b95c1468007b22f2427fa25&#34;&gt;自2016年发布&lt;/a&gt;起就被众多开发者看好。Java作为广为流行的服务端编程语言，&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;也就越来越多的被用于微服务开发。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;集成了&lt;a href=&#34;https://netflix.github.io/&#34;&gt;Netflix OSS&lt;/a&gt;开源项目实现了很多功能(或作为实现之一)，包括服务治理、网关路由、客户端负载均衡、服务间调用、断路器等。&lt;a href=&#34;https://spring.io/projects/spring-cloud-netflix&#34;&gt;Spring Cloud Netflix&lt;/a&gt;将很多生产级别微服务能力开箱即用的带到了Spring Cloud架构下的微服务中，帮助开发者快速的构建满足&lt;a href=&#34;https://12factor.net/&#34;&gt;12要素&lt;/a&gt;的应用。&lt;/p&gt;
-&lt;p&gt;在去年底发布的&lt;a href=&#34;https://spring.io/blog/2018/12/12/spring-cloud-greenwich-rc1-available-now#spring-cloud-netflix-projects-entering-maintenance-mode&#34;&gt;Spring Cloud Greenwich版本&lt;/a&gt;中宣布&lt;a href=&#34;https://spring.io/projects/spring-cloud-netflix&#34;&gt;Spring Cloud Netflix&lt;/a&gt;中重要的组件&lt;a href=&#34;https://github.com/Netflix/Hystrix#hystrix-status&#34;&gt;Hystrix&lt;/a&gt;、&lt;a href=&#34;https://github.com/Netflix/ribbon#project-status-on-maintenance&#34;&gt;Ribbon&lt;/a&gt;、&lt;code&gt;Zuul 1&lt;/code&gt;等由于上游开源项目进入维护状态，对应的Spring Cloud Netflix项目也进入到维护状态。这些项目将&lt;strong&gt;不再适合&lt;/strong&gt;用于长期维护的产品中！&lt;/p&gt;
-&lt;p&gt;同时随着近年云计算的发展，特别是&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;成为容器编排平台的事实标准，加上&lt;a href=&#34;https://www.nginx.com/blog/what-is-a-service-mesh/&#34;&gt;Service Mesh(服务网格)&lt;/a&gt;对微服务的服务治理和流量控制，为&lt;a href=&#34;https://www.redhat.com/en/topics/cloud-native-apps&#34;&gt;云原生应用&lt;/a&gt;提供了更为现代、平台无关的解决方案。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</title>
-      <link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</link>
-      <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</guid>
-      <description>&lt;p&gt;本文是&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/&#34;&gt;为Kubernetes中任意应用添加基于oauth2的认证保护&lt;/a&gt;的下篇，将图文详解如何使用基于&lt;a href=&#34;https://open-doc.dingtalk.com/microapp/serverapi2/kymkv6&#34;&gt;钉钉认证&lt;/a&gt;的&lt;a href=&#34;https://github.com/bitly/oauth2_proxy&#34;&gt;oauth2 proxy&lt;/a&gt;为自身本没有认证授权功能的Web站点实现认证及授权。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</title>
-      <link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</guid>
-      <description>&lt;p&gt;企业随着业务的发展，必然会部署各种各样的IT系统。出于安全性的考虑，一些系统仅可企业内部使用，甚至仅开放给企业部分部门员工使用。&lt;/p&gt;
-&lt;p&gt;这些IT系统大致可分为两类，&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;系统本身不支持任何认证机制，例如资讯或文档类系统。需要增加认证保护，能够限制非企业员工访问即可。系统运维通常的做法是，为站点设置&lt;a href=&#34;https://en.wikipedia.org/wiki/Basic_access_authentication&#34;&gt;HTTP Basic认证&lt;/a&gt;保护。由于&lt;a href=&#34;https://en.wikipedia.org/wiki/Basic_access_authentication&#34;&gt;HTTP Basic认证&lt;/a&gt;是通过预设的用户、密码认证，认证信息比较容易泄露。即使定期更换密码，但需要额外的机制通知用户密码的变更，用户体验也不好。&lt;/li&gt;
-&lt;li&gt;系统自身支持认证，甚至支持多种认证机制。比如最常用的开源CI/CD工具，&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins&lt;/a&gt;内置支持本地数据库认证、通过&lt;a href=&#34;https://plugins.jenkins.io/#&#34;&gt;插件&lt;/a&gt;支持多种第三方系统集成认证。如果大量的IT系统都有一套独立的用户管理，随着企业的员工的变更，用户的增删等操作对系统管理员来说是不小的工作量。同时，也很容易由于人为疏忽，造成资产、数据的安全隐患。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;假设企业自身已经有了一套OA系统包含员工、组织结构管理，例如，国内目前最为普及流行的&lt;a href=&#34;https://www.dingtalk.com/&#34;&gt;钉钉&lt;/a&gt;或&lt;a href=&#34;https://work.weixin.qq.com/&#34;&gt;企业微信&lt;/a&gt;。我们完全可以提供一套基于&lt;a href=&#34;https://oauth.net/2/&#34;&gt;oauth 2.0协议&lt;/a&gt;的认证方式，让以上两类IT系统使用企业已有的OA系统(&lt;a href=&#34;https://www.dingtalk.com/&#34;&gt;钉钉&lt;/a&gt;或&lt;a href=&#34;https://work.weixin.qq.com/&#34;&gt;企业微信&lt;/a&gt;)来实现登录认证。做到这一点后，企业无论有多少IT系统都不再需要额外管理用户的成本，并且也避免了数据安全隐患。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>不要自建Kubernetes</title>
-      <link>https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/</link>
-      <pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/</guid>
-      <description>&lt;p&gt;这是“如何高效使用云服务”系列文章的首篇分享。可能有朋友好奇为什么不是从云计算最基础的服务&amp;ndash;计算资源&lt;a href=&#34;https://cn.aliyun.com/product/ecs&#34;&gt;ECS&lt;/a&gt;/&lt;a href=&#34;https://aws.amazon.com/cn/ec2/&#34;&gt;EC2&lt;/a&gt;讲起呢？在&lt;a href=&#34;https://pivotal.io/cloud-native&#34;&gt;Cloud Native&lt;/a&gt;已经被越来越接受的今天，基于&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;部署、编排应用的方式已经是业界的事实标准。无论是互联网巨头，传统500强企业，还是创业团队都在使用或规划使用&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;作为应用程序的自动化部署、可扩展管理平台。在云计算平台，虚拟机越来越不需要单独的管理，在绝大多数的业务场景下，它们只是作为容器集群所管理的计算资源。甚至虚拟机的创建到销毁整个生命周期管理都可以由&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;根据集群的负载来自动完成。&lt;/p&gt;
-&lt;p&gt;所有主流的云计算厂商都在解决方案中力推托管的&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;，&lt;a href=&#34;https://aws.amazon.com/cn/&#34;&gt;AWS&lt;/a&gt;的&lt;a href=&#34;https://aws.amazon.com/eks&#34;&gt;EKS&lt;/a&gt;，&lt;a href=&#34;https://azure.microsoft.com/en-us/&#34;&gt;Azure&lt;/a&gt;上的&lt;a href=&#34;https://azure.microsoft.com/en-us/services/kubernetes-service/&#34;&gt;AKS&lt;/a&gt;，当然少不了Google家&lt;a href=&#34;https://cloud.google.com/&#34;&gt;GCP&lt;/a&gt;上的&lt;a href=&#34;https://cloud.google.com/kubernetes-engine/&#34;&gt;Kubernetes Engine&lt;/a&gt;。国内&lt;a href=&#34;https://www.aliyun.com/product/kubernetes&#34;&gt;阿里云&lt;/a&gt;，&lt;a href=&#34;https://cloud.tencent.com/product/tke&#34;&gt;腾讯云&lt;/a&gt;等每一个公有云玩家也都基于开源&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;推出了托管服务。如果一家云计算厂商在提供托管&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;这一服务上没跟上业界的步伐，将来极大可能被淘汰出这个市场。&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kubernetes on The Road</title><link>https://kane.mx/tags/kubernetes/</link><description>Recent content in Kubernetes on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>Deploy Sonatype Nexus repository OSS on EKS</title><link>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</link><pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</guid><description>&lt;p>&lt;a href="https://www.sonatype.com/nexus-repository-oss">Sonatype Nexus repository OSS&lt;/a> is an artifact repository that supports most software repositories such as Maven, Pypi, Npmjs, Rubygems, Yum, Apt, Docker registry and etc. In the enterprise Nexus repository is widely used for storing proprietary artifacts and caching the artifacts for speeding up the devops.&lt;/p></description></item><item><title>Spring Cloud or Cloud Native</title><link>https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/</link><pubDate>Mon, 29 Apr 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/</guid><description>&lt;p>基于Java的&lt;a href="https://spring.io/projects/spring-cloud">Spring Cloud&lt;/a>是由Java最大开源生态&lt;a href="https://spring.io/">Spring&lt;/a>社区推出的Out-of-Box分布式&lt;a href="https://en.wikipedia.org/wiki/Microservices">微服务&lt;/a>解决方案，&lt;a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Angel-Release-Notes/6e0e1ba3d510d4a30b95c1468007b22f2427fa25">自2016年发布&lt;/a>起就被众多开发者看好。Java作为广为流行的服务端编程语言，&lt;a href="https://spring.io/projects/spring-cloud">Spring Cloud&lt;/a>也就越来越多的被用于微服务开发。&lt;/p>
+&lt;p>&lt;a href="https://spring.io/projects/spring-cloud">Spring Cloud&lt;/a>集成了&lt;a href="https://netflix.github.io/">Netflix OSS&lt;/a>开源项目实现了很多功能(或作为实现之一)，包括服务治理、网关路由、客户端负载均衡、服务间调用、断路器等。&lt;a href="https://spring.io/projects/spring-cloud-netflix">Spring Cloud Netflix&lt;/a>将很多生产级别微服务能力开箱即用的带到了Spring Cloud架构下的微服务中，帮助开发者快速的构建满足&lt;a href="https://12factor.net/">12要素&lt;/a>的应用。&lt;/p>
+&lt;p>在去年底发布的&lt;a href="https://spring.io/blog/2018/12/12/spring-cloud-greenwich-rc1-available-now#spring-cloud-netflix-projects-entering-maintenance-mode">Spring Cloud Greenwich版本&lt;/a>中宣布&lt;a href="https://spring.io/projects/spring-cloud-netflix">Spring Cloud Netflix&lt;/a>中重要的组件&lt;a href="https://github.com/Netflix/Hystrix#hystrix-status">Hystrix&lt;/a>、&lt;a href="https://github.com/Netflix/ribbon#project-status-on-maintenance">Ribbon&lt;/a>、&lt;code>Zuul 1&lt;/code>等由于上游开源项目进入维护状态，对应的Spring Cloud Netflix项目也进入到维护状态。这些项目将&lt;strong>不再适合&lt;/strong>用于长期维护的产品中！&lt;/p>
+&lt;p>同时随着近年云计算的发展，特别是&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>成为容器编排平台的事实标准，加上&lt;a href="https://www.nginx.com/blog/what-is-a-service-mesh/">Service Mesh(服务网格)&lt;/a>对微服务的服务治理和流量控制，为&lt;a href="https://www.redhat.com/en/topics/cloud-native-apps">云原生应用&lt;/a>提供了更为现代、平台无关的解决方案。&lt;/p></description></item><item><title>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</title><link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</link><pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</guid><description>&lt;p>本文是&lt;a href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/">为Kubernetes中任意应用添加基于oauth2的认证保护&lt;/a>的下篇，将图文详解如何使用基于&lt;a href="https://open-doc.dingtalk.com/microapp/serverapi2/kymkv6">钉钉认证&lt;/a>的&lt;a href="https://github.com/bitly/oauth2_proxy">oauth2 proxy&lt;/a>为自身本没有认证授权功能的Web站点实现认证及授权。&lt;/p></description></item><item><title>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</title><link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</link><pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</guid><description>&lt;p>企业随着业务的发展，必然会部署各种各样的IT系统。出于安全性的考虑，一些系统仅可企业内部使用，甚至仅开放给企业部分部门员工使用。&lt;/p>
+&lt;p>这些IT系统大致可分为两类，&lt;/p>
+&lt;ol>
+&lt;li>系统本身不支持任何认证机制，例如资讯或文档类系统。需要增加认证保护，能够限制非企业员工访问即可。系统运维通常的做法是，为站点设置&lt;a href="https://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic认证&lt;/a>保护。由于&lt;a href="https://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic认证&lt;/a>是通过预设的用户、密码认证，认证信息比较容易泄露。即使定期更换密码，但需要额外的机制通知用户密码的变更，用户体验也不好。&lt;/li>
+&lt;li>系统自身支持认证，甚至支持多种认证机制。比如最常用的开源CI/CD工具，&lt;a href="https://jenkins.io/">Jenkins&lt;/a>内置支持本地数据库认证、通过&lt;a href="https://plugins.jenkins.io/#">插件&lt;/a>支持多种第三方系统集成认证。如果大量的IT系统都有一套独立的用户管理，随着企业的员工的变更，用户的增删等操作对系统管理员来说是不小的工作量。同时，也很容易由于人为疏忽，造成资产、数据的安全隐患。&lt;/li>
+&lt;/ol>
+&lt;p>假设企业自身已经有了一套OA系统包含员工、组织结构管理，例如，国内目前最为普及流行的&lt;a href="https://www.dingtalk.com/">钉钉&lt;/a>或&lt;a href="https://work.weixin.qq.com/">企业微信&lt;/a>。我们完全可以提供一套基于&lt;a href="https://oauth.net/2/">oauth 2.0协议&lt;/a>的认证方式，让以上两类IT系统使用企业已有的OA系统(&lt;a href="https://www.dingtalk.com/">钉钉&lt;/a>或&lt;a href="https://work.weixin.qq.com/">企业微信&lt;/a>)来实现登录认证。做到这一点后，企业无论有多少IT系统都不再需要额外管理用户的成本，并且也避免了数据安全隐患。&lt;/p></description></item><item><title>不要自建Kubernetes</title><link>https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/</link><pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/</guid><description>&lt;p>这是“如何高效使用云服务”系列文章的首篇分享。可能有朋友好奇为什么不是从云计算最基础的服务&amp;ndash;计算资源&lt;a href="https://cn.aliyun.com/product/ecs">ECS&lt;/a>/&lt;a href="https://aws.amazon.com/cn/ec2/">EC2&lt;/a>讲起呢？在&lt;a href="https://pivotal.io/cloud-native">Cloud Native&lt;/a>已经被越来越接受的今天，基于&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>部署、编排应用的方式已经是业界的事实标准。无论是互联网巨头，传统500强企业，还是创业团队都在使用或规划使用&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>作为应用程序的自动化部署、可扩展管理平台。在云计算平台，虚拟机越来越不需要单独的管理，在绝大多数的业务场景下，它们只是作为容器集群所管理的计算资源。甚至虚拟机的创建到销毁整个生命周期管理都可以由&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>根据集群的负载来自动完成。&lt;/p>
+&lt;p>所有主流的云计算厂商都在解决方案中力推托管的&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>，&lt;a href="https://aws.amazon.com/cn/">AWS&lt;/a>的&lt;a href="https://aws.amazon.com/eks">EKS&lt;/a>，&lt;a href="https://azure.microsoft.com/en-us/">Azure&lt;/a>上的&lt;a href="https://azure.microsoft.com/en-us/services/kubernetes-service/">AKS&lt;/a>，当然少不了Google家&lt;a href="https://cloud.google.com/">GCP&lt;/a>上的&lt;a href="https://cloud.google.com/kubernetes-engine/">Kubernetes Engine&lt;/a>。国内&lt;a href="https://www.aliyun.com/product/kubernetes">阿里云&lt;/a>，&lt;a href="https://cloud.tencent.com/product/tke">腾讯云&lt;/a>等每一个公有云玩家也都基于开源&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>推出了托管服务。如果一家云计算厂商在提供托管&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>这一服务上没跟上业界的步伐，将来极大可能被淘汰出这个市场。&lt;/p></description></item></channel></rss>

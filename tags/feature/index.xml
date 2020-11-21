@@ -1,25 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>feature on The Road</title>
-    <link>https://kane.mx/tags/feature/</link>
-    <description>Recent content in feature on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 22 Apr 2011 15:56:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/feature/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Eclipse P2&#39;s import/export capability</title>
-      <link>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</link>
-      <pubDate>Fri, 22 Apr 2011 15:56:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</guid>
-      <description>I implemented the replication tool at the end of 2009, then published it to Eclipse Marketplace in May 2010. However it&amp;rsquo;s not pervasively used due to users have to install that plug-in firstly.
-I searched a similar request on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>feature on The Road</title><link>https://kane.mx/tags/feature/</link><description>Recent content in feature on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 22 Apr 2011 15:56:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/feature/index.xml" rel="self" type="application/rss+xml"/><item><title>Eclipse P2's import/export capability</title><link>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</link><pubDate>Fri, 22 Apr 2011 15:56:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</guid><description>I implemented the replication tool at the end of 2009, then published it to Eclipse Marketplace in May 2010. However it&amp;rsquo;s not pervasively used due to users have to install that plug-in firstly.
+I searched a similar request on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.</description></item></channel></rss>

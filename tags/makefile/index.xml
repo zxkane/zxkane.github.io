@@ -1,27 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Makefile on The Road</title>
-    <link>https://kane.mx/tags/makefile/</link>
-    <description>Recent content in Makefile on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 22 May 2008 20:37:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/makefile/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>[tip]Makefile</title>
-      <link>https://kane.mx/posts/archive/blogspot/makefile-tip/</link>
-      <pubDate>Thu, 22 May 2008 20:37:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/makefile-tip/</guid>
-      <description>Build c/c++ project always need third party library on linux, such as gtk+, glib. Writing their absolute path in Makefile is not flexible way. You can use pkg-config instead of the absolute path. Below is code snippet:
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Makefile on The Road</title><link>https://kane.mx/tags/makefile/</link><description>Recent content in Makefile on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 22 May 2008 20:37:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/makefile/index.xml" rel="self" type="application/rss+xml"/><item><title>[tip]Makefile</title><link>https://kane.mx/posts/archive/blogspot/makefile-tip/</link><pubDate>Thu, 22 May 2008 20:37:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/makefile-tip/</guid><description>Build c/c++ project always need third party library on linux, such as gtk+, glib. Writing their absolute path in Makefile is not flexible way. You can use pkg-config instead of the absolute path. Below is code snippet:
 GTK_LIB=$(shell pkg-config &amp;ndash;libs gtk+-2.0)
 GTK_INC=$(shell pkg-config &amp;ndash;cflags gtk+-2.0)
-gcc -o yourlibrary.so $(GTK_INC) $(GTK_LIB)</description>
-    </item>
-    
-  </channel>
-</rss>
+gcc -o yourlibrary.so $(GTK_INC) $(GTK_LIB)</description></item></channel></rss>

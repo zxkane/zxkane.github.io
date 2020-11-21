@@ -1,254 +1,51 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Eclipse on The Road</title>
-    <link>https://kane.mx/tags/eclipse/</link>
-    <description>Recent content in Eclipse on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 28 Jul 2012 20:49:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/eclipse/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>The workaround of making Zend CE/Zend debugger work on mountain lion</title>
-      <link>https://kane.mx/posts/archive/blogspot/workaround-of-making-zend-ce-mountain-lion/</link>
-      <pubDate>Sat, 28 Jul 2012 20:49:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/workaround-of-making-zend-ce-mountain-lion/</guid>
-      <description>I installed both Zend CE and zend debugger of Eclipse on my Mac. Both of them work well in Mac lion. However they don&amp;rsquo;t work any more after I upgraded my Mac to mountain lion. After some investigation I found some extensions of Zend PHP can&amp;rsquo;t be loaded due to shared library dependency can&amp;rsquo;t be found in mountain lion. The xslt module of PHP depends on some system libraries(suc as /usr/local/libxslt-1.</description>
-    </item>
-    
-    <item>
-      <title>The tips of Maven/Tycho building crossplatform RCP and repository</title>
-      <link>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</link>
-      <pubDate>Tue, 08 Nov 2011 16:16:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</guid>
-      <description>I successfully converted our product build from PDE build to Maven/Tycho. Something is worth to be documented here.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Eclipse on The Road</title><link>https://kane.mx/tags/eclipse/</link><description>Recent content in Eclipse on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 28 Jul 2012 20:49:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/eclipse/index.xml" rel="self" type="application/rss+xml"/><item><title>The workaround of making Zend CE/Zend debugger work on mountain lion</title><link>https://kane.mx/posts/archive/blogspot/workaround-of-making-zend-ce-mountain-lion/</link><pubDate>Sat, 28 Jul 2012 20:49:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/workaround-of-making-zend-ce-mountain-lion/</guid><description>I installed both Zend CE and zend debugger of Eclipse on my Mac. Both of them work well in Mac lion. However they don&amp;rsquo;t work any more after I upgraded my Mac to mountain lion. After some investigation I found some extensions of Zend PHP can&amp;rsquo;t be loaded due to shared library dependency can&amp;rsquo;t be found in mountain lion. The xslt module of PHP depends on some system libraries(suc as /usr/local/libxslt-1.</description></item><item><title>The tips of Maven/Tycho building crossplatform RCP and repository</title><link>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</link><pubDate>Tue, 08 Nov 2011 16:16:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</guid><description>I successfully converted our product build from PDE build to Maven/Tycho. Something is worth to be documented here.
 There are several examples and posts to demonstrate how using Tycho building your Eclipse plug-ins, features, applications and products. The most helpful example is the demo of Tycho project.
 Below are some traps I met when building my project by Tycho,
-  product build
-Our product is based on plug-ins, however we added the &amp;lsquo;featurelist&amp;rsquo; in build.</description>
-    </item>
-    
-    <item>
-      <title>Customize PDE build</title>
-      <link>https://kane.mx/posts/archive/blogspot/customize-pde-build/</link>
-      <pubDate>Fri, 22 Jul 2011 13:59:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/customize-pde-build/</guid>
-      <description>The documentation of PDE has a chapter for this topic. Basically it&amp;rsquo;s simply. Copy the template scripts what you want from templates/headless-build folder under org.eclipse.pde.build plug-in to your build configuration directory that is the folder has build.properties file.
-However I found the variables listed in template &amp;lsquo;customAssembly.xml&amp;rsquo; can&amp;rsquo;t be used in the runtime. I filed bug 346370 against it.</description>
-    </item>
-    
-    <item>
-      <title>Eclipse P2&#39;s import/export capability</title>
-      <link>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</link>
-      <pubDate>Fri, 22 Apr 2011 15:56:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</guid>
-      <description>I implemented the replication tool at the end of 2009, then published it to Eclipse Marketplace in May 2010. However it&amp;rsquo;s not pervasively used due to users have to install that plug-in firstly.
-I searched a similar request on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.</description>
-    </item>
-    
-    <item>
-      <title>Inside P2&#39;s profile (2) - the fragment matches all osgi bundles</title>
-      <link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</link>
-      <pubDate>Tue, 28 Dec 2010 11:33:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid>
-      <description>Recently our installer met a strange bug, it didn&amp;rsquo;t uninstall all legacy bundles after updating to new version. Finally I found it&amp;rsquo;s due to a magic fragment is missing in the profile due to some causes.
+product build
+Our product is based on plug-ins, however we added the &amp;lsquo;featurelist&amp;rsquo; in build.</description></item><item><title>Customize PDE build</title><link>https://kane.mx/posts/archive/blogspot/customize-pde-build/</link><pubDate>Fri, 22 Jul 2011 13:59:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/customize-pde-build/</guid><description>The documentation of PDE has a chapter for this topic. Basically it&amp;rsquo;s simply. Copy the template scripts what you want from templates/headless-build folder under org.eclipse.pde.build plug-in to your build configuration directory that is the folder has build.properties file.
+However I found the variables listed in template &amp;lsquo;customAssembly.xml&amp;rsquo; can&amp;rsquo;t be used in the runtime. I filed bug 346370 against it.</description></item><item><title>Eclipse P2's import/export capability</title><link>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</link><pubDate>Fri, 22 Apr 2011 15:56:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</guid><description>I implemented the replication tool at the end of 2009, then published it to Eclipse Marketplace in May 2010. However it&amp;rsquo;s not pervasively used due to users have to install that plug-in firstly.
+I searched a similar request on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.</description></item><item><title>Inside P2's profile (2) - the fragment matches all osgi bundles</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</link><pubDate>Tue, 28 Dec 2010 11:33:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid><description>Recently our installer met a strange bug, it didn&amp;rsquo;t uninstall all legacy bundles after updating to new version. Finally I found it&amp;rsquo;s due to a magic fragment is missing in the profile due to some causes.
  installBundle(bundle:${artifact})
 uninstallBundle(bundle:${artifact})
  setStartLevel(startLevel:4);
-It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsquo;s a fragment IU and match all the eclipse&amp;rsquo;s plug-ins in that profile. And this fragment defines the touch point actions for its hosts that will do installBundle action during &amp;lsquo;install&amp;rsquo; phrase and uninstallBundle action during &amp;lsquo;uninstall&amp;rsquo; phrase.</description>
-    </item>
-    
-    <item>
-      <title>Inside P2&#39;s profile (1) - inclusion rules</title>
-      <link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</link>
-      <pubDate>Tue, 28 Dec 2010 11:13:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid>
-      <description>You would see some interesting properties at the bottom of eclipse&amp;rsquo;s profile.
+It has &amp;lsquo;hostRequirements&amp;rsquo; element that represents it&amp;rsquo;s a fragment IU and match all the eclipse&amp;rsquo;s plug-ins in that profile. And this fragment defines the touch point actions for its hosts that will do installBundle action during &amp;lsquo;install&amp;rsquo; phrase and uninstallBundle action during &amp;lsquo;uninstall&amp;rsquo; phrase.</description></item><item><title>Inside P2's profile (1) - inclusion rules</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</link><pubDate>Tue, 28 Dec 2010 11:13:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid><description>You would see some interesting properties at the bottom of eclipse&amp;rsquo;s profile.
 For example,
 It attaches a property named &amp;lsquo;org.eclipse.equinox.p2.internal.inclusion.rules&amp;rsquo; with value &amp;lsquo;STRICT&amp;rsquo; on the IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; with version 3.6.1.M20100909-0800.
 It&amp;rsquo;s a very important property for the p2 engine. It means the IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; has been explicitly installed into the profile, so it&amp;rsquo;s not allowed be implicitly updated or removed.
 For example,
-We have top feature IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; that represents the Eclipse SDK, &amp;lsquo;org.</description>
-    </item>
-    
-    <item>
-      <title>[Eclipse][P2]P2 replication plug-in</title>
-      <link>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</link>
-      <pubDate>Fri, 25 Dec 2009 16:43:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</guid>
-      <description>I wrote a plug-in to simplify the process to install the same plug-ins in different platform or different workstation.
+We have top feature IU &amp;lsquo;org.eclipse.sdk.ide&amp;rsquo; that represents the Eclipse SDK, &amp;lsquo;org.</description></item><item><title>[Eclipse][P2]P2 replication plug-in</title><link>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</link><pubDate>Fri, 25 Dec 2009 16:43:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</guid><description>I wrote a plug-in to simplify the process to install the same plug-ins in different platform or different workstation.
 Anyone is interested in it, pls follow below guide to freely use it.
 http://code.google.com/p/kane-toolkit/wiki/P2Replication
-Enjoy it.</description>
-    </item>
-    
-    <item>
-      <title>[eclipse]How Equinox load bundles</title>
-      <link>https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/</link>
-      <pubDate>Wed, 02 Dec 2009 14:58:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/</guid>
-      <description>How Equinox load bundles Equinox launcher is responsible to start OSGi framework. The system bundle would be created and marked as installed when initializing the framework. Equinox also tries to install the installed bundles if finding them in persistence data during the initializing period. Of course there is no extra bundles would be installed when launching Equinox first time.
-Then Equinox launcher would install the bundles specified by vm&amp;rsquo;s system property &amp;lsquo;osgi.</description>
-    </item>
-    
-    <item>
-      <title>[Eclipse][P2]Learn p2 step by step</title>
-      <link>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</link>
-      <pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid>
-      <description>Learn p2 step by step Kane    Learn P2 step by step
- p2 concept p2 install p2 install practice p2 repository publish customized p2 touchpoint p2 repository publish practice Example Code Reference    p2 concept 首先来理解p2引入的几个概念[1]
-  p2 / Agent
-  The provisioning infrastructure on client machines
-  Installable Unit (IU)
-  Metadata that describes things that can be installed/configured
-  Artifact</description>
-    </item>
-    
-    <item>
-      <title>Simulate p2 self host in Eclipse run</title>
-      <link>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</link>
-      <pubDate>Tue, 27 Oct 2009 16:12:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</guid>
-      <description>-Dosgi.install.area=&amp;lt;launcher&amp;rsquo;s folder&amp;gt;</description>
-    </item>
-    
-    <item>
-      <title>Eclipse/OSGi preference</title>
-      <link>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</link>
-      <pubDate>Thu, 22 Oct 2009 15:29:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</guid>
-      <description>The IPreferenceStore API of Eclipse is based on OSGi&amp;rsquo;s preferences service. Equinox implements several scope context for different preferences, such DefaultScope, InstanceScope and ConfigurationScope. The IPreferenceStore is the wrapper of instance scope for back-compatibility. It stored the data in workspace(osgi.data.area).
-The workspace folder would be created when launching RCP application if it doesn&amp;rsquo;t exist. But we can use argument &amp;lsquo;-data @none&amp;rsquo; to suppress the creation of workspace. If that, the instance scope/IPreferenceStore can&amp;rsquo;t store any value any more.</description>
-    </item>
-    
-    <item>
-      <title>The usage of Eclipse&#39;s Proxy API</title>
-      <link>https://kane.mx/posts/archive/blogspot/usage-of-eclipses-proxy-api/</link>
-      <pubDate>Wed, 21 Oct 2009 16:53:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/usage-of-eclipses-proxy-api/</guid>
-      <description>Eclipse platform register an OSGi service &amp;lsquo;IProxyService&amp;rsquo; to manage network connection, which has capability to set proxy setting. There are three types of proxy working mode,
- Direct(no proxy), Manual(specified by user), Native(using OS&amp;rsquo;s proxy setting, such as gnome-proxy, IE).  There are three types of proxy supported by IProxyService. They&amp;rsquo;re http, https and socks.
-It also allows to add/remove ip address from white list, which are accessed without connecting proxy.</description>
-    </item>
-    
-    <item>
-      <title>[OSGi][Eclipse]Add custom jar or path into Equinox Framework</title>
-      <link>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</link>
-      <pubDate>Sun, 28 Sep 2008 13:23:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</guid>
-      <description>Set vm arguments &amp;lsquo;osgi.framework.extensions&amp;rsquo; and &amp;lsquo;osgi.frameworkClassPath&amp;rsquo; when vm starts. If those value are set, those jar or path would be added into the classloader when starting EclipseStarter.
+Enjoy it.</description></item><item><title>[eclipse]How Equinox load bundles</title><link>https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/</link><pubDate>Wed, 02 Dec 2009 14:58:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/</guid><description>How Equinox load bundles Equinox launcher is responsible to start OSGi framework. The system bundle would be created and marked as installed when initializing the framework. Equinox also tries to install the installed bundles if finding them in persistence data during the initializing period. Of course there is no extra bundles would be installed when launching Equinox first time.
+Then Equinox launcher would install the bundles specified by vm&amp;rsquo;s system property &amp;lsquo;osgi.</description></item><item><title>[Eclipse][P2]Learn p2 step by step</title><link>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</link><pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid><description>Learn p2 step by step Kane   Learn P2 step by step
+p2 concept p2 install p2 install practice p2 repository publish customized p2 touchpoint p2 repository publish practice Example Code Reference p2 concept 首先来理解p2引入的几个概念[1]
+p2 / Agent
+The provisioning infrastructure on client machines
+Installable Unit (IU)
+Metadata that describes things that can be installed/configured
+Artifact</description></item><item><title>Simulate p2 self host in Eclipse run</title><link>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</link><pubDate>Tue, 27 Oct 2009 16:12:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</guid><description>-Dosgi.install.area=&amp;lt;launcher&amp;rsquo;s folder&amp;gt;</description></item><item><title>Eclipse/OSGi preference</title><link>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</link><pubDate>Thu, 22 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</guid><description>The IPreferenceStore API of Eclipse is based on OSGi&amp;rsquo;s preferences service. Equinox implements several scope context for different preferences, such DefaultScope, InstanceScope and ConfigurationScope. The IPreferenceStore is the wrapper of instance scope for back-compatibility. It stored the data in workspace(osgi.data.area).
+The workspace folder would be created when launching RCP application if it doesn&amp;rsquo;t exist. But we can use argument &amp;lsquo;-data @none&amp;rsquo; to suppress the creation of workspace. If that, the instance scope/IPreferenceStore can&amp;rsquo;t store any value any more.</description></item><item><title>The usage of Eclipse's Proxy API</title><link>https://kane.mx/posts/archive/blogspot/usage-of-eclipses-proxy-api/</link><pubDate>Wed, 21 Oct 2009 16:53:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/usage-of-eclipses-proxy-api/</guid><description>Eclipse platform register an OSGi service &amp;lsquo;IProxyService&amp;rsquo; to manage network connection, which has capability to set proxy setting. There are three types of proxy working mode,
+Direct(no proxy), Manual(specified by user), Native(using OS&amp;rsquo;s proxy setting, such as gnome-proxy, IE). There are three types of proxy supported by IProxyService. They&amp;rsquo;re http, https and socks.
+It also allows to add/remove ip address from white list, which are accessed without connecting proxy.</description></item><item><title>[OSGi][Eclipse]Add custom jar or path into Equinox Framework</title><link>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</link><pubDate>Sun, 28 Sep 2008 13:23:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</guid><description>Set vm arguments &amp;lsquo;osgi.framework.extensions&amp;rsquo; and &amp;lsquo;osgi.frameworkClassPath&amp;rsquo; when vm starts. If those value are set, those jar or path would be added into the classloader when starting EclipseStarter.
 See org.eclipse.equinox.launcher.Main for more details in the source code of Eclipse 3.4.
 Best Regards
-Kane</description>
-    </item>
-    
-    <item>
-      <title>[OSGi]How to acquire the fragments of specified bundle</title>
-      <link>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</link>
-      <pubDate>Fri, 01 Aug 2008 16:22:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</guid>
-      <description>The answer is very simple, using the service &amp;lsquo;org.eclipse.service.PackageAdmin&amp;rsquo;.</description>
-    </item>
-    
-    <item>
-      <title>[Eclipse]Equinox&#39;s classloader and its URL schema</title>
-      <link>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</link>
-      <pubDate>Thu, 17 Jul 2008 17:42:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</guid>
-      <description>Equinox uses the adaptor hooks to implement the class loader.
+Kane</description></item><item><title>[OSGi]How to acquire the fragments of specified bundle</title><link>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</link><pubDate>Fri, 01 Aug 2008 16:22:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</guid><description>The answer is very simple, using the service &amp;lsquo;org.eclipse.service.PackageAdmin&amp;rsquo;.</description></item><item><title>[Eclipse]Equinox's classloader and its URL schema</title><link>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</link><pubDate>Thu, 17 Jul 2008 17:42:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</guid><description>Equinox uses the adaptor hooks to implement the class loader.
 See http://wiki.eclipse.org/Adaptor_Hooks for more detail
 BaseClassLoadingHook would search the native code on itself. If it find the file in that jar file, it would extract the native library into its storage folder.
 EclipseClassLoadingHook defines some variables to search the native library. Belows are built-in variables:
 result.add(&amp;ldquo;ws/&amp;rdquo; + info.getWS() + &amp;ldquo;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$
-result.add(&amp;ldquo;os/&amp;rdquo; + info.getOS() + &amp;ldquo;/&amp;rdquo; + info.getOSArch() + &amp;ldquo;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$</description>
-    </item>
-    
-    <item>
-      <title>[OSGi][Equinox]the Bundle-NativeCode implementation in Equinox</title>
-      <link>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</link>
-      <pubDate>Mon, 31 Mar 2008 17:36:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</guid>
-      <description>OSGi Spec defines Bundle-NativeCode header to contain a specification of native code libraries contained in that bundle. All magic things are initialized by org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLibrary(String) and org.eclipse.osgi.framework.internal.core.BundleLoader.findLibrary(String). Then BundleLoader uses the org.eclipse.osgi.baseadaptor.BaseData(an implementation of BundleData) to find the library path, if the bundle is NOT a jar file, it would directly get the absolute path of library. Otherwise, the BaseData would extract the library file if it could NOT find it in OSGi bundle storage(located in ${data}/org.</description>
-    </item>
-    
-    <item>
-      <title>[Eclipse]How to use qualifier string when exporting features and plug-ins</title>
-      <link>https://kane.mx/posts/archive/blogspot/how-to-use-qualifier-string-when/</link>
-      <pubDate>Tue, 11 Mar 2008 13:30:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/how-to-use-qualifier-string-when/</guid>
-      <description>You must see the qualifier string property when exporting your features and plug-ins by Eclipse pde. But specified qualifier string won&amp;rsquo;t appear after you export the features successfully.
+result.add(&amp;ldquo;os/&amp;rdquo; + info.getOS() + &amp;ldquo;/&amp;rdquo; + info.getOSArch() + &amp;ldquo;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$</description></item><item><title>[OSGi][Equinox]the Bundle-NativeCode implementation in Equinox</title><link>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</link><pubDate>Mon, 31 Mar 2008 17:36:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</guid><description>OSGi Spec defines Bundle-NativeCode header to contain a specification of native code libraries contained in that bundle. All magic things are initialized by org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLibrary(String) and org.eclipse.osgi.framework.internal.core.BundleLoader.findLibrary(String). Then BundleLoader uses the org.eclipse.osgi.baseadaptor.BaseData(an implementation of BundleData) to find the library path, if the bundle is NOT a jar file, it would directly get the absolute path of library. Otherwise, the BaseData would extract the library file if it could NOT find it in OSGi bundle storage(located in ${data}/org.</description></item><item><title>[Eclipse]How to use qualifier string when exporting features and plug-ins</title><link>https://kane.mx/posts/archive/blogspot/how-to-use-qualifier-string-when/</link><pubDate>Tue, 11 Mar 2008 13:30:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-use-qualifier-string-when/</guid><description>You must see the qualifier string property when exporting your features and plug-ins by Eclipse pde. But specified qualifier string won&amp;rsquo;t appear after you export the features successfully.
 If you want to use the qualifier string, you must define your feature and plug-in version like below:
 1.0.0.qualifier, 2.2.2.qaulifier
-:)</description>
-    </item>
-    
-    <item>
-      <title>[Eclipse]get rid of the menus of eclipse platform</title>
-      <link>https://kane.mx/posts/archive/blogspot/get-rid-of-menus-of-eclipse-platform/</link>
-      <pubDate>Fri, 09 Mar 2007 13:46:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/get-rid-of-menus-of-eclipse-platform/</guid>
-      <description>When you develop a rich client application base on eclipse framework, and your application require eclipse platform feature, you would find that your application has some menu items contributed by eclipse platform. Those menu items are defined by several plug-ins&amp;rsquo; implementation of actionSet extention point. In fact Eclipse provides an activity mechanism to suppress the extension points which you don&amp;rsquo;t want to use. However, you must know the identification name of extension points which you want to suppress.</description>
-    </item>
-    
-    <item>
-      <title>[Eclipse]Eclipse update support</title>
-      <link>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</link>
-      <pubDate>Wed, 17 Jan 2007 13:51:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</guid>
-      <description>Those days my work is focus on eclipse&amp;rsquo;s update. Now I understand the general mechanism and meet some issues when using it in development work.
+:)</description></item><item><title>[Eclipse]get rid of the menus of eclipse platform</title><link>https://kane.mx/posts/archive/blogspot/get-rid-of-menus-of-eclipse-platform/</link><pubDate>Fri, 09 Mar 2007 13:46:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/get-rid-of-menus-of-eclipse-platform/</guid><description>When you develop a rich client application base on eclipse framework, and your application require eclipse platform feature, you would find that your application has some menu items contributed by eclipse platform. Those menu items are defined by several plug-ins' implementation of actionSet extention point. In fact Eclipse provides an activity mechanism to suppress the extension points which you don&amp;rsquo;t want to use. However, you must know the identification name of extension points which you want to suppress.</description></item><item><title>[Eclipse]Eclipse update support</title><link>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</link><pubDate>Wed, 17 Jan 2007 13:51:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</guid><description>Those days my work is focus on eclipse&amp;rsquo;s update. Now I understand the general mechanism and meet some issues when using it in development work.
 The update mechanism includes four major types: install, enable, disable and uninstall. And all of those operations can be executed by command line, such as installing a feature can use following line:
 -application org.eclipse.update.core.standaloneUpdate -command install -featureId my.feature -version 1.0.0 -from file:/v:/local_updateSite/ -to file:/v:/eclipse/.
-The installation process would copy the feature and plugins which are included by the feature to the local site from the update site, then execute the feature&amp;rsquo;s global install handler if it has one.</description>
-    </item>
-    
-    <item>
-      <title>[Eclipse]The call sequence between partActivated and menu update</title>
-      <link>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</link>
-      <pubDate>Thu, 19 Oct 2006 12:42:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</guid>
-      <description>I met a defect that dynamically created menu items disappear after creating a new viewPart. It caused me overtime last Friday. Today I find the root cause.
+The installation process would copy the feature and plugins which are included by the feature to the local site from the update site, then execute the feature&amp;rsquo;s global install handler if it has one.</description></item><item><title>[Eclipse]The call sequence between partActivated and menu update</title><link>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</link><pubDate>Thu, 19 Oct 2006 12:42:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</guid><description>I met a defect that dynamically created menu items disappear after creating a new viewPart. It caused me overtime last Friday. Today I find the root cause.
 The scenario is:
-  open first document, the items are shown well
-  open another document, the items disappear
-  The requirement is that showing the menu items while current part is document, otherwise hide them.
-So our implementation is:</description>
-    </item>
-    
-    <item>
-      <title>[debug][java]Remote debug in Eclipse</title>
-      <link>https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/</link>
-      <pubDate>Wed, 18 Oct 2006 12:53:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/</guid>
-      <description>I need use remote debug in our project, however just some experience in Weblogic were found from internet. After my investigation, I got some experience about using Eclipse remote debug RCP.
+open first document, the items are shown well
+open another document, the items disappear
+The requirement is that showing the menu items while current part is document, otherwise hide them.
+So our implementation is:</description></item><item><title>[debug][java]Remote debug in Eclipse</title><link>https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/</link><pubDate>Wed, 18 Oct 2006 12:53:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/</guid><description>I need use remote debug in our project, however just some experience in Weblogic were found from internet. After my investigation, I got some experience about using Eclipse remote debug RCP.
 There are two important parameters for jvm. And we must launch remote java app with those two parameters.
 -Xdebug //tells jvm starting with debug mode
--Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044 //transport=dt_socket represents communication with socket, address=1044 represents that the port number is 1044</description>
-    </item>
-    
-  </channel>
-</rss>
+-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044 //transport=dt_socket represents communication with socket, address=1044 represents that the port number is 1044</description></item></channel></rss>

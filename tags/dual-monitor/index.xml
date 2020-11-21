@@ -1,26 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Dual monitor on The Road</title>
-    <link>https://kane.mx/tags/dual-monitor/</link>
-    <description>Recent content in Dual monitor on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 19 Mar 2012 20:04:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/dual-monitor/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Dual monitors on Ubuntu</title>
-      <link>https://kane.mx/posts/archive/blogspot/dual-monitors-on-ubuntu/</link>
-      <pubDate>Mon, 19 Mar 2012 20:04:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/dual-monitors-on-ubuntu/</guid>
-      <description>I had two monitors for my workstation. One is 22&amp;rsquo; and the another is 17&amp;rsquo;. I used the small one as a extend desktop.
-Today I get a another 23&amp;rsquo; monitor to replace the small one. However the resolution of the 23&amp;rsquo; monitor can&amp;rsquo;t be changed after pluging it in. It always used the resolution matching the 17&amp;rsquo; one.
-Both &amp;lsquo;Setting - Display&amp;rsquo; and &amp;lsquo;AMD Catalyst control&amp;rsquo; can&amp;rsquo;t adjust it as higher resolution.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dual monitor on The Road</title><link>https://kane.mx/tags/dual-monitor/</link><description>Recent content in Dual monitor on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 19 Mar 2012 20:04:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/dual-monitor/index.xml" rel="self" type="application/rss+xml"/><item><title>Dual monitors on Ubuntu</title><link>https://kane.mx/posts/archive/blogspot/dual-monitors-on-ubuntu/</link><pubDate>Mon, 19 Mar 2012 20:04:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/dual-monitors-on-ubuntu/</guid><description>I had two monitors for my workstation. One is 22' and the another is 17'. I used the small one as a extend desktop.
+Today I get a another 23' monitor to replace the small one. However the resolution of the 23' monitor can&amp;rsquo;t be changed after pluging it in. It always used the resolution matching the 17' one.
+Both &amp;lsquo;Setting - Display&amp;rsquo; and &amp;lsquo;AMD Catalyst control&amp;rsquo; can&amp;rsquo;t adjust it as higher resolution.</description></item></channel></rss>

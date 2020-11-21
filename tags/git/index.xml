@@ -1,46 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Git on The Road</title>
-    <link>https://kane.mx/tags/git/</link>
-    <description>Recent content in Git on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 26 Mar 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/git/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>基于CodeCommit代码管理的无服务器架构Devops</title>
-      <link>https://kane.mx/posts/2020/codecommit-devops-model/</link>
-      <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/posts/2020/codecommit-devops-model/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;/&lt;a href=&#34;https://about.gitlab.com/&#34;&gt;Gitlab&lt;/a&gt;已经成为众多开发者非常熟悉的代码协作平台，通过他们参与开源项目或实施企业内部项目协作。&lt;/p&gt;
-&lt;p&gt;AWS也提供了托管的、基于Git、安全且高可用的代码服务&lt;a href=&#34;https://aws.amazon.com/codecommit/&#34;&gt;CodeCommit&lt;/a&gt;。&lt;a href=&#34;https://aws.amazon.com/codecommit/&#34;&gt;CodeCommit&lt;/a&gt;主要针对企业用户场景，所以他并没有社交功能以及代码仓库fork功能，是否&lt;a href=&#34;https://aws.amazon.com/codecommit/&#34;&gt;CodeCommit&lt;/a&gt;就无法实现&lt;a href=&#34;https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests&#34;&gt;Github基于Pull Request&lt;/a&gt;的协同工作模式呢？&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Migration Clearcase to Git -- part 2</title>
-      <link>https://kane.mx/posts/archive/blogspot/migration-clearcase-to-git-part-2/</link>
-      <pubDate>Tue, 25 Oct 2011 19:45:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/migration-clearcase-to-git-part-2/</guid>
-      <description>Several days ago I had a post to record the unsuccessful experience to migrate source code from Clearcase to Git.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on The Road</title><link>https://kane.mx/tags/git/</link><description>Recent content in Git on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 26 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>基于CodeCommit代码管理的无服务器架构Devops</title><link>https://kane.mx/posts/2020/codecommit-devops-model/</link><pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/codecommit-devops-model/</guid><description>&lt;p>&lt;a href="https://github.com/">Github&lt;/a>/&lt;a href="https://about.gitlab.com/">Gitlab&lt;/a>已经成为众多开发者非常熟悉的代码协作平台，通过他们参与开源项目或实施企业内部项目协作。&lt;/p>
+&lt;p>AWS也提供了托管的、基于Git、安全且高可用的代码服务&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>。&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>主要针对企业用户场景，所以他并没有社交功能以及代码仓库fork功能，是否&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>就无法实现&lt;a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">Github基于Pull Request&lt;/a>的协同工作模式呢？&lt;/p></description></item><item><title>Migration Clearcase to Git -- part 2</title><link>https://kane.mx/posts/archive/blogspot/migration-clearcase-to-git-part-2/</link><pubDate>Tue, 25 Oct 2011 19:45:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/migration-clearcase-to-git-part-2/</guid><description>Several days ago I had a post to record the unsuccessful experience to migrate source code from Clearcase to Git.
 We have a new way after doing some brain storms. This way still is not a perfect solution, but it&amp;rsquo;s much better than previous trial.
- Use clearexport_ccase to export the source folder to intermittent data. See documentation of Clearcase admin. Create a temporary vob for importing the data later. See example.</description>
-    </item>
-    
-    <item>
-      <title>Migrate Clearcase to Git</title>
-      <link>https://kane.mx/posts/archive/blogspot/migrate-clearcase-to-git/</link>
-      <pubDate>Mon, 17 Oct 2011 19:50:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/migrate-clearcase-to-git/</guid>
-      <description>I tried to migrate the source code of project from Clearcase to Git repository. As far as I know there is no elegant solution for such migration. For purpose of this migration, I want to keep the history and label of files in Clearcase after migrating to Git repository.
-There are mature tools to migrate CVS/SVN repository to Git, so I tried to use Subversion as a bridge for my migration.</description>
-    </item>
-    
-  </channel>
-</rss>
+Use clearexport_ccase to export the source folder to intermittent data. See documentation of Clearcase admin. Create a temporary vob for importing the data later. See example.</description></item><item><title>Migrate Clearcase to Git</title><link>https://kane.mx/posts/archive/blogspot/migrate-clearcase-to-git/</link><pubDate>Mon, 17 Oct 2011 19:50:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/migrate-clearcase-to-git/</guid><description>I tried to migrate the source code of project from Clearcase to Git repository. As far as I know there is no elegant solution for such migration. For purpose of this migration, I want to keep the history and label of files in Clearcase after migrating to Git repository.
+There are mature tools to migrate CVS/SVN repository to Git, so I tried to use Subversion as a bridge for my migration.</description></item></channel></rss>

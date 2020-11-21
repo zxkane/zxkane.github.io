@@ -1,25 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Batch on The Road</title>
-    <link>https://kane.mx/tags/batch/</link>
-    <description>Recent content in Batch on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 25 Dec 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/batch/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>AWS Batch简介</title>
-      <link>https://kane.mx/posts/2019/aws-batch/</link>
-      <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/posts/2019/aws-batch/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;是一个全托管的批处理调度服务，它可为用户管理所有基础设施，从而避免了预置、管理、监控和扩展批处理计算作业所带来的复杂性。当然&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;已与 AWS 平台原生集成，让用户能够利用 AWS 的扩展、联网和访问管理功能。让用户轻松运行能够安全地从 AWS 数据存储（如 Amazon S3 和 Amazon DynamoDB）中检索数据并向其中写入数据的作业。&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;可根据所提交的批处理作业的数量和资源要求预置计算资源并优化作业分配。能够将计算资源动态扩展至运行批处理作业所需的任何数量，从而不必受固定容量集群的限制。&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;还可以利用 Spot 实例，从而进一步降低运行批处理作业产生的费用。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/batch/&#34;&gt;AWS Batch&lt;/a&gt;服务本身是&lt;strong&gt;免费&lt;/strong&gt;的，仅收取实际使用的 EC2 实例费用。&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Batch on The Road</title><link>https://kane.mx/tags/batch/</link><description>Recent content in Batch on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 25 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/batch/index.xml" rel="self" type="application/rss+xml"/><item><title>AWS Batch简介</title><link>https://kane.mx/posts/2019/aws-batch/</link><pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-batch/</guid><description>&lt;p>&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>是一个全托管的批处理调度服务，它可为用户管理所有基础设施，从而避免了预置、管理、监控和扩展批处理计算作业所带来的复杂性。当然&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>已与 AWS 平台原生集成，让用户能够利用 AWS 的扩展、联网和访问管理功能。让用户轻松运行能够安全地从 AWS 数据存储（如 Amazon S3 和 Amazon DynamoDB）中检索数据并向其中写入数据的作业。&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>可根据所提交的批处理作业的数量和资源要求预置计算资源并优化作业分配。能够将计算资源动态扩展至运行批处理作业所需的任何数量，从而不必受固定容量集群的限制。&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>还可以利用 Spot 实例，从而进一步降低运行批处理作业产生的费用。&lt;/p>
+&lt;p>&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>服务本身是&lt;strong>免费&lt;/strong>的，仅收取实际使用的 EC2 实例费用。&lt;/p></description></item></channel></rss>

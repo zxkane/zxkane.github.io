@@ -1,36 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Spring on The Road</title>
-    <link>https://kane.mx/tags/spring/</link>
-    <description>Recent content in Spring on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/spring/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Spring Cloud Function -- 跨Serverless平台的函数计算框架</title>
-      <link>https://kane.mx/posts/effective-cloud-computing/spring-cloud-function-for-aws/</link>
-      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/posts/effective-cloud-computing/spring-cloud-function-for-aws/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://kane.mx/posts/2019/serverless-framework/&#34;&gt;基于serverless框架的钉钉回调函数&lt;/a&gt;中介绍了serverless framework，一款支持跨云厂商/Serverless平台的部署工具。但是函数代码还是需要针对不同的serverless平台作对应的适配。而&lt;a href=&#34;https://spring.io/projects/spring-cloud-function&#34;&gt;Spring Clound Function&lt;/a&gt;就是针对这种情况专门开发的跨serverless平台的框架，实现一套代码通过不同的打包实现跨serverless平台。Spring Clound Function目前支持AWS Lambda, Microsoft Azure Function以及Apache OpenWhisk。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Spring Cloud or Cloud Native</title>
-      <link>https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/</link>
-      <pubDate>Mon, 29 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/</guid>
-      <description>&lt;p&gt;基于Java的&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;是由Java最大开源生态&lt;a href=&#34;https://spring.io/&#34;&gt;Spring&lt;/a&gt;社区推出的Out-of-Box分布式&lt;a href=&#34;https://en.wikipedia.org/wiki/Microservices&#34;&gt;微服务&lt;/a&gt;解决方案，&lt;a href=&#34;https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Angel-Release-Notes/6e0e1ba3d510d4a30b95c1468007b22f2427fa25&#34;&gt;自2016年发布&lt;/a&gt;起就被众多开发者看好。Java作为广为流行的服务端编程语言，&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;也就越来越多的被用于微服务开发。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://spring.io/projects/spring-cloud&#34;&gt;Spring Cloud&lt;/a&gt;集成了&lt;a href=&#34;https://netflix.github.io/&#34;&gt;Netflix OSS&lt;/a&gt;开源项目实现了很多功能(或作为实现之一)，包括服务治理、网关路由、客户端负载均衡、服务间调用、断路器等。&lt;a href=&#34;https://spring.io/projects/spring-cloud-netflix&#34;&gt;Spring Cloud Netflix&lt;/a&gt;将很多生产级别微服务能力开箱即用的带到了Spring Cloud架构下的微服务中，帮助开发者快速的构建满足&lt;a href=&#34;https://12factor.net/&#34;&gt;12要素&lt;/a&gt;的应用。&lt;/p&gt;
-&lt;p&gt;在去年底发布的&lt;a href=&#34;https://spring.io/blog/2018/12/12/spring-cloud-greenwich-rc1-available-now#spring-cloud-netflix-projects-entering-maintenance-mode&#34;&gt;Spring Cloud Greenwich版本&lt;/a&gt;中宣布&lt;a href=&#34;https://spring.io/projects/spring-cloud-netflix&#34;&gt;Spring Cloud Netflix&lt;/a&gt;中重要的组件&lt;a href=&#34;https://github.com/Netflix/Hystrix#hystrix-status&#34;&gt;Hystrix&lt;/a&gt;、&lt;a href=&#34;https://github.com/Netflix/ribbon#project-status-on-maintenance&#34;&gt;Ribbon&lt;/a&gt;、&lt;code&gt;Zuul 1&lt;/code&gt;等由于上游开源项目进入维护状态，对应的Spring Cloud Netflix项目也进入到维护状态。这些项目将&lt;strong&gt;不再适合&lt;/strong&gt;用于长期维护的产品中！&lt;/p&gt;
-&lt;p&gt;同时随着近年云计算的发展，特别是&lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;成为容器编排平台的事实标准，加上&lt;a href=&#34;https://www.nginx.com/blog/what-is-a-service-mesh/&#34;&gt;Service Mesh(服务网格)&lt;/a&gt;对微服务的服务治理和流量控制，为&lt;a href=&#34;https://www.redhat.com/en/topics/cloud-native-apps&#34;&gt;云原生应用&lt;/a&gt;提供了更为现代、平台无关的解决方案。&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Spring on The Road</title><link>https://kane.mx/tags/spring/</link><description>Recent content in Spring on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/spring/index.xml" rel="self" type="application/rss+xml"/><item><title>Spring Cloud Function -- 跨Serverless平台的函数计算框架</title><link>https://kane.mx/posts/effective-cloud-computing/spring-cloud-function-for-aws/</link><pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/spring-cloud-function-for-aws/</guid><description>&lt;p>&lt;a href="https://kane.mx/posts/2019/serverless-framework/">基于serverless框架的钉钉回调函数&lt;/a>中介绍了serverless framework，一款支持跨云厂商/Serverless平台的部署工具。但是函数代码还是需要针对不同的serverless平台作对应的适配。而&lt;a href="https://spring.io/projects/spring-cloud-function">Spring Clound Function&lt;/a>就是针对这种情况专门开发的跨serverless平台的框架，实现一套代码通过不同的打包实现跨serverless平台。Spring Clound Function目前支持AWS Lambda, Microsoft Azure Function以及Apache OpenWhisk。&lt;/p></description></item><item><title>Spring Cloud or Cloud Native</title><link>https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/</link><pubDate>Mon, 29 Apr 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/spring-cloud-or-cloud-native/</guid><description>&lt;p>基于Java的&lt;a href="https://spring.io/projects/spring-cloud">Spring Cloud&lt;/a>是由Java最大开源生态&lt;a href="https://spring.io/">Spring&lt;/a>社区推出的Out-of-Box分布式&lt;a href="https://en.wikipedia.org/wiki/Microservices">微服务&lt;/a>解决方案，&lt;a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Angel-Release-Notes/6e0e1ba3d510d4a30b95c1468007b22f2427fa25">自2016年发布&lt;/a>起就被众多开发者看好。Java作为广为流行的服务端编程语言，&lt;a href="https://spring.io/projects/spring-cloud">Spring Cloud&lt;/a>也就越来越多的被用于微服务开发。&lt;/p>
+&lt;p>&lt;a href="https://spring.io/projects/spring-cloud">Spring Cloud&lt;/a>集成了&lt;a href="https://netflix.github.io/">Netflix OSS&lt;/a>开源项目实现了很多功能(或作为实现之一)，包括服务治理、网关路由、客户端负载均衡、服务间调用、断路器等。&lt;a href="https://spring.io/projects/spring-cloud-netflix">Spring Cloud Netflix&lt;/a>将很多生产级别微服务能力开箱即用的带到了Spring Cloud架构下的微服务中，帮助开发者快速的构建满足&lt;a href="https://12factor.net/">12要素&lt;/a>的应用。&lt;/p>
+&lt;p>在去年底发布的&lt;a href="https://spring.io/blog/2018/12/12/spring-cloud-greenwich-rc1-available-now#spring-cloud-netflix-projects-entering-maintenance-mode">Spring Cloud Greenwich版本&lt;/a>中宣布&lt;a href="https://spring.io/projects/spring-cloud-netflix">Spring Cloud Netflix&lt;/a>中重要的组件&lt;a href="https://github.com/Netflix/Hystrix#hystrix-status">Hystrix&lt;/a>、&lt;a href="https://github.com/Netflix/ribbon#project-status-on-maintenance">Ribbon&lt;/a>、&lt;code>Zuul 1&lt;/code>等由于上游开源项目进入维护状态，对应的Spring Cloud Netflix项目也进入到维护状态。这些项目将&lt;strong>不再适合&lt;/strong>用于长期维护的产品中！&lt;/p>
+&lt;p>同时随着近年云计算的发展，特别是&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>成为容器编排平台的事实标准，加上&lt;a href="https://www.nginx.com/blog/what-is-a-service-mesh/">Service Mesh(服务网格)&lt;/a>对微服务的服务治理和流量控制，为&lt;a href="https://www.redhat.com/en/topics/cloud-native-apps">云原生应用&lt;/a>提供了更为现代、平台无关的解决方案。&lt;/p></description></item></channel></rss>

@@ -1,27 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>groovy on The Road</title>
-    <link>https://kane.mx/tags/groovy/</link>
-    <description>Recent content in groovy on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 13 May 2013 13:44:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/groovy/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Run groovy script via Jenkins CLI</title>
-      <link>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</link>
-      <pubDate>Mon, 13 May 2013 13:44:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</guid>
-      <description>Jenkins supports ssh authentication in CLI.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>groovy on The Road</title><link>https://kane.mx/tags/groovy/</link><description>Recent content in groovy on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 13 May 2013 13:44:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/groovy/index.xml" rel="self" type="application/rss+xml"/><item><title>Run groovy script via Jenkins CLI</title><link>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</link><pubDate>Mon, 13 May 2013 13:44:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</guid><description>Jenkins supports ssh authentication in CLI.
 Below is a command to verify that I am authenticated:
 java -jar jenkins-cli.jar -s http://myserver/jenkins who-am-i Authenticated as: myuser Authorities: authenticated However you still would meet permission error when running groovy script in CLI.
-java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &amp;#39;jenkins.model.Jenkins.instance.pluginManager.plugins.each { println(&amp;#34;${it.longName} - ${it.version}&amp;#34;) };&amp;#39; Exception in thread &amp;#34;main&amp;#34; java.lang.reflect.UndeclaredThrowableException at $Proxy2.main(Unknown Source) at hudson.cli.CLI.execute(CLI.java:271) at hudson.cli.CLI._main(CLI.java:417) at hudson.cli.CLI.main(CLI.java:322) It&amp;rsquo;s a bug of Jenkins.</description>
-    </item>
-    
-  </channel>
-</rss>
+java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &amp;#39;jenkins.model.Jenkins.instance.pluginManager.plugins.each { println(&amp;#34;${it.longName} - ${it.version}&amp;#34;) };&amp;#39; Exception in thread &amp;#34;main&amp;#34; java.lang.reflect.UndeclaredThrowableException at $Proxy2.main(Unknown Source) at hudson.cli.CLI.execute(CLI.java:271) at hudson.cli.CLI._main(CLI.java:417) at hudson.cli.CLI.main(CLI.java:322) It&amp;rsquo;s a bug of Jenkins.</description></item></channel></rss>

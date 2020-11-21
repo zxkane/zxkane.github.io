@@ -1,26 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>django on The Road</title>
-    <link>https://kane.mx/tags/django/</link>
-    <description>Recent content in django on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 16 Aug 2012 09:11:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/django/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Django&#39;s unicdoe encode error</title>
-      <link>https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/</link>
-      <pubDate>Thu, 16 Aug 2012 09:11:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/</guid>
-      <description>It&amp;rsquo;s a common and ugly problem when using non-ascii characters in Django.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>django on The Road</title><link>https://kane.mx/tags/django/</link><description>Recent content in django on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 16 Aug 2012 09:11:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/django/index.xml" rel="self" type="application/rss+xml"/><item><title>Django's unicdoe encode error</title><link>https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/</link><pubDate>Thu, 16 Aug 2012 09:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/</guid><description>It&amp;rsquo;s a common and ugly problem when using non-ascii characters in Django.
 The general solution is below,
- put # -- coding: utf-8 -- at beginning of every python source files that are using utf-8 characters declare every string variable as unicode, such as str_var = u&amp;rsquo;中文字符&amp;rsquo; add a __unicode__ method in your model classes if you are running server on apache/mod_wsgi or ngnix, you need configure web server to use utf-8 encoding  </description>
-    </item>
-    
-  </channel>
-</rss>
+put # -- coding: utf-8 -- at beginning of every python source files that are using utf-8 characters declare every string variable as unicode, such as str_var = u&amp;rsquo;中文字符' add a __unicode__ method in your model classes if you are running server on apache/mod_wsgi or ngnix, you need configure web server to use utf-8 encoding</description></item></channel></rss>

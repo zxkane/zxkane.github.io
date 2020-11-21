@@ -1,50 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>IAM on The Road</title>
-    <link>https://kane.mx/tags/iam/</link>
-    <description>Recent content in IAM on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/iam/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</title>
-      <link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</link>
-      <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</guid>
-      <description>&lt;p&gt;本文是&lt;a href=&#34;https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/&#34;&gt;为Kubernetes中任意应用添加基于oauth2的认证保护&lt;/a&gt;的下篇，将图文详解如何使用基于&lt;a href=&#34;https://open-doc.dingtalk.com/microapp/serverapi2/kymkv6&#34;&gt;钉钉认证&lt;/a&gt;的&lt;a href=&#34;https://github.com/bitly/oauth2_proxy&#34;&gt;oauth2 proxy&lt;/a&gt;为自身本没有认证授权功能的Web站点实现认证及授权。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</title>
-      <link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</guid>
-      <description>&lt;p&gt;企业随着业务的发展，必然会部署各种各样的IT系统。出于安全性的考虑，一些系统仅可企业内部使用，甚至仅开放给企业部分部门员工使用。&lt;/p&gt;
-&lt;p&gt;这些IT系统大致可分为两类，&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;系统本身不支持任何认证机制，例如资讯或文档类系统。需要增加认证保护，能够限制非企业员工访问即可。系统运维通常的做法是，为站点设置&lt;a href=&#34;https://en.wikipedia.org/wiki/Basic_access_authentication&#34;&gt;HTTP Basic认证&lt;/a&gt;保护。由于&lt;a href=&#34;https://en.wikipedia.org/wiki/Basic_access_authentication&#34;&gt;HTTP Basic认证&lt;/a&gt;是通过预设的用户、密码认证，认证信息比较容易泄露。即使定期更换密码，但需要额外的机制通知用户密码的变更，用户体验也不好。&lt;/li&gt;
-&lt;li&gt;系统自身支持认证，甚至支持多种认证机制。比如最常用的开源CI/CD工具，&lt;a href=&#34;https://jenkins.io/&#34;&gt;Jenkins&lt;/a&gt;内置支持本地数据库认证、通过&lt;a href=&#34;https://plugins.jenkins.io/#&#34;&gt;插件&lt;/a&gt;支持多种第三方系统集成认证。如果大量的IT系统都有一套独立的用户管理，随着企业的员工的变更，用户的增删等操作对系统管理员来说是不小的工作量。同时，也很容易由于人为疏忽，造成资产、数据的安全隐患。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;假设企业自身已经有了一套OA系统包含员工、组织结构管理，例如，国内目前最为普及流行的&lt;a href=&#34;https://www.dingtalk.com/&#34;&gt;钉钉&lt;/a&gt;或&lt;a href=&#34;https://work.weixin.qq.com/&#34;&gt;企业微信&lt;/a&gt;。我们完全可以提供一套基于&lt;a href=&#34;https://oauth.net/2/&#34;&gt;oauth 2.0协议&lt;/a&gt;的认证方式，让以上两类IT系统使用企业已有的OA系统(&lt;a href=&#34;https://www.dingtalk.com/&#34;&gt;钉钉&lt;/a&gt;或&lt;a href=&#34;https://work.weixin.qq.com/&#34;&gt;企业微信&lt;/a&gt;)来实现登录认证。做到这一点后，企业无论有多少IT系统都不再需要额外管理用户的成本，并且也避免了数据安全隐患。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>IAM最佳实践</title>
-      <link>https://kane.mx/posts/effective-cloud-computing/iam-best-practice/</link>
-      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://kane.mx/posts/effective-cloud-computing/iam-best-practice/</guid>
-      <description>&lt;p&gt;企业使用公有云服务的第一件事情就是创建云帐号，有了帐号之后如何让企业员工安全合规的使用云帐号下的各种资源是开启云之旅后的第一个考验。&lt;/p&gt;
-&lt;p&gt;云计算厂商针对企业上云后面临的第一个需求已经推出了完善的解决方案&amp;ndash;&lt;a href=&#34;https://en.wikipedia.org/wiki/Identity_management&#34;&gt;Identity and Access Management&lt;/a&gt;。&lt;a href=&#34;https://en.wikipedia.org/wiki/Identity_management&#34;&gt;IAM&lt;/a&gt;可以帮助云帐号安全地控制对云计算服务资源的访问。企业可以使用IAM控制对哪个用户进行身份验证 (登录) 和授权 (具有权限) 以使用资源。&lt;/p&gt;
-&lt;p&gt;云厂商是否提供完善的IAM服务可以作为整体产品解决方案是否成熟的一个衡量指标，比如AWS的&lt;a href=&#34;https://docs.aws.amazon.com/zh_cn/IAM/latest/UserGuide/introduction.html&#34;&gt;IAM&lt;/a&gt;和阿里云的&lt;a href=&#34;https://help.aliyun.com/document_detail/28627.html&#34;&gt;访问控制&lt;/a&gt;都是较为成熟完善的产品。国内某个以AI能力为卖点的云厂商，在IAM产品方面几乎为零，很难相信对安全合规有需求的企业会完整使用他的云产品作为解决方案。&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>IAM on The Road</title><link>https://kane.mx/tags/iam/</link><description>Recent content in IAM on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/iam/index.xml" rel="self" type="application/rss+xml"/><item><title>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</title><link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</link><pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</guid><description>&lt;p>本文是&lt;a href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/">为Kubernetes中任意应用添加基于oauth2的认证保护&lt;/a>的下篇，将图文详解如何使用基于&lt;a href="https://open-doc.dingtalk.com/microapp/serverapi2/kymkv6">钉钉认证&lt;/a>的&lt;a href="https://github.com/bitly/oauth2_proxy">oauth2 proxy&lt;/a>为自身本没有认证授权功能的Web站点实现认证及授权。&lt;/p></description></item><item><title>为Kubernetes中任意应用添加基于oauth2的认证保护 (上)</title><link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</link><pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/</guid><description>&lt;p>企业随着业务的发展，必然会部署各种各样的IT系统。出于安全性的考虑，一些系统仅可企业内部使用，甚至仅开放给企业部分部门员工使用。&lt;/p>
+&lt;p>这些IT系统大致可分为两类，&lt;/p>
+&lt;ol>
+&lt;li>系统本身不支持任何认证机制，例如资讯或文档类系统。需要增加认证保护，能够限制非企业员工访问即可。系统运维通常的做法是，为站点设置&lt;a href="https://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic认证&lt;/a>保护。由于&lt;a href="https://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic认证&lt;/a>是通过预设的用户、密码认证，认证信息比较容易泄露。即使定期更换密码，但需要额外的机制通知用户密码的变更，用户体验也不好。&lt;/li>
+&lt;li>系统自身支持认证，甚至支持多种认证机制。比如最常用的开源CI/CD工具，&lt;a href="https://jenkins.io/">Jenkins&lt;/a>内置支持本地数据库认证、通过&lt;a href="https://plugins.jenkins.io/#">插件&lt;/a>支持多种第三方系统集成认证。如果大量的IT系统都有一套独立的用户管理，随着企业的员工的变更，用户的增删等操作对系统管理员来说是不小的工作量。同时，也很容易由于人为疏忽，造成资产、数据的安全隐患。&lt;/li>
+&lt;/ol>
+&lt;p>假设企业自身已经有了一套OA系统包含员工、组织结构管理，例如，国内目前最为普及流行的&lt;a href="https://www.dingtalk.com/">钉钉&lt;/a>或&lt;a href="https://work.weixin.qq.com/">企业微信&lt;/a>。我们完全可以提供一套基于&lt;a href="https://oauth.net/2/">oauth 2.0协议&lt;/a>的认证方式，让以上两类IT系统使用企业已有的OA系统(&lt;a href="https://www.dingtalk.com/">钉钉&lt;/a>或&lt;a href="https://work.weixin.qq.com/">企业微信&lt;/a>)来实现登录认证。做到这一点后，企业无论有多少IT系统都不再需要额外管理用户的成本，并且也避免了数据安全隐患。&lt;/p></description></item><item><title>IAM最佳实践</title><link>https://kane.mx/posts/effective-cloud-computing/iam-best-practice/</link><pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/iam-best-practice/</guid><description>&lt;p>企业使用公有云服务的第一件事情就是创建云帐号，有了帐号之后如何让企业员工安全合规的使用云帐号下的各种资源是开启云之旅后的第一个考验。&lt;/p>
+&lt;p>云计算厂商针对企业上云后面临的第一个需求已经推出了完善的解决方案&amp;ndash;&lt;a href="https://en.wikipedia.org/wiki/Identity_management">Identity and Access Management&lt;/a>。&lt;a href="https://en.wikipedia.org/wiki/Identity_management">IAM&lt;/a>可以帮助云帐号安全地控制对云计算服务资源的访问。企业可以使用IAM控制对哪个用户进行身份验证 (登录) 和授权 (具有权限) 以使用资源。&lt;/p>
+&lt;p>云厂商是否提供完善的IAM服务可以作为整体产品解决方案是否成熟的一个衡量指标，比如AWS的&lt;a href="https://docs.aws.amazon.com/zh_cn/IAM/latest/UserGuide/introduction.html">IAM&lt;/a>和阿里云的&lt;a href="https://help.aliyun.com/document_detail/28627.html">访问控制&lt;/a>都是较为成熟完善的产品。国内某个以AI能力为卖点的云厂商，在IAM产品方面几乎为零，很难相信对安全合规有需求的企业会完整使用他的云产品作为解决方案。&lt;/p></description></item></channel></rss>

@@ -1,27 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Update on The Road</title>
-    <link>https://kane.mx/tags/update/</link>
-    <description>Recent content in Update on The Road</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 17 Jan 2007 13:51:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://kane.mx/tags/update/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>[Eclipse]Eclipse update support</title>
-      <link>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</link>
-      <pubDate>Wed, 17 Jan 2007 13:51:00 +0800</pubDate>
-      
-      <guid>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</guid>
-      <description>Those days my work is focus on eclipse&amp;rsquo;s update. Now I understand the general mechanism and meet some issues when using it in development work.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Update on The Road</title><link>https://kane.mx/tags/update/</link><description>Recent content in Update on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 17 Jan 2007 13:51:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/update/index.xml" rel="self" type="application/rss+xml"/><item><title>[Eclipse]Eclipse update support</title><link>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</link><pubDate>Wed, 17 Jan 2007 13:51:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</guid><description>Those days my work is focus on eclipse&amp;rsquo;s update. Now I understand the general mechanism and meet some issues when using it in development work.
 The update mechanism includes four major types: install, enable, disable and uninstall. And all of those operations can be executed by command line, such as installing a feature can use following line:
 -application org.eclipse.update.core.standaloneUpdate -command install -featureId my.feature -version 1.0.0 -from file:/v:/local_updateSite/ -to file:/v:/eclipse/.
-The installation process would copy the feature and plugins which are included by the feature to the local site from the update site, then execute the feature&amp;rsquo;s global install handler if it has one.</description>
-    </item>
-    
-  </channel>
-</rss>
+The installation process would copy the feature and plugins which are included by the feature to the local site from the update site, then execute the feature&amp;rsquo;s global install handler if it has one.</description></item></channel></rss>
