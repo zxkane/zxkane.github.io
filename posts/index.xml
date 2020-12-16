@@ -1,4 +1,114 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on The Road</title><link>https://kane.mx/posts/</link><description>Recent content in Posts on The Road</description><meta name="generator" content="Hugo 0.78.1"/><language>en-us</language><lastBuildDate>Sat, 28 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>亚马逊的部署最佳实践</title><link>https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/</link><pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/</guid><description>&lt;p>近期&lt;a href="https://aws.amazon.com/builders-library/">Amazon Builders Library&lt;/a>发布了数篇文章介绍亚马逊如何实践持续部署，同时分享了亚马逊在部署方面的最佳实践。&lt;/p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on The Road</title><link>https://kane.mx/posts/</link><description>Recent content in Posts on The Road</description><meta name="generator" content="Hugo 0.78.1"/><language>en-us</language><lastBuildDate>Wed, 16 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Effective AWS CDK for AWS CloudFormation</title><link>https://kane.mx/posts/2020/effective-aws-cdk-for-aws-cloudformation/</link><pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/effective-aws-cdk-for-aws-cloudformation/</guid><description>&lt;p>&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infrastructure as Code&lt;/a> is the trend to manage the resources of application. &lt;a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation&lt;/a> is the managed serive offering the IaC capability on AWS &lt;a href="https://aws.amazon.com/blogs/aws/cloudformation-create-your-aws-stack-from-a-recipe/">since 2011&lt;/a>. CloudFormation uses the &lt;a href="https://en.wikipedia.org/wiki/Declarative_programming">declarative language&lt;/a> to manage your AWS resources with the style what you declare what you get.&lt;/p>
+&lt;p>However there are cons of CloudFormation as a declarative language,&lt;/p>
+&lt;ul>
+&lt;li>the readability and maintanence for applications involving lots of resources&lt;/li>
+&lt;li>the reuseable of code, &lt;a href="https://aws.amazon.com/blogs/mt/introducing-aws-cloudformation-modules/">CloudFormation modules&lt;/a> released in re:Invent 2020 might help mitgate it&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a href="https://kane.mx/posts/2019/aws-cdk/">AWS CDK&lt;/a> provides the programming way to define the infra in code by your preferred programming languages, such as Typescript, Javascripte, Python, Java and C#. AWS CDK will synthesis the code to CloudFormation template, then deploying the stack via AWS CloudForamtion service. It benefits the Devops engineers manage the infra on AWS as programming application, having version control, code review, unit testing, integration testing and CI/CD pipelines, the deployment still depends on the mature CloudFormation service to rolling update the resources and rollback when failing.&lt;/p>
+&lt;p>For solution development, using CDK indeed improves the productivity then publish the deployment assets as CloudFormation templates.&lt;/p>
+&lt;p>Though CDK application can be synthesized to CloudFormation template, there are still some differences blocking the synthesized tempaltes to be deployed across multiple AWS regeions.&lt;/p>
+&lt;p>This post will share the tips on how effectively writing AWS CDK application then deploying the application by CloudFormation across multiple regions.&lt;/p>
+&lt;h2 id="general">General&lt;/h2>
+&lt;h3 id="environment-agnostic-stack">Environment-agnostic stack&lt;/h3>
+&lt;p>Don’t specify env with &lt;code>account&lt;/code> and &lt;code>region&lt;/code> like below that will generate account/region hardcode in CloudFormation template.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ts" data-lang="ts">&lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">MyStack&lt;/span>(&lt;span style="color:#a6e22e">app&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;Stack1&amp;#39;&lt;/span>, {
+&lt;span style="color:#a6e22e">env&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#a6e22e">account&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;123456789012&amp;#39;&lt;/span>,
+&lt;span style="color:#a6e22e">region&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;us-east-1&amp;#39;&lt;/span>
+},
+});
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="use-cfnmappingcfncondition-instead-of-if-else-clause">use CfnMapping/CfnCondition instead of if-else clause&lt;/h3>
+&lt;p>CloudFormation does not have logistic processing like programming language. Use &lt;code>CfnMapping&lt;/code> or &lt;code>CfnCondition&lt;/code> instead.&lt;/p>
+&lt;p>&lt;strong>Note&lt;/strong>: the &lt;code>CfnMapping&lt;/code> does not support default value, you have to list all supported regions like below code snippet,&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ts" data-lang="ts">&lt;span style="color:#a6e22e">getAwsLoadBalancerControllerRepo() {&lt;/span>
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">albImageMapping&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">cdk&lt;/span>.&lt;span style="color:#a6e22e">CfnMapping&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;ALBImageMapping&amp;#39;&lt;/span>, {
+&lt;span style="color:#a6e22e">mapping&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#e6db74">&amp;#39;me-south-1&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;558608220178&amp;#39;&lt;/span>,
+},
+&lt;span style="color:#e6db74">&amp;#39;eu-south-1&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;590381155156&amp;#39;&lt;/span>,
+},
+&lt;span style="color:#e6db74">&amp;#39;ap-northeast-1&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;602401143452&amp;#39;&lt;/span>,
+},
+&lt;span style="color:#e6db74">&amp;#39;ap-northeast-2&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;602401143452&amp;#39;&lt;/span>,
+},
+...
+&lt;span style="color:#e6db74">&amp;#39;ap-east-1&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;800184023465&amp;#39;&lt;/span>,
+},
+&lt;span style="color:#e6db74">&amp;#39;af-south-1&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;877085696533&amp;#39;&lt;/span>,
+},
+&lt;span style="color:#e6db74">&amp;#39;cn-north-1&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;918309763551&amp;#39;&lt;/span>,
+},
+&lt;span style="color:#e6db74">&amp;#39;cn-northwest-1&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;961992271922&amp;#39;&lt;/span>,
+},
+}
+});
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">`&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">albImageMapping&lt;/span>.&lt;span style="color:#a6e22e">findInMap&lt;/span>(&lt;span style="color:#a6e22e">cdk&lt;/span>.&lt;span style="color:#a6e22e">Aws&lt;/span>.&lt;span style="color:#a6e22e">REGION&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;2&amp;#39;&lt;/span>)&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">.dkr.ecr.&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">cdk&lt;/span>.&lt;span style="color:#a6e22e">Aws&lt;/span>.&lt;span style="color:#a6e22e">REGION&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">.&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">cdk&lt;/span>.&lt;span style="color:#a6e22e">Aws&lt;/span>.&lt;span style="color:#a6e22e">URL_SUFFIX&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">/amazon/aws-load-balancer-controller`&lt;/span>;
+}
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="never-use-stackregion">never use Stack.region&lt;/h2>
+&lt;p>&lt;strong>Don’t&lt;/strong> rely on &lt;code>stack.region&lt;/code> to do the logistic for China regions. Use additional &lt;code>context&lt;/code> parameter or &lt;code>CfnMapping&lt;/code> like below snippet,&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ts" data-lang="ts">&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">partitionMapping&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">cdk&lt;/span>.&lt;span style="color:#a6e22e">CfnMapping&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;PartitionMapping&amp;#39;&lt;/span>, {
+&lt;span style="color:#a6e22e">mapping&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#a6e22e">aws&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#a6e22e">nexus&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;quay.io/travelaudience/docker-nexus&amp;#39;&lt;/span>,
+&lt;span style="color:#a6e22e">nexusProxy&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;quay.io/travelaudience/docker-nexus-proxy&amp;#39;&lt;/span>,
+},
+&lt;span style="color:#e6db74">&amp;#39;aws-cn&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#a6e22e">nexus&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;048912060910.dkr.ecr.cn-northwest-1.amazonaws.com.cn/quay/travelaudience/docker-nexus&amp;#39;&lt;/span>,
+&lt;span style="color:#a6e22e">nexusProxy&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;048912060910.dkr.ecr.cn-northwest-1.amazonaws.com.cn/quay/travelaudience/docker-nexus-proxy&amp;#39;&lt;/span>,
+},
+}
+});
+&lt;span style="color:#a6e22e">partitionMapping&lt;/span>.&lt;span style="color:#a6e22e">findInMap&lt;/span>(&lt;span style="color:#a6e22e">cdk&lt;/span>.&lt;span style="color:#a6e22e">Aws&lt;/span>.&lt;span style="color:#a6e22e">PARTITION&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;nexus&amp;#39;&lt;/span>);
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Use &lt;strong>core.Aws.region&lt;/strong> token refered to the region which region of the stack is deployed.&lt;/p>
+&lt;h3 id="explicitly-add-dependencies-on-resources-to-control-the-creationdeletion-order-of-resources">explicitly add dependencies on resources to control the creation/deletion order of resources&lt;/h3>
+&lt;p>For example, when deploying a solution with creating a new VPC with NAT gateway, then deploying EMR cluster in private subnets of VPC. The EMR cluster might fail on creation due to network issue. It’s caused by the NAT gateway is not ready when initializing the EMR cluster, you have to manually create the dependencies among EMR cluster and NAT gateway.&lt;/p>
+&lt;h2 id="eks-moduleaws-cdkaws-eks">EKS module(@aws-cdk/aws-eks)&lt;/h2>
+&lt;h3 id="specify-kubectl-layer-when-creating-eks-cluster">specify kubectl layer when creating EKS cluster&lt;/h3>
+&lt;p>EKS uses a lambda layer to run &lt;code>kubectl&lt;/code>/&lt;code>helm&lt;/code> cli as custom resource, the &lt;code>@aws-cdk/aws-eks&lt;/code> module depends on the &lt;code>Stack.region&lt;/code> to check the region to be deployed in synthesizing phase. It violates the principle of Environment-agnostic stack! Use below workaround to create the EKS cluster,&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ts" data-lang="ts">&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">partitionMapping&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">cdk&lt;/span>.&lt;span style="color:#a6e22e">CfnMapping&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;PartitionMapping&amp;#39;&lt;/span>, {
+&lt;span style="color:#a6e22e">mapping&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#a6e22e">aws&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#75715e">// see https://github.com/aws/aws-cdk/blob/60c782fe173449ebf912f509de7db6df89985915/packages/%40aws-cdk/aws-eks/lib/kubectl-layer.ts#L6
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">kubectlLayerAppid&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-kubectl&amp;#39;&lt;/span>,
+},
+&lt;span style="color:#e6db74">&amp;#39;aws-cn&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#a6e22e">kubectlLayerAppid&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;arn:aws-cn:serverlessrepo:cn-north-1:487369736442:applications/lambda-layer-kubectl&amp;#39;&lt;/span>,
+},
+}
+});
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">kubectlLayer&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">eks&lt;/span>.&lt;span style="color:#a6e22e">KubectlLayer&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;KubeLayer&amp;#39;&lt;/span>, {
+&lt;span style="color:#a6e22e">applicationId&lt;/span>: &lt;span style="color:#66d9ef">partitionMapping.findInMap&lt;/span>(&lt;span style="color:#a6e22e">cdk&lt;/span>.&lt;span style="color:#a6e22e">Aws&lt;/span>.&lt;span style="color:#a6e22e">PARTITION&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;kubectlLayerAppid&amp;#39;&lt;/span>),
+});
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">cluster&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">eks&lt;/span>.&lt;span style="color:#a6e22e">Cluster&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;MyK8SCluster&amp;#39;&lt;/span>, {
+&lt;span style="color:#a6e22e">vpc&lt;/span>,
+&lt;span style="color:#a6e22e">defaultCapacity&lt;/span>: &lt;span style="color:#66d9ef">0&lt;/span>,
+&lt;span style="color:#a6e22e">kubectlEnabled&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;span style="color:#a6e22e">mastersRole&lt;/span>: &lt;span style="color:#66d9ef">clusterAdmin&lt;/span>,
+&lt;span style="color:#a6e22e">version&lt;/span>: &lt;span style="color:#66d9ef">eks.KubernetesVersion.V1_16&lt;/span>,
+&lt;span style="color:#a6e22e">coreDnsComputeType&lt;/span>: &lt;span style="color:#66d9ef">eks.CoreDnsComputeType.EC2&lt;/span>,
+&lt;span style="color:#a6e22e">kubectlLayer&lt;/span>,
+});
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>If you&amp;rsquo;re interested on this issue, &lt;a href="https://github.com/aws/aws-cdk/issues/12018">see cdk issue for detail&lt;/a>.&lt;/p>
+&lt;h3 id="manage-the-lifecycle-of-helm-chart-deployment">manage the lifecycle of helm chart deployment&lt;/h3>
+&lt;p>The k8s helm chart might create AWS resources out of CloudFormation scope. You have to manage the lifecycle of those resources by yourself.&lt;/p>
+&lt;p>For example, there is an EKS cluster with AWS load balancer controller, then you deploy a helm chart with ingress that will create ALB/NLB by the chart, you must clean those load balancers in deletion of the chart. Also the uninstallation of Helm chart is asynchronous, you have to watch the deletion of resource completing before continuing to clean other resources.&lt;/p>
+&lt;h2 id="the-end">THE END&lt;/h2>
+&lt;blockquote>
+&lt;p>The tips will be updated when something new is found or the one is deprecated after CDK is updated.&lt;/p>
+&lt;p>HAPPY CDK 😆&lt;/p>
+&lt;/blockquote></description></item><item><title>亚马逊的部署最佳实践</title><link>https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/</link><pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/</guid><description>&lt;p>近期&lt;a href="https://aws.amazon.com/builders-library/">Amazon Builders Library&lt;/a>发布了数篇文章介绍亚马逊如何实践持续部署，同时分享了亚马逊在部署方面的最佳实践。&lt;/p>
 &lt;p>这里将这三篇文章核心内容做个概述，方便大家按需细读。&lt;/p>
 &lt;h3 id="going-faster-with-continuous-deliverygoing-faster-with-cd">&lt;a href="https://aws.amazon.com/builders-library/going-faster-with-continuous-delivery/?did=ba_card&amp;amp;trk=ba_card">Going faster with continuous delivery&lt;/a>&lt;/h3>
 &lt;p>这篇文章先是分享了亚马逊持续改进和软件自动化的文化(Amazonian随时都惦记着的&lt;a href="https://aws.amazon.com/careers/culture/">领导力准则&lt;/a>)，然后介绍了亚马逊内部的持续部署工具Pipelines。从一个试点工具进化为亚马逊标准、一致且简洁的发布工具。并且将构建和发布软件的最佳实践检查也融入到Pipelines中。&lt;/p>
