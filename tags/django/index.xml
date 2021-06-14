@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>django on The road</title><link>https://kane.mx/tags/django/</link><description>Recent content in django on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Thu, 16 Aug 2012 09:11:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/django/index.xml" rel="self" type="application/rss+xml"/><item><title>Django's unicdoe encode error</title><link>https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/</link><pubDate>Thu, 16 Aug 2012 09:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/</guid><description>
-&lt;p>It's a common and ugly problem when using non-ascii characters in Django.&lt;/p>
-&lt;p>The general solution is below,&lt;/p>
-&lt;ol>
-&lt;li>put &lt;strong># -&lt;em>- coding: utf-8 -&lt;/em>-&lt;/strong> at beginning of every python source files that are using utf-8 characters&lt;/li>
-&lt;li>declare every string variable as unicode, such as &lt;strong>str_var = u'中文字符'&lt;/strong>&lt;/li>
-&lt;li>add &lt;a href="https://docs.djangoproject.com/en/1.4/ref/models/instances/#django.db.models.Model.__unicode__">a __unicode__&lt;/a> method in your model classes&lt;/li>
-&lt;li>if you are running server on apache/mod_wsgi or ngnix, you need &lt;a href="https://docs.djangoproject.com/en/1.4/howto/deployment/modpython/#if-you-get-a-unicodeencodeerror">configure web server to use utf-8 encoding&lt;/a>&lt;/li>
-&lt;/ol></description></item></channel></rss>
+It's a common and ugly problem when using non-ascii characters in Django.
+The general solution is below,
+put # -- coding: utf-8 -- at beginning of every python source files that are using utf-8 characters declare every string variable as unicode, such as str_var = u'中文字符' add a __unicode__ method in your model classes if you are running server on apache/mod_wsgi or ngnix, you need configure web server to use utf-8 encoding
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

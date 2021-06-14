@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>groovy on The road</title><link>https://kane.mx/tags/groovy/</link><description>Recent content in groovy on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Mon, 13 May 2013 13:44:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/groovy/index.xml" rel="self" type="application/rss+xml"/><item><title>Run groovy script via Jenkins CLI</title><link>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</link><pubDate>Mon, 13 May 2013 13:44:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</guid><description>
-&lt;p>Jenkins supports &lt;a href="https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+SSH">ssh authentication&lt;/a> in CLI.&lt;/p>
-&lt;p>Below is a command to verify that I am authenticated:&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>
-&lt;span class="ln">2&lt;/span>java -jar jenkins-cli.jar -s http://myserver/jenkins who-am-i
-&lt;span class="ln">3&lt;/span>
-&lt;span class="ln">4&lt;/span>    Authenticated as: myuser
-&lt;span class="ln">5&lt;/span>    Authorities:
-&lt;span class="ln">6&lt;/span>        authenticated&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>However you still would meet permission error when running groovy script in CLI.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>
-&lt;span class="ln">2&lt;/span>java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &lt;span class="s1">&amp;#39;jenkins.model.Jenkins.instance.pluginManager.plugins.each { println(&amp;#34;${it.longName} - ${it.version}&amp;#34;) };&amp;#39;&lt;/span>
-&lt;span class="ln">3&lt;/span>
-&lt;span class="ln">4&lt;/span>Exception in thread &lt;span class="s2">&amp;#34;main&amp;#34;&lt;/span> java.lang.reflect.UndeclaredThrowableException
-&lt;span class="ln">5&lt;/span>at &lt;span class="nv">$Proxy2&lt;/span>.main&lt;span class="o">(&lt;/span>Unknown Source&lt;span class="o">)&lt;/span>
-&lt;span class="ln">6&lt;/span>at hudson.cli.CLI.execute&lt;span class="o">(&lt;/span>CLI.java:271&lt;span class="o">)&lt;/span>
-&lt;span class="ln">7&lt;/span>at hudson.cli.CLI._main&lt;span class="o">(&lt;/span>CLI.java:417&lt;span class="o">)&lt;/span>
-&lt;span class="ln">8&lt;/span>at hudson.cli.CLI.main&lt;span class="o">(&lt;/span>CLI.java:322&lt;span class="o">)&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>It's a bug of Jenkins. &lt;strong>The workaround is create a groovy script, then run that script via Jenkins CLI&lt;/strong>.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>
-&lt;span class="ln">2&lt;/span>java -jar jenkins-cli.jar -s http://myserver/jenkins/ groovy test_script.gsh&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+Jenkins supports ssh authentication in CLI.
+Below is a command to verify that I am authenticated:
+1 2java -jar jenkins-cli.jar -s http://myserver/jenkins who-am-i 3 4 Authenticated as: myuser 5 Authorities: 6 authenticated However you still would meet permission error when running groovy script in CLI.
+1 2java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &amp;#39;jenkins.model.Jenkins.instance.pluginManager.plugins.each { println(&amp;#34;${it.longName} - ${it.version}&amp;#34;) };&amp;#39; 3 4Exception in thread &amp;#34;main&amp;#34; java.lang.reflect.UndeclaredThrowableException 5at $Proxy2.main(Unknown Source) 6at hudson.cli.CLI.execute(CLI.java:271) 7at hudson.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

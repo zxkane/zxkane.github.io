@@ -1,234 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>p2 on The road</title><link>https://kane.mx/tags/p2/</link><description>Recent content in p2 on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Mon, 17 Oct 2011 19:34:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/p2/index.xml" rel="self" type="application/rss+xml"/><item><title>p2 query performance</title><link>https://kane.mx/posts/archive/blogspot/p2-query-performance/</link><pubDate>Mon, 17 Oct 2011 19:34:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/p2-query-performance/</guid><description>
-&lt;p>Our p2 based on installer suffered performance issue when querying IUs from repositories. Though the repositories have a large number of IUs to be queried, but we find the performance of using QL is unacceptable in some special scenarios.&lt;/p>
-&lt;p>I &lt;a href="https://docs.google.com/document/d/1wfnr2d2TF4vIYDCMmWPuYd0kQA32WiWaXTiaCoJovho/edit?pli=1">published several different methods&lt;/a> to find the expected IUs. Thomas pointed out the better expression of QL and finally helped us to find out the our repository without &lt;strong>IIndexProvider&lt;/strong> implementation.&lt;/p>
-&lt;p>&lt;strong>IIndexProvider&lt;/strong> implementation of a repository is quite important to improve the performance of QL, especially use the 'traverse' clause to query something.&lt;/p>
-&lt;p>And Slicer API is an alternative method when querying the complete dependencies.&lt;/p></description></item><item><title>Eclipse P2's import/export capability</title><link>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</link><pubDate>Fri, 22 Apr 2011 15:56:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</guid><description>
-&lt;p>I implemented the &lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/">replication tool&lt;/a> at the end of 2009, then published it to &lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-tool-lives-on-eclipse/">Eclipse Marketplace&lt;/a> in May 2010. However it's not pervasively used due to users have to install that plug-in firstly.&lt;/p>
-&lt;p>I searched a similar &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=282419">request&lt;/a> on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.&lt;/p>
-&lt;p>And I was nominated and elected as the committer of Equinox p2, it's a great honor for me. :)&lt;/p></description></item><item><title>Inside P2's profile (2) - the fragment matches all osgi bundles</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</link><pubDate>Tue, 28 Dec 2010 11:33:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid><description>
-&lt;p>Recently our installer met a strange bug, it didn't uninstall all legacy bundles after updating to new version. Finally I found it's due to a magic fragment is missing in the profile due to some causes.&lt;/p>
-&lt;p>    &lt;unit id='tooling.osgi.bundle.default' version='1.0.0' singleton='false'>&lt;br>
-      &lt;hostRequirements size='1'>&lt;br>
-        &lt;required namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' range='0.0.0' multiple='true' greedy='false'/>&lt;br>
-      &lt;/hostRequirements>&lt;br>
-      &lt;properties size='1'>&lt;br>
-        &lt;property name='org.eclipse.equinox.p2.type.fragment' value='true'/>&lt;br>
-      &lt;/properties>&lt;br>
-      &lt;provides size='2'>&lt;br>
-        &lt;provided namespace='org.eclipse.equinox.p2.iu' name='tooling.osgi.bundle.default' version='1.0.0'/>&lt;br>
-        &lt;provided namespace='org.eclipse.equinox.p2.flavor' name='tooling' version='1.0.0'/>&lt;br>
-      &lt;/provides>&lt;br>
-      &lt;requires size='1'>&lt;br>
-        &lt;required namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' range='0.0.0' multiple='true' greedy='false'/>&lt;br>
-      &lt;/requires>&lt;br>
-      &lt;touchpoint id='null' version='0.0.0'/>&lt;br>
-      &lt;touchpointData size='1'>&lt;br>
-        &lt;instructions size='4'>&lt;br>
-          &lt;instruction key='install'>&lt;br>
-            installBundle(bundle:${artifact})&lt;br>
-          &lt;/instruction>&lt;br>
-          &lt;instruction key='uninstall'>&lt;br>
-            uninstallBundle(bundle:${artifact})&lt;br>
-          &lt;/instruction>&lt;br>
-          &lt;instruction key='unconfigure'>&lt;/p>
-&lt;p>          &lt;/instruction>&lt;br>
-          &lt;instruction key='configure'>&lt;br>
-            setStartLevel(startLevel:4);&lt;br>
-          &lt;/instruction>&lt;br>
-        &lt;/instructions>&lt;br>
-      &lt;/touchpointData>&lt;br>
-    &lt;/unit>&lt;/p>
-&lt;p>It has 'hostRequirements' element that represents it's a fragment IU and match all the eclipse's plug-ins in that profile. And this fragment defines the touch point actions for its hosts that will do installBundle action during 'install' phrase and uninstallBundle action during 'uninstall' phrase. It's a very good way to remove the duplicate touch point definitions for all eclipse's plug-ins in the profile.&lt;/p>
-&lt;p>BTW, p2's engine also doesn't attach this fragment to the eclipse's plug-in IU if the top level IU doesn't have the STRICT rule. I'm not sure the root cause of designing for it, but it's the fact.&lt;/p></description></item><item><title>Inside P2's profile (1) - inclusion rules</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</link><pubDate>Tue, 28 Dec 2010 11:13:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid><description>
-&lt;p>You would see some interesting properties at the bottom of eclipse's profile.&lt;/p>
-&lt;p>For example,&lt;/p>
-&lt;iuProperties id='org.eclipse.sdk.ide' version='3.6.1.M20100909-0800'>
-      &lt;properties size='2'>
-        &lt;property name='org.eclipse.equinox.p2.internal.inclusion.rules' value='STRICT'/>
-      &lt;/properties>
-&lt;/iuProperties>
-&lt;p>It attaches a property named 'org.eclipse.equinox.p2.internal.inclusion.rules' with value 'STRICT' on the IU 'org.eclipse.sdk.ide' with version 3.6.1.M20100909-0800.&lt;br>
- &lt;br>
-It's a very important property for the p2 engine. It means the IU 'org.eclipse.sdk.ide' has been explicitly installed into the profile, so it's not allowed be implicitly updated or removed.&lt;/p>
-&lt;p>For example,&lt;br>
-We have top feature IU 'org.eclipse.sdk.ide' that represents the Eclipse SDK,   'org.eclipse.pde.feature' that represents the Plug-in Development Tool and 'org.eclipse.jdt.feature' that represents the Java Development Tool. And both JDT and PDT are part of Eclipse SDK, so 'org.eclipse.pde.feature' and 'org.eclipse.jdt.feature' are required by 'org.eclipse.sdk.ide'.&lt;/p>
-&lt;p>If the profile only has the STRICT rule for 'org.eclipse.sdk.ide', 'org.eclipse.jdt.feature' and 'org.eclipse.pdt.feature' will implicitly be updated to 3.6.2 when updating 'org.eclipse.sdk.ide' from 3.6.1 to 3.6.2.&lt;/p>
-&lt;p>However the profile has below STRICT rule for PDT feature,&lt;/p>
-&lt;iuProperties id='org.eclipse.pdt.feature' version='3.6.1.M20100909-0800'>
-      &lt;properties size='2'>
-        &lt;property name='org.eclipse.equinox.p2.internal.inclusion.rules' value='STRICT'/>
-      &lt;/properties>
-&lt;/iuProperties>
-&lt;p>The p2 engine will report errors due to 'org.eclipse.pdt.feature' has STRICT rule for updating. Hence third-party must explicitly update both 'org.eclipse.sdk.ide' and 'org.eclipse.pdt.feature' from 3.6.1 to 3.6.2.&lt;/p></description></item><item><title>[Eclipse][P2]P2 replication plug-in</title><link>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</link><pubDate>Fri, 25 Dec 2009 16:43:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</guid><description>
-&lt;p>I wrote a plug-in to simplify the process to install the same plug-ins in different platform or different workstation.&lt;br>
-Anyone is interested in it, pls follow below guide to freely use it.&lt;br>
-&lt;a href="http://code.google.com/p/kane-toolkit/wiki/P2Replication">http://code.google.com/p/kane-toolkit/wiki/P2Replication&lt;/a>&lt;/p>
-&lt;p>Enjoy it.&lt;/p></description></item><item><title>[Eclipse][P2]Learn p2 step by step</title><link>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</link><pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid><description>
-&lt;h1 id="learn-p2-step-by-step">Learn p2 step by step&lt;/h1>
-&lt;p>&lt;a href="mailto:kane.mx@gmail.com" title="Kane">Kane&lt;/a>               &lt;/p>
-&lt;p>                     &lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#Learn_P2_step_by_step">Learn P2 step by step&lt;/a>&lt;/p>
-&lt;ol>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_concept">p2 concept&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_install">p2 install&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_install_practice">p2 install practice&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_repository_publish">p2 repository publish&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#customized_p2_touchpoint">customized p2 touchpoint&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_repository_publish_practice">p2 repository publish practice&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#Example_Code">Example Code&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#Reference">Reference&lt;/a>&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;/ol>
-&lt;h3 id="p2-concept">p2 concept&lt;/h3>
-&lt;p>首先来理解p2引入的几个概念[1]&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>p2 / Agent&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>The provisioning infrastructure on client machines&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Installable Unit (IU)&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Metadata&lt;/strong> that describes things that can be installed/configured&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Artifact&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>The actual content being installed/configured(e.g., bundle JARs)&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Repository&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>A store of metadata or artifacts&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Profile&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>The target of install/management operations&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Planner&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>The decision-making entity in the provisioning system&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Engine&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>The mechanism for executing provisioning requests&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Touchpoint&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>The part of the engine responsible for integrating the provisioning&lt;br>
-system to a particular runtime or management system&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>IU比较好理解，就是对可安装或配置的部分一种描述，并不对应实际要安装的文件。&lt;br>
-Arifact就是来描述实际要安装的文件，bundle类型的jar，feature，binary文件。&lt;br>
-这时就有了Repository（仓库）这个概念，是用来保存artifacts信息，以及artifacts的元数据。元数据包括了对artifact的唯一标识符，版本，对外暴露的接口信息，以及它依赖的接口及其版本信息，各个安装阶段需要执行的配置。在p2默认的实现里面，这两个repository用xml文件来描述，同时被压缩为artifacts.jar, content.jar来减小文件大小，缩短传输时间。&lt;br>
-从Eclipse 3.4起，当从远程site安装新的软件时，就会看到有个work thread在后台下载content.jar文件。p2在安装时候，首先会根据content.xml（metadata repository）来解析正在安装软件的依赖。在当前runtime里面查找metadata中指定的依赖，如果满足才继续安装。据我个人经验，如果安装的软件比较复杂，那它产生的metadata文件就会比较大（很容易上兆），下载这个文件以及解析它的内容都会比较慢，从而影响用户体验。&lt;br>
-比较灵活的是，用户可以实现自己的ArtifactRepository和MetadataRepository，注册到它们各自的Manager里面就可以了。所有这些服务都被实现为OSGi Service.&lt;br>
-下一个Profile，是用来管理安装目标里的软件信息。p2在被设计的时候，希望解决多个eclipse实例共享一份安装的某软件。比如为了某种目的我机器上有好几个Eclipse，同时它们都需要CDT，免去为重复安装的麻烦。profile就会记录每次安装的内容，让整个应用程序被管理起来。在Galileo里安装的软件都可以软件管理里面查找到。&lt;br>
-Planner和Engine完全就是p2内部的东西。任何p2的操作（安装，删除，配置）都需要Planner实例来描述。有了Planner以后，还需要创建一个Engine对象，通过engine来执行对应的plan。这就是目前调用p2 API来完成安装的一个过程。&lt;br>
-最后一个Touchpoint。程序在安装的时候，可能会根据runtime(os, ws, arch等）或阶段(安装，卸载，配置等)执行某些配置，touchpoint就是帮助实现这些配置。具体操作是以IU为单位记录在metadata repository里的。p2默认实现了一些Eclipse touchpoint，比如拷贝，删除文件，执行外部程序等。如果用户有自己特殊的native操作需要执行，可以自己实现自定义的touchpoint。&lt;/p>
-&lt;h3 id="p2-install">p2 install&lt;/h3>
-&lt;p>有了这些概念以后，我们来看看如何使用p2 API。以安装为例，&lt;/p>
-&lt;p>首先需要得到当前安装的profile。如果是全新安装，通过IProfileRegistry.addProfile创建一个新profile。是更新安装的话，可以通过IProfileRegistry查询到期望更新的profile。创建profile的时候，需要注意设置profile的属性，&lt;/p>
-&lt;p>Map&amp;lt;String, String&amp;gt; profileProperties = new HashMap&amp;lt;String, String&amp;gt;();&lt;/p>
-&lt;p>profileProperties.put(IProfile.PROP_INSTALL_FOLDER, installLocation.getAbsolutePath());&lt;/p>
-&lt;p>profileProperties.put(IProfile.PROP_FLAVOR, &amp;quot;tooling&amp;quot;); //$NON-NLS-1$&lt;/p>
-&lt;p>profileProperties.put(IProfile.PROP_ENVIRONMENTS, &amp;quot;osgi.os=&amp;quot; + Platform.getOS() + &amp;quot;,osgi.ws=&amp;quot; + Platform.getWS() + &amp;quot;,osgi.arch=&amp;quot; + Platform.getOSArch()); //$NON-NLS-1$;&lt;/p>
-&lt;p>profileProperties.put(IProfile.PROP_NL, &amp;quot;en_US&amp;quot;); //$NON-NLS-1$&lt;/p>
-&lt;p>profileProperties.put(IProfile.PROP_INSTALL_FEATURES, &amp;quot;true&amp;quot;);&lt;/p>
-&lt;p>profileProperties.put(IProfile.PROP_CONFIGURATION_FOLDER, new File(installLocation, &amp;quot;configuration&amp;quot;).getAbsolutePath());&lt;/p>
-&lt;p>profileProperties.put(IProfile.PROP_ROAMING, &amp;quot;true&amp;quot;);&lt;/p>
-&lt;p>profileProperties.put(IProfile.PROP_CACHE, installLocation.getAbsolutePath());&lt;/p>
-&lt;p>currentProfile = registry.addProfile(PROFILE_ID, profileProperties);&lt;/p>
-&lt;p>PROP_INSTALL_FOLDER设置安装的目录，PROP_CACHE设置保存下载来的Eclipse IU(features/plugins)的目录，如果repository是以feature为单位来发布的话，需要设置PROP_INSTALL_FEATURES为true。如果repository包括native的binary（比如launcher）也需要指定正确的PROP_ENVIROMENTS，包括OS,WS,ARCH或PROCESSOR。&lt;/p>
-&lt;p>然后需要获得将要安装的IMetadataRepository集合。比如：&lt;/p>
-&lt;p>ArrayList&lt;IInstallableUnit> ius = new ArrayList&lt;IInstallableUnit>();&lt;/p>
-&lt;p>IMetadataRepositoryManager repositoryManager = (IMetadataRepositoryManager) ServiceHelper.getService(Activator.getDefault().getBundle().getBundleContext(),&lt;/p>
-&lt;p>IMetadataRepositoryManager.class.getName()); &lt;/p>
-&lt;p>if (repositoryManager == null) &lt;/p>
-&lt;p>       throw new InterruptedException(&amp;quot;Failed to get IMetadataRepositoryManager.&amp;quot;);&lt;/p>
-&lt;p>try {&lt;/p>
-&lt;p>  for (URI uri : uris) {&lt;/p>
-&lt;p>    IMetadataRepository metaRepo = repositoryManager.loadRepository(uri, progress.newChild(50/uris.length));&lt;/p>
-&lt;p>    Collector collector = metaRepo.query(new AccpetQuery(), new LatestNoninstalledIUCollector(currentProfile), progress.newChild(50/uris.length));&lt;/p>
-&lt;p>     ius.addAll(collector.toCollection());&lt;/p>
-&lt;p>  }&lt;/p>
-&lt;p>} catch (ProvisionException e) {&lt;/p>
-&lt;p>    throw new InterruptedException(&amp;quot;Failed to get IMetadataRepository.&amp;quot;);&lt;/p>
-&lt;p>}&lt;br>
-     -同时这里也查找出IMetaRepository中没安装过的IUs。这就需要同当前安装的profile中已经安装过的内容来比较，&lt;/p>
-&lt;p>    Collector collector = metaRepo.query(new AccpetQuery(), new LatestNoninstalledIUCollector(currentProfile), progress.newChild(50/uris.length));&lt;/p>
-&lt;p>     这里需要指出的是，IMetadataRepository实现了IQueryable接口。IQueryable是p2引入的查找接口，返回满足特殊查询条件的集合，同时传入了一个IProgressMonitor对象，可以反应查找进度。这里的AcceptQuery，LatestNoninstalledIUCollector是自定义的Query和Collector对象。p2已经实现了许多有用的Query，经常用到的有InstallableUnitQuery，IUPropertyQuery，RangeQuery。&lt;/p>
-&lt;p>    -接下来生成IEngine所需的ProvisionPlan。首先创建ProfileChangeRequest对象，将先前查找出的要安装的IUs添加进去。&lt;/p>
-&lt;p>     request.addInstallableUnits(ius);&lt;/p>
-&lt;p>     删除的话则与之相反。更新的话也需要通过ProfileChangeRequest.removeInstallableUnits()去掉旧版本的IUs。&lt;/p>
-&lt;p>     调用IPlanner service的getProvisioningPlan(ProfileChangeRequest, ProvisioningContext, IProgressMonitor)得到对应于当前request的plan。&lt;/p>
-&lt;p>    -最后就是调用IEngine.perform(IProfile, PhaseSet, Operand[], ProvisioningContext, IProgressMonitor)来执行provisioning操作。这里的PhaseSet是用来指定Engine将要执行的几个阶段，以及每个阶段的执行时间权重。这些阶段包括了Collect, Unconfigure, Uninstall, Property, CheckTrust, Install, Configure. 如果熟悉Eclipse之前的Installer Handler，对Unconfigure/Uninstall/Install/Configure应该都很熟悉。 在p2里，更是将Collect, CheckTrust这些过程也暴露了出来。下面是p2里默认PhaseSet的实现，&lt;/p>
-&lt;p>        public DefaultPhaseSet() {&lt;/p>
-&lt;p>            this(new Phase[] {new Collect(100), new Unconfigure(10, forcedUninstall), new Uninstall(50, forcedUninstall), new Property(1), new CheckTrust(10), new Install(50), new Configure(10)});&lt;/p>
-&lt;p>        }&lt;/p>
-&lt;p>     Operand[]通过ProvisionPlan.getOperands()获得。&lt;/p>
-&lt;h3 id="p2-install-practice">p2 install practice&lt;/h3>
-&lt;p>先制作一个可安装的repository，这里的方法是基于Eclipse提供的模版创建一个RCP程序，比如mail template,&lt;/p>
-&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_871xs75p2fh_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_871xs75p2fh_b" alt="">&lt;/a>&lt;/p>
-&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_872fzbmznfm_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_872fzbmznfm_b" alt="">&lt;/a>&lt;/p>
-&lt;p>然后创建一个feature包含刚才创建出来的plug-in 'com.example.mail'。&lt;/p>
-&lt;p>基于存在的‘com.example.mail.product’创建product configuration，将其设置为base on features, 同时在dependencies页面添加以下feature。feature的qaulifier id依赖于用到的Eclipsse版本，从下图看到我这里使用的是Eclipse 3.5.1。如果要让RCP程序具有安装插件的能力（包含p2和p2 UI），就需要依赖更多的feature。后面的example里面会实现这部分功能。另外注意：&lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=291872" title="ID不能包括空格字符">ID不能包括空格字符&lt;/a>。&lt;/p>
-&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_873fx44c3ff_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_873fx44c3ff_b" alt="">&lt;/a>&lt;/p>
-&lt;p>接下来使用Eclipse Product Export Wizard生成repository。记得要勾选上generate metadata repository。&lt;/p>
-&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_874qnh7n3gc_b">&lt;/a>&lt;/p>
-&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_875gfs4p3d2_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_875gfs4p3d2_b" alt="">&lt;/a>&lt;/p>
-&lt;p>在成功创建了Mail Application的repository后，试用我们自己的p2 installer来安装这个应用程序。安装过程类似下面的截图。然后执行/folk/kzhu0/tmp/mailrcp/mail来运行Mail Application.&lt;/p>
-&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_877cm6fxcc6_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_877cm6fxcc6_b" alt="">&lt;/a>&lt;/p>
-&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_878dg9g8kf4_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_878dg9g8kf4_b" alt="">&lt;/a>&lt;/p>
-&lt;h3 id="p2-repository-publish">p2 repository publish&lt;/h3>
-&lt;p>这一节将会展示如何发布/产生基于p2的repository。在p2最早的版本Eclipse 3.4中将生成repository这个程序称为generator，而3.5对此重构后命名为publisher。重构后的publish过程简单明了。首先需要创建一个IPublishInfo对象，它负责提供将要生成的repository的情况。包括了meta repository, artifact repository的信息，属性，以及提供辅助信息的advice对象。IPublisherAdvice可以看作类似创建RCP窗口时候的WorkbenchAdvice和WorkbenchWindowAdvice等辅助类。它用来提供需要记录在repository中的IU特殊信息。比如IU的属性，touchpoint的类型及各个阶段执行的action，对可执行文件或配置文件IU的处理。&lt;br>
-此外还需要创建IPublisherAction来处理不同类型的IU发布过程。例如BundlesAction来实现发布bundles到repository，FeaturesAction则是处理feature。此外p2已提供的IPublisherAction还包括product action, config action, launcher action和jre action等等[2]。&lt;br>
-有了描述repository情况的publishinfo和发布各种IUs的action后，调用Publisher.publish方法完成repository的发布。&lt;br>
-        IPublisherInfo info = createPublisherInfo();&lt;br>
-        IPublisherAction[] actions = createActions();&lt;br>
-        Publisher publisher = new Publisher(info);&lt;br>
-        publisher.publish(actions, new NullProgressMonitor());&lt;br>
-这里有一点需要注意，publish只是把将要用于部署的features/plugins/binary发布到repository，并不负责编译打包它们。先前我们使用过Eclipse Export功能既编译打包features/plugins同时又生成repository。Export实现的过程首先是调用PDE来编译打包features/plugins，再调用对应的publisher应用程序将编译后的features/plugins/product发布为repository。&lt;/p>
-&lt;h3 id="customized-p2-touchpoint">customized p2 touchpoint&lt;/h3>
-&lt;p>前面一节已经提过IPublishInfo通过额外的IPublisherAdvise来定制发布到repository的IU信息。这里介绍为自己的IU定制新的touchpoint类型，并且要求在配置阶段在操作系统桌面创建应用程序的启动快捷方式。首先为我们的PublisherInfo添加处理touchpoint data的advice，NativeLauncherTouchPoint实现了ITouchpointAdvice接口，publisher在发布的时候当处理到touchpoint data部分，会查找实现了ITouchpointAdvice接口的advice。如果有advice可用，将会让这些advice处理现有的touchpoint data，并且得到新的touchpoint data，并把结果保存到metadata repository当中。&lt;/p>
-&lt;p>        PublisherInfo result = new PublisherInfo();&lt;br>
-        result.addAdvice(new NativeLauncherTouchPoint());&lt;/p>
-&lt;p>NativeLauncherTouchPoint将指定为特定的IU在configure阶段执行createDesktop操作，以及相反的操作，unconfigure阶段执行deleteDesktop操作。&lt;/p>
-&lt;p>更改touchpoint type的方法如下。当然也可以为现有的touchpoint type扩展action。内置的touchpoint类型和action的具体命令用法，请参考p2 wiki[3]。&lt;br>
-iu.setTouchpointType(DesktopTouchpoint.TOUCHPOINT_TYPE);&lt;br>
-touchpoint类型和action都是通过extension point来扩展的。通过扩展“org.eclipse.equinox.p2.engine.touchpoints”来添加新的touchpoint类型，扩展”org.eclipse.equinox.p2.engine.actions“将新的action同某个类型关联起来。&lt;/p>
-&lt;h3 id="p2-repository-publish-practice">p2 repository publish practice&lt;/h3>
-&lt;p>我们创建plug-in 'com.example.p2.touchpoint'来实现桌面快捷方式的扩展，并且创建'com.example.p2.feature'包含touchpoint实现的plug-in。具体实现请参考p2 example源码。&lt;br>
-然后为Mail Application添加p2相关feature的依赖，重新发布得到支持安装软件的新版本。并且用p2 example installer安装它。p.s: 个人感觉Eclipse在包含第三方plug-in时，层次有些问题。p2作为一个runtime的project（跟equinox, ECF同级），居然需要直接或间接依赖help, rcp.platform这样的上层模块。&lt;/p>
-&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_879cjg6wrgg_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_879cjg6wrgg_b" alt="">&lt;/a>&lt;/p>
-&lt;p>接下来创建plug-in 'com.example.mail.desktop' 和 feature 'com.example.mail.desktop.feature'，作为提供桌面快捷方式的IU。用Eclipse Export Feature将'com.example.mail.desktop.feature'导出，实际就是用PDE替我们编译打包:)。&lt;br>
-运行‘com.example.p2.generator'提供的headless publisher来生成我们定制的repository。’/folk/kzhu0/tmp/mail/desktop-deploy'是先前desktop feature导出后的路径，而'/folk/kzhu0/tmp/mail/desktop'是生成repository的路径。&lt;/p>
-&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_880tk4fk8wd_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_880tk4fk8wd_b" alt="">&lt;/a>&lt;/p>
-&lt;p>运行新版本的Mail Application，在Help菜单下面会多出Install New Software选项。将自定义publisher生成的Desktop feature repository添加为新的软件源，安装Mail Desktop Feature。安装完成后，将在桌面找到Mail Application的快捷方式。在Installation Detail里面将会出现这次安装的内容。选中Desktop Feature后选择卸载，桌面的快捷方式文件将会被删除掉。当然也可以使用p2 example installer来为Mail Application安装desktop feature。p.s: example代码里只实现了创建linux/unix桌面快捷方式。&lt;/p>
-&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_8814qg7wvhs_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_8814qg7wvhs_b" alt="">&lt;/a>&lt;/p>
-&lt;h3 id="example-code">Example Code&lt;/h3>
-&lt;p>Example Code应该只能编译运行在Eclipse 3.5.x。Example Code使用的都是p2 internal API, 而p2 public API将会随Eclipse 3.6首次发布。这些类和方法基本都会保留，但命名，包一定会有重构。&lt;br>
-&lt;a href="http://code.google.com/p/kane-toolkit/source/browse/#svn/trunk/p2-example">http://code.google.com/p/kane-toolkit/source/browse/#svn/trunk/p2-example&lt;/a>&lt;/p>
-&lt;h3 id="reference">Reference&lt;/h3>
-&lt;p>[1] &lt;a href="http://wiki.eclipse.org/Equinox/p2/Concepts">http://wiki.eclipse.org/Equinox/p2/Concepts&lt;/a>&lt;br>
-[2] &lt;a href="http://wiki.eclipse.org/Equinox/p2/Publisher">http://wiki.eclipse.org/Equinox/p2/Publisher&lt;/a>&lt;br>
-[3] &lt;a href="http://wiki.eclipse.org/Equinox/p2/Engine/Touchpoint_Instructions">http://wiki.eclipse.org/Equinox/p2/Engine/Touchpoint_Instructions&lt;/a>&lt;/p></description></item><item><title>Simulate p2 self host in Eclipse run</title><link>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</link><pubDate>Tue, 27 Oct 2009 16:12:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</guid><description>
-&lt;p>-Dosgi.install.area=&amp;lt;launcher's folder&amp;gt;&lt;br>
--Declipse.p2.profile=&lt;profile id>&lt;/p></description></item></channel></rss>
+Our p2 based on installer suffered performance issue when querying IUs from repositories. Though the repositories have a large number of IUs to be queried, but we find the performance of using QL is unacceptable in some special scenarios.
+I published several different methods to find the expected IUs. Thomas pointed out the better expression of QL and finally helped us to find out the our repository without IIndexProvider implementation.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/p2-query-performance/">Read More&lt;/a>&lt;/p></description></item><item><title>Eclipse P2's import/export capability</title><link>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</link><pubDate>Fri, 22 Apr 2011 15:56:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</guid><description>
+I implemented the replication tool at the end of 2009, then published it to Eclipse Marketplace in May 2010. However it's not pervasively used due to users have to install that plug-in firstly.
+I searched a similar request on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/">Read More&lt;/a>&lt;/p></description></item><item><title>Inside P2's profile (2) - the fragment matches all osgi bundles</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</link><pubDate>Tue, 28 Dec 2010 11:33:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid><description>
+Recently our installer met a strange bug, it didn't uninstall all legacy bundles after updating to new version. Finally I found it's due to a magic fragment is missing in the profile due to some causes.
+ 
+installBundle(bundle:${artifact})
+uninstallBundle(bundle:${artifact})
+ 
+setStartLevel(startLevel:4);
+It has 'hostRequirements' element that represents it's a fragment IU and match all the eclipse's plug-ins in that profile.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/">Read More&lt;/a>&lt;/p></description></item><item><title>Inside P2's profile (1) - inclusion rules</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</link><pubDate>Tue, 28 Dec 2010 11:13:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid><description>
+You would see some interesting properties at the bottom of eclipse's profile.
+For example,
+It attaches a property named 'org.eclipse.equinox.p2.internal.inclusion.rules' with value 'STRICT' on the IU 'org.eclipse.sdk.ide' with version 3.6.1.M20100909-0800.
+It's a very important property for the p2 engine. It means the IU 'org.eclipse.sdk.ide' has been explicitly installed into the profile, so it's not allowed be implicitly updated or removed.
+For example,
+We have top feature IU 'org.eclipse.sdk.ide' that represents the Eclipse SDK, 'org.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse][P2]P2 replication plug-in</title><link>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</link><pubDate>Fri, 25 Dec 2009 16:43:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</guid><description>
+I wrote a plug-in to simplify the process to install the same plug-ins in different platform or different workstation.
+Anyone is interested in it, pls follow below guide to freely use it.
+http://code.google.com/p/kane-toolkit/wiki/P2Replication
+Enjoy it.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse][P2]Learn p2 step by step</title><link>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</link><pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid><description>
+Learn p2 step by step Kane   Learn P2 step by step
+p2 concept p2 install p2 install practice p2 repository publish customized p2 touchpoint p2 repository publish practice Example Code Reference p2 concept 首先来理解p2引入的几个概念[1]
+p2 / Agent
+The provisioning infrastructure on client machines
+Installable Unit (IU)
+Metadata that describes things that can be installed/configured
+Artifact
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/">Read More&lt;/a>&lt;/p></description></item><item><title>Simulate p2 self host in Eclipse run</title><link>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</link><pubDate>Tue, 27 Oct 2009 16:12:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</guid><description>
+-Dosgi.install.area=&amp;lt;launcher's folder&amp;gt;
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

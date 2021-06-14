@@ -1,3 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GDB on The road</title><link>https://kane.mx/tags/gdb/</link><description>Recent content in GDB on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Wed, 10 Dec 2008 15:02:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/gdb/index.xml" rel="self" type="application/rss+xml"/><item><title>[Debug][tip]How to ignore specified signal when debugging program via gdb</title><link>https://kane.mx/posts/archive/blogspot/how-to-ignore-specified-signal-when/</link><pubDate>Wed, 10 Dec 2008 15:02:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-ignore-specified-signal-when/</guid><description>
-&lt;p>Such as,&lt;br>
-(gdb) handle SIGPIPE nostop noprint pass&lt;/p></description></item></channel></rss>
+Such as,
+(gdb) handle SIGPIPE nostop noprint pass
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-to-ignore-specified-signal-when/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

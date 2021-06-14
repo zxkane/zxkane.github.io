@@ -1,19 +1,3 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Helm on The road</title><link>https://kane.mx/tags/helm/</link><description>Recent content in Helm on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/helm/index.xml" rel="self" type="application/rss+xml"/><item><title>Deploy Sonatype Nexus repository OSS on EKS</title><link>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</link><pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</guid><description>
 &lt;p>&lt;a href="https://www.sonatype.com/nexus-repository-oss">Sonatype Nexus repository OSS&lt;/a> is an artifact repository that supports most software repositories such as Maven, Pypi, Npmjs, Rubygems, Yum, Apt, Docker registry and etc. In the enterprise Nexus repository is widely used for storing proprietary artifacts and caching the artifacts for speeding up the devops.&lt;/p>
-&lt;p>Building a production ready Nexus repository always is a requirement for devops team, it should satisfy below criterias at least,&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>artifacts storage management&lt;/strong> It's difficult to predicate the storage usage of artifacts, allocating large volume is not cost optimized.&lt;/li>
-&lt;li>&lt;strong>the durability of nexus3 data storage&lt;/strong> We need a way to make sure data storage of nexus when updating Nexus OSS to newer version or recover the service from unhealthy status.&lt;/li>
-&lt;li>&lt;strong>self healing capability when the service is down&lt;/strong> A reliable way recovers the Nexus repository OSS when it's unhealth.&lt;/li>
-&lt;/ul>
-&lt;p>There is a well-architected &lt;a href="https://github.com/aws-samples/nexus-oss-on-aws">solution&lt;/a>(maintained by AWS team) to quickly(~10 minutes) deploy &lt;a href="https://www.sonatype.com/nexus-repository-oss">Nexus OSS&lt;/a> leveraging below capabilities,&lt;/p>
-&lt;ul>
-&lt;li>Host on EKS cluster using managed EC2 nodes with &lt;a href="https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html">IRSA&lt;/a>&lt;/li>
-&lt;li>Expose service via AWS Application load balancer managed by &lt;a href="https://github.com/kubernetes-sigs/aws-load-balancer-controller">AWS load balancer controller&lt;/a>(former ALB Ingress Controller)&lt;/li>
-&lt;li>Use dedicated S3 bucket for storing Nexus OSS blobstore with ulimited and on-demand storage&lt;/li>
-&lt;li>Use EFS, &lt;a href="https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html">EFS CSI Driver&lt;/a>, PV and PVC storing nexus data&lt;/li>
-&lt;li>Use &lt;a href="https://helm.sh/">Helm&lt;/a> to deploy &lt;a href="https://hub.helm.sh/charts/oteemo/sonatype-nexus">Sonatype Nexus chart&lt;/a>&lt;/li>
-&lt;li>&lt;code>Optional&lt;/code> Use &lt;a href="https://github.com/kubernetes-sigs/external-dns">External DNS&lt;/a> to registry the domain record of Nexus repository to Route 53&lt;/li>
-&lt;li>&lt;code>Optional&lt;/code> Use AWS Certificate Manager to create SSL certificate of domain name of Nexus repository&lt;/li>
-&lt;/ul>
-&lt;p>Enjoy it:smirk:&lt;/p></description></item></channel></rss>
+&lt;p>&lt;a href="https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

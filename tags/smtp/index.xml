@@ -1,15 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>smtp on The road</title><link>https://kane.mx/tags/smtp/</link><description>Recent content in smtp on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Thu, 24 Nov 2011 15:58:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/smtp/index.xml" rel="self" type="application/rss+xml"/><item><title>JRE/JDK's certificate issue and solution</title><link>https://kane.mx/posts/archive/blogspot/jrejdks-certificate-issue-and-solution/</link><pubDate>Thu, 24 Nov 2011 15:58:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/jrejdks-certificate-issue-and-solution/</guid><description>
-&lt;p>The problem came from I tried to set up send mail server(SMTP) for my Gerrit server. My Gerrit server is using OpenID for user authorization, so I registered a new email account to send notification from Gerrit.&lt;/p>
-&lt;p>Most of email service providers require the secure authorization when using its SMTP server to send mail. However the root CA of my email provider is not added into the default certificate of JRE. So Gerrit always failed to send email due to ssl verification exception.&lt;/p>
-&lt;p>My solution is adding the certificate of SMTP server into the certificate used by JRE.&lt;/p>
-&lt;p>The detail steps are below,&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>Use &lt;strong>open_ssl&lt;/strong> utility to the certificate of SMTP server or its root CA of email provider. Below command can list the certificate of SMTP and its chain. You can paste any of them into a file.&lt;/p>
-&lt;p>openssl s_client -connect smtp.163.com:465&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Then import the certificate saved in previous step into my JRE's key store. The default password of JRE's default keystore is '&lt;strong>changeit&lt;/strong>'. You can find the &lt;em>cacerts&lt;/em> under jre/lib/security folder.&lt;/p>
-&lt;p>sudo keytool -import -keystore cacerts -alias Smtp163com -file /tmp/smtp.163.PEM&lt;/p>
-&lt;/li>
-&lt;/ol></description></item></channel></rss>
+The problem came from I tried to set up send mail server(SMTP) for my Gerrit server. My Gerrit server is using OpenID for user authorization, so I registered a new email account to send notification from Gerrit.
+Most of email service providers require the secure authorization when using its SMTP server to send mail. However the root CA of my email provider is not added into the default certificate of JRE.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/jrejdks-certificate-issue-and-solution/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

@@ -1,49 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OSGi on The road</title><link>https://kane.mx/tags/osgi/</link><description>Recent content in OSGi on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Mon, 05 Mar 2012 19:25:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/osgi/index.xml" rel="self" type="application/rss+xml"/><item><title>Embedding an HTTP server in Equinox</title><link>https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/</link><pubDate>Mon, 05 Mar 2012 19:25:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/</guid><description>
-&lt;p>I want to create a test server for my application. Using embedding Http server in equinox is my first option.&lt;/p>
-&lt;p>I had experience using simple http service implementation of equinox, however I want to play with Jetty this time.&lt;/p>
-&lt;p>Following &lt;a href="http://www.eclipse.org/equinox/server/http_in_equinox.php">the guide&lt;/a> of Equinox server, I can't running a Jetty server with my servlet in Eclipse Indigo. Obviously &lt;a href="http://www.eclipse.org/equinox/server/http_in_equinox.php">the guide&lt;/a> is out of date.&lt;/p>
-&lt;p>After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.&lt;br>
-&lt;script type="application/javascript" src="https://gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi">&lt;/script>
-&lt;/p>
-&lt;p>You only need create a run configuration of OSGi framework, add your bundles with servlets and above bundles.&lt;/p></description></item><item><title>Eclipse/OSGi preference</title><link>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</link><pubDate>Thu, 22 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</guid><description>
-&lt;p>The IPreferenceStore API of Eclipse is based on OSGi's preferences service. Equinox implements several scope context for different preferences, such DefaultScope, InstanceScope and ConfigurationScope. The IPreferenceStore is the wrapper of instance scope for back-compatibility. It stored the data in workspace(osgi.data.area).&lt;/p>
-&lt;p>The workspace folder would be created when launching RCP application if it doesn't exist. But we can use argument '-data @none' to suppress the creation of workspace. If that, the instance scope/IPreferenceStore can't store any value any more.&lt;/p>
-&lt;p>There is a workaround to resolve such issue. Use ConfigurationScope instead of InstanceScope. Both of them are implemented the same interface, so it's easy to migrate to use ConfigurationScope. The data of configuration scope would be stored in @config.dir/.setting folder.&lt;/p></description></item><item><title>[OSGi][Eclipse]Add custom jar or path into Equinox Framework</title><link>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</link><pubDate>Sun, 28 Sep 2008 13:23:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</guid><description>
-&lt;p>Set vm arguments 'osgi.framework.extensions' and 'osgi.frameworkClassPath' when vm starts. If those value are set, those jar or path would be added into the classloader when starting EclipseStarter.&lt;/p>
-&lt;p>See org.eclipse.equinox.launcher.Main for more details in the source code of Eclipse 3.4.&lt;br>
-Best Regards&lt;br>
-Kane&lt;/p></description></item><item><title>[OSGi]How to acquire the fragments of specified bundle</title><link>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</link><pubDate>Fri, 01 Aug 2008 16:22:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</guid><description>
-&lt;p>The answer is very simple, using the service 'org.eclipse.service.PackageAdmin'.&lt;/p></description></item><item><title>[Eclipse]Equinox's classloader and its URL schema</title><link>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</link><pubDate>Thu, 17 Jul 2008 17:42:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</guid><description>
-&lt;p>Equinox uses the adaptor hooks to implement the class loader.&lt;br>
-See &lt;a href="http://wiki.eclipse.org/Adaptor_Hooks">http://wiki.eclipse.org/Adaptor_Hooks&lt;/a> for more detail&lt;/p>
-&lt;p>BaseClassLoadingHook would search the native code on itself. If it find the file in that jar file, it would extract the native library into its storage folder.&lt;/p>
-&lt;p>EclipseClassLoadingHook defines some variables to search the native library. Belows are built-in variables:&lt;/p>
-&lt;p>result.add(&amp;quot;ws/&amp;quot; + info.getWS() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$&lt;br>
-result.add(&amp;quot;os/&amp;quot; + info.getOS() + &amp;quot;/&amp;quot; + info.getOSArch() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$&lt;br>
-result.add(&amp;quot;os/&amp;quot; + info.getOS() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$&lt;/p>
-&lt;p>So the classloader can find your native library that under those path. If your bundle is jar file, equinox would extract your native library into its storage folder.&lt;/p>
-&lt;p>I prefer to use OSGi header(Bundle-NativeCode) defining the path of native code, which still works on other OSGi implementations.&lt;/p>
-&lt;p>Equinox defines its url schema, one of them is named as 'BundleURLConnection'. From its name, we know it's used for describing the files of bundle. You can obtain the url of file that is located on bundle by Bundle.getResource()/Bundle.getEntry()/Bundle.findEntries()/Bundle.getResources(). The return value of those functions are an object of BundleURLConnection. Once it's used as the argument of FileLocator.toFileURL(URL), the jar bundle would be unpacked into its storage folder recursively.&lt;/p></description></item><item><title>[OSGi][Equinox]URL Handlers Service</title><link>https://kane.mx/posts/archive/blogspot/url-handlers-service/</link><pubDate>Wed, 16 Apr 2008 14:20:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/url-handlers-service/</guid><description>
-&lt;p>OSGi provides a mechanism to let user contribute custom schemes automatically. It avoid some restriction with Java facilities for extending the handlers. The more detail could be found from OSGi specification R4, which has description how OSGi implements URL Handler Service.&lt;/p>
-&lt;p>Use a sample to illustrate how to contribute your scheme(protocol):&lt;/p>
-&lt;p>1. register your URLStreamHandlerService implementation, which must contain a property named &amp;quot;url.handler.protocol&amp;quot;. below register my scheme 'smb'&lt;br>
-public void start(BundleContext context) throws Exception {&lt;br>
-Hashtable properties = new Hashtable();&lt;br>
-properties.put( URLConstants.URL_HANDLER_PROTOCOL, new String[] { &amp;quot;smb&amp;quot; } );&lt;br>
-context.registerService(URLStreamHandlerService.class.getName(), new SmbURLHandler(), properties );&lt;br>
-}&lt;br>
-2. your URL Handler extends AbstractURLStreamHandlerService, and implements abstract function 'openConnection(URL)'&lt;br>
-public class SmbURLHandler extends AbstractURLStreamHandlerService {&lt;/p>
-&lt;p>public URLConnection openConnection(URL url) throws IOException {&lt;br>
-return new SmbURLConnection(url);&lt;br>
-}&lt;/p>
-&lt;p>}&lt;br>
-3. your URL Connection extends java.net.URLConnection&lt;br>
-public class SmbURLConnection extends URLConnection {&lt;/p>
-&lt;p>protected SmbURLConnection(URL url) {&lt;br>
-super(url);&lt;br>
-}&lt;/p>
-&lt;p>public void connect() throws IOException {&lt;br>
-}&lt;br>
-}&lt;/p></description></item><item><title>[OSGi][Equinox]the Bundle-NativeCode implementation in Equinox</title><link>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</link><pubDate>Mon, 31 Mar 2008 17:36:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</guid><description>
-&lt;p>OSGi Spec defines Bundle-NativeCode header to contain a specification of native code libraries contained in that bundle. All magic things are initialized by org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLibrary(String) and org.eclipse.osgi.framework.internal.core.BundleLoader.findLibrary(String). Then BundleLoader uses the org.eclipse.osgi.baseadaptor.BaseData(an implementation of BundleData) to find the library path, if the bundle is NOT a jar file, it would directly get the absolute path of library. Otherwise, the BaseData would extract the library file if it could NOT find it in OSGi bundle storage(located in ${data}/org.eclipse.osgi/bundles/[bundle_id]/.cp/). Refer to org.eclipse.osgi.baseadaptor.BaseData.findLibrary(String) for more detail.&lt;/p></description></item></channel></rss>
+I want to create a test server for my application. Using embedding Http server in equinox is my first option.
+I had experience using simple http service implementation of equinox, however I want to play with Jetty this time.
+Following the guide of Equinox server, I can't running a Jetty server with my servlet in Eclipse Indigo. Obviously the guide is out of date.
+After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/">Read More&lt;/a>&lt;/p></description></item><item><title>Eclipse/OSGi preference</title><link>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</link><pubDate>Thu, 22 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</guid><description>
+The IPreferenceStore API of Eclipse is based on OSGi's preferences service. Equinox implements several scope context for different preferences, such DefaultScope, InstanceScope and ConfigurationScope. The IPreferenceStore is the wrapper of instance scope for back-compatibility. It stored the data in workspace(osgi.data.area).
+The workspace folder would be created when launching RCP application if it doesn't exist. But we can use argument '-data @none' to suppress the creation of workspace. If that, the instance scope/IPreferenceStore can't store any value any more.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/">Read More&lt;/a>&lt;/p></description></item><item><title>[OSGi][Eclipse]Add custom jar or path into Equinox Framework</title><link>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</link><pubDate>Sun, 28 Sep 2008 13:23:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</guid><description>
+Set vm arguments 'osgi.framework.extensions' and 'osgi.frameworkClassPath' when vm starts. If those value are set, those jar or path would be added into the classloader when starting EclipseStarter.
+See org.eclipse.equinox.launcher.Main for more details in the source code of Eclipse 3.4.
+Best Regards
+Kane
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/">Read More&lt;/a>&lt;/p></description></item><item><title>[OSGi]How to acquire the fragments of specified bundle</title><link>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</link><pubDate>Fri, 01 Aug 2008 16:22:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</guid><description>
+The answer is very simple, using the service 'org.eclipse.service.PackageAdmin'.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse]Equinox's classloader and its URL schema</title><link>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</link><pubDate>Thu, 17 Jul 2008 17:42:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</guid><description>
+Equinox uses the adaptor hooks to implement the class loader.
+See http://wiki.eclipse.org/Adaptor_Hooks for more detail
+BaseClassLoadingHook would search the native code on itself. If it find the file in that jar file, it would extract the native library into its storage folder.
+EclipseClassLoadingHook defines some variables to search the native library. Belows are built-in variables:
+result.add(&amp;quot;ws/&amp;quot; + info.getWS() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$
+result.add(&amp;quot;os/&amp;quot; + info.getOS() + &amp;quot;/&amp;quot; + info.getOSArch() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/">Read More&lt;/a>&lt;/p></description></item><item><title>[OSGi][Equinox]URL Handlers Service</title><link>https://kane.mx/posts/archive/blogspot/url-handlers-service/</link><pubDate>Wed, 16 Apr 2008 14:20:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/url-handlers-service/</guid><description>
+OSGi provides a mechanism to let user contribute custom schemes automatically. It avoid some restriction with Java facilities for extending the handlers. The more detail could be found from OSGi specification R4, which has description how OSGi implements URL Handler Service.
+Use a sample to illustrate how to contribute your scheme(protocol):
+1. register your URLStreamHandlerService implementation, which must contain a property named &amp;quot;url.handler.protocol&amp;quot;. below register my scheme 'smb'
+public void start(BundleContext context) throws Exception {
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/url-handlers-service/">Read More&lt;/a>&lt;/p></description></item><item><title>[OSGi][Equinox]the Bundle-NativeCode implementation in Equinox</title><link>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</link><pubDate>Mon, 31 Mar 2008 17:36:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</guid><description>
+OSGi Spec defines Bundle-NativeCode header to contain a specification of native code libraries contained in that bundle. All magic things are initialized by org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLibrary(String) and org.eclipse.osgi.framework.internal.core.BundleLoader.findLibrary(String). Then BundleLoader uses the org.eclipse.osgi.baseadaptor.BaseData(an implementation of BundleData) to find the library path, if the bundle is NOT a jar file, it would directly get the absolute path of library. Otherwise, the BaseData would extract the library file if it could NOT find it in OSGi bundle storage(located in ${data}/org.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

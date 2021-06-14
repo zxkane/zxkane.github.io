@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tip on The road</title><link>https://kane.mx/tags/tip/</link><description>Recent content in Tip on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Mon, 19 Mar 2012 20:04:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/tip/index.xml" rel="self" type="application/rss+xml"/><item><title>Dual monitors on Ubuntu</title><link>https://kane.mx/posts/archive/blogspot/dual-monitors-on-ubuntu/</link><pubDate>Mon, 19 Mar 2012 20:04:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/dual-monitors-on-ubuntu/</guid><description>
-&lt;p>I had two monitors for my workstation. One is 22' and the another is 17'. I used the small one as a extend desktop.&lt;/p>
-&lt;p>Today I get a another 23' monitor to replace the small one. However the resolution of the 23' monitor can't be changed after pluging it in. It always used the resolution matching the 17' one.&lt;/p>
-&lt;p>Both 'Setting - Display' and 'AMD Catalyst control' can't adjust it as higher resolution.&lt;/p>
-&lt;p>After some tuning, I found a workaround.&lt;/p>
-&lt;p>I totally remove all config of small one from &lt;strong>/etc/X11/xorg.conf&lt;/strong>. Then change its resolution in 'AMD Catalyst control', it works!&lt;/p></description></item><item><title>[tip]ssh key</title><link>https://kane.mx/posts/archive/blogspot/ssh-key/</link><pubDate>Tue, 29 Dec 2009 11:33:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/ssh-key/</guid><description>
-&lt;p>Setup SSH without password.&lt;br>
-a) execute &amp;quot;ssh-keygen -t rsa&amp;quot; under your linux/unix login to get the RSA keys.&lt;br>
-(press Enter for all)&lt;br>
-You will get 2 files uner ~/.ssh/, id_rsa and id_rsa.pub&lt;br>
-b) Put the public key id_rsa.pub to your remote host: ~/.ssh/authorized_keys If the remote host share the same nfs, just try &amp;quot; cat id_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys&amp;quot;&lt;br>
-* Remember to modify hostname or ip info in ~/.ssh/authorized_keys to &amp;quot;&lt;em>&amp;quot;, so that you can login from any host without password in your NIS domain.&lt;br>
-For example:&lt;br>
-ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA4Ri5J0s1BL/+mR7RfAuDW6FY2P6ILc61Zvw1BdDkvHMFrTzaC/AUMw33H7biAMCXuCleakCuSoV8ZDiGHYs4wOVvet5sDmphkwdiC4xTekdl3dRNvGjMVbvFUta/Y5CiayL6YIu47Ro6Vvu4Mutsrv/13pTlifrEz+NTR/+bzMb9nTniCwiryMyYod3E46b8WvS8yE3WK+tH4BZE8bjiCwdvAzSdPyk/OFNrlBNuF1yewwnxv1roRD3UalT2+7O4kfEG9sMvvBHjuX2l7xlUe3stBftYpigBbwGmmadxjRpNIlk88t5xKcQX6nSu7V8HI3GWPHI0D+ISIlbfU5Sunw== kzhu0@&lt;/em>&lt;/p></description></item><item><title>[tip]ssh forward</title><link>https://kane.mx/posts/archive/blogspot/ssh-forward/</link><pubDate>Wed, 28 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/ssh-forward/</guid><description>
-&lt;p>ssh -qTfnN -D LocalPort remotehost&lt;/p>
-&lt;p>All the added options are for a ssh session that's used for tunneling.&lt;/p>
-&lt;p>-q :- be very quite, we are acting only as a tunnel.&lt;br>
--T :- Do not allocate a pseudo tty, we are only acting a tunnel.&lt;br>
--f :- move the ssh process to background, as we don't want to interact with this ssh session directly.&lt;br>
--N :- Do not execute remote command.&lt;br>
--n :- redirect standard input to /dev/null.&lt;/p>
-&lt;p>In addition on a slow line you can gain performance by enabling compression with the -C option.&lt;/p></description></item><item><title>[tip]Turn off automatically scanning disk when reboot</title><link>https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/</link><pubDate>Wed, 11 Feb 2009 17:40:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/</guid><description>
-&lt;p>tune2fs -i 0 -c 0 /dev/sdx&lt;/p></description></item><item><title>[Debug][tip]How to ignore specified signal when debugging program via gdb</title><link>https://kane.mx/posts/archive/blogspot/how-to-ignore-specified-signal-when/</link><pubDate>Wed, 10 Dec 2008 15:02:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-ignore-specified-signal-when/</guid><description>
-&lt;p>Such as,&lt;br>
-(gdb) handle SIGPIPE nostop noprint pass&lt;/p></description></item><item><title>[HowTo][tip]How to adjust the font size of Notes editor</title><link>https://kane.mx/posts/archive/blogspot/how-to-adjust-font-size-of-notes-editor/</link><pubDate>Thu, 04 Dec 2008 13:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-adjust-font-size-of-notes-editor/</guid><description>
-&lt;p>Close Notes&lt;br>
-Double click c:\notes\notes.ini to open it.&lt;br>
-Add one new line &amp;quot;Display_font_adjustment=n&amp;quot; after the third line in notes.ini file. &amp;quot;n&amp;quot; is the number.It can be 1or 2 or 3....and the font will be larger with the number increasing.&lt;br>
-Launch note&lt;/p></description></item><item><title>[tip]convert dos format to unix</title><link>https://kane.mx/posts/archive/blogspot/tipconvert-dos-format-to-unix/</link><pubDate>Fri, 23 May 2008 18:03:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/tipconvert-dos-format-to-unix/</guid><description>
-&lt;p>In vi/vim,&lt;/p>
-&lt;p>﻿set file format=unix&lt;/p>
-&lt;p>or dos2unix, unix2dos&lt;/p></description></item><item><title>[tip]Makefile</title><link>https://kane.mx/posts/archive/blogspot/makefile-tip/</link><pubDate>Thu, 22 May 2008 20:37:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/makefile-tip/</guid><description>
-&lt;p>Build c/c++ project always need third party library on linux, such as gtk+, glib. Writing their absolute path in Makefile is not flexible way. You can use pkg-config instead of the absolute path. Below is code snippet:&lt;/p>
-&lt;p>GTK_LIB=$(shell pkg-config --libs gtk+-2.0)&lt;br>
-GTK_INC=$(shell pkg-config --cflags gtk+-2.0)&lt;/p>
-&lt;p>gcc -o yourlibrary.so $(GTK_INC) $(GTK_LIB)&lt;/p></description></item></channel></rss>
+I had two monitors for my workstation. One is 22' and the another is 17'. I used the small one as a extend desktop.
+Today I get a another 23' monitor to replace the small one. However the resolution of the 23' monitor can't be changed after pluging it in. It always used the resolution matching the 17' one.
+Both 'Setting - Display' and 'AMD Catalyst control' can't adjust it as higher resolution.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/dual-monitors-on-ubuntu/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]ssh key</title><link>https://kane.mx/posts/archive/blogspot/ssh-key/</link><pubDate>Tue, 29 Dec 2009 11:33:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/ssh-key/</guid><description>
+Setup SSH without password.
+a) execute &amp;quot;ssh-keygen -t rsa&amp;quot; under your linux/unix login to get the RSA keys.
+(press Enter for all)
+You will get 2 files uner ~/.ssh/, id_rsa and id_rsa.pub
+b) Put the public key id_rsa.pub to your remote host: ~/.ssh/authorized_keys If the remote host share the same nfs, just try &amp;quot; cat id_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys&amp;quot;
+* Remember to modify hostname or ip info in ~/.ssh/authorized_keys to &amp;quot;&amp;quot;, so that you can login from any host without password in your NIS domain.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/ssh-key/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]ssh forward</title><link>https://kane.mx/posts/archive/blogspot/ssh-forward/</link><pubDate>Wed, 28 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/ssh-forward/</guid><description>
+ssh -qTfnN -D LocalPort remotehost
+All the added options are for a ssh session that's used for tunneling.
+-q :- be very quite, we are acting only as a tunnel.
+-T :- Do not allocate a pseudo tty, we are only acting a tunnel.
+-f :- move the ssh process to background, as we don't want to interact with this ssh session directly.
+-N :- Do not execute remote command.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/ssh-forward/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]Turn off automatically scanning disk when reboot</title><link>https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/</link><pubDate>Wed, 11 Feb 2009 17:40:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/</guid><description>
+tune2fs -i 0 -c 0 /dev/sdx
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/">Read More&lt;/a>&lt;/p></description></item><item><title>[Debug][tip]How to ignore specified signal when debugging program via gdb</title><link>https://kane.mx/posts/archive/blogspot/how-to-ignore-specified-signal-when/</link><pubDate>Wed, 10 Dec 2008 15:02:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-ignore-specified-signal-when/</guid><description>
+Such as,
+(gdb) handle SIGPIPE nostop noprint pass
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-to-ignore-specified-signal-when/">Read More&lt;/a>&lt;/p></description></item><item><title>[HowTo][tip]How to adjust the font size of Notes editor</title><link>https://kane.mx/posts/archive/blogspot/how-to-adjust-font-size-of-notes-editor/</link><pubDate>Thu, 04 Dec 2008 13:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-adjust-font-size-of-notes-editor/</guid><description>
+Close Notes
+Double click c:\notes\notes.ini to open it.
+Add one new line &amp;quot;Display_font_adjustment=n&amp;quot; after the third line in notes.ini file. &amp;quot;n&amp;quot; is the number.It can be 1or 2 or 3....and the font will be larger with the number increasing.
+Launch note
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-to-adjust-font-size-of-notes-editor/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]convert dos format to unix</title><link>https://kane.mx/posts/archive/blogspot/tipconvert-dos-format-to-unix/</link><pubDate>Fri, 23 May 2008 18:03:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/tipconvert-dos-format-to-unix/</guid><description>
+In vi/vim,
+﻿set file format=unix
+or dos2unix, unix2dos
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/tipconvert-dos-format-to-unix/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]Makefile</title><link>https://kane.mx/posts/archive/blogspot/makefile-tip/</link><pubDate>Thu, 22 May 2008 20:37:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/makefile-tip/</guid><description>
+Build c/c++ project always need third party library on linux, such as gtk+, glib. Writing their absolute path in Makefile is not flexible way. You can use pkg-config instead of the absolute path. Below is code snippet:
+GTK_LIB=$(shell pkg-config --libs gtk+-2.0)
+GTK_INC=$(shell pkg-config --cflags gtk+-2.0)
+gcc -o yourlibrary.so $(GTK_INC) $(GTK_LIB)
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/makefile-tip/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

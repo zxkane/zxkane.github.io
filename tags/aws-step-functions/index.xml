@@ -1,29 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS Step Functions on The road</title><link>https://kane.mx/tags/aws-step-functions/</link><description>Recent content in AWS Step Functions on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Wed, 14 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws-step-functions/index.xml" rel="self" type="application/rss+xml"/><item><title>跨账号跨区域部署AWS CDK编排的应用</title><link>https://kane.mx/posts/2020/deploy-aws-cdk-applications-cross-accounts/</link><pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/deploy-aws-cdk-applications-cross-accounts/</guid><description>
 &lt;p>&lt;a href="https://kane.mx/posts/2019/aws-cdk/">AWS CDK&lt;/a>是编排部署AWS云上资源最佳的工具之一。基于AWS CDK的应用应该如何实践DevOps持续集成和部署呢？&lt;/p>
 &lt;p>通常我们有下面几种方法，&lt;/p>
-&lt;ol>
-&lt;li>使用&lt;a href="https://aws.amazon.com/codepipeline/">AWS CodePipeline&lt;/a>来完成DevOps pipeline搭建。CodePipeline是AWS Code系列服务中的持续集成编排工具，它可以集成CodeBuild项目，在CodeBuild项目build中安装&lt;code>cdk&lt;/code>，并执行&lt;code>cdk deploy&lt;/code>命令来实现应用部署。&lt;/li>
-&lt;/ol>
-&lt;blockquote>
-&lt;p>这种方法简单直接的实现了DevOps部署流水线。但缺少staging，将最新提交直接部署到生产是一种非常高风险的做法。&lt;/p>
-&lt;/blockquote>
-&lt;ol start="2">
-&lt;li>CDK近期发布了体验性的新特性&lt;a href="https://aws.amazon.com/blogs/developer/cdk-pipelines-continuous-delivery-for-aws-cdk-applications/">CDK Pipelines&lt;/a>来封装CDK应用持续部署流水线的配置。CDK Pipelines也是基于AWS CodePipeline服务，提供快速创建可跨账号区域的持续部署流水线，同时支持部署流水线项目的自升级更新。整个流水线流程如下图所示，&lt;/li>
-&lt;/ol>
-&lt;figure>&lt;img src="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2020/07/02/CDKPipelines_1.png"
-alt="workflow of cdk pipelines"/>
-&lt;/figure>
-&lt;p>CDK Pipelines是非常高效且灵活的持续部署流水线创建的方式，但由于是体验性特性，在生产应用中还有一些局限性。例如，&lt;/p>
-&lt;ul>
-&lt;li>不支持context provider查找。也就是说，无法支持CDK应用查找账户中存在的VPC，R53 HostedZone等。&lt;/li>
-&lt;li>由于CDK Pipelines实际是使用CodePipeline来编排部署流水线，CodePipeline的局限性，CDK Pipelines同样存在。&lt;/li>
-&lt;li>CodePipeline在某些分区和区域还不可用。例如，AWS中国区暂时还没有CodePipeline服务，CDK Pipelines在AWS中国区也就无法使用。&lt;/li>
-&lt;/ul>
-&lt;ol start="3">
-&lt;li>使用&lt;a href="https://aws.amazon.com/step-functions/">AWS Step Functions&lt;/a>来编排CDK应用部署的流水线。在Step Functions编译的部署流水线中，可用通过CodeBuild项目来完成&lt;code>cdk deploy&lt;/code>执行做到完整的支持CDK的所有功能。同时Step Functions具备最大的灵活性来支持持续部署过程中的各种编排需求，例如，跨账户部署应用的不同stage，引入人工审批流程，通过Slack等chatops工具来完成审批。&lt;/li>
-&lt;/ol>
-&lt;p>&lt;a href="https://opentuna.cn">Opentuna&lt;/a>项目就实践了用Step Functions来编排&lt;a href="https://github.com/tuna/opentuna/blob/master/pipeline.md">持续部署流水线&lt;/a>。整个部署流程如下图，&lt;/p>
-&lt;figure>&lt;img src="images/opentuna-pipeline.png"
-alt="OpenTUNA部署流程"/>
-&lt;/figure>
-&lt;p>如果对基于Step Functions实现的CDK应用持续部署感兴趣，可以访问OpenTUNA项目实现的&lt;a href="https://github.com/tuna/opentuna/blob/master/lib/pipeline-stack.ts">源码&lt;/a>了解更多细节。&lt;/p></description></item></channel></rss>
+&lt;p>&lt;a href="https://kane.mx/posts/2020/deploy-aws-cdk-applications-cross-accounts/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

@@ -35,16 +35,4 @@
 &lt;p>各列的含义分别是，&lt;code>镜像tag&lt;/code>, &lt;code>镜像&lt;/code>&lt;a href="https://docs.docker.com/registry/spec/api/#content-digests">Digest&lt;/a>, &lt;code>镜像对应平台的Architecture&lt;/code>, &lt;code>镜像对应平台的OS&lt;/code>, &lt;code>镜像对应平台的变种&lt;/code>（例如，ARM的v7, v8等）, &lt;code>镜像对应平台的OS版本&lt;/code>, &lt;code>镜像组成层的&lt;/code>&lt;a href="https://docs.docker.com/registry/spec/api/#content-digests">Digest&lt;/a>, &lt;code>镜像组成层的大小&lt;/code>。&lt;/p>
 &lt;p>上面&lt;code>nginx&lt;/code>镜像的示例数据，告诉我们镜像名&lt;code>nginx&lt;/code>且tag为&lt;code>1.18.0-alpine&lt;/code>的镜像包含了&lt;code>amd64-linux&lt;/code>, &lt;code>arm-linux-v6&lt;/code>, &lt;code>arm64-linux-v8&lt;/code>, &lt;code>386-linux&lt;/code>, &lt;code>ppc64le-linux&lt;/code>以及&lt;code>s390x-linux&lt;/code>共5种Arch合计6个版本的镜像。且每个平台的对应镜像包含了两个层以及这两个层的大小。&lt;/p>
 &lt;p>当我们有了成百数千甚至海量镜像的原始数据后，如何能快速且低成本的分析这些数据呢？&lt;/p>
-&lt;p>在AWS上，我们可以利用&lt;a href="https://aws.amazon.com/big-data/datalakes-and-analytics/">数据湖&lt;/a>相关的系列产品来实现低成本的交互式分析。&lt;/p>
-&lt;ol>
-&lt;li>在Docker镜像分析这个场景下，我已经获取到了待分析镜像的平台、层等数据。我将这些数据上传到&lt;a href="https://aws.amazon.com/s3/">Amazon S3&lt;/a>作为数据湖的数据源。&lt;/li>
-&lt;li>接下来使用&lt;a href="https://aws.amazon.com/glue/">AWS Glue&lt;/a>以S3中的数据创建Table并且从中提前数据的metadata。同时做数据分区，为接下来的查询做性能和成本优化。&lt;/li>
-&lt;li>打开&lt;a href="https://aws.amazon.com/athena/">Amazon Athena&lt;/a>，根据业务需求通过SQL语句查询分析Docker镜像数据。&lt;/li>
-&lt;/ol>
-&lt;p>就是通过以上3个简单步骤，我就得到了一个无服务器架构的Docker镜像数据分析应用！整个应用完全是按量计费的，主要成本包括S3对象存储费用，和Athena费用（根据每次查询扫描数据的大小来计算）。&lt;/p>
-&lt;p>使用该分析应用，我统计了&lt;a href="https://hub.docker.com/search?image_filter=official&amp;amp;type=image">Docker Hub官方镜像&lt;/a>中包含层最多的10个镜像(分平台统计)，
-&lt;figure>&lt;img src="https://kane.mx/posts/2020/serverless-docker-images-analytics/images/top-10-layers-of-official-images.png"
-alt="Top 10 layers"/>
-&lt;/figure>
-&lt;/p>
-&lt;p>最后，得力于AWS Infra as Code的强大能力，&lt;a href="https://github.com/zxkane/serverless-docker-images-analytics">整个应用&lt;/a>也是通过代码管理的且开源的，有兴趣的读者也可以部署自己的分析应用。&lt;/p></description></item></channel></rss>
+&lt;p>&lt;a href="https://kane.mx/posts/2020/serverless-docker-images-analytics/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

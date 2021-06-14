@@ -1,9 +1,3 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>公众平台 on The road</title><link>https://kane.mx/tags/%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0/</link><description>Recent content in 公众平台 on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Wed, 27 Jan 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0/index.xml" rel="self" type="application/rss+xml"/><item><title>如何使用微信公众平台的临时素材</title><link>https://kane.mx/posts/2016/weixin-temporary-materials/</link><pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/weixin-temporary-materials/</guid><description>
-&lt;p>微信给公众平台提供了&lt;a href="http://mp.weixin.qq.com/wiki/15/2d353966323806a202cd2deaafe8e557.html">素材管理&lt;/a>的接口，通过这一系列接口可以上传，接收以及管理图片，视频等多媒体文件。其中又分为&lt;strong>临时&lt;/strong>和&lt;strong>永久&lt;/strong>两种类型。永久素材有总量的限制，临时素材微信服务器只给保存3天。&lt;/p>
-&lt;p>最近&lt;a href="https://vme360.com">V秘&lt;/a>刚好有个同微信用户互动的场景，为用户美化微信拍摄的小视频。&lt;a href="https://vme360.com">V秘&lt;/a>后台服务器收到用户发送过来小视频（微信将其认做临时素材），将其美化处理后，再将美化的视频上传为临时素材，最终美化后的视频作为视频类型的客服消息被推送给用户。整个流程很简洁，用户发送小视频后，就坐等观看美化后的小视频了。&lt;/p>
-&lt;p>然而最终经过V秘开发团队的实践及测试，得出的结论是，&lt;/p>
-&lt;!-- more -->
-&lt;p>##&lt;strong>微信公众平台的临时素材不能用！绝对的鸡肋！&lt;/strong>&lt;/p>
-&lt;p>公众平台上传素材的API以及使用已有素材发送视频消息API都很健壮。但问题出在了微信后台资源的服务上面。&lt;/p>
-&lt;p>开发者把图片视频成功上传为临时素材后，会从微信的接口得到这个素材的ID。这个ID随后作为给用户发送图文消息或视频消息的资源。微信后台会把这个ID对应到素材的真实URL路径上。这个过程是没有问题的。同时微信作为一个拥有海量用户的软件，它会将这些将要推送给用户的素材都发布到它的CDN。用户收到的最终图片视频的地址就是素材文件在微信/腾讯CDN上的地址。对CDN有了解的朋友都知道，CDN服务器分散在全国或全世界各地，当用户请求这个资源的时候，请求会被路由到离用户最近的CDN服务器上。当CDN服务器上还没有缓存请求的资源时，这时候有个溯源的过程。就是原始文件从文件服务器传送到该CDN服务器的一个过程。这时，用户有一个额外的等待，等待时间取决于文件大小和CDN服务器和文件服务器间的带宽。&lt;/p>
-&lt;p>微信用来给公众号放置临时素材的CDN在这一块出了问题。在我们的测试中，微信CDN可能一直无法提供这些临时素材（某些文件超过1天后仍然无法访问）。而且出现错误的几率相当高，至少20%以上。由于CDN无法为临时素材提供可靠的访问保障，所以我们得出微信给公众号临时素材这个功能基本就是不能用。&lt;/p></description></item></channel></rss>
+微信给公众平台提供了素材管理的接口，通过这一系列接口可以上传，接收以及管理图片，视频等多媒体文件。其中又分为临时和永久两种类型。永久素材有总
+&lt;p>&lt;a href="https://kane.mx/posts/2016/weixin-temporary-materials/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

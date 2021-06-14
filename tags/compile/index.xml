@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>compile on The road</title><link>https://kane.mx/tags/compile/</link><description>Recent content in compile on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Fri, 12 Aug 2011 10:51:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/compile/index.xml" rel="self" type="application/rss+xml"/><item><title>Create an import library for building application in MinGW</title><link>https://kane.mx/posts/archive/blogspot/create-import-library-for-building/</link><pubDate>Fri, 12 Aug 2011 10:51:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/create-import-library-for-building/</guid><description>
-&lt;p>Yesterday I modified an existing c++ application for Windows. And its default build environment is Makefile and MinGW.&lt;/p>
-&lt;p>However I used a newly Windows API that is not included by header files of MinGW.&lt;/p>
-&lt;p>First of all, I copied the constant definition from header file of Windows SDK, and defined the Windows API method as a extern C method. So it's no problem to compile the code in MinGW.&lt;/p>
-&lt;p>Secondly I have to fix the link issue. Because the symbol of the Windows API also can't be found by gcc link.&lt;/p>
-&lt;p>Here great thanks to Google. It's quite easy to get the knowledge from others.&lt;/p>
-&lt;p>I found a way to create an library by using dlltool. Dlltool is a utility to create an library with specified methods from existing dll library, which can be used by gcc link later.&lt;/p>
-&lt;p>Below are links I referred to create an import library,&lt;/p>
-&lt;p>[1] &lt;a href="http://www.emmestech.com/moron_guides/moron1.html">http://www.emmestech.com/moron_guides/moron1.html&lt;/a>&lt;br>
-[2] &lt;a href="http://www.mingw.org/wiki/CreateImportLibraries">http://www.mingw.org/wiki/CreateImportLibraries&lt;/a>&lt;br>
-[3] &lt;a href="http://lists-archives.org/mingw-users/19461-import-library-for-c.html">http://lists-archives.org/mingw-users/19461-import-library-for-c.html&lt;/a>&lt;/p></description></item></channel></rss>
+Yesterday I modified an existing c++ application for Windows. And its default build environment is Makefile and MinGW.
+However I used a newly Windows API that is not included by header files of MinGW.
+First of all, I copied the constant definition from header file of Windows SDK, and defined the Windows API method as a extern C method. So it's no problem to compile the code in MinGW.
+Secondly I have to fix the link issue.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/create-import-library-for-building/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

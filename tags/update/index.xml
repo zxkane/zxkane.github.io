@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Update on The road</title><link>https://kane.mx/tags/update/</link><description>Recent content in Update on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Wed, 17 Jan 2007 13:51:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/update/index.xml" rel="self" type="application/rss+xml"/><item><title>[Eclipse]Eclipse update support</title><link>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</link><pubDate>Wed, 17 Jan 2007 13:51:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</guid><description>
-&lt;p>Those days my work is focus on eclipse's update. Now I understand the general mechanism and meet some issues when using it in development work.&lt;/p>
-&lt;p>The update mechanism includes four major types: install, enable, disable and uninstall. And all of those operations can be executed by command line, such as installing a feature can use following line:&lt;br>
--application org.eclipse.update.core.standaloneUpdate -command install -featureId my.feature -version 1.0.0 -from file:/v:/local_updateSite/ -to file:/v:/eclipse/.&lt;br>
-The installation process would copy the feature and plugins which are included by the feature to the local site from the update site, then execute the feature's global install handler if it has one.&lt;/p>
-&lt;p>Some strange issue occurs when I want to disable a feature.Then I try to disable the feature with command,&lt;br>
--command disable -featureId my.feature -version 1.0.0 -to file:/v:/eclipse/&lt;br>
-The output of command means that the command is executed successfully.&lt;br>
-But I list the status of features with command line &amp;quot;-command listFeatures&amp;quot;, the status of my.feature is still enable.&lt;br>
-Then I try to uninstall my.feature with command,&lt;br>
--command uninstall -featureId my.feature -version 1.0.0 -to file:/v:/eclipse/&lt;br>
-It fails, and the following is the root cause found in log file.&lt;br>
-!MESSAGE [Cannot find unconfigured feature my.feature with version 1.0.0]&lt;br>
-unconfigured feature means the feature is disabled.&lt;/p>
-&lt;p>I posted my question in forum, and one guy told me that it might be a bug of eclipse and advised me to fire a bug for it.&lt;/p></description></item></channel></rss>
+Those days my work is focus on eclipse's update. Now I understand the general mechanism and meet some issues when using it in development work.
+The update mechanism includes four major types: install, enable, disable and uninstall. And all of those operations can be executed by command line, such as installing a feature can use following line:
+-application org.eclipse.update.core.standaloneUpdate -command install -featureId my.feature -version 1.0.0 -from file:/v:/local_updateSite/ -to file:/v:/eclipse/.
+The installation process would copy the feature and plugins which are included by the feature to the local site from the update site, then execute the feature's global install handler if it has one.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/eclipse-update-support/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

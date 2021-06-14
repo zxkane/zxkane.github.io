@@ -1,81 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tips on The road</title><link>https://kane.mx/tags/tips/</link><description>Recent content in Tips on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>在AWS上快速部署专用的NAT实例</title><link>https://kane.mx/posts/2021/simple-nat-on-aws/</link><pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2021/simple-nat-on-aws/</guid><description>
 &lt;p>本方案的起因是，一个源代码托管在Github上的项目fix一个重要的bug后，在AWS上的持续部署流水线一直失败。分析日志后，发现流水线中的数个步骤需要克隆源代码，但是访问Github的网络非常不稳定，这数个流水线任务持续因连接超时，连接拒绝等网络错误而失败。而流水线任务大量使用了CodeBuild, Lambda等AWS托管服务，无法为执行环境配置可靠的网络连接。&lt;/p>
-&lt;p>本方案思路如下，&lt;/p>
-&lt;ul>
-&lt;li>在 VPC public subnets 中创建 NAT instance 即 EC2 虚拟机，&lt;/li>
-&lt;li>配置 NAT instance，使用 tunnel 网络访问 github，&lt;/li>
-&lt;li>修改 private subnets 的路由表，添加 github 服务的 IP CIDRs，将对这些IP地址的请求通过 NAT instance 转发。&lt;/li>
-&lt;/ul>
-&lt;p>综上，实现了不用对现有持续部署流水线做任何修改，流水线中运行在 VPC private subnet 内的任务(包括但不限于CodeBuild, Fargate, Lambda, Glue等)，对外网的请求目标地址如在路由表的特殊规则(IP CIDRs)中，网络请求将会通过 NAT instance 来转发。&lt;/p>
-&lt;p>为此，创建了一个基于 &lt;a href="https://kane.mx/posts/2019/aws-cdk/">AWS CDK&lt;/a> &lt;a href="https://docs.aws.amazon.com/cdk/latest/guide/constructs.html">construct&lt;/a> 的开源项目 &lt;a href="https://github.com/zxkane/snat">SimpleNAT&lt;/a> 来封装和复用创建配置 NAT instances，并且将指定的IP地址段更新到路由表设置路由规则。&lt;/p>
-&lt;p>该项目同时提供了一个&lt;a href="https://github.com/zxkane/snat/tree/main/example">完整示例应用&lt;/a>，演示了如何配置 NAT instance 使用 &lt;a href="https://github.com/sshuttle/sshuttle">sshuttle&lt;/a> 建立网络隧道，并且将指定的IP地址段请求通过 NAT instance 来转发。&lt;/p></description></item><item><title>Get the size of Docker image without pulling image</title><link>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</link><pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</guid><description>
+&lt;p>&lt;a href="https://kane.mx/posts/2021/simple-nat-on-aws/">Read More&lt;/a>&lt;/p></description></item><item><title>Get the size of Docker image without pulling image</title><link>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</link><pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</guid><description>
 &lt;p>Recently I had a requirement to stats the size of some Docker images. It would be waste if pulling them all firstly then calculating the size of each image. Also you know the docker image consists of some Docker layers that probably are shared by other images. It's hard to get the disk usage if only sum the size of each image.&lt;/p>
 &lt;p>Is there any way to get the size of Docker image without pulling it?&lt;/p>
-&lt;p>It's definitely &lt;strong>Yes&lt;/strong>. The docker images are hosted by &lt;a href="https://docs.docker.com/registry/spec/api/">Docker Registry&lt;/a>, which is defined by &lt;a href="https://docs.docker.com/registry/spec/api/">a public specification&lt;/a>. The latest V2 of Registry has &lt;a href="https://docs.docker.com/registry/spec/api/#pulling-an-image">API&lt;/a> to fetch the manifest of an image that contains the size of every layer. Looks like it's very cool. Utilitying the manifest API of image will satisfie my requirement!&lt;/p>
-&lt;p>One more thing you should note, the v2 of Docker registry still is compatible with &lt;a href="https://docs.docker.com/registry/spec/manifest-v2-1/">schema specification V1&lt;/a>. You have to properly handle with the mixed responses of manifest when you query the manifest of an image.&lt;/p>
-&lt;p>I created a &lt;a href="https://gist.github.com/zxkane/23de226fee8806ee0ed8c05136972ce0">simple shell script&lt;/a> gracefully handling either v1 or v2 response of the image manifest, which can calculate the total layers size of a Docker image with specific tag, or the size of all tags of a Docker image.&lt;/p>
-&lt;blockquote>
-&lt;p>Above script was inspired by &lt;a href="https://ops.tips/blog/inspecting-docker-image-without-pull/">this post&lt;/a>. Hope you enjoy it.&lt;/p>
-&lt;/blockquote></description></item><item><title>使用AWS S3作为MacOSX时间机器(Time Machine)的备份存储</title><link>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</link><pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</guid><description>
+&lt;p>&lt;a href="https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/">Read More&lt;/a>&lt;/p></description></item><item><title>使用AWS S3作为MacOSX时间机器(Time Machine)的备份存储</title><link>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</link><pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</guid><description>
 &lt;p>个人电脑数据备份一直都是一个强烈的需求。使用网盘等云存储产品可以部分满足数据的备份需求，仍然无法做到使用便利性和很高的数据安全保障。&lt;/p>
 &lt;p>MacOSX上系统内置了备份解决方案 -- &lt;a href="https://support.apple.com/zh-cn/HT201250">时间机器(Time Machine)&lt;/a>。Time Machine支持AirPort Time Capsule，NAS存储或者外置的存储设备。然而这些备份方案都依赖于硬件设备，有容量限制或不便于移动。在云计算已经大行其道的今天，有没有使用云计算厂商对象存储作为目标存储的备份方案，为MacOSX数据备份提供无限容量、高度的安全性的云方案？经过一番搜索，既找到了开源免费的工具&lt;a href="https://restic.net/">Restic&lt;/a>，也有付费软件&lt;a href="https://www.arqbackup.com/">Arq&lt;/a>。无论Restic还是Arq提供的是独立的三方工具来实现备份到云端存储或从云端恢复，有没有将Time Machine和云端储存结合在一起的方案呢？&lt;/p>
-&lt;p>TimeMchine支持将外置存储作为备份设备，这里介绍的方法就是将远端云计算厂商的对象存储挂载为本地设备，设置Time Machine将它作为目标备份设备，实现将备份放到云厂商的对象储存。&lt;/p>
-&lt;p>接下来我将一步步演示如何将AWS S3对象存储的bucket作为Time Machine备份的设备。&lt;/p>
-&lt;blockquote>
-&lt;p>此方法适用于将任意云厂商的对象存储作为备份存储，只要该厂商的对象存储支持被MacOSX挂载为本地磁盘。&lt;/p>
-&lt;/blockquote>
-&lt;p>有很多成熟的方案将AWS S3挂载为MacOSX磁盘，例如&lt;a href="https://amazonaws-china.com/cn/blogs/china/s3fs-amazon-ec2-linux/">S3fs&lt;/a>、&lt;a href="https://github.com/kahing/goofys">Goofys&lt;/a>。本文推荐的方案是&lt;a href="https://juicefs.com">Juicefs&lt;/a>，Juicefs为对象存储的元数据提供了缓存，能极大的优化对挂载磁盘的list，get等操作。&lt;/p>
-&lt;ol>
-&lt;li>首先按照&lt;a href="https://juicefs.com/docs/zh/getting_started.html#system-requirement">Juicefs 文档&lt;/a>安装必要的依赖和Juicefs客户端。接下来在Juicefs注册完成后，创建一个文件系统保存备份数据。注意：这里的bucket名称需要同随后创建或已有的bucket名称一致。
-&lt;figure>&lt;img src="https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/create-juicefs-fs.png"
-alt="创建Juicefs文件系统"/>
-&lt;/figure>
-&lt;/li>
-&lt;li>创建新的AWS S3 bucket(或者使用已有的bucket)，同时为该bucket专门创建用于Juicefs客户端使用的IAM用户。强烈建议不要使用云帐号的access token用于挂载，最佳实践是为不同的用途创建单独的IAM用户。更多IAM用户实践，请参考文章&lt;a href="https://kane.mx/posts/effective-cloud-computing/iam-best-practice/">IAM最佳实践&lt;/a>。下面是使用AWS CLI创建新S3 bucket及IAM用户的参考命令，
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln"> 1&lt;/span>&lt;span class="c1"># 创建S3 bucket&lt;/span>
-&lt;span class="ln"> 2&lt;/span>aws s3 mb s3://my-bucket-for-mac-backup
-&lt;span class="ln"> 3&lt;/span>
-&lt;span class="ln"> 4&lt;/span>&lt;span class="c1"># 创建IAM用户&lt;/span>
-&lt;span class="ln"> 5&lt;/span>aws iam create-user --user-name juicefs
-&lt;span class="ln"> 6&lt;/span>&lt;span class="c1"># 为juicefs用户授予读写备份S3 bucket权限&lt;/span>
-&lt;span class="ln"> 7&lt;/span>&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;{
-&lt;/span>&lt;span class="ln"> 8&lt;/span>&lt;span class="s1"> &amp;#34;UserName&amp;#34;: &amp;#34;juicefs&amp;#34;,
-&lt;/span>&lt;span class="ln"> 9&lt;/span>&lt;span class="s1"> &amp;#34;PolicyName&amp;#34;: &amp;#34;mac-backup-bucket-all-permissions&amp;#34;,
-&lt;/span>&lt;span class="ln">10&lt;/span>&lt;span class="s1"> &amp;#34;PolicyDocument&amp;#34;: &amp;#34;{ \&amp;#34;Version\&amp;#34;: \&amp;#34;2012-10-17\&amp;#34;, \&amp;#34;Statement\&amp;#34;: [ { \&amp;#34;Effect\&amp;#34;: \&amp;#34;Allow\&amp;#34;, \&amp;#34;Action\&amp;#34;: \&amp;#34;s3:*\&amp;#34;, \&amp;#34;Resource\&amp;#34;: [ \&amp;#34;arn:aws-cn:s3:::my-bucket-for-mac-backup/*\&amp;#34;, \&amp;#34;arn:aws-cn:s3:::my-bucket-for-mac-backup\&amp;#34; ] } ] }&amp;#34;
-&lt;/span>&lt;span class="ln">11&lt;/span>&lt;span class="s1"> 1 {
-&lt;/span>&lt;span class="ln">12&lt;/span>&lt;span class="s1">}&amp;#39;&lt;/span> &amp;gt; policy.json
-&lt;span class="ln">13&lt;/span>aws iam put-user-policy --cli-input-json file://policy.json
-&lt;span class="ln">14&lt;/span>&lt;span class="c1"># 为juicefs用户创建access token用于juicefs客户端挂载bucket&lt;/span>
-&lt;span class="ln">15&lt;/span>aws iam create-access-key --user-name juicefs
-&lt;span class="ln">16&lt;/span>&lt;span class="o">{&lt;/span>
-&lt;span class="ln">17&lt;/span> &lt;span class="s2">&amp;#34;AccessKey&amp;#34;&lt;/span>: &lt;span class="o">{&lt;/span>
-&lt;span class="ln">18&lt;/span> &lt;span class="s2">&amp;#34;UserName&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;juicefs&amp;#34;&lt;/span>,
-&lt;span class="ln">19&lt;/span> &lt;span class="s2">&amp;#34;AccessKeyId&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;&amp;lt;key id&amp;gt;&amp;#34;&lt;/span>,
-&lt;span class="ln">20&lt;/span> &lt;span class="s2">&amp;#34;Status&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;Active&amp;#34;&lt;/span>,
-&lt;span class="ln">21&lt;/span> &lt;span class="s2">&amp;#34;SecretAccessKey&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;&amp;lt;access key&amp;gt;&amp;#34;&lt;/span>,
-&lt;span class="ln">22&lt;/span> &lt;span class="s2">&amp;#34;CreateDate&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;2019-06-30T15:25:41Z&amp;#34;&lt;/span>
-&lt;span class="ln">23&lt;/span> &lt;span class="o">}&lt;/span>
-&lt;span class="ln">24&lt;/span>&lt;span class="o">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>按照&lt;a href="https://juicefs.com/docs/zh/getting_started.html#mount-filesystem">Juicefs文档挂载&lt;/a>挂载S3 bucket。&lt;/li>
-&lt;li>进入挂载后的目录(如&lt;code>/jfs&lt;/code>)，创建&lt;strong>Sparse Image&lt;/strong>用于Time Machine写入备份。
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /jfs
-&lt;span class="ln">2&lt;/span>hdiutil create -size 600g -type SPARSEBUNDLE -fs &lt;span class="s2">&amp;#34;HFS+J&amp;#34;&lt;/span> Time Machine.sparsebundle&lt;/code>&lt;/pre>&lt;/div>
-上面命令将创建一个名为&lt;code>TimeMachine&lt;/code>600 GB大小的镜像(初始仅占用数百MB，实际文件磁盘空间只有当文件写入后才会占用)。根据你的需要随意调整镜像大小，通常建议设置为Mac磁盘大小的两倍。
-不熟悉命令行的用户，也可以使用磁盘工具(Disk Utility)创建。
-&lt;figure>&lt;img src="https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/create-sparse-image.png"
-alt="创建Sparse Image"/>
-&lt;/figure>
-&lt;/li>
-&lt;li>通过Finder挂载之前创建的Sparse Image
-&lt;figure>&lt;img src="https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/mount-sparse-image.png"
-alt="挂载Sparse Image"/>
-&lt;/figure>
-&lt;/li>
-&lt;li>现在是魔术步骤，告诉Time Machine使用之前创建的虚拟设备作为备份磁盘。
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo tmutil setdestination /Volumes/Time MachineDisk&lt;/code>&lt;/pre>&lt;/div>
-&lt;figure>&lt;img src="https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/time-machine.png"
-alt="Time Machine备份"/>
-&lt;/figure>
-&lt;/li>
-&lt;/ol>
-&lt;p>由于S3 Bucket用于备份数据，建议开启S3 智能分层存储或者IA储存，降低花费。同时可以启用S3 KMS加密云端保存的数据，提升数据安全性。&lt;/p></description></item></channel></rss>
+&lt;p>&lt;a href="https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

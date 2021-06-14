@@ -35,76 +35,19 @@
 &lt;p>各列的含义分别是，&lt;code>镜像tag&lt;/code>, &lt;code>镜像&lt;/code>&lt;a href="https://docs.docker.com/registry/spec/api/#content-digests">Digest&lt;/a>, &lt;code>镜像对应平台的Architecture&lt;/code>, &lt;code>镜像对应平台的OS&lt;/code>, &lt;code>镜像对应平台的变种&lt;/code>（例如，ARM的v7, v8等）, &lt;code>镜像对应平台的OS版本&lt;/code>, &lt;code>镜像组成层的&lt;/code>&lt;a href="https://docs.docker.com/registry/spec/api/#content-digests">Digest&lt;/a>, &lt;code>镜像组成层的大小&lt;/code>。&lt;/p>
 &lt;p>上面&lt;code>nginx&lt;/code>镜像的示例数据，告诉我们镜像名&lt;code>nginx&lt;/code>且tag为&lt;code>1.18.0-alpine&lt;/code>的镜像包含了&lt;code>amd64-linux&lt;/code>, &lt;code>arm-linux-v6&lt;/code>, &lt;code>arm64-linux-v8&lt;/code>, &lt;code>386-linux&lt;/code>, &lt;code>ppc64le-linux&lt;/code>以及&lt;code>s390x-linux&lt;/code>共5种Arch合计6个版本的镜像。且每个平台的对应镜像包含了两个层以及这两个层的大小。&lt;/p>
 &lt;p>当我们有了成百数千甚至海量镜像的原始数据后，如何能快速且低成本的分析这些数据呢？&lt;/p>
-&lt;p>在AWS上，我们可以利用&lt;a href="https://aws.amazon.com/big-data/datalakes-and-analytics/">数据湖&lt;/a>相关的系列产品来实现低成本的交互式分析。&lt;/p>
-&lt;ol>
-&lt;li>在Docker镜像分析这个场景下，我已经获取到了待分析镜像的平台、层等数据。我将这些数据上传到&lt;a href="https://aws.amazon.com/s3/">Amazon S3&lt;/a>作为数据湖的数据源。&lt;/li>
-&lt;li>接下来使用&lt;a href="https://aws.amazon.com/glue/">AWS Glue&lt;/a>以S3中的数据创建Table并且从中提前数据的metadata。同时做数据分区，为接下来的查询做性能和成本优化。&lt;/li>
-&lt;li>打开&lt;a href="https://aws.amazon.com/athena/">Amazon Athena&lt;/a>，根据业务需求通过SQL语句查询分析Docker镜像数据。&lt;/li>
-&lt;/ol>
-&lt;p>就是通过以上3个简单步骤，我就得到了一个无服务器架构的Docker镜像数据分析应用！整个应用完全是按量计费的，主要成本包括S3对象存储费用，和Athena费用（根据每次查询扫描数据的大小来计算）。&lt;/p>
-&lt;p>使用该分析应用，我统计了&lt;a href="https://hub.docker.com/search?image_filter=official&amp;amp;type=image">Docker Hub官方镜像&lt;/a>中包含层最多的10个镜像(分平台统计)，
-&lt;figure>&lt;img src="https://kane.mx/posts/2020/serverless-docker-images-analytics/images/top-10-layers-of-official-images.png"
-alt="Top 10 layers"/>
-&lt;/figure>
-&lt;/p>
-&lt;p>最后，得力于AWS Infra as Code的强大能力，&lt;a href="https://github.com/zxkane/serverless-docker-images-analytics">整个应用&lt;/a>也是通过代码管理的且开源的，有兴趣的读者也可以部署自己的分析应用。&lt;/p></description></item><item><title>Get the size of Docker image without pulling image</title><link>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</link><pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</guid><description>
+&lt;p>&lt;a href="https://kane.mx/posts/2020/serverless-docker-images-analytics/">Read More&lt;/a>&lt;/p></description></item><item><title>Get the size of Docker image without pulling image</title><link>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</link><pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</guid><description>
 &lt;p>Recently I had a requirement to stats the size of some Docker images. It would be waste if pulling them all firstly then calculating the size of each image. Also you know the docker image consists of some Docker layers that probably are shared by other images. It's hard to get the disk usage if only sum the size of each image.&lt;/p>
 &lt;p>Is there any way to get the size of Docker image without pulling it?&lt;/p>
-&lt;p>It's definitely &lt;strong>Yes&lt;/strong>. The docker images are hosted by &lt;a href="https://docs.docker.com/registry/spec/api/">Docker Registry&lt;/a>, which is defined by &lt;a href="https://docs.docker.com/registry/spec/api/">a public specification&lt;/a>. The latest V2 of Registry has &lt;a href="https://docs.docker.com/registry/spec/api/#pulling-an-image">API&lt;/a> to fetch the manifest of an image that contains the size of every layer. Looks like it's very cool. Utilitying the manifest API of image will satisfie my requirement!&lt;/p>
-&lt;p>One more thing you should note, the v2 of Docker registry still is compatible with &lt;a href="https://docs.docker.com/registry/spec/manifest-v2-1/">schema specification V1&lt;/a>. You have to properly handle with the mixed responses of manifest when you query the manifest of an image.&lt;/p>
-&lt;p>I created a &lt;a href="https://gist.github.com/zxkane/23de226fee8806ee0ed8c05136972ce0">simple shell script&lt;/a> gracefully handling either v1 or v2 response of the image manifest, which can calculate the total layers size of a Docker image with specific tag, or the size of all tags of a Docker image.&lt;/p>
-&lt;blockquote>
-&lt;p>Above script was inspired by &lt;a href="https://ops.tips/blog/inspecting-docker-image-without-pull/">this post&lt;/a>. Hope you enjoy it.&lt;/p>
-&lt;/blockquote></description></item><item><title>Docker Swarm mode(v1.12.x)的一些使用限制</title><link>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</link><pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</guid><description>
-&lt;p>&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>在&lt;a href="https://www.docker.com">Docker&lt;/a> v1.12中正式发布，&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>带来了诸如Docker集群，容器编排，多主机网络等激动人心的特性。&lt;a href="https://vme360.com">V秘&lt;/a>团队也尝试着将各种后台服务部署到&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm Cluster&lt;/a>获取更好的弹性计算能力。&lt;/p>
-&lt;p>&lt;a href="https://www.docker.com">Docker v1.12&lt;/a>中正式发布的&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm&lt;/a>在我们实用中发现仍有不少不足之处，让我们一一分享给大家。&lt;/p>
-&lt;!-- more -->
-&lt;ol>
-&lt;li>无法将服务的published端口只绑定到特点的网卡上。比如我们的云主机（同时也是Swarm manager/node）有&lt;strong>eth0&lt;/strong>和&lt;strong>eth1&lt;/strong>两块网卡，分别连接内网和外网。我们计划在&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm&lt;/a>中运行一个&lt;strong>nginx&lt;/strong>服务，通过80/443端口提供HTTP/HTTPS服务。当我们希望将&lt;strong>nginx&lt;/strong>中的Web服务暴露在云主机上时，我们通过以下命令创建&lt;strong>nginx&lt;/strong>服务。然而我们无法选择将published的&lt;strong>80&lt;/strong>端口绑定在哪个interface上。&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm&lt;/a>会自动将服务监听到Swarm node的所有80端口上。如果我们只想将这个服务暴露在内网interface暂时无法实现。
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker service create --name vme-nginx --network vme-network --replicas &lt;span class="m">1&lt;/span> &lt;span class="se">\
-&lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="se">&lt;/span> --publish 80:80 --publish 443:443 &lt;span class="se">\
-&lt;/span>&lt;span class="ln">3&lt;/span>&lt;span class="se">&lt;/span> nginx:1.11&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>无法为&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm&lt;/a>内运行的服务设置主机名。通过&lt;a href="https://docs.docker.com/engine/reference/run/">docker run命令&lt;/a>执行的容器可以设置hostname。比如，
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker run --hostname vme-nginx nginx:1.11&lt;/code>&lt;/pre>&lt;/div>
-但是&lt;a href="https://docs.docker.com/engine/reference/commandline/service_create/">docker service create命令&lt;/a>缺少等价的参数为容器指定hostname。一些依赖于&lt;strong>hostname&lt;/strong>的服务将无法部署在&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm&lt;/a>中，比如clustered rabbitmq。&lt;/li>
-&lt;li>&lt;a href="https://docs.docker.com/compose/">Docker compose&lt;/a>还不能与&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm&lt;/a>完美集成。目前有一个experimental的&lt;a href="https://docs.docker.com/compose/bundles/">Docker Stacks and Distributed Application Bundles&lt;/a>在尝试做更好的整合。&lt;/li>
-&lt;li>&lt;strong>docker service update&lt;/strong>有时不能更新正在运行中的container。更多讨论见&lt;a href="https://github.com/docker/swarmkit/issues/1619">这个issue&lt;/a>。&lt;/li>
-&lt;/ol></description></item><item><title>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</title><link>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</link><pubDate>Tue, 13 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</guid><description>
-&lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>团队一直致力于用技术改善产品。&lt;a href="https://vme360.com">V秘&lt;/a>后台的各种服务一直是通过完善的Devops流程自动部署到&lt;a href="https://www.docker.com">Docker&lt;/a>容器集群。随着&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>在&lt;a href="https://www.docker.com">Docker&lt;/a> v1.12中正式发布，&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>带来了诸如Docker集群，多主机网络等激动人心的特性。我们也在尝试将&lt;a href="https://vme360.com">V秘&lt;/a>服务部署到&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm Cluster&lt;/a>获取更好的弹性计算能力。&lt;/p>
-&lt;p>然而我们将&lt;a href="https://vme360.com">V秘&lt;/a>的服务部署到&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm Cluster&lt;/a>时遇到服务容器无法启动的错误。错误信息类似如下，&lt;/p>
-&lt;blockquote>
-&lt;p>starting container failed: could not add veth pair inside the network sandbox: could not find an appropriate master &amp;quot;ov-000100-1wkbc&amp;quot; for &amp;quot;vethee39f9d&amp;quot;&lt;/p>
-&lt;/blockquote>
-&lt;!-- more -->
-&lt;p>经过与&lt;a href="https://github.com/docker/docker/issues">Docker 社区&lt;/a>的回馈讨论，暂时通过升级Docker主机(OS: Ubuntu 14.04 LTS)的内核版本解决了这个错误。&lt;/p>
-&lt;p>具体方法如下，&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>root@swarm1:~# uname -r
-&lt;span class="ln">2&lt;/span>3.13.0-32-generic
-&lt;span class="ln">3&lt;/span>
-&lt;span class="ln">4&lt;/span>root@swarm1:~# apt-get install linux-generic-lts-vivid
-&lt;span class="ln">5&lt;/span>root@swarm1:~# reboot
-&lt;span class="ln">6&lt;/span>
-&lt;span class="ln">7&lt;/span>root@swarm1:~# uname -r
-&lt;span class="ln">8&lt;/span>3.19.0-69-generic&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>至于这个错误的根本原因是&lt;a href="https://www.docker.com">Docker&lt;/a>的bug还是对Linux Kernel有特殊的要求，需要Docker开发进一步确认。如果对此问题有更多兴趣，可以关注&lt;a href="https://github.com/docker/docker/issues/25039">docker issue #25039&lt;/a>。&lt;/p></description></item><item><title>文件系统的Inode耗尽，会导致Docker编译镜像出现'No space left on device'错误</title><link>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</link><pubDate>Thu, 21 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</guid><description>
-&lt;p>最近在提交前端代码后，前端代码的自动发布老是失败。失败的原因多是编译Docker镜像时在执行&lt;code>COPY&lt;/code>语句拷贝文件到镜像文件系统时，扔出了'No space left on device'这个错误。这个错误根据描述非常好理解，就是docker文件系统所在磁盘没有了空间。&lt;/p>
-&lt;p>但是通过&lt;code>df -h&lt;/code>命令，该磁盘至少还有3，4个G的剩余空间。而前端镜像的文件大小最多也不超过300M。在该磁盘通过&lt;code>touch&lt;/code>,&lt;code>cp&lt;/code>仍然可以创建文件。&lt;/p>
-&lt;p>所以这个问题非常奇怪，为什么&lt;code>docker&lt;/code>或者&lt;code>操作系统&lt;/code>抱怨磁盘没有了空间？在磁盘仍然剩余数个G的情况下？&lt;/p>
-&lt;!-- more -->
-&lt;p>再通过相关的查找后，docker的这个&lt;a href="https://github.com/docker/docker/issues/18144">issue&lt;/a>给了我启发。Linux文件系统的&lt;code>inode&lt;/code>在耗尽后，该文件系统将不能再创建新文件。因为前端页面是基于&lt;code>nodejs&lt;/code>的程序，它依赖的packages产生了大量文件，在反复制作不同的docker images时，这些依赖文件又被反复复制，导致文件数量远远超过了默认inode和磁盘大小的比例，最终&lt;code>inode&lt;/code>先于磁盘空间被全部使用。&lt;/p>
-&lt;p>遇到类似问题的同学，可以通过&lt;code>df -i&lt;/code>查看&lt;code>inode&lt;/code>的使用情况来排查问题是否由于&lt;code>inode&lt;/code>耗尽导致这个错误。&lt;/p></description></item><item><title>Daemon hell in Jenkins</title><link>https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/</link><pubDate>Tue, 21 Jul 2015 09:32:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/</guid><description>
-&lt;p>Recently I wrote a Linux like &lt;a href="https://gist.github.com/zxkane/b55033bd519334d57c13">initd script&lt;/a> to start/stop my web application.&lt;/p>
-&lt;p>The script works well when running it in shell of linux. The web application will run in background by daemon.&lt;/p>
-&lt;p>However I found both daemon and web application(java) exited immediately if I started the script in Jenkins as a shell step of build process.&lt;/p>
-&lt;p>I put below simple script in 'Execute shell' block,&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>
-&lt;span class="ln">2&lt;/span>daemon --name&lt;span class="o">=&lt;/span>test-daemon -- sleep 200sleep &lt;span class="m">60&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The process 'daemon' and 'sleep 200' should exit after 200 seconds the 'sleep' exits. The jenkins job will be finished in 60 secs.&lt;/p>
-&lt;pre>&lt;code>jenkins   9954  9950  0 21:48 ?        00:00:00 sleep 60
-jenkins   9955     1  0 21:48 ?        00:00:00 daemon —name=test-daemon — sleep 200
-jenkins   9956  9955  0 21:48 ?        00:00:00 sleep 200
-&lt;/code>&lt;/pre>
-&lt;p>Above is the process info queried via &lt;code>ps&lt;/code> command. The father pid of daemon is 1, not the script generated by Jenkins.&lt;br>
-But both the process 'daemon' and 'sleep 200' immediately exited when the script finished. Should be something wrong in Jenkins to cause daemon exited unexpected.&lt;/p>
-&lt;p>It's something really frustrating to use daemon to stop/start the web application in Jenkins.&lt;/p>
-&lt;p>Finally I used &lt;strong>docker&lt;/strong> container to run my web application, which easily can be stopped/started via script in Jenkins.&lt;/p></description></item></channel></rss>
+&lt;p>&lt;a href="https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/">Read More&lt;/a>&lt;/p></description></item><item><title>Docker Swarm mode(v1.12.x)的一些使用限制</title><link>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</link><pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</guid><description>
+Swarm mode在Docker v1.12中正式发布，Swarm mode带来了诸如Docker集群，容器编排，多主机网络等激动人心的特性。V秘团队也
+&lt;p>&lt;a href="https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/">Read More&lt;/a>&lt;/p></description></item><item><title>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</title><link>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</link><pubDate>Tue, 13 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</guid><description>
+V秘团队一直致力于用技术改善产品。V秘后台的各种服务一直是通过完善的Devops流程自动部署到Docker容器集群。随着Swarm mode在
+&lt;p>&lt;a href="https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/">Read More&lt;/a>&lt;/p></description></item><item><title>文件系统的Inode耗尽，会导致Docker编译镜像出现'No space left on device'错误</title><link>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</link><pubDate>Thu, 21 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</guid><description>
+最近在提交前端代码后，前端代码的自动发布老是失败。失败的原因多是编译Docker镜像时在执行COPY语句拷贝文件到镜像文件系统时，扔出了'N
+&lt;p>&lt;a href="https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/">Read More&lt;/a>&lt;/p></description></item><item><title>Daemon hell in Jenkins</title><link>https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/</link><pubDate>Tue, 21 Jul 2015 09:32:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/</guid><description>
+Recently I wrote a Linux like initd script to start/stop my web application.
+The script works well when running it in shell of linux. The web application will run in background by daemon.
+However I found both daemon and web application(java) exited immediately if I started the script in Jenkins as a shell step of build process.
+I put below simple script in 'Execute shell' block,
+1 2daemon --name=test-daemon -- sleep 200sleep 60 The process 'daemon' and 'sleep 200' should exit after 200 seconds the 'sleep' exits.
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>注册表 on The road</title><link>https://kane.mx/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/</link><description>Recent content in 注册表 on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Tue, 03 Apr 2007 13:16:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/index.xml" rel="self" type="application/rss+xml"/><item><title>万恶的注册表</title><link>https://kane.mx/posts/archive/blogspot/suck-windows-registry/</link><pubDate>Tue, 03 Apr 2007 13:16:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/suck-windows-registry/</guid><description>
-&lt;p>最近几天被一个注册表相关的defect搞的焦头烂额。&lt;/p>
-&lt;p>背景是这样的，产品在安装的时候需要通过修改注册表注册文件关联等信息。在先前安装程序基于InstallShield时工作正确，但在最近安装程序改用MSI后，我们写入注册表的信息没有被写到所期望的位置。&lt;/p>
-&lt;p>通过各种试验，查找资料，终于搞明白原因。我们修改注册表的进程不是当前用户进程，而是系统进程，因此写入到HKEY_CURRENT_USER下的数据不能被写入到当前登陆用户下。&lt;/p>
-&lt;p>We should not use &amp;quot;&lt;strong>HKEY_CURRENT_USER&amp;quot;&lt;/strong> to retrival current user's registry key value. Because Windows Services always startup before user login. It may happen some error or loading the wrong setting profile. If you still insist on using the current user registry key setting, please refer &amp;quot;&lt;em>&lt;a href="http://msdn.microsoft.com/library/default.asp?url=https://kane.mx/library/en-us/sysinfo/base/regopencurrentuser.asp">RegOpenCurrentUser&lt;/a>&lt;/em>&amp;quot;.&lt;/p>
-&lt;p>最后只好将这些数据写到了Local Machine键值下。&lt;/p></description></item></channel></rss>
+最近几天被一个注册表相关的defect搞的焦头烂额。
+背景是这样的，产品在安装的时候需要通过修改注册表注册文件关联等信息。在先前安装程序基于InstallShield时工作正确，但在最近安装程序改用MSI后，我们写入注册表的信息没有被写到所期望的位置。
+通过各种试验，查找资料，终于搞明白原因。我们修改注册表的进程不是当前用户进程，而是系统进程，因此写入到HKEY_CURRENT_USER下的数据不能被写入到当前登陆用户下。
+We should not use &amp;quot;HKEY_CURRENT_USER&amp;quot; to retrival current user's registry key value. Because Windows Services always startup before user login. It may happen some error or loading the wrong setting profile. If you still insist on using the current user registry key setting, please refer &amp;quot;RegOpenCurrentUser&amp;quot;.
+最后只好将这些数据写到了Local Machine键值下。
+&lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/suck-windows-registry/">Read More&lt;/a>&lt;/p></description></item></channel></rss>
