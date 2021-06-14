@@ -1,24 +1,240 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Equinox on The Road</title><link>https://kane.mx/tags/equinox/</link><description>Recent content in Equinox on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 05 Mar 2012 19:25:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/equinox/index.xml" rel="self" type="application/rss+xml"/><item><title>Embedding an HTTP server in Equinox</title><link>https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/</link><pubDate>Mon, 05 Mar 2012 19:25:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/</guid><description>I want to create a test server for my application. Using embedding Http server in equinox is my first option.
-I had experience using simple http service implementation of equinox, however I want to play with Jetty this time.
-Following the guide of Equinox server, I can&amp;rsquo;t running a Jetty server with my servlet in Eclipse Indigo. Obviously the guide is out of date.
-After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.</description></item><item><title>Eclipse P2's import/export capability</title><link>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</link><pubDate>Fri, 22 Apr 2011 15:56:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</guid><description>I implemented the replication tool at the end of 2009, then published it to Eclipse Marketplace in May 2010. However it&amp;rsquo;s not pervasively used due to users have to install that plug-in firstly.
-I searched a similar request on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.</description></item><item><title>[eclipse]How Equinox load bundles</title><link>https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/</link><pubDate>Wed, 02 Dec 2009 14:58:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/</guid><description>How Equinox load bundles Equinox launcher is responsible to start OSGi framework. The system bundle would be created and marked as installed when initializing the framework. Equinox also tries to install the installed bundles if finding them in persistence data during the initializing period. Of course there is no extra bundles would be installed when launching Equinox first time.
-Then Equinox launcher would install the bundles specified by vm&amp;rsquo;s system property &amp;lsquo;osgi.</description></item><item><title>[Eclipse][P2]Learn p2 step by step</title><link>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</link><pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid><description>Learn p2 step by step Kane   Learn P2 step by step
-p2 concept p2 install p2 install practice p2 repository publish customized p2 touchpoint p2 repository publish practice Example Code Reference p2 concept 首先来理解p2引入的几个概念[1]
-p2 / Agent
-The provisioning infrastructure on client machines
-Installable Unit (IU)
-Metadata that describes things that can be installed/configured
-Artifact</description></item><item><title>Eclipse/OSGi preference</title><link>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</link><pubDate>Thu, 22 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</guid><description>The IPreferenceStore API of Eclipse is based on OSGi&amp;rsquo;s preferences service. Equinox implements several scope context for different preferences, such DefaultScope, InstanceScope and ConfigurationScope. The IPreferenceStore is the wrapper of instance scope for back-compatibility. It stored the data in workspace(osgi.data.area).
-The workspace folder would be created when launching RCP application if it doesn&amp;rsquo;t exist. But we can use argument &amp;lsquo;-data @none&amp;rsquo; to suppress the creation of workspace. If that, the instance scope/IPreferenceStore can&amp;rsquo;t store any value any more.</description></item><item><title>[OSGi][Eclipse]Add custom jar or path into Equinox Framework</title><link>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</link><pubDate>Sun, 28 Sep 2008 13:23:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</guid><description>Set vm arguments &amp;lsquo;osgi.framework.extensions&amp;rsquo; and &amp;lsquo;osgi.frameworkClassPath&amp;rsquo; when vm starts. If those value are set, those jar or path would be added into the classloader when starting EclipseStarter.
-See org.eclipse.equinox.launcher.Main for more details in the source code of Eclipse 3.4.
-Best Regards
-Kane</description></item><item><title>[OSGi]How to acquire the fragments of specified bundle</title><link>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</link><pubDate>Fri, 01 Aug 2008 16:22:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</guid><description>The answer is very simple, using the service &amp;lsquo;org.eclipse.service.PackageAdmin&amp;rsquo;.</description></item><item><title>[Eclipse]Equinox's classloader and its URL schema</title><link>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</link><pubDate>Thu, 17 Jul 2008 17:42:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</guid><description>Equinox uses the adaptor hooks to implement the class loader.
-See http://wiki.eclipse.org/Adaptor_Hooks for more detail
-BaseClassLoadingHook would search the native code on itself. If it find the file in that jar file, it would extract the native library into its storage folder.
-EclipseClassLoadingHook defines some variables to search the native library. Belows are built-in variables:
-result.add(&amp;ldquo;ws/&amp;rdquo; + info.getWS() + &amp;ldquo;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$
-result.add(&amp;ldquo;os/&amp;rdquo; + info.getOS() + &amp;ldquo;/&amp;rdquo; + info.getOSArch() + &amp;ldquo;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$</description></item><item><title>[OSGi][Equinox]URL Handlers Service</title><link>https://kane.mx/posts/archive/blogspot/url-handlers-service/</link><pubDate>Wed, 16 Apr 2008 14:20:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/url-handlers-service/</guid><description>OSGi provides a mechanism to let user contribute custom schemes automatically. It avoid some restriction with Java facilities for extending the handlers. The more detail could be found from OSGi specification R4, which has description how OSGi implements URL Handler Service.
-Use a sample to illustrate how to contribute your scheme(protocol):
-1. register your URLStreamHandlerService implementation, which must contain a property named &amp;ldquo;url.handler.protocol&amp;rdquo;. below register my scheme &amp;lsquo;smb&amp;rsquo;
-public void start(BundleContext context) throws Exception {</description></item><item><title>[OSGi][Equinox]the Bundle-NativeCode implementation in Equinox</title><link>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</link><pubDate>Mon, 31 Mar 2008 17:36:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</guid><description>OSGi Spec defines Bundle-NativeCode header to contain a specification of native code libraries contained in that bundle. All magic things are initialized by org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLibrary(String) and org.eclipse.osgi.framework.internal.core.BundleLoader.findLibrary(String). Then BundleLoader uses the org.eclipse.osgi.baseadaptor.BaseData(an implementation of BundleData) to find the library path, if the bundle is NOT a jar file, it would directly get the absolute path of library. Otherwise, the BaseData would extract the library file if it could NOT find it in OSGi bundle storage(located in ${data}/org.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Equinox on The road</title><link>https://kane.mx/tags/equinox/</link><description>Recent content in Equinox on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Mon, 05 Mar 2012 19:25:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/equinox/index.xml" rel="self" type="application/rss+xml"/><item><title>Embedding an HTTP server in Equinox</title><link>https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/</link><pubDate>Mon, 05 Mar 2012 19:25:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/</guid><description>
+&lt;p>I want to create a test server for my application. Using embedding Http server in equinox is my first option.&lt;/p>
+&lt;p>I had experience using simple http service implementation of equinox, however I want to play with Jetty this time.&lt;/p>
+&lt;p>Following &lt;a href="http://www.eclipse.org/equinox/server/http_in_equinox.php">the guide&lt;/a> of Equinox server, I can't running a Jetty server with my servlet in Eclipse Indigo. Obviously &lt;a href="http://www.eclipse.org/equinox/server/http_in_equinox.php">the guide&lt;/a> is out of date.&lt;/p>
+&lt;p>After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.&lt;br>
+&lt;script type="application/javascript" src="https://gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi">&lt;/script>
+&lt;/p>
+&lt;p>You only need create a run configuration of OSGi framework, add your bundles with servlets and above bundles.&lt;/p></description></item><item><title>Eclipse P2's import/export capability</title><link>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</link><pubDate>Fri, 22 Apr 2011 15:56:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</guid><description>
+&lt;p>I implemented the &lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/">replication tool&lt;/a> at the end of 2009, then published it to &lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-tool-lives-on-eclipse/">Eclipse Marketplace&lt;/a> in May 2010. However it's not pervasively used due to users have to install that plug-in firstly.&lt;/p>
+&lt;p>I searched a similar &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=282419">request&lt;/a> on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.&lt;/p>
+&lt;p>And I was nominated and elected as the committer of Equinox p2, it's a great honor for me. :)&lt;/p></description></item><item><title>[eclipse]How Equinox load bundles</title><link>https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/</link><pubDate>Wed, 02 Dec 2009 14:58:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/</guid><description>
+&lt;h1 id="how-equinox-load-bundles">How Equinox load bundles&lt;/h1>
+&lt;p>Equinox launcher is responsible to start OSGi framework. The system bundle would be created and marked as installed when initializing the framework. Equinox also tries to install the installed bundles if finding them in persistence data during the initializing period. Of course there is no extra bundles would be installed when launching Equinox first time.&lt;br>
+&lt;img src="http://docs.google.com/drawings/image?id=sNT8DMKTCXXaH4PoaQOafoA&amp;amp;w=400&amp;amp;h=400&amp;amp;rev=109&amp;amp;ac=1" alt="">&lt;/p>
+&lt;p>Then Equinox launcher would install the bundles specified by vm's system property 'osgi.bundles'. And start the initial bundles that are marked as early start. For example, let's have a look at the configuration/config.ini of Eclipse, you would find a line similar as below,&lt;br>
+osgi.bundles=reference\:file\:org.eclipse.equinox.simpleconfigurator_1.0.200.v20090831.jar@1\:start&lt;br>
+It means the start level of bundle 'org.eclipse.equinox.simpleconfigurator_1.0.200.v20090831.jar' is 1, and it would be started after installing it.&lt;/p>
+&lt;p>Here you would ask there are only two bundles are installed(one is system bundle 'org.eclipse.osgi', the other is 'org.eclipse.equinox.simpleconfigurator') when launching Equinox, how the other bundles are installed? It's done by the activate method of 'simpleconfigurator' bundle. The available bundles are recorded in plain text file configuration/org.eclipse.equinox.simpleconfigurator/bundles.info, simpleconfigurator read the file then install those bundles.&lt;/p>
+&lt;p>It's a new bundle management introduced by p2. P2 also supports the traditional way to install extensions, such as link file, .eclipseproduct file and directly copying features/plugins.&lt;br>
+Below table lists the p2 bundles to implement the compatibility installation feature,&lt;/p>
+&lt;p>Bundle&lt;/p>
+&lt;p>Usage&lt;/p>
+&lt;p>org.eclipse.equinox.p2.directorywatcher&lt;/p>
+&lt;p>the definition and implementation of directory watcher API&lt;/p>
+&lt;p>org.eclipse.equinox.p2.updatesite&lt;/p>
+&lt;p>the implementation of updatesite repository&lt;/p>
+&lt;p>org.eclipse.equinox.p2.extensionlocation&lt;/p>
+&lt;p>the implementation of extension repository&lt;/p>
+&lt;p>org.eclipse.equinox.p2.reconciler.dropins&lt;/p>
+&lt;p>scan dropin folder and link files; watch the traditional configuration file used by update manager&lt;/p>
+&lt;p>P2 reconciler would scan the dropin, link folder and legacy configuration file in every Equinox launching. You can disable the capability by marking it not be early start.&lt;br>
+org.eclipse.equinox.p2.reconciler.dropins,1.0.100.v20091010,plugins/org.eclipse.equinox.p2.reconciler.dropins_1.0.100.v20091010.jar,4,false&lt;/p>
+&lt;p>If finding some new bundles in dorpin folder, the reconciler would add the new bundles into a local metadata repository that is stored as OSGi data of Equinox. Then synchronize the bundles into the current p2 profile, then add the new bundles into bundles.info file.&lt;/p></description></item><item><title>[Eclipse][P2]Learn p2 step by step</title><link>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</link><pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid><description>
+&lt;h1 id="learn-p2-step-by-step">Learn p2 step by step&lt;/h1>
+&lt;p>&lt;a href="mailto:kane.mx@gmail.com" title="Kane">Kane&lt;/a>               &lt;/p>
+&lt;p>                     &lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#Learn_P2_step_by_step">Learn P2 step by step&lt;/a>&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_concept">p2 concept&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_install">p2 install&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_install_practice">p2 install practice&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_repository_publish">p2 repository publish&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#customized_p2_touchpoint">customized p2 touchpoint&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_repository_publish_practice">p2 repository publish practice&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#Example_Code">Example Code&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#Reference">Reference&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="p2-concept">p2 concept&lt;/h3>
+&lt;p>首先来理解p2引入的几个概念[1]&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>p2 / Agent&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The provisioning infrastructure on client machines&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Installable Unit (IU)&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Metadata&lt;/strong> that describes things that can be installed/configured&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Artifact&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The actual content being installed/configured(e.g., bundle JARs)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Repository&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>A store of metadata or artifacts&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Profile&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The target of install/management operations&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Planner&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The decision-making entity in the provisioning system&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Engine&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The mechanism for executing provisioning requests&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Touchpoint&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The part of the engine responsible for integrating the provisioning&lt;br>
+system to a particular runtime or management system&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>IU比较好理解，就是对可安装或配置的部分一种描述，并不对应实际要安装的文件。&lt;br>
+Arifact就是来描述实际要安装的文件，bundle类型的jar，feature，binary文件。&lt;br>
+这时就有了Repository（仓库）这个概念，是用来保存artifacts信息，以及artifacts的元数据。元数据包括了对artifact的唯一标识符，版本，对外暴露的接口信息，以及它依赖的接口及其版本信息，各个安装阶段需要执行的配置。在p2默认的实现里面，这两个repository用xml文件来描述，同时被压缩为artifacts.jar, content.jar来减小文件大小，缩短传输时间。&lt;br>
+从Eclipse 3.4起，当从远程site安装新的软件时，就会看到有个work thread在后台下载content.jar文件。p2在安装时候，首先会根据content.xml（metadata repository）来解析正在安装软件的依赖。在当前runtime里面查找metadata中指定的依赖，如果满足才继续安装。据我个人经验，如果安装的软件比较复杂，那它产生的metadata文件就会比较大（很容易上兆），下载这个文件以及解析它的内容都会比较慢，从而影响用户体验。&lt;br>
+比较灵活的是，用户可以实现自己的ArtifactRepository和MetadataRepository，注册到它们各自的Manager里面就可以了。所有这些服务都被实现为OSGi Service.&lt;br>
+下一个Profile，是用来管理安装目标里的软件信息。p2在被设计的时候，希望解决多个eclipse实例共享一份安装的某软件。比如为了某种目的我机器上有好几个Eclipse，同时它们都需要CDT，免去为重复安装的麻烦。profile就会记录每次安装的内容，让整个应用程序被管理起来。在Galileo里安装的软件都可以软件管理里面查找到。&lt;br>
+Planner和Engine完全就是p2内部的东西。任何p2的操作（安装，删除，配置）都需要Planner实例来描述。有了Planner以后，还需要创建一个Engine对象，通过engine来执行对应的plan。这就是目前调用p2 API来完成安装的一个过程。&lt;br>
+最后一个Touchpoint。程序在安装的时候，可能会根据runtime(os, ws, arch等）或阶段(安装，卸载，配置等)执行某些配置，touchpoint就是帮助实现这些配置。具体操作是以IU为单位记录在metadata repository里的。p2默认实现了一些Eclipse touchpoint，比如拷贝，删除文件，执行外部程序等。如果用户有自己特殊的native操作需要执行，可以自己实现自定义的touchpoint。&lt;/p>
+&lt;h3 id="p2-install">p2 install&lt;/h3>
+&lt;p>有了这些概念以后，我们来看看如何使用p2 API。以安装为例，&lt;/p>
+&lt;p>首先需要得到当前安装的profile。如果是全新安装，通过IProfileRegistry.addProfile创建一个新profile。是更新安装的话，可以通过IProfileRegistry查询到期望更新的profile。创建profile的时候，需要注意设置profile的属性，&lt;/p>
+&lt;p>Map&amp;lt;String, String&amp;gt; profileProperties = new HashMap&amp;lt;String, String&amp;gt;();&lt;/p>
+&lt;p>profileProperties.put(IProfile.PROP_INSTALL_FOLDER, installLocation.getAbsolutePath());&lt;/p>
+&lt;p>profileProperties.put(IProfile.PROP_FLAVOR, &amp;quot;tooling&amp;quot;); //$NON-NLS-1$&lt;/p>
+&lt;p>profileProperties.put(IProfile.PROP_ENVIRONMENTS, &amp;quot;osgi.os=&amp;quot; + Platform.getOS() + &amp;quot;,osgi.ws=&amp;quot; + Platform.getWS() + &amp;quot;,osgi.arch=&amp;quot; + Platform.getOSArch()); //$NON-NLS-1$;&lt;/p>
+&lt;p>profileProperties.put(IProfile.PROP_NL, &amp;quot;en_US&amp;quot;); //$NON-NLS-1$&lt;/p>
+&lt;p>profileProperties.put(IProfile.PROP_INSTALL_FEATURES, &amp;quot;true&amp;quot;);&lt;/p>
+&lt;p>profileProperties.put(IProfile.PROP_CONFIGURATION_FOLDER, new File(installLocation, &amp;quot;configuration&amp;quot;).getAbsolutePath());&lt;/p>
+&lt;p>profileProperties.put(IProfile.PROP_ROAMING, &amp;quot;true&amp;quot;);&lt;/p>
+&lt;p>profileProperties.put(IProfile.PROP_CACHE, installLocation.getAbsolutePath());&lt;/p>
+&lt;p>currentProfile = registry.addProfile(PROFILE_ID, profileProperties);&lt;/p>
+&lt;p>PROP_INSTALL_FOLDER设置安装的目录，PROP_CACHE设置保存下载来的Eclipse IU(features/plugins)的目录，如果repository是以feature为单位来发布的话，需要设置PROP_INSTALL_FEATURES为true。如果repository包括native的binary（比如launcher）也需要指定正确的PROP_ENVIROMENTS，包括OS,WS,ARCH或PROCESSOR。&lt;/p>
+&lt;p>然后需要获得将要安装的IMetadataRepository集合。比如：&lt;/p>
+&lt;p>ArrayList&lt;IInstallableUnit> ius = new ArrayList&lt;IInstallableUnit>();&lt;/p>
+&lt;p>IMetadataRepositoryManager repositoryManager = (IMetadataRepositoryManager) ServiceHelper.getService(Activator.getDefault().getBundle().getBundleContext(),&lt;/p>
+&lt;p>IMetadataRepositoryManager.class.getName()); &lt;/p>
+&lt;p>if (repositoryManager == null) &lt;/p>
+&lt;p>       throw new InterruptedException(&amp;quot;Failed to get IMetadataRepositoryManager.&amp;quot;);&lt;/p>
+&lt;p>try {&lt;/p>
+&lt;p>  for (URI uri : uris) {&lt;/p>
+&lt;p>    IMetadataRepository metaRepo = repositoryManager.loadRepository(uri, progress.newChild(50/uris.length));&lt;/p>
+&lt;p>    Collector collector = metaRepo.query(new AccpetQuery(), new LatestNoninstalledIUCollector(currentProfile), progress.newChild(50/uris.length));&lt;/p>
+&lt;p>     ius.addAll(collector.toCollection());&lt;/p>
+&lt;p>  }&lt;/p>
+&lt;p>} catch (ProvisionException e) {&lt;/p>
+&lt;p>    throw new InterruptedException(&amp;quot;Failed to get IMetadataRepository.&amp;quot;);&lt;/p>
+&lt;p>}&lt;br>
+     -同时这里也查找出IMetaRepository中没安装过的IUs。这就需要同当前安装的profile中已经安装过的内容来比较，&lt;/p>
+&lt;p>    Collector collector = metaRepo.query(new AccpetQuery(), new LatestNoninstalledIUCollector(currentProfile), progress.newChild(50/uris.length));&lt;/p>
+&lt;p>     这里需要指出的是，IMetadataRepository实现了IQueryable接口。IQueryable是p2引入的查找接口，返回满足特殊查询条件的集合，同时传入了一个IProgressMonitor对象，可以反应查找进度。这里的AcceptQuery，LatestNoninstalledIUCollector是自定义的Query和Collector对象。p2已经实现了许多有用的Query，经常用到的有InstallableUnitQuery，IUPropertyQuery，RangeQuery。&lt;/p>
+&lt;p>    -接下来生成IEngine所需的ProvisionPlan。首先创建ProfileChangeRequest对象，将先前查找出的要安装的IUs添加进去。&lt;/p>
+&lt;p>     request.addInstallableUnits(ius);&lt;/p>
+&lt;p>     删除的话则与之相反。更新的话也需要通过ProfileChangeRequest.removeInstallableUnits()去掉旧版本的IUs。&lt;/p>
+&lt;p>     调用IPlanner service的getProvisioningPlan(ProfileChangeRequest, ProvisioningContext, IProgressMonitor)得到对应于当前request的plan。&lt;/p>
+&lt;p>    -最后就是调用IEngine.perform(IProfile, PhaseSet, Operand[], ProvisioningContext, IProgressMonitor)来执行provisioning操作。这里的PhaseSet是用来指定Engine将要执行的几个阶段，以及每个阶段的执行时间权重。这些阶段包括了Collect, Unconfigure, Uninstall, Property, CheckTrust, Install, Configure. 如果熟悉Eclipse之前的Installer Handler，对Unconfigure/Uninstall/Install/Configure应该都很熟悉。 在p2里，更是将Collect, CheckTrust这些过程也暴露了出来。下面是p2里默认PhaseSet的实现，&lt;/p>
+&lt;p>        public DefaultPhaseSet() {&lt;/p>
+&lt;p>            this(new Phase[] {new Collect(100), new Unconfigure(10, forcedUninstall), new Uninstall(50, forcedUninstall), new Property(1), new CheckTrust(10), new Install(50), new Configure(10)});&lt;/p>
+&lt;p>        }&lt;/p>
+&lt;p>     Operand[]通过ProvisionPlan.getOperands()获得。&lt;/p>
+&lt;h3 id="p2-install-practice">p2 install practice&lt;/h3>
+&lt;p>先制作一个可安装的repository，这里的方法是基于Eclipse提供的模版创建一个RCP程序，比如mail template,&lt;/p>
+&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_871xs75p2fh_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_871xs75p2fh_b" alt="">&lt;/a>&lt;/p>
+&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_872fzbmznfm_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_872fzbmznfm_b" alt="">&lt;/a>&lt;/p>
+&lt;p>然后创建一个feature包含刚才创建出来的plug-in 'com.example.mail'。&lt;/p>
+&lt;p>基于存在的‘com.example.mail.product’创建product configuration，将其设置为base on features, 同时在dependencies页面添加以下feature。feature的qaulifier id依赖于用到的Eclipsse版本，从下图看到我这里使用的是Eclipse 3.5.1。如果要让RCP程序具有安装插件的能力（包含p2和p2 UI），就需要依赖更多的feature。后面的example里面会实现这部分功能。另外注意：&lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=291872" title="ID不能包括空格字符">ID不能包括空格字符&lt;/a>。&lt;/p>
+&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_873fx44c3ff_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_873fx44c3ff_b" alt="">&lt;/a>&lt;/p>
+&lt;p>接下来使用Eclipse Product Export Wizard生成repository。记得要勾选上generate metadata repository。&lt;/p>
+&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_874qnh7n3gc_b">&lt;/a>&lt;/p>
+&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_875gfs4p3d2_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_875gfs4p3d2_b" alt="">&lt;/a>&lt;/p>
+&lt;p>在成功创建了Mail Application的repository后，试用我们自己的p2 installer来安装这个应用程序。安装过程类似下面的截图。然后执行/folk/kzhu0/tmp/mailrcp/mail来运行Mail Application.&lt;/p>
+&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_877cm6fxcc6_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_877cm6fxcc6_b" alt="">&lt;/a>&lt;/p>
+&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_878dg9g8kf4_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_878dg9g8kf4_b" alt="">&lt;/a>&lt;/p>
+&lt;h3 id="p2-repository-publish">p2 repository publish&lt;/h3>
+&lt;p>这一节将会展示如何发布/产生基于p2的repository。在p2最早的版本Eclipse 3.4中将生成repository这个程序称为generator，而3.5对此重构后命名为publisher。重构后的publish过程简单明了。首先需要创建一个IPublishInfo对象，它负责提供将要生成的repository的情况。包括了meta repository, artifact repository的信息，属性，以及提供辅助信息的advice对象。IPublisherAdvice可以看作类似创建RCP窗口时候的WorkbenchAdvice和WorkbenchWindowAdvice等辅助类。它用来提供需要记录在repository中的IU特殊信息。比如IU的属性，touchpoint的类型及各个阶段执行的action，对可执行文件或配置文件IU的处理。&lt;br>
+此外还需要创建IPublisherAction来处理不同类型的IU发布过程。例如BundlesAction来实现发布bundles到repository，FeaturesAction则是处理feature。此外p2已提供的IPublisherAction还包括product action, config action, launcher action和jre action等等[2]。&lt;br>
+有了描述repository情况的publishinfo和发布各种IUs的action后，调用Publisher.publish方法完成repository的发布。&lt;br>
+        IPublisherInfo info = createPublisherInfo();&lt;br>
+        IPublisherAction[] actions = createActions();&lt;br>
+        Publisher publisher = new Publisher(info);&lt;br>
+        publisher.publish(actions, new NullProgressMonitor());&lt;br>
+这里有一点需要注意，publish只是把将要用于部署的features/plugins/binary发布到repository，并不负责编译打包它们。先前我们使用过Eclipse Export功能既编译打包features/plugins同时又生成repository。Export实现的过程首先是调用PDE来编译打包features/plugins，再调用对应的publisher应用程序将编译后的features/plugins/product发布为repository。&lt;/p>
+&lt;h3 id="customized-p2-touchpoint">customized p2 touchpoint&lt;/h3>
+&lt;p>前面一节已经提过IPublishInfo通过额外的IPublisherAdvise来定制发布到repository的IU信息。这里介绍为自己的IU定制新的touchpoint类型，并且要求在配置阶段在操作系统桌面创建应用程序的启动快捷方式。首先为我们的PublisherInfo添加处理touchpoint data的advice，NativeLauncherTouchPoint实现了ITouchpointAdvice接口，publisher在发布的时候当处理到touchpoint data部分，会查找实现了ITouchpointAdvice接口的advice。如果有advice可用，将会让这些advice处理现有的touchpoint data，并且得到新的touchpoint data，并把结果保存到metadata repository当中。&lt;/p>
+&lt;p>        PublisherInfo result = new PublisherInfo();&lt;br>
+        result.addAdvice(new NativeLauncherTouchPoint());&lt;/p>
+&lt;p>NativeLauncherTouchPoint将指定为特定的IU在configure阶段执行createDesktop操作，以及相反的操作，unconfigure阶段执行deleteDesktop操作。&lt;/p>
+&lt;p>更改touchpoint type的方法如下。当然也可以为现有的touchpoint type扩展action。内置的touchpoint类型和action的具体命令用法，请参考p2 wiki[3]。&lt;br>
+iu.setTouchpointType(DesktopTouchpoint.TOUCHPOINT_TYPE);&lt;br>
+touchpoint类型和action都是通过extension point来扩展的。通过扩展“org.eclipse.equinox.p2.engine.touchpoints”来添加新的touchpoint类型，扩展”org.eclipse.equinox.p2.engine.actions“将新的action同某个类型关联起来。&lt;/p>
+&lt;h3 id="p2-repository-publish-practice">p2 repository publish practice&lt;/h3>
+&lt;p>我们创建plug-in 'com.example.p2.touchpoint'来实现桌面快捷方式的扩展，并且创建'com.example.p2.feature'包含touchpoint实现的plug-in。具体实现请参考p2 example源码。&lt;br>
+然后为Mail Application添加p2相关feature的依赖，重新发布得到支持安装软件的新版本。并且用p2 example installer安装它。p.s: 个人感觉Eclipse在包含第三方plug-in时，层次有些问题。p2作为一个runtime的project（跟equinox, ECF同级），居然需要直接或间接依赖help, rcp.platform这样的上层模块。&lt;/p>
+&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_879cjg6wrgg_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_879cjg6wrgg_b" alt="">&lt;/a>&lt;/p>
+&lt;p>接下来创建plug-in 'com.example.mail.desktop' 和 feature 'com.example.mail.desktop.feature'，作为提供桌面快捷方式的IU。用Eclipse Export Feature将'com.example.mail.desktop.feature'导出，实际就是用PDE替我们编译打包:)。&lt;br>
+运行‘com.example.p2.generator'提供的headless publisher来生成我们定制的repository。’/folk/kzhu0/tmp/mail/desktop-deploy'是先前desktop feature导出后的路径，而'/folk/kzhu0/tmp/mail/desktop'是生成repository的路径。&lt;/p>
+&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_880tk4fk8wd_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_880tk4fk8wd_b" alt="">&lt;/a>&lt;/p>
+&lt;p>运行新版本的Mail Application，在Help菜单下面会多出Install New Software选项。将自定义publisher生成的Desktop feature repository添加为新的软件源，安装Mail Desktop Feature。安装完成后，将在桌面找到Mail Application的快捷方式。在Installation Detail里面将会出现这次安装的内容。选中Desktop Feature后选择卸载，桌面的快捷方式文件将会被删除掉。当然也可以使用p2 example installer来为Mail Application安装desktop feature。p.s: example代码里只实现了创建linux/unix桌面快捷方式。&lt;/p>
+&lt;p>&lt;a href="http://docs.google.com/File?id=ddqccrw2_8814qg7wvhs_b">&lt;img src="http://docs.google.com/File?id=ddqccrw2_8814qg7wvhs_b" alt="">&lt;/a>&lt;/p>
+&lt;h3 id="example-code">Example Code&lt;/h3>
+&lt;p>Example Code应该只能编译运行在Eclipse 3.5.x。Example Code使用的都是p2 internal API, 而p2 public API将会随Eclipse 3.6首次发布。这些类和方法基本都会保留，但命名，包一定会有重构。&lt;br>
+&lt;a href="http://code.google.com/p/kane-toolkit/source/browse/#svn/trunk/p2-example">http://code.google.com/p/kane-toolkit/source/browse/#svn/trunk/p2-example&lt;/a>&lt;/p>
+&lt;h3 id="reference">Reference&lt;/h3>
+&lt;p>[1] &lt;a href="http://wiki.eclipse.org/Equinox/p2/Concepts">http://wiki.eclipse.org/Equinox/p2/Concepts&lt;/a>&lt;br>
+[2] &lt;a href="http://wiki.eclipse.org/Equinox/p2/Publisher">http://wiki.eclipse.org/Equinox/p2/Publisher&lt;/a>&lt;br>
+[3] &lt;a href="http://wiki.eclipse.org/Equinox/p2/Engine/Touchpoint_Instructions">http://wiki.eclipse.org/Equinox/p2/Engine/Touchpoint_Instructions&lt;/a>&lt;/p></description></item><item><title>Eclipse/OSGi preference</title><link>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</link><pubDate>Thu, 22 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</guid><description>
+&lt;p>The IPreferenceStore API of Eclipse is based on OSGi's preferences service. Equinox implements several scope context for different preferences, such DefaultScope, InstanceScope and ConfigurationScope. The IPreferenceStore is the wrapper of instance scope for back-compatibility. It stored the data in workspace(osgi.data.area).&lt;/p>
+&lt;p>The workspace folder would be created when launching RCP application if it doesn't exist. But we can use argument '-data @none' to suppress the creation of workspace. If that, the instance scope/IPreferenceStore can't store any value any more.&lt;/p>
+&lt;p>There is a workaround to resolve such issue. Use ConfigurationScope instead of InstanceScope. Both of them are implemented the same interface, so it's easy to migrate to use ConfigurationScope. The data of configuration scope would be stored in @config.dir/.setting folder.&lt;/p></description></item><item><title>[OSGi][Eclipse]Add custom jar or path into Equinox Framework</title><link>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</link><pubDate>Sun, 28 Sep 2008 13:23:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</guid><description>
+&lt;p>Set vm arguments 'osgi.framework.extensions' and 'osgi.frameworkClassPath' when vm starts. If those value are set, those jar or path would be added into the classloader when starting EclipseStarter.&lt;/p>
+&lt;p>See org.eclipse.equinox.launcher.Main for more details in the source code of Eclipse 3.4.&lt;br>
+Best Regards&lt;br>
+Kane&lt;/p></description></item><item><title>[OSGi]How to acquire the fragments of specified bundle</title><link>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</link><pubDate>Fri, 01 Aug 2008 16:22:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</guid><description>
+&lt;p>The answer is very simple, using the service 'org.eclipse.service.PackageAdmin'.&lt;/p></description></item><item><title>[Eclipse]Equinox's classloader and its URL schema</title><link>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</link><pubDate>Thu, 17 Jul 2008 17:42:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</guid><description>
+&lt;p>Equinox uses the adaptor hooks to implement the class loader.&lt;br>
+See &lt;a href="http://wiki.eclipse.org/Adaptor_Hooks">http://wiki.eclipse.org/Adaptor_Hooks&lt;/a> for more detail&lt;/p>
+&lt;p>BaseClassLoadingHook would search the native code on itself. If it find the file in that jar file, it would extract the native library into its storage folder.&lt;/p>
+&lt;p>EclipseClassLoadingHook defines some variables to search the native library. Belows are built-in variables:&lt;/p>
+&lt;p>result.add(&amp;quot;ws/&amp;quot; + info.getWS() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$&lt;br>
+result.add(&amp;quot;os/&amp;quot; + info.getOS() + &amp;quot;/&amp;quot; + info.getOSArch() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$&lt;br>
+result.add(&amp;quot;os/&amp;quot; + info.getOS() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$&lt;/p>
+&lt;p>So the classloader can find your native library that under those path. If your bundle is jar file, equinox would extract your native library into its storage folder.&lt;/p>
+&lt;p>I prefer to use OSGi header(Bundle-NativeCode) defining the path of native code, which still works on other OSGi implementations.&lt;/p>
+&lt;p>Equinox defines its url schema, one of them is named as 'BundleURLConnection'. From its name, we know it's used for describing the files of bundle. You can obtain the url of file that is located on bundle by Bundle.getResource()/Bundle.getEntry()/Bundle.findEntries()/Bundle.getResources(). The return value of those functions are an object of BundleURLConnection. Once it's used as the argument of FileLocator.toFileURL(URL), the jar bundle would be unpacked into its storage folder recursively.&lt;/p></description></item><item><title>[OSGi][Equinox]URL Handlers Service</title><link>https://kane.mx/posts/archive/blogspot/url-handlers-service/</link><pubDate>Wed, 16 Apr 2008 14:20:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/url-handlers-service/</guid><description>
+&lt;p>OSGi provides a mechanism to let user contribute custom schemes automatically. It avoid some restriction with Java facilities for extending the handlers. The more detail could be found from OSGi specification R4, which has description how OSGi implements URL Handler Service.&lt;/p>
+&lt;p>Use a sample to illustrate how to contribute your scheme(protocol):&lt;/p>
+&lt;p>1. register your URLStreamHandlerService implementation, which must contain a property named &amp;quot;url.handler.protocol&amp;quot;. below register my scheme 'smb'&lt;br>
+public void start(BundleContext context) throws Exception {&lt;br>
+Hashtable properties = new Hashtable();&lt;br>
+properties.put( URLConstants.URL_HANDLER_PROTOCOL, new String[] { &amp;quot;smb&amp;quot; } );&lt;br>
+context.registerService(URLStreamHandlerService.class.getName(), new SmbURLHandler(), properties );&lt;br>
+}&lt;br>
+2. your URL Handler extends AbstractURLStreamHandlerService, and implements abstract function 'openConnection(URL)'&lt;br>
+public class SmbURLHandler extends AbstractURLStreamHandlerService {&lt;/p>
+&lt;p>public URLConnection openConnection(URL url) throws IOException {&lt;br>
+return new SmbURLConnection(url);&lt;br>
+}&lt;/p>
+&lt;p>}&lt;br>
+3. your URL Connection extends java.net.URLConnection&lt;br>
+public class SmbURLConnection extends URLConnection {&lt;/p>
+&lt;p>protected SmbURLConnection(URL url) {&lt;br>
+super(url);&lt;br>
+}&lt;/p>
+&lt;p>public void connect() throws IOException {&lt;br>
+}&lt;br>
+}&lt;/p></description></item><item><title>[OSGi][Equinox]the Bundle-NativeCode implementation in Equinox</title><link>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</link><pubDate>Mon, 31 Mar 2008 17:36:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</guid><description>
+&lt;p>OSGi Spec defines Bundle-NativeCode header to contain a specification of native code libraries contained in that bundle. All magic things are initialized by org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLibrary(String) and org.eclipse.osgi.framework.internal.core.BundleLoader.findLibrary(String). Then BundleLoader uses the org.eclipse.osgi.baseadaptor.BaseData(an implementation of BundleData) to find the library path, if the bundle is NOT a jar file, it would directly get the absolute path of library. Otherwise, the BaseData would extract the library file if it could NOT find it in OSGi bundle storage(located in ${data}/org.eclipse.osgi/bundles/[bundle_id]/.cp/). Refer to org.eclipse.osgi.baseadaptor.BaseData.findLibrary(String) for more detail.&lt;/p></description></item></channel></rss>

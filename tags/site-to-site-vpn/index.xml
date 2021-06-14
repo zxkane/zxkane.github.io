@@ -1,1 +1,35 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Site-to-Site VPN on The Road</title><link>https://kane.mx/tags/site-to-site-vpn/</link><description>Recent content in Site-to-Site VPN on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 16 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/site-to-site-vpn/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Openswan连接AWS VPC</title><link>https://kane.mx/posts/2019/using-openswan-connect-aws-vpn/</link><pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/using-openswan-connect-aws-vpn/</guid><description>&lt;p>业务上云之后，经常也有需求将多云、数据中心或办公室的私有网络同云端的私有网络建立连接。&lt;a href="https://docs.aws.amazon.com/zh_cn/vpn/latest/s2svpn/VPC_VPN.html">AWS Site-to-Site VPN&lt;/a>正是AWS提供的托管VPN服务，我们可以在另一端的私有网络通过&lt;a href="https://www.openswan.org/">Openswan&lt;/a>同AWS VPC网络建立基于IPSec协议的安全连接。&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Site-to-Site VPN on The road</title><link>https://kane.mx/tags/site-to-site-vpn/</link><description>Recent content in Site-to-Site VPN on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Mon, 16 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/site-to-site-vpn/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Openswan连接AWS VPC</title><link>https://kane.mx/posts/2019/using-openswan-connect-aws-vpn/</link><pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/using-openswan-connect-aws-vpn/</guid><description>
+&lt;p>业务上云之后，经常也有需求将多云、数据中心或办公室的私有网络同云端的私有网络建立连接。&lt;a href="https://docs.aws.amazon.com/zh_cn/vpn/latest/s2svpn/VPC_VPN.html">AWS Site-to-Site VPN&lt;/a>正是AWS提供的托管VPN服务，我们可以在另一端的私有网络通过&lt;a href="https://www.openswan.org/">Openswan&lt;/a>同AWS VPC网络建立基于IPSec协议的安全连接。&lt;/p>
+&lt;p>下面是配置的详细步骤，&lt;/p>
+&lt;ol>
+&lt;li>如果是创建数据中心或办公室的连接，数据中心或办公室需要有公网IP。如果是在其他公有云上，需要创建带公网IP的EC2，或使用EIP。
+&lt;ol>
+&lt;li>如果使用AWS EC2配置Openswan，需要禁用 EC2 的 Source/Destination Check。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>在AWS上创建Virtual Private Gateway 和 Customer Gateway(指定对端的公网IP作为静态路由)。&lt;/li>
+&lt;li>在AWS上创建Site-to-Site VPN连接，使用第一步和第二步创建的Virtual Private Gateway和Customer Gateway。&lt;/li>
+&lt;li>在对端机器上安装&lt;code>openswan&lt;/code>。
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="ln">1&lt;/span>sudo yum install openswan&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>编辑&lt;code>/etc/sysctl.conf&lt;/code>文件，确保有以下配置，
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="ln">1&lt;/span>net.ipv4.ip_forward = 1
+&lt;span class="ln">2&lt;/span>net.ipv4.conf.default.rp_filter = 0
+&lt;span class="ln">3&lt;/span>net.ipv4.conf.default.accept_source_route = 0&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>重新加载sysctl配置并重启network服务。
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="ln">1&lt;/span>sudo sysctl -p
+&lt;span class="ln">2&lt;/span>sudo service network restart&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>编辑&lt;code>/etc/ipsec.conf&lt;/code>确保&lt;code>include /etc/ipsec.d/*.conf&lt;/code>没有被注释。&lt;/li>
+&lt;li>创建&lt;code>/etc/ipsec.d/aws.conf&lt;/code>文件，内容拷贝来自第三步创建的连接Openswan建议配置。&lt;/li>
+&lt;li>创建&lt;code>/etc/ipsec.d/aws.secrets&lt;/code>文件，内容拷贝来自第三步创建的连接Openswan配置。&lt;/li>
+&lt;li>启动ipsec服务。
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># Start the ipsec service.&lt;/span>
+&lt;span class="ln">2&lt;/span>sudo service ipsec start
+&lt;span class="ln">3&lt;/span>
+&lt;span class="ln">4&lt;/span>&lt;span class="c1"># Check the logs.&lt;/span>
+&lt;span class="ln">5&lt;/span>sudo service ipsec status
+&lt;span class="ln">6&lt;/span>sudo ipsec auto --status&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;p>以上配置在Amazon Linux, Centos 6.9上验证通过。但是在Amazon Linux 2、Centos 7等较新的Linux发行版本上，启动&lt;code>ipsec&lt;/code>服务遇到如下错误，
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="ln">1&lt;/span>Starting Internet Key Exchange (IKE) Protocol Daemon for IPsec...
+&lt;span class="ln">2&lt;/span>ERROR: /etc/ipsec.d/aws.conf: 12: keyword auth, invalid value: esp&lt;/code>&lt;/pre>&lt;/div>
+解决方法是，从 AWS Site-to-Site VPN 下载的 Openswan 配置中删掉不支持的配置行&lt;code>auth=esp&lt;/code>。&lt;/p></description></item></channel></rss>

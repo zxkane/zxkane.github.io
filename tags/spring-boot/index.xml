@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>spring-boot on The Road</title><link>https://kane.mx/tags/spring-boot/</link><description>Recent content in spring-boot on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 07 May 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/spring-boot/index.xml" rel="self" type="application/rss+xml"/><item><title>Spring框架下的分布式session管理</title><link>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</link><pubDate>Sat, 07 May 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</guid><description>在微服务和容器等技术的帮助下，Web应用可以较为容易的进行水平扩展，来部署更多的应用实例来提升请求处理数QPS。当Web服务有状态的时候，如</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>spring-boot on The road</title><link>https://kane.mx/tags/spring-boot/</link><description>Recent content in spring-boot on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Sat, 07 May 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/spring-boot/index.xml" rel="self" type="application/rss+xml"/><item><title>Spring框架下的分布式session管理</title><link>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</link><pubDate>Sat, 07 May 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</guid><description>
+&lt;p>在微服务和容器等技术的帮助下，Web应用可以较为容易的进行水平扩展，来部署更多的应用实例来提升请求处理数QPS。当Web服务有状态的时候，如何在集群下管理用户session成为新的待解决问题。&lt;/p>
+&lt;!-- more -->
+&lt;p>&lt;a href="https://spring.io">Spring Framework&lt;/a>针对此问题衍生出了一个子项目&lt;a href="http://projects.spring.io/spring-session/">Spring Session&lt;/a>来实现集群下的session管理。该项目提供了以下功能：&lt;/p>
+&lt;ul>
+&lt;li>提供API和实现管理用户session&lt;/li>
+&lt;li>HttpSession - 替换实现应用容器(tomcat)中的HttpSession
+&lt;ul>
+&lt;li>Clustered Sessions - 实现集群的session而不依赖任何应用容器特定的解决方案&lt;/li>
+&lt;li>Multiple Browser Sessions - 支持多个用户session保存在同一个浏览器实例中 (例如，类似Google的多用户认证).&lt;/li>
+&lt;li>RESTful APIs - 通过支持session ids在Http请求头来支持Restful API的认证&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>WebSocket - 能够保证HttpSession的存活当在接受WebSocket消息时&lt;/li>
+&lt;/ul>
+&lt;p>从上面的功能列表中，我们可以看到&lt;a href="http://projects.spring.io/spring-session/">Spring Session&lt;/a>能够满足集群下各种session的使用场景和需求。&lt;/p>
+&lt;p>&lt;a href="http://projects.spring.io/spring-session/">Spring Session&lt;/a>在1.0.0 GA可以使用&lt;a href="http://redis.io/">Redis&lt;/a>做为session储存的backend。&lt;/p>
+&lt;p>通过changelog，在最新的1.1.0 GA中支持&lt;a href="http://docs.spring.io/spring-session/docs/1.1.1.RELEASE/reference/html5/#what-s-new-in-1-1">自定义Cookie的创建&lt;/a>，允许自定义Cookie的过期时间，作用域等。在即将发布的&lt;a href="http://docs.spring.io/spring-session/docs/1.2.0.RC2/reference/html5/#what-s-new-in-1-2">1.2.0 GA&lt;/a>版本中，将添加支持JDBC的关系数据库和&lt;a href="https://www.mongodb.org/">MongoDB&lt;/a>作为session保存的backend。&lt;/p>
+&lt;p>此外，&lt;a href="http://projects.spring.io/spring-session/">Spring Session&lt;/a>同&lt;a href="http://projects.spring.io/spring-boot/">Spring-boot&lt;/a>的应用有很好的&lt;a href="http://docs.spring.io/spring-session/docs/current/reference/html5/guides/boot.html">集成&lt;/a>，只需要十多行代码及配置即可集成！&lt;/p></description></item></channel></rss>

@@ -1,5 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>troubleshoot on The Road</title><link>https://kane.mx/tags/troubleshoot/</link><description>Recent content in troubleshoot on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 14 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/troubleshoot/index.xml" rel="self" type="application/rss+xml"/><item><title>Amazon Alexa Android版本国内登录问题</title><link>https://kane.mx/posts/2019/alexa-login-issue/</link><pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/alexa-login-issue/</guid><description>&lt;p>近期需要做一些Alexa上的开发，在手机上安装了Amazon Alexa，一直得到下面这样的错误提示而无法登录。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>troubleshoot on The road</title><link>https://kane.mx/tags/troubleshoot/</link><description>Recent content in troubleshoot on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Wed, 14 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/troubleshoot/index.xml" rel="self" type="application/rss+xml"/><item><title>Amazon Alexa Android版本国内登录问题</title><link>https://kane.mx/posts/2019/alexa-login-issue/</link><pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/alexa-login-issue/</guid><description>
+&lt;p>近期需要做一些Alexa上的开发，在手机上安装了Amazon Alexa，一直得到下面这样的错误提示而无法登录。&lt;/p>
 &lt;blockquote>
 &lt;p>Connection Timed Out.&lt;/p>
-&lt;/blockquote></description></item><item><title>文件系统的Inode耗尽，会导致Docker编译镜像出现'No space left on device'错误</title><link>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</link><pubDate>Thu, 21 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</guid><description>最近在提交前端代码后，前端代码的自动发布老是失败。失败的原因多是编译Docker镜像时在执行COPY语句拷贝文件到镜像文件系统时，扔出了&amp;r</description></item><item><title>The symptoms of Java broken in Mac OSX 10.10 and fix solution</title><link>https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/</link><pubDate>Mon, 13 Jul 2015 19:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/</guid><description>After uninstalling some applications from my Mac OSX, I found the applications that depends on JRE totally does not work. I noticed below symptoms,
-Eclipse Mars can not be launched, even though I specified the launching vm to another one(`java -version` still work). The SWT native library failed to resolve the dependencies to &amp;lsquo;/System/Library/Frameworks/JavaVM.framework/Versions/A/JavaVM&amp;rsquo; which does not exists. I tried to reinstall Oracle 1.8.0_u45 via both brew and dmg image downloaded from Oracle website, both ways were failed as well.</description></item></channel></rss>
+&lt;/blockquote>
+&lt;p>先后尝试了翻墙、更改语言等方法仍然不可登录。并且在网络上也没有找到可用的方案，决定抓包研究下为什么我的账号始终无法登录。&lt;/p>
+&lt;p>通过抓取Alexa登录时发送的数据包，发现他访问了amazon.cn等数个cn域名下的一系列服务，看来这些服务中部分已无法提供正常服务，导致登录一直出现上面的错误。&lt;/p>
+&lt;p>Amazon Alexa作为一个服务全球用户的app，应该是判断手机用户在大陆地区后使用了配置在大陆地区的这些服务。&lt;/p>
+&lt;p>临时解决方案的思路就是设置系统或app，让他无法获取到手机真实所在的地理位置，那么Alexa app会使用默认的全球服务器来请求数据。&lt;/p>
+&lt;p>以下是临时解决方案的步骤，&lt;/p>
+&lt;ol>
+&lt;li>从Play市场安装Alexa app。如果已安装清空app数据。&lt;/li>
+&lt;li>禁用app Location权限(默认就是禁用的)。&lt;/li>
+&lt;li>更改系统语言为英文，设置时区为任意美国时区。&lt;/li>
+&lt;li>拔掉SIM卡，或者禁用所有SIM卡。&lt;/li>
+&lt;/ol>
+&lt;p>打开Alexa app，使用已有或新注册Amazon账号即可登录。&lt;/p></description></item><item><title>文件系统的Inode耗尽，会导致Docker编译镜像出现'No space left on device'错误</title><link>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</link><pubDate>Thu, 21 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</guid><description>
+&lt;p>最近在提交前端代码后，前端代码的自动发布老是失败。失败的原因多是编译Docker镜像时在执行&lt;code>COPY&lt;/code>语句拷贝文件到镜像文件系统时，扔出了'No space left on device'这个错误。这个错误根据描述非常好理解，就是docker文件系统所在磁盘没有了空间。&lt;/p>
+&lt;p>但是通过&lt;code>df -h&lt;/code>命令，该磁盘至少还有3，4个G的剩余空间。而前端镜像的文件大小最多也不超过300M。在该磁盘通过&lt;code>touch&lt;/code>,&lt;code>cp&lt;/code>仍然可以创建文件。&lt;/p>
+&lt;p>所以这个问题非常奇怪，为什么&lt;code>docker&lt;/code>或者&lt;code>操作系统&lt;/code>抱怨磁盘没有了空间？在磁盘仍然剩余数个G的情况下？&lt;/p>
+&lt;!-- more -->
+&lt;p>再通过相关的查找后，docker的这个&lt;a href="https://github.com/docker/docker/issues/18144">issue&lt;/a>给了我启发。Linux文件系统的&lt;code>inode&lt;/code>在耗尽后，该文件系统将不能再创建新文件。因为前端页面是基于&lt;code>nodejs&lt;/code>的程序，它依赖的packages产生了大量文件，在反复制作不同的docker images时，这些依赖文件又被反复复制，导致文件数量远远超过了默认inode和磁盘大小的比例，最终&lt;code>inode&lt;/code>先于磁盘空间被全部使用。&lt;/p>
+&lt;p>遇到类似问题的同学，可以通过&lt;code>df -i&lt;/code>查看&lt;code>inode&lt;/code>的使用情况来排查问题是否由于&lt;code>inode&lt;/code>耗尽导致这个错误。&lt;/p></description></item><item><title>The symptoms of Java broken in Mac OSX 10.10 and fix solution</title><link>https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/</link><pubDate>Mon, 13 Jul 2015 19:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/</guid><description>
+&lt;p>After uninstalling some applications from my Mac OSX, I found the applications that depends on JRE totally does not work. I noticed below symptoms,&lt;/p>
+&lt;ol>
+&lt;li>Eclipse Mars can not be launched, even though I specified the launching vm to another one(`java -version` still work). The SWT native library failed to resolve the dependencies to '/System/Library/Frameworks/JavaVM.framework/Versions/A/JavaVM' which does not exists.&lt;/li>
+&lt;li>I tried to reinstall Oracle 1.8.0_u45 via both brew and dmg image downloaded from Oracle website, both ways were failed as well.&lt;/li>
+&lt;li>The Mac pkg Installer can not be started due to dylib broken. It means I can't install any pkg via GUI. The command line(such as &lt;code>sudo installer -verboseR -target / -pkg /Volumes/OS\ X\ 10.10.4\ Update\ Combo/OSXUpdCombo10.10.4.pkg&lt;/code>) still works.&lt;/li>
+&lt;/ol>
+&lt;p>Finally I realized the problem was caused by I uninstalled the out of date Apple Java 6. Looks like all of above failures are required the system built-in Java. It really does not make sense the Oracle 1.8 installer script to depend on the out of date Java.&lt;/p>
+&lt;p>Finally I reinstalled &lt;a href="https://support.apple.com/kb/DL1572?locale=en_US">Java for OS X 2014-001&lt;/a> to make everything working again. The GUI installer for pkg still does not work, you need use below command to use the pkg.&lt;/p>
+&lt;p>sudo installer -verboseR -target / -pkg /Volumes/Java\ for\ OS\ X\ 2014-001/JavaForOSX.pkg&lt;/p></description></item></channel></rss>

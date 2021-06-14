@@ -1,7 +1,420 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>阿里云 on The Road</title><link>https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link><description>Recent content in 阿里云 on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 26 Jun 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/index.xml" rel="self" type="application/rss+xml"/><item><title>公有云对比</title><link>https://kane.mx/posts/2019/aws-vs-aliyun/</link><pubDate>Wed, 26 Jun 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-vs-aliyun/</guid><description>&lt;p>AWS是全球云计算领域的领跑者，它在计算、存储、网络等方面都做出了很多创新，同时也是其他云计算厂商学习及模仿的对象。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>阿里云 on The road</title><link>https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link><description>Recent content in 阿里云 on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Wed, 26 Jun 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/index.xml" rel="self" type="application/rss+xml"/><item><title>公有云对比</title><link>https://kane.mx/posts/2019/aws-vs-aliyun/</link><pubDate>Wed, 26 Jun 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-vs-aliyun/</guid><description>
+&lt;p>AWS是全球云计算领域的领跑者，它在计算、存储、网络等方面都做出了很多创新，同时也是其他云计算厂商学习及模仿的对象。&lt;/p>
 &lt;p>阿里云是目前国内市场份额最大的云计算厂商，其份额&lt;a href="http://www.sohu.com/a/302064020_465914">超过了第二至五位厂商的总和&lt;/a>，份额领先优势比AWS在全球还要显著，同时&lt;a href="https://www.canalys.com/newsroom/cloud-market-share-q4-2018-and-full-year-2018">全球份额也超过IBM来到第四&lt;/a>。&lt;/p>
-&lt;p>本文将对AWS和阿里云核心服务做一个简要对比，以及这两家厂商发展方向的一些个人见解。&lt;/p></description></item><item><title>基于函数计算的钉钉回调函数接口</title><link>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</link><pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</guid><description>&lt;p>由于企业内部管理的需要，用到了&lt;a href="https://open-doc.dingtalk.com/microapp/serverapi2/lo5n6i">钉钉的业务事件回调&lt;/a>能力，正好将这个轻量级的接口使用&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/">无服务器技术&lt;/a>来实现部署，以应对流量无规律下的动态扩展伸缩、按需使用、按量计费等需求。&lt;/p></description></item><item><title>无服务器计算101</title><link>https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/</link><pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/</guid><description>&lt;p>&lt;a href="https://en.wikipedia.org/wiki/Serverless_computing">Serverless Computing(无服务器计算)&lt;/a>是目前最被看好的云端计算执行模型。其最大的好处是提供分布式弹性可伸缩的计算执行环境，仅为实际使用资源付费，并且将应用维护者从常规的运维事务中解放出来，更利于专注到具体的业务上。&lt;/p>
-&lt;p>在主流的应用部署方式下，无论是使用&lt;a href="https://aws.amazon.com/cn/ec2">云主机&lt;/a>还是&lt;a href="https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/">Kubernetes&lt;/a>作为运行环境，都会有大量运维层面的事务需要考虑和处理，并且应用程序需要按照分布式程序的设计准则来应对应用的水平伸缩。同时随着云计算服务的发展和完善，云计算厂商提供了越来越多的基础服务，例如API网关、对象存储、消息队列、日志、监控等服务，函数计算可以完美的同其他云服务集成，帮助用户快速实现出生产级别的弹性可伸缩的应用。&lt;/p></description></item><item><title>IAM最佳实践</title><link>https://kane.mx/posts/effective-cloud-computing/iam-best-practice/</link><pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/iam-best-practice/</guid><description>&lt;p>企业使用公有云服务的第一件事情就是创建云帐号，有了帐号之后如何让企业员工安全合规的使用云帐号下的各种资源是开启云之旅后的第一个考验。&lt;/p>
-&lt;p>云计算厂商针对企业上云后面临的第一个需求已经推出了完善的解决方案&amp;ndash;&lt;a href="https://en.wikipedia.org/wiki/Identity_management">Identity and Access Management&lt;/a>。&lt;a href="https://en.wikipedia.org/wiki/Identity_management">IAM&lt;/a>可以帮助云帐号安全地控制对云计算服务资源的访问。企业可以使用IAM控制对哪个用户进行身份验证 (登录) 和授权 (具有权限) 以使用资源。&lt;/p>
-&lt;p>云厂商是否提供完善的IAM服务可以作为整体产品解决方案是否成熟的一个衡量指标，比如AWS的&lt;a href="https://docs.aws.amazon.com/zh_cn/IAM/latest/UserGuide/introduction.html">IAM&lt;/a>和阿里云的&lt;a href="https://help.aliyun.com/document_detail/28627.html">访问控制&lt;/a>都是较为成熟完善的产品。国内某个以AI能力为卖点的云厂商，在IAM产品方面几乎为零，很难相信对安全合规有需求的企业会完整使用他的云产品作为解决方案。&lt;/p></description></item><item><title>不要自建Kubernetes</title><link>https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/</link><pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/</guid><description>&lt;p>这是“如何高效使用云服务”系列文章的首篇分享。可能有朋友好奇为什么不是从云计算最基础的服务&amp;ndash;计算资源&lt;a href="https://cn.aliyun.com/product/ecs">ECS&lt;/a>/&lt;a href="https://aws.amazon.com/cn/ec2/">EC2&lt;/a>讲起呢？在&lt;a href="https://pivotal.io/cloud-native">Cloud Native&lt;/a>已经被越来越接受的今天，基于&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>部署、编排应用的方式已经是业界的事实标准。无论是互联网巨头，传统500强企业，还是创业团队都在使用或规划使用&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>作为应用程序的自动化部署、可扩展管理平台。在云计算平台，虚拟机越来越不需要单独的管理，在绝大多数的业务场景下，它们只是作为容器集群所管理的计算资源。甚至虚拟机的创建到销毁整个生命周期管理都可以由&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>根据集群的负载来自动完成。&lt;/p>
-&lt;p>所有主流的云计算厂商都在解决方案中力推托管的&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>，&lt;a href="https://aws.amazon.com/cn/">AWS&lt;/a>的&lt;a href="https://aws.amazon.com/eks">EKS&lt;/a>，&lt;a href="https://azure.microsoft.com/en-us/">Azure&lt;/a>上的&lt;a href="https://azure.microsoft.com/en-us/services/kubernetes-service/">AKS&lt;/a>，当然少不了Google家&lt;a href="https://cloud.google.com/">GCP&lt;/a>上的&lt;a href="https://cloud.google.com/kubernetes-engine/">Kubernetes Engine&lt;/a>。国内&lt;a href="https://www.aliyun.com/product/kubernetes">阿里云&lt;/a>，&lt;a href="https://cloud.tencent.com/product/tke">腾讯云&lt;/a>等每一个公有云玩家也都基于开源&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>推出了托管服务。如果一家云计算厂商在提供托管&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>这一服务上没跟上业界的步伐，将来极大可能被淘汰出这个市场。&lt;/p></description></item><item><title>真的会用云服务吗？</title><link>https://kane.mx/posts/effective-cloud-computing/preface/</link><pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/preface/</guid><description>&lt;p>这是“如何高效使用云服务”系列文章的引子。该系列将讲述如何利用各种公有云服务来安全合规、高质量、快速、低成本的打造产品/系统，帮助企业（特别是中小微创业团队）在人少，钱缺的情况下做到最高效率。&lt;/p></description></item><item><title>说一说阿里云ossfs</title><link>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</link><pubDate>Fri, 26 Feb 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</guid><description>阿里云提供的对象或者文件存储叫OSS，为应用程序提供了海量存储，按需付费等服务。应用程序则需要通过Aliyun OSS的各语言SDK才能操作（</description></item></channel></rss>
+&lt;p>本文将对AWS和阿里云核心服务做一个简要对比，以及这两家厂商发展方向的一些个人见解。&lt;/p>
+&lt;p>云计算，其核心服务就是&lt;strong>计算&lt;/strong>、&lt;strong>存储&lt;/strong>及&lt;strong>网络&lt;/strong>。这些基本能力的稳定性，功能完善性决定了云计算厂商能力的下限。&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-vs-aliyun/core-service.jpg"
+alt="云计算核心服务"/>
+&lt;/figure>
+&lt;p>除了上面提到的三大计算机核心组件能力，下面这些能力也是云计算中非常重要的组成部分，&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-vs-aliyun/critical-capabilities.jpg"
+alt="云计算关键能力"/>
+&lt;/figure>
+&lt;ul>
+&lt;li>按量计费&lt;/li>
+&lt;li>资源编排（也就是平台作为代码）&lt;/li>
+&lt;li>云资源的认证及授权&lt;/li>
+&lt;li>API&lt;/li>
+&lt;/ul>
+&lt;p>基于上面列举的云计算核心服务和关键能力，我们来看看哪些方面是AWS的强项。&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-vs-aliyun/aws-pros.jpg"
+alt="AWS&amp;#39;s Pros"/>
+&lt;/figure>
+&lt;p>AWS作为云计算的领军厂商，在计算、存储、网络这三大核心一直在不停的创新中，且被友商在不停的模仿。计算方面，AWS首先推出了Lambda无服务器计算引擎实现按量使用的全托管服务，生产可用的GPU实例(单虚机可配置最高64块GPU卡，而阿里云默认仅售卖2块GPU卡)，&lt;a href="https://www.infoq.cn/article/2017/11/Nitro-amazon-EC2">基于Nitro架构的EC2实例&lt;/a>为客户送上了升性能降价的好事。&lt;/p>
+&lt;p>S3作为AWS最早推出的云计算服务，仍然在不停的创新演化中。目前S3达到了11个9的持久性，为满足客户不同的存储需要，又推出了S3 Glacier、Glacier Deep Archive等存储方案。持续推出了Amazon Athena, Redshift, S3 select等服务及工具解决海量数据的大数据处理。&lt;/p>
+&lt;p>AWS一直将PAYG(Pay-As-You-Go)的按量计费模型贯穿在各种服务中。无论是EC2(包括GPU实例)，ELB，NAT网关等等都提供小时级的按量计费。阿里云在这方面还有较多的改进空间，例如GPU实例最小售卖时长为一周，SLB首先按规格售卖，NAT网关按自然日计费。&lt;/p>
+&lt;p>IAM为云上的资源提供了最细粒度的授权管理，AWS各个服务严格按最细粒度控制授权，满足企业的权限管理。在我使用过的数个阿里云服务中，多次遇到较新的服务IAM设计不周，权限粒度过大，甚至功能无法工作的情况下就上线发布了。&lt;/p>
+&lt;p>AWS CloudFormation提供了云上资源编排管理，实现了资源的代码化，版本化(通常称为的Infrastrucure as Code)。将云端资源的管理运维提升到一个新的层次。&lt;/p>
+&lt;p>AWS提供了三种方式管理云上资源，Web Console, CLI以及API。这三种方式，尽最大努力提供一致的功能。&lt;/p>
+&lt;p>AWS同时是一个云计算的生态，各类三方云服务厂商通过Marketplace售卖各类SaaS，PaaS服务，形成一个云计算用户，三方服务Vendor，AWS三方共赢的局面。&lt;/p>
+&lt;p>总得说来，AWS持续的在云计算核心服务和关键服务投入，不停的创新，保证了AWS整体服务的领先。&lt;/p>
+&lt;p>接下来看看阿里云的强项。&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-vs-aliyun/aliyun-pros.jpg"
+alt="Aliyun&amp;#39;s Pros"/>
+&lt;/figure>
+&lt;p>阿里云在提供基本的计算、存储、网络外，额外提供了很多SaaS服务，例如，Application Performance Monitor， Performance Testing Service, 日志服务，链路追踪服务，数据库管理服务等。这些服务显然同阿里云有更好的集成，对用户来说提供了开箱即用的解决方案。而这也是一把双刃剑，利用平台捆绑的优势抢占合作开发商的市场，长期来说利用平台垄断不利于基于阿里云的技术服务创业。&lt;/p>
+&lt;p>总之，阿里云在云计算核心服务上同AWS比还有差距，但他在PaaS/SaaS服务上发展不错，更加容易提供全套基于阿里云的解决方案。由于阿里云在国内数据中心数量上的优势加上从万网收购的BGP资源，其服务在国内访问网络延迟会更低。&lt;/p>
+&lt;p>最后，谈一个很有意思的话题，是否需要考虑云厂商的锁定。&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-vs-aliyun/cloud-lock-in-issue.jpg"
+alt="Lock-in"/>
+&lt;/figure>
+&lt;p>Kubernetes事实上成为容器编排平台，首先考虑使用K8S及&lt;a href="https://landscape.cncf.io/">CNCF landscape&lt;/a>下的项目作为应用运行环境，减少可能的迁移和学习成本。&lt;/p>
+&lt;p>对不同用量的公司来说，考虑云厂商锁定的维度完全不一样。创业型公司或仍在快速发展业务中的中大型企业首先应该选择可靠性高，解决方案多，易学习的云厂商，尽可能利用云厂商的各种服务做到快速高效可靠的推进业务，将尽量多的精力、人力投入到业务相关的事情上。业务稳定的大型公司，可以使用多数据中心实现关键业务的高可用性，跨云完全不应该作为高可用的必要解决途径。另外，云厂商绝对会投入额外的人力，优先级支持他们的大客户，甚至为这类客户调整产品研发优先级或协同完成某些功能，这样绝对是个双赢的局面，Netflix和AWS的互相成就就是一个很好的例子。没有特别必要的原因，不要轻易投入精力将业务从服务已经很稳定的云厂商迁移到多云平台上，那样往往是白白耗费力气。&lt;/p>
+&lt;blockquote>
+&lt;p>下面是slide的最新完整版本，&lt;/p>
+&lt;/blockquote>
+&lt;div class="responsive-wrap">
+&lt;iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSaKV41ItphpZVxL371It7WN55FKQqEdXUTjYgFAA2nQ7IT5AbvNaONldvvLtoG87hB8EG1ASbS0HMY/embed?start=false&amp;amp;loop=false&amp;amp;delayms=5000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">&lt;/iframe>
+&lt;/div></description></item><item><title>基于函数计算的钉钉回调函数接口</title><link>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</link><pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</guid><description>
+&lt;p>由于企业内部管理的需要，用到了&lt;a href="https://open-doc.dingtalk.com/microapp/serverapi2/lo5n6i">钉钉的业务事件回调&lt;/a>能力，正好将这个轻量级的接口使用&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/">无服务器技术&lt;/a>来实现部署，以应对流量无规律下的动态扩展伸缩、按需使用、按量计费等需求。&lt;/p>
+&lt;h3 id="阿里云函数计算版本">阿里云函数计算版本&lt;/h3>
+&lt;p>由于公司系统部署在阿里云，首先选择使用&lt;a href="https://www.aliyun.com/product/fc">阿里云函数计算&lt;/a>来实现及部署。该接口使用了JVM上语言Kotlin开发，虽然阿里云函数计算官方支持的&lt;a href="https://help.aliyun.com/document_detail/74712.html">开发语言有Java但没有Kotlin&lt;/a>。其实无论Java或Kotlin最终部署文件都是Java Class字节码，加上Kotlin与Java良好的互操作性，实测函数计算可以完美支持Kotlin开发(个人认为任意JVM上的开发语言都是支持的)。&lt;/p>
+&lt;p>同时该函数使用了&lt;a href="https://www.aliyun.com/product/ots">表格存储&lt;/a>来持久化回调事件。表格存储是个按量计费的分布式存储，有兴趣的可以自行查阅文档了解更多。&lt;/p>
+&lt;p>该函数通过&lt;a href="https://www.aliyun.com/product/apigateway">API网关&lt;/a>和&lt;a href="https://help.aliyun.com/document_detail/100092.html">表格存储触发器&lt;/a>来触发。访问日志和执行日志被存储在&lt;a href="https://www.aliyun.com/product/sls">日志服务&lt;/a>中。&lt;/p>
+&lt;p>函数的本地测试和线上部署，使用了函数计算提供的命令行工具&lt;a href="https://help.aliyun.com/document_detail/64204.html">Fun&lt;/a>。基于&lt;a href="https://github.com/aliyun/fun/blob/master/docs/specs/2018-04-03-zh-cn.md?spm=a2c4g.11186623.2.24.717428femnY0Et&amp;amp;file=2018-04-03-zh-cn.md">Fun定义的阿里云Serverless模型&lt;/a>实现了对函数们使用资源的声明和编排，集成&lt;a href="https://about.gitlab.com/product/continuous-integration/">Gitlab CI&lt;/a>实现了&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aliyunfc/blob/master/.gitlab-ci.yml">函数的CI/CD自动化发布流程&lt;/a>。&lt;/p>
+&lt;p>不涉及公司业务的代码已&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aliyunfc">开源在Github&lt;/a>，有兴趣的可以作为参考。&lt;/p>
+&lt;p>目前&lt;a href="https://help.aliyun.com/document_detail/54301.html">函数计算&lt;/a>和&lt;a href="https://help.aliyun.com/document_detail/52733.html">表格存储&lt;/a>有各自的免费配额，在业务量不大的情况下，该服务完全免费。&lt;/p>
+&lt;h3 id="aws-lambda版本">AWS Lambda版本&lt;/h3>
+&lt;p>&lt;a href="https://aws.amazon.com/lambda/">AWS Lambda&lt;/a>是目前全球使用最为广泛的serverless服务，同时也是函数计算发展方向的引领者。&lt;/p>
+&lt;p>由于一些个人原因，笔者最近接触了部分AWS服务，同时尝试将钉钉回调函数移植到了&lt;a href="https://aws.amazon.com/lambda/">AWS Lambda&lt;/a>上。阿里云上使用的云服务改为由AWS上对应服务来实现，例如存储使用了&lt;a href="https://aws.amazon.com/dynamodb/">DynamoDB&lt;/a>，日志使用&lt;a href="https://aws.amazon.com/cloudwatch/">CloudWatch&lt;/a>收集和查询。&lt;/p>
+&lt;p>本地测试和部署工具，使用的是&lt;a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">SAM CLI&lt;/a>，持续集成和持续部署使用的是&lt;a href="https://aws.amazon.com/codebuild/">AWS CodeBuild&lt;/a>和&lt;a href="https://aws.amazon.com/codepipeline/">AWS CodePipeline&lt;/a>。此外AWS通过&lt;a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation&lt;/a>提供一种非常强大的能力，可以将AWS上的各种资源通过配置声明的方式来管理(也就是现在非常热门的一个概念--&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infrastructure as Code&lt;/a>)。&lt;a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation&lt;/a>会为每次一个或多个资源的变更生成ChangeSet，提供查看对比、版本管理、遇到变更错误整体回退等能力。所以，AWS版本也将该项目的CI/CD部署用到的&lt;a href="https://aws.amazon.com/codebuild/">AWS CodeBuild&lt;/a>、&lt;a href="https://aws.amazon.com/codepipeline/">AWS CodePipeline&lt;/a>、&lt;a href="https://aws.amazon.com/dynamodb/">Amazon DynamoDB&lt;/a>等资源通过CloudFormation的配置管理起来。&lt;/p>
+&lt;p>配置代码段如下，
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="hl">&lt;span class="lnt">56
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">57
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">58
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">59
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">60
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">61
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">62
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">63
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">64
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">65
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">66
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">67
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">68
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">69
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">70
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">71
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">72
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">73
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">74
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">75
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">76
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">77
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">78
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">79
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">80
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">81
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">82
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">83
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">84
+&lt;/span>&lt;/span>&lt;span class="lnt">85
+&lt;/span>&lt;span class="lnt">86
+&lt;/span>&lt;span class="lnt">87
+&lt;/span>&lt;span class="lnt">88
+&lt;/span>&lt;span class="lnt">89
+&lt;/span>&lt;span class="lnt">90
+&lt;/span>&lt;span class="lnt">91
+&lt;/span>&lt;span class="lnt">92
+&lt;/span>&lt;span class="lnt">93
+&lt;/span>&lt;span class="lnt">94
+&lt;/span>&lt;span class="lnt">95
+&lt;/span>&lt;span class="lnt">96
+&lt;/span>&lt;span class="lnt">97
+&lt;/span>&lt;span class="lnt">98
+&lt;/span>&lt;span class="lnt">99
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Create a CodePipeline to include Github source, CodeBuild and Lambda deployment.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">Parameters&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">AppBaseName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">String&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">App base name&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Default&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">dingtalk-callback&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ArtifactStoreS3Location&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">String&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Name of the S3 bucket to store CodePipeline artificat.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">BranchName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub branch name&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">String&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Default&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">master&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">RepositoryName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub repository name&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">String&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Default&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">dingtalk-callback-on-aws&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">GitHubOAuthToken&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">String&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">NoEcho&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">Resources&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">BuildDingtalkProject&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">AWS::CodeBuild::Project&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Properties&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}-build-${AWS::StackName}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Build, test, package dingtalk callback project&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ServiceRole&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::GetAtt&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">CodeBuildRole, Arn ]&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Artifacts&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">S3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Location&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Ref&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ArtifactStoreS3Location&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}-build-${AWS::StackName}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">NamespaceType&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">BUILD_ID&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}/artifacts&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Packaging&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">NONE&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">OverrideArtifactName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">EncryptionDisabled&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Environment&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">LINUX_CONTAINER&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ComputeType&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">BUILD_GENERAL1_SMALL&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">aws/codebuild/java:openjdk-11&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">PrivilegedMode&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ImagePullCredentialsType&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">CODEBUILD&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">EnvironmentVariables&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">s3_bucket&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Value&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Ref&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ArtifactStoreS3Location&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Source&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">DingtalkCallbackPipeline&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;AWS::CodePipeline::Pipeline&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Properties&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}-pipeline-${AWS::StackName}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">RoleArn&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::GetAtt&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">CodePipelineRole, Arn ]&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Stages&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Source&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Actions&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">SourceAction&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">ActionTypeId&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Category&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Source&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Owner&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ThirdParty&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Provider&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">OutputArtifacts&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}-source-changed&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Configuration&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Owner&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>!&lt;span class="l">Ref GitHubOwner&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Repo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>!&lt;span class="l">Ref RepositoryName&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Branch&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>!&lt;span class="l">Ref BranchName&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">OAuthToken&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>!&lt;span class="l">Ref GitHubOAuthToken&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">PollForSourceChanges&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">RunOrder&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Build&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Actions&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Build_Test_Package&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">InputArtifacts&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}-source-changed&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ActionTypeId&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Category&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Build&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Owner&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">AWS&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Provider&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">CodeBuild&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">OutputArtifacts&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}-packaged-yml&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Configuration&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ProjectName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Ref&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">BuildDingtalkProject&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">RunOrder&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/p>
+&lt;p>AWS版本完整的代码、CloudFormation配置以及部署文档可以通过&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aws">这里&lt;/a>查看。&lt;/p></description></item><item><title>无服务器计算101</title><link>https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/</link><pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/</guid><description>
+&lt;p>&lt;a href="https://en.wikipedia.org/wiki/Serverless_computing">Serverless Computing(无服务器计算)&lt;/a>是目前最被看好的云端计算执行模型。其最大的好处是提供分布式弹性可伸缩的计算执行环境，仅为实际使用资源付费，并且将应用维护者从常规的运维事务中解放出来，更利于专注到具体的业务上。&lt;/p>
+&lt;p>在主流的应用部署方式下，无论是使用&lt;a href="https://aws.amazon.com/cn/ec2">云主机&lt;/a>还是&lt;a href="https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/">Kubernetes&lt;/a>作为运行环境，都会有大量运维层面的事务需要考虑和处理，并且应用程序需要按照分布式程序的设计准则来应对应用的水平伸缩。同时随着云计算服务的发展和完善，云计算厂商提供了越来越多的基础服务，例如API网关、对象存储、消息队列、日志、监控等服务，函数计算可以完美的同其他云服务集成，帮助用户快速实现出生产级别的弹性可伸缩的应用。&lt;/p>
+&lt;p>那&lt;a href="https://en.wikipedia.org/wiki/Serverless_computing">函数计算&lt;/a>是什么呢？让我们一起来看看&lt;a href="https://help.aliyun.com/document_detail/52895.html">阿里云对于函数计算的定义&lt;/a>。&lt;/p>
+&lt;blockquote>
+&lt;p>阿里云函数计算是事件驱动的全托管计算服务。通过函数计算，您无需管理服务器等基础设施，只需编写代码并上传。函数计算会为您准备好计算资源，以弹性、可靠的方式运行您的代码，并提供日志查询、性能监控、报警等功能。借助于函数计算，您可以快速构建任何类型的应用和服务，无需管理和运维。而且，您只需要为代码实际运行所消耗的资源付费，代码未运行则不产生费用。&lt;/p>
+&lt;/blockquote>
+&lt;p>基于函数计算的特点，可以很好满足以下需求，&lt;/p>
+&lt;ul>
+&lt;li>业务流量不确定或有明细的周期性&lt;/li>
+&lt;li>构建分布式系统经验不足&lt;/li>
+&lt;li>无需运维&lt;/li>
+&lt;li>按需计算&lt;/li>
+&lt;li>计费灵活&lt;/li>
+&lt;/ul>
+&lt;p>由于函数计算的扩展能力，对运维的要求极少，按量计费等特性用于需要快速验证的早期项目也是非常好的场景。&lt;/p>
+&lt;p>下面这个slide是近期针对阿里云函数计算做的分享。&lt;/p>
+&lt;div class="responsive-wrap">
+&lt;iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQpucN0Imyd1rram7bmQJzO5lRwRrph5KDL18swF_MuKiUFm4_H2Hg8cpUnP_83yqleJnSXYtE9gvUv/embed?start=false&amp;amp;loop=false&amp;amp;delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">&lt;/iframe>
+&lt;/div></description></item><item><title>IAM最佳实践</title><link>https://kane.mx/posts/effective-cloud-computing/iam-best-practice/</link><pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/iam-best-practice/</guid><description>
+&lt;p>企业使用公有云服务的第一件事情就是创建云帐号，有了帐号之后如何让企业员工安全合规的使用云帐号下的各种资源是开启云之旅后的第一个考验。&lt;/p>
+&lt;p>云计算厂商针对企业上云后面临的第一个需求已经推出了完善的解决方案--&lt;a href="https://en.wikipedia.org/wiki/Identity_management">Identity and Access Management&lt;/a>。&lt;a href="https://en.wikipedia.org/wiki/Identity_management">IAM&lt;/a>可以帮助云帐号安全地控制对云计算服务资源的访问。企业可以使用IAM控制对哪个用户进行身份验证 (登录) 和授权 (具有权限) 以使用资源。&lt;/p>
+&lt;p>云厂商是否提供完善的IAM服务可以作为整体产品解决方案是否成熟的一个衡量指标，比如AWS的&lt;a href="https://docs.aws.amazon.com/zh_cn/IAM/latest/UserGuide/introduction.html">IAM&lt;/a>和阿里云的&lt;a href="https://help.aliyun.com/document_detail/28627.html">访问控制&lt;/a>都是较为成熟完善的产品。国内某个以AI能力为卖点的云厂商，在IAM产品方面几乎为零，很难相信对安全合规有需求的企业会完整使用他的云产品作为解决方案。&lt;/p>
+&lt;p>&lt;a href="https://en.wikipedia.org/wiki/Identity_management">IAM&lt;/a>通常提供以下功能:&lt;/p>
+&lt;h3 id="对云账户的共享访问权限">对云账户的共享访问权限&lt;/h3>
+&lt;p>允许在一个云账户下创建并管理多个用户身份，并允许给单个身份或一组身份（既可以是当前云帐号下也可以是其他云帐号下）分配不同的权限策略，从而实现不同用户拥有不同的云资源访问权限，而不必共享云帐号根用户的密码或访问密钥。&lt;/p>
+&lt;h3 id="精细权限">精细权限&lt;/h3>
+&lt;p>可以针对不同资源向不同人员授予不同权限。可以要求用户必须使用安全信道（如 SSL）、在指定时间范围、或在指定源 IP 条件下才能操作指定的云资源。&lt;/p>
+&lt;h3 id="多重验证-mfa">多重验证 (MFA)&lt;/h3>
+&lt;p>可以向云账户和各个用户添加双重身份验证以实现更高安全性。借助&lt;a href="https://en.wikipedia.org/wiki/Multi-factor_authentication">MFA&lt;/a>，用户不仅必须提供使用账户所需的密码或访问密钥，还必须提供来自经过特殊配置的设备的代码。&lt;/p>
+&lt;h3 id="联合身份">联合身份&lt;/h3>
+&lt;p>可以允许已在其他位置（例如，在企业网络中或通过 Internet 身份提供商）获得密码的用户获取对云账户的用户访问权限。&lt;/p>
+&lt;p>后面会有专门的文章来讲如何实践联合身份。&lt;/p>
+&lt;h3 id="统一账单">统一账单&lt;/h3>
+&lt;p>云账户接收包括所有用户的资源操作所发生费用的统一账单。&lt;/p>
+&lt;blockquote>
+&lt;p>尽管&lt;a href="https://en.wikipedia.org/wiki/Identity_management">IAM&lt;/a>提供了上面种种功能，云帐号的管理者仍可通过一些最佳实践来更好的使用IAM产品来提升安全级别和减少运维成本。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="iam最佳实践">IAM最佳实践&lt;/h2>
+&lt;ul>
+&lt;li>尽量不要使用云帐号的根用户，&lt;strong>不要为根用户创建AK&lt;/strong>。云帐号管理员也使用各自独立的子账号。&lt;/li>
+&lt;li>&lt;strong>为企业中每一个需要使用云服务的员工单独创建子账户，且默认不允许创建AK&lt;/strong>。便于员工离职的时候，通过删除帐号来完全清理用户在云计算平台的各种权限。&lt;/li>
+&lt;li>密码安全实践，
+&lt;ul>
+&lt;li>限制密码强度&lt;strong>不少于8位&lt;/strong>，必须&lt;strong>由大小写字母、数字和符号中的三种组成&lt;/strong>。&lt;/li>
+&lt;li>强制密码&lt;strong>过期时间不超过90天&lt;/strong>，且过期后不可登录。&lt;/li>
+&lt;li>新密码至少&lt;strong>禁止使用前3次密码&lt;/strong>。&lt;/li>
+&lt;li>设置密码重试约束，例如，&lt;strong>一小时内使用错误密码最大尝试9次登录&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>强制所有用户启用&lt;a href="https://en.wikipedia.org/wiki/Multi-factor_authentication">两步认证&lt;/a>。&lt;/li>
+&lt;li>对访问网络有限制的企业，可以开启登录IP限制。&lt;/li>
+&lt;li>[&lt;strong>推荐做法&lt;/strong>]已有SSO单点登录系统的企业，可以通过&lt;a href="https://en.wikipedia.org/wiki/SAML_2.0">SAML 2.0标准&lt;/a>实现从企业本地账号系统登录到阿里云，从而满足企业的统一用户登录认证要求。&lt;/li>
+&lt;li>细粒度的权限管理，
+&lt;ul>
+&lt;li>&lt;strong>为各种云资源创建最细粒度的权限策略&lt;/strong>。例如，分别为RDS实例&lt;code>rds-instance-1&lt;/code>创建只读权限策略&lt;code>rds-instance-1-readonly-access&lt;/code>，RDS实例&lt;code>rds-instance-2&lt;/code>创建只读权限策略&lt;code>rds-instance-2-readonly-access&lt;/code>。&lt;/li>
+&lt;li>&lt;strong>根据职能、部门等维度为云帐号子用户创建用户组&lt;/strong>。例如，按项目创建用户组，&lt;code>group-project-a&lt;/code>，&lt;code>group-project-b&lt;/code>。如果&lt;code>project-a&lt;/code>用户需要访问&lt;code>rds-instance-1&lt;/code>的信息，将自定义权限&lt;code>rds-instance-1-readonly-access&lt;/code>授权给&lt;code>group-project-a&lt;/code>。再将相关用户加到用户组&lt;code>group-project-a&lt;/code>中，这样这些用户就具有只读访问RDS实例&lt;code>rds-instance-1&lt;/code>的权限。而不是将所有RDS的读写权限都授予这些用户，&lt;strong>最大限度的保证用户不获取超过实际需要的权限&lt;/strong>。&lt;/li>
+&lt;li>在实际场景中，通常会通过云计算服务的API来完成某些周期性任务，比如每日RDS中的慢查询统计、云帐号每日花费统计等。这些任务都需要一个云帐号的AK来完成API的身份认证。最佳的做法是，&lt;strong>为每类相关的任务创建一个&lt;code>功能性子账号&lt;/code>&lt;/strong>，禁用他们的web登录，且遵循特殊的命名规范(&lt;code>functional-&lt;/code>开头)，比如&lt;code>functional-rds-stats&lt;/code>、&lt;code>functional-cost-stats&lt;/code>。创建最小的权限策略，然后分配给这些功能性用户。例如，&lt;code>functional-rds-stats&lt;/code>仅被授予RDS只读权限，&lt;code>functional-cost-stats&lt;/code>仅被授予费用的只读权限。为这些子账号创建AK，每类任务使用不同的AK来完成API认证，而不是都使用同一个AK。这样的好处是，不同类型任务的AK具有不同的权限，最大限度的保护了云帐号的安全，并且这些AK不跟实际的员工子账号关联，不会因为员工帐号的变更而受影响。如有更高的安全合规的要求下，可以定期作废已有AK，创建新AK替换。至于AK怎样安全管理，之后会有专门的文章来详解。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>不要自建Kubernetes</title><link>https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/</link><pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/</guid><description>
+&lt;p>这是“如何高效使用云服务”系列文章的首篇分享。可能有朋友好奇为什么不是从云计算最基础的服务--计算资源&lt;a href="https://cn.aliyun.com/product/ecs">ECS&lt;/a>/&lt;a href="https://aws.amazon.com/cn/ec2/">EC2&lt;/a>讲起呢？在&lt;a href="https://pivotal.io/cloud-native">Cloud Native&lt;/a>已经被越来越接受的今天，基于&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>部署、编排应用的方式已经是业界的事实标准。无论是互联网巨头，传统500强企业，还是创业团队都在使用或规划使用&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>作为应用程序的自动化部署、可扩展管理平台。在云计算平台，虚拟机越来越不需要单独的管理，在绝大多数的业务场景下，它们只是作为容器集群所管理的计算资源。甚至虚拟机的创建到销毁整个生命周期管理都可以由&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>根据集群的负载来自动完成。&lt;/p>
+&lt;p>所有主流的云计算厂商都在解决方案中力推托管的&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>，&lt;a href="https://aws.amazon.com/cn/">AWS&lt;/a>的&lt;a href="https://aws.amazon.com/eks">EKS&lt;/a>，&lt;a href="https://azure.microsoft.com/en-us/">Azure&lt;/a>上的&lt;a href="https://azure.microsoft.com/en-us/services/kubernetes-service/">AKS&lt;/a>，当然少不了Google家&lt;a href="https://cloud.google.com/">GCP&lt;/a>上的&lt;a href="https://cloud.google.com/kubernetes-engine/">Kubernetes Engine&lt;/a>。国内&lt;a href="https://www.aliyun.com/product/kubernetes">阿里云&lt;/a>，&lt;a href="https://cloud.tencent.com/product/tke">腾讯云&lt;/a>等每一个公有云玩家也都基于开源&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>推出了托管服务。如果一家云计算厂商在提供托管&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>这一服务上没跟上业界的步伐，将来极大可能被淘汰出这个市场。&lt;/p>
+&lt;h2 id="托管的kubernetes类型">托管的Kubernetes类型&lt;/h2>
+&lt;p>以国内的阿里云为例，目前提供了两大类三种不同的&lt;a href="https://help.aliyun.com/document_detail/86737.html">Kubernetes托管服务&lt;/a>。&lt;/p>
+&lt;ul>
+&lt;li>经典Dedicated Kubernetes模式。这种模式下用户可以选择宿主机实例规格和操作系统，指定Kubernetes版本、自定义Kubernetes特性开关设置等。用户需要手动维护集群，例如升级Kubernetes版本，内置组件版本等。可以手动或自动伸缩集群节点数目。目前该模式下有两种类型，第一种集群主节点需要使用用户的ECS，用户可远程登录或管理这些ECS。另一种是，主节点也由云厂商托管，用户只能通过API Server管理Kubernetes。在费用方面，无论是否托管集群主节点，集群服务免费，按使用的ECS实例及计费方式收费。&lt;/li>
+&lt;li>Serverless 模式(目前公测中，暂时免费)。无需创建底层虚拟化资源，可以利用 Kubernetes 命令指明应用容器镜像、CPU和内存要求以及对外服务方式，直接启动应用程序。按容器使用的CPU和内存资源量计费。这种模式下应该是在一个集群内实现多租户，目前有些&lt;a href="https://help.aliyun.com/document_detail/86371.html">features不被支持&lt;/a>。例如，部署不支持DaemonSet，Ingress不支持NodePort类型，存储不支持PV和PVC等。&lt;/li>
+&lt;/ul>
+&lt;p>用户可以根据自己的业务类型来选择适合的托管Kubernetes集群。如果部署的应用是&lt;a href="https://kubernetes.io/docs/tutorials/stateless-application/">无状态的Web服务&lt;/a>，可以选择Serverless Kubernetes集群，进一步减少运维工作量。&lt;/p>
+&lt;p>如果用户部署的应用有状态，需要挂载外部存储，例如MongDB集群，MQ集群，可以选择经典Dedicated Kubernetes模式。如果用户需要通过Kubernetes组件扩展或自定义实现某些功能，这些需求云厂商的标准版并没有提供，这时可以选择经典Dedicated Kubernetes模式，利用Kubernetes高度灵活的扩展机制来满足自定义需求。&lt;/p>
+&lt;h2 id="托管kuberentes的优势">托管Kuberentes的优势&lt;/h2>
+&lt;p>国内的阿里云有篇技术文档对比&lt;a href="https://help.aliyun.com/document_detail/69575.html">阿里云Kubernetes vs. 自建Kubernetes&lt;/a>，文章看起来虽然有厂商自卖自夸的嫌疑。作为&lt;a href="https://www.aliyun.com/product/kubernetes">阿里云K8S&lt;/a>的客户，在使用托管K8S近一年来，深切的体会到云厂商托管K8S带来的种种好处，文档中提到的种种优势确实是言之凿凿。&lt;/p>
+&lt;p>接下来具体看看云厂商托管K8S到底有哪些优势。&lt;/p>
+&lt;h3 id="便捷">便捷&lt;/h3>
+&lt;ul>
+&lt;li>通过Web界面/API一键创建Kubernetes集群，集群升级。&lt;/li>
+&lt;li>Web界面/API实现集群的扩容或缩容。&lt;/li>
+&lt;/ul>
+&lt;p>集群的安装，补丁以及常规版本升级在运维工作中属于体力活。在规模不大的时候，使用人工实现需要花费不少时间准备环境测试验证，且易错。如果集群体量不够大的话，开发自动化运维脚本又浪费人力成本。云计算厂商的托管K8S集群将提供专业、稳定的技术运维服务，和几乎为零的人力成本。&lt;/p>
+&lt;p>从效率和人力成本上看，&lt;strong>托管K8S集群完胜自建Kubernetes集群&lt;/strong>。&lt;/p>
+&lt;h3 id="功能更强大">功能更强大&lt;/h3>
+&lt;p>&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>作为一个容器编排系统，开源版本中许多组件没有默认实现或实现有限，需要跟运行环境(如托管K8S的云平台)集成。例如，存储，Load Balancer，网络等核心组件。官方文档&lt;a href="https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer">Internal load balancer&lt;/a>就提供了在不同的云厂商环境中的使用示例。部署一个强大且完整的K8S集群需要同许多云计算的基础组件集成(且只能通过API完成)，这往往是云计算厂商的强项。&lt;/p>
+&lt;p>云厂商托管的K8S可以在以下方面提供强大的云计算平台支持，&lt;/p>
+&lt;h4 id="网络">网络&lt;/h4>
+&lt;ul>
+&lt;li>高性能 VPC 网络插件。&lt;/li>
+&lt;li>支持 network policy 和流控。&lt;/li>
+&lt;/ul>
+&lt;h4 id="负载均衡">负载均衡&lt;/h4>
+&lt;p>支持创建公网或内网负载均衡实例，或者复用已有实例。支持指定带宽大小、计费方式、4层或7层协议代理等云厂商负载均衡功能。对应用运维来说可以把负载均衡的配置通过代码实现，并且支持版本控制。对比传统的云端部署，也可以将应用部署和应用运维集成在一起统一管理，避免应用发布和运维配置的割裂，减少人为运维失误。&lt;/p>
+&lt;p>阿里云托管K8S的负载均衡详细配置可以参考这个&lt;a href="https://help.aliyun.com/document_detail/53759.html?spm=a2c4g.11186623.2.15.73364c07mR8rhS#h2-url-4">文档&lt;/a>，AWS上见此&lt;a href="https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html">文档&lt;/a>。&lt;/p>
+&lt;h4 id="存储">存储&lt;/h4>
+&lt;p>集成了云厂商的云盘、文件存储NAS、块存储等存储方案，基于标准的&lt;a href="https://github.com/kubernetes/community/blob/master/contributors/devel/flexvolume.md">FlexVolume&lt;/a>驱动，提供了最佳的无缝集成。&lt;/p>
+&lt;p>如果是在云厂商的虚拟机上自建&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>集群，默认无法使用云上的存储资源。如果需要利用云厂商提供的存储方案，例如对象存储，就需要自行开发基于&lt;a href="https://github.com/kubernetes/community/blob/master/contributors/devel/flexvolume.md">FlexVolume&lt;/a>的驱动。在厂商托管K8S已经完美解决了存储集成的问题，何必自己又去费时费力的定制开发呢？&lt;/p>
+&lt;p>可以看到，云厂商托管的K8S集群在网络、负载均衡和存储上有许多天然的优势。在其他几个维度，托管的K8S集群同样也优于自建的K8S，&lt;/p>
+&lt;h4 id="运维">运维&lt;/h4>
+&lt;ul>
+&lt;li>集成厂商的日志服务，监控服务。&lt;/li>
+&lt;li>K8S集群cluster autoscaler自动利用云厂商的弹性伸缩扩缩容集群节点。&lt;/li>
+&lt;/ul>
+&lt;h4 id="镜像仓库">镜像仓库&lt;/h4>
+&lt;ul>
+&lt;li>高可用，支持大并发。&lt;/li>
+&lt;li>支持镜像加速。&lt;/li>
+&lt;li>支持 p2p 分发。&lt;/li>
+&lt;li>可集成云平台的用户权限。&lt;/li>
+&lt;li>部分厂商目前免费且不限容量。&lt;/li>
+&lt;/ul>
+&lt;h4 id="高可用">高可用&lt;/h4>
+&lt;ul>
+&lt;li>提供多可用区支持。&lt;/li>
+&lt;li>支持备份和容灾。&lt;/li>
+&lt;/ul>
+&lt;h4 id="技术支持">技术支持&lt;/h4>
+&lt;ul>
+&lt;li>专门的技术团队保障容器的稳定性。&lt;/li>
+&lt;li>每个 Linux 版本，每个 Kubernetes 版本都会在经过严格测试之后之后才会提供给用户。&lt;/li>
+&lt;li>提供 Kubernetes 升级能力，新版本一键升级。&lt;/li>
+&lt;li>为开源软件提供兜底，无论是K8S、Docker甚至Linux自身的问题提供支持。&lt;/li>
+&lt;/ul>
+&lt;p>专业的技术团队是提供稳定K8S服务必不可少的。但绝大多数企业是无法做到有专业的技术团队来维护K8S、提供K8S或容器技术自身的各种最佳实践、发现以及修复开源软件Bug。&lt;/p>
+&lt;p>在笔者的使用托管K8S的时候就遇到这样的状况。其中一个集群升级到新版本&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>后，内置DNS组件从&lt;a href="https://github.com/kubernetes/dns">KubeDNS&lt;/a>被替换为全新的&lt;a href="https://coredns.io/">CoreDNS&lt;/a>，而当时的&lt;a href="https://coredns.io/">CoreDNS&lt;/a>版本在&lt;a href="https://kubernetes.io/docs/concepts/services-networking/service/#externalname">Service ExternalName&lt;/a>支持上有Bug，导致已有的这种Service无法提供服务。在同云厂商的技术团队沟通后，先用workaround将问题快速绕过，不影响业务的使用。同时，云厂商的技术人员（也是K8S社区committer）继续调研，发现该问题是&lt;a href="https://coredns.io/">CoreDNS&lt;/a>的Bug。在为开源&lt;a href="https://coredns.io/">CoreDNS&lt;/a>项目创建Issue后，同时提供Patch，又在CoreDNS committer建议下完善了测试用例，推动了该问题快速在CoreDNS中被修复。CoreDNS包含Fix的版本发布后，云厂商技术支持团队将更完美的解决方案提供给了我们。作为K8S服务的用户，这种体验是极好的。当时我们的技术团队既没有精力也没有能力快速发现并修复开源软件中的这类问题，而云厂商的服务间接帮我们实现了这种能力。&lt;/p>
+&lt;p>&lt;strong>这其实是一种非常好的共赢商业模式，云厂商有能力且有动力投入顶尖技术团队将开源技术商业化，云厂商的用户则用最小的代价获得了最优的基础服务来为核心业务赋能。&lt;/strong>&lt;/p></description></item><item><title>真的会用云服务吗？</title><link>https://kane.mx/posts/effective-cloud-computing/preface/</link><pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/preface/</guid><description>
+&lt;p>这是“如何高效使用云服务”系列文章的引子。该系列将讲述如何利用各种公有云服务来安全合规、高质量、快速、低成本的打造产品/系统，帮助企业（特别是中小微创业团队）在人少，钱缺的情况下做到最高效率。&lt;/p>
+&lt;h2 id="个人使用公有云服务的经历">个人使用公有云服务的经历&lt;/h2>
+&lt;h3 id="初会">初会&lt;/h3>
+&lt;p>最早是2012年在parttime项目中开始接触使用云计算服务，当时的初创团队也是希望用最低的成本来验证idea，所有使用了云服务来做POC。目前国内市场最领先的云计算厂商&lt;a href="https://baike.baidu.com/item/%E9%98%BF%E9%87%8C%E4%BA%91#4">阿里云那时也才提供公有云服务不到1年&lt;/a>。由于云产品不够成熟，加上团队技能经验不足，自助互助的渠道不畅，导致最初的云计算使用体验并不好，团队没有选择完全使用云服务构建产品。&lt;/p>
+&lt;h3 id="iaas-or-paas">IaaS or PaaS&lt;/h3>
+&lt;p>云计算兴起的早期，云厂商大致分为两类，提供基于&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_a_service">IaaS&lt;/a>或&lt;a href="https://en.wikipedia.org/wiki/Platform_as_a_service">PaaS&lt;/a>的云服务。2013年起也有尝试不同类型的厂商平台，虽然也较好的完成一些体量不大的项目，但要在他们上面构建大规模用户产品或企业级应用，在云产品完善度上或支持开发团队协作上都有不少欠缺，还有大量的基础工作或限制留给了开发团队自身解决。&lt;/p>
+&lt;h3 id="all-in-cloud">All-in Cloud&lt;/h3>
+&lt;p>2015年我开始一个微电影项目创业，团队是不到10人的微型团队。从效率和成本考虑，我们将所有的服务都放到了阿里云上。我们使用了多种云产品，例如，云主机（多种OS），对象存储，图片处理，CDN，SLB，人脸识别等云服务，结合&lt;a href="https://en.wikipedia.org/wiki/DevOps">Devops&lt;/a>集成开发，测试，部署pipeline来加速产品的迭代和更新。每名工程师承担一种以上角色，前端，后端，运维，数据，视频渲染等。合理使用云厂商的各种产品帮我们在质量，效率，成本上获得巨大的收益。&lt;/p>
+&lt;p>2017年我加入了一家企业财税服务的初创公司负责技术团队。公司在2018年获得了B轮投资，研发产品运营团队近百人，属于中等规模。随着各种开源技术的巨大进步和影响逐步扩大，&lt;a href="https://en.wikipedia.org/wiki/Microservices">微服务&lt;/a>架构的流行，基于&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a>的&lt;a href="https://www.cncf.io/">Cloud Native Computing&lt;/a>兴起。我们利用云厂商的容器服务，&lt;a href="https://en.wikipedia.org/wiki/Cloud_database">DBaaS&lt;/a>，Big Data，AI技术等用最高效的方式将数个单体应用平滑升级到高可用弹性的分布式架构，更好的满足复杂业务的多变需求，公司服务也在全国300多个城市落地，服务了数十万中小微企业客户。同时利用云厂商的VPC，访问控制，WAF等产品进行权限控制和安全保护，有效防范了因为团队扩大管理难度增加而出现安全问题。&lt;/p>
+&lt;h2 id="缘起">缘起&lt;/h2>
+&lt;p>作为一名云计算服务6年的用户，见证了开源技术的快速发展和影响力急剧扩大，感受到整个云计算行业和厂商的长足进步。见证了国内头部云厂商从最初的使用难度颇大，现在成长为万众创业的首选服务商。&lt;/p>
+&lt;p>过去的一年参加了数场技术会议，其中主题大多偏向于由知名的互联网或行业公司分享在海量数据下的技术应用。这些技术广泛涉及开发语言、应用架构、性能、大数据、机器学习和人工智能等领域，无论这些公司是否采用开源产品，在团队单兵技术能力，专业的分工，对开源项目的研发投入力量，这些经验和方法并不是中小企业可以轻易借鉴的。而云计算厂商将这些领域最基础通用的能力以产品的方式输出给用户，以按用量的方式计费，使用更简单，有专业团队维护和支持。中小团队就应该将这些事情“外包”给云厂商，集中精力到业务上，将最大的研发资源用到最核心最关键的地方。&lt;/p>
+&lt;p>我同团队同事沟通中，和公司研发候选人面试交流中，发现许多从业者对云计算服务了解还不够深入。许多人理解中的云计算服务只有云服务器、云数据库等少数产品，需要自己安装维护应用服务器、负载均衡、收集日志等等看起来每个应用都绕不开的事情。他们的认知还停留在排查应用异常还需要远程登录服务器看日志，做不到合理的根据场景高效组合使用云服务，将云服务当做水电一样，作为最基础的能力加速业务的发展。业务上是采用名气大且成熟的产品，尝试新鲜看起来酷但不那么完善的产品，还是二次开发或自研开发？要做出最优的选择需要工程师能够从有高度的全局角度来考量，甚至在短时间内能用POC项目验证多个可选的方案，基于数据做出最终的选择。&lt;/p>
+&lt;p>这就是这个系列的缘起，之后我将陆续分享使用那些高效的云服务产品的场景、心得、体会等等。&lt;/p>
+&lt;blockquote>
+&lt;p>封面图片&lt;a href="http://www.thebluediamondgallery.com/tablet/c/cloud-computing.html">Cloud Computing&lt;/a>引用自&lt;a href="http://www.thebluediamondgallery.com/">The Blue Diamond Gallery&lt;/a> under &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title>说一说阿里云ossfs</title><link>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</link><pubDate>Fri, 26 Feb 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</guid><description>
+&lt;p>阿里云提供的对象或者文件存储叫&lt;a href="https://www.aliyun.com/product/oss">OSS&lt;/a>，为应用程序提供了海量存储，按需付费等服务。应用程序则需要通过&lt;a href="https://www.aliyun.com/product/oss">Aliyun OSS&lt;/a>的各语言SDK才能操作（读，写，遍历等）OSS中的文件。&lt;/p>
+&lt;p>对运维人员来说，做一些数据维护工作的时候，通过SDK操作&lt;a href="https://www.aliyun.com/product/oss">OSS&lt;/a>中的文件就会比较麻烦。在linux/unix环境下，通常有一些工具把远程文件系统或云盘挂载为本地文件。在网络状况比较好的情况下，操作远程文件就像操作本地文件一样。例如，把&lt;a href="https://github.com/s3fs-fuse/s3fs-fuse">Amazon S3&lt;/a>，&lt;a href="https://github.com/joe42/CloudFusion">Dropbox云盘&lt;/a>，&lt;a href="https://github.com/libfuse/sshfs">可通过ssh登录的远程服务器上的磁盘&lt;/a>挂载为本地文件系统。&lt;/p>
+&lt;p>之前也有第三方公司开发的工具把&lt;a href="https://www.aliyun.com/product/oss">OSS bucket&lt;/a>挂载为本地磁盘。出于安全考虑一直为敢使用。&lt;/p>
+&lt;p>终于，阿里云推出了官方开源版本的&lt;a href="https://github.com/aliyun/ossfs">ossfs&lt;/a>，并且提供技术支持（通过工单）。&lt;/p>
+&lt;p>接下来，聊聊我的使用体会。&lt;/p>
+&lt;!-- more -->
+&lt;ul>
+&lt;li>安装，配置都还简单。&lt;/li>
+&lt;li>文档看起来比较详细，但实际操作起来有些就不对。感觉写文档的人，并没有在相应环境上测试过。&lt;/li>
+&lt;li>权限设计的一塌糊涂。&lt;a href="https://github.com/aliyun/ossfs">ossfs&lt;/a>基于&lt;a href="https://en.wikipedia.org/wiki/Filesystem_in_Userspace">FUSE&lt;/a>，理当允许非root挂载或卸载OSS bucket。非root用户使用&lt;a href="https://github.com/aliyun/ossfs">ossfs&lt;/a>挂载的文件默认的owner都是&lt;strong>root&lt;/strong>! 还好目前有workaround，挂载的时候指定参数，&lt;code>-ouid=your_uid -ogid=your_gid&lt;/code>来指定文件的owner。&lt;/li>
+&lt;li>性能极其低下！！！一台ECS主机挂载了一个使用内网地址的oss bucket，bucket根下面有2k+子目录（对文件系统而言）,bucket内文件总计有28G。然而执行&lt;code>ls /tmp/&amp;lt;bucket mount point&amp;gt;&lt;/code>超过10分钟都无法完成。而我们&lt;a href="https://vme360.com">V秘&lt;/a>之前用Java实现的&lt;a href="https://github.com/videome/AliyunOSSFS">AliyunOSSFS&lt;/a>执行同样的操作只需要数秒。&lt;/li>
+&lt;li>阿里云相关的技术支持人员及其不专业。很多文件系统，&lt;a href="https://en.wikipedia.org/wiki/Filesystem_in_Userspace">FUSE&lt;/a>等概念都不甚了解。跟他们沟通这些技术问题，首先要花时间进行教育。花费大量时间来沟通，进展确缓慢。&lt;/li>
+&lt;/ul>
+&lt;h2 id="总之阿里云ossfshttpsgithubcomaliyunossfs这个工具远远没有达到production-ready的质量无法使用到生产环境中">总之，&lt;a href="https://github.com/aliyun/ossfs">阿里云ossfs&lt;/a>这个工具远远没有达到&lt;strong>production ready&lt;/strong>的质量。无法使用到生产环境中。&lt;/h2></description></item></channel></rss>

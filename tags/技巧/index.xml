@@ -1,1 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技巧 on The Road</title><link>https://kane.mx/tags/%E6%8A%80%E5%B7%A7/</link><description>Recent content in 技巧 on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 18 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/%E6%8A%80%E5%B7%A7/index.xml" rel="self" type="application/rss+xml"/><item><title>免费邮件转发服务</title><link>https://kane.mx/posts/2019/email-forwarding/</link><pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/email-forwarding/</guid><description>&lt;p>在拥有域名后，通常希望创建一些自有域名下的邮箱来收取不同用途的邮件，同时不希望为这部分功能付费😃。使用免费的企业邮箱(比如网易企业邮箱、阿里云企业邮箱)是一种选择。这时就需要配置邮件地址和邮件客户端来收取邮件，如果有多个邮箱地址，配置会特别麻烦。有时，这些企业邮箱的收件服务会莫名其妙的丢失一些邮件。&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技巧 on The road</title><link>https://kane.mx/tags/%E6%8A%80%E5%B7%A7/</link><description>Recent content in 技巧 on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Wed, 18 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/%E6%8A%80%E5%B7%A7/index.xml" rel="self" type="application/rss+xml"/><item><title>免费邮件转发服务</title><link>https://kane.mx/posts/2019/email-forwarding/</link><pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/email-forwarding/</guid><description>
+&lt;p>在拥有域名后，通常希望创建一些自有域名下的邮箱来收取不同用途的邮件，同时不希望为这部分功能付费:smiley:。使用免费的企业邮箱(比如网易企业邮箱、阿里云企业邮箱)是一种选择。这时就需要配置邮件地址和邮件客户端来收取邮件，如果有多个邮箱地址，配置会特别麻烦。有时，这些企业邮箱的收件服务会莫名其妙的丢失一些邮件。&lt;/p>
+&lt;p>这种场景下，&lt;strong>邮件转发服务&lt;/strong>是一种非常好的解决方案。无需搭建邮件服务器或申请免费邮件服务，只需要配置域名的&lt;strong>邮件MX&lt;/strong>解析到转发邮件收发件服务，同时使用&lt;strong>DNS TXT&lt;/strong> record配置转发规则，即可将所以发送的自有域名下的邮件转发到已有的邮箱地址！:cool:&lt;/p>
+&lt;p>特别安利&lt;a href="https://github.com/forwardemail/free-email-forwarding">Forward Email&lt;/a>服务，一个免费而且是&lt;strong>开源&lt;/strong>的邮件转发服务。&lt;/p>
+&lt;p>如上面介绍的，只需要为域名&lt;code>mydomain.com&lt;/code>创建如下3条DNS解析记录，&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>名称&lt;/th>
+&lt;th>TTL&lt;/th>
+&lt;th>记录类型&lt;/th>
+&lt;th>优先级&lt;/th>
+&lt;th>记录的内容&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>@ 或者 空白&lt;/td>
+&lt;td>3600&lt;/td>
+&lt;td>MX&lt;/td>
+&lt;td>10&lt;/td>
+&lt;td>mx1.forwardemail.net&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>@ 或者 空白&lt;/td>
+&lt;td>3600&lt;/td>
+&lt;td>MX&lt;/td>
+&lt;td>20&lt;/td>
+&lt;td>mx2.forwardemail.net&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>@ 或者 空白&lt;/td>
+&lt;td>3600&lt;/td>
+&lt;td>TXT&lt;/td>
+&lt;td>20&lt;/td>
+&lt;td>&lt;a href="mailto:forward-email=niftylettuce@gmail.com">forward-email=niftylettuce@gmail.com&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>所有发往&lt;code>@mydomain.com&lt;/code>的邮件将被转发到邮箱&lt;code>niftylettuce@gmail.com&lt;/code>。:v:&lt;/p>
+&lt;p>更多配置选项请查看&lt;a href="https://github.com/forwardemail/free-email-forwarding#how-do-i-get-started-and-set-up-email-forwarding">文档&lt;/a>。&lt;/p></description></item></channel></rss>

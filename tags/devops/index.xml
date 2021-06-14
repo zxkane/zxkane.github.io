@@ -1,5 +1,155 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevOps on The Road</title><link>https://kane.mx/tags/devops/</link><description>Recent content in DevOps on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 28 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/devops/index.xml" rel="self" type="application/rss+xml"/><item><title>亚马逊的部署最佳实践</title><link>https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/</link><pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/</guid><description>&lt;p>近期&lt;a href="https://aws.amazon.com/builders-library/">Amazon Builders Library&lt;/a>发布了数篇文章介绍亚马逊如何实践持续部署，同时分享了亚马逊在部署方面的最佳实践。&lt;/p>
-&lt;p>这里将这三篇文章核心内容做个概述，方便大家按需细读。&lt;/p></description></item><item><title>跨账号跨区域部署AWS CDK编排的应用</title><link>https://kane.mx/posts/2020/deploy-aws-cdk-applications-cross-accounts/</link><pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/deploy-aws-cdk-applications-cross-accounts/</guid><description>&lt;p>&lt;a href="https://kane.mx/posts/2019/aws-cdk/">AWS CDK&lt;/a>是编排部署AWS云上资源最佳的工具之一。基于AWS CDK的应用应该如何实践DevOps持续集成和部署呢？&lt;/p>
-&lt;p>通常我们有下面几种方法，&lt;/p></description></item><item><title>基于CodeCommit代码管理的无服务器架构Devops</title><link>https://kane.mx/posts/2020/codecommit-devops-model/</link><pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/codecommit-devops-model/</guid><description>&lt;p>&lt;a href="https://github.com/">Github&lt;/a>/&lt;a href="https://about.gitlab.com/">Gitlab&lt;/a>已经成为众多开发者非常熟悉的代码协作平台，通过他们参与开源项目或实施企业内部项目协作。&lt;/p>
-&lt;p>AWS也提供了托管的、基于Git、安全且高可用的代码服务&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>。&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>主要针对企业用户场景，所以他并没有社交功能以及代码仓库fork功能，是否&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>就无法实现&lt;a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">Github基于Pull Request&lt;/a>的协同工作模式呢？&lt;/p></description></item><item><title>QCon2019北京站回顾</title><link>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</link><pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</guid><description>&lt;p>这周参加了&lt;a href="https://2019.qconbeijing.com/">QCon 2019北京站&lt;/a>，这里记录下部分印象深刻的主题以及个人感受。&lt;/p>
-&lt;p>QCon是由InfoQ主办的综合性技术盛会，主题涵盖了大前端、高可用架构、容器技术、大数据、机器学习等各种热门技术主题。其中也不乏&lt;a href="https://2019.qconbeijing.com/track/501">下一代分布式应用&lt;/a>、&lt;a href="https://2019.qconbeijing.com/track/565">混沌工程&lt;/a>等前沿有意思的主题，后面会详细介绍相关的主题演讲。&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevOps on The road</title><link>https://kane.mx/tags/devops/</link><description>Recent content in DevOps on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Sat, 28 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/devops/index.xml" rel="self" type="application/rss+xml"/><item><title>亚马逊的部署最佳实践</title><link>https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/</link><pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/</guid><description>
+&lt;p>近期&lt;a href="https://aws.amazon.com/builders-library/">Amazon Builders Library&lt;/a>发布了数篇文章介绍亚马逊如何实践持续部署，同时分享了亚马逊在部署方面的最佳实践。&lt;/p>
+&lt;p>这里将这三篇文章核心内容做个概述，方便大家按需细读。&lt;/p>
+&lt;h3 id="going-faster-with-continuous-deliverygoing-faster-with-cd">&lt;a href="https://aws.amazon.com/builders-library/going-faster-with-continuous-delivery/?did=ba_card&amp;amp;trk=ba_card">Going faster with continuous delivery&lt;/a>&lt;/h3>
+&lt;p>这篇文章先是分享了亚马逊持续改进和软件自动化的文化(Amazonian随时都惦记着的&lt;a href="https://aws.amazon.com/careers/culture/">领导力准则&lt;/a>)，然后介绍了亚马逊内部的持续部署工具Pipelines。从一个试点工具进化为亚马逊标准、一致且简洁的发布工具。并且将构建和发布软件的最佳实践检查也融入到Pipelines中。&lt;/p>
+&lt;p>接下来是分享如何减小故障影响到客户的风险。有过软件开发经验的都知道，软件变更引入故障是不可避免的，如何将故障对客户的影响控制到最小是非常重要的。该文从下面几个方面给出了建议，&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>部署卫生&lt;/strong>，如对新部署程序的健康检查&lt;/li>
+&lt;li>&lt;strong>上生产系统之前的测试&lt;/strong>，自动化单元、集成、预生产测试&lt;/li>
+&lt;li>&lt;strong>生产系统上的验证&lt;/strong>，分批的部署，控制故障影响半径&lt;/li>
+&lt;li>&lt;strong>控制何时发布软件&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>最后作者介绍了亚马逊如何快速执行业务创新 -- 通过&lt;strong>自动化一切事情&lt;/strong>。&lt;/p>
+&lt;h3 id="automating-safe-hands-off-deploymentsautomating-safe-hands-off-deployment">&lt;a href="https://aws.amazon.com/builders-library/automating-safe-hands-off-deployments/?did=ba_card&amp;amp;trk=ba_card">Automating safe, hands-off deployments&lt;/a>&lt;/h3>
+&lt;p>这篇文章很好的呼应了&lt;a href="https://aws.amazon.com/builders-library/going-faster-with-continuous-delivery/?did=ba_card&amp;amp;trk=ba_card">Going faster with continuous delivery&lt;/a>一文中如何避免新的部署导致故障影响，非常详细的介绍了亚马逊关于自动化安全部署的实践。&lt;/p>
+&lt;p>对于持续部署，&lt;code>源码&lt;/code> -&amp;gt; &lt;code>构建&lt;/code> -&amp;gt; &lt;code>测试&lt;/code> -&amp;gt; &lt;code>生产&lt;/code> 这个流程大家都很熟悉。&lt;/p>
+&lt;figure>&lt;img src="https://d1.awsstatic.com/builderslibrary/architecture-images/1-Four-Pipeline-Phases.b168244d38855d468e594d26f0a5fcc40892a5da.PNG"
+alt="4 pipeline phases"/>
+&lt;/figure>
+&lt;p>从下图看，亚马逊对于&lt;code>源码&lt;/code>和&lt;code>构建&lt;/code>的理解是非常深入和全面的。&lt;/p>
+&lt;figure>&lt;img src="https://d1.awsstatic.com/builderslibrary/architecture-images/2-Source-and-Build-Phases.e873d57fa8365a34e6fdb6699b3541caef9a019c.PNG"
+alt="source and build"/>
+&lt;/figure>
+&lt;p>&lt;code>源码&lt;/code>并不仅仅是应用程序源代码，还可以包括运维工具代码、测试代码、基础架构代码、静态资源、依赖库、配置和操作系统补丁。&lt;/p>
+&lt;p>&lt;code>代码审核&lt;/code>是必须的。对于全自动的流水线，代码审核是最后一道人工核验。代码审核不仅仅是审核代码的正确性，还应该检查代码是否包括足够的测试，是否有完善的工具来监测部署以及能否安全的回退。&lt;/p>
+&lt;p>同时&lt;code>构建&lt;/code>也不光是编译源代码，打包并存储构件。也包含单元测试，静态代码分析，代码覆盖率检查，代码审核检查。&lt;/p>
+&lt;p>&lt;code>测试&lt;/code>在亚马逊是一个多阶段的预生产环境，详见下图。&lt;/p>
+&lt;figure>&lt;img src="https://d1.awsstatic.com/builderslibrary/architecture-images/3-Test-Phase.32a876ed20c3d585a9a761c6b07f0c3af1fff21d.PNG"
+alt="test deployments in pre-production environments"/>
+&lt;/figure>
+&lt;p>集成测试是自动化的模拟客户一样使用服务，实现端到端的测试。部署到生产之前，还需要执行向后兼容性测试以及借助负载均衡实现one-box测试。&lt;/p>
+&lt;p>AWS服务是部署在全球多个区域内的多个可用区，为了减少部署故障对客户的影响，&lt;code>生产&lt;/code>通过&lt;strong>波次&lt;/strong>部署来分批分阶段的安全部署。&lt;/p>
+&lt;figure>&lt;img src="https://d1.awsstatic.com/builderslibrary/architecture-images/5-Prod-Phase.31bac8cfc2ae3c68c5ee1e7332c0e6d7b2385bcf.PNG"
+alt="production deployments"/>
+&lt;/figure>
+&lt;p>首先部署是在单区域的单可用区做one-box部署，如果引起负面问题，会自动回退并停止生产后续的部署。系统指标的监控是实现自动化安全部署的核心，需要通过监控的指标来自动触发部署回退。&lt;/p>
+&lt;p>Bake time也是实践经验总结出来的精髓。有时故障不是在部署后马上显现的，需要时间才会逐渐显现。设置合理的Bake time，能够让故障有足够时间被暴露出来，不至于照成大范围影响。&lt;/p>
+&lt;h3 id="ensuring-rollback-safety-during-deploymentsensuring-rollback-safety-during-deployments">&lt;a href="https://aws.amazon.com/builders-library/ensuring-rollback-safety-during-deployments/?did=ba_card&amp;amp;trk=ba_card">Ensuring rollback safety during deployments&lt;/a>&lt;/h3>
+&lt;p>因为故障是不可避免的，部署能够被安全回退是非常必要的。这篇文章就详细介绍了如何实现可安全回退的部署 -- 通过&lt;strong>两阶段部署的技术&lt;/strong>，以及序列化的最佳实践。&lt;/p>
+&lt;figure>&lt;img src="https://d1.awsstatic.com/legal/builders-library/Screenshots/two-phase-deployment.4322b209195704c61f7a3f311413a76f264afb8b.png"
+alt="two-phase deployment technique"/>
+&lt;/figure>
+&lt;blockquote>
+&lt;p>这三篇文章分别从术和器的角度分享了亚马逊在软件部署的实践经验，开发者们可以结合自身业务情况集成适合的最佳实践。&lt;/p>
+&lt;/blockquote></description></item><item><title>跨账号跨区域部署AWS CDK编排的应用</title><link>https://kane.mx/posts/2020/deploy-aws-cdk-applications-cross-accounts/</link><pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/deploy-aws-cdk-applications-cross-accounts/</guid><description>
+&lt;p>&lt;a href="https://kane.mx/posts/2019/aws-cdk/">AWS CDK&lt;/a>是编排部署AWS云上资源最佳的工具之一。基于AWS CDK的应用应该如何实践DevOps持续集成和部署呢？&lt;/p>
+&lt;p>通常我们有下面几种方法，&lt;/p>
+&lt;ol>
+&lt;li>使用&lt;a href="https://aws.amazon.com/codepipeline/">AWS CodePipeline&lt;/a>来完成DevOps pipeline搭建。CodePipeline是AWS Code系列服务中的持续集成编排工具，它可以集成CodeBuild项目，在CodeBuild项目build中安装&lt;code>cdk&lt;/code>，并执行&lt;code>cdk deploy&lt;/code>命令来实现应用部署。&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>这种方法简单直接的实现了DevOps部署流水线。但缺少staging，将最新提交直接部署到生产是一种非常高风险的做法。&lt;/p>
+&lt;/blockquote>
+&lt;ol start="2">
+&lt;li>CDK近期发布了体验性的新特性&lt;a href="https://aws.amazon.com/blogs/developer/cdk-pipelines-continuous-delivery-for-aws-cdk-applications/">CDK Pipelines&lt;/a>来封装CDK应用持续部署流水线的配置。CDK Pipelines也是基于AWS CodePipeline服务，提供快速创建可跨账号区域的持续部署流水线，同时支持部署流水线项目的自升级更新。整个流水线流程如下图所示，&lt;/li>
+&lt;/ol>
+&lt;figure>&lt;img src="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2020/07/02/CDKPipelines_1.png"
+alt="workflow of cdk pipelines"/>
+&lt;/figure>
+&lt;p>CDK Pipelines是非常高效且灵活的持续部署流水线创建的方式，但由于是体验性特性，在生产应用中还有一些局限性。例如，&lt;/p>
+&lt;ul>
+&lt;li>不支持context provider查找。也就是说，无法支持CDK应用查找账户中存在的VPC，R53 HostedZone等。&lt;/li>
+&lt;li>由于CDK Pipelines实际是使用CodePipeline来编排部署流水线，CodePipeline的局限性，CDK Pipelines同样存在。&lt;/li>
+&lt;li>CodePipeline在某些分区和区域还不可用。例如，AWS中国区暂时还没有CodePipeline服务，CDK Pipelines在AWS中国区也就无法使用。&lt;/li>
+&lt;/ul>
+&lt;ol start="3">
+&lt;li>使用&lt;a href="https://aws.amazon.com/step-functions/">AWS Step Functions&lt;/a>来编排CDK应用部署的流水线。在Step Functions编译的部署流水线中，可用通过CodeBuild项目来完成&lt;code>cdk deploy&lt;/code>执行做到完整的支持CDK的所有功能。同时Step Functions具备最大的灵活性来支持持续部署过程中的各种编排需求，例如，跨账户部署应用的不同stage，引入人工审批流程，通过Slack等chatops工具来完成审批。&lt;/li>
+&lt;/ol>
+&lt;p>&lt;a href="https://opentuna.cn">Opentuna&lt;/a>项目就实践了用Step Functions来编排&lt;a href="https://github.com/tuna/opentuna/blob/master/pipeline.md">持续部署流水线&lt;/a>。整个部署流程如下图，&lt;/p>
+&lt;figure>&lt;img src="images/opentuna-pipeline.png"
+alt="OpenTUNA部署流程"/>
+&lt;/figure>
+&lt;p>如果对基于Step Functions实现的CDK应用持续部署感兴趣，可以访问OpenTUNA项目实现的&lt;a href="https://github.com/tuna/opentuna/blob/master/lib/pipeline-stack.ts">源码&lt;/a>了解更多细节。&lt;/p></description></item><item><title>基于CodeCommit代码管理的无服务器架构Devops</title><link>https://kane.mx/posts/2020/codecommit-devops-model/</link><pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/codecommit-devops-model/</guid><description>
+&lt;p>&lt;a href="https://github.com/">Github&lt;/a>/&lt;a href="https://about.gitlab.com/">Gitlab&lt;/a>已经成为众多开发者非常熟悉的代码协作平台，通过他们参与开源项目或实施企业内部项目协作。&lt;/p>
+&lt;p>AWS也提供了托管的、基于Git、安全且高可用的代码服务&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>。&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>主要针对企业用户场景，所以他并没有社交功能以及代码仓库fork功能，是否&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>就无法实现&lt;a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">Github基于Pull Request&lt;/a>的协同工作模式呢？&lt;/p>
+&lt;p>答案是，&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>完全可以实现&lt;strong>基于Pull Request的代码协作&lt;/strong>。由于&lt;a href="https://git-scm.com/">Git&lt;/a>的分布式代码管理特性，首先fork上游项目仓库，将修改后的代码提交到fork仓库，通过Pull Request申请修改请求合并。Github将这套协作流程推广开来并被开源项目广泛采用。其实还有另外的Git仓库协同方式来完成多人的协作开发，例如&lt;a href="https://www.gerritcodereview.com/">Gerrit Code Review&lt;/a>。目前Android、Eclipse Foundation下面的各种项目都在使用Gerrit作为协同开发工具。&lt;a href="https://www.gerritcodereview.com/">Gerrit&lt;/a>通过控制同一个代码仓库中不同角色的用户可提交代码分支的权限来实现代码贡献、Review、持续集成以及协同开发的。&lt;/p>
+&lt;p>&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>作为AWS托管的服务，同IAM认证和授权管理做了很好的集成。完全可以通过IAM Policy的设置，为同一个代码仓库中不同用户角色设置不同的权限。使用类似&lt;a href="https://www.gerritcodereview.com/">Gerrit&lt;/a>的权限控制思路，&lt;/p>
+&lt;ul>
+&lt;li>任意代码仓库&lt;em>协作者&lt;/em>可以提交代码到特定含义的分支，例如，&lt;code>features/*&lt;/code>, &lt;code>bugs/*&lt;/code>。可以允许多人协同工作在某一特定分支上。协作者同时可以创建新的Pull Request请求合并代码到主分支，例如&lt;code>master&lt;/code>或者&lt;code>mainline&lt;/code>。&lt;/li>
+&lt;li>代码仓库Master/Owner有权限合并Pull Request。&lt;/li>
+&lt;li>拒绝任何人直接推送代码到仓库主分支，包括仓库Owner/Admin。&lt;/li>
+&lt;li>监听仓库Pull Request创建和PR源分支更新事件，自动触发该PR对应分支的automation build，编译、测试等通过后，自动为PR的&lt;code>通过&lt;/code>投票+1。反之若失败，则取消投票。&lt;/li>
+&lt;li>为代码仓库设置PR Review规则，至少需要收到PR automation build和仓库Master/Owner合计两票&lt;code>通过&lt;/code>才允许合并代码。&lt;/li>
+&lt;li>监听代码仓库主分支，任意新提交将触发自动化发布Build。将最新变更在整个系统上做集成。&lt;/li>
+&lt;/ul>
+&lt;p>是不是很棒！完全做到了Github、Github Pull Request、Github Action/Travis CI整套devops协同开发的流程。&lt;/p>
+&lt;p>协作流程如下图，
+&lt;figure>&lt;img src="images/codecommit-devops-model.png"
+alt="基于CodeCommit代码管理的协同流程"/>
+&lt;/figure>
+&lt;/p>
+&lt;p>同时，以上整套基于CodeCommit代码管理的devops工作流程可以利用CloudFormation实现AWS资源编排，将Devops依赖的Infra使用代码来做管理！这样的好处是，企业内部即使有数百数千甚至更多代码仓库都可以统一管理，新仓库的申请也可以通过Infra代码的PR，在通过审批合并后自动从AWS provisioning创建出符合企业管理要求的安全代码仓库。很酷吧:laughing:&lt;/p>
+&lt;p>&lt;a href="https://github.com/zxkane/cdk-collections/tree/master/codecommit-collaboration-model">这里&lt;/a>有一套完整的创建以上工作流的演示，有兴趣的读者可以在自己的账户内体验。整套方案完全使用的是AWS托管服务，仅按实际使用量(如使用CodeBuild编译了代码)计费。&lt;/p></description></item><item><title>QCon2019北京站回顾</title><link>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</link><pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</guid><description>
+&lt;p>这周参加了&lt;a href="https://2019.qconbeijing.com/">QCon 2019北京站&lt;/a>，这里记录下部分印象深刻的主题以及个人感受。&lt;/p>
+&lt;p>QCon是由InfoQ主办的综合性技术盛会，主题涵盖了大前端、高可用架构、容器技术、大数据、机器学习等各种热门技术主题。其中也不乏&lt;a href="https://2019.qconbeijing.com/track/501">下一代分布式应用&lt;/a>、&lt;a href="https://2019.qconbeijing.com/track/565">混沌工程&lt;/a>等前沿有意思的主题，后面会详细介绍相关的主题演讲。&lt;/p>
+&lt;h3 id="工程效率提升">工程效率提升&lt;/h3>
+&lt;p>这是在QCon第一日个人感兴趣且非常有意思的一个&lt;a href="https://2019.qconbeijing.com/track/499">系列主题&lt;/a>。无论是创业公司、独角兽企业还是互联网巨头都希望不断提升工程效率，3个相关的分享分别来自BAT，可见互联网巨头们对团队效率提升的渴望和重视。&lt;/p>
+&lt;h4 id="10倍速原则对工程生产力建设的方向性影响qiaoliang-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1505">10倍速原则对工程生产力建设的方向性影响&lt;/a>&lt;/h4>
+&lt;p>这个talk来自腾讯的高级顾问乔梁，这位老兄已经连续10年在QCon上分享持续集成、持续交付等工程效率相关的主题了！他的演讲始于对成功企业的&lt;strong>一万次实验法则&lt;/strong>方法论，
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/1%e4%b8%87%e6%ac%a1%e6%b3%95%e5%88%99.jpeg"
+alt="1万次实验法则"/>
+&lt;/figure>
+而大量高效的实验基于一个&lt;strong>双环模型&lt;/strong>的快速验证环。
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/%e5%8f%8c%e7%8e%af%e6%a8%a1%e5%9e%8b.jpeg"
+alt="双环模型"/>
+&lt;/figure>
+最终工程生产力是由&lt;strong>工作流程&lt;/strong>、&lt;strong>支撑工具&lt;/strong>和&lt;strong>工程素养&lt;/strong>三方面一起决定的。
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/%e5%b7%a5%e7%a8%8b%e7%94%9f%e4%ba%a7%e5%8a%9b.jpeg"
+alt="工程生产力"/>
+&lt;/figure>
+&lt;/p>
+&lt;blockquote>
+&lt;p>非常认可决定工程效率的这三要素，个人认为&lt;strong>工程素养&lt;/strong>是其他两个要素的基石，&lt;a href="https://book.douban.com/subject/30356081/">奈飞文化手册&lt;/a>中开篇强调的只招聘&lt;strong>成年人&lt;/strong>就是很好的诠释。&lt;/p>
+&lt;/blockquote>
+&lt;h4 id="百度工程能力提升之道baidu-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1487">百度工程能力提升之道&lt;/a>&lt;/h4>
+&lt;p>这个分享来自百度研发效能部门的产品经理，从&lt;strong>人&lt;/strong>、&lt;strong>技&lt;/strong>、&lt;strong>法&lt;/strong>三方面强调工程能力提升的策略模型。其实这个模型就是对应着上面&lt;a href="#10倍速原则对工程生产力建设的方向性影响-qiaoliang-talk">乔梁分享的工程生产力三要素&lt;/a>。
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/%e6%8f%90%e5%8d%87%e5%b7%a5%e7%a8%8b%e8%83%bd%e5%8a%9b%e7%ad%96%e7%95%a5.jpeg"
+alt="提升工程能力的策略"/>
+&lt;/figure>
+关于对工程师的培养和技术规范，百度发布了&amp;quot;百度工程师手册&amp;quot;，据说可以从网络上下载到。大量工具的细节分享涉及的都是百度内部工具，不过工具针对的思路还是可以借鉴的。&lt;/p>
+&lt;h4 id="菜鸟集团研发效能变革实践cainiao-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1439">菜鸟集团研发效能变革实践&lt;/a>&lt;/h4>
+&lt;p>这个分享来自阿里系的菜鸟集团，特别强调数据化驱动的研发效能提升，里面很有意思的一点是建立成本模型来评估效能的好坏。&lt;/p>
+&lt;blockquote>
+&lt;p>作为效能部门负责人，有数据特别是成本数据，让高层管理者buy-in你的想法，这应该是个非常好的角度。&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="高可用架构">高可用架构&lt;/h3>
+&lt;h4 id="声明式自愈系统高可用分布式系统的设计之道declarative-system-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1511">声明式自愈系统——高可用分布式系统的设计之道&lt;/a>&lt;/h4>
+&lt;p>这个分享比较理论化的介绍声明式的、可自愈的分布式系统原理和实践，其实业界已经有个非常好的参考实现 -- 就是&lt;a href="https://kubernetes.io">Kubernetes&lt;/a> :smiley:。&lt;/p>
+&lt;h4 id="超大规模高可用性云端系统构建之禅caichao-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1437">超大规模高可用性云端系统构建之禅&lt;/a>&lt;/h4>
+&lt;p>这是一个非常实用的工程实践分享，列举了大量大规模云原生应用一定会面临的挑战，以及简单又实用的解决方法。每一个云原生应用开发者都应该看看这个&lt;a href="https://static001.geekbang.org/con/38/pdf/2428705636/file/%E8%B6%85%E5%A4%A7%E8%A7%84%E6%A8%A1%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7%E4%BA%91%E7%AB%AF%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA%E4%B9%8B%E7%A6%85-%E8%94%A1%E8%B6%85.pdf">slide&lt;/a>，学习前人实践的经验。另外为讲演者蔡超做个推广，对Go语言有兴趣的同学，可以考虑学习蔡超的极客时间课程&lt;a href="https://time.geekbang.org/course/intro/160">Go语言从入门到实战&lt;/a>。&lt;/p>
+&lt;h3 id="运维架构">运维架构&lt;/h3>
+&lt;h4 id="kubernetes-日志平台建设最佳实践aliyun-sls-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1448">Kubernetes 日志平台建设最佳实践&lt;/a>&lt;/h4>
+&lt;p>这个分享介绍了Kubernetes上日志方案的解决思路，及它的实践 -- 阿里云的日志服务。对于很多有基础服务建设的团队可以作为很好的参考方案。对于已经托管在阿里云上的应用，建议就不要重复建设低端的轮子了，阿里云日志服务应该做为团队的首选。不论在性能同其他云托管服务集成上，都远远好于自建的方案。&lt;/p>
+&lt;h4 id="多云管下的自动化运维架构multi-clouds-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1653">多云管下的自动化运维架构&lt;/a>&lt;/h4>
+&lt;p>多云是现在一些厂商力推的话题，个人认为是市场排名靠后的总要找些方法来提升自己产品的竞争力:smirk:。分享者企业做了一套ops平台来管理多云的资源，他们通过adapter方式来将不同云厂商的差异和资源进行了抽象。这其中涉及大量处理产品间差异性和被动适配的工作，个人不太认同这种方式。并且丢掉了infra as code这类重要的特性，对于有这种需求的大型企业来说不是一个完美的方案。&lt;/p>
+&lt;h3 id="混沌工程chaos-engineering-themes">&lt;a href="https://2019.qconbeijing.com/track/565">混沌工程&lt;/a>&lt;/h3>
+&lt;p>混沌工程这个话题非常有意思，同时也是较新的一种实践工程。从最早的提出、系统实践到现在还不到10年时间。来自阿里巴巴的&lt;a href="https://2019.qconbeijing.com/presentation/1479">云原生架构下的混沌工程实践&lt;/a>和AWS的&lt;a href="https://2019.qconbeijing.com/presentation/1741">AWS 云上混沌工程实践之对照实验设计和实施&lt;/a>两个分享介绍了从混沌工程的起源到如何全方位的实践用于提升云原生应用的&amp;quot;韧性&amp;quot;，非常值得学习。&lt;a href="#超大规模高可用性云端系统构建之禅-caichao-talk">蔡超的超大规模高可用性云端系统构建&lt;/a>也提到了使用混沌工程来提升系统的高可用性，在云原生应用越来越普及的情况下，被动的设计高可用系统肯定不如主动(甚至持续的自动化)可控的注入混乱来逐渐提升系统的高可用性。目前chaos engineering的工具/平台支持还不太完善，这个方向看起来是技术创业很好的切入点:smirk:。最后切记一点，&lt;strong>混沌工程最终一定要在生产系统上实施&lt;/strong>。
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/%e6%b7%b7%e5%8a%a8%e5%b7%a5%e7%a8%8b%e5%ae%9e%e8%b7%b5.jpeg"
+alt="混动工程实践"/>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="下一代分布式应用next-gen-ha-system">&lt;a href="https://2019.qconbeijing.com/track/501">下一代分布式应用&lt;/a>&lt;/h3>
+&lt;p>这个主题虽说命名为下一代分布式应用，主要分享的大多是服务间流量治理问题，特别是Service Mesh下实践经验。其中来自阿里李云的&lt;a href="https://2019.qconbeijing.com/presentation/1501">分布式应用的未来——Distributionless&lt;/a>特别值得一提。这个分享并没有实际的案例或经验分享，他重点分享的是对于Cloud Native本质和趋势的看法，这些观点我个人特别认同(&lt;code>好像找到知音似的:grinning:&lt;/code>)！完整的slide&lt;a href="https://static001.geekbang.org/con/38/pdf/3913410004/file/%E5%88%86%E5%B8%83%E5%BC%8F%E5%BA%94%E7%94%A8%E7%9A%84%E6%9C%AA%E6%9D%A5%E2%80%94%E2%80%94Distributionless-%E6%9D%8E%E4%BA%91.pdf">这里下载&lt;/a>。
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/CloudNative%e6%9c%ac%e8%b4%a8.jpeg"
+alt="CloudNative的本质"/>
+&lt;/figure>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/CloudNative%e7%9a%84%e8%b6%8b%e5%8a%bf.jpeg"
+alt="CloudNative的趋势"/>
+&lt;/figure>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/%e4%b8%8eCloudNative%e5%90%8c%e8%a1%8c.jpeg"
+alt="与CloudNative同行"/>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="用户增长">用户增长&lt;/h3>
+&lt;p>来自云测的陈冠诚在&lt;a href="https://2019.qconbeijing.com/presentation/1650">智能优化 &amp;amp; A/B 测试 - 实验驱动用户增长的理论与技术实践&lt;/a>分享了A/B测试实验对用户增长的理论及实践，顺便也推广了他家云测的A/B测试SaaS服务。听圈内的朋友分享，云测的A/B测试服务确实比较简单好用，方便产品后台创建测试并分析结果，对增长有需求的小伙伴可以考虑体验下，减少不必要的重复建设轮子。&lt;/p></description></item></channel></rss>

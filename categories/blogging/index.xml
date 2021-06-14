@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blogging on The Road</title><link>https://kane.mx/categories/blogging/</link><description>Recent content in blogging on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/categories/blogging/index.xml" rel="self" type="application/rss+xml"/><item><title>在AWS上快速部署专用的NAT实例</title><link>https://kane.mx/posts/2021/simple-nat-on-aws/</link><pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2021/simple-nat-on-aws/</guid><description>&lt;p>本方案的起因是，一个源代码托管在Github上的项目fix一个重要的bug后，在AWS上的持续部署流水线一直失败。分析日志后，发现流水线中的数个步骤需要克隆源代码，但是访问Github的网络非常不稳定，这数个流水线任务持续因连接超时，连接拒绝等网络错误而失败。而流水线任务大量使用了CodeBuild, Lambda等AWS托管服务，无法为执行环境配置可靠的网络连接。&lt;/p></description></item><item><title>Effective AWS CDK for AWS CloudFormation</title><link>https://kane.mx/posts/2020/effective-aws-cdk-for-aws-cloudformation/</link><pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/effective-aws-cdk-for-aws-cloudformation/</guid><description>&lt;p>&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infrastructure as Code&lt;/a> is the trend to manage the resources of application. &lt;a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation&lt;/a> is the managed serive offering the IaC capability on AWS &lt;a href="https://aws.amazon.com/blogs/aws/cloudformation-create-your-aws-stack-from-a-recipe/">since 2011&lt;/a>. CloudFormation uses the &lt;a href="https://en.wikipedia.org/wiki/Declarative_programming">declarative language&lt;/a> to manage your AWS resources with the style what you get is what you declare.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blogging on The road</title><link>https://kane.mx/categories/blogging/</link><description>Recent content in blogging on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/categories/blogging/index.xml" rel="self" type="application/rss+xml"/><item><title>在AWS上快速部署专用的NAT实例</title><link>https://kane.mx/posts/2021/simple-nat-on-aws/</link><pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2021/simple-nat-on-aws/</guid><description>
+&lt;p>本方案的起因是，一个源代码托管在Github上的项目fix一个重要的bug后，在AWS上的持续部署流水线一直失败。分析日志后，发现流水线中的数个步骤需要克隆源代码，但是访问Github的网络非常不稳定，这数个流水线任务持续因连接超时，连接拒绝等网络错误而失败。而流水线任务大量使用了CodeBuild, Lambda等AWS托管服务，无法为执行环境配置可靠的网络连接。&lt;/p>
+&lt;p>本方案思路如下，&lt;/p>
+&lt;ul>
+&lt;li>在 VPC public subnets 中创建 NAT instance 即 EC2 虚拟机，&lt;/li>
+&lt;li>配置 NAT instance，使用 tunnel 网络访问 github，&lt;/li>
+&lt;li>修改 private subnets 的路由表，添加 github 服务的 IP CIDRs，将对这些IP地址的请求通过 NAT instance 转发。&lt;/li>
+&lt;/ul>
+&lt;p>综上，实现了不用对现有持续部署流水线做任何修改，流水线中运行在 VPC private subnet 内的任务(包括但不限于CodeBuild, Fargate, Lambda, Glue等)，对外网的请求目标地址如在路由表的特殊规则(IP CIDRs)中，网络请求将会通过 NAT instance 来转发。&lt;/p>
+&lt;p>为此，创建了一个基于 &lt;a href="https://kane.mx/posts/2019/aws-cdk/">AWS CDK&lt;/a> &lt;a href="https://docs.aws.amazon.com/cdk/latest/guide/constructs.html">construct&lt;/a> 的开源项目 &lt;a href="https://github.com/zxkane/snat">SimpleNAT&lt;/a> 来封装和复用创建配置 NAT instances，并且将指定的IP地址段更新到路由表设置路由规则。&lt;/p>
+&lt;p>该项目同时提供了一个&lt;a href="https://github.com/zxkane/snat/tree/main/example">完整示例应用&lt;/a>，演示了如何配置 NAT instance 使用 &lt;a href="https://github.com/sshuttle/sshuttle">sshuttle&lt;/a> 建立网络隧道，并且将指定的IP地址段请求通过 NAT instance 来转发。&lt;/p></description></item><item><title>Effective AWS CDK for AWS CloudFormation</title><link>https://kane.mx/posts/2020/effective-aws-cdk-for-aws-cloudformation/</link><pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/effective-aws-cdk-for-aws-cloudformation/</guid><description>
+&lt;p>&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infrastructure as Code&lt;/a> is the trend to manage the resources of application. &lt;a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation&lt;/a> is the managed serive offering the IaC capability on AWS &lt;a href="https://aws.amazon.com/blogs/aws/cloudformation-create-your-aws-stack-from-a-recipe/">since 2011&lt;/a>. CloudFormation uses the &lt;a href="https://en.wikipedia.org/wiki/Declarative_programming">declarative language&lt;/a> to manage your AWS resources with the style what you get is what you declare.&lt;/p>
 &lt;p>However there are cons of CloudFormation as a declarative language,&lt;/p>
 &lt;ul>
 &lt;li>the readability and maintanence for applications involving lots of resources&lt;/li>
@@ -7,28 +18,216 @@
 &lt;p>&lt;a href="https://kane.mx/posts/2019/aws-cdk/">AWS CDK&lt;/a> provides the programming way to define the infra in code by your preferred programming languages, such as Typescript, Javascripte, Python, Java and C#. AWS CDK will synthesis the code to CloudFormation template, then deploying the stack via AWS CloudForamtion service. It benefits the Devops engineers manage the infra on AWS as programming application, having version control, code review, unit testing, integration testing and CI/CD pipelines, the deployment still depends on the mature CloudFormation service to rolling update the resources and rollback when failing.&lt;/p>
 &lt;p>For solution development, using CDK indeed improves the productivity then publish the deployment assets as CloudFormation templates.&lt;/p>
 &lt;p>Though CDK application can be synthesized to CloudFormation template, there are still some differences blocking the synthesized tempaltes to be deployed across multiple AWS regeions.&lt;/p>
-&lt;p>This post will share the tips on how effectively writing AWS CDK application then deploying the application by CloudFormation across multiple regions.&lt;/p></description></item><item><title>亚马逊的部署最佳实践</title><link>https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/</link><pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/</guid><description>&lt;p>近期&lt;a href="https://aws.amazon.com/builders-library/">Amazon Builders Library&lt;/a>发布了数篇文章介绍亚马逊如何实践持续部署，同时分享了亚马逊在部署方面的最佳实践。&lt;/p>
-&lt;p>这里将这三篇文章核心内容做个概述，方便大家按需细读。&lt;/p></description></item><item><title>跨账号跨区域部署AWS CDK编排的应用</title><link>https://kane.mx/posts/2020/deploy-aws-cdk-applications-cross-accounts/</link><pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/deploy-aws-cdk-applications-cross-accounts/</guid><description>&lt;p>&lt;a href="https://kane.mx/posts/2019/aws-cdk/">AWS CDK&lt;/a>是编排部署AWS云上资源最佳的工具之一。基于AWS CDK的应用应该如何实践DevOps持续集成和部署呢？&lt;/p>
-&lt;p>通常我们有下面几种方法，&lt;/p></description></item><item><title>Deploy Sonatype Nexus repository OSS on EKS</title><link>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</link><pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</guid><description>&lt;p>&lt;a href="https://www.sonatype.com/nexus-repository-oss">Sonatype Nexus repository OSS&lt;/a> is an artifact repository that supports most software repositories such as Maven, Pypi, Npmjs, Rubygems, Yum, Apt, Docker registry and etc. In the enterprise Nexus repository is widely used for storing proprietary artifacts and caching the artifacts for speeding up the devops.&lt;/p></description></item><item><title>无服务器架构的Docker镜像数据分析应用</title><link>https://kane.mx/posts/2020/serverless-docker-images-analytics/</link><pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/serverless-docker-images-analytics/</guid><description>&lt;p>近期对Docker镜像做了些数据分析，这里分享一下利用云原生技术快速且低成本的实现任意数量的数据分析。&lt;/p>
+&lt;p>This post will share the tips on how effectively writing AWS CDK application then deploying the application by CloudFormation across multiple regions.&lt;/p>
+&lt;h2 id="general">General&lt;/h2>
+&lt;h3 id="environment-agnostic-stack">Environment-agnostic stack&lt;/h3>
+&lt;p>Don’t specify env with &lt;code>account&lt;/code> and &lt;code>region&lt;/code> like below that will generate account/region hardcode in CloudFormation template.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-ts" data-lang="ts">&lt;span class="ln">1&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="nx">MyStack&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">app&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Stack1&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">2&lt;/span> &lt;span class="nx">env&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">3&lt;/span> &lt;span class="nx">account&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;123456789012&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">4&lt;/span> &lt;span class="nx">region&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;us-east-1&amp;#39;&lt;/span>
+&lt;span class="ln">5&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">6&lt;/span>&lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="use-cfnmappingcfncondition-instead-of-if-else-clause">use CfnMapping/CfnCondition instead of if-else clause&lt;/h3>
+&lt;p>CloudFormation does not have logistic processing like programming language. Use &lt;code>CfnMapping&lt;/code> or &lt;code>CfnCondition&lt;/code> instead.&lt;/p>
+&lt;p>&lt;strong>Note&lt;/strong>: the &lt;code>CfnMapping&lt;/code> does not support default value, you have to list all supported regions like below code snippet,&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-ts" data-lang="ts">&lt;span class="ln"> 1&lt;/span>&lt;span class="nx">getAwsLoadBalancerControllerRepo() {&lt;/span>
+&lt;span class="ln"> 2&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">albImageMapping&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">cdk&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">CfnMapping&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;ALBImageMapping&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 3&lt;/span> &lt;span class="nx">mapping&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 4&lt;/span> &lt;span class="s1">&amp;#39;me-south-1&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 5&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;558608220178&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 6&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln"> 7&lt;/span> &lt;span class="s1">&amp;#39;eu-south-1&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 8&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;590381155156&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 9&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">10&lt;/span> &lt;span class="s1">&amp;#39;ap-northeast-1&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">11&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;602401143452&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">12&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">13&lt;/span> &lt;span class="s1">&amp;#39;ap-northeast-2&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">14&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;602401143452&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">15&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">16&lt;/span> &lt;span class="p">...&lt;/span>
+&lt;span class="ln">17&lt;/span> &lt;span class="s1">&amp;#39;ap-east-1&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">18&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;800184023465&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">19&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">20&lt;/span> &lt;span class="s1">&amp;#39;af-south-1&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">21&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;877085696533&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">22&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">23&lt;/span> &lt;span class="s1">&amp;#39;cn-north-1&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">24&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;918309763551&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">25&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">26&lt;/span> &lt;span class="s1">&amp;#39;cn-northwest-1&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">27&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;961992271922&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">28&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">29&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">30&lt;/span> &lt;span class="p">});&lt;/span>
+&lt;span class="ln">31&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">albImageMapping&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">findInMap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">cdk&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Aws&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">REGION&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;2&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">.dkr.ecr.&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">cdk&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Aws&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">REGION&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">.&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">cdk&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Aws&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">URL_SUFFIX&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">/amazon/aws-load-balancer-controller`&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln">32&lt;/span> &lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="never-use-stackregion">never use Stack.region&lt;/h2>
+&lt;p>&lt;strong>Don’t&lt;/strong> rely on &lt;code>stack.region&lt;/code> to do the logistic for China regions. Use additional &lt;code>context&lt;/code> parameter or &lt;code>CfnMapping&lt;/code> like below snippet,&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-ts" data-lang="ts">&lt;span class="ln"> 1&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="nx">partitionMapping&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">cdk&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">CfnMapping&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;PartitionMapping&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 2&lt;/span> &lt;span class="nx">mapping&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 3&lt;/span> &lt;span class="nx">aws&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 4&lt;/span> &lt;span class="nx">nexus&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;quay.io/travelaudience/docker-nexus&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 5&lt;/span> &lt;span class="nx">nexusProxy&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;quay.io/travelaudience/docker-nexus-proxy&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 6&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln"> 7&lt;/span> &lt;span class="s1">&amp;#39;aws-cn&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 8&lt;/span> &lt;span class="nx">nexus&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;048912060910.dkr.ecr.cn-northwest-1.amazonaws.com.cn/quay/travelaudience/docker-nexus&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 9&lt;/span> &lt;span class="nx">nexusProxy&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;048912060910.dkr.ecr.cn-northwest-1.amazonaws.com.cn/quay/travelaudience/docker-nexus-proxy&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">10&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">11&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">12&lt;/span> &lt;span class="p">});&lt;/span>
+&lt;span class="ln">13&lt;/span>&lt;span class="nx">partitionMapping&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">findInMap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">cdk&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Aws&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">PARTITION&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;nexus&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Use &lt;strong>core.Aws.region&lt;/strong> token refered to the region which region of the stack is deployed.&lt;/p>
+&lt;h3 id="explicitly-add-dependencies-on-resources-to-control-the-creationdeletion-order-of-resources">explicitly add dependencies on resources to control the creation/deletion order of resources&lt;/h3>
+&lt;p>For example, when deploying a solution with creating a new VPC with NAT gateway, then deploying EMR cluster in private subnets of VPC. The EMR cluster might fail on creation due to network issue. It’s caused by the NAT gateway is not ready when initializing the EMR cluster, you have to manually create the dependencies among EMR cluster and NAT gateway.&lt;/p>
+&lt;h2 id="eks-moduleaws-cdkaws-eks">EKS module(@aws-cdk/aws-eks)&lt;/h2>
+&lt;h3 id="specify-kubectl-layer-when-creating-eks-cluster">&lt;del>specify kubectl layer when creating EKS cluster&lt;/del>&lt;/h3>
+&lt;p>&lt;strong>NOTE&lt;/strong>: This tricky only applies for AWS CDK prior to &lt;a href="https://github.com/aws/aws-cdk/releases/tag/v1.81.0">1.81.0&lt;/a>. CDK will &lt;a href="https://github.com/aws/aws-cdk/pull/12129">bundle &lt;code>kubectl&lt;/code>, &lt;code>helm&lt;/code> and &lt;code>awscli&lt;/code> as lambda layer&lt;/a> instead of SAR appliction since &lt;a href="https://github.com/aws/aws-cdk/releases/tag/v1.81.0">1.81.0&lt;/a>, it resolves below limitation.&lt;/p>
+&lt;p>EKS uses a lambda layer to run &lt;code>kubectl&lt;/code>/&lt;code>helm&lt;/code> cli as custom resource, the &lt;code>@aws-cdk/aws-eks&lt;/code> module depends on the &lt;code>Stack.region&lt;/code> to check the region to be deployed in synthesizing phase. It violates the principle of Environment-agnostic stack! Use below workaround to create the EKS cluster,&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-ts" data-lang="ts">&lt;span class="ln"> 1&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="nx">partitionMapping&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">cdk&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">CfnMapping&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;PartitionMapping&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 2&lt;/span> &lt;span class="nx">mapping&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 3&lt;/span> &lt;span class="nx">aws&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 4&lt;/span> &lt;span class="c1">// see https://github.com/aws/aws-cdk/blob/60c782fe173449ebf912f509de7db6df89985915/packages/%40aws-cdk/aws-eks/lib/kubectl-layer.ts#L6
+&lt;/span>&lt;span class="ln"> 5&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">kubectlLayerAppid&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-kubectl&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 6&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln"> 7&lt;/span> &lt;span class="s1">&amp;#39;aws-cn&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 8&lt;/span> &lt;span class="nx">kubectlLayerAppid&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;arn:aws-cn:serverlessrepo:cn-north-1:487369736442:applications/lambda-layer-kubectl&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 9&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">10&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">11&lt;/span>&lt;span class="p">});&lt;/span>
+&lt;span class="ln">12&lt;/span>
+&lt;span class="ln">13&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="nx">kubectlLayer&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">eks&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">KubectlLayer&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;KubeLayer&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">14&lt;/span> &lt;span class="nx">applicationId&lt;/span>: &lt;span class="kt">partitionMapping.findInMap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">cdk&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Aws&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">PARTITION&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;kubectlLayerAppid&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="ln">15&lt;/span>&lt;span class="p">});&lt;/span>
+&lt;span class="ln">16&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="nx">cluster&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">eks&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Cluster&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;MyK8SCluster&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">17&lt;/span> &lt;span class="nx">vpc&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">18&lt;/span> &lt;span class="nx">defaultCapacity&lt;/span>: &lt;span class="kt">0&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">19&lt;/span> &lt;span class="nx">kubectlEnabled&lt;/span>: &lt;span class="kt">true&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">20&lt;/span> &lt;span class="nx">mastersRole&lt;/span>: &lt;span class="kt">clusterAdmin&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">21&lt;/span> &lt;span class="nx">version&lt;/span>: &lt;span class="kt">eks.KubernetesVersion.V1_16&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">22&lt;/span> &lt;span class="nx">coreDnsComputeType&lt;/span>: &lt;span class="kt">eks.CoreDnsComputeType.EC2&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">23&lt;/span> &lt;span class="nx">kubectlLayer&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">24&lt;/span>&lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>If you're interested on this issue, &lt;a href="https://github.com/aws/aws-cdk/issues/12018">see cdk issue for detail&lt;/a>.&lt;/p>
+&lt;h3 id="manage-the-lifecycle-of-helm-chart-deployment">manage the lifecycle of helm chart deployment&lt;/h3>
+&lt;p>The k8s helm chart might create AWS resources out of CloudFormation scope. You have to manage the lifecycle of those resources by yourself.&lt;/p>
+&lt;p>For example, there is an EKS cluster with AWS load balancer controller, then you deploy a helm chart with ingress that will create ALB/NLB by the chart, you must clean those load balancers in deletion of the chart. Also the uninstallation of Helm chart is asynchronous, you have to watch the deletion of resource completing before continuing to clean other resources.&lt;/p>
+&lt;h2 id="the-end">THE END&lt;/h2>
+&lt;blockquote>
+&lt;p>The tips will be updated when something new is found or the one is deprecated after CDK is updated.&lt;/p>
+&lt;p>HAPPY CDK :satisfied:&lt;/p>
+&lt;/blockquote></description></item><item><title>亚马逊的部署最佳实践</title><link>https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/</link><pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/</guid><description>
+&lt;p>近期&lt;a href="https://aws.amazon.com/builders-library/">Amazon Builders Library&lt;/a>发布了数篇文章介绍亚马逊如何实践持续部署，同时分享了亚马逊在部署方面的最佳实践。&lt;/p>
+&lt;p>这里将这三篇文章核心内容做个概述，方便大家按需细读。&lt;/p>
+&lt;h3 id="going-faster-with-continuous-deliverygoing-faster-with-cd">&lt;a href="https://aws.amazon.com/builders-library/going-faster-with-continuous-delivery/?did=ba_card&amp;amp;trk=ba_card">Going faster with continuous delivery&lt;/a>&lt;/h3>
+&lt;p>这篇文章先是分享了亚马逊持续改进和软件自动化的文化(Amazonian随时都惦记着的&lt;a href="https://aws.amazon.com/careers/culture/">领导力准则&lt;/a>)，然后介绍了亚马逊内部的持续部署工具Pipelines。从一个试点工具进化为亚马逊标准、一致且简洁的发布工具。并且将构建和发布软件的最佳实践检查也融入到Pipelines中。&lt;/p>
+&lt;p>接下来是分享如何减小故障影响到客户的风险。有过软件开发经验的都知道，软件变更引入故障是不可避免的，如何将故障对客户的影响控制到最小是非常重要的。该文从下面几个方面给出了建议，&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>部署卫生&lt;/strong>，如对新部署程序的健康检查&lt;/li>
+&lt;li>&lt;strong>上生产系统之前的测试&lt;/strong>，自动化单元、集成、预生产测试&lt;/li>
+&lt;li>&lt;strong>生产系统上的验证&lt;/strong>，分批的部署，控制故障影响半径&lt;/li>
+&lt;li>&lt;strong>控制何时发布软件&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>最后作者介绍了亚马逊如何快速执行业务创新 -- 通过&lt;strong>自动化一切事情&lt;/strong>。&lt;/p>
+&lt;h3 id="automating-safe-hands-off-deploymentsautomating-safe-hands-off-deployment">&lt;a href="https://aws.amazon.com/builders-library/automating-safe-hands-off-deployments/?did=ba_card&amp;amp;trk=ba_card">Automating safe, hands-off deployments&lt;/a>&lt;/h3>
+&lt;p>这篇文章很好的呼应了&lt;a href="https://aws.amazon.com/builders-library/going-faster-with-continuous-delivery/?did=ba_card&amp;amp;trk=ba_card">Going faster with continuous delivery&lt;/a>一文中如何避免新的部署导致故障影响，非常详细的介绍了亚马逊关于自动化安全部署的实践。&lt;/p>
+&lt;p>对于持续部署，&lt;code>源码&lt;/code> -&amp;gt; &lt;code>构建&lt;/code> -&amp;gt; &lt;code>测试&lt;/code> -&amp;gt; &lt;code>生产&lt;/code> 这个流程大家都很熟悉。&lt;/p>
+&lt;figure>&lt;img src="https://d1.awsstatic.com/builderslibrary/architecture-images/1-Four-Pipeline-Phases.b168244d38855d468e594d26f0a5fcc40892a5da.PNG"
+alt="4 pipeline phases"/>
+&lt;/figure>
+&lt;p>从下图看，亚马逊对于&lt;code>源码&lt;/code>和&lt;code>构建&lt;/code>的理解是非常深入和全面的。&lt;/p>
+&lt;figure>&lt;img src="https://d1.awsstatic.com/builderslibrary/architecture-images/2-Source-and-Build-Phases.e873d57fa8365a34e6fdb6699b3541caef9a019c.PNG"
+alt="source and build"/>
+&lt;/figure>
+&lt;p>&lt;code>源码&lt;/code>并不仅仅是应用程序源代码，还可以包括运维工具代码、测试代码、基础架构代码、静态资源、依赖库、配置和操作系统补丁。&lt;/p>
+&lt;p>&lt;code>代码审核&lt;/code>是必须的。对于全自动的流水线，代码审核是最后一道人工核验。代码审核不仅仅是审核代码的正确性，还应该检查代码是否包括足够的测试，是否有完善的工具来监测部署以及能否安全的回退。&lt;/p>
+&lt;p>同时&lt;code>构建&lt;/code>也不光是编译源代码，打包并存储构件。也包含单元测试，静态代码分析，代码覆盖率检查，代码审核检查。&lt;/p>
+&lt;p>&lt;code>测试&lt;/code>在亚马逊是一个多阶段的预生产环境，详见下图。&lt;/p>
+&lt;figure>&lt;img src="https://d1.awsstatic.com/builderslibrary/architecture-images/3-Test-Phase.32a876ed20c3d585a9a761c6b07f0c3af1fff21d.PNG"
+alt="test deployments in pre-production environments"/>
+&lt;/figure>
+&lt;p>集成测试是自动化的模拟客户一样使用服务，实现端到端的测试。部署到生产之前，还需要执行向后兼容性测试以及借助负载均衡实现one-box测试。&lt;/p>
+&lt;p>AWS服务是部署在全球多个区域内的多个可用区，为了减少部署故障对客户的影响，&lt;code>生产&lt;/code>通过&lt;strong>波次&lt;/strong>部署来分批分阶段的安全部署。&lt;/p>
+&lt;figure>&lt;img src="https://d1.awsstatic.com/builderslibrary/architecture-images/5-Prod-Phase.31bac8cfc2ae3c68c5ee1e7332c0e6d7b2385bcf.PNG"
+alt="production deployments"/>
+&lt;/figure>
+&lt;p>首先部署是在单区域的单可用区做one-box部署，如果引起负面问题，会自动回退并停止生产后续的部署。系统指标的监控是实现自动化安全部署的核心，需要通过监控的指标来自动触发部署回退。&lt;/p>
+&lt;p>Bake time也是实践经验总结出来的精髓。有时故障不是在部署后马上显现的，需要时间才会逐渐显现。设置合理的Bake time，能够让故障有足够时间被暴露出来，不至于照成大范围影响。&lt;/p>
+&lt;h3 id="ensuring-rollback-safety-during-deploymentsensuring-rollback-safety-during-deployments">&lt;a href="https://aws.amazon.com/builders-library/ensuring-rollback-safety-during-deployments/?did=ba_card&amp;amp;trk=ba_card">Ensuring rollback safety during deployments&lt;/a>&lt;/h3>
+&lt;p>因为故障是不可避免的，部署能够被安全回退是非常必要的。这篇文章就详细介绍了如何实现可安全回退的部署 -- 通过&lt;strong>两阶段部署的技术&lt;/strong>，以及序列化的最佳实践。&lt;/p>
+&lt;figure>&lt;img src="https://d1.awsstatic.com/legal/builders-library/Screenshots/two-phase-deployment.4322b209195704c61f7a3f311413a76f264afb8b.png"
+alt="two-phase deployment technique"/>
+&lt;/figure>
+&lt;blockquote>
+&lt;p>这三篇文章分别从术和器的角度分享了亚马逊在软件部署的实践经验，开发者们可以结合自身业务情况集成适合的最佳实践。&lt;/p>
+&lt;/blockquote></description></item><item><title>跨账号跨区域部署AWS CDK编排的应用</title><link>https://kane.mx/posts/2020/deploy-aws-cdk-applications-cross-accounts/</link><pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/deploy-aws-cdk-applications-cross-accounts/</guid><description>
+&lt;p>&lt;a href="https://kane.mx/posts/2019/aws-cdk/">AWS CDK&lt;/a>是编排部署AWS云上资源最佳的工具之一。基于AWS CDK的应用应该如何实践DevOps持续集成和部署呢？&lt;/p>
+&lt;p>通常我们有下面几种方法，&lt;/p>
+&lt;ol>
+&lt;li>使用&lt;a href="https://aws.amazon.com/codepipeline/">AWS CodePipeline&lt;/a>来完成DevOps pipeline搭建。CodePipeline是AWS Code系列服务中的持续集成编排工具，它可以集成CodeBuild项目，在CodeBuild项目build中安装&lt;code>cdk&lt;/code>，并执行&lt;code>cdk deploy&lt;/code>命令来实现应用部署。&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>这种方法简单直接的实现了DevOps部署流水线。但缺少staging，将最新提交直接部署到生产是一种非常高风险的做法。&lt;/p>
+&lt;/blockquote>
+&lt;ol start="2">
+&lt;li>CDK近期发布了体验性的新特性&lt;a href="https://aws.amazon.com/blogs/developer/cdk-pipelines-continuous-delivery-for-aws-cdk-applications/">CDK Pipelines&lt;/a>来封装CDK应用持续部署流水线的配置。CDK Pipelines也是基于AWS CodePipeline服务，提供快速创建可跨账号区域的持续部署流水线，同时支持部署流水线项目的自升级更新。整个流水线流程如下图所示，&lt;/li>
+&lt;/ol>
+&lt;figure>&lt;img src="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2020/07/02/CDKPipelines_1.png"
+alt="workflow of cdk pipelines"/>
+&lt;/figure>
+&lt;p>CDK Pipelines是非常高效且灵活的持续部署流水线创建的方式，但由于是体验性特性，在生产应用中还有一些局限性。例如，&lt;/p>
+&lt;ul>
+&lt;li>不支持context provider查找。也就是说，无法支持CDK应用查找账户中存在的VPC，R53 HostedZone等。&lt;/li>
+&lt;li>由于CDK Pipelines实际是使用CodePipeline来编排部署流水线，CodePipeline的局限性，CDK Pipelines同样存在。&lt;/li>
+&lt;li>CodePipeline在某些分区和区域还不可用。例如，AWS中国区暂时还没有CodePipeline服务，CDK Pipelines在AWS中国区也就无法使用。&lt;/li>
+&lt;/ul>
+&lt;ol start="3">
+&lt;li>使用&lt;a href="https://aws.amazon.com/step-functions/">AWS Step Functions&lt;/a>来编排CDK应用部署的流水线。在Step Functions编译的部署流水线中，可用通过CodeBuild项目来完成&lt;code>cdk deploy&lt;/code>执行做到完整的支持CDK的所有功能。同时Step Functions具备最大的灵活性来支持持续部署过程中的各种编排需求，例如，跨账户部署应用的不同stage，引入人工审批流程，通过Slack等chatops工具来完成审批。&lt;/li>
+&lt;/ol>
+&lt;p>&lt;a href="https://opentuna.cn">Opentuna&lt;/a>项目就实践了用Step Functions来编排&lt;a href="https://github.com/tuna/opentuna/blob/master/pipeline.md">持续部署流水线&lt;/a>。整个部署流程如下图，&lt;/p>
+&lt;figure>&lt;img src="images/opentuna-pipeline.png"
+alt="OpenTUNA部署流程"/>
+&lt;/figure>
+&lt;p>如果对基于Step Functions实现的CDK应用持续部署感兴趣，可以访问OpenTUNA项目实现的&lt;a href="https://github.com/tuna/opentuna/blob/master/lib/pipeline-stack.ts">源码&lt;/a>了解更多细节。&lt;/p></description></item><item><title>Deploy Sonatype Nexus repository OSS on EKS</title><link>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</link><pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/deploy-sonatype-nexus-oss-on-eks/</guid><description>
+&lt;p>&lt;a href="https://www.sonatype.com/nexus-repository-oss">Sonatype Nexus repository OSS&lt;/a> is an artifact repository that supports most software repositories such as Maven, Pypi, Npmjs, Rubygems, Yum, Apt, Docker registry and etc. In the enterprise Nexus repository is widely used for storing proprietary artifacts and caching the artifacts for speeding up the devops.&lt;/p>
+&lt;p>Building a production ready Nexus repository always is a requirement for devops team, it should satisfy below criterias at least,&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>artifacts storage management&lt;/strong> It's difficult to predicate the storage usage of artifacts, allocating large volume is not cost optimized.&lt;/li>
+&lt;li>&lt;strong>the durability of nexus3 data storage&lt;/strong> We need a way to make sure data storage of nexus when updating Nexus OSS to newer version or recover the service from unhealthy status.&lt;/li>
+&lt;li>&lt;strong>self healing capability when the service is down&lt;/strong> A reliable way recovers the Nexus repository OSS when it's unhealth.&lt;/li>
+&lt;/ul>
+&lt;p>There is a well-architected &lt;a href="https://github.com/aws-samples/nexus-oss-on-aws">solution&lt;/a>(maintained by AWS team) to quickly(~10 minutes) deploy &lt;a href="https://www.sonatype.com/nexus-repository-oss">Nexus OSS&lt;/a> leveraging below capabilities,&lt;/p>
+&lt;ul>
+&lt;li>Host on EKS cluster using managed EC2 nodes with &lt;a href="https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html">IRSA&lt;/a>&lt;/li>
+&lt;li>Expose service via AWS Application load balancer managed by &lt;a href="https://github.com/kubernetes-sigs/aws-load-balancer-controller">AWS load balancer controller&lt;/a>(former ALB Ingress Controller)&lt;/li>
+&lt;li>Use dedicated S3 bucket for storing Nexus OSS blobstore with ulimited and on-demand storage&lt;/li>
+&lt;li>Use EFS, &lt;a href="https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html">EFS CSI Driver&lt;/a>, PV and PVC storing nexus data&lt;/li>
+&lt;li>Use &lt;a href="https://helm.sh/">Helm&lt;/a> to deploy &lt;a href="https://hub.helm.sh/charts/oteemo/sonatype-nexus">Sonatype Nexus chart&lt;/a>&lt;/li>
+&lt;li>&lt;code>Optional&lt;/code> Use &lt;a href="https://github.com/kubernetes-sigs/external-dns">External DNS&lt;/a> to registry the domain record of Nexus repository to Route 53&lt;/li>
+&lt;li>&lt;code>Optional&lt;/code> Use AWS Certificate Manager to create SSL certificate of domain name of Nexus repository&lt;/li>
+&lt;/ul>
+&lt;p>Enjoy it:smirk:&lt;/p></description></item><item><title>无服务器架构的Docker镜像数据分析应用</title><link>https://kane.mx/posts/2020/serverless-docker-images-analytics/</link><pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/serverless-docker-images-analytics/</guid><description>
+&lt;p>近期对Docker镜像做了些数据分析，这里分享一下利用云原生技术快速且低成本的实现任意数量的数据分析。&lt;/p>
 &lt;p>之前通过文章介绍了&lt;a href="https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/">不用拉取Docker镜像就可获取镜像的大小&lt;/a>的一种方法，通过其中的示例脚本，我们可以获取到待分析的原始数据。&lt;/p>
 &lt;p>比如&lt;code>nginx&lt;/code>镜像的部分原始数据(csv格式)如下，&lt;/p>
-&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
-&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-txt" data-lang="txt">1.18.0-alpine,sha256:676b8117782d9e8c20af8e1b19356f64acc76c981f3a65c66e33a9874877892a,amd64,linux,null,null,&amp;#34;sha256:cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08&amp;#34;,2813316
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-txt" data-lang="txt">1.18.0-alpine,sha256:676b8117782d9e8c20af8e1b19356f64acc76c981f3a65c66e33a9874877892a,amd64,linux,null,null,&amp;#34;sha256:cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08&amp;#34;,2813316
 1.18.0-alpine,sha256:676b8117782d9e8c20af8e1b19356f64acc76c981f3a65c66e33a9874877892a,amd64,linux,null,null,&amp;#34;sha256:6ade829cd166df9b2331da48e3e60342aef9f95e1e45cde8d20e6b01be7e6d9a&amp;#34;,6477096
 1.18.0-alpine,sha256:70feed62d5204358ed500463c0953dce6c269a0ebeef147a107422a2c78799a9,arm,linux,v6,null,&amp;#34;sha256:b9e3228833e92f0688e0f87234e75965e62e47cfbb9ca8cc5fa19c2e7cd13f80&amp;#34;,2619936
 1.18.0-alpine,sha256:70feed62d5204358ed500463c0953dce6c269a0ebeef147a107422a2c78799a9,arm,linux,v6,null,&amp;#34;sha256:a03f81873d278ad248976b107883f0452d33c6f907ebcdd832a6041f1d33118a&amp;#34;,6080562
@@ -44,19 +243,934 @@
 &lt;/div>
 &lt;p>各列的含义分别是，&lt;code>镜像tag&lt;/code>, &lt;code>镜像&lt;/code>&lt;a href="https://docs.docker.com/registry/spec/api/#content-digests">Digest&lt;/a>, &lt;code>镜像对应平台的Architecture&lt;/code>, &lt;code>镜像对应平台的OS&lt;/code>, &lt;code>镜像对应平台的变种&lt;/code>（例如，ARM的v7, v8等）, &lt;code>镜像对应平台的OS版本&lt;/code>, &lt;code>镜像组成层的&lt;/code>&lt;a href="https://docs.docker.com/registry/spec/api/#content-digests">Digest&lt;/a>, &lt;code>镜像组成层的大小&lt;/code>。&lt;/p>
 &lt;p>上面&lt;code>nginx&lt;/code>镜像的示例数据，告诉我们镜像名&lt;code>nginx&lt;/code>且tag为&lt;code>1.18.0-alpine&lt;/code>的镜像包含了&lt;code>amd64-linux&lt;/code>, &lt;code>arm-linux-v6&lt;/code>, &lt;code>arm64-linux-v8&lt;/code>, &lt;code>386-linux&lt;/code>, &lt;code>ppc64le-linux&lt;/code>以及&lt;code>s390x-linux&lt;/code>共5种Arch合计6个版本的镜像。且每个平台的对应镜像包含了两个层以及这两个层的大小。&lt;/p>
-&lt;p>当我们有了成百数千甚至海量镜像的原始数据后，如何能快速且低成本的分析这些数据呢？&lt;/p></description></item><item><title>Get the size of Docker image without pulling image</title><link>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</link><pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</guid><description>&lt;p>Recently I had a requirement to stats the size of some Docker images. It would be waste if pulling them all firstly then calculating the size of each image. Also you know the docker image consists of some Docker layers that probably are shared by other images. It&amp;rsquo;s hard to get the disk usage if only sum the size of each image.&lt;/p>
-&lt;p>Is there any way to get the size of Docker image without pulling it?&lt;/p></description></item><item><title>oh-my-zsh性能调优思路</title><link>https://kane.mx/posts/2020/zsh-performance-tuning/</link><pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/zsh-performance-tuning/</guid><description>&lt;p>&lt;a href="https://zh.wikipedia.org/wiki/Z_shell">Z shell&lt;/a>搭配&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>自定义配置已成为众多Linux/Macosx用户的标准terminal配置。&lt;/p>
-&lt;p>最近遇到在&lt;code>zsh&lt;/code>中执行任意命令都变得特别慢(哪怕简单执行&lt;code>ls&lt;/code>也要花费肉眼可见的1，2秒钟)，这里记录下如何排查&lt;a href="https://zh.wikipedia.org/wiki/Z_shell">Z shell&lt;/a>下启用&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>的性能问题。&lt;/p></description></item><item><title>基于CodeCommit代码管理的无服务器架构Devops</title><link>https://kane.mx/posts/2020/codecommit-devops-model/</link><pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/codecommit-devops-model/</guid><description>&lt;p>&lt;a href="https://github.com/">Github&lt;/a>/&lt;a href="https://about.gitlab.com/">Gitlab&lt;/a>已经成为众多开发者非常熟悉的代码协作平台，通过他们参与开源项目或实施企业内部项目协作。&lt;/p>
-&lt;p>AWS也提供了托管的、基于Git、安全且高可用的代码服务&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>。&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>主要针对企业用户场景，所以他并没有社交功能以及代码仓库fork功能，是否&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>就无法实现&lt;a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">Github基于Pull Request&lt;/a>的协同工作模式呢？&lt;/p></description></item><item><title>AWS发布更快、更便宜、更易用的HTTP APIs</title><link>https://kane.mx/posts/2020/new-http-apis-of-api-gateway/</link><pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/new-http-apis-of-api-gateway/</guid><description>&lt;p>AWS在3月12日&lt;a href="https://aws.amazon.com/blogs/compute/building-better-apis-http-apis-now-generally-available/">正式发布了新一代的API网关 &amp;ndash; HTTP APIs&lt;/a>。AWS发布的第一代API Gateway服务已经快5年了，通过这些年来大规模服务客户的心得以及客户反馈，由此重新构建了更快（相比第一代网关60%的延迟减少）、更便宜（至少节省71%的费用）、更易用的第二代网关服务。&lt;/p></description></item><item><title>AWS Cloud Debugging初探</title><link>https://kane.mx/posts/2019/aws-cloud-debugging/</link><pubDate>Thu, 26 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-cloud-debugging/</guid><description>&lt;p>在&lt;a href="https://reinvent.awsevents.com/?nc2=h_ql_re">re:Invent&lt;/a> 2019之前，&lt;a href="https://aws.amazon.com/getting-started/tools-sdks/?nc2=h_ql_prod_dt_tsdk">AWS Toolkit&lt;/a>发布了&lt;a href="https://aws.amazon.com/about-aws/whats-new/2019/11/announcing-cloud-debugging-beta/?nc1=h_ls">Cloud Debugging beta&lt;/a>功能。该功能支持在IntelliJ IDEs(IntelliJ, PyCharm, Webstorm, 以及 Rider)中远程调试 ECS &lt;a href="https://aws.amazon.com/fargate/">Fargate&lt;/a> 容器中执行的应用程序。&lt;/p></description></item><item><title>AWS Batch简介</title><link>https://kane.mx/posts/2019/aws-batch/</link><pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-batch/</guid><description>&lt;p>&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>是一个全托管的批处理调度服务，它可为用户管理所有基础设施，从而避免了预置、管理、监控和扩展批处理计算作业所带来的复杂性。当然&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>已与 AWS 平台原生集成，让用户能够利用 AWS 的扩展、联网和访问管理功能。让用户轻松运行能够安全地从 AWS 数据存储（如 Amazon S3 和 Amazon DynamoDB）中检索数据并向其中写入数据的作业。&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>可根据所提交的批处理作业的数量和资源要求预置计算资源并优化作业分配。能够将计算资源动态扩展至运行批处理作业所需的任何数量，从而不必受固定容量集群的限制。&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>还可以利用 Spot 实例，从而进一步降低运行批处理作业产生的费用。&lt;/p>
-&lt;p>&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>服务本身是&lt;strong>免费&lt;/strong>的，仅收取实际使用的 EC2 实例费用。&lt;/p></description></item><item><title>免费邮件转发服务</title><link>https://kane.mx/posts/2019/email-forwarding/</link><pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/email-forwarding/</guid><description>&lt;p>在拥有域名后，通常希望创建一些自有域名下的邮箱来收取不同用途的邮件，同时不希望为这部分功能付费😃。使用免费的企业邮箱(比如网易企业邮箱、阿里云企业邮箱)是一种选择。这时就需要配置邮件地址和邮件客户端来收取邮件，如果有多个邮箱地址，配置会特别麻烦。有时，这些企业邮箱的收件服务会莫名其妙的丢失一些邮件。&lt;/p></description></item><item><title>实战Aliyun EDAS应用迁移AWS</title><link>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</link><pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</guid><description>近期实践了将阿里云EDAS微服务应用迁移到AWS上，在这里分享一下迁移方案。 该方案涉及了以下三个方面， 微服务应用集群。在AWS上采用的ECS</description></item><item><title>AWS RDS数据库日志分析及展示</title><link>https://kane.mx/posts/2019/rds-log-analysis/</link><pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/rds-log-analysis/</guid><description>&lt;p>托管的RDS数据库已经是云计算服务中非常成熟的服务，绝大部分的云计算用户会采用RDS服务来提升数据库服务的可用性同时减少数据库的各类运维事务。&lt;/p>
-&lt;p>AWS RDS服务支持开启和查询各类的数据库日志，包括常规日志、慢日志、错误日志和审计日志。但RDS服务默认提供的日志查看工具仅仅类似文本查看器，无法针对日志数据做统计和查看历史滚动的存档。&lt;/p></description></item><item><title>使用Openswan连接AWS VPC</title><link>https://kane.mx/posts/2019/using-openswan-connect-aws-vpn/</link><pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/using-openswan-connect-aws-vpn/</guid><description>&lt;p>业务上云之后，经常也有需求将多云、数据中心或办公室的私有网络同云端的私有网络建立连接。&lt;a href="https://docs.aws.amazon.com/zh_cn/vpn/latest/s2svpn/VPC_VPN.html">AWS Site-to-Site VPN&lt;/a>正是AWS提供的托管VPN服务，我们可以在另一端的私有网络通过&lt;a href="https://www.openswan.org/">Openswan&lt;/a>同AWS VPC网络建立基于IPSec协议的安全连接。&lt;/p></description></item><item><title>AWS CDK简介</title><link>https://kane.mx/posts/2019/aws-cdk/</link><pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-cdk/</guid><description>&lt;p>&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infrastructure as Code&lt;/a>(架构即代码)一直是衡量公有云是否支持良好运维能力的重要指标。作为云计算领先的AWS，通过服务&lt;a href="https://aws.amazon.com/cn/cloudformation/">CloudFormation&lt;/a>来编排云环境中的基础设施资源。不过由于CloudFormation是使用YAML/JSON编写的声明式语言，不善于处理逻辑，编写繁琐且不利于调试排错，对于新上手的Devops工程师来说也有不小的学习曲线。三方开源的工具&lt;a href="https://en.wikipedia.org/wiki/Terraform_(software)">Terraform&lt;/a>同样没有很好解决&lt;a href="https://aws.amazon.com/cn/cloudformation/">CloudFormation&lt;/a>存在的这些问题。&lt;/p></description></item><item><title>Amazon Alexa Android版本国内登录问题</title><link>https://kane.mx/posts/2019/alexa-login-issue/</link><pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/alexa-login-issue/</guid><description>&lt;p>近期需要做一些Alexa上的开发，在手机上安装了Amazon Alexa，一直得到下面这样的错误提示而无法登录。&lt;/p>
+&lt;p>当我们有了成百数千甚至海量镜像的原始数据后，如何能快速且低成本的分析这些数据呢？&lt;/p>
+&lt;p>在AWS上，我们可以利用&lt;a href="https://aws.amazon.com/big-data/datalakes-and-analytics/">数据湖&lt;/a>相关的系列产品来实现低成本的交互式分析。&lt;/p>
+&lt;ol>
+&lt;li>在Docker镜像分析这个场景下，我已经获取到了待分析镜像的平台、层等数据。我将这些数据上传到&lt;a href="https://aws.amazon.com/s3/">Amazon S3&lt;/a>作为数据湖的数据源。&lt;/li>
+&lt;li>接下来使用&lt;a href="https://aws.amazon.com/glue/">AWS Glue&lt;/a>以S3中的数据创建Table并且从中提前数据的metadata。同时做数据分区，为接下来的查询做性能和成本优化。&lt;/li>
+&lt;li>打开&lt;a href="https://aws.amazon.com/athena/">Amazon Athena&lt;/a>，根据业务需求通过SQL语句查询分析Docker镜像数据。&lt;/li>
+&lt;/ol>
+&lt;p>就是通过以上3个简单步骤，我就得到了一个无服务器架构的Docker镜像数据分析应用！整个应用完全是按量计费的，主要成本包括S3对象存储费用，和Athena费用（根据每次查询扫描数据的大小来计算）。&lt;/p>
+&lt;p>使用该分析应用，我统计了&lt;a href="https://hub.docker.com/search?image_filter=official&amp;amp;type=image">Docker Hub官方镜像&lt;/a>中包含层最多的10个镜像(分平台统计)，
+&lt;figure>&lt;img src="https://kane.mx/posts/2020/serverless-docker-images-analytics/images/top-10-layers-of-official-images.png"
+alt="Top 10 layers"/>
+&lt;/figure>
+&lt;/p>
+&lt;p>最后，得力于AWS Infra as Code的强大能力，&lt;a href="https://github.com/zxkane/serverless-docker-images-analytics">整个应用&lt;/a>也是通过代码管理的且开源的，有兴趣的读者也可以部署自己的分析应用。&lt;/p></description></item><item><title>Get the size of Docker image without pulling image</title><link>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</link><pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/</guid><description>
+&lt;p>Recently I had a requirement to stats the size of some Docker images. It would be waste if pulling them all firstly then calculating the size of each image. Also you know the docker image consists of some Docker layers that probably are shared by other images. It's hard to get the disk usage if only sum the size of each image.&lt;/p>
+&lt;p>Is there any way to get the size of Docker image without pulling it?&lt;/p>
+&lt;p>It's definitely &lt;strong>Yes&lt;/strong>. The docker images are hosted by &lt;a href="https://docs.docker.com/registry/spec/api/">Docker Registry&lt;/a>, which is defined by &lt;a href="https://docs.docker.com/registry/spec/api/">a public specification&lt;/a>. The latest V2 of Registry has &lt;a href="https://docs.docker.com/registry/spec/api/#pulling-an-image">API&lt;/a> to fetch the manifest of an image that contains the size of every layer. Looks like it's very cool. Utilitying the manifest API of image will satisfie my requirement!&lt;/p>
+&lt;p>One more thing you should note, the v2 of Docker registry still is compatible with &lt;a href="https://docs.docker.com/registry/spec/manifest-v2-1/">schema specification V1&lt;/a>. You have to properly handle with the mixed responses of manifest when you query the manifest of an image.&lt;/p>
+&lt;p>I created a &lt;a href="https://gist.github.com/zxkane/23de226fee8806ee0ed8c05136972ce0">simple shell script&lt;/a> gracefully handling either v1 or v2 response of the image manifest, which can calculate the total layers size of a Docker image with specific tag, or the size of all tags of a Docker image.&lt;/p>
+&lt;blockquote>
+&lt;p>Above script was inspired by &lt;a href="https://ops.tips/blog/inspecting-docker-image-without-pull/">this post&lt;/a>. Hope you enjoy it.&lt;/p>
+&lt;/blockquote></description></item><item><title>oh-my-zsh性能调优思路</title><link>https://kane.mx/posts/2020/zsh-performance-tuning/</link><pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/zsh-performance-tuning/</guid><description>
+&lt;p>&lt;a href="https://zh.wikipedia.org/wiki/Z_shell">Z shell&lt;/a>搭配&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>自定义配置已成为众多Linux/Macosx用户的标准terminal配置。&lt;/p>
+&lt;p>最近遇到在&lt;code>zsh&lt;/code>中执行任意命令都变得特别慢(哪怕简单执行&lt;code>ls&lt;/code>也要花费肉眼可见的1，2秒钟)，这里记录下如何排查&lt;a href="https://zh.wikipedia.org/wiki/Z_shell">Z shell&lt;/a>下启用&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>的性能问题。&lt;/p>
+&lt;h3 id="性能问题症状">性能问题症状&lt;/h3>
+&lt;p>突然某天起在终端中执行任意命令，都至少要花费1，2秒（肉眼计数），该命令才会完成执行并退出到终端开始接受新的输入。&lt;/p>
+&lt;p>我当前主要使用的终端是&lt;a href="https://www.iterm2.com/">iTerm2&lt;/a>，执行命令后，在终端Tab的title bar上能显式的看到&lt;code>git&lt;/code>命令也被执行了。&lt;/p>
+&lt;p>尝试了其他的shell，比如&lt;code>bash&lt;/code>，是没有这个问题。基本断定问题同&lt;code>zsh&lt;/code>相关。更多问题描述乃至动画截屏，可以参见&lt;a href="https://github.com/ohmyzsh/ohmyzsh/issues/8833">这个issue&lt;/a>。&lt;/p>
+&lt;h3 id="zsh--oh-my-zsh-性能问题分析">zsh + oh-my-zsh 性能问题分析&lt;/h3>
+&lt;p>&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>其实就是提供&lt;a href="https://zh.wikipedia.org/wiki/Z_shell">zsh&lt;/a>的定制化配置，主要包括Theme主题和各种软件的插件。&lt;/p>
+&lt;h4 id="oh-my-zsh-插件">oh-my-zsh 插件&lt;/h4>
+&lt;p>通常&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>中内置或三方社区提供的插件是导致性能降低甚至互相冲突的主要原因。排查思路也很简单，通过逐个禁用已加载的插件来测试是否可以解决问题。&lt;/p>
+&lt;p>用文本编辑器打开当前用户的&lt;code>~/.zshrc&lt;/code>配置，找到&lt;code>plugins&lt;/code>开头的配置行，例如，&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln"> 1&lt;/span>&lt;span class="nv">plugins&lt;/span>&lt;span class="o">=(&lt;/span>
+&lt;span class="ln"> 2&lt;/span> git
+&lt;span class="ln"> 3&lt;/span> osx
+&lt;span class="ln"> 4&lt;/span>&lt;span class="c1">## gradle&lt;/span>
+&lt;span class="ln"> 5&lt;/span> brew
+&lt;span class="ln"> 6&lt;/span>&lt;span class="c1">## command-not-found&lt;/span>
+&lt;span class="ln"> 7&lt;/span> github
+&lt;span class="ln"> 8&lt;/span>&lt;span class="c1"># gnu-utils&lt;/span>
+&lt;span class="ln"> 9&lt;/span>&lt;span class="c1">## mvn&lt;/span>
+&lt;span class="ln">10&lt;/span> python
+&lt;span class="ln">11&lt;/span> pip
+&lt;span class="ln">12&lt;/span>&lt;span class="c1"># screen&lt;/span>
+&lt;span class="ln">13&lt;/span> vi-mode
+&lt;span class="ln">14&lt;/span> docker
+&lt;span class="ln">15&lt;/span>&lt;span class="c1">## docker-compose&lt;/span>
+&lt;span class="ln">16&lt;/span> node
+&lt;span class="ln">17&lt;/span>&lt;span class="c1">## spring&lt;/span>
+&lt;span class="ln">18&lt;/span> mosh
+&lt;span class="ln">19&lt;/span>&lt;span class="c1"># httpie&lt;/span>
+&lt;span class="ln">20&lt;/span>&lt;span class="c1">## sudo&lt;/span>
+&lt;span class="ln">21&lt;/span> tmux
+&lt;span class="ln">22&lt;/span>&lt;span class="c1">## kubectl&lt;/span>
+&lt;span class="ln">23&lt;/span>&lt;span class="c1">## helm&lt;/span>
+&lt;span class="ln">24&lt;/span> golang
+&lt;span class="ln">25&lt;/span> &lt;span class="nb">history&lt;/span>
+&lt;span class="ln">26&lt;/span> history-substring-search
+&lt;span class="ln">27&lt;/span> zsh-autosuggestions
+&lt;span class="ln">28&lt;/span> zsh-syntax-highlighting
+&lt;span class="ln">29&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>通过行首添加&lt;code>#&lt;/code>来禁用&lt;code>oh-my-zsh&lt;/code>插件，启动新的终端窗口或tab来验证是否该插件是引起问题的根源。&lt;/p>
+&lt;p>在我的配置中，出现过因为启用过多插件，导致新建终端需要10来秒钟。但因为创建终端不是一个高频的需求，这个性能通常来说还是可以忍受。&lt;/p>
+&lt;h4 id="oh-my-zsh-主题">oh-my-zsh 主题&lt;/h4>
+&lt;p>在我的这个问题中，即使将所有插件都禁用了，命令执行后退出速度还是没有改善，&lt;code>git&lt;/code>命令仍然有被执行。这时我尝试更换不同&lt;code>oh-my-zsh&lt;/code>内置主题来排查问题。但是使用了包括默认主题&lt;code>robbyrussell&lt;/code>，极简主题&lt;code>ys&lt;/code>在内的多个主题都无法解决该问题。&lt;/p>
+&lt;p>最后直接禁止&lt;code>oh-my-zsh&lt;/code>使用主题，问题没有了！&lt;/p>
+&lt;p>然而&lt;code>oh-my-zsh&lt;/code>主题是对zsh的极大增强，改善了默认的用户体验，没有主题扩展使用起来会非常不习惯。&lt;/p>
+&lt;h3 id="小结">小结&lt;/h3>
+&lt;p>最终试用了另一个社区维护的知名&lt;code>zsh&lt;/code>主题&lt;a href="https://github.com/sindresorhus/pure">Pure&lt;/a>，性能问题得到了解决:v: 同时也满足了主题对zsh输入输出用户体验的增强 :blush:&lt;/p>
+&lt;p>希望这里分享的&lt;code>oh-my-zsh&lt;/code>性能的调优思路，可以帮助到有类似需要的各位。&lt;/p>
+&lt;blockquote>
+&lt;p>将来社区对这个&lt;a href="https://github.com/ohmyzsh/ohmyzsh/issues/8833">问题&lt;/a>如有进一步的反馈，将会做更新。&lt;/p>
+&lt;/blockquote></description></item><item><title>基于CodeCommit代码管理的无服务器架构Devops</title><link>https://kane.mx/posts/2020/codecommit-devops-model/</link><pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/codecommit-devops-model/</guid><description>
+&lt;p>&lt;a href="https://github.com/">Github&lt;/a>/&lt;a href="https://about.gitlab.com/">Gitlab&lt;/a>已经成为众多开发者非常熟悉的代码协作平台，通过他们参与开源项目或实施企业内部项目协作。&lt;/p>
+&lt;p>AWS也提供了托管的、基于Git、安全且高可用的代码服务&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>。&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>主要针对企业用户场景，所以他并没有社交功能以及代码仓库fork功能，是否&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>就无法实现&lt;a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">Github基于Pull Request&lt;/a>的协同工作模式呢？&lt;/p>
+&lt;p>答案是，&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>完全可以实现&lt;strong>基于Pull Request的代码协作&lt;/strong>。由于&lt;a href="https://git-scm.com/">Git&lt;/a>的分布式代码管理特性，首先fork上游项目仓库，将修改后的代码提交到fork仓库，通过Pull Request申请修改请求合并。Github将这套协作流程推广开来并被开源项目广泛采用。其实还有另外的Git仓库协同方式来完成多人的协作开发，例如&lt;a href="https://www.gerritcodereview.com/">Gerrit Code Review&lt;/a>。目前Android、Eclipse Foundation下面的各种项目都在使用Gerrit作为协同开发工具。&lt;a href="https://www.gerritcodereview.com/">Gerrit&lt;/a>通过控制同一个代码仓库中不同角色的用户可提交代码分支的权限来实现代码贡献、Review、持续集成以及协同开发的。&lt;/p>
+&lt;p>&lt;a href="https://aws.amazon.com/codecommit/">CodeCommit&lt;/a>作为AWS托管的服务，同IAM认证和授权管理做了很好的集成。完全可以通过IAM Policy的设置，为同一个代码仓库中不同用户角色设置不同的权限。使用类似&lt;a href="https://www.gerritcodereview.com/">Gerrit&lt;/a>的权限控制思路，&lt;/p>
+&lt;ul>
+&lt;li>任意代码仓库&lt;em>协作者&lt;/em>可以提交代码到特定含义的分支，例如，&lt;code>features/*&lt;/code>, &lt;code>bugs/*&lt;/code>。可以允许多人协同工作在某一特定分支上。协作者同时可以创建新的Pull Request请求合并代码到主分支，例如&lt;code>master&lt;/code>或者&lt;code>mainline&lt;/code>。&lt;/li>
+&lt;li>代码仓库Master/Owner有权限合并Pull Request。&lt;/li>
+&lt;li>拒绝任何人直接推送代码到仓库主分支，包括仓库Owner/Admin。&lt;/li>
+&lt;li>监听仓库Pull Request创建和PR源分支更新事件，自动触发该PR对应分支的automation build，编译、测试等通过后，自动为PR的&lt;code>通过&lt;/code>投票+1。反之若失败，则取消投票。&lt;/li>
+&lt;li>为代码仓库设置PR Review规则，至少需要收到PR automation build和仓库Master/Owner合计两票&lt;code>通过&lt;/code>才允许合并代码。&lt;/li>
+&lt;li>监听代码仓库主分支，任意新提交将触发自动化发布Build。将最新变更在整个系统上做集成。&lt;/li>
+&lt;/ul>
+&lt;p>是不是很棒！完全做到了Github、Github Pull Request、Github Action/Travis CI整套devops协同开发的流程。&lt;/p>
+&lt;p>协作流程如下图，
+&lt;figure>&lt;img src="images/codecommit-devops-model.png"
+alt="基于CodeCommit代码管理的协同流程"/>
+&lt;/figure>
+&lt;/p>
+&lt;p>同时，以上整套基于CodeCommit代码管理的devops工作流程可以利用CloudFormation实现AWS资源编排，将Devops依赖的Infra使用代码来做管理！这样的好处是，企业内部即使有数百数千甚至更多代码仓库都可以统一管理，新仓库的申请也可以通过Infra代码的PR，在通过审批合并后自动从AWS provisioning创建出符合企业管理要求的安全代码仓库。很酷吧:laughing:&lt;/p>
+&lt;p>&lt;a href="https://github.com/zxkane/cdk-collections/tree/master/codecommit-collaboration-model">这里&lt;/a>有一套完整的创建以上工作流的演示，有兴趣的读者可以在自己的账户内体验。整套方案完全使用的是AWS托管服务，仅按实际使用量(如使用CodeBuild编译了代码)计费。&lt;/p></description></item><item><title>AWS发布更快、更便宜、更易用的HTTP APIs</title><link>https://kane.mx/posts/2020/new-http-apis-of-api-gateway/</link><pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/new-http-apis-of-api-gateway/</guid><description>
+&lt;p>AWS在3月12日&lt;a href="https://aws.amazon.com/blogs/compute/building-better-apis-http-apis-now-generally-available/">正式发布了新一代的API网关 -- HTTP APIs&lt;/a>。AWS发布的第一代API Gateway服务已经快5年了，通过这些年来大规模服务客户的心得以及客户反馈，由此重新构建了更快（相比第一代网关60%的延迟减少）、更便宜（至少节省71%的费用）、更易用的第二代网关服务。&lt;/p>
+&lt;p>除了性能、费用、易用性的大幅度改进之外，在&lt;a href="https://aws.amazon.com/blogs/compute/building-better-apis-http-apis-now-generally-available/">HTTP APIs发布博客&lt;/a>中着重介绍了以下新特性，&lt;/p>
+&lt;ul>
+&lt;li>HTTP APIs网关可同私有VPC内的负载均衡(ALB/NLB)，服务发现(Cloup Map)集成。意味着可将目前最流行且普遍应用的容器服务作为API后端&lt;/li>
+&lt;li>可以将自定义域名的API路径混合映射到第一代的REST APIs和最新的HTTP APIs&lt;/li>
+&lt;li>请求限流的改进。支持对不同stage以及请求路由分别设置不同的限流&lt;/li>
+&lt;li>Stage变量。可以将Stage变量传递给API网关后端的服务。同时支持路由在不同的stage动态集成不同的后端Lambda函数&lt;/li>
+&lt;li>Lambda集成时使用Payload version 2.0。Version 2.0格式提供了更多的灵活性及简化了数据格式&lt;/li>
+&lt;li>支持导入 Swagger / OpenAPI 配置文件&lt;/li>
+&lt;/ul>
+&lt;p>如果对HTTP APIs感兴趣，可以尝试在自己的账户内部署&lt;a href="https://github.com/zxkane/cdk-collections/blob/master/batch-demo/README.md#how-to-deploy-batch-demo-app">这个示例&lt;/a>。这个示例演示了如何按需使用AWS Batch服务进行批量任务计算，同时将任务提交和查询状态通过HTTP接口提供出来。该示例支持部署时选用不同的AWS服务（ALB、REST APIs或HTTP APIs）来提供这些API接口访问。整个示例都是基于无服务器架构实现的，不进行批量计算是不产生任何费用的哦:smile:。&lt;/p></description></item><item><title>AWS Cloud Debugging初探</title><link>https://kane.mx/posts/2019/aws-cloud-debugging/</link><pubDate>Thu, 26 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-cloud-debugging/</guid><description>
+&lt;p>在&lt;a href="https://reinvent.awsevents.com/?nc2=h_ql_re">re:Invent&lt;/a> 2019之前，&lt;a href="https://aws.amazon.com/getting-started/tools-sdks/?nc2=h_ql_prod_dt_tsdk">AWS Toolkit&lt;/a>发布了&lt;a href="https://aws.amazon.com/about-aws/whats-new/2019/11/announcing-cloud-debugging-beta/?nc1=h_ls">Cloud Debugging beta&lt;/a>功能。该功能支持在IntelliJ IDEs(IntelliJ, PyCharm, Webstorm, 以及 Rider)中远程调试 ECS &lt;a href="https://aws.amazon.com/fargate/">Fargate&lt;/a> 容器中执行的应用程序。&lt;/p>
+&lt;p>对&lt;a href="https://github.com/zxkane/alibabacloud-microservice-demo/tree/cloud-debug">ECS Fargate demo&lt;/a>启用了远程调试并调试成功后，这里记录一下该功能的使用体验并且分享体验过程中掉进去过的一些坑。&lt;/p>
+&lt;h4 id="试用体验">试用体验&lt;/h4>
+&lt;ul>
+&lt;li>首先，该功能不适用于生产环境。因为对ECS Fargate类型的Service启用&lt;strong>Cloud Debugging&lt;/strong>功能会将原始的&lt;code>ECS Services&lt;/code>收缩为&lt;strong>0&lt;/strong>个task副本，同时创建一个新的Service并启用新的Task Definition，新的Task Definition中会加入&lt;code>Cloud Debug Sidecar&lt;/code>容器来辅助实现远程调试。整个过程会对生产环境造成变更。&lt;/li>
+&lt;li>如果ECS集群是通过CI/CD持续部署，并且是多人协同使用的环境，该功能也不适用。因为，对某些容器服务启用&lt;code>Cloud Debugging&lt;/code>将导致他人的持续部署失败或不生效。&lt;/li>
+&lt;li>启用&lt;code>Cloud Debugging&lt;/code>操作比较麻烦，且启用状态下无法更新ECS中部署的版本。需要先停用&lt;code>Cloud Debugging&lt;/code>，部署新版本代码，然后再次启用&lt;code>Cloud Debugging&lt;/code>才能调试新代码。尽可能的不要依赖&lt;code>Cloud Debugging&lt;/code>来调试程序，花功能做好单元测试，集成测试以及E2E测试来避免调试云端环境。&lt;/li>
+&lt;/ul>
+&lt;h4 id="试用经验">试用经验&lt;/h4>
+&lt;ul>
+&lt;li>按照&lt;a href="https://docs.aws.amazon.com/zh_cn/toolkit-for-jetbrains/latest/userguide/ecs-debug.html#ecs-prereqs">官方文档启用&lt;code>Cloud Debugging&lt;/code>&lt;/a>后，创建&lt;a href="https://docs.aws.amazon.com/zh_cn/toolkit-for-jetbrains/latest/userguide/edit-configuration-dialog.html#edit-configuration-dialog-ecs">Cloud Debugging Launch Configuration&lt;/a>并执行调试，遇到**&lt;code>Retrieve execution role finished exceptionally&lt;/code>**错误。错误的原因是，文档中没有提到&lt;code>Cloud Debug Sidecar&lt;/code>需要&lt;code>logs:CreateLogStream&lt;/code>权限创建CloudWatch Logs Stream。解决方案是，为ECS Task Execution Role添加&lt;code>logs:CreateLogStream&lt;/code>权限。&lt;/li>
+&lt;li>在&lt;a href="https://github.com/aws/aws-toolkit-jetbrains">AWS Toolkit Jetbrains&lt;/a>当前的版本&lt;em>1.9-193&lt;/em>不支持启用了&lt;a href="https://github.com/aws/aws-toolkit-jetbrains/issues/1463">AppMesh&lt;/a>或&lt;a href="https://github.com/aws/aws-toolkit-jetbrains/issues/1464">X-Ray&lt;/a>的Task。解决方案是，对需要启用&lt;code>Cloud Debugging&lt;/code>的Task暂时禁用App Mesh和X-Ray。&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>&lt;code>Cloud Debugging&lt;/code>是一个不错的开发工具尝试思路，帮助开发者更好的做出Cloud Native应用。但是该项目仍然是一个早期项目，有许多问题需要修复和改进。&lt;/p>
+&lt;/blockquote></description></item><item><title>AWS Batch简介</title><link>https://kane.mx/posts/2019/aws-batch/</link><pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-batch/</guid><description>
+&lt;p>&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>是一个全托管的批处理调度服务，它可为用户管理所有基础设施，从而避免了预置、管理、监控和扩展批处理计算作业所带来的复杂性。当然&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>已与 AWS 平台原生集成，让用户能够利用 AWS 的扩展、联网和访问管理功能。让用户轻松运行能够安全地从 AWS 数据存储（如 Amazon S3 和 Amazon DynamoDB）中检索数据并向其中写入数据的作业。&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>可根据所提交的批处理作业的数量和资源要求预置计算资源并优化作业分配。能够将计算资源动态扩展至运行批处理作业所需的任何数量，从而不必受固定容量集群的限制。&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>还可以利用 Spot 实例，从而进一步降低运行批处理作业产生的费用。&lt;/p>
+&lt;p>&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>服务本身是&lt;strong>免费&lt;/strong>的，仅收取实际使用的 EC2 实例费用。&lt;/p>
+&lt;p>我创建了一个&lt;a href="https://github.com/zxkane/cdk-collections/blob/master/batch-demo/README.md">Batch App demo&lt;/a>来演示&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>相关使用方法。该示例通过一个Restful API接口来提交批处理任务，Restful API通过&lt;a href="https://aws.amazon.com/cn/elasticloadbalancing/">ALB&lt;/a> + &lt;a href="https://aws.amazon.com/cn/lambda/">Lambda函数&lt;/a>来暴露服务。Lambda函数被触发后，将新任务请求发送到&lt;a href="https://aws.amazon.com/cn/sqs/">SQS&lt;/a>服务。随后另一个Lambda将消费这个SQS，并将调用&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a> API来提交新的批处理任务，同时将任务信息储存到&lt;a href="https://aws.amazon.com/cn/dynamodb/">DynamoDB&lt;/a>中。同时Demo创建了Batch任务会使用到的Docker Image，并且预先提交到&lt;a href="https://aws.amazon.com/cn/ecr/">ECR&lt;/a>中。同时Batch任务定义了使用的EC2实例类型(c5系列实例，且包括Spot和按需两种计费方式的实例，且优先使用Spot实例)，实例默认伸缩数量为0(没有可执行任务时将中止实例)。并且提交的任务分为计算任务和统计归并任务，统计归并任务会依赖所以计算任务执行完毕才开始执行。最后通过另一Restful接口查询计算任务的最终结果，该接口同样使用&lt;a href="https://aws.amazon.com/cn/elasticloadbalancing/">ALB&lt;/a> + &lt;a href="https://aws.amazon.com/cn/lambda/">Lambda函数&lt;/a>来实现。&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-batch/aws-batch-app-demo.png"
+alt="Batch App架构图"/>
+&lt;/figure>
+&lt;p>Enjoy this &lt;a href="https://github.com/zxkane/cdk-collections/blob/master/batch-demo/README.md">Batch App demo&lt;/a> orchestrated by &lt;a href="https://aws.amazon.com/cn/cdk/">AWS CDK&lt;/a>.&lt;/p></description></item><item><title>免费邮件转发服务</title><link>https://kane.mx/posts/2019/email-forwarding/</link><pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/email-forwarding/</guid><description>
+&lt;p>在拥有域名后，通常希望创建一些自有域名下的邮箱来收取不同用途的邮件，同时不希望为这部分功能付费:smiley:。使用免费的企业邮箱(比如网易企业邮箱、阿里云企业邮箱)是一种选择。这时就需要配置邮件地址和邮件客户端来收取邮件，如果有多个邮箱地址，配置会特别麻烦。有时，这些企业邮箱的收件服务会莫名其妙的丢失一些邮件。&lt;/p>
+&lt;p>这种场景下，&lt;strong>邮件转发服务&lt;/strong>是一种非常好的解决方案。无需搭建邮件服务器或申请免费邮件服务，只需要配置域名的&lt;strong>邮件MX&lt;/strong>解析到转发邮件收发件服务，同时使用&lt;strong>DNS TXT&lt;/strong> record配置转发规则，即可将所以发送的自有域名下的邮件转发到已有的邮箱地址！:cool:&lt;/p>
+&lt;p>特别安利&lt;a href="https://github.com/forwardemail/free-email-forwarding">Forward Email&lt;/a>服务，一个免费而且是&lt;strong>开源&lt;/strong>的邮件转发服务。&lt;/p>
+&lt;p>如上面介绍的，只需要为域名&lt;code>mydomain.com&lt;/code>创建如下3条DNS解析记录，&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>名称&lt;/th>
+&lt;th>TTL&lt;/th>
+&lt;th>记录类型&lt;/th>
+&lt;th>优先级&lt;/th>
+&lt;th>记录的内容&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>@ 或者 空白&lt;/td>
+&lt;td>3600&lt;/td>
+&lt;td>MX&lt;/td>
+&lt;td>10&lt;/td>
+&lt;td>mx1.forwardemail.net&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>@ 或者 空白&lt;/td>
+&lt;td>3600&lt;/td>
+&lt;td>MX&lt;/td>
+&lt;td>20&lt;/td>
+&lt;td>mx2.forwardemail.net&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>@ 或者 空白&lt;/td>
+&lt;td>3600&lt;/td>
+&lt;td>TXT&lt;/td>
+&lt;td>20&lt;/td>
+&lt;td>&lt;a href="mailto:forward-email=niftylettuce@gmail.com">forward-email=niftylettuce@gmail.com&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>所有发往&lt;code>@mydomain.com&lt;/code>的邮件将被转发到邮箱&lt;code>niftylettuce@gmail.com&lt;/code>。:v:&lt;/p>
+&lt;p>更多配置选项请查看&lt;a href="https://github.com/forwardemail/free-email-forwarding#how-do-i-get-started-and-set-up-email-forwarding">文档&lt;/a>。&lt;/p></description></item><item><title>实战Aliyun EDAS应用迁移AWS</title><link>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</link><pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</guid><description>
+&lt;p>近期实践了将阿里云EDAS微服务应用迁移到AWS上，在这里分享一下迁移方案。&lt;/p>
+&lt;p>该方案涉及了以下三个方面，&lt;/p>
+&lt;ol>
+&lt;li>微服务应用集群。在AWS上采用的&lt;a href="https://aws.amazon.com/cn/ecs/">ECS&lt;/a>集群部署微服务应用，通过&lt;a href="https://aws.amazon.com/cn/cloud-map/">Cloudmap&lt;/a>实现服务注册发现，&lt;a href="https://aws.amazon.com/cn/app-mesh/">App Mesh&lt;/a>实现服务间流量控制。更加详尽的微服务迁移要点和对应方案，详见下面的deck。&lt;/li>
+&lt;li>Devops pipeline。使用托管的&lt;a href="https://aws.amazon.com/cn/codepipeline/">CodePipeline&lt;/a>，&lt;a href="https://aws.amazon.com/cn/codebuild/">CodeBuild&lt;/a>实现CI/CD。&lt;/li>
+&lt;li>Infra as Code。利用AWS强大的&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infra as Code&lt;/a>能力，将云上的基础设施和微服务应用编排通过&lt;a href="https://kane.mx/posts/2019/aws-cdk/">CDK&lt;/a>代码实现。&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>下面是迁移方案的deck。完整且可部署的PoC代码，点&lt;a href="https://github.com/zxkane/alibabacloud-microservice-demo">这里&lt;/a>。&lt;/p>
+&lt;/blockquote>
+&lt;div class="responsive-wrap">
+&lt;iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRrD1lBxjbGsI0xIX8XTzUyJzDqnaqW97d6jGASdatRPYUkciSwxbeCJFQv-gwZLcZ31DFPXQtvmob1/embed?start=false&amp;amp;loop=false&amp;amp;delayms=5000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">&lt;/iframe>
+&lt;/div></description></item><item><title>AWS RDS数据库日志分析及展示</title><link>https://kane.mx/posts/2019/rds-log-analysis/</link><pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/rds-log-analysis/</guid><description>
+&lt;p>托管的RDS数据库已经是云计算服务中非常成熟的服务，绝大部分的云计算用户会采用RDS服务来提升数据库服务的可用性同时减少数据库的各类运维事务。&lt;/p>
+&lt;p>AWS RDS服务支持开启和查询各类的数据库日志，包括常规日志、慢日志、错误日志和审计日志。但RDS服务默认提供的日志查看工具仅仅类似文本查看器，无法针对日志数据做统计和查看历史滚动的存档。&lt;/p>
+&lt;p>本文将介绍如何使用AWS上云原生的服务搭建无服务架构的实时日志分析报表系统。该系统的实现思路来自于AWS中国的&lt;a href="https://aws.amazon.com/cn/blogs/china/cloudwatch-logs-kinesis-firehose-athena-quicksight-amazon-aurora/">一篇博客&lt;/a>，该文介绍了使用 CloudWatch Logs，Kinesis Firehose，Athena 和 Quicksight 实现实时分析 Amazon Aurora 数据库审计日志。&lt;/p>
+&lt;p>这里提供了一个完整的&lt;a href="https://github.com/zxkane/cdk-collections/tree/master/rds-audit-log">AWS CDK应用&lt;/a>实现了博客中介绍的服务搭建思路，RDS审计日志通过 CloudWatch Log -&amp;gt; Kinesis Firehose -&amp;gt; S3 这样一个数据管道被过滤，转换，压缩最终保存到S3上，可被无服务分析服务Athena使用。同时创建了一个Lambda函数模拟应用访问数据库，它周期性的连接上应用中创建的RDS Aurora数据库并执行查询或变更Sql。在整个应用在被部署成功后数分钟，及可通过Athena数据表查询统计Aurora审计日志。Enjoy it:satisfied::satisfied:&lt;/p></description></item><item><title>使用Openswan连接AWS VPC</title><link>https://kane.mx/posts/2019/using-openswan-connect-aws-vpn/</link><pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/using-openswan-connect-aws-vpn/</guid><description>
+&lt;p>业务上云之后，经常也有需求将多云、数据中心或办公室的私有网络同云端的私有网络建立连接。&lt;a href="https://docs.aws.amazon.com/zh_cn/vpn/latest/s2svpn/VPC_VPN.html">AWS Site-to-Site VPN&lt;/a>正是AWS提供的托管VPN服务，我们可以在另一端的私有网络通过&lt;a href="https://www.openswan.org/">Openswan&lt;/a>同AWS VPC网络建立基于IPSec协议的安全连接。&lt;/p>
+&lt;p>下面是配置的详细步骤，&lt;/p>
+&lt;ol>
+&lt;li>如果是创建数据中心或办公室的连接，数据中心或办公室需要有公网IP。如果是在其他公有云上，需要创建带公网IP的EC2，或使用EIP。
+&lt;ol>
+&lt;li>如果使用AWS EC2配置Openswan，需要禁用 EC2 的 Source/Destination Check。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>在AWS上创建Virtual Private Gateway 和 Customer Gateway(指定对端的公网IP作为静态路由)。&lt;/li>
+&lt;li>在AWS上创建Site-to-Site VPN连接，使用第一步和第二步创建的Virtual Private Gateway和Customer Gateway。&lt;/li>
+&lt;li>在对端机器上安装&lt;code>openswan&lt;/code>。
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="ln">1&lt;/span>sudo yum install openswan&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>编辑&lt;code>/etc/sysctl.conf&lt;/code>文件，确保有以下配置，
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="ln">1&lt;/span>net.ipv4.ip_forward = 1
+&lt;span class="ln">2&lt;/span>net.ipv4.conf.default.rp_filter = 0
+&lt;span class="ln">3&lt;/span>net.ipv4.conf.default.accept_source_route = 0&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>重新加载sysctl配置并重启network服务。
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="ln">1&lt;/span>sudo sysctl -p
+&lt;span class="ln">2&lt;/span>sudo service network restart&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>编辑&lt;code>/etc/ipsec.conf&lt;/code>确保&lt;code>include /etc/ipsec.d/*.conf&lt;/code>没有被注释。&lt;/li>
+&lt;li>创建&lt;code>/etc/ipsec.d/aws.conf&lt;/code>文件，内容拷贝来自第三步创建的连接Openswan建议配置。&lt;/li>
+&lt;li>创建&lt;code>/etc/ipsec.d/aws.secrets&lt;/code>文件，内容拷贝来自第三步创建的连接Openswan配置。&lt;/li>
+&lt;li>启动ipsec服务。
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="ln">1&lt;/span>&lt;span class="c1"># Start the ipsec service.&lt;/span>
+&lt;span class="ln">2&lt;/span>sudo service ipsec start
+&lt;span class="ln">3&lt;/span>
+&lt;span class="ln">4&lt;/span>&lt;span class="c1"># Check the logs.&lt;/span>
+&lt;span class="ln">5&lt;/span>sudo service ipsec status
+&lt;span class="ln">6&lt;/span>sudo ipsec auto --status&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;p>以上配置在Amazon Linux, Centos 6.9上验证通过。但是在Amazon Linux 2、Centos 7等较新的Linux发行版本上，启动&lt;code>ipsec&lt;/code>服务遇到如下错误，
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="ln">1&lt;/span>Starting Internet Key Exchange (IKE) Protocol Daemon for IPsec...
+&lt;span class="ln">2&lt;/span>ERROR: /etc/ipsec.d/aws.conf: 12: keyword auth, invalid value: esp&lt;/code>&lt;/pre>&lt;/div>
+解决方法是，从 AWS Site-to-Site VPN 下载的 Openswan 配置中删掉不支持的配置行&lt;code>auth=esp&lt;/code>。&lt;/p></description></item><item><title>AWS CDK简介</title><link>https://kane.mx/posts/2019/aws-cdk/</link><pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-cdk/</guid><description>
+&lt;p>&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infrastructure as Code&lt;/a>(架构即代码)一直是衡量公有云是否支持良好运维能力的重要指标。作为云计算领先的AWS，通过服务&lt;a href="https://aws.amazon.com/cn/cloudformation/">CloudFormation&lt;/a>来编排云环境中的基础设施资源。不过由于CloudFormation是使用YAML/JSON编写的声明式语言，不善于处理逻辑，编写繁琐且不利于调试排错，对于新上手的Devops工程师来说也有不小的学习曲线。三方开源的工具&lt;a href="https://en.wikipedia.org/wiki/Terraform_(software)">Terraform&lt;/a>同样没有很好解决&lt;a href="https://aws.amazon.com/cn/cloudformation/">CloudFormation&lt;/a>存在的这些问题。&lt;/p>
+&lt;p>&lt;a href="https://aws.amazon.com/cn/cdk/">AWS CDK&lt;/a>的出现解决了目前&lt;a href="https://aws.amazon.com/cn/cloudformation/">CloudFormation&lt;/a>存在的绝大部分问题，极大的提升基础设施编排代码的开发和维护效率。&lt;/p>
+&lt;p>AWS CDK是一种开源软件开发框架，开发者可以用自己使用熟悉的编程语言模拟和预置云应用程序资源，目前支持Typescript/Javascript、Python、Java和.Net。AWS CDK将云中资源抽象对象化，通过极其简单语法描述资源对象或设置其各种属性(重载CDK默认属性设置)来创建或更新云中资源。&lt;/p>
+&lt;p>例如，下面简单几行将创建一个新的名为&lt;code>Gameday&lt;/code>的VPC网络，并且跨了两个可用区分别创建了公有子网和私有子网。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="ln"> 1&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">vpc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">ec2&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Vpc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Gameday&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 2&lt;/span> &lt;span class="nx">cidr&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;10.0.0.0/16&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 3&lt;/span> &lt;span class="nx">maxAzs&lt;/span>: &lt;span class="kt">2&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 4&lt;/span> &lt;span class="nx">subnetConfiguration&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="ln"> 5&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 6&lt;/span> &lt;span class="nx">cidrMask&lt;/span>: &lt;span class="kt">24&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 7&lt;/span> &lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;Public&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 8&lt;/span> &lt;span class="nx">subnetType&lt;/span>: &lt;span class="kt">SubnetType.PUBLIC&lt;/span>
+&lt;span class="ln"> 9&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">10&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">11&lt;/span> &lt;span class="nx">cidrMask&lt;/span>: &lt;span class="kt">24&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">12&lt;/span> &lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;Private&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">13&lt;/span> &lt;span class="nx">subnetType&lt;/span>: &lt;span class="kt">SubnetType.PRIVATE&lt;/span>
+&lt;span class="ln">14&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">15&lt;/span> &lt;span class="p">]&lt;/span>
+&lt;span class="ln">16&lt;/span> &lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>我创建了两个示例项目使用了&lt;a href="https://aws.amazon.com/cn/cdk/">AWS CDK&lt;/a>快速创建应用环境且部署应用，&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/zxkane/gameday-cdk">Gameday&lt;/a> 为一个ECS上运行的Web应用编排了完整的环境，包括VPC、RDS Aurora、NAT Gateway、安全组、ECS集群、ECS Task定义、ALB负载均衡。&lt;/li>
+&lt;li>&lt;a href="https://github.com/zxkane/serverless-domain-redirect">Serverlss Domain Redirect&lt;/a> 基于AWS搭建了无服务器架构的域名重定向服务。基于不同的配置参数，提供了基于 S3 + CloudFront + Route 53 或是 Lambda + API Gateway + Route 53 两种解决方案。&lt;/li>
+&lt;/ul>
+&lt;p>总体的来说，&lt;a href="https://aws.amazon.com/cn/cdk/">AWS CDK&lt;/a>是一个非常值得采用的云中资源编排和管理方式，高效的管理了AWS上的资源。&lt;/p>
+&lt;p>由于CDK还在相对早期，成熟度还不是那么完美。我在使用中发现下面一些值得注意的问题。&lt;/p>
+&lt;ol>
+&lt;li>CDK程序最终还是创建了CloudFormation配置，提交到CloudFormation完成资源变更。核心的用户体验，需要依赖CloudFormation的能力。CloudFormation的创建或回退超时过长，时常影响资源部署体验。另外，清理资源的时候，遇到部分资源无法清理且缺少明确提示。比如Aurora集群。&lt;/li>
+&lt;li>CDK类库缺少配置校验。这类错误只能通过CloudFormation部署后，才会被资源方发现并返回错误。导致整个创建的堆栈回退，调试大型的部署栈将花费比较长的时间。建议将整个部署拆分为多个小的堆栈，减小每次部署时间，方便调试。&lt;/li>
+&lt;li>文档还比较简陋。缺少较为深入的示例。增加了开发人员的学习曲线。&lt;/li>
+&lt;li>新版本向后兼容性不够好，时常新版本有break changes。在1.0GA之后发布的版本break changes相对减少，但仍然有出现。&lt;/li>
+&lt;/ol></description></item><item><title>Amazon Alexa Android版本国内登录问题</title><link>https://kane.mx/posts/2019/alexa-login-issue/</link><pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/alexa-login-issue/</guid><description>
+&lt;p>近期需要做一些Alexa上的开发，在手机上安装了Amazon Alexa，一直得到下面这样的错误提示而无法登录。&lt;/p>
 &lt;blockquote>
 &lt;p>Connection Timed Out.&lt;/p>
-&lt;/blockquote></description></item><item><title>使用AWS S3作为MacOSX时间机器(Time Machine)的备份存储</title><link>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</link><pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</guid><description>&lt;p>个人电脑数据备份一直都是一个强烈的需求。使用网盘等云存储产品可以部分满足数据的备份需求，仍然无法做到使用便利性和很高的数据安全保障。&lt;/p>
-&lt;p>MacOSX上系统内置了备份解决方案 &amp;ndash; &lt;a href="https://support.apple.com/zh-cn/HT201250">时间机器(Time Machine)&lt;/a>。Time Machine支持AirPort Time Capsule，NAS存储或者外置的存储设备。然而这些备份方案都依赖于硬件设备，有容量限制或不便于移动。在云计算已经大行其道的今天，有没有使用云计算厂商对象存储作为目标存储的备份方案，为MacOSX数据备份提供无限容量、高度的安全性的云方案？经过一番搜索，既找到了开源免费的工具&lt;a href="https://restic.net/">Restic&lt;/a>，也有付费软件&lt;a href="https://www.arqbackup.com/">Arq&lt;/a>。无论Restic还是Arq提供的是独立的三方工具来实现备份到云端存储或从云端恢复，有没有将Time Machine和云端储存结合在一起的方案呢？&lt;/p></description></item><item><title>公有云对比</title><link>https://kane.mx/posts/2019/aws-vs-aliyun/</link><pubDate>Wed, 26 Jun 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-vs-aliyun/</guid><description>&lt;p>AWS是全球云计算领域的领跑者，它在计算、存储、网络等方面都做出了很多创新，同时也是其他云计算厂商学习及模仿的对象。&lt;/p>
+&lt;/blockquote>
+&lt;p>先后尝试了翻墙、更改语言等方法仍然不可登录。并且在网络上也没有找到可用的方案，决定抓包研究下为什么我的账号始终无法登录。&lt;/p>
+&lt;p>通过抓取Alexa登录时发送的数据包，发现他访问了amazon.cn等数个cn域名下的一系列服务，看来这些服务中部分已无法提供正常服务，导致登录一直出现上面的错误。&lt;/p>
+&lt;p>Amazon Alexa作为一个服务全球用户的app，应该是判断手机用户在大陆地区后使用了配置在大陆地区的这些服务。&lt;/p>
+&lt;p>临时解决方案的思路就是设置系统或app，让他无法获取到手机真实所在的地理位置，那么Alexa app会使用默认的全球服务器来请求数据。&lt;/p>
+&lt;p>以下是临时解决方案的步骤，&lt;/p>
+&lt;ol>
+&lt;li>从Play市场安装Alexa app。如果已安装清空app数据。&lt;/li>
+&lt;li>禁用app Location权限(默认就是禁用的)。&lt;/li>
+&lt;li>更改系统语言为英文，设置时区为任意美国时区。&lt;/li>
+&lt;li>拔掉SIM卡，或者禁用所有SIM卡。&lt;/li>
+&lt;/ol>
+&lt;p>打开Alexa app，使用已有或新注册Amazon账号即可登录。&lt;/p></description></item><item><title>使用AWS S3作为MacOSX时间机器(Time Machine)的备份存储</title><link>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</link><pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/</guid><description>
+&lt;p>个人电脑数据备份一直都是一个强烈的需求。使用网盘等云存储产品可以部分满足数据的备份需求，仍然无法做到使用便利性和很高的数据安全保障。&lt;/p>
+&lt;p>MacOSX上系统内置了备份解决方案 -- &lt;a href="https://support.apple.com/zh-cn/HT201250">时间机器(Time Machine)&lt;/a>。Time Machine支持AirPort Time Capsule，NAS存储或者外置的存储设备。然而这些备份方案都依赖于硬件设备，有容量限制或不便于移动。在云计算已经大行其道的今天，有没有使用云计算厂商对象存储作为目标存储的备份方案，为MacOSX数据备份提供无限容量、高度的安全性的云方案？经过一番搜索，既找到了开源免费的工具&lt;a href="https://restic.net/">Restic&lt;/a>，也有付费软件&lt;a href="https://www.arqbackup.com/">Arq&lt;/a>。无论Restic还是Arq提供的是独立的三方工具来实现备份到云端存储或从云端恢复，有没有将Time Machine和云端储存结合在一起的方案呢？&lt;/p>
+&lt;p>TimeMchine支持将外置存储作为备份设备，这里介绍的方法就是将远端云计算厂商的对象存储挂载为本地设备，设置Time Machine将它作为目标备份设备，实现将备份放到云厂商的对象储存。&lt;/p>
+&lt;p>接下来我将一步步演示如何将AWS S3对象存储的bucket作为Time Machine备份的设备。&lt;/p>
+&lt;blockquote>
+&lt;p>此方法适用于将任意云厂商的对象存储作为备份存储，只要该厂商的对象存储支持被MacOSX挂载为本地磁盘。&lt;/p>
+&lt;/blockquote>
+&lt;p>有很多成熟的方案将AWS S3挂载为MacOSX磁盘，例如&lt;a href="https://amazonaws-china.com/cn/blogs/china/s3fs-amazon-ec2-linux/">S3fs&lt;/a>、&lt;a href="https://github.com/kahing/goofys">Goofys&lt;/a>。本文推荐的方案是&lt;a href="https://juicefs.com">Juicefs&lt;/a>，Juicefs为对象存储的元数据提供了缓存，能极大的优化对挂载磁盘的list，get等操作。&lt;/p>
+&lt;ol>
+&lt;li>首先按照&lt;a href="https://juicefs.com/docs/zh/getting_started.html#system-requirement">Juicefs 文档&lt;/a>安装必要的依赖和Juicefs客户端。接下来在Juicefs注册完成后，创建一个文件系统保存备份数据。注意：这里的bucket名称需要同随后创建或已有的bucket名称一致。
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/create-juicefs-fs.png"
+alt="创建Juicefs文件系统"/>
+&lt;/figure>
+&lt;/li>
+&lt;li>创建新的AWS S3 bucket(或者使用已有的bucket)，同时为该bucket专门创建用于Juicefs客户端使用的IAM用户。强烈建议不要使用云帐号的access token用于挂载，最佳实践是为不同的用途创建单独的IAM用户。更多IAM用户实践，请参考文章&lt;a href="https://kane.mx/posts/effective-cloud-computing/iam-best-practice/">IAM最佳实践&lt;/a>。下面是使用AWS CLI创建新S3 bucket及IAM用户的参考命令，
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln"> 1&lt;/span>&lt;span class="c1"># 创建S3 bucket&lt;/span>
+&lt;span class="ln"> 2&lt;/span>aws s3 mb s3://my-bucket-for-mac-backup
+&lt;span class="ln"> 3&lt;/span>
+&lt;span class="ln"> 4&lt;/span>&lt;span class="c1"># 创建IAM用户&lt;/span>
+&lt;span class="ln"> 5&lt;/span>aws iam create-user --user-name juicefs
+&lt;span class="ln"> 6&lt;/span>&lt;span class="c1"># 为juicefs用户授予读写备份S3 bucket权限&lt;/span>
+&lt;span class="ln"> 7&lt;/span>&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;{
+&lt;/span>&lt;span class="ln"> 8&lt;/span>&lt;span class="s1"> &amp;#34;UserName&amp;#34;: &amp;#34;juicefs&amp;#34;,
+&lt;/span>&lt;span class="ln"> 9&lt;/span>&lt;span class="s1"> &amp;#34;PolicyName&amp;#34;: &amp;#34;mac-backup-bucket-all-permissions&amp;#34;,
+&lt;/span>&lt;span class="ln">10&lt;/span>&lt;span class="s1"> &amp;#34;PolicyDocument&amp;#34;: &amp;#34;{ \&amp;#34;Version\&amp;#34;: \&amp;#34;2012-10-17\&amp;#34;, \&amp;#34;Statement\&amp;#34;: [ { \&amp;#34;Effect\&amp;#34;: \&amp;#34;Allow\&amp;#34;, \&amp;#34;Action\&amp;#34;: \&amp;#34;s3:*\&amp;#34;, \&amp;#34;Resource\&amp;#34;: [ \&amp;#34;arn:aws-cn:s3:::my-bucket-for-mac-backup/*\&amp;#34;, \&amp;#34;arn:aws-cn:s3:::my-bucket-for-mac-backup\&amp;#34; ] } ] }&amp;#34;
+&lt;/span>&lt;span class="ln">11&lt;/span>&lt;span class="s1"> 1 {
+&lt;/span>&lt;span class="ln">12&lt;/span>&lt;span class="s1">}&amp;#39;&lt;/span> &amp;gt; policy.json
+&lt;span class="ln">13&lt;/span>aws iam put-user-policy --cli-input-json file://policy.json
+&lt;span class="ln">14&lt;/span>&lt;span class="c1"># 为juicefs用户创建access token用于juicefs客户端挂载bucket&lt;/span>
+&lt;span class="ln">15&lt;/span>aws iam create-access-key --user-name juicefs
+&lt;span class="ln">16&lt;/span>&lt;span class="o">{&lt;/span>
+&lt;span class="ln">17&lt;/span> &lt;span class="s2">&amp;#34;AccessKey&amp;#34;&lt;/span>: &lt;span class="o">{&lt;/span>
+&lt;span class="ln">18&lt;/span> &lt;span class="s2">&amp;#34;UserName&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;juicefs&amp;#34;&lt;/span>,
+&lt;span class="ln">19&lt;/span> &lt;span class="s2">&amp;#34;AccessKeyId&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;&amp;lt;key id&amp;gt;&amp;#34;&lt;/span>,
+&lt;span class="ln">20&lt;/span> &lt;span class="s2">&amp;#34;Status&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;Active&amp;#34;&lt;/span>,
+&lt;span class="ln">21&lt;/span> &lt;span class="s2">&amp;#34;SecretAccessKey&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;&amp;lt;access key&amp;gt;&amp;#34;&lt;/span>,
+&lt;span class="ln">22&lt;/span> &lt;span class="s2">&amp;#34;CreateDate&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;2019-06-30T15:25:41Z&amp;#34;&lt;/span>
+&lt;span class="ln">23&lt;/span> &lt;span class="o">}&lt;/span>
+&lt;span class="ln">24&lt;/span>&lt;span class="o">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>按照&lt;a href="https://juicefs.com/docs/zh/getting_started.html#mount-filesystem">Juicefs文档挂载&lt;/a>挂载S3 bucket。&lt;/li>
+&lt;li>进入挂载后的目录(如&lt;code>/jfs&lt;/code>)，创建&lt;strong>Sparse Image&lt;/strong>用于Time Machine写入备份。
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>&lt;span class="nb">cd&lt;/span> /jfs
+&lt;span class="ln">2&lt;/span>hdiutil create -size 600g -type SPARSEBUNDLE -fs &lt;span class="s2">&amp;#34;HFS+J&amp;#34;&lt;/span> Time Machine.sparsebundle&lt;/code>&lt;/pre>&lt;/div>
+上面命令将创建一个名为&lt;code>TimeMachine&lt;/code>600 GB大小的镜像(初始仅占用数百MB，实际文件磁盘空间只有当文件写入后才会占用)。根据你的需要随意调整镜像大小，通常建议设置为Mac磁盘大小的两倍。
+不熟悉命令行的用户，也可以使用磁盘工具(Disk Utility)创建。
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/create-sparse-image.png"
+alt="创建Sparse Image"/>
+&lt;/figure>
+&lt;/li>
+&lt;li>通过Finder挂载之前创建的Sparse Image
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/mount-sparse-image.png"
+alt="挂载Sparse Image"/>
+&lt;/figure>
+&lt;/li>
+&lt;li>现在是魔术步骤，告诉Time Machine使用之前创建的虚拟设备作为备份磁盘。
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>sudo tmutil setdestination /Volumes/Time MachineDisk&lt;/code>&lt;/pre>&lt;/div>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/time-machine.png"
+alt="Time Machine备份"/>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;p>由于S3 Bucket用于备份数据，建议开启S3 智能分层存储或者IA储存，降低花费。同时可以启用S3 KMS加密云端保存的数据，提升数据安全性。&lt;/p></description></item><item><title>公有云对比</title><link>https://kane.mx/posts/2019/aws-vs-aliyun/</link><pubDate>Wed, 26 Jun 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-vs-aliyun/</guid><description>
+&lt;p>AWS是全球云计算领域的领跑者，它在计算、存储、网络等方面都做出了很多创新，同时也是其他云计算厂商学习及模仿的对象。&lt;/p>
 &lt;p>阿里云是目前国内市场份额最大的云计算厂商，其份额&lt;a href="http://www.sohu.com/a/302064020_465914">超过了第二至五位厂商的总和&lt;/a>，份额领先优势比AWS在全球还要显著，同时&lt;a href="https://www.canalys.com/newsroom/cloud-market-share-q4-2018-and-full-year-2018">全球份额也超过IBM来到第四&lt;/a>。&lt;/p>
-&lt;p>本文将对AWS和阿里云核心服务做一个简要对比，以及这两家厂商发展方向的一些个人见解。&lt;/p></description></item><item><title>Serverless framework 101</title><link>https://kane.mx/posts/2019/serverless-framework/</link><pubDate>Thu, 16 May 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/serverless-framework/</guid><description>&lt;p>&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>是一个开源命令行工具。他提供函数脚手架、流程自动化、最佳实践等帮助开发、部署跨云厂商的托管无服务器计算服务(官方已支持aws, Azure, GCP, IBM Cloud等各种厂商的无服务器计算)。同时支持使用插件来扩展各种功能，比如支持更多云厂商无服务器计算服务，例如&lt;a href="https://github.com/aliyun/serverless-aliyun-function-compute">阿里云的函数计算&lt;/a>。&lt;/p>
-&lt;p>这里使用&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">基于函数计算的钉钉回调函数接口&lt;/a>示例来演示如何使用&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>将一个无服务器函数部署到&lt;a href="https://aws.amazon.com/lambda">AWS Lambda&lt;/a>。&lt;/p></description></item><item><title>AWS Lambda Layer实践</title><link>https://kane.mx/posts/2019/aws-lambda-layers/</link><pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-lambda-layers/</guid><description>&lt;p>在&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">基于函数计算的钉钉回调函数接口&lt;/a>中使用钉钉回调函数案例实践了&lt;a href="https://aws.amazon.com/lambda/">AWS Lambda&lt;/a>无服务函数。该示例中，我们将自定义的函数代码及依赖的第三方库（比如json处理库jackson, 钉钉openapi加密库, aws dynamodb client等）整体打包为一个部署包，上传到lamdba代码仓库用于函数执行。&lt;/p>
-&lt;p>然而实际项目中，其实有大量的相关函数可能会共享这些基础依赖库、三方函数库(比如headless chrome(Puppeteer), pandoc, OCR library &amp;ndash; Tesseract等等)或者使用自定义runtime(如官方未支持的java11)的需求。AWS Lambda在去年底发布了&lt;a href="https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/">Lambda layers功能&lt;/a>来满足上述这些实际开发中的需求。&lt;/p>
-&lt;p>接下来，让我们看看如何将&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">前文&lt;/a>中的&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aws/blob/267b5f11851148f5a23a834b8b7ecd4d3b247ce7/build.gradle.kts#L71-L91">函数依赖&lt;/a>放置到一个单独的layer中，作为不同函数的共享依赖库。&lt;/p></description></item><item><title>QCon2019北京站回顾</title><link>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</link><pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</guid><description>&lt;p>这周参加了&lt;a href="https://2019.qconbeijing.com/">QCon 2019北京站&lt;/a>，这里记录下部分印象深刻的主题以及个人感受。&lt;/p>
-&lt;p>QCon是由InfoQ主办的综合性技术盛会，主题涵盖了大前端、高可用架构、容器技术、大数据、机器学习等各种热门技术主题。其中也不乏&lt;a href="https://2019.qconbeijing.com/track/501">下一代分布式应用&lt;/a>、&lt;a href="https://2019.qconbeijing.com/track/565">混沌工程&lt;/a>等前沿有意思的主题，后面会详细介绍相关的主题演讲。&lt;/p></description></item><item><title>2018北京ArchSummit回顾</title><link>https://kane.mx/posts/2018/2018-12-13-bj-archsummit-review/</link><pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2018/2018-12-13-bj-archsummit-review/</guid><description>&lt;p>上周参加了&lt;a href="https://bj2018.archsummit.com">ArchSummit(全球架构师峰会)&lt;/a>，在这里记录下部分参加的主题以及个人感受。&lt;/p></description></item><item><title>如何修复Jenkins CI无法读取存在的任务配置</title><link>https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/</link><pubDate>Wed, 12 Oct 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/</guid><description>V秘开发团队一直使用着Jenkins CI来持续集成V秘服务的新功能和各种改进。近日，Jenkins CI在重启之后，很多已有任务的配置无法被J</description></item><item><title>MongoDB中如何找出慢查询</title><link>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</link><pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</guid><description>MongoDB是目前最为流行的NoSQL数据库之一。V秘的后台数据就是保存在MongoDB中的哦;) 尽管MongoDB的性能为业界称道，但任</description></item><item><title>Docker Swarm mode(v1.12.x)的一些使用限制</title><link>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</link><pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</guid><description>Swarm mode在Docker v1.12中正式发布，Swarm mode带来了诸如Docker集群，容器编排，多主机网络等激动人心的特性。V秘团队也</description></item><item><title>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</title><link>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</link><pubDate>Tue, 13 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</guid><description>V秘团队一直致力于用技术改善产品。V秘后台的各种服务一直是通过完善的Devops流程自动部署到Docker容器集群。随着Swarm mode在</description></item><item><title>基于Angularjs单页面应用的SEO优化</title><link>https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/</link><pubDate>Thu, 19 May 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/</guid><description>在之前的文章我曾提到基于Angularjs的单页面应用在用户体验上的种种好处。然而任何事情都不是完美的，Angular和类似的框架通过应用内</description></item><item><title>Spring框架下的分布式session管理</title><link>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</link><pubDate>Sat, 07 May 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</guid><description>在微服务和容器等技术的帮助下，Web应用可以较为容易的进行水平扩展，来部署更多的应用实例来提升请求处理数QPS。当Web服务有状态的时候，如</description></item><item><title>V秘是如何构建的</title><link>https://kane.mx/posts/2016/how-we-build-videome/</link><pubDate>Thu, 07 Apr 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-we-build-videome/</guid><description>春天来了，V秘大家庭也新增了两位10后的传人。新爸爸经过一番忙乱后，希望在这里与大家分享V秘的架构，共同探讨如何快速的构建高可用，高性能的W</description></item><item><title>说一说阿里云ossfs</title><link>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</link><pubDate>Fri, 26 Feb 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</guid><description>阿里云提供的对象或者文件存储叫OSS，为应用程序提供了海量存储，按需付费等服务。应用程序则需要通过Aliyun OSS的各语言SDK才能操作（</description></item><item><title>如何使用微信公众平台的临时素材</title><link>https://kane.mx/posts/2016/weixin-temporary-materials/</link><pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/weixin-temporary-materials/</guid><description>微信给公众平台提供了素材管理的接口，通过这一系列接口可以上传，接收以及管理图片，视频等多媒体文件。其中又分为临时和永久两种类型。永久素材有总</description></item><item><title>单页面应用(single page application)中使用微信支付</title><link>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</link><pubDate>Sun, 24 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</guid><description>随着AngularJS等前端MVC框架的流行，AJAX的异步请求数据结合H5的push state等特性，极大的改善了网站的用户体验和页面加载</description></item><item><title>文件系统的Inode耗尽，会导致Docker编译镜像出现'No space left on device'错误</title><link>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</link><pubDate>Thu, 21 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</guid><description>最近在提交前端代码后，前端代码的自动发布老是失败。失败的原因多是编译Docker镜像时在执行COPY语句拷贝文件到镜像文件系统时，扔出了&amp;r</description></item></channel></rss>
+&lt;p>本文将对AWS和阿里云核心服务做一个简要对比，以及这两家厂商发展方向的一些个人见解。&lt;/p>
+&lt;p>云计算，其核心服务就是&lt;strong>计算&lt;/strong>、&lt;strong>存储&lt;/strong>及&lt;strong>网络&lt;/strong>。这些基本能力的稳定性，功能完善性决定了云计算厂商能力的下限。&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-vs-aliyun/core-service.jpg"
+alt="云计算核心服务"/>
+&lt;/figure>
+&lt;p>除了上面提到的三大计算机核心组件能力，下面这些能力也是云计算中非常重要的组成部分，&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-vs-aliyun/critical-capabilities.jpg"
+alt="云计算关键能力"/>
+&lt;/figure>
+&lt;ul>
+&lt;li>按量计费&lt;/li>
+&lt;li>资源编排（也就是平台作为代码）&lt;/li>
+&lt;li>云资源的认证及授权&lt;/li>
+&lt;li>API&lt;/li>
+&lt;/ul>
+&lt;p>基于上面列举的云计算核心服务和关键能力，我们来看看哪些方面是AWS的强项。&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-vs-aliyun/aws-pros.jpg"
+alt="AWS&amp;#39;s Pros"/>
+&lt;/figure>
+&lt;p>AWS作为云计算的领军厂商，在计算、存储、网络这三大核心一直在不停的创新中，且被友商在不停的模仿。计算方面，AWS首先推出了Lambda无服务器计算引擎实现按量使用的全托管服务，生产可用的GPU实例(单虚机可配置最高64块GPU卡，而阿里云默认仅售卖2块GPU卡)，&lt;a href="https://www.infoq.cn/article/2017/11/Nitro-amazon-EC2">基于Nitro架构的EC2实例&lt;/a>为客户送上了升性能降价的好事。&lt;/p>
+&lt;p>S3作为AWS最早推出的云计算服务，仍然在不停的创新演化中。目前S3达到了11个9的持久性，为满足客户不同的存储需要，又推出了S3 Glacier、Glacier Deep Archive等存储方案。持续推出了Amazon Athena, Redshift, S3 select等服务及工具解决海量数据的大数据处理。&lt;/p>
+&lt;p>AWS一直将PAYG(Pay-As-You-Go)的按量计费模型贯穿在各种服务中。无论是EC2(包括GPU实例)，ELB，NAT网关等等都提供小时级的按量计费。阿里云在这方面还有较多的改进空间，例如GPU实例最小售卖时长为一周，SLB首先按规格售卖，NAT网关按自然日计费。&lt;/p>
+&lt;p>IAM为云上的资源提供了最细粒度的授权管理，AWS各个服务严格按最细粒度控制授权，满足企业的权限管理。在我使用过的数个阿里云服务中，多次遇到较新的服务IAM设计不周，权限粒度过大，甚至功能无法工作的情况下就上线发布了。&lt;/p>
+&lt;p>AWS CloudFormation提供了云上资源编排管理，实现了资源的代码化，版本化(通常称为的Infrastrucure as Code)。将云端资源的管理运维提升到一个新的层次。&lt;/p>
+&lt;p>AWS提供了三种方式管理云上资源，Web Console, CLI以及API。这三种方式，尽最大努力提供一致的功能。&lt;/p>
+&lt;p>AWS同时是一个云计算的生态，各类三方云服务厂商通过Marketplace售卖各类SaaS，PaaS服务，形成一个云计算用户，三方服务Vendor，AWS三方共赢的局面。&lt;/p>
+&lt;p>总得说来，AWS持续的在云计算核心服务和关键服务投入，不停的创新，保证了AWS整体服务的领先。&lt;/p>
+&lt;p>接下来看看阿里云的强项。&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-vs-aliyun/aliyun-pros.jpg"
+alt="Aliyun&amp;#39;s Pros"/>
+&lt;/figure>
+&lt;p>阿里云在提供基本的计算、存储、网络外，额外提供了很多SaaS服务，例如，Application Performance Monitor， Performance Testing Service, 日志服务，链路追踪服务，数据库管理服务等。这些服务显然同阿里云有更好的集成，对用户来说提供了开箱即用的解决方案。而这也是一把双刃剑，利用平台捆绑的优势抢占合作开发商的市场，长期来说利用平台垄断不利于基于阿里云的技术服务创业。&lt;/p>
+&lt;p>总之，阿里云在云计算核心服务上同AWS比还有差距，但他在PaaS/SaaS服务上发展不错，更加容易提供全套基于阿里云的解决方案。由于阿里云在国内数据中心数量上的优势加上从万网收购的BGP资源，其服务在国内访问网络延迟会更低。&lt;/p>
+&lt;p>最后，谈一个很有意思的话题，是否需要考虑云厂商的锁定。&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-vs-aliyun/cloud-lock-in-issue.jpg"
+alt="Lock-in"/>
+&lt;/figure>
+&lt;p>Kubernetes事实上成为容器编排平台，首先考虑使用K8S及&lt;a href="https://landscape.cncf.io/">CNCF landscape&lt;/a>下的项目作为应用运行环境，减少可能的迁移和学习成本。&lt;/p>
+&lt;p>对不同用量的公司来说，考虑云厂商锁定的维度完全不一样。创业型公司或仍在快速发展业务中的中大型企业首先应该选择可靠性高，解决方案多，易学习的云厂商，尽可能利用云厂商的各种服务做到快速高效可靠的推进业务，将尽量多的精力、人力投入到业务相关的事情上。业务稳定的大型公司，可以使用多数据中心实现关键业务的高可用性，跨云完全不应该作为高可用的必要解决途径。另外，云厂商绝对会投入额外的人力，优先级支持他们的大客户，甚至为这类客户调整产品研发优先级或协同完成某些功能，这样绝对是个双赢的局面，Netflix和AWS的互相成就就是一个很好的例子。没有特别必要的原因，不要轻易投入精力将业务从服务已经很稳定的云厂商迁移到多云平台上，那样往往是白白耗费力气。&lt;/p>
+&lt;blockquote>
+&lt;p>下面是slide的最新完整版本，&lt;/p>
+&lt;/blockquote>
+&lt;div class="responsive-wrap">
+&lt;iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSaKV41ItphpZVxL371It7WN55FKQqEdXUTjYgFAA2nQ7IT5AbvNaONldvvLtoG87hB8EG1ASbS0HMY/embed?start=false&amp;amp;loop=false&amp;amp;delayms=5000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">&lt;/iframe>
+&lt;/div></description></item><item><title>Serverless framework 101</title><link>https://kane.mx/posts/2019/serverless-framework/</link><pubDate>Thu, 16 May 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/serverless-framework/</guid><description>
+&lt;p>&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>是一个开源命令行工具。他提供函数脚手架、流程自动化、最佳实践等帮助开发、部署跨云厂商的托管无服务器计算服务(官方已支持aws, Azure, GCP, IBM Cloud等各种厂商的无服务器计算)。同时支持使用插件来扩展各种功能，比如支持更多云厂商无服务器计算服务，例如&lt;a href="https://github.com/aliyun/serverless-aliyun-function-compute">阿里云的函数计算&lt;/a>。&lt;/p>
+&lt;p>这里使用&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">基于函数计算的钉钉回调函数接口&lt;/a>示例来演示如何使用&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>将一个无服务器函数部署到&lt;a href="https://aws.amazon.com/lambda">AWS Lambda&lt;/a>。&lt;/p>
+&lt;p>&lt;a href="https://serverless.com/framework/docs/getting-started/">安装servereless&lt;/a>后，可以通过&lt;code>serverless create&lt;/code>命令创建函数脚手架工程，或者在已有工程的下创建serverless配置文件&lt;code>serverless.yml&lt;/code>。&lt;/p>
+&lt;p>接下来可以参考&lt;a href="https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/">serverless aws reference&lt;/a>配置你的aws lambda函数及需要的各种资源。如果已经有过使用&lt;a href="https://docs.aws.amazon.com/cloudformation/?id=docs_gateway">AWS CloudFormation&lt;/a>或者&lt;a href="https://docs.aws.amazon.com/serverless-application-model/?id=docs_gateway">AWS SAM&lt;/a>经验的，可以很快适应编写Serverless配置。Serverless的配置本质上是将CloudFormation/SAM相关的概念进行抽象，为各个云厂商的无服务器计算服务提供统一的工具、命令以及概念抽象。在部署aws lambda时，&lt;code>serverless&lt;/code>配置会被转换为&lt;code>CloudFormation&lt;/code>配置，通过AWS API进行创建或变更。&lt;/p>
+&lt;p>对于Dingtalk Callback on AWS Lambda, &lt;code>serverless&lt;/code>配置声明如下。其中指定了service的基本信息，全局的配置(如stage、region等)、云厂商provider(这里是aws)。函数的基本信息、权限、layer、触发器，自定义layer以及其他云厂商资源，比如Dingtalk callback这里用到的DynamoDB。完整的serverless配置查看&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aws/blob/master/serverless.yml">这里&lt;/a>。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="ln"> 1&lt;/span>&lt;span class="nt">service&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 2&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">dingtalk-callback&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 4&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">frameworkVersion&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;&amp;gt;=1.0.0 &amp;lt;2.0.0&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 5&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 6&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">provider&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 7&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">aws&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 8&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">runtime&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">java8&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 9&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">stage&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${opt:stage, &amp;#39;dev&amp;#39;}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Set the default stage used. Default is dev&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">10&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">region&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${opt:region, &amp;#39;ap-southeast-1&amp;#39;}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Overwrite the default region used. Default is ap-southeast-1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">11&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">profile&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${opt:profile, &amp;#39;default&amp;#39;}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># The default profile to use with this service&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">12&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">versionFunctions&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Optional function versioning&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">13&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">endpointType&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">regional&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Optional endpoint configuration for API Gateway REST API. Default is Edge.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">14&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">15&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">functions&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">16&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">dingtalk-callback&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">17&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">handler&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">com.github.zxkane.dingtalk.Callback::handleRequest&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># required, handler set in AWS Lambda&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">18&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${self:provider.stage}-dingtalk-callback&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># optional, Deployed Lambda name&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">19&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">memorySize&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">384&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># optional, in MB, default is 1024&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">20&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">timeout&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">15&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># optional, in seconds, default is 6&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">21&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">environment&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Function level environment variables&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">22&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">PARA_DD_TOKEN&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DD_TOKEN&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">23&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">TABLE_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>{&lt;span class="nt">Ref&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">BPMTable}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">24&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">package&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">25&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">artifact&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">build/libs/dingtalk-callback-1.0.0-SNAPSHOT.jar&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">26&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">role&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">dingtalkCallbackIAMRole&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">27&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">layers&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># An optional list Lambda Layers to use&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">28&lt;/span>&lt;span class="w"> &lt;/span>- {&lt;span class="nt">Ref&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DependenciesLambdaLayer}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">29&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">events&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># The Events that trigger this Function&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">30&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">http&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># This creates an API Gateway HTTP endpoint which can be used to trigger this function. Learn more in &amp;#34;events/apigateway&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">31&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">dingtalk&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Path for this endpoint&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">32&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">method&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">post&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># HTTP method for this endpoint&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">33&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">34&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">layers&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">35&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">dependencies&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">36&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">build/deps&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">37&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">38&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">resources&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># CloudFormation template syntax&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">39&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Resources&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">40&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">dingtalkCallbackIAMRole&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">41&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">AWS::IAM::Role&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">42&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Properties&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">43&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Policies&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">44&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">PolicyName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">SSMPolicy&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">45&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">PolicyName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DynamoDBPolicy&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">46&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">BPMTable&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">47&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">AWS::DynamoDB::Table&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">48&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Properties&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">49&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">TableName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">bpm_raw_${self:service.name}_${self:provider.stage}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">50&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ProvisionedThroughput&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">51&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ReadCapacityUnits&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">52&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">WriteCapacityUnits&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>对于使用单一云厂商无服务器计算并且已经使用了类似&lt;a href="https://docs.aws.amazon.com/serverless-application-model/?id=docs_gateway">sam cli&lt;/a>实现持续集成、持续部署的用户，&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>并不能带来更多生产力的提升，在稳定性(封装云厂商的功能，增加复杂度很可能引入新的问题)或功能的及时性上可能还不如云厂商提供的工具。&lt;/p>
+&lt;p>对于有多云厂商部署无服务器函数需求的用户，使用了&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>&lt;strong>并不能&lt;/strong>轻松的将无服务器函数部署到不同云厂商的托管服务上，他只是帮助提供跨云厂商的统一工具链及相似的持续集成、部署等最佳实践流程。例如将一套函数从AWS迁移到Azure上，需要重新实现Azure provider下的配置，因为云厂商的托管无服务器服务和其他云资源都存在着大量差异。另外函数代码也需要面临改造，不同云厂商的触发器消息事件也都有不同的格式！这里可以考虑使用类似&lt;a href="https://spring.io/projects/spring-cloud-function">Spring Cloud Function&lt;/a>这样的解决方案来实现跨云厂商的函数编写。&lt;/p>
+&lt;p>总之，&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>对于跨云厂商部署场景有一定生产效率的提升，但他离完美解决跨云厂商无服务器托管服务（各厂商服务天生不兼容）还有很远的距离，也许这个思路就是走不通的:confused:。&lt;/p></description></item><item><title>AWS Lambda Layer实践</title><link>https://kane.mx/posts/2019/aws-lambda-layers/</link><pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-lambda-layers/</guid><description>
+&lt;p>在&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">基于函数计算的钉钉回调函数接口&lt;/a>中使用钉钉回调函数案例实践了&lt;a href="https://aws.amazon.com/lambda/">AWS Lambda&lt;/a>无服务函数。该示例中，我们将自定义的函数代码及依赖的第三方库（比如json处理库jackson, 钉钉openapi加密库, aws dynamodb client等）整体打包为一个部署包，上传到lamdba代码仓库用于函数执行。&lt;/p>
+&lt;p>然而实际项目中，其实有大量的相关函数可能会共享这些基础依赖库、三方函数库(比如headless chrome(Puppeteer), pandoc, OCR library -- Tesseract等等)或者使用自定义runtime(如官方未支持的java11)的需求。AWS Lambda在去年底发布了&lt;a href="https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/">Lambda layers功能&lt;/a>来满足上述这些实际开发中的需求。&lt;/p>
+&lt;p>接下来，让我们看看如何将&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">前文&lt;/a>中的&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aws/blob/267b5f11851148f5a23a834b8b7ecd4d3b247ce7/build.gradle.kts#L71-L91">函数依赖&lt;/a>放置到一个单独的layer中，作为不同函数的共享依赖库。&lt;/p>
+&lt;p>在我们的构建配置&lt;code>build.gradle&lt;/code>中，将&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aws/blob/c6a293ac58b6892278c296daa237453279f50064/build.gradle.kts#L153-L157">函数的共享依赖拷贝&lt;/a>到java runtime&lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html#configuration-layers-path">特定的目录结构&lt;/a>&lt;code>java/lib/&lt;/code>下，&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">153
+&lt;/span>&lt;span class="lnt">154
+&lt;/span>&lt;span class="lnt">155
+&lt;/span>&lt;span class="lnt">156
+&lt;/span>&lt;span class="lnt">157
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-gradle" data-lang="gradle">&lt;span class="n">tasks&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">register&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Copy&lt;/span>&lt;span class="o">&amp;gt;(&lt;/span>&lt;span class="s2">&amp;#34;depsLayer&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">into&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s2">&amp;#34;$buildDir/deps/java/lib&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="n">from&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">configurations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">compileClasspath&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">())&lt;/span>
+&lt;span class="n">from&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">configurations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">runtimeClasspath&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">())&lt;/span>
+&lt;span class="o">}&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;p>接下来将共享的依赖创建为一个lambda layer，并且让callback函数依赖这个共享layer，不再将所有的依赖打包为一个很大的部署包减小每次变更需要发布的包大小。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="w"> &lt;/span>&lt;span class="nt">DependenciesLayer&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">AWS::Serverless::LayerVersion&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Properties&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">LayerName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DingTalkDependencies&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DingTalk Dependencies Layer&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ContentUri&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;build/deps&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">CompatibleRuntimes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">java8&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">LicenseInfo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;Available under the MIT-0 license.&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">RetentionPolicy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Retain&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">CallbackFunction&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type: AWS::Serverless::Function # More info about Function Resource&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Properties&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">CodeUri&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">build/libs/dingtalk-callback-1.0.0-SNAPSHOT.jar&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Handler&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">com.github.zxkane.dingtalk.Callback::handleRequest&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Layers&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- !&lt;span class="l">Ref DependenciesLayer&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Policies:&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;p>在console查看部署后的函数，如下图，可以看到函数新增了一个layer。&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-lambda-layers/lambda-with-layers.png"
+alt="lambda with layers"/>
+&lt;/figure>
+&lt;p>同其他的语言、技术一样，&lt;a href="https://github.com/mthenw/awesome-layers">Awesome Layers&lt;/a>项目收集了目前一些常用且维护较好的layer，自创轮子之前可以先参考下:grinning:。&lt;/p>
+&lt;p>使用layer同样有以下限制，使用前需要注意，&lt;/p>
+&lt;ul>
+&lt;li>依赖的layer数不能超过5个&lt;/li>
+&lt;li>函数以及依赖的所有layers解压后不可以超过250MB&lt;/li>
+&lt;/ul></description></item><item><title>QCon2019北京站回顾</title><link>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</link><pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/2019-qconbeijing-reviews/</guid><description>
+&lt;p>这周参加了&lt;a href="https://2019.qconbeijing.com/">QCon 2019北京站&lt;/a>，这里记录下部分印象深刻的主题以及个人感受。&lt;/p>
+&lt;p>QCon是由InfoQ主办的综合性技术盛会，主题涵盖了大前端、高可用架构、容器技术、大数据、机器学习等各种热门技术主题。其中也不乏&lt;a href="https://2019.qconbeijing.com/track/501">下一代分布式应用&lt;/a>、&lt;a href="https://2019.qconbeijing.com/track/565">混沌工程&lt;/a>等前沿有意思的主题，后面会详细介绍相关的主题演讲。&lt;/p>
+&lt;h3 id="工程效率提升">工程效率提升&lt;/h3>
+&lt;p>这是在QCon第一日个人感兴趣且非常有意思的一个&lt;a href="https://2019.qconbeijing.com/track/499">系列主题&lt;/a>。无论是创业公司、独角兽企业还是互联网巨头都希望不断提升工程效率，3个相关的分享分别来自BAT，可见互联网巨头们对团队效率提升的渴望和重视。&lt;/p>
+&lt;h4 id="10倍速原则对工程生产力建设的方向性影响qiaoliang-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1505">10倍速原则对工程生产力建设的方向性影响&lt;/a>&lt;/h4>
+&lt;p>这个talk来自腾讯的高级顾问乔梁，这位老兄已经连续10年在QCon上分享持续集成、持续交付等工程效率相关的主题了！他的演讲始于对成功企业的&lt;strong>一万次实验法则&lt;/strong>方法论，
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/1%e4%b8%87%e6%ac%a1%e6%b3%95%e5%88%99.jpeg"
+alt="1万次实验法则"/>
+&lt;/figure>
+而大量高效的实验基于一个&lt;strong>双环模型&lt;/strong>的快速验证环。
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/%e5%8f%8c%e7%8e%af%e6%a8%a1%e5%9e%8b.jpeg"
+alt="双环模型"/>
+&lt;/figure>
+最终工程生产力是由&lt;strong>工作流程&lt;/strong>、&lt;strong>支撑工具&lt;/strong>和&lt;strong>工程素养&lt;/strong>三方面一起决定的。
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/%e5%b7%a5%e7%a8%8b%e7%94%9f%e4%ba%a7%e5%8a%9b.jpeg"
+alt="工程生产力"/>
+&lt;/figure>
+&lt;/p>
+&lt;blockquote>
+&lt;p>非常认可决定工程效率的这三要素，个人认为&lt;strong>工程素养&lt;/strong>是其他两个要素的基石，&lt;a href="https://book.douban.com/subject/30356081/">奈飞文化手册&lt;/a>中开篇强调的只招聘&lt;strong>成年人&lt;/strong>就是很好的诠释。&lt;/p>
+&lt;/blockquote>
+&lt;h4 id="百度工程能力提升之道baidu-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1487">百度工程能力提升之道&lt;/a>&lt;/h4>
+&lt;p>这个分享来自百度研发效能部门的产品经理，从&lt;strong>人&lt;/strong>、&lt;strong>技&lt;/strong>、&lt;strong>法&lt;/strong>三方面强调工程能力提升的策略模型。其实这个模型就是对应着上面&lt;a href="#10倍速原则对工程生产力建设的方向性影响-qiaoliang-talk">乔梁分享的工程生产力三要素&lt;/a>。
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/%e6%8f%90%e5%8d%87%e5%b7%a5%e7%a8%8b%e8%83%bd%e5%8a%9b%e7%ad%96%e7%95%a5.jpeg"
+alt="提升工程能力的策略"/>
+&lt;/figure>
+关于对工程师的培养和技术规范，百度发布了&amp;quot;百度工程师手册&amp;quot;，据说可以从网络上下载到。大量工具的细节分享涉及的都是百度内部工具，不过工具针对的思路还是可以借鉴的。&lt;/p>
+&lt;h4 id="菜鸟集团研发效能变革实践cainiao-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1439">菜鸟集团研发效能变革实践&lt;/a>&lt;/h4>
+&lt;p>这个分享来自阿里系的菜鸟集团，特别强调数据化驱动的研发效能提升，里面很有意思的一点是建立成本模型来评估效能的好坏。&lt;/p>
+&lt;blockquote>
+&lt;p>作为效能部门负责人，有数据特别是成本数据，让高层管理者buy-in你的想法，这应该是个非常好的角度。&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="高可用架构">高可用架构&lt;/h3>
+&lt;h4 id="声明式自愈系统高可用分布式系统的设计之道declarative-system-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1511">声明式自愈系统——高可用分布式系统的设计之道&lt;/a>&lt;/h4>
+&lt;p>这个分享比较理论化的介绍声明式的、可自愈的分布式系统原理和实践，其实业界已经有个非常好的参考实现 -- 就是&lt;a href="https://kubernetes.io">Kubernetes&lt;/a> :smiley:。&lt;/p>
+&lt;h4 id="超大规模高可用性云端系统构建之禅caichao-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1437">超大规模高可用性云端系统构建之禅&lt;/a>&lt;/h4>
+&lt;p>这是一个非常实用的工程实践分享，列举了大量大规模云原生应用一定会面临的挑战，以及简单又实用的解决方法。每一个云原生应用开发者都应该看看这个&lt;a href="https://static001.geekbang.org/con/38/pdf/2428705636/file/%E8%B6%85%E5%A4%A7%E8%A7%84%E6%A8%A1%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7%E4%BA%91%E7%AB%AF%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA%E4%B9%8B%E7%A6%85-%E8%94%A1%E8%B6%85.pdf">slide&lt;/a>，学习前人实践的经验。另外为讲演者蔡超做个推广，对Go语言有兴趣的同学，可以考虑学习蔡超的极客时间课程&lt;a href="https://time.geekbang.org/course/intro/160">Go语言从入门到实战&lt;/a>。&lt;/p>
+&lt;h3 id="运维架构">运维架构&lt;/h3>
+&lt;h4 id="kubernetes-日志平台建设最佳实践aliyun-sls-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1448">Kubernetes 日志平台建设最佳实践&lt;/a>&lt;/h4>
+&lt;p>这个分享介绍了Kubernetes上日志方案的解决思路，及它的实践 -- 阿里云的日志服务。对于很多有基础服务建设的团队可以作为很好的参考方案。对于已经托管在阿里云上的应用，建议就不要重复建设低端的轮子了，阿里云日志服务应该做为团队的首选。不论在性能同其他云托管服务集成上，都远远好于自建的方案。&lt;/p>
+&lt;h4 id="多云管下的自动化运维架构multi-clouds-talk">&lt;a href="https://2019.qconbeijing.com/presentation/1653">多云管下的自动化运维架构&lt;/a>&lt;/h4>
+&lt;p>多云是现在一些厂商力推的话题，个人认为是市场排名靠后的总要找些方法来提升自己产品的竞争力:smirk:。分享者企业做了一套ops平台来管理多云的资源，他们通过adapter方式来将不同云厂商的差异和资源进行了抽象。这其中涉及大量处理产品间差异性和被动适配的工作，个人不太认同这种方式。并且丢掉了infra as code这类重要的特性，对于有这种需求的大型企业来说不是一个完美的方案。&lt;/p>
+&lt;h3 id="混沌工程chaos-engineering-themes">&lt;a href="https://2019.qconbeijing.com/track/565">混沌工程&lt;/a>&lt;/h3>
+&lt;p>混沌工程这个话题非常有意思，同时也是较新的一种实践工程。从最早的提出、系统实践到现在还不到10年时间。来自阿里巴巴的&lt;a href="https://2019.qconbeijing.com/presentation/1479">云原生架构下的混沌工程实践&lt;/a>和AWS的&lt;a href="https://2019.qconbeijing.com/presentation/1741">AWS 云上混沌工程实践之对照实验设计和实施&lt;/a>两个分享介绍了从混沌工程的起源到如何全方位的实践用于提升云原生应用的&amp;quot;韧性&amp;quot;，非常值得学习。&lt;a href="#超大规模高可用性云端系统构建之禅-caichao-talk">蔡超的超大规模高可用性云端系统构建&lt;/a>也提到了使用混沌工程来提升系统的高可用性，在云原生应用越来越普及的情况下，被动的设计高可用系统肯定不如主动(甚至持续的自动化)可控的注入混乱来逐渐提升系统的高可用性。目前chaos engineering的工具/平台支持还不太完善，这个方向看起来是技术创业很好的切入点:smirk:。最后切记一点，&lt;strong>混沌工程最终一定要在生产系统上实施&lt;/strong>。
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/%e6%b7%b7%e5%8a%a8%e5%b7%a5%e7%a8%8b%e5%ae%9e%e8%b7%b5.jpeg"
+alt="混动工程实践"/>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="下一代分布式应用next-gen-ha-system">&lt;a href="https://2019.qconbeijing.com/track/501">下一代分布式应用&lt;/a>&lt;/h3>
+&lt;p>这个主题虽说命名为下一代分布式应用，主要分享的大多是服务间流量治理问题，特别是Service Mesh下实践经验。其中来自阿里李云的&lt;a href="https://2019.qconbeijing.com/presentation/1501">分布式应用的未来——Distributionless&lt;/a>特别值得一提。这个分享并没有实际的案例或经验分享，他重点分享的是对于Cloud Native本质和趋势的看法，这些观点我个人特别认同(&lt;code>好像找到知音似的:grinning:&lt;/code>)！完整的slide&lt;a href="https://static001.geekbang.org/con/38/pdf/3913410004/file/%E5%88%86%E5%B8%83%E5%BC%8F%E5%BA%94%E7%94%A8%E7%9A%84%E6%9C%AA%E6%9D%A5%E2%80%94%E2%80%94Distributionless-%E6%9D%8E%E4%BA%91.pdf">这里下载&lt;/a>。
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/CloudNative%e6%9c%ac%e8%b4%a8.jpeg"
+alt="CloudNative的本质"/>
+&lt;/figure>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/CloudNative%e7%9a%84%e8%b6%8b%e5%8a%bf.jpeg"
+alt="CloudNative的趋势"/>
+&lt;/figure>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/2019-qconbeijing-images/%e4%b8%8eCloudNative%e5%90%8c%e8%a1%8c.jpeg"
+alt="与CloudNative同行"/>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="用户增长">用户增长&lt;/h3>
+&lt;p>来自云测的陈冠诚在&lt;a href="https://2019.qconbeijing.com/presentation/1650">智能优化 &amp;amp; A/B 测试 - 实验驱动用户增长的理论与技术实践&lt;/a>分享了A/B测试实验对用户增长的理论及实践，顺便也推广了他家云测的A/B测试SaaS服务。听圈内的朋友分享，云测的A/B测试服务确实比较简单好用，方便产品后台创建测试并分析结果，对增长有需求的小伙伴可以考虑体验下，减少不必要的重复建设轮子。&lt;/p></description></item><item><title>2018北京ArchSummit回顾</title><link>https://kane.mx/posts/2018/2018-12-13-bj-archsummit-review/</link><pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2018/2018-12-13-bj-archsummit-review/</guid><description>
+&lt;p>上周参加了&lt;a href="https://bj2018.archsummit.com">ArchSummit(全球架构师峰会)&lt;/a>，在这里记录下部分参加的主题以及个人感受。&lt;/p>
+&lt;h3 id="会议回顾">会议回顾&lt;/h3>
+&lt;p>今年参加了几次技术会议，&lt;code>微服务&lt;/code>、&lt;code>容器技术&lt;/code>、&lt;code>区块链&lt;/code>、&lt;code>大数据&lt;/code>、&lt;code>机器学习&lt;/code>以及&lt;code>人工智能&lt;/code>都是当下最热门的主题。同样这次ArchSummit绝大部分topics都跟这些主题相关。&lt;/p>
+&lt;p>这次会议主要参加了两个专场主题，&lt;a href="https://bj2018.archsummit.com/track/440">Kubernetes的应用&lt;/a>和&lt;a href="https://bj2018.archsummit.com/track/446">快手科技技术专题&lt;/a>。&lt;/p>
+&lt;p>&lt;a href="https://bj2018.archsummit.com/presentation/928">基于 Kubernetes 的 DevOps&lt;/a>是来自微软Azure的容器工程师分享如何基于 Kubernetes 的 CI/CD 落地实践。该分享中提到了CI/CD各个步骤中都有众多的工具支持，如何选择合适Kubernetes的工具将持续集成和部署串联在一起是Devops中的主要挑战。分享者也安利了AKS提供Devops完整的工具链，以及将开源工具同AKS中的服务集成实现CI/CD的最佳实践。&lt;/p>
+&lt;p>我们噼里啪团队在CI/CD、Devops这块做得还不错。CI/CD pipelines持续将应用部署在运行的Kubernetes集群，过程中使用的工具链基本也是社区或CNCF推荐的主流工具。下一步可以考虑同云厂商的Devops工具链集成，进一步减少维护成本。&lt;/p>
+&lt;p>&lt;a href="https://bj2018.archsummit.com/presentation/1258">基于Istio on Kubernetes云原生应用的最佳实践&lt;/a>来自阿里云容器工程师的分享。他概要的分享了Istio技术和实现原理。当然也大力介绍了阿里云容器服务对Istio的原生支持，以及阿里云对客户使用Istio的支持，即使客户问题非常的初级他们的技术支持也很到位。&lt;/p>
+&lt;p>Istio可以说是CNCF在Kubernetes上事实的服务治理实现。噼里啪技术团队也一直在关注这一块，正在尝试引入Istio提升服务的SLA。&lt;/p>
+&lt;p>快手技术团队的4个分享都是围绕解决明确的业务问题而做得技术工作，非常具有实战性。其中&lt;a href="https://bj2018.archsummit.com/presentation/1337">快手万亿级实时 OLAP 平台的建设与实践&lt;/a>介绍了快手实时OLAP平台从0到1的搭建过程。该平台从今年4月开始搭建，截止到11月，每日可以实时计算处理超过万亿的数据。而整个平台的搭建由两名大数据工程师外加一名前端工程师负责portal等UI，人效产出让人非常佩服。结合朋友间传言快手给技术人员的offer，快手应该是一家在实践类似Netflix管理文化的公司。&lt;/p>
+&lt;p>最后给大家推荐一个国产的分布式New SQL数据库TiDB相关的主题。TiDB是国内技术团队开源的一个分布式数据库，已被CNCF作为Database实现推荐方案之一。他们的CTO分享了&lt;a href="https://bj2018.archsummit.com/presentation/1331">TiDB on Kubernetes 最佳实践&lt;/a>，以及他们客户北京银行在&lt;a href="https://bj2018.archsummit.com/presentation/962">两地多活的核心系统&lt;/a>中采用的数据库就是TiDB。&lt;/p>
+&lt;h3 id="个人感受">个人感受&lt;/h3>
+&lt;p>会议的分享者大多来自国内一线的互联网公司，他们普遍具备流量大、数据多、技术团队能力更强等特质。并且很少使用公有云服务，使用开源产品多数也会维护私有版本。他们的业务解决方案对中小型技术团队来说可复制性不强，照搬实施的难度高，更多的是在扩展思路了解业界技术动态。中小型技术团队最紧迫的事情是满足业务快速发展和需求多变，更合理的解法是选用云厂商的服务或第三方服务快速高效的满足业务需求。极客邦旗下的会议大多缺少这类的分享，相比之下AWS的reInvent大会在这方面做得更好。&lt;/p></description></item><item><title>如何修复Jenkins CI无法读取存在的任务配置</title><link>https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/</link><pubDate>Wed, 12 Oct 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/</guid><description>
+&lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>开发团队一直使用着&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>来持续集成&lt;a href="https://vme360.com">V秘&lt;/a>服务的新功能和各种改进。近日，&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>在重启之后，很多已有任务的配置无法被&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>完整的加载，导致很多功能无法使用。导致我们整个网站的各种服务无法被升级更新了:-(&lt;/p>
+&lt;p>&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>在管理控制台列出如下的错误信息，示意现有任务的部分配置由于错误无法加载。&lt;/p>
+&lt;pre>&lt;code>CannotResolveClassException: hudson.plugins.git.GitSCM,
+CannotResolveClassException: com.cloudbees.jenkins.plugins.BitBucketTrigger,
+CannotResolveClassException: hudson.plugins.emailext.ExtendedEmailPublisher,
+CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
+&lt;/code>&lt;/pre>
+&lt;p>通过上面的错误信息，我们初步认为错误是由于插件无法被&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>加载。但是通过&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>的插件管理列表，我们发现&lt;strong>Git&lt;/strong>插件已经被认为是安装的了。同时我们也可以在&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>安装目录中找到插件对应的文件&lt;code>git.jar&lt;/code>，并且成功验证了类&lt;code>hudson.plugins.git.GitSCM&lt;/code>也是存在在jar文件里面的。重新安装&lt;code>Git client&lt;/code>插件也不能解决这个错误！&lt;/p>
+&lt;!-- more -->
+&lt;p>经过进一步的分析，通过&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>的系统日志，我们发现&lt;code>Git插件&lt;/code>虽然是成功安装了，但是它所依赖的某些插件没有被安装！这导致&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>无法正确加载&lt;code>Git插件&lt;/code>。通过日志的提示，将缺失的插件一一安装上，重启&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>后，插件加载正常，任务执行也恢复正常。&lt;/p>
+&lt;p>这个错误出现的还是相当奇怪。因为&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>会在安装插件的时候将依赖的插件一并安装上。此外该&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>已经运行很久了，这些插件也是一直安装着的。不过现在回想起之前升级&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>插件的时候，部分插件由于网络原因升级失败了，但是没有重新更新。这导致这些插件处在了一个不正确的状态。在重启&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>后，这些插件被标记为未安装，导致依赖它们的插件无法加载。&lt;/p></description></item><item><title>MongoDB中如何找出慢查询</title><link>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</link><pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</guid><description>
+&lt;p>&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>是目前最为流行的&lt;a href="https://en.wikipedia.org/wiki/NoSQL">NoSQL&lt;/a>数据库之一。&lt;a href="https://vme360.com">V秘&lt;/a>的后台数据就是保存在&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>中的哦;)&lt;/p>
+&lt;p>尽管&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>的性能为业界称道，但任何数据库系统使用中都存在着慢查询的问题。慢查询的性能问题，可能是由于使用非最优的查询语句，不正确的索引或其他配置原因导致的。但开发人员或数据库维护人员首先要找出这些低效的查询，才能做出对应的查询优化。&lt;/p>
+&lt;!-- more -->
+&lt;p>在&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>中实现慢查询的profile是非常容易，因为&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>内置了&lt;a href="https://docs.mongodb.com/manual/reference/method/db.setProfilingLevel/">profile开关&lt;/a>来记录执行时间触发了profile条件的查询。&lt;/p>
+&lt;p>参照&lt;a href="https://docs.mongodb.com/manual/reference/method/db.setProfilingLevel/">db.setProfileLevel()&lt;/a>的文档，通过以下命令就可以记录执行时长超过&lt;strong>300ms&lt;/strong>的查询。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="ln">1&lt;/span>&lt;span class="nx">db&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">setProfilingLevel&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">300&lt;/span>&lt;span class="p">)&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>当慢查询被重现后，可以通过查找&lt;code>system.profile&lt;/code> collection来查看执行时长超过&lt;strong>300ms&lt;/strong>的查询。&lt;/p>
+&lt;p>被profiler记录下来慢查询record看起来如下，&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="ln"> 1&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 2&lt;/span> &lt;span class="nt">&amp;#34;op&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 3&lt;/span> &lt;span class="nt">&amp;#34;ns&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;myCollection&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 4&lt;/span> &lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 5&lt;/span> &lt;span class="nt">&amp;#34;builds&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 6&lt;/span> &lt;span class="nt">&amp;#34;$elemMatch&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 7&lt;/span> &lt;span class="nt">&amp;#34;builtTime&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln"> 8&lt;/span> &lt;span class="nt">&amp;#34;$and&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="ln"> 9&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">10&lt;/span> &lt;span class="nt">&amp;#34;createdTime&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">11&lt;/span> &lt;span class="nt">&amp;#34;$lt&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="err">ISODate(&lt;/span>&lt;span class="s2">&amp;#34;2016-09-20T20:07:00.796Z&amp;#34;&lt;/span>&lt;span class="err">)&lt;/span>
+&lt;span class="ln">12&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">13&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">14&lt;/span> &lt;span class="p">]&lt;/span>
+&lt;span class="ln">15&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">16&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">17&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">18&lt;/span> &lt;span class="nt">&amp;#34;ntoreturn&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">19&lt;/span> &lt;span class="nt">&amp;#34;ntoskip&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">20&lt;/span> &lt;span class="nt">&amp;#34;nscanned&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">21&lt;/span> &lt;span class="nt">&amp;#34;nscannedObjects&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">18231&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">22&lt;/span> &lt;span class="nt">&amp;#34;keyUpdates&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">23&lt;/span> &lt;span class="nt">&amp;#34;writeConflicts&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">24&lt;/span> &lt;span class="nt">&amp;#34;numYield&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">577&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">25&lt;/span> &lt;span class="nt">&amp;#34;locks&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">26&lt;/span> &lt;span class="nt">&amp;#34;Global&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">27&lt;/span> &lt;span class="nt">&amp;#34;acquireCount&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">28&lt;/span> &lt;span class="nt">&amp;#34;r&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="err">NumberLong(&lt;/span>&lt;span class="mi">1156&lt;/span>&lt;span class="err">)&lt;/span>
+&lt;span class="ln">29&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">30&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">31&lt;/span> &lt;span class="nt">&amp;#34;Database&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">32&lt;/span> &lt;span class="nt">&amp;#34;acquireCount&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">33&lt;/span> &lt;span class="nt">&amp;#34;r&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="err">NumberLong(&lt;/span>&lt;span class="mi">578&lt;/span>&lt;span class="err">)&lt;/span>
+&lt;span class="ln">34&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">35&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">36&lt;/span> &lt;span class="nt">&amp;#34;Collection&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">37&lt;/span> &lt;span class="nt">&amp;#34;acquireCount&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">38&lt;/span> &lt;span class="nt">&amp;#34;r&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="err">NumberLong(&lt;/span>&lt;span class="mi">578&lt;/span>&lt;span class="err">)&lt;/span>
+&lt;span class="ln">39&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">40&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">41&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">42&lt;/span> &lt;span class="nt">&amp;#34;nreturned&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">43&lt;/span> &lt;span class="nt">&amp;#34;responseLength&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">98076&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">44&lt;/span> &lt;span class="nt">&amp;#34;millis&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">11161&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">45&lt;/span> &lt;span class="nt">&amp;#34;execStats&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">46&lt;/span> &lt;span class="nt">&amp;#34;stage&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;COLLSCAN&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">47&lt;/span> &lt;span class="nt">&amp;#34;filter&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">48&lt;/span> &lt;span class="nt">&amp;#34;builds&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">49&lt;/span> &lt;span class="nt">&amp;#34;$elemMatch&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">50&lt;/span> &lt;span class="nt">&amp;#34;$and&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="ln">51&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">52&lt;/span> &lt;span class="nt">&amp;#34;$and&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="ln">53&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">54&lt;/span> &lt;span class="nt">&amp;#34;createdTime&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">55&lt;/span> &lt;span class="nt">&amp;#34;$lt&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="err">ISODate(&lt;/span>&lt;span class="s2">&amp;#34;2016-09-20T20:07:00.796Z&amp;#34;&lt;/span>&lt;span class="err">)&lt;/span>
+&lt;span class="ln">56&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">57&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">58&lt;/span> &lt;span class="p">]&lt;/span>
+&lt;span class="ln">59&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">60&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">61&lt;/span> &lt;span class="nt">&amp;#34;builtTime&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">62&lt;/span> &lt;span class="nt">&amp;#34;$eq&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="kc">null&lt;/span>
+&lt;span class="ln">63&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">64&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">65&lt;/span> &lt;span class="p">]&lt;/span>
+&lt;span class="ln">66&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">67&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">68&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">69&lt;/span> &lt;span class="nt">&amp;#34;nReturned&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">70&lt;/span> &lt;span class="nt">&amp;#34;executionTimeMillisEstimate&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">11080&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">71&lt;/span> &lt;span class="nt">&amp;#34;works&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">18233&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">72&lt;/span> &lt;span class="nt">&amp;#34;advanced&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">73&lt;/span> &lt;span class="nt">&amp;#34;needTime&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">18230&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">74&lt;/span> &lt;span class="nt">&amp;#34;needFetch&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">75&lt;/span> &lt;span class="nt">&amp;#34;saveState&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">577&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">76&lt;/span> &lt;span class="nt">&amp;#34;restoreState&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">577&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">77&lt;/span> &lt;span class="nt">&amp;#34;isEOF&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">78&lt;/span> &lt;span class="nt">&amp;#34;invalidates&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">79&lt;/span> &lt;span class="nt">&amp;#34;direction&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;forward&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">80&lt;/span> &lt;span class="nt">&amp;#34;docsExamined&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mi">18231&lt;/span>
+&lt;span class="ln">81&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;span class="ln">82&lt;/span> &lt;span class="nt">&amp;#34;ts&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="err">ISODate(&lt;/span>&lt;span class="s2">&amp;#34;2016-09-20T23:07:14.313Z&amp;#34;&lt;/span>&lt;span class="err">)&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">83&lt;/span> &lt;span class="nt">&amp;#34;client&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;10.171.127.66&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">84&lt;/span> &lt;span class="nt">&amp;#34;allUsers&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="ln">85&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">86&lt;/span> &lt;span class="nt">&amp;#34;user&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;dbuser&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ln">87&lt;/span> &lt;span class="nt">&amp;#34;db&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;mydb&amp;#34;&lt;/span>
+&lt;span class="ln">88&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">89&lt;/span> &lt;span class="p">],&lt;/span>
+&lt;span class="ln">90&lt;/span> &lt;span class="nt">&amp;#34;user&amp;#34;&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;dbuser@mydb&amp;#34;&lt;/span>
+&lt;span class="ln">91&lt;/span>&lt;span class="p">}&lt;/span> &lt;/code>&lt;/pre>&lt;/div>
+&lt;p>上面的数据具体解读如下，&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>op: 'query'&lt;/code>表示执行的是查询，&lt;/li>
+&lt;li>&lt;code>ns&lt;/code>是指查询的collection，&lt;/li>
+&lt;li>&lt;code>query&lt;/code>是具体的查询语句，&lt;/li>
+&lt;li>核心部分是&lt;code>execStats&lt;/code>，给出了的查询语句具体执行统计，跟**.explain('execStats')**的内容是一致的。上面的统计是说，这个query执行了整个collection的扫描(总计扫描了18231个文档)，最终返回了2条文档，花费了11080ms，也就是11s还多的时间！这表明被记录下的慢查询跟collection的索引设置有问题，该查询没有用上索引。解决方案很简单，改善查询语句使用存在的索引或者设置合理的索引。&lt;/li>
+&lt;li>&lt;code>ts&lt;/code>是查询开始请求的时间，&lt;/li>
+&lt;li>&lt;code>allUsers&lt;/code>和&lt;code>user&lt;/code>都是MongoDB client连接所使用的用户。&lt;/li>
+&lt;/ol></description></item><item><title>Docker Swarm mode(v1.12.x)的一些使用限制</title><link>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</link><pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</guid><description>
+&lt;p>&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>在&lt;a href="https://www.docker.com">Docker&lt;/a> v1.12中正式发布，&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>带来了诸如Docker集群，容器编排，多主机网络等激动人心的特性。&lt;a href="https://vme360.com">V秘&lt;/a>团队也尝试着将各种后台服务部署到&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm Cluster&lt;/a>获取更好的弹性计算能力。&lt;/p>
+&lt;p>&lt;a href="https://www.docker.com">Docker v1.12&lt;/a>中正式发布的&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm&lt;/a>在我们实用中发现仍有不少不足之处，让我们一一分享给大家。&lt;/p>
+&lt;!-- more -->
+&lt;ol>
+&lt;li>无法将服务的published端口只绑定到特点的网卡上。比如我们的云主机（同时也是Swarm manager/node）有&lt;strong>eth0&lt;/strong>和&lt;strong>eth1&lt;/strong>两块网卡，分别连接内网和外网。我们计划在&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm&lt;/a>中运行一个&lt;strong>nginx&lt;/strong>服务，通过80/443端口提供HTTP/HTTPS服务。当我们希望将&lt;strong>nginx&lt;/strong>中的Web服务暴露在云主机上时，我们通过以下命令创建&lt;strong>nginx&lt;/strong>服务。然而我们无法选择将published的&lt;strong>80&lt;/strong>端口绑定在哪个interface上。&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm&lt;/a>会自动将服务监听到Swarm node的所有80端口上。如果我们只想将这个服务暴露在内网interface暂时无法实现。
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker service create --name vme-nginx --network vme-network --replicas &lt;span class="m">1&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;span class="ln">2&lt;/span>&lt;span class="se">&lt;/span> --publish 80:80 --publish 443:443 &lt;span class="se">\
+&lt;/span>&lt;span class="ln">3&lt;/span>&lt;span class="se">&lt;/span> nginx:1.11&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>无法为&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm&lt;/a>内运行的服务设置主机名。通过&lt;a href="https://docs.docker.com/engine/reference/run/">docker run命令&lt;/a>执行的容器可以设置hostname。比如，
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>docker run --hostname vme-nginx nginx:1.11&lt;/code>&lt;/pre>&lt;/div>
+但是&lt;a href="https://docs.docker.com/engine/reference/commandline/service_create/">docker service create命令&lt;/a>缺少等价的参数为容器指定hostname。一些依赖于&lt;strong>hostname&lt;/strong>的服务将无法部署在&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm&lt;/a>中，比如clustered rabbitmq。&lt;/li>
+&lt;li>&lt;a href="https://docs.docker.com/compose/">Docker compose&lt;/a>还不能与&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm&lt;/a>完美集成。目前有一个experimental的&lt;a href="https://docs.docker.com/compose/bundles/">Docker Stacks and Distributed Application Bundles&lt;/a>在尝试做更好的整合。&lt;/li>
+&lt;li>&lt;strong>docker service update&lt;/strong>有时不能更新正在运行中的container。更多讨论见&lt;a href="https://github.com/docker/swarmkit/issues/1619">这个issue&lt;/a>。&lt;/li>
+&lt;/ol></description></item><item><title>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</title><link>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</link><pubDate>Tue, 13 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</guid><description>
+&lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>团队一直致力于用技术改善产品。&lt;a href="https://vme360.com">V秘&lt;/a>后台的各种服务一直是通过完善的Devops流程自动部署到&lt;a href="https://www.docker.com">Docker&lt;/a>容器集群。随着&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>在&lt;a href="https://www.docker.com">Docker&lt;/a> v1.12中正式发布，&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>带来了诸如Docker集群，多主机网络等激动人心的特性。我们也在尝试将&lt;a href="https://vme360.com">V秘&lt;/a>服务部署到&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm Cluster&lt;/a>获取更好的弹性计算能力。&lt;/p>
+&lt;p>然而我们将&lt;a href="https://vme360.com">V秘&lt;/a>的服务部署到&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm Cluster&lt;/a>时遇到服务容器无法启动的错误。错误信息类似如下，&lt;/p>
+&lt;blockquote>
+&lt;p>starting container failed: could not add veth pair inside the network sandbox: could not find an appropriate master &amp;quot;ov-000100-1wkbc&amp;quot; for &amp;quot;vethee39f9d&amp;quot;&lt;/p>
+&lt;/blockquote>
+&lt;!-- more -->
+&lt;p>经过与&lt;a href="https://github.com/docker/docker/issues">Docker 社区&lt;/a>的回馈讨论，暂时通过升级Docker主机(OS: Ubuntu 14.04 LTS)的内核版本解决了这个错误。&lt;/p>
+&lt;p>具体方法如下，&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>root@swarm1:~# uname -r
+&lt;span class="ln">2&lt;/span>3.13.0-32-generic
+&lt;span class="ln">3&lt;/span>
+&lt;span class="ln">4&lt;/span>root@swarm1:~# apt-get install linux-generic-lts-vivid
+&lt;span class="ln">5&lt;/span>root@swarm1:~# reboot
+&lt;span class="ln">6&lt;/span>
+&lt;span class="ln">7&lt;/span>root@swarm1:~# uname -r
+&lt;span class="ln">8&lt;/span>3.19.0-69-generic&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>至于这个错误的根本原因是&lt;a href="https://www.docker.com">Docker&lt;/a>的bug还是对Linux Kernel有特殊的要求，需要Docker开发进一步确认。如果对此问题有更多兴趣，可以关注&lt;a href="https://github.com/docker/docker/issues/25039">docker issue #25039&lt;/a>。&lt;/p></description></item><item><title>基于Angularjs单页面应用的SEO优化</title><link>https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/</link><pubDate>Thu, 19 May 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/</guid><description>
+&lt;p>在之前的&lt;a href="https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/">文章&lt;/a>我曾提到基于&lt;a href="https://angularjs.org/">Angularjs&lt;/a>的单页面应用在用户体验上的种种好处。然而任何事情都不是完美的，&lt;a href="https://angularjs.org/">Angular&lt;/a>和类似的框架通过应用内做页面路由的实现给SEO（也俗称搜索引擎优化）带来了不少麻烦。&lt;/p>
+&lt;p>首先，我们来看看页面内路由是如何实现的。默认&lt;a href="https://angularjs.org/">Angularjs&lt;/a>生成的页面uri类型如下，&lt;/p>
+&lt;p>&lt;code>http://mydomain.com/#/app/page1&lt;/code>&lt;/p>
+&lt;p>浏览器请求上面这个uri的时候，实际发送给服务器的请求地址是&lt;strong>&lt;a href="http://mydomain.com/">http://mydomain.com/&lt;/a>&lt;/strong>, web服务器会将默认的页面响应给浏览器，比如&lt;em>index.html&lt;/em>或&lt;em>index.php&lt;/em>等。&lt;/p>
+&lt;p>浏览器返回的页面里面引入了&lt;a href="https://angularjs.org/">Angularjs&lt;/a>和其他应用需要的JS库。&lt;a href="https://angularjs.org/">Angularjs&lt;/a>应用开始执行后，尝试处理路由**/app/page1**。如果应用定义了该路由，将加载必要的JS库和其他html片段来完成页面的渲染。&lt;/p>
+&lt;p>理解了&lt;a href="https://angularjs.org/">Angularjs&lt;/a>页面内路由的原理后，我们知道了对浏览器或搜索引擎爬虫而言，单页面应用所有的页面对浏览器和搜索引擎都是一个网址，比如&lt;code>http://mydomain.com/&lt;/code>。这样对爬虫抓取站内链接造成了困难，因为所有应用内的链接都被认做了同一个链接。&lt;/p>
+&lt;!-- more -->
+&lt;p>我们理解了uri &lt;code>http://mydomain.com/#/app/page1&lt;/code>给SEO造成的麻烦，接下来就是讨论如何针对SEO来作的优化。&lt;/p>
+&lt;p>最理想的情况当然是搜索引擎爬虫变的更加智能，它能理解网站的框架，并且针对此种情况做出优化。但截止到目前，包括Google在内的所有爬虫都无法做到这点。那我们SEO的优化只能在应用这边来做了。&lt;/p>
+&lt;p>&lt;a href="https://angularjs.org/">Angularjs&lt;/a>提供了一种&lt;a href="https://docs.angularjs.org/guide/$location">HTML5 mode&lt;/a>模式可以利用HTML5 History API来实现页面内路由。打开的方法如下，&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="ln">1&lt;/span>&lt;span class="nx">$locationProvider&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">html5Mode&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="p">);&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>同时在&lt;code>index.html&lt;/code>页面加上如下标签，&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="ln">1&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">base&lt;/span> &lt;span class="na">href&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;/&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>在打开&lt;a href="https://docs.angularjs.org/guide/$location">HTML5 mode&lt;/a>后的&lt;a href="https://angularjs.org/">Angularjs&lt;/a>应用的链接看起来就是这样了，&lt;/p>
+&lt;p>&lt;code>http://mydomain.com/app/page1&lt;/code>&lt;/p>
+&lt;p>新的链接模式和站内跳转通过访问网站主页请求将没有任何问题。然而直接在浏览器请求如上链接的话，Web服务器将尝试请求&lt;code>/app/page1&lt;/code>，通常会得到&lt;strong>404&lt;/strong>的页面响应。因为服务器上并没有部署页面&lt;code>/app/page1&lt;/code>。&lt;/p>
+&lt;p>这时就需要在Web应用服务器或应用里面实现&lt;strong>URL Rewrite&lt;/strong>。将&lt;code>/app/page1&lt;/code>的请求转到单页面应用html文件上。&lt;/p>
+&lt;p>下面是一些Web服务器或应用的参考配置，&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Apache Rewrites&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="ln"> 1&lt;/span> &amp;lt;VirtualHost *:80&amp;gt;
+&lt;span class="ln"> 2&lt;/span> ServerName my-app
+&lt;span class="ln"> 3&lt;/span>
+&lt;span class="ln"> 4&lt;/span> DocumentRoot /path/to/app
+&lt;span class="ln"> 5&lt;/span>
+&lt;span class="ln"> 6&lt;/span> &amp;lt;Directory /path/to/app&amp;gt;
+&lt;span class="ln"> 7&lt;/span> RewriteEngine on
+&lt;span class="ln"> 8&lt;/span>
+&lt;span class="ln"> 9&lt;/span> # Don&amp;#39;t rewrite files or directories
+&lt;span class="ln">10&lt;/span> RewriteCond %{REQUEST_FILENAME} -f [OR]
+&lt;span class="ln">11&lt;/span> RewriteCond %{REQUEST_FILENAME} -d
+&lt;span class="ln">12&lt;/span> RewriteRule ^ - [L]
+&lt;span class="ln">13&lt;/span>
+&lt;span class="ln">14&lt;/span> # Rewrite everything else to index.html to allow html5 state links
+&lt;span class="ln">15&lt;/span> RewriteRule ^ index.html [L]
+&lt;span class="ln">16&lt;/span> &amp;lt;/Directory&amp;gt;
+&lt;span class="ln">17&lt;/span> &amp;lt;/VirtualHost&amp;gt;
+&lt;span class="ln">18&lt;/span> &lt;/code>&lt;/pre>&lt;/div>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Nginx Rewrites&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-nginx" data-lang="nginx">&lt;span class="ln"> 1&lt;/span> &lt;span class="k">server&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 2&lt;/span> &lt;span class="kn">server_name&lt;/span> &lt;span class="s">my-app&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln"> 3&lt;/span>
+&lt;span class="ln"> 4&lt;/span> &lt;span class="kn">root&lt;/span> &lt;span class="s">/path/to/app&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln"> 5&lt;/span>
+&lt;span class="ln"> 6&lt;/span> &lt;span class="kn">location&lt;/span> &lt;span class="s">/&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 7&lt;/span> &lt;span class="kn">try_files&lt;/span> &lt;span class="nv">$uri&lt;/span> &lt;span class="nv">$uri/&lt;/span> &lt;span class="s">/index.html&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln"> 8&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln"> 9&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">10&lt;/span> &lt;/code>&lt;/pre>&lt;/div>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Azure IIS Rewrites&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="ln"> 1&lt;/span> &amp;lt;system.webServer&amp;gt;
+&lt;span class="ln"> 2&lt;/span> &amp;lt;rewrite&amp;gt;
+&lt;span class="ln"> 3&lt;/span> &amp;lt;rules&amp;gt;
+&lt;span class="ln"> 4&lt;/span> &amp;lt;rule name=&amp;#34;Main Rule&amp;#34; stopProcessing=&amp;#34;true&amp;#34;&amp;gt;
+&lt;span class="ln"> 5&lt;/span> &amp;lt;match url=&amp;#34;.*&amp;#34; /&amp;gt;
+&lt;span class="ln"> 6&lt;/span> &amp;lt;conditions logicalGrouping=&amp;#34;MatchAll&amp;#34;&amp;gt;
+&lt;span class="ln"> 7&lt;/span> &amp;lt;add input=&amp;#34;{REQUEST_FILENAME}&amp;#34; matchType=&amp;#34;IsFile&amp;#34; negate=&amp;#34;true&amp;#34; /&amp;gt;
+&lt;span class="ln"> 8&lt;/span> &amp;lt;add input=&amp;#34;{REQUEST_FILENAME}&amp;#34; matchType=&amp;#34;IsDirectory&amp;#34; negate=&amp;#34;true&amp;#34; /&amp;gt;
+&lt;span class="ln"> 9&lt;/span> &amp;lt;/conditions&amp;gt;
+&lt;span class="ln">10&lt;/span> &amp;lt;action type=&amp;#34;Rewrite&amp;#34; url=&amp;#34;/&amp;#34; /&amp;gt;
+&lt;span class="ln">11&lt;/span> &amp;lt;/rule&amp;gt;
+&lt;span class="ln">12&lt;/span> &amp;lt;/rules&amp;gt;
+&lt;span class="ln">13&lt;/span> &amp;lt;/rewrite&amp;gt;
+&lt;span class="ln">14&lt;/span> &amp;lt;/system.webServer&amp;gt;
+&lt;span class="ln">15&lt;/span> &lt;/code>&lt;/pre>&lt;/div>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Express Rewrites&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="ln"> 1&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">express&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;express&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="ln"> 2&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">express&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="ln"> 3&lt;/span>
+&lt;span class="ln"> 4&lt;/span> &lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">use&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/js&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">express&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="kr">static&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">__&lt;/span>&lt;span class="nx">dirname&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">&amp;#39;/js&amp;#39;&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="ln"> 5&lt;/span> &lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">use&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/dist&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">express&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="kr">static&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">__&lt;/span>&lt;span class="nx">dirname&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">&amp;#39;/../dist&amp;#39;&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="ln"> 6&lt;/span> &lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">use&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/css&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">express&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="kr">static&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">__&lt;/span>&lt;span class="nx">dirname&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">&amp;#39;/css&amp;#39;&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="ln"> 7&lt;/span> &lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">use&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/partials&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">express&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="kr">static&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">__&lt;/span>&lt;span class="nx">dirname&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">&amp;#39;/partials&amp;#39;&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="ln"> 8&lt;/span>
+&lt;span class="ln"> 9&lt;/span> &lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">all&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/*&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">req&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">res&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">next&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">10&lt;/span> &lt;span class="c1">// Just send the index.html for other files to support HTML5Mode
+&lt;/span>&lt;span class="ln">11&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">res&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">sendFile&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;index.html&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">root&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="mi">__&lt;/span>&lt;span class="nx">dirname&lt;/span> &lt;span class="p">});&lt;/span>
+&lt;span class="ln">12&lt;/span> &lt;span class="p">});&lt;/span>
+&lt;span class="ln">13&lt;/span>
+&lt;span class="ln">14&lt;/span> &lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">listen&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">3006&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">//the port you want to use
+&lt;/span>&lt;span class="ln">15&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>ASP.Net C# Rewrites&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-csharp" data-lang="csharp">&lt;span class="ln">1&lt;/span> &lt;span class="k">private&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">string&lt;/span> &lt;span class="n">ROOT_DOCUMENT&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s">&amp;#34;/default.aspx&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln">2&lt;/span>
+&lt;span class="ln">3&lt;/span> &lt;span class="k">protected&lt;/span> &lt;span class="k">void&lt;/span> &lt;span class="n">Application_BeginRequest&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="n">Object&lt;/span> &lt;span class="n">sender&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">EventArgs&lt;/span> &lt;span class="n">e&lt;/span> &lt;span class="p">)&lt;/span>
+&lt;span class="ln">4&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">5&lt;/span> &lt;span class="kt">string&lt;/span> &lt;span class="n">url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">Request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Url&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">LocalPath&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="ln">6&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="p">!&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">IO&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">File&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Exists&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="n">Context&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Server&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">MapPath&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="n">url&lt;/span> &lt;span class="p">)&lt;/span> &lt;span class="p">)&lt;/span> &lt;span class="p">)&lt;/span>
+&lt;span class="ln">7&lt;/span> &lt;span class="n">Context&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">RewritePath&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="n">ROOT_DOCUMENT&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="ln">8&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">9&lt;/span> &lt;/code>&lt;/pre>&lt;/div>
+&lt;/li>
+&lt;/ul></description></item><item><title>Spring框架下的分布式session管理</title><link>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</link><pubDate>Sat, 07 May 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</guid><description>
+&lt;p>在微服务和容器等技术的帮助下，Web应用可以较为容易的进行水平扩展，来部署更多的应用实例来提升请求处理数QPS。当Web服务有状态的时候，如何在集群下管理用户session成为新的待解决问题。&lt;/p>
+&lt;!-- more -->
+&lt;p>&lt;a href="https://spring.io">Spring Framework&lt;/a>针对此问题衍生出了一个子项目&lt;a href="http://projects.spring.io/spring-session/">Spring Session&lt;/a>来实现集群下的session管理。该项目提供了以下功能：&lt;/p>
+&lt;ul>
+&lt;li>提供API和实现管理用户session&lt;/li>
+&lt;li>HttpSession - 替换实现应用容器(tomcat)中的HttpSession
+&lt;ul>
+&lt;li>Clustered Sessions - 实现集群的session而不依赖任何应用容器特定的解决方案&lt;/li>
+&lt;li>Multiple Browser Sessions - 支持多个用户session保存在同一个浏览器实例中 (例如，类似Google的多用户认证).&lt;/li>
+&lt;li>RESTful APIs - 通过支持session ids在Http请求头来支持Restful API的认证&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>WebSocket - 能够保证HttpSession的存活当在接受WebSocket消息时&lt;/li>
+&lt;/ul>
+&lt;p>从上面的功能列表中，我们可以看到&lt;a href="http://projects.spring.io/spring-session/">Spring Session&lt;/a>能够满足集群下各种session的使用场景和需求。&lt;/p>
+&lt;p>&lt;a href="http://projects.spring.io/spring-session/">Spring Session&lt;/a>在1.0.0 GA可以使用&lt;a href="http://redis.io/">Redis&lt;/a>做为session储存的backend。&lt;/p>
+&lt;p>通过changelog，在最新的1.1.0 GA中支持&lt;a href="http://docs.spring.io/spring-session/docs/1.1.1.RELEASE/reference/html5/#what-s-new-in-1-1">自定义Cookie的创建&lt;/a>，允许自定义Cookie的过期时间，作用域等。在即将发布的&lt;a href="http://docs.spring.io/spring-session/docs/1.2.0.RC2/reference/html5/#what-s-new-in-1-2">1.2.0 GA&lt;/a>版本中，将添加支持JDBC的关系数据库和&lt;a href="https://www.mongodb.org/">MongoDB&lt;/a>作为session保存的backend。&lt;/p>
+&lt;p>此外，&lt;a href="http://projects.spring.io/spring-session/">Spring Session&lt;/a>同&lt;a href="http://projects.spring.io/spring-boot/">Spring-boot&lt;/a>的应用有很好的&lt;a href="http://docs.spring.io/spring-session/docs/current/reference/html5/guides/boot.html">集成&lt;/a>，只需要十多行代码及配置即可集成！&lt;/p></description></item><item><title>V秘是如何构建的</title><link>https://kane.mx/posts/2016/how-we-build-videome/</link><pubDate>Thu, 07 Apr 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-we-build-videome/</guid><description>
+&lt;p>春天来了，&lt;a href="https://vme360.com">V秘&lt;/a>大家庭也新增了两位10后的传人。新爸爸经过一番忙乱后，希望在这里与大家分享&lt;a href="https://vme360.com">V秘&lt;/a>的架构，共同探讨如何快速的构建高可用，高性能的Web服务。&lt;/p>
+&lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>致力于提供最好的在线视频制作云平台。让用户随时随地零门槛的快速制作出高质量高清晰度的视频，来纪念记录生活中有意义的时刻，同时将这份快乐传递给更多的家人朋友一起分享。&lt;/p>
+&lt;p>然而要可靠的可扩展的实现这样看似简单的需求，其背后确由众多知名开源技术，可靠的云服务，不间歇的监控运维来实现和保证的。&lt;/p>
+&lt;!-- more -->
+&lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>架构的基本目标就是要实现，&lt;/p>
+&lt;ul>
+&lt;li>服务的高扩展性。有有效可靠的方法支撑数万并发到数十万，百万及更多的并发请求。&lt;/li>
+&lt;li>服务的高可用性。各种服务都是多实例的集群，某些服务故障后，集群中的其他实例仍然能够提供服务。&lt;/li>
+&lt;li>服务的自动化构建。从代码到服务部署上线是一套自动化的流程，越少的人工介入保证了服务的可用性。&lt;/li>
+&lt;li>系统的实时监控。7x24小时的监控保证服务的可用性，当监控到数据异常或服务停止运行能及时告警引入人工运维团队。&lt;/li>
+&lt;/ul>
+&lt;p>更多细节请参阅下面的&lt;a href="http://www.slideshare.net/zxkane/how-we-build-vme">slides&lt;/a>,&lt;/p>
+&lt;iframe src="//www.slideshare.net/slideshow/embed_code/key/EaBKeYtNuNyFPL" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> &lt;/iframe> &lt;div style="margin-bottom:5px"> &lt;strong> &lt;a href="//www.slideshare.net/zxkane/how-we-build-vme" title="How we build Videome" target="_blank">How we build Videome&lt;/a> &lt;/strong> from &lt;strong>&lt;a href="//www.slideshare.net/zxkane" target="_blank">Meng Xin Zhu&lt;/a>&lt;/strong> &lt;/div>
+&lt;p>欢迎留言与我们探讨你的心得和建议。&lt;/p></description></item><item><title>说一说阿里云ossfs</title><link>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</link><pubDate>Fri, 26 Feb 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</guid><description>
+&lt;p>阿里云提供的对象或者文件存储叫&lt;a href="https://www.aliyun.com/product/oss">OSS&lt;/a>，为应用程序提供了海量存储，按需付费等服务。应用程序则需要通过&lt;a href="https://www.aliyun.com/product/oss">Aliyun OSS&lt;/a>的各语言SDK才能操作（读，写，遍历等）OSS中的文件。&lt;/p>
+&lt;p>对运维人员来说，做一些数据维护工作的时候，通过SDK操作&lt;a href="https://www.aliyun.com/product/oss">OSS&lt;/a>中的文件就会比较麻烦。在linux/unix环境下，通常有一些工具把远程文件系统或云盘挂载为本地文件。在网络状况比较好的情况下，操作远程文件就像操作本地文件一样。例如，把&lt;a href="https://github.com/s3fs-fuse/s3fs-fuse">Amazon S3&lt;/a>，&lt;a href="https://github.com/joe42/CloudFusion">Dropbox云盘&lt;/a>，&lt;a href="https://github.com/libfuse/sshfs">可通过ssh登录的远程服务器上的磁盘&lt;/a>挂载为本地文件系统。&lt;/p>
+&lt;p>之前也有第三方公司开发的工具把&lt;a href="https://www.aliyun.com/product/oss">OSS bucket&lt;/a>挂载为本地磁盘。出于安全考虑一直为敢使用。&lt;/p>
+&lt;p>终于，阿里云推出了官方开源版本的&lt;a href="https://github.com/aliyun/ossfs">ossfs&lt;/a>，并且提供技术支持（通过工单）。&lt;/p>
+&lt;p>接下来，聊聊我的使用体会。&lt;/p>
+&lt;!-- more -->
+&lt;ul>
+&lt;li>安装，配置都还简单。&lt;/li>
+&lt;li>文档看起来比较详细，但实际操作起来有些就不对。感觉写文档的人，并没有在相应环境上测试过。&lt;/li>
+&lt;li>权限设计的一塌糊涂。&lt;a href="https://github.com/aliyun/ossfs">ossfs&lt;/a>基于&lt;a href="https://en.wikipedia.org/wiki/Filesystem_in_Userspace">FUSE&lt;/a>，理当允许非root挂载或卸载OSS bucket。非root用户使用&lt;a href="https://github.com/aliyun/ossfs">ossfs&lt;/a>挂载的文件默认的owner都是&lt;strong>root&lt;/strong>! 还好目前有workaround，挂载的时候指定参数，&lt;code>-ouid=your_uid -ogid=your_gid&lt;/code>来指定文件的owner。&lt;/li>
+&lt;li>性能极其低下！！！一台ECS主机挂载了一个使用内网地址的oss bucket，bucket根下面有2k+子目录（对文件系统而言）,bucket内文件总计有28G。然而执行&lt;code>ls /tmp/&amp;lt;bucket mount point&amp;gt;&lt;/code>超过10分钟都无法完成。而我们&lt;a href="https://vme360.com">V秘&lt;/a>之前用Java实现的&lt;a href="https://github.com/videome/AliyunOSSFS">AliyunOSSFS&lt;/a>执行同样的操作只需要数秒。&lt;/li>
+&lt;li>阿里云相关的技术支持人员及其不专业。很多文件系统，&lt;a href="https://en.wikipedia.org/wiki/Filesystem_in_Userspace">FUSE&lt;/a>等概念都不甚了解。跟他们沟通这些技术问题，首先要花时间进行教育。花费大量时间来沟通，进展确缓慢。&lt;/li>
+&lt;/ul>
+&lt;h2 id="总之阿里云ossfshttpsgithubcomaliyunossfs这个工具远远没有达到production-ready的质量无法使用到生产环境中">总之，&lt;a href="https://github.com/aliyun/ossfs">阿里云ossfs&lt;/a>这个工具远远没有达到&lt;strong>production ready&lt;/strong>的质量。无法使用到生产环境中。&lt;/h2></description></item><item><title>如何使用微信公众平台的临时素材</title><link>https://kane.mx/posts/2016/weixin-temporary-materials/</link><pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/weixin-temporary-materials/</guid><description>
+&lt;p>微信给公众平台提供了&lt;a href="http://mp.weixin.qq.com/wiki/15/2d353966323806a202cd2deaafe8e557.html">素材管理&lt;/a>的接口，通过这一系列接口可以上传，接收以及管理图片，视频等多媒体文件。其中又分为&lt;strong>临时&lt;/strong>和&lt;strong>永久&lt;/strong>两种类型。永久素材有总量的限制，临时素材微信服务器只给保存3天。&lt;/p>
+&lt;p>最近&lt;a href="https://vme360.com">V秘&lt;/a>刚好有个同微信用户互动的场景，为用户美化微信拍摄的小视频。&lt;a href="https://vme360.com">V秘&lt;/a>后台服务器收到用户发送过来小视频（微信将其认做临时素材），将其美化处理后，再将美化的视频上传为临时素材，最终美化后的视频作为视频类型的客服消息被推送给用户。整个流程很简洁，用户发送小视频后，就坐等观看美化后的小视频了。&lt;/p>
+&lt;p>然而最终经过V秘开发团队的实践及测试，得出的结论是，&lt;/p>
+&lt;!-- more -->
+&lt;p>##&lt;strong>微信公众平台的临时素材不能用！绝对的鸡肋！&lt;/strong>&lt;/p>
+&lt;p>公众平台上传素材的API以及使用已有素材发送视频消息API都很健壮。但问题出在了微信后台资源的服务上面。&lt;/p>
+&lt;p>开发者把图片视频成功上传为临时素材后，会从微信的接口得到这个素材的ID。这个ID随后作为给用户发送图文消息或视频消息的资源。微信后台会把这个ID对应到素材的真实URL路径上。这个过程是没有问题的。同时微信作为一个拥有海量用户的软件，它会将这些将要推送给用户的素材都发布到它的CDN。用户收到的最终图片视频的地址就是素材文件在微信/腾讯CDN上的地址。对CDN有了解的朋友都知道，CDN服务器分散在全国或全世界各地，当用户请求这个资源的时候，请求会被路由到离用户最近的CDN服务器上。当CDN服务器上还没有缓存请求的资源时，这时候有个溯源的过程。就是原始文件从文件服务器传送到该CDN服务器的一个过程。这时，用户有一个额外的等待，等待时间取决于文件大小和CDN服务器和文件服务器间的带宽。&lt;/p>
+&lt;p>微信用来给公众号放置临时素材的CDN在这一块出了问题。在我们的测试中，微信CDN可能一直无法提供这些临时素材（某些文件超过1天后仍然无法访问）。而且出现错误的几率相当高，至少20%以上。由于CDN无法为临时素材提供可靠的访问保障，所以我们得出微信给公众号临时素材这个功能基本就是不能用。&lt;/p></description></item><item><title>单页面应用(single page application)中使用微信支付</title><link>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</link><pubDate>Sun, 24 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</guid><description>
+&lt;p>随着&lt;strong>AngularJS&lt;/strong>等前端MVC框架的流行，AJAX的异步请求数据结合H5的push state等特性，极大的改善了网站的用户体验和页面加载性能。这类网站应用通常只有一个入口页面，通过应用内路由到不同的页面，所以俗称单页面(signle page application)应用。页面&lt;strong>URL&lt;/strong>看起来如下，&lt;/p>
+&lt;blockquote>
+&lt;ul>
+&lt;li>网站首页
+&lt;a href="http://mysite.com/#/index">http://mysite.com/#/index&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;ul>
+&lt;li>商品列表页
+&lt;a href="http://mysite.com/#/goods/list">http://mysite.com/#/goods/list&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;ul>
+&lt;li>商品详情页
+&lt;a href="http://mysite.com/#/goods/skuid">http://mysite.com/#/goods/skuid&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;ul>
+&lt;li>网站关于页
+&lt;a href="http://mysite.com/#/about">http://mysite.com/#/about&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;p>对浏览器而言，上面几个地址都是访问的网站**&lt;code>/&lt;/code>**目录，每个url不同的是&lt;code>hash&lt;/code>部分。而**AngularJS**正是依赖页面的&lt;code>hash&lt;/code>来做的应用内路由，根据不同的路由来加载不同的&lt;code>js&lt;/code>和&lt;code>html&lt;/code>片段，实现动态内容的加载。&lt;/p>
+&lt;!-- more -->
+&lt;p>世上并没有绝对完美的事情，单页面应用在用户体验和性能上获得了好处。然而，在别的地方必然付出代价。这里就分享一下单页面应用和微信支付集成的一些经验。&lt;/p>
+&lt;p>这里的微信支付指的是，在微信浏览器中通过JS接口调起微信支付来完成网页应用中商品的购买。微信支付本身的开发集成并不复杂，这里就不赘述了。微信支付出于安全考虑，要求公众号必须注册支付发起页面的地址（到支付页面的上级目录为止），并且能够添加到白名单的地址不超过3个。也就是如果应用在&lt;em>商品详情页&lt;/em>发起支付请求，那么地址**&lt;code>http://mysite.com/#/goods/&lt;/code>**必须在白名单列表。&lt;/p>
+&lt;p>目前为止，一切都很好理解，把支付页面加到微信支付白名单不就万事大吉了。可经过实测，事实确不是这么简单！&lt;/p>
+&lt;p>在微信&lt;strong>iOS&lt;/strong>版本中，微信支付JS会错误的使用landing网站页面的URL，而不是发起支付的页面URL！比如用户通过网站首页**&lt;code>http://mysite.com/#/index&lt;/code>**进入应用，通过站内链接浏览到了某商品详情页**&lt;code>http://mysite.com/#/goods/skuid&lt;/code>**并发起了支付。但微信JS会把landing页面URL**&lt;code>http://mysite.com/#/index&lt;/code>**判定为支付的发起页面，从而导致支付JS调用失败！&lt;/p>
+&lt;p>因为应用存在多个页面，不可能把所有的页面都加到支付白名单中(有3个数目限制，并且工作量也大到不现实)。要解决这个问题，只好另辟蹊径。我目前找到的方法是，强制刷新页面当打开商品详情页的时候。等同于直接在微信浏览器中打开了商品详情页。虽然对用户体验有些影响，但支付功能正常工作了。&lt;/p></description></item><item><title>文件系统的Inode耗尽，会导致Docker编译镜像出现'No space left on device'错误</title><link>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</link><pubDate>Thu, 21 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</guid><description>
+&lt;p>最近在提交前端代码后，前端代码的自动发布老是失败。失败的原因多是编译Docker镜像时在执行&lt;code>COPY&lt;/code>语句拷贝文件到镜像文件系统时，扔出了'No space left on device'这个错误。这个错误根据描述非常好理解，就是docker文件系统所在磁盘没有了空间。&lt;/p>
+&lt;p>但是通过&lt;code>df -h&lt;/code>命令，该磁盘至少还有3，4个G的剩余空间。而前端镜像的文件大小最多也不超过300M。在该磁盘通过&lt;code>touch&lt;/code>,&lt;code>cp&lt;/code>仍然可以创建文件。&lt;/p>
+&lt;p>所以这个问题非常奇怪，为什么&lt;code>docker&lt;/code>或者&lt;code>操作系统&lt;/code>抱怨磁盘没有了空间？在磁盘仍然剩余数个G的情况下？&lt;/p>
+&lt;!-- more -->
+&lt;p>再通过相关的查找后，docker的这个&lt;a href="https://github.com/docker/docker/issues/18144">issue&lt;/a>给了我启发。Linux文件系统的&lt;code>inode&lt;/code>在耗尽后，该文件系统将不能再创建新文件。因为前端页面是基于&lt;code>nodejs&lt;/code>的程序，它依赖的packages产生了大量文件，在反复制作不同的docker images时，这些依赖文件又被反复复制，导致文件数量远远超过了默认inode和磁盘大小的比例，最终&lt;code>inode&lt;/code>先于磁盘空间被全部使用。&lt;/p>
+&lt;p>遇到类似问题的同学，可以通过&lt;code>df -i&lt;/code>查看&lt;code>inode&lt;/code>的使用情况来排查问题是否由于&lt;code>inode&lt;/code>耗尽导致这个错误。&lt;/p></description></item></channel></rss>

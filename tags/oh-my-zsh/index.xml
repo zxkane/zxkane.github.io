@@ -1,2 +1,53 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>oh-my-zsh on The Road</title><link>https://kane.mx/tags/oh-my-zsh/</link><description>Recent content in oh-my-zsh on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/oh-my-zsh/index.xml" rel="self" type="application/rss+xml"/><item><title>oh-my-zsh性能调优思路</title><link>https://kane.mx/posts/2020/zsh-performance-tuning/</link><pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/zsh-performance-tuning/</guid><description>&lt;p>&lt;a href="https://zh.wikipedia.org/wiki/Z_shell">Z shell&lt;/a>搭配&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>自定义配置已成为众多Linux/Macosx用户的标准terminal配置。&lt;/p>
-&lt;p>最近遇到在&lt;code>zsh&lt;/code>中执行任意命令都变得特别慢(哪怕简单执行&lt;code>ls&lt;/code>也要花费肉眼可见的1，2秒钟)，这里记录下如何排查&lt;a href="https://zh.wikipedia.org/wiki/Z_shell">Z shell&lt;/a>下启用&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>的性能问题。&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>oh-my-zsh on The road</title><link>https://kane.mx/tags/oh-my-zsh/</link><description>Recent content in oh-my-zsh on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/oh-my-zsh/index.xml" rel="self" type="application/rss+xml"/><item><title>oh-my-zsh性能调优思路</title><link>https://kane.mx/posts/2020/zsh-performance-tuning/</link><pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/zsh-performance-tuning/</guid><description>
+&lt;p>&lt;a href="https://zh.wikipedia.org/wiki/Z_shell">Z shell&lt;/a>搭配&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>自定义配置已成为众多Linux/Macosx用户的标准terminal配置。&lt;/p>
+&lt;p>最近遇到在&lt;code>zsh&lt;/code>中执行任意命令都变得特别慢(哪怕简单执行&lt;code>ls&lt;/code>也要花费肉眼可见的1，2秒钟)，这里记录下如何排查&lt;a href="https://zh.wikipedia.org/wiki/Z_shell">Z shell&lt;/a>下启用&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>的性能问题。&lt;/p>
+&lt;h3 id="性能问题症状">性能问题症状&lt;/h3>
+&lt;p>突然某天起在终端中执行任意命令，都至少要花费1，2秒（肉眼计数），该命令才会完成执行并退出到终端开始接受新的输入。&lt;/p>
+&lt;p>我当前主要使用的终端是&lt;a href="https://www.iterm2.com/">iTerm2&lt;/a>，执行命令后，在终端Tab的title bar上能显式的看到&lt;code>git&lt;/code>命令也被执行了。&lt;/p>
+&lt;p>尝试了其他的shell，比如&lt;code>bash&lt;/code>，是没有这个问题。基本断定问题同&lt;code>zsh&lt;/code>相关。更多问题描述乃至动画截屏，可以参见&lt;a href="https://github.com/ohmyzsh/ohmyzsh/issues/8833">这个issue&lt;/a>。&lt;/p>
+&lt;h3 id="zsh--oh-my-zsh-性能问题分析">zsh + oh-my-zsh 性能问题分析&lt;/h3>
+&lt;p>&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>其实就是提供&lt;a href="https://zh.wikipedia.org/wiki/Z_shell">zsh&lt;/a>的定制化配置，主要包括Theme主题和各种软件的插件。&lt;/p>
+&lt;h4 id="oh-my-zsh-插件">oh-my-zsh 插件&lt;/h4>
+&lt;p>通常&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>中内置或三方社区提供的插件是导致性能降低甚至互相冲突的主要原因。排查思路也很简单，通过逐个禁用已加载的插件来测试是否可以解决问题。&lt;/p>
+&lt;p>用文本编辑器打开当前用户的&lt;code>~/.zshrc&lt;/code>配置，找到&lt;code>plugins&lt;/code>开头的配置行，例如，&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln"> 1&lt;/span>&lt;span class="nv">plugins&lt;/span>&lt;span class="o">=(&lt;/span>
+&lt;span class="ln"> 2&lt;/span> git
+&lt;span class="ln"> 3&lt;/span> osx
+&lt;span class="ln"> 4&lt;/span>&lt;span class="c1">## gradle&lt;/span>
+&lt;span class="ln"> 5&lt;/span> brew
+&lt;span class="ln"> 6&lt;/span>&lt;span class="c1">## command-not-found&lt;/span>
+&lt;span class="ln"> 7&lt;/span> github
+&lt;span class="ln"> 8&lt;/span>&lt;span class="c1"># gnu-utils&lt;/span>
+&lt;span class="ln"> 9&lt;/span>&lt;span class="c1">## mvn&lt;/span>
+&lt;span class="ln">10&lt;/span> python
+&lt;span class="ln">11&lt;/span> pip
+&lt;span class="ln">12&lt;/span>&lt;span class="c1"># screen&lt;/span>
+&lt;span class="ln">13&lt;/span> vi-mode
+&lt;span class="ln">14&lt;/span> docker
+&lt;span class="ln">15&lt;/span>&lt;span class="c1">## docker-compose&lt;/span>
+&lt;span class="ln">16&lt;/span> node
+&lt;span class="ln">17&lt;/span>&lt;span class="c1">## spring&lt;/span>
+&lt;span class="ln">18&lt;/span> mosh
+&lt;span class="ln">19&lt;/span>&lt;span class="c1"># httpie&lt;/span>
+&lt;span class="ln">20&lt;/span>&lt;span class="c1">## sudo&lt;/span>
+&lt;span class="ln">21&lt;/span> tmux
+&lt;span class="ln">22&lt;/span>&lt;span class="c1">## kubectl&lt;/span>
+&lt;span class="ln">23&lt;/span>&lt;span class="c1">## helm&lt;/span>
+&lt;span class="ln">24&lt;/span> golang
+&lt;span class="ln">25&lt;/span> &lt;span class="nb">history&lt;/span>
+&lt;span class="ln">26&lt;/span> history-substring-search
+&lt;span class="ln">27&lt;/span> zsh-autosuggestions
+&lt;span class="ln">28&lt;/span> zsh-syntax-highlighting
+&lt;span class="ln">29&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>通过行首添加&lt;code>#&lt;/code>来禁用&lt;code>oh-my-zsh&lt;/code>插件，启动新的终端窗口或tab来验证是否该插件是引起问题的根源。&lt;/p>
+&lt;p>在我的配置中，出现过因为启用过多插件，导致新建终端需要10来秒钟。但因为创建终端不是一个高频的需求，这个性能通常来说还是可以忍受。&lt;/p>
+&lt;h4 id="oh-my-zsh-主题">oh-my-zsh 主题&lt;/h4>
+&lt;p>在我的这个问题中，即使将所有插件都禁用了，命令执行后退出速度还是没有改善，&lt;code>git&lt;/code>命令仍然有被执行。这时我尝试更换不同&lt;code>oh-my-zsh&lt;/code>内置主题来排查问题。但是使用了包括默认主题&lt;code>robbyrussell&lt;/code>，极简主题&lt;code>ys&lt;/code>在内的多个主题都无法解决该问题。&lt;/p>
+&lt;p>最后直接禁止&lt;code>oh-my-zsh&lt;/code>使用主题，问题没有了！&lt;/p>
+&lt;p>然而&lt;code>oh-my-zsh&lt;/code>主题是对zsh的极大增强，改善了默认的用户体验，没有主题扩展使用起来会非常不习惯。&lt;/p>
+&lt;h3 id="小结">小结&lt;/h3>
+&lt;p>最终试用了另一个社区维护的知名&lt;code>zsh&lt;/code>主题&lt;a href="https://github.com/sindresorhus/pure">Pure&lt;/a>，性能问题得到了解决:v: 同时也满足了主题对zsh输入输出用户体验的增强 :blush:&lt;/p>
+&lt;p>希望这里分享的&lt;code>oh-my-zsh&lt;/code>性能的调优思路，可以帮助到有类似需要的各位。&lt;/p>
+&lt;blockquote>
+&lt;p>将来社区对这个&lt;a href="https://github.com/ohmyzsh/ohmyzsh/issues/8833">问题&lt;/a>如有进一步的反馈，将会做更新。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

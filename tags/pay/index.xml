@@ -1,1 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>pay on The Road</title><link>https://kane.mx/tags/pay/</link><description>Recent content in pay on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 24 Jan 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/pay/index.xml" rel="self" type="application/rss+xml"/><item><title>单页面应用(single page application)中使用微信支付</title><link>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</link><pubDate>Sun, 24 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</guid><description>随着AngularJS等前端MVC框架的流行，AJAX的异步请求数据结合H5的push state等特性，极大的改善了网站的用户体验和页面加载</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>pay on The road</title><link>https://kane.mx/tags/pay/</link><description>Recent content in pay on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Sun, 24 Jan 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/pay/index.xml" rel="self" type="application/rss+xml"/><item><title>单页面应用(single page application)中使用微信支付</title><link>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</link><pubDate>Sun, 24 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</guid><description>
+&lt;p>随着&lt;strong>AngularJS&lt;/strong>等前端MVC框架的流行，AJAX的异步请求数据结合H5的push state等特性，极大的改善了网站的用户体验和页面加载性能。这类网站应用通常只有一个入口页面，通过应用内路由到不同的页面，所以俗称单页面(signle page application)应用。页面&lt;strong>URL&lt;/strong>看起来如下，&lt;/p>
+&lt;blockquote>
+&lt;ul>
+&lt;li>网站首页
+&lt;a href="http://mysite.com/#/index">http://mysite.com/#/index&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;ul>
+&lt;li>商品列表页
+&lt;a href="http://mysite.com/#/goods/list">http://mysite.com/#/goods/list&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;ul>
+&lt;li>商品详情页
+&lt;a href="http://mysite.com/#/goods/skuid">http://mysite.com/#/goods/skuid&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;ul>
+&lt;li>网站关于页
+&lt;a href="http://mysite.com/#/about">http://mysite.com/#/about&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;p>对浏览器而言，上面几个地址都是访问的网站**&lt;code>/&lt;/code>**目录，每个url不同的是&lt;code>hash&lt;/code>部分。而**AngularJS**正是依赖页面的&lt;code>hash&lt;/code>来做的应用内路由，根据不同的路由来加载不同的&lt;code>js&lt;/code>和&lt;code>html&lt;/code>片段，实现动态内容的加载。&lt;/p>
+&lt;!-- more -->
+&lt;p>世上并没有绝对完美的事情，单页面应用在用户体验和性能上获得了好处。然而，在别的地方必然付出代价。这里就分享一下单页面应用和微信支付集成的一些经验。&lt;/p>
+&lt;p>这里的微信支付指的是，在微信浏览器中通过JS接口调起微信支付来完成网页应用中商品的购买。微信支付本身的开发集成并不复杂，这里就不赘述了。微信支付出于安全考虑，要求公众号必须注册支付发起页面的地址（到支付页面的上级目录为止），并且能够添加到白名单的地址不超过3个。也就是如果应用在&lt;em>商品详情页&lt;/em>发起支付请求，那么地址**&lt;code>http://mysite.com/#/goods/&lt;/code>**必须在白名单列表。&lt;/p>
+&lt;p>目前为止，一切都很好理解，把支付页面加到微信支付白名单不就万事大吉了。可经过实测，事实确不是这么简单！&lt;/p>
+&lt;p>在微信&lt;strong>iOS&lt;/strong>版本中，微信支付JS会错误的使用landing网站页面的URL，而不是发起支付的页面URL！比如用户通过网站首页**&lt;code>http://mysite.com/#/index&lt;/code>**进入应用，通过站内链接浏览到了某商品详情页**&lt;code>http://mysite.com/#/goods/skuid&lt;/code>**并发起了支付。但微信JS会把landing页面URL**&lt;code>http://mysite.com/#/index&lt;/code>**判定为支付的发起页面，从而导致支付JS调用失败！&lt;/p>
+&lt;p>因为应用存在多个页面，不可能把所有的页面都加到支付白名单中(有3个数目限制，并且工作量也大到不现实)。要解决这个问题，只好另辟蹊径。我目前找到的方法是，强制刷新页面当打开商品详情页的时候。等同于直接在微信浏览器中打开了商品详情页。虽然对用户体验有些影响，但支付功能正常工作了。&lt;/p></description></item></channel></rss>

@@ -1,5 +1,403 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS Lambda on The Road</title><link>https://kane.mx/tags/aws-lambda/</link><description>Recent content in AWS Lambda on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 27 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws-lambda/index.xml" rel="self" type="application/rss+xml"/><item><title>无服务器架构的域名重定向服务</title><link>https://kane.mx/posts/effective-cloud-computing/serverless-domain-redirect/</link><pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/serverless-domain-redirect/</guid><description>&lt;p>业务时常有需求将某个域名(A)的访问重定向到其他域名(B)，即使实现这样一个很简单的需求通常也需要部署Web服务器（例如Nginx），为域名A的请求返回302响应，并提供新的Location地址重定向到域名B。现在基于云计算服务，我们可以使用一些托管服务来实现同样的事情，无需管理服务器和维护应用，同时做到最低成本实现该需求。&lt;/p>
-&lt;p>接下来将介绍如何利用AWS上的服务实现该需求。&lt;/p></description></item><item><title>Spring Cloud Function -- 跨Serverless平台的函数计算框架</title><link>https://kane.mx/posts/effective-cloud-computing/spring-cloud-function-for-aws/</link><pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/spring-cloud-function-for-aws/</guid><description>&lt;p>&lt;a href="https://kane.mx/posts/2019/serverless-framework/">基于serverless框架的钉钉回调函数&lt;/a>中介绍了serverless framework，一款支持跨云厂商/Serverless平台的部署工具。但是函数代码还是需要针对不同的serverless平台作对应的适配。而&lt;a href="https://spring.io/projects/spring-cloud-function">Spring Clound Function&lt;/a>就是针对这种情况专门开发的跨serverless平台的框架，实现一套代码通过不同的打包实现跨serverless平台。Spring Clound Function目前支持AWS Lambda, Microsoft Azure Function以及Apache OpenWhisk。&lt;/p></description></item><item><title>Serverless framework 101</title><link>https://kane.mx/posts/2019/serverless-framework/</link><pubDate>Thu, 16 May 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/serverless-framework/</guid><description>&lt;p>&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>是一个开源命令行工具。他提供函数脚手架、流程自动化、最佳实践等帮助开发、部署跨云厂商的托管无服务器计算服务(官方已支持aws, Azure, GCP, IBM Cloud等各种厂商的无服务器计算)。同时支持使用插件来扩展各种功能，比如支持更多云厂商无服务器计算服务，例如&lt;a href="https://github.com/aliyun/serverless-aliyun-function-compute">阿里云的函数计算&lt;/a>。&lt;/p>
-&lt;p>这里使用&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">基于函数计算的钉钉回调函数接口&lt;/a>示例来演示如何使用&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>将一个无服务器函数部署到&lt;a href="https://aws.amazon.com/lambda">AWS Lambda&lt;/a>。&lt;/p></description></item><item><title>AWS Lambda Layer实践</title><link>https://kane.mx/posts/2019/aws-lambda-layers/</link><pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-lambda-layers/</guid><description>&lt;p>在&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">基于函数计算的钉钉回调函数接口&lt;/a>中使用钉钉回调函数案例实践了&lt;a href="https://aws.amazon.com/lambda/">AWS Lambda&lt;/a>无服务函数。该示例中，我们将自定义的函数代码及依赖的第三方库（比如json处理库jackson, 钉钉openapi加密库, aws dynamodb client等）整体打包为一个部署包，上传到lamdba代码仓库用于函数执行。&lt;/p>
-&lt;p>然而实际项目中，其实有大量的相关函数可能会共享这些基础依赖库、三方函数库(比如headless chrome(Puppeteer), pandoc, OCR library &amp;ndash; Tesseract等等)或者使用自定义runtime(如官方未支持的java11)的需求。AWS Lambda在去年底发布了&lt;a href="https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/">Lambda layers功能&lt;/a>来满足上述这些实际开发中的需求。&lt;/p>
-&lt;p>接下来，让我们看看如何将&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">前文&lt;/a>中的&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aws/blob/267b5f11851148f5a23a834b8b7ecd4d3b247ce7/build.gradle.kts#L71-L91">函数依赖&lt;/a>放置到一个单独的layer中，作为不同函数的共享依赖库。&lt;/p></description></item><item><title>基于函数计算的钉钉回调函数接口</title><link>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</link><pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</guid><description>&lt;p>由于企业内部管理的需要，用到了&lt;a href="https://open-doc.dingtalk.com/microapp/serverapi2/lo5n6i">钉钉的业务事件回调&lt;/a>能力，正好将这个轻量级的接口使用&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/">无服务器技术&lt;/a>来实现部署，以应对流量无规律下的动态扩展伸缩、按需使用、按量计费等需求。&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS Lambda on The road</title><link>https://kane.mx/tags/aws-lambda/</link><description>Recent content in AWS Lambda on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Tue, 27 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws-lambda/index.xml" rel="self" type="application/rss+xml"/><item><title>无服务器架构的域名重定向服务</title><link>https://kane.mx/posts/effective-cloud-computing/serverless-domain-redirect/</link><pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/serverless-domain-redirect/</guid><description>
+&lt;p>业务时常有需求将某个域名(A)的访问重定向到其他域名(B)，即使实现这样一个很简单的需求通常也需要部署Web服务器（例如Nginx），为域名A的请求返回302响应，并提供新的Location地址重定向到域名B。现在基于云计算服务，我们可以使用一些托管服务来实现同样的事情，无需管理服务器和维护应用，同时做到最低成本实现该需求。&lt;/p>
+&lt;p>接下来将介绍如何利用AWS上的服务实现该需求。&lt;/p>
+&lt;h3 id="使用aws-s3和aws-cloudfront实现域名重定向">使用AWS S3和AWS CloudFront实现域名重定向&lt;/h3>
+&lt;ol>
+&lt;li>创建一个新的S3 bucket，例如 &lt;code>redirect.domain.com&lt;/code>&lt;/li>
+&lt;li>配置新bucket属性，开启静态网站托管，同时配置为重定向请求到期望的域名 &lt;code>redirected-host.domain.com&lt;/code>&lt;/li>
+&lt;li>创建新的CloudFront分发，设置第一步创建的S3 bucket作为&lt;a href="https://docs.aws.amazon.com/zh_cn/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html">自定义源站(不可以配置源站为S3 bucket)&lt;/a>。并且配置使用自定义域名 &lt;code>redirect.domain.com&lt;/code>。注意，配置自定义CNames需要提供域名对应的SSL证书，可以使用AWS Certificate Manager创建免费的SSL/TLS证书&lt;/li>
+&lt;li>在域名&lt;code>domain.com&lt;/code>解析服务商为域名&lt;code>redirect.domain.com&lt;/code>创建新的解析记录&lt;/li>
+&lt;/ol>
+&lt;h3 id="使用aws-lambda和api-gateway实现域名重定向">使用AWS Lambda和API Gateway实现域名重定向&lt;/h3>
+&lt;ol>
+&lt;li>创建一个Lambda函数来返回302请求或者HTML页面，在页面中通过Javascript实现重定向页面&lt;/li>
+&lt;li>为该Lambda函数创建API Gateway触发器&lt;/li>
+&lt;li>为该API Gateway接口创建自定义域名&lt;/li>
+&lt;li>在域名&lt;code>domain.com&lt;/code>解析服务商为域名&lt;code>redirect.domain.com&lt;/code>创建新的解析记录&lt;/li>
+&lt;/ol>
+&lt;p>我创建了一个基于&lt;a href="https://aws.amazon.com/cdk/?nc1=h_ls">AWS CDK&lt;/a>的&lt;a href="https://github.com/zxkane/serverless-domain-redirect#use-aws-s3-and-cloudfront-for-domain-redirect">Github项目&lt;/a>，利用AWS Infrastructure as Code的强大能力一键部署以上两种无服务器环境，有需要的可以作为实现参考。&lt;/p></description></item><item><title>Spring Cloud Function -- 跨Serverless平台的函数计算框架</title><link>https://kane.mx/posts/effective-cloud-computing/spring-cloud-function-for-aws/</link><pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/spring-cloud-function-for-aws/</guid><description>
+&lt;p>&lt;a href="https://kane.mx/posts/2019/serverless-framework/">基于serverless框架的钉钉回调函数&lt;/a>中介绍了serverless framework，一款支持跨云厂商/Serverless平台的部署工具。但是函数代码还是需要针对不同的serverless平台作对应的适配。而&lt;a href="https://spring.io/projects/spring-cloud-function">Spring Clound Function&lt;/a>就是针对这种情况专门开发的跨serverless平台的框架，实现一套代码通过不同的打包实现跨serverless平台。Spring Clound Function目前支持AWS Lambda, Microsoft Azure Function以及Apache OpenWhisk。&lt;/p>
+&lt;p>这里我们继续使用&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">无函数版本的钉钉回掉函数&lt;/a>来演示&lt;a href="https://spring.io/projects/spring-cloud-function">Spring Clound Function&lt;/a> for AWS的使用。&lt;/p>
+&lt;p>首先将&lt;code>spring cloud function for aws adapter&lt;/code>添加到项目依赖，&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="ln">1&lt;/span>&lt;span class="n">implementation&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;org.springframework.cloud:spring-cloud-function-adapter-aws:&lt;/span>&lt;span class="si">${springCloudFunctionVersion}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>其次创建函数&lt;code>Handler&lt;/code>，实现Spring Cloud Function跨函数计算实现抽象的&lt;code>SpringBootRequestHandler&lt;/code>类，或者是继承自它的trigger类，例如&lt;code>SpringBootApiGatewayRequestHandler&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="ln">1&lt;/span>&lt;span class="k">import&lt;/span> &lt;span class="nn">org.springframework.cloud.function.adapter.aws.SpringBootApiGatewayRequestHandler&lt;/span>
+&lt;span class="ln">2&lt;/span>
+&lt;span class="ln">3&lt;/span>&lt;span class="k">class&lt;/span> &lt;span class="nc">Handler&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="n">SpringBootApiGatewayRequestHandler&lt;/span>&lt;span class="p">()&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>接下来创建Spring Boot应用程序，并将serverless实现函数注册为&lt;code>Spring Bean&lt;/code>，函数的实现部分就是serverless函数具体做的业务逻辑。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="ln"> 1&lt;/span>&lt;span class="nd">@SpringBootApplication&lt;/span>
+&lt;span class="ln"> 2&lt;/span>&lt;span class="k">open&lt;/span> &lt;span class="k">class&lt;/span> &lt;span class="nc">DingtalkCallbackApplication&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 3&lt;/span>
+&lt;span class="ln"> 4&lt;/span> &lt;span class="nd">@Bean&lt;/span>
+&lt;span class="ln"> 5&lt;/span> &lt;span class="k">open&lt;/span> &lt;span class="k">fun&lt;/span> &lt;span class="nf">dingtalkCallback&lt;/span>&lt;span class="p">():&lt;/span> &lt;span class="n">Function&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">Message&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">EncryptedEvent&lt;/span>&lt;span class="p">&amp;gt;,&lt;/span> &lt;span class="n">Map&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="p">&amp;gt;&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 6&lt;/span> &lt;span class="k">val&lt;/span> &lt;span class="py">callback&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">Callback&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="ln"> 7&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="n">Function&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln"> 8&lt;/span> &lt;span class="n">callback&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">handleRequest&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">it&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln"> 9&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">10&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="ln">11&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;span class="ln">12&lt;/span>&lt;span class="k">fun&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">args&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Array&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="p">&amp;gt;)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="ln">13&lt;/span> &lt;span class="n">SpringApplication&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">DingtalkCallbackApplication&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="k">class&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">java&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">*&lt;/span>&lt;span class="n">args&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="ln">14&lt;/span>&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>最后将函数打包为fat jar（如果将依赖打包为lambda layer，可不用打包为fat jar）作为lambda的代码。&lt;/p>
+&lt;p>函数的部署同其他的lambda函数没有任何区别，这个示例中沿用了之前的SAM/CloudFormation配置或者&lt;a href="https://serverless.com/">serverless framework&lt;/a>部署配置。&lt;/p>
+&lt;p>完整的可运行、部署代码请访问&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aws/tree/spring-cloud-function">这个分支&lt;/a>。&lt;/p>
+&lt;blockquote>
+&lt;p>总体来说，&lt;a href="https://spring.io/projects/spring-cloud-function">Spring Clound Function&lt;/a>的实现原理并不复杂，定义统一的函数实现入口，通过不同serverless平台的adapter对接不同平台的API接口，做到编写一次函数实现，通过打包不同的adapter做到跨serverless平台运行。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>但个人认为现实中这样的场景并不多。并且serverless函数触发方式很多，例如AWS上的APIGateway、Kinesis、CloudWatch、IoT等服务，与这些服务对接或API调用其实也产生了耦合，并不能简单的迁移到三方的serverless平台去执行。同时，开发者需要引入spring/spring boot/spring cloud相关的依赖，增加了程序的复杂度，又延长了lambda函数clod start需要的时间。另外，开发者需要学习spring cloud function相关的知识，无形中增加了复杂度。总之使用spring cloud function作为函数计算框架收益并不高，整个项目给人感觉比较鸡肋。&lt;/p>
+&lt;/blockquote></description></item><item><title>Serverless framework 101</title><link>https://kane.mx/posts/2019/serverless-framework/</link><pubDate>Thu, 16 May 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/serverless-framework/</guid><description>
+&lt;p>&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>是一个开源命令行工具。他提供函数脚手架、流程自动化、最佳实践等帮助开发、部署跨云厂商的托管无服务器计算服务(官方已支持aws, Azure, GCP, IBM Cloud等各种厂商的无服务器计算)。同时支持使用插件来扩展各种功能，比如支持更多云厂商无服务器计算服务，例如&lt;a href="https://github.com/aliyun/serverless-aliyun-function-compute">阿里云的函数计算&lt;/a>。&lt;/p>
+&lt;p>这里使用&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">基于函数计算的钉钉回调函数接口&lt;/a>示例来演示如何使用&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>将一个无服务器函数部署到&lt;a href="https://aws.amazon.com/lambda">AWS Lambda&lt;/a>。&lt;/p>
+&lt;p>&lt;a href="https://serverless.com/framework/docs/getting-started/">安装servereless&lt;/a>后，可以通过&lt;code>serverless create&lt;/code>命令创建函数脚手架工程，或者在已有工程的下创建serverless配置文件&lt;code>serverless.yml&lt;/code>。&lt;/p>
+&lt;p>接下来可以参考&lt;a href="https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/">serverless aws reference&lt;/a>配置你的aws lambda函数及需要的各种资源。如果已经有过使用&lt;a href="https://docs.aws.amazon.com/cloudformation/?id=docs_gateway">AWS CloudFormation&lt;/a>或者&lt;a href="https://docs.aws.amazon.com/serverless-application-model/?id=docs_gateway">AWS SAM&lt;/a>经验的，可以很快适应编写Serverless配置。Serverless的配置本质上是将CloudFormation/SAM相关的概念进行抽象，为各个云厂商的无服务器计算服务提供统一的工具、命令以及概念抽象。在部署aws lambda时，&lt;code>serverless&lt;/code>配置会被转换为&lt;code>CloudFormation&lt;/code>配置，通过AWS API进行创建或变更。&lt;/p>
+&lt;p>对于Dingtalk Callback on AWS Lambda, &lt;code>serverless&lt;/code>配置声明如下。其中指定了service的基本信息，全局的配置(如stage、region等)、云厂商provider(这里是aws)。函数的基本信息、权限、layer、触发器，自定义layer以及其他云厂商资源，比如Dingtalk callback这里用到的DynamoDB。完整的serverless配置查看&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aws/blob/master/serverless.yml">这里&lt;/a>。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="ln"> 1&lt;/span>&lt;span class="nt">service&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 2&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">dingtalk-callback&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 4&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">frameworkVersion&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;&amp;gt;=1.0.0 &amp;lt;2.0.0&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 5&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 6&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">provider&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 7&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">aws&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 8&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">runtime&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">java8&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln"> 9&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">stage&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${opt:stage, &amp;#39;dev&amp;#39;}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Set the default stage used. Default is dev&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">10&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">region&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${opt:region, &amp;#39;ap-southeast-1&amp;#39;}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Overwrite the default region used. Default is ap-southeast-1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">11&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">profile&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${opt:profile, &amp;#39;default&amp;#39;}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># The default profile to use with this service&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">12&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">versionFunctions&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Optional function versioning&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">13&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">endpointType&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">regional&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Optional endpoint configuration for API Gateway REST API. Default is Edge.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">14&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">15&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">functions&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">16&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">dingtalk-callback&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">17&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">handler&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">com.github.zxkane.dingtalk.Callback::handleRequest&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># required, handler set in AWS Lambda&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">18&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${self:provider.stage}-dingtalk-callback&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># optional, Deployed Lambda name&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">19&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">memorySize&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">384&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># optional, in MB, default is 1024&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">20&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">timeout&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">15&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># optional, in seconds, default is 6&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">21&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">environment&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Function level environment variables&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">22&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">PARA_DD_TOKEN&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DD_TOKEN&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">23&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">TABLE_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>{&lt;span class="nt">Ref&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">BPMTable}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">24&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">package&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">25&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">artifact&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">build/libs/dingtalk-callback-1.0.0-SNAPSHOT.jar&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">26&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">role&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">dingtalkCallbackIAMRole&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">27&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">layers&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># An optional list Lambda Layers to use&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">28&lt;/span>&lt;span class="w"> &lt;/span>- {&lt;span class="nt">Ref&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DependenciesLambdaLayer}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">29&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">events&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># The Events that trigger this Function&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">30&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">http&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># This creates an API Gateway HTTP endpoint which can be used to trigger this function. Learn more in &amp;#34;events/apigateway&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">31&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">dingtalk&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Path for this endpoint&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">32&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">method&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">post&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># HTTP method for this endpoint&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">33&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">34&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">layers&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">35&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">dependencies&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">36&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">build/deps&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">37&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">38&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">resources&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># CloudFormation template syntax&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">39&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Resources&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">40&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">dingtalkCallbackIAMRole&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">41&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">AWS::IAM::Role&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">42&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Properties&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">43&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Policies&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">44&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">PolicyName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">SSMPolicy&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">45&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">PolicyName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DynamoDBPolicy&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">46&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">BPMTable&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">47&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">AWS::DynamoDB::Table&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">48&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Properties&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">49&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">TableName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">bpm_raw_${self:service.name}_${self:provider.stage}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">50&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ProvisionedThroughput&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">51&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ReadCapacityUnits&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="ln">52&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">WriteCapacityUnits&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>对于使用单一云厂商无服务器计算并且已经使用了类似&lt;a href="https://docs.aws.amazon.com/serverless-application-model/?id=docs_gateway">sam cli&lt;/a>实现持续集成、持续部署的用户，&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>并不能带来更多生产力的提升，在稳定性(封装云厂商的功能，增加复杂度很可能引入新的问题)或功能的及时性上可能还不如云厂商提供的工具。&lt;/p>
+&lt;p>对于有多云厂商部署无服务器函数需求的用户，使用了&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>&lt;strong>并不能&lt;/strong>轻松的将无服务器函数部署到不同云厂商的托管服务上，他只是帮助提供跨云厂商的统一工具链及相似的持续集成、部署等最佳实践流程。例如将一套函数从AWS迁移到Azure上，需要重新实现Azure provider下的配置，因为云厂商的托管无服务器服务和其他云资源都存在着大量差异。另外函数代码也需要面临改造，不同云厂商的触发器消息事件也都有不同的格式！这里可以考虑使用类似&lt;a href="https://spring.io/projects/spring-cloud-function">Spring Cloud Function&lt;/a>这样的解决方案来实现跨云厂商的函数编写。&lt;/p>
+&lt;p>总之，&lt;a href="https://serverless.com/">Serverless Framework&lt;/a>对于跨云厂商部署场景有一定生产效率的提升，但他离完美解决跨云厂商无服务器托管服务（各厂商服务天生不兼容）还有很远的距离，也许这个思路就是走不通的:confused:。&lt;/p></description></item><item><title>AWS Lambda Layer实践</title><link>https://kane.mx/posts/2019/aws-lambda-layers/</link><pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-lambda-layers/</guid><description>
+&lt;p>在&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">基于函数计算的钉钉回调函数接口&lt;/a>中使用钉钉回调函数案例实践了&lt;a href="https://aws.amazon.com/lambda/">AWS Lambda&lt;/a>无服务函数。该示例中，我们将自定义的函数代码及依赖的第三方库（比如json处理库jackson, 钉钉openapi加密库, aws dynamodb client等）整体打包为一个部署包，上传到lamdba代码仓库用于函数执行。&lt;/p>
+&lt;p>然而实际项目中，其实有大量的相关函数可能会共享这些基础依赖库、三方函数库(比如headless chrome(Puppeteer), pandoc, OCR library -- Tesseract等等)或者使用自定义runtime(如官方未支持的java11)的需求。AWS Lambda在去年底发布了&lt;a href="https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/">Lambda layers功能&lt;/a>来满足上述这些实际开发中的需求。&lt;/p>
+&lt;p>接下来，让我们看看如何将&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/">前文&lt;/a>中的&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aws/blob/267b5f11851148f5a23a834b8b7ecd4d3b247ce7/build.gradle.kts#L71-L91">函数依赖&lt;/a>放置到一个单独的layer中，作为不同函数的共享依赖库。&lt;/p>
+&lt;p>在我们的构建配置&lt;code>build.gradle&lt;/code>中，将&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aws/blob/c6a293ac58b6892278c296daa237453279f50064/build.gradle.kts#L153-L157">函数的共享依赖拷贝&lt;/a>到java runtime&lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html#configuration-layers-path">特定的目录结构&lt;/a>&lt;code>java/lib/&lt;/code>下，&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">153
+&lt;/span>&lt;span class="lnt">154
+&lt;/span>&lt;span class="lnt">155
+&lt;/span>&lt;span class="lnt">156
+&lt;/span>&lt;span class="lnt">157
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-gradle" data-lang="gradle">&lt;span class="n">tasks&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">register&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Copy&lt;/span>&lt;span class="o">&amp;gt;(&lt;/span>&lt;span class="s2">&amp;#34;depsLayer&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">into&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s2">&amp;#34;$buildDir/deps/java/lib&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="n">from&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">configurations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">compileClasspath&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">())&lt;/span>
+&lt;span class="n">from&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">configurations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">runtimeClasspath&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">())&lt;/span>
+&lt;span class="o">}&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;p>接下来将共享的依赖创建为一个lambda layer，并且让callback函数依赖这个共享layer，不再将所有的依赖打包为一个很大的部署包减小每次变更需要发布的包大小。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="w"> &lt;/span>&lt;span class="nt">DependenciesLayer&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">AWS::Serverless::LayerVersion&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Properties&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">LayerName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DingTalkDependencies&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DingTalk Dependencies Layer&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ContentUri&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;build/deps&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">CompatibleRuntimes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">java8&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">LicenseInfo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;Available under the MIT-0 license.&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">RetentionPolicy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Retain&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">CallbackFunction&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type: AWS::Serverless::Function # More info about Function Resource&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Properties&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">CodeUri&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">build/libs/dingtalk-callback-1.0.0-SNAPSHOT.jar&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Handler&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">com.github.zxkane.dingtalk.Callback::handleRequest&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Layers&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- !&lt;span class="l">Ref DependenciesLayer&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Policies:&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;p>在console查看部署后的函数，如下图，可以看到函数新增了一个layer。&lt;/p>
+&lt;figure>&lt;img src="https://kane.mx/posts/2019/aws-lambda-layers/lambda-with-layers.png"
+alt="lambda with layers"/>
+&lt;/figure>
+&lt;p>同其他的语言、技术一样，&lt;a href="https://github.com/mthenw/awesome-layers">Awesome Layers&lt;/a>项目收集了目前一些常用且维护较好的layer，自创轮子之前可以先参考下:grinning:。&lt;/p>
+&lt;p>使用layer同样有以下限制，使用前需要注意，&lt;/p>
+&lt;ul>
+&lt;li>依赖的layer数不能超过5个&lt;/li>
+&lt;li>函数以及依赖的所有layers解压后不可以超过250MB&lt;/li>
+&lt;/ul></description></item><item><title>基于函数计算的钉钉回调函数接口</title><link>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</link><pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/serverless-dingtalk-callback/</guid><description>
+&lt;p>由于企业内部管理的需要，用到了&lt;a href="https://open-doc.dingtalk.com/microapp/serverapi2/lo5n6i">钉钉的业务事件回调&lt;/a>能力，正好将这个轻量级的接口使用&lt;a href="https://kane.mx/posts/effective-cloud-computing/serverless-computing-101/">无服务器技术&lt;/a>来实现部署，以应对流量无规律下的动态扩展伸缩、按需使用、按量计费等需求。&lt;/p>
+&lt;h3 id="阿里云函数计算版本">阿里云函数计算版本&lt;/h3>
+&lt;p>由于公司系统部署在阿里云，首先选择使用&lt;a href="https://www.aliyun.com/product/fc">阿里云函数计算&lt;/a>来实现及部署。该接口使用了JVM上语言Kotlin开发，虽然阿里云函数计算官方支持的&lt;a href="https://help.aliyun.com/document_detail/74712.html">开发语言有Java但没有Kotlin&lt;/a>。其实无论Java或Kotlin最终部署文件都是Java Class字节码，加上Kotlin与Java良好的互操作性，实测函数计算可以完美支持Kotlin开发(个人认为任意JVM上的开发语言都是支持的)。&lt;/p>
+&lt;p>同时该函数使用了&lt;a href="https://www.aliyun.com/product/ots">表格存储&lt;/a>来持久化回调事件。表格存储是个按量计费的分布式存储，有兴趣的可以自行查阅文档了解更多。&lt;/p>
+&lt;p>该函数通过&lt;a href="https://www.aliyun.com/product/apigateway">API网关&lt;/a>和&lt;a href="https://help.aliyun.com/document_detail/100092.html">表格存储触发器&lt;/a>来触发。访问日志和执行日志被存储在&lt;a href="https://www.aliyun.com/product/sls">日志服务&lt;/a>中。&lt;/p>
+&lt;p>函数的本地测试和线上部署，使用了函数计算提供的命令行工具&lt;a href="https://help.aliyun.com/document_detail/64204.html">Fun&lt;/a>。基于&lt;a href="https://github.com/aliyun/fun/blob/master/docs/specs/2018-04-03-zh-cn.md?spm=a2c4g.11186623.2.24.717428femnY0Et&amp;amp;file=2018-04-03-zh-cn.md">Fun定义的阿里云Serverless模型&lt;/a>实现了对函数们使用资源的声明和编排，集成&lt;a href="https://about.gitlab.com/product/continuous-integration/">Gitlab CI&lt;/a>实现了&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aliyunfc/blob/master/.gitlab-ci.yml">函数的CI/CD自动化发布流程&lt;/a>。&lt;/p>
+&lt;p>不涉及公司业务的代码已&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aliyunfc">开源在Github&lt;/a>，有兴趣的可以作为参考。&lt;/p>
+&lt;p>目前&lt;a href="https://help.aliyun.com/document_detail/54301.html">函数计算&lt;/a>和&lt;a href="https://help.aliyun.com/document_detail/52733.html">表格存储&lt;/a>有各自的免费配额，在业务量不大的情况下，该服务完全免费。&lt;/p>
+&lt;h3 id="aws-lambda版本">AWS Lambda版本&lt;/h3>
+&lt;p>&lt;a href="https://aws.amazon.com/lambda/">AWS Lambda&lt;/a>是目前全球使用最为广泛的serverless服务，同时也是函数计算发展方向的引领者。&lt;/p>
+&lt;p>由于一些个人原因，笔者最近接触了部分AWS服务，同时尝试将钉钉回调函数移植到了&lt;a href="https://aws.amazon.com/lambda/">AWS Lambda&lt;/a>上。阿里云上使用的云服务改为由AWS上对应服务来实现，例如存储使用了&lt;a href="https://aws.amazon.com/dynamodb/">DynamoDB&lt;/a>，日志使用&lt;a href="https://aws.amazon.com/cloudwatch/">CloudWatch&lt;/a>收集和查询。&lt;/p>
+&lt;p>本地测试和部署工具，使用的是&lt;a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">SAM CLI&lt;/a>，持续集成和持续部署使用的是&lt;a href="https://aws.amazon.com/codebuild/">AWS CodeBuild&lt;/a>和&lt;a href="https://aws.amazon.com/codepipeline/">AWS CodePipeline&lt;/a>。此外AWS通过&lt;a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation&lt;/a>提供一种非常强大的能力，可以将AWS上的各种资源通过配置声明的方式来管理(也就是现在非常热门的一个概念--&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infrastructure as Code&lt;/a>)。&lt;a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation&lt;/a>会为每次一个或多个资源的变更生成ChangeSet，提供查看对比、版本管理、遇到变更错误整体回退等能力。所以，AWS版本也将该项目的CI/CD部署用到的&lt;a href="https://aws.amazon.com/codebuild/">AWS CodeBuild&lt;/a>、&lt;a href="https://aws.amazon.com/codepipeline/">AWS CodePipeline&lt;/a>、&lt;a href="https://aws.amazon.com/dynamodb/">Amazon DynamoDB&lt;/a>等资源通过CloudFormation的配置管理起来。&lt;/p>
+&lt;p>配置代码段如下，
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="hl">&lt;span class="lnt">56
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">57
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">58
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">59
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">60
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">61
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">62
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">63
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">64
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">65
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">66
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">67
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">68
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">69
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">70
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">71
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">72
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">73
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">74
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">75
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">76
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">77
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">78
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">79
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">80
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">81
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">82
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">83
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">84
+&lt;/span>&lt;/span>&lt;span class="lnt">85
+&lt;/span>&lt;span class="lnt">86
+&lt;/span>&lt;span class="lnt">87
+&lt;/span>&lt;span class="lnt">88
+&lt;/span>&lt;span class="lnt">89
+&lt;/span>&lt;span class="lnt">90
+&lt;/span>&lt;span class="lnt">91
+&lt;/span>&lt;span class="lnt">92
+&lt;/span>&lt;span class="lnt">93
+&lt;/span>&lt;span class="lnt">94
+&lt;/span>&lt;span class="lnt">95
+&lt;/span>&lt;span class="lnt">96
+&lt;/span>&lt;span class="lnt">97
+&lt;/span>&lt;span class="lnt">98
+&lt;/span>&lt;span class="lnt">99
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Create a CodePipeline to include Github source, CodeBuild and Lambda deployment.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">Parameters&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">AppBaseName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">String&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">App base name&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Default&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">dingtalk-callback&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ArtifactStoreS3Location&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">String&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Name of the S3 bucket to store CodePipeline artificat.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">BranchName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub branch name&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">String&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Default&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">master&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">RepositoryName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub repository name&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">String&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Default&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">dingtalk-callback-on-aws&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">GitHubOAuthToken&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">String&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">NoEcho&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">Resources&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">BuildDingtalkProject&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">AWS::CodeBuild::Project&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Properties&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}-build-${AWS::StackName}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Build, test, package dingtalk callback project&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ServiceRole&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::GetAtt&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">CodeBuildRole, Arn ]&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Artifacts&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">S3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Location&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Ref&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ArtifactStoreS3Location&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}-build-${AWS::StackName}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">NamespaceType&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">BUILD_ID&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}/artifacts&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Packaging&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">NONE&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">OverrideArtifactName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">EncryptionDisabled&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Environment&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">LINUX_CONTAINER&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ComputeType&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">BUILD_GENERAL1_SMALL&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">aws/codebuild/java:openjdk-11&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">PrivilegedMode&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ImagePullCredentialsType&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">CODEBUILD&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">EnvironmentVariables&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">s3_bucket&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Value&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Ref&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ArtifactStoreS3Location&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Source&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">DingtalkCallbackPipeline&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Type&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;AWS::CodePipeline::Pipeline&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Properties&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}-pipeline-${AWS::StackName}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">RoleArn&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::GetAtt&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">CodePipelineRole, Arn ]&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Stages&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Source&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Actions&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">SourceAction&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">ActionTypeId&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Category&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Source&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Owner&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ThirdParty&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Provider&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">OutputArtifacts&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}-source-changed&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Configuration&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Owner&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>!&lt;span class="l">Ref GitHubOwner&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Repo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>!&lt;span class="l">Ref RepositoryName&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Branch&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>!&lt;span class="l">Ref BranchName&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">OAuthToken&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>!&lt;span class="l">Ref GitHubOAuthToken&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">PollForSourceChanges&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">RunOrder&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Build&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">Actions&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Build_Test_Package&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">InputArtifacts&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}-source-changed&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ActionTypeId&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Category&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Build&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Owner&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">AWS&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Provider&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">CodeBuild&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">OutputArtifacts&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">Name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Fn::Sub&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${AppBaseName}-packaged-yml&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Configuration&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ProjectName&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">Ref&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">BuildDingtalkProject&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">RunOrder&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/p>
+&lt;p>AWS版本完整的代码、CloudFormation配置以及部署文档可以通过&lt;a href="https://github.com/zxkane/dingtalk-callback-on-aws">这里&lt;/a>查看。&lt;/p></description></item></channel></rss>

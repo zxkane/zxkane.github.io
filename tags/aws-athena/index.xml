@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS Athena on The Road</title><link>https://kane.mx/tags/aws-athena/</link><description>Recent content in AWS Athena on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 04 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws-athena/index.xml" rel="self" type="application/rss+xml"/><item><title>无服务器架构的Docker镜像数据分析应用</title><link>https://kane.mx/posts/2020/serverless-docker-images-analytics/</link><pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/serverless-docker-images-analytics/</guid><description>&lt;p>近期对Docker镜像做了些数据分析，这里分享一下利用云原生技术快速且低成本的实现任意数量的数据分析。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS Athena on The road</title><link>https://kane.mx/tags/aws-athena/</link><description>Recent content in AWS Athena on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Mon, 04 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws-athena/index.xml" rel="self" type="application/rss+xml"/><item><title>无服务器架构的Docker镜像数据分析应用</title><link>https://kane.mx/posts/2020/serverless-docker-images-analytics/</link><pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2020/serverless-docker-images-analytics/</guid><description>
+&lt;p>近期对Docker镜像做了些数据分析，这里分享一下利用云原生技术快速且低成本的实现任意数量的数据分析。&lt;/p>
 &lt;p>之前通过文章介绍了&lt;a href="https://kane.mx/posts/2020/get-docker-image-size-without-pulling-image/">不用拉取Docker镜像就可获取镜像的大小&lt;/a>的一种方法，通过其中的示例脚本，我们可以获取到待分析的原始数据。&lt;/p>
 &lt;p>比如&lt;code>nginx&lt;/code>镜像的部分原始数据(csv格式)如下，&lt;/p>
-&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
-&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-txt" data-lang="txt">1.18.0-alpine,sha256:676b8117782d9e8c20af8e1b19356f64acc76c981f3a65c66e33a9874877892a,amd64,linux,null,null,&amp;#34;sha256:cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08&amp;#34;,2813316
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-txt" data-lang="txt">1.18.0-alpine,sha256:676b8117782d9e8c20af8e1b19356f64acc76c981f3a65c66e33a9874877892a,amd64,linux,null,null,&amp;#34;sha256:cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08&amp;#34;,2813316
 1.18.0-alpine,sha256:676b8117782d9e8c20af8e1b19356f64acc76c981f3a65c66e33a9874877892a,amd64,linux,null,null,&amp;#34;sha256:6ade829cd166df9b2331da48e3e60342aef9f95e1e45cde8d20e6b01be7e6d9a&amp;#34;,6477096
 1.18.0-alpine,sha256:70feed62d5204358ed500463c0953dce6c269a0ebeef147a107422a2c78799a9,arm,linux,v6,null,&amp;#34;sha256:b9e3228833e92f0688e0f87234e75965e62e47cfbb9ca8cc5fa19c2e7cd13f80&amp;#34;,2619936
 1.18.0-alpine,sha256:70feed62d5204358ed500463c0953dce6c269a0ebeef147a107422a2c78799a9,arm,linux,v6,null,&amp;#34;sha256:a03f81873d278ad248976b107883f0452d33c6f907ebcdd832a6041f1d33118a&amp;#34;,6080562
@@ -33,4 +34,17 @@
 &lt;/div>
 &lt;p>各列的含义分别是，&lt;code>镜像tag&lt;/code>, &lt;code>镜像&lt;/code>&lt;a href="https://docs.docker.com/registry/spec/api/#content-digests">Digest&lt;/a>, &lt;code>镜像对应平台的Architecture&lt;/code>, &lt;code>镜像对应平台的OS&lt;/code>, &lt;code>镜像对应平台的变种&lt;/code>（例如，ARM的v7, v8等）, &lt;code>镜像对应平台的OS版本&lt;/code>, &lt;code>镜像组成层的&lt;/code>&lt;a href="https://docs.docker.com/registry/spec/api/#content-digests">Digest&lt;/a>, &lt;code>镜像组成层的大小&lt;/code>。&lt;/p>
 &lt;p>上面&lt;code>nginx&lt;/code>镜像的示例数据，告诉我们镜像名&lt;code>nginx&lt;/code>且tag为&lt;code>1.18.0-alpine&lt;/code>的镜像包含了&lt;code>amd64-linux&lt;/code>, &lt;code>arm-linux-v6&lt;/code>, &lt;code>arm64-linux-v8&lt;/code>, &lt;code>386-linux&lt;/code>, &lt;code>ppc64le-linux&lt;/code>以及&lt;code>s390x-linux&lt;/code>共5种Arch合计6个版本的镜像。且每个平台的对应镜像包含了两个层以及这两个层的大小。&lt;/p>
-&lt;p>当我们有了成百数千甚至海量镜像的原始数据后，如何能快速且低成本的分析这些数据呢？&lt;/p></description></item></channel></rss>
+&lt;p>当我们有了成百数千甚至海量镜像的原始数据后，如何能快速且低成本的分析这些数据呢？&lt;/p>
+&lt;p>在AWS上，我们可以利用&lt;a href="https://aws.amazon.com/big-data/datalakes-and-analytics/">数据湖&lt;/a>相关的系列产品来实现低成本的交互式分析。&lt;/p>
+&lt;ol>
+&lt;li>在Docker镜像分析这个场景下，我已经获取到了待分析镜像的平台、层等数据。我将这些数据上传到&lt;a href="https://aws.amazon.com/s3/">Amazon S3&lt;/a>作为数据湖的数据源。&lt;/li>
+&lt;li>接下来使用&lt;a href="https://aws.amazon.com/glue/">AWS Glue&lt;/a>以S3中的数据创建Table并且从中提前数据的metadata。同时做数据分区，为接下来的查询做性能和成本优化。&lt;/li>
+&lt;li>打开&lt;a href="https://aws.amazon.com/athena/">Amazon Athena&lt;/a>，根据业务需求通过SQL语句查询分析Docker镜像数据。&lt;/li>
+&lt;/ol>
+&lt;p>就是通过以上3个简单步骤，我就得到了一个无服务器架构的Docker镜像数据分析应用！整个应用完全是按量计费的，主要成本包括S3对象存储费用，和Athena费用（根据每次查询扫描数据的大小来计算）。&lt;/p>
+&lt;p>使用该分析应用，我统计了&lt;a href="https://hub.docker.com/search?image_filter=official&amp;amp;type=image">Docker Hub官方镜像&lt;/a>中包含层最多的10个镜像(分平台统计)，
+&lt;figure>&lt;img src="https://kane.mx/posts/2020/serverless-docker-images-analytics/images/top-10-layers-of-official-images.png"
+alt="Top 10 layers"/>
+&lt;/figure>
+&lt;/p>
+&lt;p>最后，得力于AWS Infra as Code的强大能力，&lt;a href="https://github.com/zxkane/serverless-docker-images-analytics">整个应用&lt;/a>也是通过代码管理的且开源的，有兴趣的读者也可以部署自己的分析应用。&lt;/p></description></item></channel></rss>

@@ -1,6 +1,92 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>build on The Road</title><link>https://kane.mx/tags/build/</link><description>Recent content in build on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 08 Nov 2011 16:16:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/build/index.xml" rel="self" type="application/rss+xml"/><item><title>The tips of Maven/Tycho building crossplatform RCP and repository</title><link>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</link><pubDate>Tue, 08 Nov 2011 16:16:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</guid><description>I successfully converted our product build from PDE build to Maven/Tycho. Something is worth to be documented here.
-There are several examples and posts to demonstrate how using Tycho building your Eclipse plug-ins, features, applications and products. The most helpful example is the demo of Tycho project.
-Below are some traps I met when building my project by Tycho,
-product build
-Our product is based on plug-ins, however we added the &amp;lsquo;featurelist&amp;rsquo; in build.</description></item><item><title>Customize PDE build</title><link>https://kane.mx/posts/archive/blogspot/customize-pde-build/</link><pubDate>Fri, 22 Jul 2011 13:59:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/customize-pde-build/</guid><description>The documentation of PDE has a chapter for this topic. Basically it&amp;rsquo;s simply. Copy the template scripts what you want from templates/headless-build folder under org.eclipse.pde.build plug-in to your build configuration directory that is the folder has build.properties file.
-However I found the variables listed in template &amp;lsquo;customAssembly.xml&amp;rsquo; can&amp;rsquo;t be used in the runtime. I filed bug 346370 against it.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>build on The road</title><link>https://kane.mx/tags/build/</link><description>Recent content in build on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Tue, 08 Nov 2011 16:16:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/build/index.xml" rel="self" type="application/rss+xml"/><item><title>The tips of Maven/Tycho building crossplatform RCP and repository</title><link>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</link><pubDate>Tue, 08 Nov 2011 16:16:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</guid><description>
+&lt;p>I successfully converted our product build from PDE build to Maven/Tycho. Something is worth to be documented here.&lt;/p>
+&lt;p>There are several examples and posts to demonstrate how using Tycho building your Eclipse plug-ins, features, applications and products. The most helpful example is the &lt;a href="http://git.eclipse.org/c/tycho/org.eclipse.tycho.git/tree/tycho-demo">demo&lt;/a> of Tycho project.&lt;/p>
+&lt;p>Below are some traps I met when building my project by Tycho,&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>product build&lt;/strong>&lt;br>
+Our product is based on plug-ins, however we added the '&lt;strong>featurelist&lt;/strong>' in build.properties of PDE build to include some root binary for the product. However Tycho doesn't support this type of build, we create some features as the placeholder of plug-ins. Then change the product as features based. You have to manually remove the &lt;strong>plugins&lt;/strong> tag in .product definition file, otherwise Tycho will fail on strange error if the .produce has both &lt;strong>features&lt;/strong> and &lt;strong>plugins&lt;/strong> tag. Then configure the director plugin as not installing features.&lt;/p>
+&lt;p>org.eclipse.tycho&lt;br>
+tycho-p2-director-plugin&lt;br>
+${tycho-version}&lt;br>
+materialize-products&lt;br>
+materialize-products&lt;br>
+false&lt;br>
+myappprofile&lt;br>
+archive-products&lt;br>
+archive-products&lt;/p>
+&lt;p>And I used below way to customize the qualifier string of our build.&lt;/p>
+&lt;pre>&lt;code>org.eclipse.tycho
+tycho-packaging-plugin
+${tycho-version}
+'${qualifier-prefix}_'yyyyMMddHHmm
+&lt;/code>&lt;/pre>
+&lt;p>An limitation of director plugin is that no way using different profile name for the application installed on different hosts. I contributed a patch on &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=362550">bug 362550&lt;/a> for this enhancement.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>feature build&lt;/strong>&lt;br>
+We have some features to pack some binary files as root files. But Tycho doesn't support root folder that is recognized by PDE build. The workaround is creating an additional folder, then put the root files into it.&lt;br>
+Meanwhile Tycho doesn't support wildcard to other native touch points, such as changing the files permission. For static file list use comma separated list as workaround.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>eclipse test plug-in&lt;/strong>&lt;br>
+I have a plug-in whose scope is 'test', but it doesn't have test case and no dependency for any test framework, such as junit 3.8 or junit 4. And it's used for mocking test server. Configure surefire plugin to let it build as test plug-in as well.&lt;/p>
+&lt;p>org.eclipse.tycho&lt;br>
+tycho-surefire-plugin&lt;br>
+${tycho-version}&lt;br>
+junit&lt;br>
+junit&lt;br>
+4.1&lt;/p>
+&lt;pre>&lt;code> false
+&lt;/code>&lt;/pre>
+&lt;p>junit&lt;br>
+junit&lt;br>
+4.1&lt;/p>
+&lt;p>And configure the surefire plugin like below to test code in Maven build.&lt;/p>
+&lt;p>org.eclipse.tycho&lt;br>
+tycho-surefire-plugin&lt;br>
+${tycho-version}&lt;br>
+my.group&lt;br>
+my.feature&lt;br>
+${version}&lt;br>
+eclipse-feature&lt;br>
+my.group&lt;br>
+my.testserver&lt;br>
+1.0.0&lt;br>
+eclipse-plugin&lt;br>
+${testSuiteName}&lt;br>
+${testClassName} &lt;br>
+-Dcom.sun.management.jmxremote&lt;br>
+-consoleLog&lt;br>
+org.eclipse.equinox.ds&lt;br>
+1&lt;br>
+true&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>sign jars&lt;/strong>&lt;br>
+Add below signjar plugin into parent pom.xml, however I met the md5 error when materializing the repository built on .product. There is a workaround mentioned on &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=344691#c11">Bug 344691&lt;/a>.&lt;/p>
+&lt;pre>&lt;code> org.apache.maven.plugins
+maven-jarsigner-plugin
+1.2
+${keystore}
+MyCompany
+${storepass}
+${keypass}
+true
+${skip.jar.signing}
+-tsa
+https://timestamp.geotrust.com/tsa
+**/artifacts.jar
+**/content.jar
+jar
+eclipse-plugin
+eclipse-feature
+eclipse-test-plugin
+sign
+sign
+verify
+verify&lt;/code>&lt;/pre>
+&lt;/li>
+&lt;/ol></description></item><item><title>Customize PDE build</title><link>https://kane.mx/posts/archive/blogspot/customize-pde-build/</link><pubDate>Fri, 22 Jul 2011 13:59:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/customize-pde-build/</guid><description>
+&lt;p>&lt;a href="http://help.eclipse.org/helios/index.jsp?topic=/org.eclipse.pde.doc.user/tasks/pde_customization.htm">The documentation of PDE&lt;/a> has a chapter for this topic. Basically it's simply. Copy the template scripts what you want from &lt;em>templates/headless-build&lt;/em> folder under &lt;em>org.eclipse.pde.build&lt;/em> plug-in to your build configuration directory that is the folder has &lt;em>build.properties&lt;/em> file.&lt;/p>
+&lt;p>However I found the variables listed in template '&lt;em>customAssembly.xml&lt;/em>' can't be used in the runtime. I filed bug &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=346370">346370&lt;/a> against it.&lt;/p></description></item></channel></rss>

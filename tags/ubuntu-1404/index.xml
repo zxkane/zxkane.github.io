@@ -1,1 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ubuntu-1404 on The Road</title><link>https://kane.mx/tags/ubuntu-1404/</link><description>Recent content in ubuntu-1404 on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 13 Sep 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/ubuntu-1404/index.xml" rel="self" type="application/rss+xml"/><item><title>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</title><link>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</link><pubDate>Tue, 13 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</guid><description>V秘团队一直致力于用技术改善产品。V秘后台的各种服务一直是通过完善的Devops流程自动部署到Docker容器集群。随着Swarm mode在</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ubuntu-1404 on The road</title><link>https://kane.mx/tags/ubuntu-1404/</link><description>Recent content in ubuntu-1404 on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Tue, 13 Sep 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/ubuntu-1404/index.xml" rel="self" type="application/rss+xml"/><item><title>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</title><link>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</link><pubDate>Tue, 13 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</guid><description>
+&lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>团队一直致力于用技术改善产品。&lt;a href="https://vme360.com">V秘&lt;/a>后台的各种服务一直是通过完善的Devops流程自动部署到&lt;a href="https://www.docker.com">Docker&lt;/a>容器集群。随着&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>在&lt;a href="https://www.docker.com">Docker&lt;/a> v1.12中正式发布，&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>带来了诸如Docker集群，多主机网络等激动人心的特性。我们也在尝试将&lt;a href="https://vme360.com">V秘&lt;/a>服务部署到&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm Cluster&lt;/a>获取更好的弹性计算能力。&lt;/p>
+&lt;p>然而我们将&lt;a href="https://vme360.com">V秘&lt;/a>的服务部署到&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm Cluster&lt;/a>时遇到服务容器无法启动的错误。错误信息类似如下，&lt;/p>
+&lt;blockquote>
+&lt;p>starting container failed: could not add veth pair inside the network sandbox: could not find an appropriate master &amp;quot;ov-000100-1wkbc&amp;quot; for &amp;quot;vethee39f9d&amp;quot;&lt;/p>
+&lt;/blockquote>
+&lt;!-- more -->
+&lt;p>经过与&lt;a href="https://github.com/docker/docker/issues">Docker 社区&lt;/a>的回馈讨论，暂时通过升级Docker主机(OS: Ubuntu 14.04 LTS)的内核版本解决了这个错误。&lt;/p>
+&lt;p>具体方法如下，&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>root@swarm1:~# uname -r
+&lt;span class="ln">2&lt;/span>3.13.0-32-generic
+&lt;span class="ln">3&lt;/span>
+&lt;span class="ln">4&lt;/span>root@swarm1:~# apt-get install linux-generic-lts-vivid
+&lt;span class="ln">5&lt;/span>root@swarm1:~# reboot
+&lt;span class="ln">6&lt;/span>
+&lt;span class="ln">7&lt;/span>root@swarm1:~# uname -r
+&lt;span class="ln">8&lt;/span>3.19.0-69-generic&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>至于这个错误的根本原因是&lt;a href="https://www.docker.com">Docker&lt;/a>的bug还是对Linux Kernel有特殊的要求，需要Docker开发进一步确认。如果对此问题有更多兴趣，可以关注&lt;a href="https://github.com/docker/docker/issues/25039">docker issue #25039&lt;/a>。&lt;/p></description></item></channel></rss>

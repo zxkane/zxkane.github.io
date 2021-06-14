@@ -1,1 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Microservice on The Road</title><link>https://kane.mx/tags/microservice/</link><description>Recent content in Microservice on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/microservice/index.xml" rel="self" type="application/rss+xml"/><item><title>实战Aliyun EDAS应用迁移AWS</title><link>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</link><pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</guid><description>近期实践了将阿里云EDAS微服务应用迁移到AWS上，在这里分享一下迁移方案。 该方案涉及了以下三个方面， 微服务应用集群。在AWS上采用的ECS</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Microservice on The road</title><link>https://kane.mx/tags/microservice/</link><description>Recent content in Microservice on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/microservice/index.xml" rel="self" type="application/rss+xml"/><item><title>实战Aliyun EDAS应用迁移AWS</title><link>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</link><pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</guid><description>
+&lt;p>近期实践了将阿里云EDAS微服务应用迁移到AWS上，在这里分享一下迁移方案。&lt;/p>
+&lt;p>该方案涉及了以下三个方面，&lt;/p>
+&lt;ol>
+&lt;li>微服务应用集群。在AWS上采用的&lt;a href="https://aws.amazon.com/cn/ecs/">ECS&lt;/a>集群部署微服务应用，通过&lt;a href="https://aws.amazon.com/cn/cloud-map/">Cloudmap&lt;/a>实现服务注册发现，&lt;a href="https://aws.amazon.com/cn/app-mesh/">App Mesh&lt;/a>实现服务间流量控制。更加详尽的微服务迁移要点和对应方案，详见下面的deck。&lt;/li>
+&lt;li>Devops pipeline。使用托管的&lt;a href="https://aws.amazon.com/cn/codepipeline/">CodePipeline&lt;/a>，&lt;a href="https://aws.amazon.com/cn/codebuild/">CodeBuild&lt;/a>实现CI/CD。&lt;/li>
+&lt;li>Infra as Code。利用AWS强大的&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infra as Code&lt;/a>能力，将云上的基础设施和微服务应用编排通过&lt;a href="https://kane.mx/posts/2019/aws-cdk/">CDK&lt;/a>代码实现。&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>下面是迁移方案的deck。完整且可部署的PoC代码，点&lt;a href="https://github.com/zxkane/alibabacloud-microservice-demo">这里&lt;/a>。&lt;/p>
+&lt;/blockquote>
+&lt;div class="responsive-wrap">
+&lt;iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRrD1lBxjbGsI0xIX8XTzUyJzDqnaqW97d6jGASdatRPYUkciSwxbeCJFQv-gwZLcZ31DFPXQtvmob1/embed?start=false&amp;amp;loop=false&amp;amp;delayms=5000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">&lt;/iframe>
+&lt;/div></description></item></channel></rss>

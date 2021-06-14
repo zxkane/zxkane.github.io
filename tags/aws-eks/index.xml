@@ -1,1 +1,98 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS EKS on The Road</title><link>https://kane.mx/tags/aws-eks/</link><description>Recent content in AWS EKS on The Road</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws-eks/index.xml" rel="self" type="application/rss+xml"/><item><title>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</title><link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</link><pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</guid><description>&lt;p>本文是&lt;a href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/">为Kubernetes中任意应用添加基于oauth2的认证保护&lt;/a>的下篇，将图文详解如何使用基于&lt;a href="https://open-doc.dingtalk.com/microapp/serverapi2/kymkv6">钉钉认证&lt;/a>的&lt;a href="https://github.com/bitly/oauth2_proxy">oauth2 proxy&lt;/a>为自身本没有认证授权功能的Web站点实现认证及授权。&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS EKS on The road</title><link>https://kane.mx/tags/aws-eks/</link><description>Recent content in AWS EKS on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws-eks/index.xml" rel="self" type="application/rss+xml"/><item><title>为Kubernetes中任意应用添加基于oauth2的认证保护 (下)</title><link>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</link><pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part2/</guid><description>
+&lt;p>本文是&lt;a href="https://kane.mx/posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/part1/">为Kubernetes中任意应用添加基于oauth2的认证保护&lt;/a>的下篇，将图文详解如何使用基于&lt;a href="https://open-doc.dingtalk.com/microapp/serverapi2/kymkv6">钉钉认证&lt;/a>的&lt;a href="https://github.com/bitly/oauth2_proxy">oauth2 proxy&lt;/a>为自身本没有认证授权功能的Web站点实现认证及授权。&lt;/p>
+&lt;blockquote>
+&lt;p>示例是使用的&lt;a href="https://aws.amazon.com/eks/?nc1=f_ls">AWS EKS&lt;/a>服务作为K8S环境。鉴于K8S的应用运行时属性，该示例也可以部署在其他云厂商托管的K8S。&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="示例模块简介">示例模块简介&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/kubernetes/ingress-nginx">Nginx Ingress Controller&lt;/a>为K8S集群内Web应用提供反向代理，以及支持外部认证。&lt;/li>
+&lt;li>简单的Web站点，基于&lt;a href="https://hub.docker.com/_/nginx">Nginx docker容器&lt;/a>。该站点默认没有认证及授权功能，使用外部&lt;a href="https://open-doc.dingtalk.com/microapp/serverapi2/kymkv6">钉钉&lt;/a>应用作为认证及授权。&lt;/li>
+&lt;li>&lt;a href="https://github.com/zxkane/oauth2_proxy">OAuth2 Proxy on Dingtalk&lt;/a>提供基于&lt;a href="https://open-doc.dingtalk.com/microapp/serverapi2/kymkv6">钉钉&lt;/a>应用的扫码认证及授权，只有认证且授权的用户才可以访问上面的Web站点。&lt;/li>
+&lt;/ul>
+&lt;h3 id="默认设定">默认设定&lt;/h3>
+&lt;ul>
+&lt;li>Web站点域名&lt;code>web.kane.mx&lt;/code>&lt;/li>
+&lt;li>认证服务域名&lt;code>oauth.kane.mx&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h3 id="准备aws-eksaws-eks环境">准备&lt;a href="https://aws.amazon.com/eks/?nc1=f_ls">AWS EKS&lt;/a>环境&lt;/h3>
+&lt;ol>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html">创建EKS集群&lt;/a>。由于&lt;a href="https://github.com/kubernetes/ingress-nginx">Nginx Ingress&lt;/a>服务是LoadBalancer类型，EKS创建NLB或ELB对应的targets时需要targets部署在public VPC subnets，所以为了简化部署EKS集群的VPC subnets都选择public subnet。新建的EKS集群允许公开访问。&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/eks/latest/userguide/managing-auth.html">本地安装配置kubectl, aws-iam-authenticator&lt;/a>用于远程管理集群。&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html">为集群添加worker节点&lt;/a>。&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/eks/latest/userguide/helm.html">配置Helm部署环境&lt;/a>。&lt;/li>
+&lt;/ol>
+&lt;h3 id="钉钉应用准备">钉钉应用准备&lt;/h3>
+&lt;ol>
+&lt;li>为企业或组织开通&lt;a href="https://open-dev.dingtalk.com/#/index">钉钉开发平台&lt;/a>&lt;/li>
+&lt;li>创建一个新的&lt;a href="https://open-dev.dingtalk.com/#/loginAndShareApp">移动应用&lt;/a>。回调域名填写&lt;code>&amp;lt;http or https&amp;gt;/&amp;lt;认证服务域名&amp;gt;/oauth2/callback&lt;/code>。记录下来应用的&lt;code>appId&lt;/code>和&lt;code>appSecret&lt;/code>。&lt;/li>
+&lt;li>创建一个&lt;a href="https://open-dev.dingtalk.com/#/create-bench/self">企业内部工作台应用&lt;/a>。地址可以随意设置。服务器出口IP设置为&lt;code>EKS集群中工作节点的公网IP&lt;/code>或者&lt;code>NAT EIP&lt;/code>，取决于工作节点如何访问Internet。并记录下来应用&lt;code>appKey&lt;/code>和&lt;code>appSecret&lt;/code>。&lt;/li>
+&lt;/ol>
+&lt;h3 id="部署示例应用">部署示例应用&lt;/h3>
+&lt;ol>
+&lt;li>克隆&lt;a href="https://github.com/zxkane/hands-on-dingtalk-oauth2-proxy">示例&lt;/a>部署脚本。&lt;/li>
+&lt;li>替换&lt;code>values.yaml&lt;/code>中的&lt;code>dingtalk_corpid&lt;/code>为工作台应用的&lt;code>appKey&lt;/code>， &lt;code>dingtalk_corpsecret&lt;/code>为工作台应用的&lt;code>appSecret&lt;/code>。
+由于社区维护的&lt;a href="https://github.com/helm/charts/tree/master/stable/oauth2-proxy">oauth2-proxy charts&lt;/a>并不支持dingtalk扩展的SECRET ENV，所以将密钥配置到了&lt;code>configmap&lt;/code>中。用于生产环境的话，建议按&lt;a href="https://github.com/pilipa-cn/charts/commit/7ac0f67acc71577275f743bdcf9a870bd65361b0">这个commit&lt;/a>使用&lt;code>secret&lt;/code>保存应用secret。
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="hl">&lt;span class="lnt">71
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">72
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="nt">oauth2-proxy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">config&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">clientID&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">aaa&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">clientSecret&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">bbb&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">cookieSecret&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ccc&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">configFile&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|+&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> email_domains = [ &amp;#34;*&amp;#34; ]
+&lt;/span>&lt;span class="sd"> cookie_domain = &amp;#34;kane.mx&amp;#34;
+&lt;/span>&lt;span class="sd"> cookie_secure = false
+&lt;/span>&lt;span class="hl">&lt;span class="sd"> dingtalk_corpid = &amp;#34;&amp;lt;appkey of dingtalk app&amp;gt;&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="sd"> dingtalk_corpsecret = &amp;#34;&amp;lt;appsecret of dingtalk app&amp;gt;&amp;#34;&lt;/span>&lt;span class="w"> &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+如果仅希望企业部分部门的员工可以获得授权，在上面&lt;code>configFile&lt;/code>配置下添加如下配置，
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="ln">1&lt;/span>&lt;span class="l">dingtalk_departments = [&amp;#34;xx公司/产品技术中心&amp;#34;,&amp;#34;xx公司/部门2/子部门3&amp;#34;]&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>替换部署应用的域名为你的域名。&lt;/li>
+&lt;li>执行以下命令安装Helm部署依赖。
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>helm dep up&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>执行以下命令部署nginx ingress controller, web应用以及oauth2 proxy
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="ln">1&lt;/span>helm upgrade --install -f values.yaml --set oauth2-proxy.config.clientID&lt;span class="o">=&lt;/span>&amp;lt;移动应用appid&amp;gt;,oauth2-proxy.config.clientSecret&lt;span class="o">=&lt;/span>&amp;lt;移动应用appsecret&amp;gt; site-with-auth --wait ./&lt;/code>&lt;/pre>&lt;/div>
+如果集群中已经部署了&lt;code>Nginx Ingress Controller&lt;/code>，修改&lt;code>values.yaml&lt;/code>如下将忽略部署Nginx ingress，
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="hl">&lt;span class="lnt">50
+&lt;/span>&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="nt">affinity&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>{}&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">nginx-ingress&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="hl">&lt;span class="w"> &lt;/span>&lt;span class="nt">enabled&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">controller&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ingressClass&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">nginx&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">config:&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;li>部署成功后，获取&lt;code>ELB&lt;/code>地址。
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-zsh" data-lang="zsh">&lt;span class="ln">1&lt;/span>kubectl get svc -o &lt;span class="nv">jsonpath&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;{ $.status.loadBalancer.ingress[*].hostname }&amp;#39;&lt;/span> &amp;lt;deployment name&amp;gt;-nginx-ingress-controller&lt;span class="p">;&lt;/span>&lt;span class="nb">echo&lt;/span>
+&lt;span class="ln">2&lt;/span>a3afe672259c511e98e2a0a0d88fda3e-xx.elb.ap-southeast-1.amazonaws.com&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h3 id="部署成功后配置">部署成功后配置&lt;/h3>
+&lt;p>将站点和oauth服务域名解析到上面部署创建的ELB上。&lt;/p>
+&lt;h3 id="测试">测试&lt;/h3>
+&lt;p>访问Web站点(如本示例中的&lt;code>http://web.kane.mx&lt;/code>)，未授权的情况下，调转到钉钉应用扫码登录界面。使用组织内成员的钉钉扫码授权后，将跳转回Web站点应用，可以正常浏览该域名下的页面。&lt;/p></description></item></channel></rss>
