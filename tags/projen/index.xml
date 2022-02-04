@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>projen on The road</title><link>https://kane.mx/tags/projen/</link><description>Recent content in projen on The road</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Kane Zhu; all rights reserved.</copyright><lastBuildDate>Fri, 04 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/projen/index.xml" rel="self" type="application/rss+xml"/><item><title>Publishing npm packages to multiple registries with Projen</title><link>https://kane.mx/posts/2022/publishing-npm-packages-to-multiple-registries-with-projen/</link><pubDate>Fri, 04 Feb 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2022/publishing-npm-packages-to-multiple-registries-with-projen/</guid><description>
+&lt;p>&lt;a href="https://constructs.dev/">Construct Hub&lt;/a> is a web portal to collect the &lt;a href="https://docs.aws.amazon.com/cdk/latest/guide/constructs.html">constructs&lt;/a> for &lt;a href="https://kane.mx/posts/2019/aws-cdk/">AWS CDK&lt;/a>, CDK8s and CDKtf.
+The construct could support multiple programming languages, such as Javascript/TypeScript, Python, Java and C#.
+Actually the construct is developed by TypeScript, then it's compiled as across languages library by &lt;a href="https://aws.github.io/jsii/">jsii&lt;/a>!
+Any npm/pypi package with certain tags will be discovered by Construct Hub, the package will be automatically recognized as
+construct package and listed in Construct Hub.&lt;/p>
+&lt;p>&lt;a href="https://github.com/projen/projen">Projen&lt;/a> is a project generator to create project with simplifying the project configuration to support dependencies management,
+building, unit testing, code style linting, CI/CD via Github actions PR and actions. So &lt;a href="https://projen.io/awscdk-construct.html">projen&lt;/a>
+supports the construct project out of box, which configures construct project with jsii configuration
+that build the construct to across languages library, though publish the packages
+to kinds of package registries, such as npmjs, pypi and maven central.&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/2022/publishing-npm-packages-to-multiple-registries-with-projen/">Read More&lt;/a>&lt;/p></description></item></channel></rss>
