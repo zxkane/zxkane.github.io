@@ -76,7 +76,7 @@ to kinds of package registries, such as npmjs, pypi and maven central.&lt;/p>
 &lt;p>比如&lt;code>nginx&lt;/code>镜像的部分原始数据(csv格式)如下，&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
 &lt;/span>&lt;span class="lnt"> 3
 &lt;/span>&lt;span class="lnt"> 4
@@ -90,18 +90,18 @@ to kinds of package registries, such as npmjs, pypi and maven central.&lt;/p>
 &lt;/span>&lt;span class="lnt">12
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-txt" data-lang="txt">1.18.0-alpine,sha256:676b8117782d9e8c20af8e1b19356f64acc76c981f3a65c66e33a9874877892a,amd64,linux,null,null,&amp;#34;sha256:cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08&amp;#34;,2813316
-1.18.0-alpine,sha256:676b8117782d9e8c20af8e1b19356f64acc76c981f3a65c66e33a9874877892a,amd64,linux,null,null,&amp;#34;sha256:6ade829cd166df9b2331da48e3e60342aef9f95e1e45cde8d20e6b01be7e6d9a&amp;#34;,6477096
-1.18.0-alpine,sha256:70feed62d5204358ed500463c0953dce6c269a0ebeef147a107422a2c78799a9,arm,linux,v6,null,&amp;#34;sha256:b9e3228833e92f0688e0f87234e75965e62e47cfbb9ca8cc5fa19c2e7cd13f80&amp;#34;,2619936
-1.18.0-alpine,sha256:70feed62d5204358ed500463c0953dce6c269a0ebeef147a107422a2c78799a9,arm,linux,v6,null,&amp;#34;sha256:a03f81873d278ad248976b107883f0452d33c6f907ebcdd832a6041f1d33118a&amp;#34;,6080562
-1.18.0-alpine,sha256:2ba714ccbdc4c2a7b5a5673ebbc8f28e159cf2687a664d540dcb91d325934f32,arm64,linux,v8,null,&amp;#34;sha256:29e5d40040c18c692ed73df24511071725b74956ca1a61fe6056a651d86a13bd&amp;#34;,2724424
-1.18.0-alpine,sha256:2ba714ccbdc4c2a7b5a5673ebbc8f28e159cf2687a664d540dcb91d325934f32,arm64,linux,v8,null,&amp;#34;sha256:806787fcd4f9e2f814506fb53e81b6fb33f9eea04e5b537b31fa5fb601a497ee&amp;#34;,6423816
-1.18.0-alpine,sha256:6d6f19360150548bbb568ecd3e1affabbdce0fcc39156e70fbae8a0aa656541a,386,linux,null,null,&amp;#34;sha256:2826c1e79865da7e0da0a993a2a38db61c3911e05b5df617439a86d4deac90fb&amp;#34;,2808418
-1.18.0-alpine,sha256:6d6f19360150548bbb568ecd3e1affabbdce0fcc39156e70fbae8a0aa656541a,386,linux,null,null,&amp;#34;sha256:f2ab0e3b0ff04d1695df322540631708c42b0a68925788de2290c9497e44fef3&amp;#34;,6845295
-1.18.0-alpine,sha256:c0684c6ee14c7383e4ef1d458edf3535cd62b432eeba6b03ddf0d880633207da,ppc64le,linux,null,null,&amp;#34;sha256:9a8fdc5b698322331ee7eba7dd6f66f3a4e956554db22dd1e834d519415b4f8e&amp;#34;,2821843
-1.18.0-alpine,sha256:c0684c6ee14c7383e4ef1d458edf3535cd62b432eeba6b03ddf0d880633207da,ppc64le,linux,null,null,&amp;#34;sha256:30a37aac8b54a38e14e378f5122186373cf233951783587517243e342728a828&amp;#34;,6746511
-1.18.0-alpine,sha256:714439fec7e1f55c29b57552213e45c96bbfeefddea2b3b30d7568591966c914,s390x,linux,null,null,&amp;#34;sha256:7184c046fdf17da4c16ca482e5ede36e1f2d41ac8cea9c036e488fd149d6e8e7&amp;#34;,2582859
-1.18.0-alpine,sha256:714439fec7e1f55c29b57552213e45c96bbfeefddea2b3b30d7568591966c914,s390x,linux,null,null,&amp;#34;sha256:214dff8a034aad01facf6cf63613ed78e9d23d9a6345f1dee2ad871d6f94b689&amp;#34;,6569410&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-txt" data-lang="txt">&lt;span class="line">&lt;span class="cl">1.18.0-alpine,sha256:676b8117782d9e8c20af8e1b19356f64acc76c981f3a65c66e33a9874877892a,amd64,linux,null,null,&amp;#34;sha256:cbdbe7a5bc2a134ca8ec91be58565ec07d037386d1f1d8385412d224deafca08&amp;#34;,2813316
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.18.0-alpine,sha256:676b8117782d9e8c20af8e1b19356f64acc76c981f3a65c66e33a9874877892a,amd64,linux,null,null,&amp;#34;sha256:6ade829cd166df9b2331da48e3e60342aef9f95e1e45cde8d20e6b01be7e6d9a&amp;#34;,6477096
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.18.0-alpine,sha256:70feed62d5204358ed500463c0953dce6c269a0ebeef147a107422a2c78799a9,arm,linux,v6,null,&amp;#34;sha256:b9e3228833e92f0688e0f87234e75965e62e47cfbb9ca8cc5fa19c2e7cd13f80&amp;#34;,2619936
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.18.0-alpine,sha256:70feed62d5204358ed500463c0953dce6c269a0ebeef147a107422a2c78799a9,arm,linux,v6,null,&amp;#34;sha256:a03f81873d278ad248976b107883f0452d33c6f907ebcdd832a6041f1d33118a&amp;#34;,6080562
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.18.0-alpine,sha256:2ba714ccbdc4c2a7b5a5673ebbc8f28e159cf2687a664d540dcb91d325934f32,arm64,linux,v8,null,&amp;#34;sha256:29e5d40040c18c692ed73df24511071725b74956ca1a61fe6056a651d86a13bd&amp;#34;,2724424
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.18.0-alpine,sha256:2ba714ccbdc4c2a7b5a5673ebbc8f28e159cf2687a664d540dcb91d325934f32,arm64,linux,v8,null,&amp;#34;sha256:806787fcd4f9e2f814506fb53e81b6fb33f9eea04e5b537b31fa5fb601a497ee&amp;#34;,6423816
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.18.0-alpine,sha256:6d6f19360150548bbb568ecd3e1affabbdce0fcc39156e70fbae8a0aa656541a,386,linux,null,null,&amp;#34;sha256:2826c1e79865da7e0da0a993a2a38db61c3911e05b5df617439a86d4deac90fb&amp;#34;,2808418
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.18.0-alpine,sha256:6d6f19360150548bbb568ecd3e1affabbdce0fcc39156e70fbae8a0aa656541a,386,linux,null,null,&amp;#34;sha256:f2ab0e3b0ff04d1695df322540631708c42b0a68925788de2290c9497e44fef3&amp;#34;,6845295
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.18.0-alpine,sha256:c0684c6ee14c7383e4ef1d458edf3535cd62b432eeba6b03ddf0d880633207da,ppc64le,linux,null,null,&amp;#34;sha256:9a8fdc5b698322331ee7eba7dd6f66f3a4e956554db22dd1e834d519415b4f8e&amp;#34;,2821843
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.18.0-alpine,sha256:c0684c6ee14c7383e4ef1d458edf3535cd62b432eeba6b03ddf0d880633207da,ppc64le,linux,null,null,&amp;#34;sha256:30a37aac8b54a38e14e378f5122186373cf233951783587517243e342728a828&amp;#34;,6746511
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.18.0-alpine,sha256:714439fec7e1f55c29b57552213e45c96bbfeefddea2b3b30d7568591966c914,s390x,linux,null,null,&amp;#34;sha256:7184c046fdf17da4c16ca482e5ede36e1f2d41ac8cea9c036e488fd149d6e8e7&amp;#34;,2582859
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.18.0-alpine,sha256:714439fec7e1f55c29b57552213e45c96bbfeefddea2b3b30d7568591966c914,s390x,linux,null,null,&amp;#34;sha256:214dff8a034aad01facf6cf63613ed78e9d23d9a6345f1dee2ad871d6f94b689&amp;#34;,6569410&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>
 &lt;p>各列的含义分别是，&lt;code>镜像tag&lt;/code>, &lt;code>镜像&lt;/code>&lt;a href="https://docs.docker.com/registry/spec/api/#content-digests">Digest&lt;/a>, &lt;code>镜像对应平台的Architecture&lt;/code>, &lt;code>镜像对应平台的OS&lt;/code>, &lt;code>镜像对应平台的变种&lt;/code>（例如，ARM的v7, v8等）, &lt;code>镜像对应平台的OS版本&lt;/code>, &lt;code>镜像组成层的&lt;/code>&lt;a href="https://docs.docker.com/registry/spec/api/#content-digests">Digest&lt;/a>, &lt;code>镜像组成层的大小&lt;/code>。&lt;/p>
