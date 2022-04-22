@@ -19,6 +19,8 @@ tags:
 - Flux
 - Git
 - EKS
+- CD
+- Continuous Delivery
 ---
 
 在[前文][gitops-best-practise]介绍了 GitOps 的概念，Kubernetes 上 GitOps 最佳实践以及对比了 CNCF 基金会下
@@ -460,8 +462,9 @@ kustomize CLI 验证 GitOps 配置是否可以正确的被生成。同时，使�
 
 本文介绍使用 GitOps 工具 FluxCD v2 实现了管理多账户多 VPC 环境下的 Kubernetes 集群的共享组件，实践了 Secrets 使用的最佳实践，
 CD 部署事件同 IM(Slack) 的集成，最终示例了通过 GitOps 代码的 CI 流程来提高 GitOps 代码的质量，减少部署中断事故。
+可在[此仓库][repo]获取完整的 GitOps 代码。
 
-下篇将带领大家基于 Flux 实现 GitOps 工作模型下的[共享服务平台][ssp]。
+下篇将介绍基于 Flux 实现 GitOps 工作模型下的[共享服务平台][ssp]。
 
 [gitops-best-practise]: {{< relref "/posts/gitops/the-best-practise-of-gitops-in-kubernetes.md" >}}
 [ssp]: {{< relref "/posts/2021/shared-service-platform-for-decentralized-developer-teams/index.md" >}}
@@ -501,3 +504,4 @@ CD 部署事件同 IM(Slack) 的集成，最终示例了通过 GitOps 代码的 
 [gitlab-ci]: https://docs.gitlab.com/ee/ci/
 [e2e-test]: https://github.com/zxkane/eks-gitops/blob/main/.github/workflows/e2e.yaml
 [manifests-test]: https://github.com/zxkane/eks-gitops/blob/main/.github/workflows/test.yaml
+[repo]: https://github.com/zxkane/eks-gitops
