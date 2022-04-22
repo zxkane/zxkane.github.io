@@ -18,6 +18,8 @@ tags:
 - Flux
 - ArgoCD
 - Git
+- CD
+- Continuous Delivery
 ---
 
 今天 Kuberentes 已经成为IT基础设施的重要玩家，容器编排领域的事实标准。写于3年前的文章[不要自建 Kuberentes][managed-k8s] 的观点已经被绝大多数的企业所认可和接受。
