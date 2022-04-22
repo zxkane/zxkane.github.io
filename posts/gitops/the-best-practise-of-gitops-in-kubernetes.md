@@ -193,7 +193,7 @@ Helm, Notification, Image automation 这5个组件][flux-components]，尽量复
 ## 小结
 
 本文介绍了什么是 GitOps，Kuberentes 上基于 GitOps 实现持续部署的最佳实践，以及 CNCF 下 GitOps 方向最为流行项目
-Argo CD 和 Flux 的对比。后续将以 Flux v2 为实战，深入介绍如何实现 GitOps 持续部署且同时满足各类企业级需求。
+Argo CD 和 Flux 的对比。[后续将以 Flux v2 为实战][part2]，深入介绍如何实现 GitOps 持续部署且同时满足各类企业级需求。
 
 ## 参考资料
 
@@ -201,7 +201,7 @@ Argo CD 和 Flux 的对比。后续将以 Flux v2 为实战，深入介绍如何
 - The CNCF End User Technology Radar [Continuous Delivery, June 2020][cncf-radar-cd]
 - The CNCF End User Technology Radar [Multicluster Management, June 2021][cncf-radar-multicluster]
 - [Push vs. Pull in GitOps: Is There Really a Difference?][push-pull-in-gitops]
-- [Why is a PULL vs a PUSH pipeline important?][push-pull-in-gitops]
+- [Why is a PULL vs a PUSH pipeline important?][pull-vs-push-pipeline]
 - [GitOps on Kubernetes: Deciding Between Argo CD and Flux][newstack-gitops]
 
 [managed-k8s]: {{< relref "/posts/effective-cloud-computing/using-kubernetes-on-cloud/index.md" >}}
@@ -222,3 +222,4 @@ Argo CD 和 Flux 的对比。后续将以 Flux v2 为实战，深入介绍如何
 [kyverno]: https://kyverno.io/
 [push-pull-in-gitops]: https://thenewstack.io/push-vs-pull-in-gitops-is-there-really-a-difference/
 [pull-vs-push-pipeline]: https://www.weave.works/blog/why-is-a-pull-vs-a-push-pipeline-important
+[part2]: {{< relref "/posts/gitops/flux-in-action-1.md" >}}
