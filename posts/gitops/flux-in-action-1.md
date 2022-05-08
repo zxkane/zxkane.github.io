@@ -33,7 +33,7 @@ tags:
 
 - 假设业务对稳定性的需求，使用3个 Kubernetes 集群分别对应 `DEV`, `STAGING` 和 `PRODUCT` 环境。这些集群环境根据企业的需求
 可能会分布在不同的云账户和VPC网络中。读者可根据实际企业情况创建一个或多个集群。本文以 [Amazon EKS][eks] 为例，EKS集群的创建请参阅其[文档][create-eks-cluster]。
-- Git 仓库用于保存集群的声明式配置。Flux 支持 Git 在线服务（包括 Github, Gitlab, Bitbucket）和其他任意 Git 服务。本文将使用 Github 和 Gitlab 为例。
+- Git 仓库用于保存集群的声明式配置。Flux 支持 Git 在线服务（包括 Github, Gitlab, Bitbucket）和其他任意 Git 服务。本文将使用 Github 托管 Git 仓库为例。
 - [安装 Flux CLI][install-flux-cli]
 
 ## 1. Kubernetes 集群安装配置 Flux
@@ -44,6 +44,7 @@ tags:
 export GITHUB_TOKEN=<your-token>
 
 flux bootstrap github \
+  --components-extra=image-reflector-controller,image-automation-controller \
   --owner=zxkane \
   --repository=eks-gitops \
   --path=clusters/cluster-dev \
@@ -56,6 +57,11 @@ flux bootstrap github \
 
 {{% notice warning "重要" %}}
 创建的 Github Personal Accesss Token 需要至少同时选中全部 `repo` 和 `user` 的权限。
+{{% /notice %}}
+
+{{% notice info "注意" %}}
+如需在 `DEV` 环境 启用镜像自动更新功能，**bootstrap** Flux 时需要加上
+`--components-extra=image-reflector-controller,image-automation-controller` 参数。
 {{% /notice %}}
 
 通过类似的步骤在 `STAGING` 和 `PRODUCT` 集群安装配置 Flux 。
@@ -180,7 +186,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bitnami
-        namespace: flux-system
+        namespace: kube-system
   interval: 1h0m0s
   install:
     remediation:
@@ -269,6 +275,10 @@ metadata:
 充分利用 Kustomize 的 Overlays 机制来抽象通用的配置和覆盖每个环境所对应的特殊部分。
 {{% /notice %}}
 
+{{% notice tip "最佳实践" %}}
+将共享组件部署在非 Flux 命名空间(默认`flux-system`)，避免清理 Flux 时影响运行中的部署。
+{{% /notice %}}
+
 同样在`DEV`环境验证External DNS组件部署成功后，将相似的配置应用到`STAGING`和`PRODUCT`环境。
 通过Kustomize的Overlays分别设置`STAGING`和`PRODUCT`环境相关的配置。再将变更推送到Git仓库，
 Flux将会为我们部署这些声明在Git仓库中的组件！可查阅[DEV][infra-dev-commit], [STAGING][infra-staging-commit],
@@ -287,7 +297,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: sealed-secrets
-  namespace: flux-system
+  namespace: kube-system
 spec:
   chart:
     spec:
@@ -298,7 +308,7 @@ spec:
       version: ">=1.15.0-0"
   interval: 1h0m0s
   releaseName: sealed-secrets-controller
-  targetNamespace: flux-system
+  targetNamespace: kube-system
   install:
     crds: Create
   upgrade:
@@ -309,12 +319,12 @@ spec:
 ```bash
 kubeseal --fetch-cert \
 --controller-name=sealed-secrets-controller \
---controller-namespace=flux-system \
+--controller-namespace=kube-system \
 > pub-sealed-secrets-dev.pem
 ```
 4. 为 [Bitnami MariaDB][bitnami-mariadb] 生成密钥。
 ```
-kubectl -n mariadb create secret generic prestashop-mariadb \
+kubectl -n kube-system create secret generic prestashop-mariadb \
 --from-literal=mariadb-root-password=<put the ariadb root password here> \
 --from-literal=mariadb-replication-password=<put the replication password here> \
 --from-literal=mariadb-password=<put the mariadb password here> \
@@ -340,7 +350,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bitnami
-        namespace: flux-system
+        namespace: kube-system
       version: 10.4.0
   interval: 1h0m0s
   install:
@@ -382,7 +392,7 @@ apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
 metadata:
   name: slack
-  namespace: flux-system
+  namespace: kube-system
 spec:
   type: slack
   secretRef:
@@ -397,7 +407,7 @@ apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Alert
 metadata:
   name: flux-alert
-  namespace: flux-system
+  namespace: kube-system
 spec:
   providerRef:
     name: slack
@@ -414,7 +424,7 @@ apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Alert
 metadata:
   name: kube-system-alert
-  namespace: flux-system
+  namespace: kube-system
 spec:
   providerRef:
     name: slack
@@ -464,7 +474,7 @@ kustomize CLI 验证 GitOps 配置是否可以正确的被生成。同时，使�
 CD 部署事件同 IM(Slack) 的集成，最终示例了通过 GitOps 代码的 CI 流程来提高 GitOps 代码的质量，减少部署中断事故。
 可在[此仓库][repo]获取完整的 GitOps 代码。
 
-下篇将介绍基于 Flux 实现 GitOps 工作模型下的[共享服务平台][ssp]。
+[下篇][flux-in-action-2]将介绍基于 Flux 实现 GitOps 工作模型下的[共享服务平台][ssp]。
 
 [gitops-best-practise]: {{< relref "/posts/gitops/the-best-practise-of-gitops-in-kubernetes.md" >}}
 [ssp]: {{< relref "/posts/2021/shared-service-platform-for-decentralized-developer-teams/index.md" >}}
@@ -505,3 +515,4 @@ CD 部署事件同 IM(Slack) 的集成，最终示例了通过 GitOps 代码的 
 [e2e-test]: https://github.com/zxkane/eks-gitops/blob/main/.github/workflows/e2e.yaml
 [manifests-test]: https://github.com/zxkane/eks-gitops/blob/main/.github/workflows/test.yaml
 [repo]: https://github.com/zxkane/eks-gitops
+[flux-in-action-2]: {{< relref "/posts/gitops/flux-in-action-2.md" >}}
