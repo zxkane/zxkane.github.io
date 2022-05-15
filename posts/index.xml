@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on The road</title><link>https://kane.mx/posts/</link><description>Recent content in Posts on The road</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 08 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>基于 Flux 的 GitOps 实战（下）</title><link>https://kane.mx/posts/gitops/flux-in-action-2/</link><pubDate>Sun, 08 May 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/gitops/flux-in-action-2/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on The road</title><link>https://kane.mx/posts/</link><description>Recent content in Posts on The road</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 15 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Publish your AWS CDK applications via AWS CloudFormation templates</title><link>https://kane.mx/posts/2022/publish-cdk-app-via-cloudformation/</link><pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2022/publish-cdk-app-via-cloudformation/</guid><description>
+&lt;p>&lt;a href="https://kane.mx/posts/2019/aws-cdk/">AWS CDK&lt;/a> is a great abstract to accelerate managing the cloud infrastructure as code.
+The journey will be enjoyful with leveraging the &lt;a href="https://constructs.dev/">Construct Hub&lt;/a> to use the high level contributions from AWS partners and commnunity.&lt;/p>
+&lt;h3 id="use-case">Use Case&lt;/h3>
+&lt;p>&lt;a href="https://aws.amazon.com/cloudformation/?nc1=h_ls">AWS CloudFormation&lt;/a> is one of the underly technologies of AWS CDK to manage the cloud infrastructure.
+It easily to enable the IT administrators even business operators whom has no/limited developer skills to
+develop the &lt;a href="https://aws.amazon.com/solutions/browse-all/">end-to-end solutions&lt;/a> with one-click user experience.&lt;/p>
+&lt;p>So it's a use case for effectively developing the &lt;strong>Cloud Application&lt;/strong> via AWS CDK,
+then publishing it as CloudFormation template with better user experimental experience.&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/2022/publish-cdk-app-via-cloudformation/">Read More&lt;/a>&lt;/p></description></item><item><title>基于 Flux 的 GitOps 实战（下）</title><link>https://kane.mx/posts/gitops/flux-in-action-2/</link><pubDate>Sun, 08 May 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/gitops/flux-in-action-2/</guid><description>
 &lt;p>在&lt;a href="https://kane.mx/posts/gitops/flux-in-action-1/">上篇&lt;/a>介绍基于 CNCF 下的 GitOps 工具 FluxCD v2
 实现了管理多账户的 Kubernetes 集群的共享组件，Secrets 使用的最佳实践，
 GitOps 流水线事件同 IM(Slack) 的集成，以及对 GitOps 代码的 CI 流程。&lt;/p>
