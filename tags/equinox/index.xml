@@ -10,13 +10,13 @@ I searched a similar request on bugzilla, then I initialized my contribution in 
 How Equinox load bundles Equinox launcher is responsible to start OSGi framework. The system bundle would be created and marked as installed when initializing the framework. Equinox also tries to install the installed bundles if finding them in persistence data during the initializing period. Of course there is no extra bundles would be installed when launching Equinox first time.
 Then Equinox launcher would install the bundles specified by vm's system property 'osgi.
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse][P2]Learn p2 step by step</title><link>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</link><pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid><description>
-Learn p2 step by step Kane   Learn P2 step by step
+Learn p2 step by step See this link for detail
+Learn P2 step by step
 p2 concept p2 install p2 install practice p2 repository publish customized p2 touchpoint p2 repository publish practice Example Code Reference p2 concept 首先来理解p2引入的几个概念[1]
 p2 / Agent
 The provisioning infrastructure on client machines
 Installable Unit (IU)
 Metadata that describes things that can be installed/configured
-Artifact
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/">Read More&lt;/a>&lt;/p></description></item><item><title>Eclipse/OSGi preference</title><link>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</link><pubDate>Thu, 22 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</guid><description>
 The IPreferenceStore API of Eclipse is based on OSGi's preferences service. Equinox implements several scope context for different preferences, such DefaultScope, InstanceScope and ConfigurationScope. The IPreferenceStore is the wrapper of instance scope for back-compatibility. It stored the data in workspace(osgi.data.area).
 The workspace folder would be created when launching RCP application if it doesn't exist. But we can use argument '-data @none' to suppress the creation of workspace. If that, the instance scope/IPreferenceStore can't store any value any more.
