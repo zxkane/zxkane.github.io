@@ -6,12 +6,10 @@ I implemented the replication tool at the end of 2009, then published it to Ecli
 I searched a similar request on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/">Read More&lt;/a>&lt;/p></description></item><item><title>Inside P2's profile (2) - the fragment matches all osgi bundles</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</link><pubDate>Tue, 28 Dec 2010 11:33:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid><description>
 Recently our installer met a strange bug, it didn't uninstall all legacy bundles after updating to new version. Finally I found it's due to a magic fragment is missing in the profile due to some causes.
- 
 installBundle(bundle:${artifact})
 uninstallBundle(bundle:${artifact})
- 
 setStartLevel(startLevel:4);
-It has 'hostRequirements' element that represents it's a fragment IU and match all the eclipse's plug-ins in that profile.
+It has 'hostRequirements' element that represents it's a fragment IU and match all the eclipse's plug-ins in that profile. And this fragment defines the touch point actions for its hosts that will do installBundle action during 'install' phrase and uninstallBundle action during 'uninstall' phrase.
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/">Read More&lt;/a>&lt;/p></description></item><item><title>Inside P2's profile (1) - inclusion rules</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</link><pubDate>Tue, 28 Dec 2010 11:13:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid><description>
 You would see some interesting properties at the bottom of eclipse's profile.
 For example,
@@ -32,6 +30,11 @@ p2 / Agent
 The provisioning infrastructure on client machines
 Installable Unit (IU)
 Metadata that describes things that can be installed/configured
+Artifact
+The actual content being installed/configured(e.g., bundle JARs)
+Repository
+A store of metadata or artifacts
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/">Read More&lt;/a>&lt;/p></description></item><item><title>Simulate p2 self host in Eclipse run</title><link>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</link><pubDate>Tue, 27 Oct 2009 16:12:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</guid><description>
 -Dosgi.install.area=&amp;lt;launcher's folder&amp;gt;
+-Declipse.p2.profile=
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

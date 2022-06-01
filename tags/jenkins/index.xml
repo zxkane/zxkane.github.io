@@ -5,10 +5,10 @@ Recently I wrote a Linux like initd script to start/stop my web application.
 The script works well when running it in shell of linux. The web application will run in background by daemon.
 However I found both daemon and web application(java) exited immediately if I started the script in Jenkins as a shell step of build process.
 I put below simple script in 'Execute shell' block,
-12daemon --name=test-daemon -- sleep 200sleep 60 The process 'daemon' and 'sleep 200' should exit after 200 seconds the 'sleep' exits.
+1daemon --name=test-daemon -- sleep 200sleep 60 The process 'daemon' and 'sleep 200' should exit after 200 seconds the 'sleep' exits.
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/">Read More&lt;/a>&lt;/p></description></item><item><title>Run groovy script via Jenkins CLI</title><link>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</link><pubDate>Mon, 13 May 2013 13:44:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</guid><description>
 Jenkins supports ssh authentication in CLI.
 Below is a command to verify that I am authenticated:
-12java -jar jenkins-cli.jar -s http://myserver/jenkins who-am-i 34Authenticated as: myuser 5Authorities: 6authenticated However you still would meet permission error when running groovy script in CLI.
-12java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &amp;#39;jenkins.model.Jenkins.instance.pluginManager.plugins.each { println(&amp;#34;${it.longName} - ${it.version}&amp;#34;) };&amp;#39; 34Exception in thread &amp;#34;main&amp;#34; java.lang.reflect.UndeclaredThrowableException 5at $Proxy2.main(Unknown Source) 6at hudson.cli.CLI.execute(CLI.java:271) 7at hudson.cli.CLI._main(CLI.java:417) 8at hudson.cli.CLI.main(CLI.java:322) It's a bug of Jenkins.
+1 2java -jar jenkins-cli.jar -s http://myserver/jenkins who-am-i 3 4 Authenticated as: myuser 5 Authorities: 6 authenticated However you still would meet permission error when running groovy script in CLI.
+1 2java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &amp;#39;jenkins.model.Jenkins.instance.pluginManager.plugins.each { println(&amp;#34;${it.longName} - ${it.version}&amp;#34;) };&amp;#39; 3 4Exception in thread &amp;#34;main&amp;#34; java.lang.reflect.UndeclaredThrowableException 5at $Proxy2.main(Unknown Source) 6at hudson.cli.CLI.execute(CLI.java:271) 7at hudson.
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

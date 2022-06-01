@@ -12,4 +12,5 @@ open first document, the items are shown well
 open another document, the items disappear
 The requirement is that showing the menu items while current part is document, otherwise hide them.
 So our implementation is:
+when current document part is deactivated, set menu items invisible
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

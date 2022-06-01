@@ -14,12 +14,10 @@ I implemented the replication tool at the end of 2009, then published it to Ecli
 I searched a similar request on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/">Read More&lt;/a>&lt;/p></description></item><item><title>Inside P2's profile (2) - the fragment matches all osgi bundles</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</link><pubDate>Tue, 28 Dec 2010 11:33:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid><description>
 Recently our installer met a strange bug, it didn't uninstall all legacy bundles after updating to new version. Finally I found it's due to a magic fragment is missing in the profile due to some causes.
- 
 installBundle(bundle:${artifact})
 uninstallBundle(bundle:${artifact})
- 
 setStartLevel(startLevel:4);
-It has 'hostRequirements' element that represents it's a fragment IU and match all the eclipse's plug-ins in that profile.
+It has 'hostRequirements' element that represents it's a fragment IU and match all the eclipse's plug-ins in that profile. And this fragment defines the touch point actions for its hosts that will do installBundle action during 'install' phrase and uninstallBundle action during 'uninstall' phrase.
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/">Read More&lt;/a>&lt;/p></description></item><item><title>Inside P2's profile (1) - inclusion rules</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</link><pubDate>Tue, 28 Dec 2010 11:13:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid><description>
 You would see some interesting properties at the bottom of eclipse's profile.
 For example,
@@ -43,8 +41,13 @@ p2 / Agent
 The provisioning infrastructure on client machines
 Installable Unit (IU)
 Metadata that describes things that can be installed/configured
+Artifact
+The actual content being installed/configured(e.g., bundle JARs)
+Repository
+A store of metadata or artifacts
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/">Read More&lt;/a>&lt;/p></description></item><item><title>Simulate p2 self host in Eclipse run</title><link>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</link><pubDate>Tue, 27 Oct 2009 16:12:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</guid><description>
 -Dosgi.install.area=&amp;lt;launcher's folder&amp;gt;
+-Declipse.p2.profile=
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/">Read More&lt;/a>&lt;/p></description></item><item><title>Eclipse/OSGi preference</title><link>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</link><pubDate>Thu, 22 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</guid><description>
 The IPreferenceStore API of Eclipse is based on OSGi's preferences service. Equinox implements several scope context for different preferences, such DefaultScope, InstanceScope and ConfigurationScope. The IPreferenceStore is the wrapper of instance scope for back-compatibility. It stored the data in workspace(osgi.data.area).
 The workspace folder would be created when launching RCP application if it doesn't exist. But we can use argument '-data @none' to suppress the creation of workspace. If that, the instance scope/IPreferenceStore can't store any value any more.
@@ -52,6 +55,7 @@ The workspace folder would be created when launching RCP application if it doesn
 Eclipse platform register an OSGi service 'IProxyService' to manage network connection, which has capability to set proxy setting. There are three types of proxy working mode,
 Direct(no proxy), Manual(specified by user), Native(using OS's proxy setting, such as gnome-proxy, IE). There are three types of proxy supported by IProxyService. They're http, https and socks.
 It also allows to add/remove ip address from white list, which are accessed without connecting proxy.
+End users can manage the proxy setting of Eclipse via Preference - General - Network Connections.
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/usage-of-eclipses-proxy-api/">Read More&lt;/a>&lt;/p></description></item><item><title>[OSGi][Eclipse]Add custom jar or path into Equinox Framework</title><link>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</link><pubDate>Sun, 28 Sep 2008 13:23:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</guid><description>
 Set vm arguments 'osgi.framework.extensions' and 'osgi.frameworkClassPath' when vm starts. If those value are set, those jar or path would be added into the classloader when starting EclipseStarter.
 See org.eclipse.equinox.launcher.Main for more details in the source code of Eclipse 3.4.
@@ -87,6 +91,7 @@ open first document, the items are shown well
 open another document, the items disappear
 The requirement is that showing the menu items while current part is document, otherwise hide them.
 So our implementation is:
+when current document part is deactivated, set menu items invisible
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/">Read More&lt;/a>&lt;/p></description></item><item><title>[debug][java]Remote debug in Eclipse</title><link>https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/</link><pubDate>Wed, 18 Oct 2006 12:53:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/</guid><description>
 I need use remote debug in our project, however just some experience in Weblogic were found from internet. After my investigation, I got some experience about using Eclipse remote debug RCP.
 There are two important parameters for jvm. And we must launch remote java app with those two parameters.
