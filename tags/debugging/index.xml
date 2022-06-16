@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Debugging on The road</title><link>https://kane.mx/tags/debugging/</link><description>Recent content in Debugging on The road</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 16 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/debugging/index.xml" rel="self" type="application/rss+xml"/><item><title>FluxCD GitOps debugging tip</title><link>https://kane.mx/posts/gitops/fluxcd-local-debug-tip/</link><pubDate>Thu, 16 Jun 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/gitops/fluxcd-local-debug-tip/</guid><description>
+&lt;p>After enabling E2E testing of FluxCD powered GitOps continuous deployment, the feedback of new commits are quite slow.
+Because you have to wait for the E2E testing result, lots of time cost on setuping the environment and provisioning
+your development from scrath.&lt;/p>
+&lt;p>Inspired by &lt;a href="https://github.com/zxkane/eks-gitops/actions/workflows/e2e.yaml">E2E testing in Github actions&lt;/a>, the DevOps engineers can build local debugging environment in
+&lt;a href="https://kind.sigs.k8s.io/">Kind&lt;/a> or &lt;a href="https://minikube.sigs.k8s.io/docs/start/">minikube&lt;/a>.&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/gitops/fluxcd-local-debug-tip/">Read More&lt;/a>&lt;/p></description></item></channel></rss>
