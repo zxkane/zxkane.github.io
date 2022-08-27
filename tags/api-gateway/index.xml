@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>API Gateway on The road</title><link>https://kane.mx/tags/api-gateway/</link><description>Recent content in API Gateway on The road</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 27 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/api-gateway/index.xml" rel="self" type="application/rss+xml"/><item><title>Build no code restful HTTP API with API Gateway and DynamoDB</title><link>https://kane.mx/posts/2022/build-serverless-app-on-aws/restful-api/</link><pubDate>Sat, 27 Aug 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2022/build-serverless-app-on-aws/restful-api/</guid><description>
+&lt;p>Most web applications are using &lt;a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Restful APIs&lt;/a> to interactive with the backend services.
+In the TODO application, it's the straight forward to get, update and delete the items from backend database.
+&lt;a href="https://aws.amazon.com/dynamodb/">Amazon DynamoDB&lt;/a> is a key-value database, it fits for this scenario with scalability and optimized pay-as-you-go cost.
+Also &lt;a href="https://aws.amazon.com/api-gateway/">Amazon API Gateway&lt;/a> has built-in integration with AWS serivces, the restful API can be transformed to
+the request to DynamoDB APIs. Using this combination you can provide the restful APIs only provisioning AWS resources
+without writing the CRUD code!&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/2022/build-serverless-app-on-aws/restful-api/">Read More&lt;/a>&lt;/p></description></item></channel></rss>
