@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OpenID Connect on The road</title><link>https://kane.mx/tags/openid-connect/</link><description>Recent content in OpenID Connect on The road</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 12 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/openid-connect/index.xml" rel="self" type="application/rss+xml"/><item><title>Federated OIDC login with Cognito and Amplify</title><link>https://kane.mx/posts/2022/build-serverless-app-on-aws/federated-oidc-login-with-cognito-and-amplify/</link><pubDate>Mon, 12 Sep 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2022/build-serverless-app-on-aws/federated-oidc-login-with-cognito-and-amplify/</guid><description>
+&lt;p>When working on either 2C application or 2B service, the customers do not want to
+or is not allowed to sign up the new account, they can login the application via existing
+IdP or enterprise SSO. So, building the application supports the federated OIDC login
+to address such requirements.&lt;/p>
+&lt;p>This post extends the capability of &lt;a href="https://kane.mx/posts/2022/build-serverless-app-on-aws/protect-website-with-cognito/">Todolist application protected by Amazon Cognito&lt;/a>,
+using &lt;a href="https://auth0.com/">Auth0&lt;/a> as the third party &lt;a href="https://en.wikipedia.org/wiki/OpenID">OpenID Connect&lt;/a> provider introduces the external user pool.&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/2022/build-serverless-app-on-aws/federated-oidc-login-with-cognito-and-amplify/">Read More&lt;/a>&lt;/p></description></item></channel></rss>
