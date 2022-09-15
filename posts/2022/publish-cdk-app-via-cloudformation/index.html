@@ -23,7 +23,9 @@ For example, a CDK application with using <a href=https://docs.aws.amazon.com/cd
 <a href=https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_s3_deployment-readme.html>S3 Deployment</a>, <a href=https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecr_assets-readme.html>Docker Image Assets</a> and so on will be synthesized to the templates
 that are not deployable directly. It requires to publish those assets(both S3 and ECR assets) firstly, then deploy
 the templates with <a href=https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html>parameters</a> pointing to the assets. This step is difficult to be completed manually,
-because the assets are named with its content hash are not readable by human being.</p><h3 id=cdk-assets-command><code>cdk-assets</code> command</h3><p>Hence there is another experimental tool provided with CDK project, it's <a href=https://www.npmjs.com/package/cdk-assets>cdk-assets</a>.
+because the assets are named with its content hash are not readable by human being in CDK V1.
+CDK v2 uses the <a href=https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping.html#bootstrapping-template>modern bootstrapping template</a> which uses deterministic name for resources to remove the parameters,
+but it still depends on the assets published priorly before deploying the CloudFormation template.</p><h3 id=cdk-assets-command><code>cdk-assets</code> command</h3><p>Hence there is another experimental tool provided with CDK project, it's <a href=https://www.npmjs.com/package/cdk-assets>cdk-assets</a>.
 <code>cdk-assets</code> command use the outputs of <code>cdk synth</code>, then publish the assets of application to S3 and ECR,
 and update the templates to refer to the assets in S3 and ECR. Looks like the utility perfectly fits the requirement of my use case.</p><h3 id=cdk-assets-drawbacks><code>cdk-assets</code> drawbacks</h3><p>But it still has some drawbacks for this solution. For some AWS services, the assets are mandatorily required from same region.
 It means that the Lambda code packages(reside on S3) must be from same region S3 bucket,
