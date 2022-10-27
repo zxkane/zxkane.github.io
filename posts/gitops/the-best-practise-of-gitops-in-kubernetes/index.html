@@ -40,34 +40,36 @@ Kubernetes 上 GitOps 的理想状态。接下来让我们来讨论下现有的 
 Helm, Notification, Image automation 这5个组件</a>，尽量复用 Kuberentes 原生能力，例如使用 ServiceAccount 实现多租户的 RBAC 控制，
 降低了用户的学习门槛，同云原生社区其他项目的兼容性更强。</p><p>[1]: Git仓库可能公开读且明文保存 Secrets 对象，需要将其加密后再提交到 Git</p><p>[2]: 默认采用 Poll 轮询拉取 Git 仓库变更，提供 Webhook 接口可被 Git 仓库提交事件触发</p><h2 id=小结>小结</h2><p>本文介绍了什么是 GitOps，Kuberentes 上基于 GitOps 实现持续部署的最佳实践，以及 CNCF 下 GitOps 方向最为流行项目
 Argo CD 和 Flux 的对比。<a href=/posts/gitops/flux-in-action-1/>后续将以 Flux v2 为实战</a>，深入介绍如何实现 GitOps 持续部署且同时满足各类企业级需求。</p><h2 id=参考资料>参考资料</h2><ul><li><a href=https://www.gitops.tech/>GitOps: Cloud-native Continuous Deployment</a></li><li>The CNCF End User Technology Radar <a href=https://radar.cncf.io/2020-06-continuous-delivery>Continuous Delivery, June 2020</a></li><li>The CNCF End User Technology Radar <a href=https://radar.cncf.io/2021-06-multicluster-management>Multicluster Management, June 2021</a></li><li><a href=https://thenewstack.io/push-vs-pull-in-gitops-is-there-really-a-difference/>Push vs. Pull in GitOps: Is There Really a Difference?</a></li><li><a href=https://www.weave.works/blog/why-is-a-pull-vs-a-push-pipeline-important>Why is a PULL vs a PUSH pipeline important?</a></li><li><a href=https://thenewstack.io/gitops-on-kubernetes-deciding-between-argo-cd-and-flux/>GitOps on Kubernetes: Deciding Between Argo CD and Flux</a></li></ul></div><h2 class=post_related>Posts in this Series</h2><ul></ul><script src=https://giscus.app/client.js data-repo=zxkane/articles data-repo-id="MDEwOlJlcG9zaXRvcnkxNjM1OTcwMjc=" data-category=General data-category-id=DIC_kwDOCcBK484CSKCb data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=en crossorigin=anonymous async></script></article><aside class=sidebar><section class=sidebar_inner><br><div class=search><input type=search class="search_field form_field" placeholder=Search... id=find autocomplete=off data-scope=posts>
-<label for=find class=search_label><svg class="icon"><title>search</title><use xlink:href="#search"/></svg></label><div class="search_results results"></div></div><div class=author_header><img src=https://kane.mx/img/favicon.ico alt="Kane Zhu photo"><h2>Kane Zhu</h2></div><div class=author_bio>Just a blog for personal experience or thoughts, mostly tech-related.</div><a href=https://kane.mx/about/ class="button mt-1" role=button title='Read More'>Read More</a><h2 class=mt-4>Posts in this series</h2><ul></ul><h2 class=mt-4>Recent Posts</h2><ul class=flex-column><li><a href=https://kane.mx/posts/2022/build-serverless-app-on-aws/devops-pipeline/ class=nav-link title="Setup DevOps pipeline with few code">Setup DevOps pipeline with few code</a></li><li><a href=https://kane.mx/posts/2022/build-serverless-app-on-aws/federated-oidc-login-with-cognito-and-amplify/ class=nav-link title="Federated OIDC login with Cognito and Amplify">Federated OIDC login with Cognito and Amplify</a></li><li><a href=https://kane.mx/posts/2022/build-serverless-app-on-aws/protect-website-with-cognito/ class=nav-link title="Protect website with Cognito">Protect website with Cognito</a></li><li><a href=https://kane.mx/posts/2022/build-serverless-app-on-aws/static-website/ class=nav-link title="Distribute the website globally">Distribute the website globally</a></li><li><a href=https://kane.mx/posts/2022/build-serverless-app-on-aws/restful-api/ class=nav-link title="Build no code restful HTTP API with API Gateway and DynamoDB">Build no code restful HTTP API with API Gateway and DynamoDB</a></li><li><a href=https://kane.mx/posts/2022/build-serverless-app-on-aws/intro/ class=nav-link title="Build serverless web application with AWS Serverless">Build serverless web application with AWS Serverless</a></li><li><a href=https://kane.mx/posts/gitops/fluxcd-local-debug-tip/ class=nav-link title="FluxCD GitOps debugging tip">FluxCD GitOps debugging tip</a></li><li><a href=https://kane.mx/posts/gitops/manage-k8s-secrets-in-external-secrets-manager/ class=nav-link title="使用外部Secrets Manager管理Kubernetes密钥">使用外部Secrets Manager管理Kubernetes密钥</a></li></ul><div><h2 class="mt-4 taxonomy" id=categories-section>Categories</h2><nav class=tags_nav><a href=https://kane.mx/categories/blogging/ class="post_tag button button_translucent" title=blogging>BLOGGING
-<span class=button_tally>59</span></a>
+<label for=find class=search_label><svg class="icon"><title>search</title><use xlink:href="#search"/></svg></label><div class="search_results results"></div></div><div class=author_header><img src=https://kane.mx/img/favicon.ico alt="Kane Zhu photo"><h2>Kane Zhu</h2></div><div class=author_bio>Just a blog for personal experience or thoughts, mostly tech-related.</div><a href=https://kane.mx/about/ class="button mt-1" role=button title='Read More'>Read More</a><h2 class=mt-4>Posts in this series</h2><ul></ul><h2 class=mt-4>Recent Posts</h2><ul class=flex-column><li><a href=https://kane.mx/posts/2022/import-oas-as-api-on-aws/ class=nav-link title="Define your API via OpenAPI definition on AWS">Define your API via OpenAPI definition on AWS</a></li><li><a href=https://kane.mx/posts/2022/build-serverless-app-on-aws/devops-pipeline/ class=nav-link title="Setup DevOps pipeline with few code">Setup DevOps pipeline with few code</a></li><li><a href=https://kane.mx/posts/2022/build-serverless-app-on-aws/federated-oidc-login-with-cognito-and-amplify/ class=nav-link title="Federated OIDC login with Cognito and Amplify">Federated OIDC login with Cognito and Amplify</a></li><li><a href=https://kane.mx/posts/2022/build-serverless-app-on-aws/protect-website-with-cognito/ class=nav-link title="Protect website with Cognito">Protect website with Cognito</a></li><li><a href=https://kane.mx/posts/2022/build-serverless-app-on-aws/static-website/ class=nav-link title="Distribute the website globally">Distribute the website globally</a></li><li><a href=https://kane.mx/posts/2022/build-serverless-app-on-aws/restful-api/ class=nav-link title="Build no code restful HTTP API with API Gateway and DynamoDB">Build no code restful HTTP API with API Gateway and DynamoDB</a></li><li><a href=https://kane.mx/posts/2022/build-serverless-app-on-aws/intro/ class=nav-link title="Build serverless web application with AWS Serverless">Build serverless web application with AWS Serverless</a></li><li><a href=https://kane.mx/posts/gitops/fluxcd-local-debug-tip/ class=nav-link title="FluxCD GitOps debugging tip">FluxCD GitOps debugging tip</a></li></ul><div><h2 class="mt-4 taxonomy" id=categories-section>Categories</h2><nav class=tags_nav><a href=https://kane.mx/categories/blogging/ class="post_tag button button_translucent" title=blogging>BLOGGING
+<span class=button_tally>60</span></a>
 <a href=https://kane.mx/categories/kubernetes/ class="post_tag button button_translucent" title=kubernetes>KUBERNETES
 <span class=button_tally>10</span></a>
 <a href=https://kane.mx/categories/trip/ class="post_tag button button_translucent" title=trip>TRIP
 <span class=button_tally>5</span></a></nav></div><div><h2 class="mt-4 taxonomy" id=series-section>Series</h2><nav class=tags_nav><a href=https://kane.mx/series/effective-cloud-computing/ class="post_tag button button_translucent" title=effective-cloud-computing>EFFECTIVE-CLOUD-COMPUTING
-<span class=button_tally>37</span></a>
+<span class=button_tally>38</span></a>
 <a href=https://kane.mx/series/serverless-computing/ class="post_tag button button_translucent" title=serverless-computing>SERVERLESS-COMPUTING
-<span class=button_tally>14</span></a>
+<span class=button_tally>15</span></a>
 <a href=https://kane.mx/series/gitops/ class="post_tag button button_translucent" title=gitops>GITOPS
 <span class=button_tally>6</span></a>
 <a href=https://kane.mx/series/amazon-builders-library/ class="post_tag button button_translucent" title=amazon-builders-library>AMAZON-BUILDERS-LIBRARY
 <span class=button_tally>2</span></a></nav></div><div><h2 class="mt-4 taxonomy" id=tags-section>Tags</h2><nav class=tags_nav><a href=https://kane.mx/tags/aws/ class="post_tag button button_translucent" title=aws>AWS
-<span class=button_tally>39</span></a>
+<span class=button_tally>40</span></a>
 <a href=https://kane.mx/tags/eclipse/ class="post_tag button button_translucent" title=eclipse>ECLIPSE
 <span class=button_tally>21</span></a>
 <a href=https://kane.mx/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/ class="post_tag button button_translucent" title=云计算>云计算
 <span class=button_tally>16</span></a>
+<a href=https://kane.mx/tags/aws-cdk/ class="post_tag button button_translucent" title=aws-cdk>AWS-CDK
+<span class=button_tally>15</span></a>
 <a href=https://kane.mx/tags/tip/ class="post_tag button button_translucent" title=tip>TIP
 <span class=button_tally>15</span></a>
-<a href=https://kane.mx/tags/aws-cdk/ class="post_tag button button_translucent" title=aws-cdk>AWS-CDK
-<span class=button_tally>14</span></a>
 <a href=https://kane.mx/tags/kubernetes/ class="post_tag button button_translucent" title=kubernetes>KUBERNETES
 <span class=button_tally>14</span></a>
 <a href=https://kane.mx/tags/equinox/ class="post_tag button button_translucent" title=equinox>EQUINOX
 <span class=button_tally>10</span></a>
 <a href=https://kane.mx/tags/git/ class="post_tag button button_translucent" title=git>GIT
 <span class=button_tally>9</span></a>
+<a href=https://kane.mx/tags/serverless/ class="post_tag button button_translucent" title=serverless>SERVERLESS
+<span class=button_tally>8</span></a>
 <a href=https://kane.mx/tags/continuous-delivery/ class="post_tag button button_translucent" title=continuous-delivery>CONTINUOUS-DELIVERY
 <span class=button_tally>7</span></a>
 <a href=https://kane.mx/tags/gitops/ class="post_tag button button_translucent" title=gitops>GITOPS
@@ -76,14 +78,14 @@ Argo CD 和 Flux 的对比。<a href=/posts/gitops/flux-in-action-1/>后续将�
 <span class=button_tally>7</span></a>
 <a href=https://kane.mx/tags/p2/ class="post_tag button button_translucent" title=p2>P2
 <span class=button_tally>7</span></a>
-<a href=https://kane.mx/tags/serverless/ class="post_tag button button_translucent" title=serverless>SERVERLESS
-<span class=button_tally>7</span></a>
 <a href=https://kane.mx/tags/%E9%98%BF%E9%87%8C%E4%BA%91/ class="post_tag button button_translucent" title=阿里云>阿里云
 <span class=button_tally>7</span></a><br><div class="post_tags_toggle button">All Tags</div><div class=post_tags><div class=tags_list><a href=https://kane.mx/tags/aliyun/ class="post_tag button button_translucent" data-position=1 title=aliyun>ALIYUN<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/amazon-alexa/ class="post_tag button button_translucent" data-position=1 title=amazon-alexa>AMAZON-ALEXA<span class=button_tally>1</span></a>
+<a href=https://kane.mx/tags/amazon-api-gateway/ class="post_tag button button_translucent" data-position=1 title=amazon-api-gateway>AMAZON-API-GATEWAY<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/amazon-builders-library/ class="post_tag button button_translucent" data-position=2 title=amazon-builders-library>AMAZON-BUILDERS-LIBRARY<span class=button_tally>2</span></a>
 <a href=https://kane.mx/tags/amazon-eks/ class="post_tag button button_translucent" data-position=2 title=amazon-eks>AMAZON-EKS<span class=button_tally>2</span></a>
 <a href=https://kane.mx/tags/amazon-neptune/ class="post_tag button button_translucent" data-position=1 title=amazon-neptune>AMAZON-NEPTUNE<span class=button_tally>1</span></a>
+<a href=https://kane.mx/tags/amazon-sqs/ class="post_tag button button_translucent" data-position=1 title=amazon-sqs>AMAZON-SQS<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/amplify/ class="post_tag button button_translucent" data-position=2 title=amplify>AMPLIFY<span class=button_tally>2</span></a>
 <a href=https://kane.mx/tags/analysis/ class="post_tag button button_translucent" data-position=1 title=analysis>ANALYSIS<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/analytics/ class="post_tag button button_translucent" data-position=1 title=analytics>ANALYTICS<span class=button_tally>1</span></a>
@@ -95,10 +97,10 @@ Argo CD 和 Flux 的对比。<a href=/posts/gitops/flux-in-action-1/>后续将�
 <a href=https://kane.mx/tags/athena/ class="post_tag button button_translucent" data-position=1 title=athena>ATHENA<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/authentication/ class="post_tag button button_translucent" data-position=2 title=authentication>AUTHENTICATION<span class=button_tally>2</span></a>
 <a href=https://kane.mx/tags/authorization/ class="post_tag button button_translucent" data-position=1 title=authorization>AUTHORIZATION<span class=button_tally>1</span></a>
-<a href=https://kane.mx/tags/aws/ class="post_tag button button_translucent" data-position=39 title=aws>AWS<span class=button_tally>39</span></a>
+<a href=https://kane.mx/tags/aws/ class="post_tag button button_translucent" data-position=40 title=aws>AWS<span class=button_tally>40</span></a>
 <a href=https://kane.mx/tags/aws-api-gateway/ class="post_tag button button_translucent" data-position=1 title=aws-api-gateway>AWS-API-GATEWAY<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/aws-athena/ class="post_tag button button_translucent" data-position=1 title=aws-athena>AWS-ATHENA<span class=button_tally>1</span></a>
-<a href=https://kane.mx/tags/aws-cdk/ class="post_tag button button_translucent" data-position=14 title=aws-cdk>AWS-CDK<span class=button_tally>14</span></a>
+<a href=https://kane.mx/tags/aws-cdk/ class="post_tag button button_translucent" data-position=15 title=aws-cdk>AWS-CDK<span class=button_tally>15</span></a>
 <a href=https://kane.mx/tags/aws-cloudformation/ class="post_tag button button_translucent" data-position=2 title=aws-cloudformation>AWS-CLOUDFORMATION<span class=button_tally>2</span></a>
 <a href=https://kane.mx/tags/aws-ecr/ class="post_tag button button_translucent" data-position=1 title=aws-ecr>AWS-ECR<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/aws-ecs/ class="post_tag button button_translucent" data-position=1 title=aws-ecs>AWS-ECS<span class=button_tally>1</span></a>
@@ -196,8 +198,10 @@ Argo CD 和 Flux 的对比。<a href=/posts/gitops/flux-in-action-1/>后续将�
 <a href=https://kane.mx/tags/nft/ class="post_tag button button_translucent" data-position=1 title=nft>NFT<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/nginx/ class="post_tag button button_translucent" data-position=1 title=nginx>NGINX<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/npm/ class="post_tag button button_translucent" data-position=1 title=npm>NPM<span class=button_tally>1</span></a>
+<a href=https://kane.mx/tags/oas/ class="post_tag button button_translucent" data-position=1 title=oas>OAS<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/oauth2/ class="post_tag button button_translucent" data-position=2 title=oauth2>OAUTH2<span class=button_tally>2</span></a>
 <a href=https://kane.mx/tags/oh-my-zsh/ class="post_tag button button_translucent" data-position=1 title=oh-my-zsh>OH-MY-ZSH<span class=button_tally>1</span></a>
+<a href=https://kane.mx/tags/openapi/ class="post_tag button button_translucent" data-position=1 title=openapi>OPENAPI<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/openid/ class="post_tag button button_translucent" data-position=1 title=openid>OPENID<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/openid-connect/ class="post_tag button button_translucent" data-position=1 title=openid-connect>OPENID-CONNECT<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/openswan/ class="post_tag button button_translucent" data-position=1 title=openswan>OPENSWAN<span class=button_tally>1</span></a>
@@ -220,7 +224,7 @@ Argo CD 和 Flux 的对比。<a href=/posts/gitops/flux-in-action-1/>后续将�
 <a href=https://kane.mx/tags/s3/ class="post_tag button button_translucent" data-position=1 title=s3>S3<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/salzburg/ class="post_tag button button_translucent" data-position=3 title=salzburg>SALZBURG<span class=button_tally>3</span></a>
 <a href=https://kane.mx/tags/seo/ class="post_tag button button_translucent" data-position=1 title=seo>SEO<span class=button_tally>1</span></a>
-<a href=https://kane.mx/tags/serverless/ class="post_tag button button_translucent" data-position=7 title=serverless>SERVERLESS<span class=button_tally>7</span></a>
+<a href=https://kane.mx/tags/serverless/ class="post_tag button button_translucent" data-position=8 title=serverless>SERVERLESS<span class=button_tally>8</span></a>
 <a href=https://kane.mx/tags/serverless-computing/ class="post_tag button button_translucent" data-position=6 title=serverless-computing>SERVERLESS-COMPUTING<span class=button_tally>6</span></a>
 <a href=https://kane.mx/tags/service-catalog/ class="post_tag button button_translucent" data-position=1 title=service-catalog>SERVICE-CATALOG<span class=button_tally>1</span></a>
 <a href=https://kane.mx/tags/service-mesh/ class="post_tag button button_translucent" data-position=1 title=service-mesh>SERVICE-MESH<span class=button_tally>1</span></a>
