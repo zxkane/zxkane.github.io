@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RCP on The road</title><link>https://kane.mx/tags/rcp/</link><description>Recent content in RCP on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 09 Mar 2007 13:46:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/rcp/index.xml" rel="self" type="application/rss+xml"/><item><title>[Eclipse]get rid of the menus of eclipse platform</title><link>https://kane.mx/posts/archive/blogspot/get-rid-of-menus-of-eclipse-platform/</link><pubDate>Fri, 09 Mar 2007 13:46:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/get-rid-of-menus-of-eclipse-platform/</guid><description>
-When you develop a rich client application base on eclipse framework, and your application require eclipse platform feature, you would find that your application has some menu items contributed by eclipse platform. Those menu items are defined by several plug-ins' implementation of actionSet extention point. In fact Eclipse provides an activity mechanism to suppress the extension points which you don't want to use. However, you must know the identification name of extension points which you want to suppress.
+&lt;p>When you develop a rich client application base on eclipse framework, and your application require eclipse platform feature, you would find that your application has some menu items contributed by eclipse platform. Those menu items are defined by several plug-ins' implementation of actionSet extention point. In fact Eclipse provides an activity mechanism to suppress the extension points which you don't want to use. However, you must know the identification name of extension points which you want to suppress. It's a hard work to find out all of them from dozens of plugins. so, I wrote a utility function to list all the extension points of specified name.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/get-rid-of-menus-of-eclipse-platform/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse]Eclipse update support</title><link>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</link><pubDate>Wed, 17 Jan 2007 13:51:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</guid><description>
-Those days my work is focus on eclipse's update. Now I understand the general mechanism and meet some issues when using it in development work.
-The update mechanism includes four major types: install, enable, disable and uninstall. And all of those operations can be executed by command line, such as installing a feature can use following line:
--application org.eclipse.update.core.standaloneUpdate -command install -featureId my.feature -version 1.0.0 -from file:/v:/local_updateSite/ -to file:/v:/eclipse/.
-The installation process would copy the feature and plugins which are included by the feature to the local site from the update site, then execute the feature's global install handler if it has one.
+&lt;p>Those days my work is focus on eclipse's update. Now I understand the general mechanism and meet some issues when using it in development work.&lt;/p>
+&lt;p>The update mechanism includes four major types: install, enable, disable and uninstall. And all of those operations can be executed by command line, such as installing a feature can use following line:&lt;br>
+-application org.eclipse.update.core.standaloneUpdate -command install -featureId my.feature -version 1.0.0 -from file:/v:/local_updateSite/ -to file:/v:/eclipse/.&lt;br>
+The installation process would copy the feature and plugins which are included by the feature to the local site from the update site, then execute the feature's global install handler if it has one.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/eclipse-update-support/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse]The call sequence between partActivated and menu update</title><link>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</link><pubDate>Thu, 19 Oct 2006 12:42:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</guid><description>
-I met a defect that dynamically created menu items disappear after creating a new viewPart. It caused me overtime last Friday. Today I find the root cause.
-The scenario is:
-open first document, the items are shown well
-open another document, the items disappear
-The requirement is that showing the menu items while current part is document, otherwise hide them.
-So our implementation is:
-when current document part is deactivated, set menu items invisible
+&lt;p>I met a defect that dynamically created menu items disappear after creating a new viewPart. It caused me overtime last Friday. Today I find the root cause.&lt;/p>
+&lt;p>The scenario is:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>open first document, the items are shown well&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>open another document, the items disappear&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>The requirement is that showing the menu items while current part is document, otherwise hide them.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

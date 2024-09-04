@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Maven on The road</title><link>https://kane.mx/tags/maven/</link><description>Recent content in Maven on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 08 Nov 2011 16:16:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/maven/index.xml" rel="self" type="application/rss+xml"/><item><title>The tips of Maven/Tycho building crossplatform RCP and repository</title><link>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</link><pubDate>Tue, 08 Nov 2011 16:16:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</guid><description>
-I successfully converted our product build from PDE build to Maven/Tycho. Something is worth to be documented here.
-There are several examples and posts to demonstrate how using Tycho building your Eclipse plug-ins, features, applications and products. The most helpful example is the demo of Tycho project.
-Below are some traps I met when building my project by Tycho,
-product build
-Our product is based on plug-ins, however we added the 'featurelist' in build.
+&lt;p>I successfully converted our product build from PDE build to Maven/Tycho. Something is worth to be documented here.&lt;/p>
+&lt;p>There are several examples and posts to demonstrate how using Tycho building your Eclipse plug-ins, features, applications and products. The most helpful example is the &lt;a href="http://git.eclipse.org/c/tycho/org.eclipse.tycho.git/tree/tycho-demo">demo&lt;/a> of Tycho project.&lt;/p>
+&lt;p>Below are some traps I met when building my project by Tycho,&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>product build&lt;/strong>&lt;br>
+Our product is based on plug-ins, however we added the '&lt;strong>featurelist&lt;/strong>' in build.properties of PDE build to include some root binary for the product. However Tycho doesn't support this type of build, we create some features as the placeholder of plug-ins. Then change the product as features based. You have to manually remove the &lt;strong>plugins&lt;/strong> tag in .product definition file, otherwise Tycho will fail on strange error if the .produce has both &lt;strong>features&lt;/strong> and &lt;strong>plugins&lt;/strong> tag. Then configure the director plugin as not installing features.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

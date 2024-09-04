@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Profile on The road</title><link>https://kane.mx/tags/profile/</link><description>Recent content in Profile on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 28 Dec 2010 11:33:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/profile/index.xml" rel="self" type="application/rss+xml"/><item><title>Inside P2's profile (2) - the fragment matches all osgi bundles</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</link><pubDate>Tue, 28 Dec 2010 11:33:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid><description>
-Recently our installer met a strange bug, it didn't uninstall all legacy bundles after updating to new version. Finally I found it's due to a magic fragment is missing in the profile due to some causes.
-installBundle(bundle:${artifact})
-uninstallBundle(bundle:${artifact})
-setStartLevel(startLevel:4);
-It has 'hostRequirements' element that represents it's a fragment IU and match all the eclipse's plug-ins in that profile. And this fragment defines the touch point actions for its hosts that will do installBundle action during 'install' phrase and uninstallBundle action during 'uninstall' phrase.
+&lt;p>Recently our installer met a strange bug, it didn't uninstall all legacy bundles after updating to new version. Finally I found it's due to a magic fragment is missing in the profile due to some causes.&lt;/p>
+&lt;p>    &lt;unit id='tooling.osgi.bundle.default' version='1.0.0' singleton='false'>&lt;br>
+      &lt;hostRequirements size='1'>&lt;br>
+        &lt;required namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' range='0.0.0' multiple='true' greedy='false'/>&lt;br>
+      &lt;/hostRequirements>&lt;br>
+      &lt;properties size='1'>&lt;br>
+        &lt;property name='org.eclipse.equinox.p2.type.fragment' value='true'/>&lt;br>
+      &lt;/pr
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/">Read More&lt;/a>&lt;/p></description></item><item><title>Inside P2's profile (1) - inclusion rules</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</link><pubDate>Tue, 28 Dec 2010 11:13:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid><description>
-You would see some interesting properties at the bottom of eclipse's profile.
-For example,
-It attaches a property named 'org.eclipse.equinox.p2.internal.inclusion.rules' with value 'STRICT' on the IU 'org.eclipse.sdk.ide' with version 3.6.1.M20100909-0800.
-It's a very important property for the p2 engine. It means the IU 'org.eclipse.sdk.ide' has been explicitly installed into the profile, so it's not allowed be implicitly updated or removed.
-For example,
-We have top feature IU 'org.eclipse.sdk.ide' that represents the Eclipse SDK, 'org.
+&lt;p>You would see some interesting properties at the bottom of eclipse's profile.&lt;/p>
+&lt;p>For example,&lt;/p>
+&lt;iuProperties id='org.eclipse.sdk.ide' version='3.6.1.M20100909-0800'>
+      &lt;properties size='2'>
+        &lt;property name='org.eclipse.equinox.p2.internal.inclusion.rules' value='STRICT'/>
+      &lt;/properties>
+&lt;/iuProperties>
+&lt;p>It attaches a property named 'org.eclipse.equinox.p2.internal.inclusion.rules' with value 'STRICT' on the IU 'org.eclipse.sdk.ide' with version 3.6.1.M20100909-0800.&lt;br>
+ &lt;br>
+It's a very important property for the p2 engine. It means the IU 'org.eclipse.sdk.ide' has been explicitly installed into the profile, so it's not allowed be implicitly updated or removed.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

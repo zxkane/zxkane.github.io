@@ -1,31 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on The road</title><link>https://kane.mx/posts/</link><description>Recent content in Posts on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 17 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Analyzing Clickstream Events Using Amazon Athena UDFs</title><link>https://kane.mx/posts/2024/analyzing-clickstream-events-using-amazon-athena-udfs/</link><pubDate>Sat, 17 Aug 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/analyzing-clickstream-events-using-amazon-athena-udfs/</guid><description>
-In today's digital age, businesses are constantly seeking ways to understand and analyze user behavior on their websites. Clickstream events provide valuable insights into how users interact with a website, and analyzing this data can help businesses make informed decisions to improve user experience and drive conversions.
-Clickstream Analytics on AWS collects, ingests, analyzes, and visualizes clickstream events from your websites and mobile applications. The solution manages an ingestion endpoint to receive clickstream events, which are multiple events in a batch sent by the solution‘s SDKs.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on The road</title><link>https://kane.mx/posts/</link><description>Recent content in Posts on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 04 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Deep dive clickstream analytic series: Serverless web console</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</link><pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</guid><description>
+&lt;p>This post explores the &lt;a href="https://docs.aws.amazon.com/solutions/latest/clickstream-analytics-on-aws/how-the-solution-works.html#web-console">web console&lt;/a> module of the &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>.&lt;/p>
+&lt;p>The web console allows users to create and manage projects with their data pipeline, which ingests, processes, analyzes, and visualizes clickstream data. In version 1.1, the &lt;a href="https://docs.aws.amazon.com/solutions/latest/clickstream-analytics-on-aws/analytics-studio.html">Analytics Studio&lt;/a> was introduced for &lt;strong>business analysts&lt;/strong>, enabling them to view metrics dashboards, explore clickstream data, design customized dashboards, and manage metadata without requiring in-depth knowledge of data warehouses and SQL.&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/">Read More&lt;/a>&lt;/p></description></item><item><title>How to build a clickstream analytic system for small businesses to large-scale events</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/preface/</link><pubDate>Tue, 03 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/preface/</guid><description>
+&lt;p>In the last couple of months, I led a team to build a comprehensive and open-sourced &lt;a href="https://aws.amazon.com/solutions/implementations/clickstream-analytics-on-aws/">solution&lt;/a> that helps customers analyze clickstream events on the cloud. The solution provides data autonomy, allowing users full access to raw data, near real-time ingestion, flexible configurations, and cost-effectiveness. It is a system that utilizes serverless services to cater to various customers, whether small businesses or large-scale events with massive data volumes, offering fully managed services with minimal operational efforts or the flexibility to use preferred open-source technical stacks.&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">Read More&lt;/a>&lt;/p></description></item><item><title>Analyzing Clickstream Events Using Amazon Athena UDFs</title><link>https://kane.mx/posts/2024/analyzing-clickstream-events-using-amazon-athena-udfs/</link><pubDate>Sat, 17 Aug 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/analyzing-clickstream-events-using-amazon-athena-udfs/</guid><description>
+&lt;p>In today's digital age, businesses are constantly seeking ways to understand and analyze user behavior on their websites. Clickstream events provide valuable insights into how users interact with a website, and analyzing this data can help businesses make informed decisions to improve user experience and drive conversions.&lt;/p>
+&lt;p>&lt;a href="https://aws.amazon.com/solutions/implementations/clickstream-analytics-on-aws/">Clickstream Analytics on AWS&lt;/a> collects, ingests, analyzes, and visualizes clickstream events from your websites and mobile applications. The solution manages an &lt;a href="https://docs.aws.amazon.com/solutions/latest/clickstream-analytics-on-aws/ingestion-endpoint.html">ingestion endpoint&lt;/a> to receive clickstream events, which are multiple events in a batch sent by the solution‘s SDKs.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2024/analyzing-clickstream-events-using-amazon-athena-udfs/">Read More&lt;/a>&lt;/p></description></item><item><title>Scan Your Code with Ephemeral SonarQube in GitHub Actions</title><link>https://kane.mx/posts/2024/scan-your-code-with-ephemeral-sonarqube-in-github-actions/</link><pubDate>Sun, 12 May 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/scan-your-code-with-ephemeral-sonarqube-in-github-actions/</guid><description>
-As developers, we all know the importance of maintaining high code quality standards. One powerful tool that can help us achieve this is SonarQube, a renowned platform for continuous code quality inspection. However, setting up and maintaining a dedicated SonarQube instance can be a cumbersome task, requiring significant resources and ongoing maintenance.
-Fortunately, GitHub Actions offers a convenient solution by allowing us to spin up an ephemeral (short-lived) SonarQube instance directly within our workflow.
+&lt;p>As developers, we all know the importance of maintaining high code quality standards. One powerful tool that can help us achieve this is &lt;a href="https://www.sonarsource.com/products/sonarqube/">SonarQube&lt;/a>, a renowned platform for continuous code quality inspection. However, setting up and maintaining a dedicated SonarQube instance can be a cumbersome task, requiring significant resources and ongoing maintenance.&lt;/p>
+&lt;p>Fortunately, GitHub Actions offers a convenient solution by allowing us to spin up an ephemeral (short-lived) SonarQube instance directly within our workflow. This approach streamlines the process, eliminating the need for a permanent SonarQube server while still reaping the benefits of its code analysis capabilities.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2024/scan-your-code-with-ephemeral-sonarqube-in-github-actions/">Read More&lt;/a>&lt;/p></description></item><item><title>Avoiding Pitfalls When Using Amazon DynamoDB Interface VPC Endpoints</title><link>https://kane.mx/posts/2024/dynamodb-interface-vpc-endpoint/</link><pubDate>Sat, 04 May 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/dynamodb-interface-vpc-endpoint/</guid><description>
-Amazon DynamoDB now supports AWS PrivateLink as of March 19, 2024. This feature allows you to securely access DynamoDB from your Amazon Virtual Private Cloud (VPC) without exposing your traffic to the public internet.
-However, unlike VPC endpoints for other AWS managed services, the AWS PrivateLink for Amazon DynamoDB does not support the Private DNS feature. This means that if your subnets are configured with only a DynamoDB Interface VPC endpoint, the public DNS name of the DynamoDB service (e.
+&lt;p>&lt;a href="https://aws.amazon.com/about-aws/whats-new/2024/03/amazon-dynamodb-aws-privatelink/">Amazon DynamoDB now supports AWS PrivateLink&lt;/a> as of March 19, 2024. This feature allows you to securely access DynamoDB from your Amazon Virtual Private Cloud (VPC) without exposing your traffic to the public internet.&lt;/p>
+&lt;p>However, unlike &lt;a href="https://docs.aws.amazon.com/whitepapers/latest/aws-privatelink/what-are-vpc-endpoints.html#interface-endpoints">VPC endpoints&lt;/a> for other AWS managed services, the AWS PrivateLink for Amazon DynamoDB does not support the &lt;a href="https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html#endpoint-service-private-dns">Private DNS&lt;/a> feature. This means that if your subnets are configured with only a DynamoDB Interface VPC endpoint, the public DNS name of the DynamoDB service (e.g., &lt;code>dynamodb.us-east-1.amazonaws.com&lt;/code> in the &lt;code>us-east-1&lt;/code> region) cannot be resolved in those subnets.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2024/dynamodb-interface-vpc-endpoint/">Read More&lt;/a>&lt;/p></description></item><item><title>Redshift Serverless: Cost Deep Dive and Use Cases</title><link>https://kane.mx/posts/2024/redshift-serverless-cost-deep-dive/</link><pubDate>Sat, 24 Feb 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/redshift-serverless-cost-deep-dive/</guid><description>
-Serverless computing is all the rage, promising pay-as-you-go magic and freedom from infrastructure woes. But what about serverless for data warehouses? Let's delve into the fascinating (and sometimes confusing) world of Redshift Serverless: its cost structure, ideal use cases, and situations where it might not be the best fit.
-Cost Breakdown: Beyond the Illusion of Free Redshift Serverless offers a compelling promise: only pay for what you use. But like any good magic trick, there's more to the story.
+&lt;p>Serverless computing is all the rage, promising pay-as-you-go magic and freedom from infrastructure woes. But what about serverless for data warehouses? Let's delve into the fascinating (and sometimes confusing) world of &lt;strong>&lt;a href="https://aws.amazon.com/redshift/redshift-serverless/">Redshift Serverless&lt;/a>&lt;/strong>: its cost structure, ideal use cases, and situations where it might not be the best fit.&lt;/p>
+&lt;h2 id="cost-breakdown-beyond-the-illusion-of-free">Cost Breakdown: Beyond the Illusion of Free&lt;/h2>
+&lt;p>Redshift Serverless offers a compelling promise: only pay for what you use. But like any good magic trick, there's more to the story. Here's the primary cost breakdown:&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2024/redshift-serverless-cost-deep-dive/">Read More&lt;/a>&lt;/p></description></item><item><title>Custom compliance implementation in AWS CDK</title><link>https://kane.mx/posts/2024/custom-compliance-for-aws-cdk/</link><pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/custom-compliance-for-aws-cdk/</guid><description>
-AWS CDK accelerates cloud development using common programming languages to model your applications. I had a series of posts using CDK to demonstrate Building serverless web applications with AWS Serverless. Because CDK uses a programming language to model your application, you can encapsulate your library via Constructs, and then reuse it crossing the entire application.
-Meanwhile, you can create your own constructs to encapsulate the compliance requirements to simplify the code.
+&lt;p>&lt;a href="https://aws.amazon.com/cdk/?nc1=h_ls">AWS CDK&lt;/a> accelerates cloud development using common programming languages to model your applications. I had a series of posts using CDK to demonstrate &lt;a href="https://kane.mx/posts/2022/build-serverless-app-on-aws/intro/">Building serverless web applications with AWS Serverless&lt;/a>. Because CDK uses a programming language to model your application, you can encapsulate your library via &lt;a href="https://docs.aws.amazon.com/cdk/v2/guide/constructs.html">Constructs&lt;/a>, and then reuse it crossing the entire application.&lt;/p>
+&lt;p>Meanwhile, you can create your own constructs to encapsulate the compliance requirements to simplify the code. For example, in our solution, I used the construct &lt;code>SolutionFunction&lt;/code> to force using the same Node.js version(18.x), architecture(ARM64), Lambda logging configuration(JSON log), environment variables for &lt;a href="https://docs.powertools.aws.dev/lambda/typescript/latest/core/logger/">Powertools Logger&lt;/a> and so on crossing all &lt;code>NodejsFunction&lt;/code>. In addition, using &lt;a href="https://docs.aws.amazon.com/cdk/v2/guide/aspects.html">Aspects&lt;/a> and &lt;a href="https://docs.aws.amazon.com/cdk/v2/guide/cfn_layer.html">escape hatches&lt;/a> to make sure the application meets the compliance requirements.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2024/custom-compliance-for-aws-cdk/">Read More&lt;/a>&lt;/p></description></item><item><title>Awesome AWS CLI</title><link>https://kane.mx/posts/2024/awscli-collection/</link><pubDate>Sun, 07 Jan 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/awscli-collection/</guid><description>
-Disclaimer: the cover image was generated by Amazon Bedrock's Titan Image Generator G1.
-AWS CLI is a swiss knife for orchestrating the operations of AWS resources. Especially, the filter option could help your filter and transform the output then combine with other Linux commands together.
-This post collects the CLI usages to resolve my AWS operation needs.
-Delete the legacy versions of a service catalog product AWS Service Catalog has default 100 versions per product.
+&lt;blockquote>
+&lt;p>&lt;strong>Disclaimer&lt;/strong>: the cover image was generated by Amazon Bedrock's Titan Image Generator G1.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;a href="https://aws.amazon.com/cli/">AWS CLI&lt;/a> is a swiss knife for orchestrating the operations of AWS resources. Especially, the filter option could help your filter and transform the output then combine with other Linux commands together.&lt;/p>
+&lt;p>This post collects the CLI usages to resolve my AWS operation needs.&lt;/p>
+&lt;h3 id="delete-the-legacy-versions-of-a-service-catalog-product">Delete the legacy versions of a service catalog product&lt;/h3>
+&lt;p>AWS Service Catalog has &lt;a href="https://docs.aws.amazon.com/servicecatalog/latest/adminguide/limits.html">default 100 versions per product&lt;/a>. Below is a one line command to delete the legacy versions.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2024/awscli-collection/">Read More&lt;/a>&lt;/p></description></item><item><title>Build serverless web application with AWS Lambda web adapter</title><link>https://kane.mx/posts/2023/build-serverless-web-application-with-aws-lambda-web-adapter/</link><pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2023/build-serverless-web-application-with-aws-lambda-web-adapter/</guid><description>
-Disclaimer: the cover image was generated by StableDiffusionXL with prompts 'cover image, spring boot, flask framework running in aws lambda'.
-When deploying and operating a web application on the cloud, you prefer to use your favorite programming language and web framework. Also, you want to benefit from Serverless technologies for stability, scalability, cost optimization, and operation excellence.
-AWS Lambda Web Adapter is a tool that perfectly meets your expectations. It lifts and shifts the web application based on your preferred language and web framework, including FastAPI, Flask, Django, Express.
+&lt;blockquote>
+&lt;p>&lt;strong>Disclaimer&lt;/strong>: the cover image was generated by StableDiffusionXL with prompts 'cover image, spring boot, flask framework running in aws lambda'.&lt;/p>
+&lt;/blockquote>
+&lt;p>When deploying and operating a web application on the cloud, you prefer to use your favorite programming language and web framework. Also, you want to benefit from Serverless technologies for stability, scalability, cost optimization, and operation excellence.&lt;/p>
+&lt;p>&lt;a href="https://github.com/awslabs/aws-lambda-web-adapter">AWS Lambda Web Adapter&lt;/a> is a tool that perfectly meets your expectations. It lifts and shifts the web application based on your preferred language and web framework, including FastAPI, Flask, Django, Express.js, Next.js, Spring Boot, Nginx, PHP, Rust, Golang Gin, Laravel, ASP.NET, and so on! You don't have to change any code to migrate your application to Lambda runtime. It also supports WebSocket and streaming features that work well with your LLM applications.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2023/build-serverless-web-application-with-aws-lambda-web-adapter/">Read More&lt;/a>&lt;/p></description></item><item><title>Verbose logging for AWS JS SDK v3</title><link>https://kane.mx/posts/2023/aws-js-sdk-v3-verbose-logging/</link><pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2023/aws-js-sdk-v3-verbose-logging/</guid><description>
-When programming with the AWS SDK, developers sometimes want to debug a specific HTTP request when invoking an SDK API. Due to the poor documentation of AWS JS SDK v3, it takes a lot of work to find a way to print the verbose logging of AWS SDK by asking it to the LLMs.
-Below is a practical tip for enabling verbose logging for AWS JS SDK v3.
-Solution 1 - specify a custom logger for AWS SDK clients 1import { DescribeParametersCommand, SSMClient } from &amp;#34;@aws-sdk/client-ssm&amp;#34;; 2import * as log4js from &amp;#34;log4js&amp;#34;; 3 4log4js.
+&lt;p>When programming with the AWS SDK, developers sometimes want to debug a specific HTTP request when invoking an SDK API. Due to the &lt;a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-types/Interface/LoggerOptions/">poor documentation&lt;/a> of AWS JS SDK v3, it takes a lot of work to find a way to print the verbose logging of AWS SDK by asking it to the LLMs.&lt;/p>
+&lt;p>Below is a practical tip for enabling verbose logging for AWS JS SDK v3.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2023/aws-js-sdk-v3-verbose-logging/">Read More&lt;/a>&lt;/p></description></item><item><title>Define your API via OpenAPI definition on AWS</title><link>https://kane.mx/posts/2022/import-oas-as-api-on-aws/</link><pubDate>Thu, 27 Oct 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2022/import-oas-as-api-on-aws/</guid><description>
 &lt;p>Application Programming Interfaces(APIs) is a critical part of the web service, Werner Vogel, the CTO of AWS had a great
 &lt;a href="https://thenewstack.io/werner-vogels-6-rules-for-good-api-design/">6 Rules for Good API Design&lt;/a> presentation in 2021 re:Invent keynote.&lt;/p>
@@ -244,7 +254,15 @@ to kinds of package registries, such as npmjs, pypi and maven central.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2019/aws-batch/">Read More&lt;/a>&lt;/p></description></item><item><title>免费邮件转发服务</title><link>https://kane.mx/posts/2019/email-forwarding/</link><pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/email-forwarding/</guid><description>
 &lt;p>在拥有域名后，通常希望创建一些自有域名下的邮箱来收取不同用途的邮件，同时不希望为这部分功能付费&amp;#x1f603;。使用免费的企业邮箱(比如网易企业邮箱、阿里云企业邮箱)是一种选择。这时就需要配置邮件地址和邮件客户端来收取邮件，如果有多个邮箱地址，配置会特别麻烦。有时，这些企业邮箱的收件服务会莫名其妙的丢失一些邮件。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2019/email-forwarding/">Read More&lt;/a>&lt;/p></description></item><item><title>实战Aliyun EDAS应用迁移AWS</title><link>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</link><pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</guid><description>
-近期实践了将阿里云EDAS微服务应用迁移到AWS上，在这里分享一下迁移方案。 该方案涉及了以下三个方面， 微服务应用集群。在AWS上采用的ECS
+&lt;p>近期实践了将阿里云EDAS微服务应用迁移到AWS上，在这里分享一下迁移方案。&lt;/p>
+&lt;p>该方案涉及了以下三个方面，&lt;/p>
+&lt;ol>
+&lt;li>微服务应用集群。在AWS上采用的&lt;a href="https://aws.amazon.com/cn/ecs/">ECS&lt;/a>集群部署微服务应用，通过&lt;a href="https://aws.amazon.com/cn/cloud-map/">Cloudmap&lt;/a>实现服务注册发现，&lt;a href="https://aws.amazon.com/cn/app-mesh/">App Mesh&lt;/a>实现服务间流量控制。更加详尽的微服务迁移要点和对应方案，详见下面的deck。&lt;/li>
+&lt;li>Devops pipeline。使用托管的&lt;a href="https://aws.amazon.com/cn/codepipeline/">CodePipeline&lt;/a>，&lt;a href="https://aws.amazon.com/cn/codebuild/">CodeBuild&lt;/a>实现CI/CD。&lt;/li>
+&lt;li>Infra as Code。利用AWS强大的&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infra as Code&lt;/a>能力，将云上的基础设施和微服务应用编排通过&lt;a href="https://kane.mx/posts/2019/aws-cdk/">CDK&lt;/a>代码实现。&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>下面是迁移方案的deck。完整且可部署的PoC代码，点&lt;a href="https://github.com/zxkane/alibabacloud-microservice-demo">这里&lt;/a>。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2019/aliyun-edas-migration-in-action/">Read More&lt;/a>&lt;/p></description></item><item><title>AWS RDS数据库日志分析及展示</title><link>https://kane.mx/posts/2019/rds-log-analysis/</link><pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/rds-log-analysis/</guid><description>
 &lt;p>托管的RDS数据库已经是云计算服务中非常成熟的服务，绝大部分的云计算用户会采用RDS服务来提升数据库服务的可用性同时减少数据库的各类运维事务。&lt;/p>
 &lt;p>AWS RDS服务支持开启和查询各类的数据库日志，包括常规日志、慢日志、错误日志和审计日志。但RDS服务默认提供的日志查看工具仅仅类似文本查看器，无法针对日志数据做统计和查看历史滚动的存档。&lt;/p>
@@ -311,336 +329,441 @@ to kinds of package registries, such as npmjs, pypi and maven central.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/effective-cloud-computing/preface/">Read More&lt;/a>&lt;/p></description></item><item><title>2018北京ArchSummit回顾</title><link>https://kane.mx/posts/2018/2018-12-13-bj-archsummit-review/</link><pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2018/2018-12-13-bj-archsummit-review/</guid><description>
 &lt;p>上周参加了&lt;a href="https://bj2018.archsummit.com">ArchSummit(全球架构师峰会)&lt;/a>，在这里记录下部分参加的主题以及个人感受。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2018/2018-12-13-bj-archsummit-review/">Read More&lt;/a>&lt;/p></description></item><item><title>如何修复Jenkins CI无法读取存在的任务配置</title><link>https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/</link><pubDate>Wed, 12 Oct 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/</guid><description>
-V秘开发团队一直使用着Jenkins CI来持续集成V秘服务的新功能和各种改进。近日，Jenkins CI在重启之后，很多已有任务的配置无法被J
+&lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>开发团队一直使用着&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>来持续集成&lt;a href="https://vme360.com">V秘&lt;/a>服务的新功能和各种改进。近日，&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>在重启之后，很多已有任务的配置无法被&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>完整的加载，导致很多功能无法使用。导致我们整个网站的各种服务无法被升级更新了:-(&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/">Read More&lt;/a>&lt;/p></description></item><item><title>MongoDB中如何找出慢查询</title><link>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</link><pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</guid><description>
-MongoDB是目前最为流行的NoSQL数据库之一。V秘的后台数据就是保存在MongoDB中的哦;) 尽管MongoDB的性能为业界称道，但任
+&lt;p>&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>是目前最为流行的&lt;a href="https://en.wikipedia.org/wiki/NoSQL">NoSQL&lt;/a>数据库之一。&lt;a href="https://vme360.com">V秘&lt;/a>的后台数据就是保存在&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>中的哦;)&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/">Read More&lt;/a>&lt;/p></description></item><item><title>Docker Swarm mode(v1.12.x)的一些使用限制</title><link>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</link><pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</guid><description>
-Swarm mode在Docker v1.12中正式发布，Swarm mode带来了诸如Docker集群，容器编排，多主机网络等激动人心的特性。V秘团队也
+&lt;p>&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>在&lt;a href="https://www.docker.com">Docker&lt;/a> v1.12中正式发布，&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>带来了诸如Docker集群，容器编排，多主机网络等激动人心的特性。&lt;a href="https://vme360.com">V秘&lt;/a>团队也尝试着将各种后台服务部署到&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm Cluster&lt;/a>获取更好的弹性计算能力。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/">Read More&lt;/a>&lt;/p></description></item><item><title>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</title><link>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</link><pubDate>Tue, 13 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</guid><description>
-V秘团队一直致力于用技术改善产品。V秘后台的各种服务一直是通过完善的Devops流程自动部署到Docker容器集群。随着Swarm mode在
+&lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>团队一直致力于用技术改善产品。&lt;a href="https://vme360.com">V秘&lt;/a>后台的各种服务一直是通过完善的Devops流程自动部署到&lt;a href="https://www.docker.com">Docker&lt;/a>容器集群。随着&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>在&lt;a href="https://www.docker.com">Docker&lt;/a> v1.12中正式发布，&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>带来了诸如Docker集群，多主机网络等激动人心的特性。我们也在尝试将&lt;a href="https://vme360.com">V秘&lt;/a>服务部署到&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm Cluster&lt;/a>获取更好的弹性计算能力。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/">Read More&lt;/a>&lt;/p></description></item><item><title>基于Angularjs单页面应用的SEO优化</title><link>https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/</link><pubDate>Thu, 19 May 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/</guid><description>
-在之前的文章我曾提到基于Angularjs的单页面应用在用户体验上的种种好处。然而任何事情都不是完美的，Angular和类似的框架通过应用内
+&lt;p>在之前的&lt;a href="https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/">文章&lt;/a>我曾提到基于&lt;a href="https://angularjs.org/">Angularjs&lt;/a>的单页面应用在用户体验上的种种好处。然而任何事情都不是完美的，&lt;a href="https://angularjs.org/">Angular&lt;/a>和类似的框架通过应用内做页面路由的实现给SEO（也俗称搜索引擎优化）带来了不少麻烦。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/">Read More&lt;/a>&lt;/p></description></item><item><title>Spring框架下的分布式session管理</title><link>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</link><pubDate>Sat, 07 May 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</guid><description>
-在微服务和容器等技术的帮助下，Web应用可以较为容易的进行水平扩展，来部署更多的应用实例来提升请求处理数QPS。当Web服务有状态的时候，如
+&lt;p>在微服务和容器等技术的帮助下，Web应用可以较为容易的进行水平扩展，来部署更多的应用实例来提升请求处理数QPS。当Web服务有状态的时候，如何在集群下管理用户session成为新的待解决问题。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/clustered-session-under-spring-framework/">Read More&lt;/a>&lt;/p></description></item><item><title>V秘是如何构建的</title><link>https://kane.mx/posts/2016/how-we-build-videome/</link><pubDate>Thu, 07 Apr 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-we-build-videome/</guid><description>
-春天来了，V秘大家庭也新增了两位10后的传人。新爸爸经过一番忙乱后，希望在这里与大家分享V秘的架构，共同探讨如何快速的构建高可用，高性能的W
+&lt;p>春天来了，&lt;a href="https://vme360.com">V秘&lt;/a>大家庭也新增了两位10后的传人。新爸爸经过一番忙乱后，希望在这里与大家分享&lt;a href="https://vme360.com">V秘&lt;/a>的架构，共同探讨如何快速的构建高可用，高性能的Web服务。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/how-we-build-videome/">Read More&lt;/a>&lt;/p></description></item><item><title>说一说阿里云ossfs</title><link>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</link><pubDate>Fri, 26 Feb 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</guid><description>
-阿里云提供的对象或者文件存储叫OSS，为应用程序提供了海量存储，按需付费等服务。应用程序则需要通过Aliyun OSS的各语言SDK才能操作（
+&lt;p>阿里云提供的对象或者文件存储叫&lt;a href="https://www.aliyun.com/product/oss">OSS&lt;/a>，为应用程序提供了海量存储，按需付费等服务。应用程序则需要通过&lt;a href="https://www.aliyun.com/product/oss">Aliyun OSS&lt;/a>的各语言SDK才能操作（读，写，遍历等）OSS中的文件。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/aliyun-ossfs-sucks/">Read More&lt;/a>&lt;/p></description></item><item><title>如何使用微信公众平台的临时素材</title><link>https://kane.mx/posts/2016/weixin-temporary-materials/</link><pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/weixin-temporary-materials/</guid><description>
-微信给公众平台提供了素材管理的接口，通过这一系列接口可以上传，接收以及管理图片，视频等多媒体文件。其中又分为临时和永久两种类型。永久素材有总
+&lt;p>微信给公众平台提供了&lt;a href="http://mp.weixin.qq.com/wiki/15/2d353966323806a202cd2deaafe8e557.html">素材管理&lt;/a>的接口，通过这一系列接口可以上传，接收以及管理图片，视频等多媒体文件。其中又分为&lt;strong>临时&lt;/strong>和&lt;strong>永久&lt;/strong>两种类型。永久素材有总量的限制，临时素材微信服务器只给保存3天。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/weixin-temporary-materials/">Read More&lt;/a>&lt;/p></description></item><item><title>单页面应用(single page application)中使用微信支付</title><link>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</link><pubDate>Sun, 24 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</guid><description>
-随着AngularJS等前端MVC框架的流行，AJAX的异步请求数据结合H5的push state等特性，极大的改善了网站的用户体验和页面加载
+&lt;p>随着&lt;strong>AngularJS&lt;/strong>等前端MVC框架的流行，AJAX的异步请求数据结合H5的push state等特性，极大的改善了网站的用户体验和页面加载性能。这类网站应用通常只有一个入口页面，通过应用内路由到不同的页面，所以俗称单页面(signle page application)应用。页面&lt;strong>URL&lt;/strong>看起来如下，&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/">Read More&lt;/a>&lt;/p></description></item><item><title>文件系统的Inode耗尽，会导致Docker编译镜像出现'No space left on device'错误</title><link>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</link><pubDate>Thu, 21 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</guid><description>
-最近在提交前端代码后，前端代码的自动发布老是失败。失败的原因多是编译Docker镜像时在执行COPY语句拷贝文件到镜像文件系统时，扔出了'N
+&lt;p>最近在提交前端代码后，前端代码的自动发布老是失败。失败的原因多是编译Docker镜像时在执行&lt;code>COPY&lt;/code>语句拷贝文件到镜像文件系统时，扔出了'No space left on device'这个错误。这个错误根据描述非常好理解，就是docker文件系统所在磁盘没有了空间。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/">Read More&lt;/a>&lt;/p></description></item><item><title>Daemon hell in Jenkins</title><link>https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/</link><pubDate>Tue, 21 Jul 2015 09:32:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/</guid><description>
-Recently I wrote a Linux like initd script to start/stop my web application.
-The script works well when running it in shell of linux. The web application will run in background by daemon.
-However I found both daemon and web application(java) exited immediately if I started the script in Jenkins as a shell step of build process.
-I put below simple script in 'Execute shell' block,
-1daemon --name=test-daemon -- sleep 200sleep 60 The process 'daemon' and 'sleep 200' should exit after 200 seconds the 'sleep' exits.
+&lt;p>Recently I wrote a Linux like &lt;a href="https://gist.github.com/zxkane/b55033bd519334d57c13">initd script&lt;/a> to start/stop my web application.&lt;/p>
+&lt;p>The script works well when running it in shell of linux. The web application will run in background by daemon.&lt;/p>
+&lt;p>However I found both daemon and web application(java) exited immediately if I started the script in Jenkins as a shell step of build process.&lt;/p>
+&lt;p>I put below simple script in 'Execute shell' block,&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/">Read More&lt;/a>&lt;/p></description></item><item><title>The symptoms of Java broken in Mac OSX 10.10 and fix solution</title><link>https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/</link><pubDate>Mon, 13 Jul 2015 19:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/</guid><description>
-After uninstalling some applications from my Mac OSX, I found the applications that depends on JRE totally does not work. I noticed below symptoms,
-Eclipse Mars can not be launched, even though I specified the launching vm to another one(`java -version` still work). The SWT native library failed to resolve the dependencies to '/System/Library/Frameworks/JavaVM.framework/Versions/A/JavaVM' which does not exists. I tried to reinstall Oracle 1.8.0_u45 via both brew and dmg image downloaded from Oracle website, both ways were failed as well.
+&lt;p>After uninstalling some applications from my Mac OSX, I found the applications that depends on JRE totally does not work. I noticed below symptoms,&lt;/p>
+&lt;ol>
+&lt;li>Eclipse Mars can not be launched, even though I specified the launching vm to another one(`java -version` still work). The SWT native library failed to resolve the dependencies to '/System/Library/Frameworks/JavaVM.framework/Versions/A/JavaVM' which does not exists.&lt;/li>
+&lt;li>I tried to reinstall Oracle 1.8.0_u45 via both brew and dmg image downloaded from Oracle website, both ways were failed as well.&lt;/li>
+&lt;li>The Mac pkg Installer can not be started due to dylib broken. It means I can't install any pkg via GUI. The command line(such as &lt;code>sudo installer -verboseR -target / -pkg /Volumes/OS\ X\ 10.10.4\ Update\ Combo/OSXUpdCombo10.10.4.pkg&lt;/code>) still works.&lt;/li>
+&lt;/ol>
+&lt;p>Finally I realized the problem was caused by I uninstalled the out of date Apple Java 6. Looks like all of above failures are required the system built-in Java. It really does not make sense the Oracle 1.8 installer script to depend on the out of date Java.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/">Read More&lt;/a>&lt;/p></description></item><item><title>Run groovy script via Jenkins CLI</title><link>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</link><pubDate>Mon, 13 May 2013 13:44:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</guid><description>
-Jenkins supports ssh authentication in CLI.
-Below is a command to verify that I am authenticated:
-1 2java -jar jenkins-cli.jar -s http://myserver/jenkins who-am-i 3 4 Authenticated as: myuser 5 Authorities: 6 authenticated However you still would meet permission error when running groovy script in CLI.
-1 2java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &amp;#39;jenkins.model.Jenkins.instance.pluginManager.plugins.each { println(&amp;#34;${it.longName} - ${it.version}&amp;#34;) };&amp;#39; 3 4Exception in thread &amp;#34;main&amp;#34; java.lang.reflect.UndeclaredThrowableException 5at $Proxy2.main(Unknown Source) 6at hudson.cli.CLI.execute(CLI.java:271) 7at hudson.
+&lt;p>Jenkins supports &lt;a href="https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+SSH">ssh authentication&lt;/a> in CLI.&lt;/p>
+&lt;p>Below is a command to verify that I am authenticated:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">java -jar jenkins-cli.jar -s http://myserver/jenkins who-am-i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">    Authenticated as: myuser
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">    Authorities:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">        authenticated&lt;/span>&lt;/span>&lt;/code>&lt;/pr
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/">Read More&lt;/a>&lt;/p></description></item><item><title>Solr boost examples</title><link>https://kane.mx/posts/archive/blogspot/solr-boost-examples/</link><pubDate>Sat, 11 May 2013 13:16:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/solr-boost-examples/</guid><description>
-The index has a field named 'create_time' that is the timestamp of document created time. The query string can boost the latest created document like below,
-{!boost b=recip(ms(NOW,create_time),3.16e-11,0.08,0.05)}name:keyword
-There is another field named 'important' that indicates whether the document is important or not. The query string can boost the document is important like below,
-q={!boost b=$importfunc}name:keyword&amp;amp;importfunc=query({!v='important:true'})
-Above query string uses a sub query in boost function.
-Finally I want to boost both above two fields, and 'important' field has higher priority.
+&lt;p>The index has a field named 'create_time' that is the timestamp of document created time. The query string can boost the latest created document like below,&lt;/p>
+&lt;p>{!boost b=recip(ms(NOW,create_time),3.16e-11,0.08,0.05)}name:keyword&lt;/p>
+&lt;p>There is another field named 'important' that indicates whether the document is important or not. The query string can boost the document is important like below,&lt;/p>
+&lt;p>q={!boost b=$importfunc}name:keyword&amp;amp;importfunc=query({!v='important:true'})&lt;/p>
+&lt;p>Above query string uses a sub query in boost function.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/solr-boost-examples/">Read More&lt;/a>&lt;/p></description></item><item><title>Django's unicdoe encode error</title><link>https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/</link><pubDate>Thu, 16 Aug 2012 09:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/</guid><description>
-It's a common and ugly problem when using non-ascii characters in Django.
-The general solution is below,
-put # -- coding: utf-8 -- at beginning of every python source files that are using utf-8 characters declare every string variable as unicode, such as str_var = u'中文字符' add a __unicode__ method in your model classes if you are running server on apache/mod_wsgi or ngnix, you need configure web server to use utf-8 encoding
+&lt;p>It's a common and ugly problem when using non-ascii characters in Django.&lt;/p>
+&lt;p>The general solution is below,&lt;/p>
+&lt;ol>
+&lt;li>put &lt;strong># -&lt;em>- coding: utf-8 -&lt;/em>-&lt;/strong> at beginning of every python source files that are using utf-8 characters&lt;/li>
+&lt;li>declare every string variable as unicode, such as &lt;strong>str_var = u'中文字符'&lt;/strong>&lt;/li>
+&lt;li>add &lt;a href="https://docs.djangoproject.com/en/1.4/ref/models/instances/#django.db.models.Model.__unicode__">a __unicode__&lt;/a> method in your model classes&lt;/li>
+&lt;li>if you are running server on apache/mod_wsgi or ngnix, you need &lt;a href="https://docs.djangoproject.com/en/1.4/howto/deployment/modpython/#if-you-get-a-unicodeencodeerror">configure web server to use utf-8 encoding&lt;/a>&lt;/li>
+&lt;/ol>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/">Read More&lt;/a>&lt;/p></description></item><item><title>The workaround of making Zend CE/Zend debugger work on mountain lion</title><link>https://kane.mx/posts/archive/blogspot/workaround-of-making-zend-ce-mountain-lion/</link><pubDate>Sat, 28 Jul 2012 20:49:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/workaround-of-making-zend-ce-mountain-lion/</guid><description>
-I installed both Zend CE and zend debugger of Eclipse on my Mac. Both of them work well in Mac lion. However they don't work any more after I upgraded my Mac to mountain lion. After some investigation I found some extensions of Zend PHP can't be loaded due to shared library dependency can't be found in mountain lion. The xslt module of PHP depends on some system libraries(suc as /usr/local/libxslt-1.
+&lt;p>I installed both Zend CE and zend debugger of Eclipse on my Mac. Both of them work well in Mac lion.  However they don't work any more after I upgraded my Mac to mountain lion. &lt;/p>
+&lt;p>After some investigation I found some extensions of Zend PHP can't be loaded due to shared library dependency can't be found in mountain lion. The &lt;strong>xslt&lt;/strong> module of PHP depends on some system libraries(suc as /usr/local/libxslt-1.1.23/lib/libxslt.1.dylib) that have been removed by mountain lion.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/workaround-of-making-zend-ce-mountain-lion/">Read More&lt;/a>&lt;/p></description></item><item><title>Dual monitors on Ubuntu</title><link>https://kane.mx/posts/archive/blogspot/dual-monitors-on-ubuntu/</link><pubDate>Mon, 19 Mar 2012 20:04:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/dual-monitors-on-ubuntu/</guid><description>
-I had two monitors for my workstation. One is 22' and the another is 17'. I used the small one as a extend desktop.
-Today I get a another 23' monitor to replace the small one. However the resolution of the 23' monitor can't be changed after pluging it in. It always used the resolution matching the 17' one.
-Both 'Setting - Display' and 'AMD Catalyst control' can't adjust it as higher resolution.
+&lt;p>I had two monitors for my workstation. One is 22' and the another is 17'. I used the small one as a extend desktop.&lt;/p>
+&lt;p>Today I get a another 23' monitor to replace the small one. However the resolution of the 23' monitor can't be changed after pluging it in. It always used the resolution matching the 17' one.&lt;/p>
+&lt;p>Both 'Setting - Display' and 'AMD Catalyst control' can't adjust it as higher resolution.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/dual-monitors-on-ubuntu/">Read More&lt;/a>&lt;/p></description></item><item><title>Embedding an HTTP server in Equinox</title><link>https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/</link><pubDate>Mon, 05 Mar 2012 19:25:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/</guid><description>
-I want to create a test server for my application. Using embedding Http server in equinox is my first option.
-I had experience using simple http service implementation of equinox, however I want to play with Jetty this time.
-Following the guide of Equinox server, I can't running a Jetty server with my servlet in Eclipse Indigo. Obviously the guide is out of date.
-After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.
+&lt;p>I want to create a test server for my application. Using embedding Http server in equinox is my first option.&lt;/p>
+&lt;p>I had experience using simple http service implementation of equinox, however I want to play with Jetty this time.&lt;/p>
+&lt;p>Following &lt;a href="http://www.eclipse.org/equinox/server/http_in_equinox.php">the guide&lt;/a> of Equinox server, I can't running a Jetty server with my servlet in Eclipse Indigo. Obviously &lt;a href="http://www.eclipse.org/equinox/server/http_in_equinox.php">the guide&lt;/a> is out of date.&lt;/p>
+&lt;p>After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.&lt;br>
+&lt;script src="https://gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi">&lt;/script>
+&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/">Read More&lt;/a>&lt;/p></description></item><item><title>Acess Intranet without VPN</title><link>https://kane.mx/posts/archive/blogspot/acess-intranet-without-vpn/</link><pubDate>Fri, 17 Feb 2012 17:47:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/acess-intranet-without-vpn/</guid><description>
-Sometimes I need access the Intranet of company, however I don't like to create VPN connection. The connection is slow, waste time to create the connection and have to change password due to security policy.
-My workstation is Linux, which has a lot of utility tools to help me access Intranet at home without VPN.
-Firstly I set up a ssh server on my personal computer. It's quite easy if you are using Linux, for Windows I installed Copssh.
+&lt;p>Sometimes I need access the Intranet of company, however I don't like to create VPN connection. The connection is slow, waste time to create the connection and have to change password due to security policy.&lt;/p>
+&lt;p>My workstation is Linux, which has a lot of utility tools to help me access Intranet at home without VPN.&lt;/p>
+&lt;p>Firstly I set up a ssh server on my personal computer. It's quite easy if you are using Linux, for Windows I installed &lt;a href="https://www.itefix.no/i2/copssh">Copssh&lt;/a>.&lt;br>
+Then register a free domain name and configure it in my router. And let router forward port &lt;code>22&lt;/code>(or any port you wan to use) to my personal computer.&lt;br>
+In my working Linux machine, create a ssh tunnel to my personal computer. Must use the &lt;a href="https://kane.mx/posts/archive/blogspot/ssh-key/">public/private key for authenticating&lt;/a>. For example,&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/acess-intranet-without-vpn/">Read More&lt;/a>&lt;/p></description></item><item><title>How to reuse the existing OpenID accounts after the host name of Gerrit server is changed</title><link>https://kane.mx/posts/archive/blogspot/how-to-reuse-existing-openid-accounts/</link><pubDate>Wed, 15 Feb 2012 11:36:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-reuse-existing-openid-accounts/</guid><description>
-An internal Gerrit server was moved, so the hostname of server is changed. However we are using OpenID for user control, the OpenID provider(such as Google account) will generate a new token for the new server(hostname changing will impact the identity token of Google account) when we login Gerrit with same OpenID account. Gerrit will create a new internal account by default even though my OpenID account has existed in the system and has a lot of activities.
+&lt;p>An internal Gerrit server was moved, so the hostname of server is changed. However we are using OpenID for user control, the OpenID provider(such as Google account) will generate a new token for the new server(hostname changing will impact the identity token of Google account) when we login Gerrit with same OpenID account. Gerrit will create a new internal account by default even though my OpenID account has existed in the system and has a lot of activities.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-to-reuse-existing-openid-accounts/">Read More&lt;/a>&lt;/p></description></item><item><title>JRE/JDK's certificate issue and solution</title><link>https://kane.mx/posts/archive/blogspot/jrejdks-certificate-issue-and-solution/</link><pubDate>Thu, 24 Nov 2011 15:58:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/jrejdks-certificate-issue-and-solution/</guid><description>
-The problem came from I tried to set up send mail server(SMTP) for my Gerrit server. My Gerrit server is using OpenID for user authorization, so I registered a new email account to send notification from Gerrit.
-Most of email service providers require the secure authorization when using its SMTP server to send mail. However the root CA of my email provider is not added into the default certificate of JRE.
+&lt;p>The problem came from I tried to set up send mail server(SMTP) for my Gerrit server. My Gerrit server is using OpenID for user authorization, so I registered a new email account to send notification from Gerrit.&lt;/p>
+&lt;p>Most of email service providers require the secure authorization when using its SMTP server to send mail. However the root CA of my email provider is not added into the default certificate of JRE. So Gerrit always failed to send email due to ssl verification exception.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/jrejdks-certificate-issue-and-solution/">Read More&lt;/a>&lt;/p></description></item><item><title>The tips of Maven/Tycho building crossplatform RCP and repository</title><link>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</link><pubDate>Tue, 08 Nov 2011 16:16:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/</guid><description>
-I successfully converted our product build from PDE build to Maven/Tycho. Something is worth to be documented here.
-There are several examples and posts to demonstrate how using Tycho building your Eclipse plug-ins, features, applications and products. The most helpful example is the demo of Tycho project.
-Below are some traps I met when building my project by Tycho,
-product build
-Our product is based on plug-ins, however we added the 'featurelist' in build.
+&lt;p>I successfully converted our product build from PDE build to Maven/Tycho. Something is worth to be documented here.&lt;/p>
+&lt;p>There are several examples and posts to demonstrate how using Tycho building your Eclipse plug-ins, features, applications and products. The most helpful example is the &lt;a href="http://git.eclipse.org/c/tycho/org.eclipse.tycho.git/tree/tycho-demo">demo&lt;/a> of Tycho project.&lt;/p>
+&lt;p>Below are some traps I met when building my project by Tycho,&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>product build&lt;/strong>&lt;br>
+Our product is based on plug-ins, however we added the '&lt;strong>featurelist&lt;/strong>' in build.properties of PDE build to include some root binary for the product. However Tycho doesn't support this type of build, we create some features as the placeholder of plug-ins. Then change the product as features based. You have to manually remove the &lt;strong>plugins&lt;/strong> tag in .product definition file, otherwise Tycho will fail on strange error if the .produce has both &lt;strong>features&lt;/strong> and &lt;strong>plugins&lt;/strong> tag. Then configure the director plugin as not installing features.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/tips-of-maventycho-building/">Read More&lt;/a>&lt;/p></description></item><item><title>Migration Clearcase to Git -- part 2</title><link>https://kane.mx/posts/archive/blogspot/migration-clearcase-to-git-part-2/</link><pubDate>Tue, 25 Oct 2011 19:45:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/migration-clearcase-to-git-part-2/</guid><description>
-Several days ago I had a post to record the unsuccessful experience to migrate source code from Clearcase to Git.
-We have a new way after doing some brain storms. This way still is not a perfect solution, but it's much better than previous trial.
-Use clearexport_ccase to export the source folder to intermittent data. See documentation of Clearcase admin. Create a temporary vob for importing the data later. See example.
+&lt;p>Several days ago I had a post to record the unsuccessful experience to migrate source code from Clearcase to Git.&lt;/p>
+&lt;p>We have a new way after doing some brain storms. This way still is not a perfect solution, but it's much better than previous trial.&lt;/p>
+&lt;ol>
+&lt;li>Use &lt;strong>clearexport_ccase&lt;/strong> to export the source folder to intermittent data. See &lt;a href="http://publib.boulder.ibm.com/infocenter/cchelp/v7r0m1/index.jsp?topic=/com.ibm.rational.clearcase.cc_ref.doc/topics/clearexport_ccase.htm">documentation&lt;/a> of Clearcase admin.&lt;/li>
+&lt;li>Create a temporary vob for importing the data later. See &lt;a href="http://publib.boulder.ibm.com/infocenter/cchelp/v7r0m1/index.jsp?topic=/com.ibm.rational.clearcase.tutorial.doc/a_cr_storagecomp_fcc_ux.htm">example&lt;/a>.&lt;/li>
+&lt;li>Import the data into temporary vob. See &lt;a href="http://www.philforhumanity.com/ClearCase_Support_38.html">example&lt;/a>.&lt;/li>
+&lt;li>Repeat step 1 to 3 for importing all necessary data into temporary vob.&lt;/li>
+&lt;li>Use the SVN Importer to import the temporary vob as Subversion repository.&lt;/li>
+&lt;li>Last steps refer to a documentation of &lt;a href="http://www.winklerweb.net/index.php/blog/4-eclipse/16-migrating-the-cdo-svn-repository-to-git">succeeded migration case&lt;/a> of one of Eclipse project from Subversion to Git.&lt;/li>
+&lt;/ol>
+&lt;p>Git definitely is greatest SCM tool now. The size of Subversion repository is around 10GB, finally the Git repository is less than 700MB, which saves more than 10 times disk space. It's awesome!&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/migration-clearcase-to-git-part-2/">Read More&lt;/a>&lt;/p></description></item><item><title>Migrate Clearcase to Git</title><link>https://kane.mx/posts/archive/blogspot/migrate-clearcase-to-git/</link><pubDate>Mon, 17 Oct 2011 19:50:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/migrate-clearcase-to-git/</guid><description>
-I tried to migrate the source code of project from Clearcase to Git repository. As far as I know there is no elegant solution for such migration. For purpose of this migration, I want to keep the history and label of files in Clearcase after migrating to Git repository.
-There are mature tools to migrate CVS/SVN repository to Git, so I tried to use Subversion as a bridge for my migration.
+&lt;p>I tried to migrate the source code of project from Clearcase to Git repository. As far as I know there is no elegant solution for such migration. For purpose of this migration, I want to keep the history and label of files in Clearcase after migrating to Git repository.&lt;/p>
+&lt;p>There are mature tools to migrate CVS/SVN repository to Git, so I tried to use Subversion as a bridge for my migration.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/migrate-clearcase-to-git/">Read More&lt;/a>&lt;/p></description></item><item><title>p2 query performance</title><link>https://kane.mx/posts/archive/blogspot/p2-query-performance/</link><pubDate>Mon, 17 Oct 2011 19:34:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/p2-query-performance/</guid><description>
-Our p2 based on installer suffered performance issue when querying IUs from repositories. Though the repositories have a large number of IUs to be queried, but we find the performance of using QL is unacceptable in some special scenarios.
-I published several different methods to find the expected IUs. Thomas pointed out the better expression of QL and finally helped us to find out the our repository without IIndexProvider implementation.
+&lt;p>Our p2 based on installer suffered performance issue when querying IUs from repositories. Though the repositories have a large number of IUs to be queried, but we find the performance of using QL is unacceptable in some special scenarios.&lt;/p>
+&lt;p>I &lt;a href="https://docs.google.com/document/d/1wfnr2d2TF4vIYDCMmWPuYd0kQA32WiWaXTiaCoJovho/edit?pli=1">published several different methods&lt;/a> to find the expected IUs. Thomas pointed out the better expression of QL and finally helped us to find out the our repository without &lt;strong>IIndexProvider&lt;/strong> implementation.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/p2-query-performance/">Read More&lt;/a>&lt;/p></description></item><item><title>Create an import library for building application in MinGW</title><link>https://kane.mx/posts/archive/blogspot/create-import-library-for-building/</link><pubDate>Fri, 12 Aug 2011 10:51:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/create-import-library-for-building/</guid><description>
-Yesterday I modified an existing c++ application for Windows. And its default build environment is Makefile and MinGW.
-However I used a newly Windows API that is not included by header files of MinGW.
-First of all, I copied the constant definition from header file of Windows SDK, and defined the Windows API method as a extern C method. So it's no problem to compile the code in MinGW.
-Secondly I have to fix the link issue.
+&lt;p>Yesterday I modified an existing c++ application for Windows. And its default build environment is Makefile and MinGW.&lt;/p>
+&lt;p>However I used a newly Windows API that is not included by header files of MinGW.&lt;/p>
+&lt;p>First of all, I copied the constant definition from header file of Windows SDK, and defined the Windows API method as a extern C method. So it's no problem to compile the code in MinGW.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/create-import-library-for-building/">Read More&lt;/a>&lt;/p></description></item><item><title>Customize PDE build</title><link>https://kane.mx/posts/archive/blogspot/customize-pde-build/</link><pubDate>Fri, 22 Jul 2011 13:59:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/customize-pde-build/</guid><description>
-The documentation of PDE has a chapter for this topic. Basically it's simply. Copy the template scripts what you want from templates/headless-build folder under org.eclipse.pde.build plug-in to your build configuration directory that is the folder has build.properties file.
-However I found the variables listed in template 'customAssembly.xml' can't be used in the runtime. I filed bug 346370 against it.
+&lt;p>&lt;a href="http://help.eclipse.org/helios/index.jsp?topic=/org.eclipse.pde.doc.user/tasks/pde_customization.htm">The documentation of PDE&lt;/a> has a chapter for this topic. Basically it's simply. Copy the template scripts what you want from &lt;em>templates/headless-build&lt;/em> folder under &lt;em>org.eclipse.pde.build&lt;/em> plug-in to your build configuration directory that is the folder has &lt;em>build.properties&lt;/em> file.&lt;/p>
+&lt;p>However I found the variables listed in template '&lt;em>customAssembly.xml&lt;/em>' can't be used in the runtime. I filed bug &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=346370">346370&lt;/a> against it.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/customize-pde-build/">Read More&lt;/a>&lt;/p></description></item><item><title>Using the certificate of Windows code signing to sign jars</title><link>https://kane.mx/posts/archive/blogspot/using-certificate-of-windows-code/</link><pubDate>Mon, 18 Jul 2011 21:03:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/using-certificate-of-windows-code/</guid><description>
-I did sign the jars via reusing the existing certificate of Windows code signing several months ago. Writing it down for further reference.
-Whatever your purpose of reusing the existing Windows code certificate, I only document the way from technical perspective.
-After buying the certificate of Windows code signing from CA, you will get a .pvk file that stores both the certificate and private key. PVK file is the PKCS12 format[1], however java uses JKS format by default.
+&lt;p>I did sign the jars via reusing the existing certificate of Windows code signing several months ago. Writing it down for further reference.&lt;/p>
+&lt;p>Whatever your purpose of reusing the existing Windows code certificate, I only document the way from technical perspective.&lt;/p>
+&lt;p>After buying the certificate of Windows code signing from CA, you will get a .pvk file that stores both the certificate and private key. PVK file is the PKCS12 format[1], however java uses JKS format by default. So you need convert the pvk file to JKS keystore and certificate.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/using-certificate-of-windows-code/">Read More&lt;/a>&lt;/p></description></item><item><title>Unlock the locked profile if firefox/thunderbird crash</title><link>https://kane.mx/posts/archive/blogspot/unlock-locked-profile-if/</link><pubDate>Wed, 11 May 2011 13:19:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/unlock-locked-profile-if/</guid><description>
-I met that firefox/thunderbird complained another its instance running even if no a running firefox/thunderbird process. Finally let them run again after removing the '.parentlock' file in their default profile.
-strace utility helps me a lot to find the solution.
-strace -f -e file firfox
+&lt;p>I met that firefox/thunderbird complained another its instance running even if no a running firefox/thunderbird process. Finally let them run again after removing the '.parentlock' file in their default profile.&lt;/p>
+&lt;p>strace utility helps me a lot to find the solution.&lt;/p>
+&lt;p>&lt;strong>strace -f -e file firfox&lt;/strong>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/unlock-locked-profile-if/">Read More&lt;/a>&lt;/p></description></item><item><title>Eclipse P2's import/export capability</title><link>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</link><pubDate>Fri, 22 Apr 2011 15:56:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</guid><description>
-I implemented the replication tool at the end of 2009, then published it to Eclipse Marketplace in May 2010. However it's not pervasively used due to users have to install that plug-in firstly.
-I searched a similar request on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.
+&lt;p>I implemented the &lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/">replication tool&lt;/a> at the end of 2009, then published it to &lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-tool-lives-on-eclipse/">Eclipse Marketplace&lt;/a> in May 2010. However it's not pervasively used due to users have to install that plug-in firstly.&lt;/p>
+&lt;p>I searched a similar &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=282419">request&lt;/a> on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/">Read More&lt;/a>&lt;/p></description></item><item><title>[vim] delete the lines not contain words</title><link>https://kane.mx/posts/archive/blogspot/vim-delete-lines-not-contain-words/</link><pubDate>Wed, 05 Jan 2011 14:25:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/vim-delete-lines-not-contain-words/</guid><description>
-:g!/some expression/d
+&lt;p>:g!/some expression/d&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/vim-delete-lines-not-contain-words/">Read More&lt;/a>&lt;/p></description></item><item><title>Inside P2's profile (2) - the fragment matches all osgi bundles</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</link><pubDate>Tue, 28 Dec 2010 11:33:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/</guid><description>
-Recently our installer met a strange bug, it didn't uninstall all legacy bundles after updating to new version. Finally I found it's due to a magic fragment is missing in the profile due to some causes.
-installBundle(bundle:${artifact})
-uninstallBundle(bundle:${artifact})
-setStartLevel(startLevel:4);
-It has 'hostRequirements' element that represents it's a fragment IU and match all the eclipse's plug-ins in that profile. And this fragment defines the touch point actions for its hosts that will do installBundle action during 'install' phrase and uninstallBundle action during 'uninstall' phrase.
+&lt;p>Recently our installer met a strange bug, it didn't uninstall all legacy bundles after updating to new version. Finally I found it's due to a magic fragment is missing in the profile due to some causes.&lt;/p>
+&lt;p>    &lt;unit id='tooling.osgi.bundle.default' version='1.0.0' singleton='false'>&lt;br>
+      &lt;hostRequirements size='1'>&lt;br>
+        &lt;required namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' range='0.0.0' multiple='true' greedy='false'/>&lt;br>
+      &lt;/hostRequirements>&lt;br>
+      &lt;properties size='1'>&lt;br>
+        &lt;property name='org.eclipse.equinox.p2.type.fragment' value='true'/>&lt;br>
+      &lt;/pr
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/">Read More&lt;/a>&lt;/p></description></item><item><title>Inside P2's profile (1) - inclusion rules</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</link><pubDate>Tue, 28 Dec 2010 11:13:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid><description>
-You would see some interesting properties at the bottom of eclipse's profile.
-For example,
-It attaches a property named 'org.eclipse.equinox.p2.internal.inclusion.rules' with value 'STRICT' on the IU 'org.eclipse.sdk.ide' with version 3.6.1.M20100909-0800.
-It's a very important property for the p2 engine. It means the IU 'org.eclipse.sdk.ide' has been explicitly installed into the profile, so it's not allowed be implicitly updated or removed.
-For example,
-We have top feature IU 'org.eclipse.sdk.ide' that represents the Eclipse SDK, 'org.
+&lt;p>You would see some interesting properties at the bottom of eclipse's profile.&lt;/p>
+&lt;p>For example,&lt;/p>
+&lt;iuProperties id='org.eclipse.sdk.ide' version='3.6.1.M20100909-0800'>
+      &lt;properties size='2'>
+        &lt;property name='org.eclipse.equinox.p2.internal.inclusion.rules' value='STRICT'/>
+      &lt;/properties>
+&lt;/iuProperties>
+&lt;p>It attaches a property named 'org.eclipse.equinox.p2.internal.inclusion.rules' with value 'STRICT' on the IU 'org.eclipse.sdk.ide' with version 3.6.1.M20100909-0800.&lt;br>
+ &lt;br>
+It's a very important property for the p2 engine. It means the IU 'org.eclipse.sdk.ide' has been explicitly installed into the profile, so it's not allowed be implicitly updated or removed.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/">Read More&lt;/a>&lt;/p></description></item><item><title>stack overflow protector</title><link>https://kane.mx/posts/archive/blogspot/stack-overflow-protector/</link><pubDate>Thu, 23 Dec 2010 13:25:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/stack-overflow-protector/</guid><description>
-Latest gcc compiler enables the stack overflow protector that is since GLIBC 2.4. So the library or executable is compiled by latest gcc could be loaded or executed in RHEL4 or Solaris 9 that only have GLIBC 2.3. Hence using option '-fno-stack-protector' to compile the library or executable to make sure it could be executed in older linux release.
-g++ -fno-stack-protector -o test.o test
+&lt;p>Latest gcc compiler enables the stack overflow protector that is since GLIBC 2.4. So the library or executable is compiled by latest gcc could be loaded or executed in RHEL4 or Solaris 9 that only have GLIBC 2.3. Hence using option '-fno-stack-protector' to compile the library or executable to make sure it could be executed in older linux release.&lt;/p>
+&lt;p>g++ -fno-stack-protector -o test.o test&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/stack-overflow-protector/">Read More&lt;/a>&lt;/p></description></item><item><title>the loop name for 'for' clause in java</title><link>https://kane.mx/posts/archive/blogspot/loop-name-for-for-clause-in-java/</link><pubDate>Tue, 21 Sep 2010 10:46:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/loop-name-for-for-clause-in-java/</guid><description>
-Recently I just know such a useful syntax usage of java.
-aLoopName: for (;;) { // ... while (someCondition) // ... if (otherCondition) continue aLoopName;
+&lt;p>Recently I just know such a useful syntax usage of java.&lt;/p>
+&lt;pre>&lt;code>aLoopName: for (;;) {   // ...  while (someCondition)   // ...    if (otherCondition)       continue aLoopName;&lt;/code>&lt;/pre>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/loop-name-for-for-clause-in-java/">Read More&lt;/a>&lt;/p></description></item><item><title>rename command</title><link>https://kane.mx/posts/archive/blogspot/rename-command/</link><pubDate>Sun, 19 Sep 2010 11:40:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/rename-command/</guid><description>
-It's a powerful command to rename files in a batch.
-Usage:
-rename 's/(\d+)$/$1\.txt/' * rename add '.txt' extension name for all files that ends with number.
+&lt;p>It's a powerful command to rename files in a batch.&lt;/p>
+&lt;p>Usage:&lt;/p>
+&lt;p>rename 's/(\d+)$/$1\.txt/' * rename add '.txt' extension name for all files that ends with number.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/rename-command/">Read More&lt;/a>&lt;/p></description></item><item><title>applying proxy for the softwares without proxy support in linux</title><link>https://kane.mx/posts/archive/blogspot/applying-proxy-for-softwares-without/</link><pubDate>Mon, 13 Sep 2010 13:14:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/applying-proxy-for-softwares-without/</guid><description>
-If you have http proxy, set it to system environment,
-export http_proxy=http://127.0.0.1:8000 Then start the application in that same terminal.
-If the proxy is socks proxy, use 'tsocks' to wrap the application in terminal.
+&lt;p>If you have http proxy, set it to system environment,&lt;/p>
+&lt;p>export http_proxy=http://&lt;a href="http://127.0.0.1">127.0.0.1&lt;/a>:8000 Then start the application in that same terminal.&lt;/p>
+&lt;p>If the proxy is socks proxy, use '&lt;a href="http://tsocks.sourceforge.net/about.php">tsocks&lt;/a>' to wrap the application in terminal.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/applying-proxy-for-softwares-without/">Read More&lt;/a>&lt;/p></description></item><item><title>Food and Drinking</title><link>https://kane.mx/posts/archive/blogspot/food-and-drinking/</link><pubDate>Mon, 30 Aug 2010 15:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/food-and-drinking/</guid><description>
-Honestly speaking, you have eaten the best delicious food if you're living in China. Though we have more and more concerns on the safety of food, we have to recognize that Chinese food is more delicious than others.
-The cuisine is simple in Austria. People always use pork, beef, flour, tomato, potato and few green vegetables. So they surprised Chinese cost several hours to make the food.
-Gulasch, it's good tasted after eating pizza several times
+&lt;p>Honestly speaking, you have eaten the best delicious food if you're living in China. Though we have more and more concerns on the safety of food, we have to recognize that Chinese food is more delicious than others.&lt;/p>
+&lt;p>The cuisine is simple in Austria. People always use pork, beef, flour, tomato, potato and few green vegetables. So they surprised Chinese cost several hours to make the food.&lt;/p>
+&lt;p>&lt;a href="http://lh4.ggpht.com/_5seoFihTGKg/TGhDMuC9-GI/AAAAAAAAEts/07UdMerwnek/s1600/DSC01486.JPG">&lt;figure>
+&lt;picture>
+&lt;img
+loading="lazy"
+decoding="async"
+alt=""
+class="image_figure image_external image_processed"
+width="320"
+height="180"
+src="https://kane.mx/DSC01486_5497315126248538115.jpg"
+/>
+&lt;/pi
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/food-and-drinking/">Read More&lt;/a>&lt;/p></description></item><item><title>Working Workspace</title><link>https://kane.mx/posts/archive/blogspot/working-workspace/</link><pubDate>Fri, 27 Aug 2010 17:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/working-workspace/</guid><description>
-Joel posted a blog related to how to hire the great programmers. One of his key points is building comfortable workspaces.
-I believe every programmer loves the workspace like Google and Fog Creek. The workspace of Google has been very famous due to its French chef, gymnasium and big sofas. Why is Fog Creek? It's the company created by Joel, he also practiced his theory on his company. Ruan YiFeng posted a blog for it.
+&lt;p>Joel posted a &lt;a href="http://www.joelonsoftware.com/articles/fieldguidetodevelopers.html">blog&lt;/a> related to how to hire the great programmers. One of his key points is building comfortable workspaces.&lt;/p>
+&lt;p>I believe every programmer loves the workspace like Google and Fog Creek. The workspace of Google has been very famous due to its French chef, gymnasium and big sofas. Why is Fog Creek? It's the company created by Joel, he also practiced his theory on his company. Ruan YiFeng posted a &lt;a href="http://www.ruanyifeng.com/blog/2009/02/fog_creek_s_new_office.html">blog&lt;/a> for it. I bet you would envy the guys working in that office.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/working-workspace/">Read More&lt;/a>&lt;/p></description></item><item><title>Transportation</title><link>https://kane.mx/posts/archive/blogspot/transportation/</link><pubDate>Fri, 27 Aug 2010 16:20:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/transportation/</guid><description>
-Salzburg is a small city and is on the banks of the Salzach River. It's easy to go through the city by bus in 30 minutes.
-Salzach River
-outline view
-Riding the bicycle is a very good way to enjoy the beautiful sight of the city. You could see many kids with parents riding bicycle in the sunny weekend.
-The train station and a major bus transient station are the same one that is called as 'main station' by local residents.
+&lt;p>Salzburg is a small city and is on the banks of the Salzach River. It's easy to go through the city by bus in 30 minutes.&lt;/p>
+&lt;p>&lt;a href="http://lh5.ggpht.com/_5seoFihTGKg/TGhDE2zZzpI/AAAAAAAAEts/7yYsaAnjIvg/s1600/IMAG0058.jpg">&lt;figure>
+&lt;picture>
+&lt;img
+loading="lazy"
+decoding="async"
+alt=""
+class="image_figure image_external image_processed"
+width="320"
+height="192"
+src="https://kane.mx/IMAG0058_5033465335237907880.jpg"
+/>
+&lt;/pi
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/transportation/">Read More&lt;/a>&lt;/p></description></item><item><title>Working style</title><link>https://kane.mx/posts/archive/blogspot/working-style/</link><pubDate>Fri, 20 Aug 2010 17:45:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/working-style/</guid><description>
-There are 20+ staffs in Salzburg office. Most of them are developers, one is administrator of office.
-Generally the staffs in Salzburg work more flexible than the staffs working in Beijing.
-Some of them live in German. Even though it's not so far as Salzburg, they also need come to Salzburg by train. So sometimes they work at home, use internet and phone as communication tool.
-And they have different responsibilities for products.
+&lt;p>There are 20+ staffs in Salzburg office. Most of them are developers, one is administrator of office.&lt;br>
+Generally the staffs in Salzburg work more flexible than the staffs working in Beijing.&lt;br>
+Some of them live in German. Even though it's not so far as Salzburg, they also need come to Salzburg by train. So sometimes they work at home, use internet and phone as communication tool.&lt;br>
+And they have different responsibilities for products. For example, Helmut works on installer, Matthias and Michael are responsibility for QFT testing, Martin N. is focus on license API developing. So everybody has himself schedule, he can decide when he come to office and when leave office based on his working schedule. Nobody cares when you come/leave office or how long you work every day. I believe all of them do well on their jobs.&lt;br>
+Furthermore you can work with your dogs together if nobody takes care of them at home.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/working-style/">Read More&lt;/a>&lt;/p></description></item><item><title>day 1</title><link>https://kane.mx/posts/archive/blogspot/day-1/</link><pubDate>Tue, 10 Aug 2010 19:24:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/day-1/</guid><description>
-度过长途飞行的旅程不是一件容易的事。要在狭小的空间里待上近10个小时，好在是两人出行，半睡半聊的打发过了时间。
-到达维也纳之后，出了登机通道看到的居然是一个酒吧类的餐馆。感觉很稀奇，也很有味道。
-周围当然少不了免税店和商铺，但远没有首都机场那样的规模。总体感觉就像国内大型超市购物出口一样，而且人也不多。
-另外赞一下维也纳机场的Wifi，简单配置就K了，哪像国内的，又要移动号码，还要短信获取，搞半天也没弄定。
-转机之前还有段时间，就在机场里到处逛了逛。顺便在一个吧解决了晚餐，同时也尝了杯当地啤酒。
-去萨尔茨堡的飞机还是带螺旋桨的，头次坐这样的老式飞机。
+&lt;p>度过长途飞行的旅程不是一件容易的事。要在狭小的空间里待上近10个小时，好在是两人出行，半睡半聊的打发过了时间。&lt;br>
+到达维也纳之后，出了登机通道看到的居然是一个酒吧类的餐馆。感觉很稀奇，也很有味道。&lt;br>
+周围当然少不了免税店和商铺，但远没有首都机场那样的规模。总体感觉就像国内大型超市购物出口一样，而且人也不多。&lt;/p>
+&lt;p>&lt;a href="http://lh3.ggpht.com/_5seoFihTGKg/TGHDEkhP_yI/AAAAAAAAENE/vaUaP6QSc5o/s1600/IMAG0012.jpg">&lt;figure>
+&lt;picture>
+&lt;img
+loading="lazy"
+decoding="async"
+alt=""
+class="image_figure image_external image_processed"
+width="192"
+height="320"
+src="https://kane.mx/IMAG0012_584699872206005858.jpg"
+/>
+&lt;/pi
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/day-1/">Read More&lt;/a>&lt;/p></description></item><item><title>Discovering the p2 API</title><link>https://kane.mx/posts/archive/blogspot/discovering-p2-api/</link><pubDate>Mon, 17 May 2010 22:35:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/discovering-p2-api/</guid><description>
-Check out this SlideShare Presentation:
-Discovering the p2 API
-View more presentations from Sonatype.
+&lt;p>Check out this SlideShare Presentation:&lt;/p>
+&lt;p>&lt;strong>&lt;a href="http://www.slideshare.net/PascalRapicault/discovering-the-p2-api" title="Discovering the p2 API">Discovering the p2 API&lt;/a>&lt;/strong>&lt;/p>
+&lt;p>View more &lt;a href="http://www.slideshare.net/">presentations&lt;/a> from &lt;a href="http://www.slideshare.net/PascalRapicault">Sonatype&lt;/a>.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/discovering-p2-api/">Read More&lt;/a>&lt;/p></description></item><item><title>P2 replication tool lives on Eclipse Marketplace</title><link>https://kane.mx/posts/archive/blogspot/p2-replication-tool-lives-on-eclipse/</link><pubDate>Mon, 17 May 2010 15:41:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/p2-replication-tool-lives-on-eclipse/</guid><description>
-Days ago I updated my p2 replication tool. It's easier to install it in your Eclipse.
-A new component named 'Eclipse marketplace' is added into Eclipse SDK since Helios, which is an application store for Eclipse. People could be easy to install third party plug-ins into their Eclipse.
-You can launch marketplace via 'Help' - 'Eclipse Marketplace...', then search key word 'p2' or 'replication' to find the tool. Finally click next to install it.
+&lt;p>Days ago I updated my p2 replication tool. It's easier to install it in your Eclipse.&lt;br>
+A new component named 'Eclipse marketplace' is added into Eclipse SDK since Helios, which is an application store for Eclipse. People could be easy to install third party plug-ins into their Eclipse.&lt;/p>
+&lt;p>You can launch marketplace via 'Help' - 'Eclipse Marketplace...', then search key word 'p2' or 'replication' to find the tool. Finally click next to install it.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-tool-lives-on-eclipse/">Read More&lt;/a>&lt;/p></description></item><item><title>useful network utility tools</title><link>https://kane.mx/posts/archive/blogspot/useful-network-utility-tools/</link><pubDate>Thu, 11 Mar 2010 14:53:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/useful-network-utility-tools/</guid><description>
-1. tcpdump
-tcpdump -n port 80 -i eth0|lo
-monitor all package transferred on 80 port on the network interface eth0/lo
-2. netstat
-netstat -anp|grep java
-trace all network traffic on the process named java
-netstat -anp|grep 128.224.159.xxx
-trace all network traffic on the host whose ip address is 128.224.159.xxx
-3. nslookup
-nslookup 206.191.52.46
-look up the domain name whose ip address is 206.191.52.46
+&lt;p>1. tcpdump&lt;br>
+tcpdump -n port 80 -i eth0|lo&lt;br>
+monitor all package transferred on 80 port on the network interface eth0/lo&lt;br>
+2. netstat&lt;br>
+netstat -anp|grep java&lt;br>
+trace all network traffic on the process named java&lt;br>
+netstat -anp|grep 128.224.159.xxx&lt;br>
+trace all network traffic on the host whose ip address is 128.224.159.xxx&lt;br>
+3. nslookup&lt;br>
+nslookup 206.191.52.46&lt;br>
+look up the domain name whose ip address is 206.191.52.46&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/useful-network-utility-tools/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]Find -exec tip</title><link>https://kane.mx/posts/archive/blogspot/find-exec-tip/</link><pubDate>Wed, 24 Feb 2010 13:46:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/find-exec-tip/</guid><description>
-Using -exec command like below, need add escape character for semicolon that separated two commands in shell
-1find directory/ -type d -exec chmod a+x {} \\; Feb 24, 2010 - update:
-1find . -maxdepth 4 -type d -name &amp;#39;g-vxworks&amp;#39; 2&amp;gt;/dev/null -print Jan. 7, 2024 - update: You might see No such file or directory when combining --exec rm to delete the found files.
-You can add -depth option to mitigate the message.
+&lt;p>Using -exec command like below, need add escape character for semicolon that separated two commands in shell&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">find directory/ -type d -exec chmod a+x &lt;span class="o">{}&lt;/span> &lt;span class="se">\\&lt;/span>&lt;span class="p">;&lt;/span> &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;blockquote>
+&lt;p>Feb 24, 2010 - update:&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">find . -maxdepth &lt;span class="m">4&lt;/span> -type d  -name &lt;span class="s1">&amp;#39;g-vxworks&amp;#39;&lt;/span> 2&amp;gt;/dev/null -print&lt;/span>&lt;/span>&lt;/code>&lt;/pr
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/find-exec-tip/">Read More&lt;/a>&lt;/p></description></item><item><title>special characters in p2 touchpoint instruction</title><link>https://kane.mx/posts/archive/blogspot/special-characters-in-p2-touchpoint/</link><pubDate>Fri, 05 Feb 2010 16:15:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/special-characters-in-p2-touchpoint/</guid><description>
-I suffered p2 installation failed on the configure parse. Becase I try to add vm arguments for my application.
-For example, I added '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8272' in the product configuration.
-P2 will fail when parsing the argument, because it contains ':' and ',' that should be escaped.
-It works again after replacing it to '-agentlib${#58}jdwp=transport=dt_socket${#44}server=y${#44}suspend=n${#44}address=8272'.
-The more detail note could be found in p2 touchpoint wiki.
-And I also opened bug to request improving it.
+&lt;p>I suffered p2 installation failed on the configure parse. Becase I try to add vm arguments for my application.&lt;br>
+For example, I added '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8272' in the product configuration.&lt;br>
+P2 will fail when parsing the argument, because it contains ':' and ',' that should be escaped.&lt;br>
+It works again after replacing it to '-agentlib${#58}jdwp=transport=dt_socket${#44}server=y${#44}suspend=n${#44}address=8272'.&lt;br>
+The more detail note could be found in &lt;a href="http://wiki.eclipse.org/Equinox/p2/Engine/Touchpoint_Instructions#Variables_Available_in_all_phases">p2 touchpoint wiki&lt;/a>.&lt;br>
+And I also opened &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=301927">bug&lt;/a> to request improving it.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/special-characters-in-p2-touchpoint/">Read More&lt;/a>&lt;/p></description></item><item><title>mount windows share folder</title><link>https://kane.mx/posts/archive/blogspot/mount-windows-share-folder/</link><pubDate>Fri, 29 Jan 2010 13:22:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/mount-windows-share-folder/</guid><description>
-mount -t cifs -o username=xxx,password=xxx,workgroup=xx,iocharset=utf8 //share.domain/folder /localfolder
+&lt;p>mount -t cifs -o username=xxx,password=xxx,workgroup=xx,iocharset=utf8 //share.domain/folder /localfolder&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/mount-windows-share-folder/">Read More&lt;/a>&lt;/p></description></item><item><title>the way to dump hex file</title><link>https://kane.mx/posts/archive/blogspot/way-to-dump-hex-file/</link><pubDate>Wed, 27 Jan 2010 17:27:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/way-to-dump-hex-file/</guid><description>
-1. open the file in vim, :%!xxd
-2. hexdump
+&lt;p>1. open the file in vim, :%!xxd&lt;br>
+2. hexdump&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/way-to-dump-hex-file/">Read More&lt;/a>&lt;/p></description></item><item><title>How to get the name of running test case in JUnit4</title><link>https://kane.mx/posts/archive/blogspot/how-to-get-name-of-running-test-case-in/</link><pubDate>Mon, 11 Jan 2010 14:57:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-get-name-of-running-test-case-in/</guid><description>
-public class NameRuleTest { @Rule public TestName name = new TestName(); @Test public void testA() { assertEquals(&amp;quot;testA&amp;quot;, name.getMethodName()); } @Test public void testB() { assertEquals(&amp;quot;testB&amp;quot;, name.getMethodName()); }}
+&lt;pre>&lt;code>public class NameRuleTest {     @Rule public TestName name = new TestName();         @Test public void testA() {                 assertEquals(&amp;quot;testA&amp;quot;, name.getMethodName());         }        @Test public void testB() {                 assertEquals(&amp;quot;testB&amp;quot;, name.getMethodName());         }}&lt;/code>&lt;/pr
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-to-get-name-of-running-test-case-in/">Read More&lt;/a>&lt;/p></description></item><item><title>How p2 UI handles with license agreements</title><link>https://kane.mx/posts/archive/blogspot/how-p2-ui-handles-with-license/</link><pubDate>Wed, 30 Dec 2009 16:56:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-p2-ui-handles-with-license/</guid><description>
-P2 install wizard firstly query the repository to find out the root installable unit(as well as top installable). Then p2 recalculate the dependency and try to search the requirements in all available repositories after user submits their installation request. Go to the license agreement page if all the dependencies are satisfied.
-P2 agreement page obtains all the units to be installed from the operands of provision plan. The number always is much greater than the number submitted by user.
+&lt;p>P2 install wizard firstly query the repository to find out the root installable unit(as well as top installable). Then p2 recalculate the dependency and try to search the requirements in all available repositories after user submits their installation request. Go to the license agreement page if all the dependencies are satisfied.&lt;/p>
+&lt;p>P2 agreement page obtains all the units to be installed from the operands of provision plan. The number always is much greater than the number submitted by user. Because the submitted IUs only are the root IUs.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-p2-ui-handles-with-license/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]ssh key</title><link>https://kane.mx/posts/archive/blogspot/ssh-key/</link><pubDate>Tue, 29 Dec 2009 11:33:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/ssh-key/</guid><description>
-Setup SSH without password.
-a) execute &amp;quot;ssh-keygen -t rsa&amp;quot; under your linux/unix login to get the RSA keys.
-(press Enter for all)
-You will get 2 files uner ~/.ssh/, id_rsa and id_rsa.pub
-b) Put the public key id_rsa.pub to your remote host: ~/.ssh/authorized_keys If the remote host share the same nfs, just try &amp;quot; cat id_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys&amp;quot;
-* Remember to modify hostname or ip info in ~/.ssh/authorized_keys to &amp;quot;&amp;quot;, so that you can login from any host without password in your NIS domain.
+&lt;p>Setup SSH without password.&lt;br>
+a) execute &amp;quot;ssh-keygen -t rsa&amp;quot; under your linux/unix login to get the RSA keys.&lt;br>
+(press Enter for all)&lt;br>
+You will get 2 files uner ~/.ssh/, id_rsa and id_rsa.pub&lt;br>
+b) Put the public key id_rsa.pub to your remote host: ~/.ssh/authorized_keys If the remote host share the same nfs, just try &amp;quot; cat id_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys&amp;quot;&lt;br>
+* Remember to modify hostname or ip info in ~/.ssh/authorized_keys to &amp;quot;&lt;em>&amp;quot;, so that you can login from any host without password in your NIS domain.&lt;br>
+For example:&lt;br>
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA4Ri5J0s1BL/+mR7RfAuDW6FY2P6ILc61Zvw1BdDkvHMFrTzaC/AUMw33H7biAMCXuCleakCuSoV8ZDiGHYs4wOVvet5sDmphkwdiC4xTekdl3dRNvGjMVbvFUta/Y5CiayL6YIu47Ro6Vvu4Mutsrv/13pTlifrEz+NTR/+bzMb9nTniCwiryMyYod3E46b8WvS8yE3WK+tH4BZE8bjiCwdvAzSdPyk/OFNrlBNuF1yewwnxv1roRD3UalT2+7O4kfEG9sMvvBHjuX2l7xlUe3stBftYpigBbwGmmadxjRpNIlk88t5xKcQX6nSu7V8HI3GWPHI0D+ISIlbfU5Sunw== kzhu0@&lt;/em>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/ssh-key/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse][P2]P2 replication plug-in</title><link>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</link><pubDate>Fri, 25 Dec 2009 16:43:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</guid><description>
-I wrote a plug-in to simplify the process to install the same plug-ins in different platform or different workstation.
-Anyone is interested in it, pls follow below guide to freely use it.
-http://code.google.com/p/kane-toolkit/wiki/P2Replication
-Enjoy it.
+&lt;p>I wrote a plug-in to simplify the process to install the same plug-ins in different platform or different workstation.&lt;br>
+Anyone is interested in it, pls follow below guide to freely use it.&lt;br>
+&lt;a href="http://code.google.com/p/kane-toolkit/wiki/P2Replication">http://code.google.com/p/kane-toolkit/wiki/P2Replication&lt;/a>&lt;/p>
+&lt;p>Enjoy it.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/">Read More&lt;/a>&lt;/p></description></item><item><title>[eclipse]How Equinox load bundles</title><link>https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/</link><pubDate>Wed, 02 Dec 2009 14:58:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/</guid><description>
-How Equinox load bundles Equinox launcher is responsible to start OSGi framework. The system bundle would be created and marked as installed when initializing the framework. Equinox also tries to install the installed bundles if finding them in persistence data during the initializing period. Of course there is no extra bundles would be installed when launching Equinox first time.
-Then Equinox launcher would install the bundles specified by vm's system property 'osgi.
+&lt;h1 id="how-equinox-load-bundles">How Equinox load bundles&lt;/h1>
+&lt;p>Equinox launcher is responsible to start OSGi framework. The system bundle would be created and marked as installed when initializing the framework. Equinox also tries to install the installed bundles if finding them in persistence data during the initializing period. Of course there is no extra bundles would be installed when launching Equinox first time.&lt;/p>
+&lt;p>Then Equinox launcher would install the bundles specified by vm's system property 'osgi.bundles'. And start the initial bundles that are marked as early start. For example, let's have a look at the configuration/config.ini of Eclipse, you would find a line similar as below,&lt;br>
+osgi.bundles=reference\:file\:org.eclipse.equinox.simpleconfigurator_1.0.200.v20090831.jar@1\:start&lt;br>
+It means the start level of bundle 'org.eclipse.equinox.simpleconfigurator_1.0.200.v20090831.jar' is 1, and it would be started after installing it.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse][P2]Learn p2 step by step</title><link>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</link><pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid><description>
-Learn p2 step by step See this link for detail
-Learn P2 step by step
-p2 concept p2 install p2 install practice p2 repository publish customized p2 touchpoint p2 repository publish practice Example Code Reference p2 concept 首先来理解p2引入的几个概念[1]
-p2 / Agent
-The provisioning infrastructure on client machines
-Installable Unit (IU)
-Metadata that describes things that can be installed/configured
-Artifact
-The actual content being installed/configured(e.g., bundle JARs)
-Repository
-A store of metadata or artifacts
+&lt;h1 id="learn-p2-step-by-step">Learn p2 step by step&lt;/h1>
+&lt;blockquote>
+&lt;p>See &lt;a href="https://docs.google.com/document/d/1mDhET8al4FO4zlafeTUcXqFEopGbKqWZ5UQ2EbMH20Y/edit?usp=sharing">this link&lt;/a> for detail&lt;/p>
+&lt;/blockquote>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#Learn_P2_step_by_step">Learn P2 step by step&lt;/a>&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#p2_concept">p2 concept&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#p2_install">p2 install&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#p2_install_practice">p2 install practice&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#p2_repository_publish">p2 repository publish&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#customized_p2_touchpoint">customized p2 touchpoint&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#p2_repository_publish_practice">p2 repository publish practice&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#Example_Code">Example Code&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#Reference">Reference&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="p2-concept">p2 concept&lt;/h3>
+&lt;p>首先来理解p2引入的几个概念[1]&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>p2 / Agent&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The provisioning infrastructure on client machines&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]ssh forward</title><link>https://kane.mx/posts/archive/blogspot/ssh-forward/</link><pubDate>Wed, 28 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/ssh-forward/</guid><description>
-ssh -qTfnN -D LocalPort remotehost
-All the added options are for a ssh session that's used for tunneling.
--q :- be very quite, we are acting only as a tunnel.
--T :- Do not allocate a pseudo tty, we are only acting a tunnel.
--f :- move the ssh process to background, as we don't want to interact with this ssh session directly.
--N :- Do not execute remote command.
+&lt;p>ssh -qTfnN -D LocalPort remotehost&lt;/p>
+&lt;p>All the added options are for a ssh session that's used for tunneling.&lt;/p>
+&lt;p>-q :- be very quite, we are acting only as a tunnel.&lt;br>
+-T :- Do not allocate a pseudo tty, we are only acting a tunnel.&lt;br>
+-f :- move the ssh process to background, as we don't want to interact with this ssh session directly.&lt;br>
+-N :- Do not execute remote command.&lt;br>
+-n :- redirect standard input to /dev/null.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/ssh-forward/">Read More&lt;/a>&lt;/p></description></item><item><title>Simulate p2 self host in Eclipse run</title><link>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</link><pubDate>Tue, 27 Oct 2009 16:12:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</guid><description>
--Dosgi.install.area=&amp;lt;launcher's folder&amp;gt;
--Declipse.p2.profile=
+&lt;p>-Dosgi.install.area=&amp;lt;launcher's folder&amp;gt;&lt;br>
+-Declipse.p2.profile=&lt;profile id>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/">Read More&lt;/a>&lt;/p></description></item><item><title>Eclipse/OSGi preference</title><link>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</link><pubDate>Thu, 22 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</guid><description>
-The IPreferenceStore API of Eclipse is based on OSGi's preferences service. Equinox implements several scope context for different preferences, such DefaultScope, InstanceScope and ConfigurationScope. The IPreferenceStore is the wrapper of instance scope for back-compatibility. It stored the data in workspace(osgi.data.area).
-The workspace folder would be created when launching RCP application if it doesn't exist. But we can use argument '-data @none' to suppress the creation of workspace. If that, the instance scope/IPreferenceStore can't store any value any more.
+&lt;p>The IPreferenceStore API of Eclipse is based on OSGi's preferences service. Equinox implements several scope context for different preferences, such DefaultScope, InstanceScope and ConfigurationScope. The IPreferenceStore is the wrapper of instance scope for back-compatibility. It stored the data in workspace(osgi.data.area).&lt;/p>
+&lt;p>The workspace folder would be created when launching RCP application if it doesn't exist. But we can use argument '-data @none' to suppress the creation of workspace. If that, the instance scope/IPreferenceStore can't store any value any more.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/">Read More&lt;/a>&lt;/p></description></item><item><title>The usage of Eclipse's Proxy API</title><link>https://kane.mx/posts/archive/blogspot/usage-of-eclipses-proxy-api/</link><pubDate>Wed, 21 Oct 2009 16:53:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/usage-of-eclipses-proxy-api/</guid><description>
-Eclipse platform register an OSGi service 'IProxyService' to manage network connection, which has capability to set proxy setting. There are three types of proxy working mode,
-Direct(no proxy), Manual(specified by user), Native(using OS's proxy setting, such as gnome-proxy, IE). There are three types of proxy supported by IProxyService. They're http, https and socks.
-It also allows to add/remove ip address from white list, which are accessed without connecting proxy.
-End users can manage the proxy setting of Eclipse via Preference - General - Network Connections.
+&lt;p>Eclipse platform register an OSGi service 'IProxyService' to manage network connection, which has capability to set proxy setting. There are three types of proxy working mode,&lt;/p>
+&lt;ul>
+&lt;li>Direct(no proxy),&lt;/li>
+&lt;li>Manual(specified by user),&lt;/li>
+&lt;li>Native(using OS's proxy setting, such as gnome-proxy, IE).&lt;/li>
+&lt;/ul>
+&lt;p>There are three types of proxy supported by IProxyService. They're http, https and socks.&lt;/p>
+&lt;p>It also allows to add/remove ip address from white list, which are accessed without connecting proxy.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/usage-of-eclipses-proxy-api/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]Turn off automatically scanning disk when reboot</title><link>https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/</link><pubDate>Wed, 11 Feb 2009 17:40:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/</guid><description>
-tune2fs -i 0 -c 0 /dev/sdx
+&lt;p>tune2fs -i 0 -c 0 /dev/sdx&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/">Read More&lt;/a>&lt;/p></description></item><item><title>How to set default input method for GNOME</title><link>https://kane.mx/posts/archive/blogspot/how-to-set-default-input-method-for/</link><pubDate>Mon, 09 Feb 2009 11:24:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-set-default-input-method-for/</guid><description>
-add below lines in ~/.gnomerc
-export XMODIFIERS=&amp;quot;@im=fcitx&amp;quot;
-export GTK_IM_MODULE=&amp;quot;xim&amp;quot;
+&lt;p>add below lines in ~/.gnomerc&lt;/p>
+&lt;p>export XMODIFIERS=&amp;quot;@im=fcitx&amp;quot;&lt;br>
+export GTK_IM_MODULE=&amp;quot;xim&amp;quot;&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-to-set-default-input-method-for/">Read More&lt;/a>&lt;/p></description></item><item><title>[HowTo]How to set up jre environment in firefox</title><link>https://kane.mx/posts/archive/blogspot/how-to-set-up-jre-environment-in/</link><pubDate>Mon, 29 Dec 2008 12:52:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-set-up-jre-environment-in/</guid><description>
-create symbol link under lib/plugins of firefox to link jre/plugins/i386/ns**/libjavaplugin_oji.so
+&lt;p>create symbol link under lib/plugins of firefox to link jre/plugins/i386/ns**/libjavaplugin_oji.so&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-to-set-up-jre-environment-in/">Read More&lt;/a>&lt;/p></description></item><item><title>[Debug][tip]How to ignore specified signal when debugging program via gdb</title><link>https://kane.mx/posts/archive/blogspot/how-to-ignore-specified-signal-when/</link><pubDate>Wed, 10 Dec 2008 15:02:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-ignore-specified-signal-when/</guid><description>
-Such as,
-(gdb) handle SIGPIPE nostop noprint pass
+&lt;p>Such as,&lt;br>
+(gdb) handle SIGPIPE nostop noprint pass&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-to-ignore-specified-signal-when/">Read More&lt;/a>&lt;/p></description></item><item><title>[HowTo][tip]How to adjust the font size of Notes editor</title><link>https://kane.mx/posts/archive/blogspot/how-to-adjust-font-size-of-notes-editor/</link><pubDate>Thu, 04 Dec 2008 13:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-adjust-font-size-of-notes-editor/</guid><description>
-Close Notes
-Double click c:\notes\notes.ini to open it.
-Add one new line &amp;quot;Display_font_adjustment=n&amp;quot; after the third line in notes.ini file. &amp;quot;n&amp;quot; is the number.It can be 1or 2 or 3....and the font will be larger with the number increasing.
-Launch note
+&lt;p>Close Notes&lt;br>
+Double click c:\notes\notes.ini to open it.&lt;br>
+Add one new line &amp;quot;Display_font_adjustment=n&amp;quot; after the third line in notes.ini file. &amp;quot;n&amp;quot; is the number.It can be 1or 2 or 3....and the font will be larger with the number increasing.&lt;br>
+Launch note&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-to-adjust-font-size-of-notes-editor/">Read More&lt;/a>&lt;/p></description></item><item><title>[OSGi][Eclipse]Add custom jar or path into Equinox Framework</title><link>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</link><pubDate>Sun, 28 Sep 2008 13:23:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/</guid><description>
-Set vm arguments 'osgi.framework.extensions' and 'osgi.frameworkClassPath' when vm starts. If those value are set, those jar or path would be added into the classloader when starting EclipseStarter.
-See org.eclipse.equinox.launcher.Main for more details in the source code of Eclipse 3.4.
-Best Regards
-Kane
+&lt;p>Set vm arguments 'osgi.framework.extensions' and 'osgi.frameworkClassPath' when vm starts. If those value are set, those jar or path would be added into the classloader when starting EclipseStarter.&lt;/p>
+&lt;p>See org.eclipse.equinox.launcher.Main for more details in the source code of Eclipse 3.4.&lt;br>
+Best Regards&lt;br>
+Kane&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/add-custom-jar-or-path-into-equinox/">Read More&lt;/a>&lt;/p></description></item><item><title>[OSGi]How to acquire the fragments of specified bundle</title><link>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</link><pubDate>Fri, 01 Aug 2008 16:22:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/</guid><description>
-The answer is very simple, using the service 'org.eclipse.service.PackageAdmin'.
+&lt;p>The answer is very simple, using the service 'org.eclipse.service.PackageAdmin'.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/osgihow-to-acquire-fragments-of/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse]Equinox's classloader and its URL schema</title><link>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</link><pubDate>Thu, 17 Jul 2008 17:42:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/</guid><description>
-Equinox uses the adaptor hooks to implement the class loader.
-See http://wiki.eclipse.org/Adaptor_Hooks for more detail
-BaseClassLoadingHook would search the native code on itself. If it find the file in that jar file, it would extract the native library into its storage folder.
-EclipseClassLoadingHook defines some variables to search the native library. Belows are built-in variables:
-result.add(&amp;quot;ws/&amp;quot; + info.getWS() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$
-result.add(&amp;quot;os/&amp;quot; + info.getOS() + &amp;quot;/&amp;quot; + info.getOSArch() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+&lt;p>Equinox uses the adaptor hooks to implement the class loader.&lt;br>
+See &lt;a href="http://wiki.eclipse.org/Adaptor_Hooks">http://wiki.eclipse.org/Adaptor_Hooks&lt;/a> for more detail&lt;/p>
+&lt;p>BaseClassLoadingHook would search the native code on itself. If it find the file in that jar file, it would extract the native library into its storage folder.&lt;/p>
+&lt;p>EclipseClassLoadingHook defines some variables to search the native library. Belows are built-in variables:&lt;/p>
+&lt;p>result.add(&amp;quot;ws/&amp;quot; + info.getWS() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$&lt;br>
+result.add(&amp;quot;os/&amp;quot; + info.getOS() + &amp;quot;/&amp;quot; + info.getOSArch() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$&lt;br>
+result.add(&amp;quot;os/&amp;quot; + info.getOS() + &amp;quot;/&amp;quot;); //$NON-NLS-1$ //$NON-NLS-2$&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/eclipseequinoxs-classloader-and-its-url/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip][vim]排版小技巧</title><link>https://kane.mx/posts/archive/blogspot/tipvim/</link><pubDate>Tue, 15 Jul 2008 11:00:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/tipvim/</guid><description>
-1. 将要排版的文字贴到vim了
-2. set textwidth=70
-3. visual模式下选择要排版的文字,按gq, 就变成70字母1行的格式了
+&lt;p>    1. 将要排版的文字贴到vim了&lt;br>
+    2.  set textwidth=70&lt;br>
+    3. visual模式下选择要排版的文字,按gq, 就变成70字母1行的格式了&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/tipvim/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]convert dos format to unix</title><link>https://kane.mx/posts/archive/blogspot/tipconvert-dos-format-to-unix/</link><pubDate>Fri, 23 May 2008 18:03:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/tipconvert-dos-format-to-unix/</guid><description>
-In vi/vim,
-﻿set file format=unix
-or dos2unix, unix2dos
+&lt;p>In vi/vim,&lt;/p>
+&lt;p>﻿set file format=unix&lt;/p>
+&lt;p>or dos2unix, unix2dos&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/tipconvert-dos-format-to-unix/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]Makefile</title><link>https://kane.mx/posts/archive/blogspot/makefile-tip/</link><pubDate>Thu, 22 May 2008 20:37:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/makefile-tip/</guid><description>
-Build c/c++ project always need third party library on linux, such as gtk+, glib. Writing their absolute path in Makefile is not flexible way. You can use pkg-config instead of the absolute path. Below is code snippet:
-GTK_LIB=$(shell pkg-config --libs gtk+-2.0)
-GTK_INC=$(shell pkg-config --cflags gtk+-2.0)
-gcc -o yourlibrary.so $(GTK_INC) $(GTK_LIB)
+&lt;p>Build c/c++ project always need third party library on linux, such as gtk+, glib. Writing their absolute path in Makefile is not flexible way. You can use pkg-config instead of the absolute path. Below is code snippet:&lt;/p>
+&lt;p>GTK_LIB=$(shell pkg-config --libs gtk+-2.0)&lt;br>
+GTK_INC=$(shell pkg-config --cflags gtk+-2.0)&lt;/p>
+&lt;p>gcc -o yourlibrary.so $(GTK_INC) $(GTK_LIB)&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/makefile-tip/">Read More&lt;/a>&lt;/p></description></item><item><title>[OSGi][Equinox]URL Handlers Service</title><link>https://kane.mx/posts/archive/blogspot/url-handlers-service/</link><pubDate>Wed, 16 Apr 2008 14:20:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/url-handlers-service/</guid><description>
-OSGi provides a mechanism to let user contribute custom schemes automatically. It avoid some restriction with Java facilities for extending the handlers. The more detail could be found from OSGi specification R4, which has description how OSGi implements URL Handler Service.
-Use a sample to illustrate how to contribute your scheme(protocol):
-1. register your URLStreamHandlerService implementation, which must contain a property named &amp;quot;url.handler.protocol&amp;quot;. below register my scheme 'smb'
-public void start(BundleContext context) throws Exception {
+&lt;p>OSGi provides a mechanism to let user contribute custom schemes automatically. It avoid some restriction with Java facilities for extending the handlers. The more detail could be found from OSGi specification R4, which has description how OSGi implements URL Handler Service.&lt;/p>
+&lt;p>Use a sample to illustrate how to contribute your scheme(protocol):&lt;/p>
+&lt;p>1. register your URLStreamHandlerService implementation, which must contain a property named &amp;quot;url.handler.protocol&amp;quot;. below register my scheme 'smb'&lt;br>
+public void start(BundleContext context) throws Exception {&lt;br>
+Hashtable properties = new Hashtable();&lt;br>
+properties.put( URLConstants.URL_HANDLER_PROTOCOL, new String[] { &amp;quot;smb&amp;quot; } );&lt;br>
+context.registerService(URLStreamHandlerService.class.getName(), new SmbURLHandler(), properties );&lt;br>
+}&lt;br>
+2. your URL Handler extends AbstractURLStreamHandlerService, and implements abstract function 'openConnection(URL)'&lt;br>
+public class SmbURLHandler extends AbstractURLStreamHandlerService {&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/url-handlers-service/">Read More&lt;/a>&lt;/p></description></item><item><title>[OSGi][Equinox]the Bundle-NativeCode implementation in Equinox</title><link>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</link><pubDate>Mon, 31 Mar 2008 17:36:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/</guid><description>
-OSGi Spec defines Bundle-NativeCode header to contain a specification of native code libraries contained in that bundle. All magic things are initialized by org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLibrary(String) and org.eclipse.osgi.framework.internal.core.BundleLoader.findLibrary(String). Then BundleLoader uses the org.eclipse.osgi.baseadaptor.BaseData(an implementation of BundleData) to find the library path, if the bundle is NOT a jar file, it would directly get the absolute path of library. Otherwise, the BaseData would extract the library file if it could NOT find it in OSGi bundle storage(located in ${data}/org.
+&lt;p>OSGi Spec defines Bundle-NativeCode header to contain a specification of native code libraries contained in that bundle. All magic things are initialized by org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLibrary(String) and org.eclipse.osgi.framework.internal.core.BundleLoader.findLibrary(String). Then BundleLoader uses the org.eclipse.osgi.baseadaptor.BaseData(an implementation of BundleData) to find the library path, if the bundle is NOT a jar file, it would directly get the absolute path of library. Otherwise, the BaseData would extract the library file if it could NOT find it in OSGi bundle storage(located in ${data}/org.eclipse.osgi/bundles/[bundle_id]/.cp/). Refer to org.eclipse.osgi.baseadaptor.BaseData.findLibrary(String) for more detail.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/bundle-nativecode-implementation-in/">Read More&lt;/a>&lt;/p></description></item><item><title>[shell]Learning Note - 3/19/08</title><link>https://kane.mx/posts/archive/blogspot/linux-shelllearning-note-31908/</link><pubDate>Wed, 19 Mar 2008 14:35:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/linux-shelllearning-note-31908/</guid><description>
-1&amp;gt; 是输出正确数据， 2&amp;gt; 则是错误数据输出项目, 若要同时写入同一个档案需要使用 2&amp;gt;&amp;amp;1 /dev/null 是什么呢？基本上，那就有点像是一个『黑洞』的垃圾桶功能！当你输入的任何东西导向到这个虚拟的垃圾桶装置时，『他就会凭空消失不见了～～』
+&lt;p>1&amp;gt; 是输出正确数据， 2&amp;gt; 则是错误数据输出项目, 若要同时写入同一个档案需要使用 2&amp;gt;&amp;amp;1 /dev/null 是什么呢？基本上，那就有点像是一个『黑洞』的垃圾桶功能！当你输入的任何东西导向到这个虚拟的垃圾桶装置时，『他就会凭空消失不见了～～』&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/linux-shelllearning-note-31908/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse]How to use qualifier string when exporting features and plug-ins</title><link>https://kane.mx/posts/archive/blogspot/how-to-use-qualifier-string-when/</link><pubDate>Tue, 11 Mar 2008 13:30:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-use-qualifier-string-when/</guid><description>
-You must see the qualifier string property when exporting your features and plug-ins by Eclipse pde. But specified qualifier string won't appear after you export the features successfully.
-If you want to use the qualifier string, you must define your feature and plug-in version like below:
-1.0.0.qualifier, 2.2.2.qaulifier
-:)
+&lt;p>You must see the qualifier string property when exporting your features and plug-ins by Eclipse pde. But specified qualifier string won't appear after you export the features successfully.&lt;/p>
+&lt;p>If you want to use the qualifier string, you must define your feature and plug-in version like below:&lt;br>
+1.0.0.qualifier, 2.2.2.qaulifier&lt;/p>
+&lt;p>:)&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-to-use-qualifier-string-when/">Read More&lt;/a>&lt;/p></description></item><item><title>万恶的注册表</title><link>https://kane.mx/posts/archive/blogspot/suck-windows-registry/</link><pubDate>Tue, 03 Apr 2007 13:16:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/suck-windows-registry/</guid><description>
-最近几天被一个注册表相关的defect搞的焦头烂额。
-背景是这样的，产品在安装的时候需要通过修改注册表注册文件关联等信息。在先前安装程序基于InstallShield时工作正确，但在最近安装程序改用MSI后，我们写入注册表的信息没有被写到所期望的位置。
-通过各种试验，查找资料，终于搞明白原因。我们修改注册表的进程不是当前用户进程，而是系统进程，因此写入到HKEY_CURRENT_USER下的数据不能被写入到当前登陆用户下。
-We should not use &amp;quot;HKEY_CURRENT_USER&amp;quot; to retrival current user's registry key value. Because Windows Services always startup before user login. It may happen some error or loading the wrong setting profile. If you still insist on using the current user registry key setting, please refer &amp;quot;RegOpenCurrentUser&amp;quot;.
-最后只好将这些数据写到了Local Machine键值下。
+&lt;p>最近几天被一个注册表相关的defect搞的焦头烂额。&lt;/p>
+&lt;p>背景是这样的，产品在安装的时候需要通过修改注册表注册文件关联等信息。在先前安装程序基于InstallShield时工作正确，但在最近安装程序改用MSI后，我们写入注册表的信息没有被写到所期望的位置。&lt;/p>
+&lt;p>通过各种试验，查找资料，终于搞明白原因。我们修改注册表的进程不是当前用户进程，而是系统进程，因此写入到HKEY_CURRENT_USER下的数据不能被写入到当前登陆用户下。&lt;/p>
+&lt;p>We should not use &amp;quot;&lt;strong>HKEY_CURRENT_USER&amp;quot;&lt;/strong> to retrival current user's registry key value. Because Windows Services always startup before user login. It may happen some error or loading the wrong setting profile. If you still insist on using the current user registry key setting, please refer &amp;quot;&lt;em>&lt;a href="http://msdn.microsoft.com/library/default.asp?url=https://kane.mx/library/en-us/sysinfo/base/regopencurrentuser.asp">RegOpenCurrentUser&lt;/a>&lt;/em>&amp;quot;.&lt;/p>
+&lt;p>最后只好将这些数据写到了Local Machine键值下。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/suck-windows-registry/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse]get rid of the menus of eclipse platform</title><link>https://kane.mx/posts/archive/blogspot/get-rid-of-menus-of-eclipse-platform/</link><pubDate>Fri, 09 Mar 2007 13:46:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/get-rid-of-menus-of-eclipse-platform/</guid><description>
-When you develop a rich client application base on eclipse framework, and your application require eclipse platform feature, you would find that your application has some menu items contributed by eclipse platform. Those menu items are defined by several plug-ins' implementation of actionSet extention point. In fact Eclipse provides an activity mechanism to suppress the extension points which you don't want to use. However, you must know the identification name of extension points which you want to suppress.
+&lt;p>When you develop a rich client application base on eclipse framework, and your application require eclipse platform feature, you would find that your application has some menu items contributed by eclipse platform. Those menu items are defined by several plug-ins' implementation of actionSet extention point. In fact Eclipse provides an activity mechanism to suppress the extension points which you don't want to use. However, you must know the identification name of extension points which you want to suppress. It's a hard work to find out all of them from dozens of plugins. so, I wrote a utility function to list all the extension points of specified name.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/get-rid-of-menus-of-eclipse-platform/">Read More&lt;/a>&lt;/p></description></item><item><title>加载jar文件里的本地库</title><link>https://kane.mx/posts/archive/blogspot/jar/</link><pubDate>Wed, 24 Jan 2007 14:19:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/jar/</guid><description>
-java程序开发中经常用到JNI调用本地library, 同时又希望将library同class文件编译成一个jar文件以方便deploy.
-但是JDK的classloader不支持从jar文件中加载library, 一个变通的方法就是jar里的library以临时文件的方式写到临时目录或java.library目录.
-附上两篇文档链接 :
-**Load Library inside a jar file
-**
-使用JNI时，装载本地库的小技巧
+&lt;p>java程序开发中经常用到JNI调用本地library, 同时又希望将library同class文件编译成一个jar文件以方便deploy.&lt;/p>
+&lt;p>但是JDK的classloader不支持从jar文件中加载library, 一个变通的方法就是jar里的library以临时文件的方式写到临时目录或java.library目录.&lt;/p>
+&lt;p>附上两篇文档链接 :&lt;/p>
+&lt;p>&lt;a href="http://www.javaworld.com.tw/jute/post/view?bid=29&amp;id=173624&amp;tpg=1&amp;ppg=1&amp;sty=1&amp;age=0#173624">&lt;/a>**&lt;a href="http://www.javaworld.com.tw/jute/post/view?bid=29&amp;id=173624&amp;tpg=1&amp;ppg=1&amp;sty=1&amp;age=0#173624">Load Library inside a jar file&lt;/a>&lt;br>
+**&lt;/p>
+&lt;p>&lt;a href="http://www.javaeye.com/topic/17713" title="固定链接：使用JNI时，装载本地库的小技巧">使用JNI时，装载本地库的小技巧&lt;/a>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/jar/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse]Eclipse update support</title><link>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</link><pubDate>Wed, 17 Jan 2007 13:51:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-update-support/</guid><description>
-Those days my work is focus on eclipse's update. Now I understand the general mechanism and meet some issues when using it in development work.
-The update mechanism includes four major types: install, enable, disable and uninstall. And all of those operations can be executed by command line, such as installing a feature can use following line:
--application org.eclipse.update.core.standaloneUpdate -command install -featureId my.feature -version 1.0.0 -from file:/v:/local_updateSite/ -to file:/v:/eclipse/.
-The installation process would copy the feature and plugins which are included by the feature to the local site from the update site, then execute the feature's global install handler if it has one.
+&lt;p>Those days my work is focus on eclipse's update. Now I understand the general mechanism and meet some issues when using it in development work.&lt;/p>
+&lt;p>The update mechanism includes four major types: install, enable, disable and uninstall. And all of those operations can be executed by command line, such as installing a feature can use following line:&lt;br>
+-application org.eclipse.update.core.standaloneUpdate -command install -featureId my.feature -version 1.0.0 -from file:/v:/local_updateSite/ -to file:/v:/eclipse/.&lt;br>
+The installation process would copy the feature and plugins which are included by the feature to the local site from the update site, then execute the feature's global install handler if it has one.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/eclipse-update-support/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse]The call sequence between partActivated and menu update</title><link>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</link><pubDate>Thu, 19 Oct 2006 12:42:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/</guid><description>
-I met a defect that dynamically created menu items disappear after creating a new viewPart. It caused me overtime last Friday. Today I find the root cause.
-The scenario is:
-open first document, the items are shown well
-open another document, the items disappear
-The requirement is that showing the menu items while current part is document, otherwise hide them.
-So our implementation is:
-when current document part is deactivated, set menu items invisible
+&lt;p>I met a defect that dynamically created menu items disappear after creating a new viewPart. It caused me overtime last Friday. Today I find the root cause.&lt;/p>
+&lt;p>The scenario is:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>open first document, the items are shown well&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>open another document, the items disappear&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>The requirement is that showing the menu items while current part is document, otherwise hide them.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/">Read More&lt;/a>&lt;/p></description></item><item><title>[debug][java]Remote debug in Eclipse</title><link>https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/</link><pubDate>Wed, 18 Oct 2006 12:53:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/</guid><description>
-I need use remote debug in our project, however just some experience in Weblogic were found from internet. After my investigation, I got some experience about using Eclipse remote debug RCP.
-There are two important parameters for jvm. And we must launch remote java app with those two parameters.
--Xdebug //tells jvm starting with debug mode
--Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044 //transport=dt_socket represents communication with socket, address=1044 represents that the port number is 1044
+&lt;p>I need use remote debug in our project, however just some experience in Weblogic were found from internet. After my investigation, I got some experience about using Eclipse remote debug RCP.&lt;br>
+There are two important parameters for jvm. And we must launch remote java app with those two parameters.&lt;br>
+-Xdebug //tells jvm starting with debug mode&lt;br>
+-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044 //transport=dt_socket represents communication with socket, address=1044 represents that the port number is 1044&lt;br>
+Then there are 3 steps in local env:&lt;br>
+1.import source code into eclipse's project&lt;br>
+2.Debug-Remote Java Application, see attachement as a sample&lt;br>
+3.insert breakpoint,&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on The road</title><link>https://kane.mx/tags/java/</link><description>Recent content in Java on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 13 Jul 2015 19:11:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>The symptoms of Java broken in Mac OSX 10.10 and fix solution</title><link>https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/</link><pubDate>Mon, 13 Jul 2015 19:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/</guid><description>
-After uninstalling some applications from my Mac OSX, I found the applications that depends on JRE totally does not work. I noticed below symptoms,
-Eclipse Mars can not be launched, even though I specified the launching vm to another one(`java -version` still work). The SWT native library failed to resolve the dependencies to '/System/Library/Frameworks/JavaVM.framework/Versions/A/JavaVM' which does not exists. I tried to reinstall Oracle 1.8.0_u45 via both brew and dmg image downloaded from Oracle website, both ways were failed as well.
+&lt;p>After uninstalling some applications from my Mac OSX, I found the applications that depends on JRE totally does not work. I noticed below symptoms,&lt;/p>
+&lt;ol>
+&lt;li>Eclipse Mars can not be launched, even though I specified the launching vm to another one(`java -version` still work). The SWT native library failed to resolve the dependencies to '/System/Library/Frameworks/JavaVM.framework/Versions/A/JavaVM' which does not exists.&lt;/li>
+&lt;li>I tried to reinstall Oracle 1.8.0_u45 via both brew and dmg image downloaded from Oracle website, both ways were failed as well.&lt;/li>
+&lt;li>The Mac pkg Installer can not be started due to dylib broken. It means I can't install any pkg via GUI. The command line(such as &lt;code>sudo installer -verboseR -target / -pkg /Volumes/OS\ X\ 10.10.4\ Update\ Combo/OSXUpdCombo10.10.4.pkg&lt;/code>) still works.&lt;/li>
+&lt;/ol>
+&lt;p>Finally I realized the problem was caused by I uninstalled the out of date Apple Java 6. Looks like all of above failures are required the system built-in Java. It really does not make sense the Oracle 1.8 installer script to depend on the out of date Java.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/">Read More&lt;/a>&lt;/p></description></item><item><title>JRE/JDK's certificate issue and solution</title><link>https://kane.mx/posts/archive/blogspot/jrejdks-certificate-issue-and-solution/</link><pubDate>Thu, 24 Nov 2011 15:58:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/jrejdks-certificate-issue-and-solution/</guid><description>
-The problem came from I tried to set up send mail server(SMTP) for my Gerrit server. My Gerrit server is using OpenID for user authorization, so I registered a new email account to send notification from Gerrit.
-Most of email service providers require the secure authorization when using its SMTP server to send mail. However the root CA of my email provider is not added into the default certificate of JRE.
+&lt;p>The problem came from I tried to set up send mail server(SMTP) for my Gerrit server. My Gerrit server is using OpenID for user authorization, so I registered a new email account to send notification from Gerrit.&lt;/p>
+&lt;p>Most of email service providers require the secure authorization when using its SMTP server to send mail. However the root CA of my email provider is not added into the default certificate of JRE. So Gerrit always failed to send email due to ssl verification exception.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/jrejdks-certificate-issue-and-solution/">Read More&lt;/a>&lt;/p></description></item><item><title>Using the certificate of Windows code signing to sign jars</title><link>https://kane.mx/posts/archive/blogspot/using-certificate-of-windows-code/</link><pubDate>Mon, 18 Jul 2011 21:03:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/using-certificate-of-windows-code/</guid><description>
-I did sign the jars via reusing the existing certificate of Windows code signing several months ago. Writing it down for further reference.
-Whatever your purpose of reusing the existing Windows code certificate, I only document the way from technical perspective.
-After buying the certificate of Windows code signing from CA, you will get a .pvk file that stores both the certificate and private key. PVK file is the PKCS12 format[1], however java uses JKS format by default.
+&lt;p>I did sign the jars via reusing the existing certificate of Windows code signing several months ago. Writing it down for further reference.&lt;/p>
+&lt;p>Whatever your purpose of reusing the existing Windows code certificate, I only document the way from technical perspective.&lt;/p>
+&lt;p>After buying the certificate of Windows code signing from CA, you will get a .pvk file that stores both the certificate and private key. PVK file is the PKCS12 format[1], however java uses JKS format by default. So you need convert the pvk file to JKS keystore and certificate.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/using-certificate-of-windows-code/">Read More&lt;/a>&lt;/p></description></item><item><title>加载jar文件里的本地库</title><link>https://kane.mx/posts/archive/blogspot/jar/</link><pubDate>Wed, 24 Jan 2007 14:19:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/jar/</guid><description>
-java程序开发中经常用到JNI调用本地library, 同时又希望将library同class文件编译成一个jar文件以方便deploy.
-但是JDK的classloader不支持从jar文件中加载library, 一个变通的方法就是jar里的library以临时文件的方式写到临时目录或java.library目录.
-附上两篇文档链接 :
-**Load Library inside a jar file
-**
-使用JNI时，装载本地库的小技巧
+&lt;p>java程序开发中经常用到JNI调用本地library, 同时又希望将library同class文件编译成一个jar文件以方便deploy.&lt;/p>
+&lt;p>但是JDK的classloader不支持从jar文件中加载library, 一个变通的方法就是jar里的library以临时文件的方式写到临时目录或java.library目录.&lt;/p>
+&lt;p>附上两篇文档链接 :&lt;/p>
+&lt;p>&lt;a href="http://www.javaworld.com.tw/jute/post/view?bid=29&amp;id=173624&amp;tpg=1&amp;ppg=1&amp;sty=1&amp;age=0#173624">&lt;/a>**&lt;a href="http://www.javaworld.com.tw/jute/post/view?bid=29&amp;id=173624&amp;tpg=1&amp;ppg=1&amp;sty=1&amp;age=0#173624">Load Library inside a jar file&lt;/a>&lt;br>
+**&lt;/p>
+&lt;p>&lt;a href="http://www.javaeye.com/topic/17713" title="固定链接：使用JNI时，装载本地库的小技巧">使用JNI时，装载本地库的小技巧&lt;/a>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/jar/">Read More&lt;/a>&lt;/p></description></item><item><title>[debug][java]Remote debug in Eclipse</title><link>https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/</link><pubDate>Wed, 18 Oct 2006 12:53:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/</guid><description>
-I need use remote debug in our project, however just some experience in Weblogic were found from internet. After my investigation, I got some experience about using Eclipse remote debug RCP.
-There are two important parameters for jvm. And we must launch remote java app with those two parameters.
--Xdebug //tells jvm starting with debug mode
--Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044 //transport=dt_socket represents communication with socket, address=1044 represents that the port number is 1044
+&lt;p>I need use remote debug in our project, however just some experience in Weblogic were found from internet. After my investigation, I got some experience about using Eclipse remote debug RCP.&lt;br>
+There are two important parameters for jvm. And we must launch remote java app with those two parameters.&lt;br>
+-Xdebug //tells jvm starting with debug mode&lt;br>
+-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044 //transport=dt_socket represents communication with socket, address=1044 represents that the port number is 1044&lt;br>
+Then there are 3 steps in local env:&lt;br>
+1.import source code into eclipse's project&lt;br>
+2.Debug-Remote Java Application, see attachement as a sample&lt;br>
+3.insert breakpoint,&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

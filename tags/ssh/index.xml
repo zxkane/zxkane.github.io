@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ssh on The road</title><link>https://kane.mx/tags/ssh/</link><description>Recent content in Ssh on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 17 Feb 2012 17:47:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/ssh/index.xml" rel="self" type="application/rss+xml"/><item><title>Acess Intranet without VPN</title><link>https://kane.mx/posts/archive/blogspot/acess-intranet-without-vpn/</link><pubDate>Fri, 17 Feb 2012 17:47:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/acess-intranet-without-vpn/</guid><description>
-Sometimes I need access the Intranet of company, however I don't like to create VPN connection. The connection is slow, waste time to create the connection and have to change password due to security policy.
-My workstation is Linux, which has a lot of utility tools to help me access Intranet at home without VPN.
-Firstly I set up a ssh server on my personal computer. It's quite easy if you are using Linux, for Windows I installed Copssh.
+&lt;p>Sometimes I need access the Intranet of company, however I don't like to create VPN connection. The connection is slow, waste time to create the connection and have to change password due to security policy.&lt;/p>
+&lt;p>My workstation is Linux, which has a lot of utility tools to help me access Intranet at home without VPN.&lt;/p>
+&lt;p>Firstly I set up a ssh server on my personal computer. It's quite easy if you are using Linux, for Windows I installed &lt;a href="https://www.itefix.no/i2/copssh">Copssh&lt;/a>.&lt;br>
+Then register a free domain name and configure it in my router. And let router forward port &lt;code>22&lt;/code>(or any port you wan to use) to my personal computer.&lt;br>
+In my working Linux machine, create a ssh tunnel to my personal computer. Must use the &lt;a href="https://kane.mx/posts/archive/blogspot/ssh-key/">public/private key for authenticating&lt;/a>. For example,&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/acess-intranet-without-vpn/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]ssh key</title><link>https://kane.mx/posts/archive/blogspot/ssh-key/</link><pubDate>Tue, 29 Dec 2009 11:33:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/ssh-key/</guid><description>
-Setup SSH without password.
-a) execute &amp;quot;ssh-keygen -t rsa&amp;quot; under your linux/unix login to get the RSA keys.
-(press Enter for all)
-You will get 2 files uner ~/.ssh/, id_rsa and id_rsa.pub
-b) Put the public key id_rsa.pub to your remote host: ~/.ssh/authorized_keys If the remote host share the same nfs, just try &amp;quot; cat id_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys&amp;quot;
-* Remember to modify hostname or ip info in ~/.ssh/authorized_keys to &amp;quot;&amp;quot;, so that you can login from any host without password in your NIS domain.
+&lt;p>Setup SSH without password.&lt;br>
+a) execute &amp;quot;ssh-keygen -t rsa&amp;quot; under your linux/unix login to get the RSA keys.&lt;br>
+(press Enter for all)&lt;br>
+You will get 2 files uner ~/.ssh/, id_rsa and id_rsa.pub&lt;br>
+b) Put the public key id_rsa.pub to your remote host: ~/.ssh/authorized_keys If the remote host share the same nfs, just try &amp;quot; cat id_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys&amp;quot;&lt;br>
+* Remember to modify hostname or ip info in ~/.ssh/authorized_keys to &amp;quot;&lt;em>&amp;quot;, so that you can login from any host without password in your NIS domain.&lt;br>
+For example:&lt;br>
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA4Ri5J0s1BL/+mR7RfAuDW6FY2P6ILc61Zvw1BdDkvHMFrTzaC/AUMw33H7biAMCXuCleakCuSoV8ZDiGHYs4wOVvet5sDmphkwdiC4xTekdl3dRNvGjMVbvFUta/Y5CiayL6YIu47Ro6Vvu4Mutsrv/13pTlifrEz+NTR/+bzMb9nTniCwiryMyYod3E46b8WvS8yE3WK+tH4BZE8bjiCwdvAzSdPyk/OFNrlBNuF1yewwnxv1roRD3UalT2+7O4kfEG9sMvvBHjuX2l7xlUe3stBftYpigBbwGmmadxjRpNIlk88t5xKcQX6nSu7V8HI3GWPHI0D+ISIlbfU5Sunw== kzhu0@&lt;/em>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/ssh-key/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]ssh forward</title><link>https://kane.mx/posts/archive/blogspot/ssh-forward/</link><pubDate>Wed, 28 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/ssh-forward/</guid><description>
-ssh -qTfnN -D LocalPort remotehost
-All the added options are for a ssh session that's used for tunneling.
--q :- be very quite, we are acting only as a tunnel.
--T :- Do not allocate a pseudo tty, we are only acting a tunnel.
--f :- move the ssh process to background, as we don't want to interact with this ssh session directly.
--N :- Do not execute remote command.
+&lt;p>ssh -qTfnN -D LocalPort remotehost&lt;/p>
+&lt;p>All the added options are for a ssh session that's used for tunneling.&lt;/p>
+&lt;p>-q :- be very quite, we are acting only as a tunnel.&lt;br>
+-T :- Do not allocate a pseudo tty, we are only acting a tunnel.&lt;br>
+-f :- move the ssh process to background, as we don't want to interact with this ssh session directly.&lt;br>
+-N :- Do not execute remote command.&lt;br>
+-n :- redirect standard input to /dev/null.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/ssh-forward/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

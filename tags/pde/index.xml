@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PDE on The road</title><link>https://kane.mx/tags/pde/</link><description>Recent content in PDE on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 22 Jul 2011 13:59:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/pde/index.xml" rel="self" type="application/rss+xml"/><item><title>Customize PDE build</title><link>https://kane.mx/posts/archive/blogspot/customize-pde-build/</link><pubDate>Fri, 22 Jul 2011 13:59:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/customize-pde-build/</guid><description>
-The documentation of PDE has a chapter for this topic. Basically it's simply. Copy the template scripts what you want from templates/headless-build folder under org.eclipse.pde.build plug-in to your build configuration directory that is the folder has build.properties file.
-However I found the variables listed in template 'customAssembly.xml' can't be used in the runtime. I filed bug 346370 against it.
+&lt;p>&lt;a href="http://help.eclipse.org/helios/index.jsp?topic=/org.eclipse.pde.doc.user/tasks/pde_customization.htm">The documentation of PDE&lt;/a> has a chapter for this topic. Basically it's simply. Copy the template scripts what you want from &lt;em>templates/headless-build&lt;/em> folder under &lt;em>org.eclipse.pde.build&lt;/em> plug-in to your build configuration directory that is the folder has &lt;em>build.properties&lt;/em> file.&lt;/p>
+&lt;p>However I found the variables listed in template '&lt;em>customAssembly.xml&lt;/em>' can't be used in the runtime. I filed bug &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=346370">346370&lt;/a> against it.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/customize-pde-build/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse]How to use qualifier string when exporting features and plug-ins</title><link>https://kane.mx/posts/archive/blogspot/how-to-use-qualifier-string-when/</link><pubDate>Tue, 11 Mar 2008 13:30:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-use-qualifier-string-when/</guid><description>
-You must see the qualifier string property when exporting your features and plug-ins by Eclipse pde. But specified qualifier string won't appear after you export the features successfully.
-If you want to use the qualifier string, you must define your feature and plug-in version like below:
-1.0.0.qualifier, 2.2.2.qaulifier
-:)
+&lt;p>You must see the qualifier string property when exporting your features and plug-ins by Eclipse pde. But specified qualifier string won't appear after you export the features successfully.&lt;/p>
+&lt;p>If you want to use the qualifier string, you must define your feature and plug-in version like below:&lt;br>
+1.0.0.qualifier, 2.2.2.qaulifier&lt;/p>
+&lt;p>:)&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-to-use-qualifier-string-when/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

@@ -17,5 +17,5 @@
 &lt;p>&lt;a href="https://kane.mx/posts/effective-cloud-computing/using-kubernetes-on-cloud/">Read More&lt;/a>&lt;/p></description></item><item><title>真的会用云服务吗？</title><link>https://kane.mx/posts/effective-cloud-computing/preface/</link><pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/effective-cloud-computing/preface/</guid><description>
 &lt;p>这是“如何高效使用云服务”系列文章的引子。该系列将讲述如何利用各种公有云服务来安全合规、高质量、快速、低成本的打造产品/系统，帮助企业（特别是中小微创业团队）在人少，钱缺的情况下做到最高效率。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/effective-cloud-computing/preface/">Read More&lt;/a>&lt;/p></description></item><item><title>说一说阿里云ossfs</title><link>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</link><pubDate>Fri, 26 Feb 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</guid><description>
-阿里云提供的对象或者文件存储叫OSS，为应用程序提供了海量存储，按需付费等服务。应用程序则需要通过Aliyun OSS的各语言SDK才能操作（
+&lt;p>阿里云提供的对象或者文件存储叫&lt;a href="https://www.aliyun.com/product/oss">OSS&lt;/a>，为应用程序提供了海量存储，按需付费等服务。应用程序则需要通过&lt;a href="https://www.aliyun.com/product/oss">Aliyun OSS&lt;/a>的各语言SDK才能操作（读，写，遍历等）OSS中的文件。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/aliyun-ossfs-sucks/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

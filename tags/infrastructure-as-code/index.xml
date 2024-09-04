@@ -15,7 +15,15 @@
 &lt;p>&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>是一个全托管的批处理调度服务，它可为用户管理所有基础设施，从而避免了预置、管理、监控和扩展批处理计算作业所带来的复杂性。当然&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>已与 AWS 平台原生集成，让用户能够利用 AWS 的扩展、联网和访问管理功能。让用户轻松运行能够安全地从 AWS 数据存储（如 Amazon S3 和 Amazon DynamoDB）中检索数据并向其中写入数据的作业。&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>可根据所提交的批处理作业的数量和资源要求预置计算资源并优化作业分配。能够将计算资源动态扩展至运行批处理作业所需的任何数量，从而不必受固定容量集群的限制。&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>还可以利用 Spot 实例，从而进一步降低运行批处理作业产生的费用。&lt;/p>
 &lt;p>&lt;a href="https://aws.amazon.com/batch/">AWS Batch&lt;/a>服务本身是&lt;strong>免费&lt;/strong>的，仅收取实际使用的 EC2 实例费用。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2019/aws-batch/">Read More&lt;/a>&lt;/p></description></item><item><title>实战Aliyun EDAS应用迁移AWS</title><link>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</link><pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aliyun-edas-migration-in-action/</guid><description>
-近期实践了将阿里云EDAS微服务应用迁移到AWS上，在这里分享一下迁移方案。 该方案涉及了以下三个方面， 微服务应用集群。在AWS上采用的ECS
+&lt;p>近期实践了将阿里云EDAS微服务应用迁移到AWS上，在这里分享一下迁移方案。&lt;/p>
+&lt;p>该方案涉及了以下三个方面，&lt;/p>
+&lt;ol>
+&lt;li>微服务应用集群。在AWS上采用的&lt;a href="https://aws.amazon.com/cn/ecs/">ECS&lt;/a>集群部署微服务应用，通过&lt;a href="https://aws.amazon.com/cn/cloud-map/">Cloudmap&lt;/a>实现服务注册发现，&lt;a href="https://aws.amazon.com/cn/app-mesh/">App Mesh&lt;/a>实现服务间流量控制。更加详尽的微服务迁移要点和对应方案，详见下面的deck。&lt;/li>
+&lt;li>Devops pipeline。使用托管的&lt;a href="https://aws.amazon.com/cn/codepipeline/">CodePipeline&lt;/a>，&lt;a href="https://aws.amazon.com/cn/codebuild/">CodeBuild&lt;/a>实现CI/CD。&lt;/li>
+&lt;li>Infra as Code。利用AWS强大的&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infra as Code&lt;/a>能力，将云上的基础设施和微服务应用编排通过&lt;a href="https://kane.mx/posts/2019/aws-cdk/">CDK&lt;/a>代码实现。&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>下面是迁移方案的deck。完整且可部署的PoC代码，点&lt;a href="https://github.com/zxkane/alibabacloud-microservice-demo">这里&lt;/a>。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2019/aliyun-edas-migration-in-action/">Read More&lt;/a>&lt;/p></description></item><item><title>AWS CDK简介</title><link>https://kane.mx/posts/2019/aws-cdk/</link><pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2019/aws-cdk/</guid><description>
 &lt;p>&lt;a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infrastructure as Code&lt;/a>(架构即代码)一直是衡量公有云是否支持良好运维能力的重要指标。作为云计算领先的AWS，通过服务&lt;a href="https://aws.amazon.com/cn/cloudformation/">CloudFormation&lt;/a>来编排云环境中的基础设施资源。不过由于CloudFormation是使用YAML/JSON编写的声明式语言，不善于处理逻辑，编写繁琐且不利于调试排错，对于新上手的Devops工程师来说也有不小的学习曲线。三方开源的工具&lt;a href="https://en.wikipedia.org/wiki/Terraform_(software)">Terraform&lt;/a>同样没有很好解决&lt;a href="https://aws.amazon.com/cn/cloudformation/">CloudFormation&lt;/a>存在的这些问题。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2019/aws-cdk/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

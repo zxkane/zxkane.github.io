@@ -2,5 +2,5 @@
 &lt;p>&lt;a href="https://zh.wikipedia.org/wiki/Z_shell">Z shell&lt;/a>搭配&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>自定义配置已成为众多Linux/Macosx用户的标准terminal配置。&lt;/p>
 &lt;p>最近遇到在&lt;code>zsh&lt;/code>中执行任意命令都变得特别慢(哪怕简单执行&lt;code>ls&lt;/code>也要花费肉眼可见的1，2秒钟)，这里记录下如何排查&lt;a href="https://zh.wikipedia.org/wiki/Z_shell">Z shell&lt;/a>下启用&lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>的性能问题。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2020/zsh-performance-tuning/">Read More&lt;/a>&lt;/p></description></item><item><title>MongoDB中如何找出慢查询</title><link>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</link><pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</guid><description>
-MongoDB是目前最为流行的NoSQL数据库之一。V秘的后台数据就是保存在MongoDB中的哦;) 尽管MongoDB的性能为业界称道，但任
+&lt;p>&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>是目前最为流行的&lt;a href="https://en.wikipedia.org/wiki/NoSQL">NoSQL&lt;/a>数据库之一。&lt;a href="https://vme360.com">V秘&lt;/a>的后台数据就是保存在&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>中的哦;)&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

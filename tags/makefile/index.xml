@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Makefile on The road</title><link>https://kane.mx/tags/makefile/</link><description>Recent content in Makefile on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 22 May 2008 20:37:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/makefile/index.xml" rel="self" type="application/rss+xml"/><item><title>[tip]Makefile</title><link>https://kane.mx/posts/archive/blogspot/makefile-tip/</link><pubDate>Thu, 22 May 2008 20:37:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/makefile-tip/</guid><description>
-Build c/c++ project always need third party library on linux, such as gtk+, glib. Writing their absolute path in Makefile is not flexible way. You can use pkg-config instead of the absolute path. Below is code snippet:
-GTK_LIB=$(shell pkg-config --libs gtk+-2.0)
-GTK_INC=$(shell pkg-config --cflags gtk+-2.0)
-gcc -o yourlibrary.so $(GTK_INC) $(GTK_LIB)
+&lt;p>Build c/c++ project always need third party library on linux, such as gtk+, glib. Writing their absolute path in Makefile is not flexible way. You can use pkg-config instead of the absolute path. Below is code snippet:&lt;/p>
+&lt;p>GTK_LIB=$(shell pkg-config --libs gtk+-2.0)&lt;br>
+GTK_INC=$(shell pkg-config --cflags gtk+-2.0)&lt;/p>
+&lt;p>gcc -o yourlibrary.so $(GTK_INC) $(GTK_LIB)&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/makefile-tip/">Read More&lt;/a>&lt;/p></description></item></channel></rss>
