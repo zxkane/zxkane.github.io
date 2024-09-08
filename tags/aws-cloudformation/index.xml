@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS CloudFormation on The road</title><link>https://kane.mx/tags/aws-cloudformation/</link><description>Recent content in AWS CloudFormation on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 15 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws-cloudformation/index.xml" rel="self" type="application/rss+xml"/><item><title>Publish your AWS CDK applications via AWS CloudFormation templates</title><link>https://kane.mx/posts/2022/publish-cdk-app-via-cloudformation/</link><pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2022/publish-cdk-app-via-cloudformation/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS CloudFormation on The road</title><link>https://kane.mx/tags/aws-cloudformation/</link><description>Recent content in AWS CloudFormation on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 08 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws-cloudformation/index.xml" rel="self" type="application/rss+xml"/><item><title>Deep dive clickstream analytic series: Data ingestion</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/</link><pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/</guid><description>
+&lt;p>In this post, we will delve into the data ingestion service of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This service is a vital part of the clickstream analytics system. It is designed to be reliable, resilient, high-performing, flexible, and cost-effective. It plays a key role in capturing clickstream data from various sources and delivering it to downstream processing and modeling components.&lt;/p>
+&lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
+&lt;p>
+&lt;figure>
+&lt;picture>
+&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/images/architecture.avif" type="image/avif">
+&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/images/architecture.webp" type="image/webp">
+&lt;img
+loading="lazy"
+decoding="async"
+alt="Overview architecture"
+class="image_figure image_internal image_processed"
+width="1000"
+height="458"
+src="https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/images/architecture.png"
+title="Overview architecture for data ingestion service"
+/>
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/pi
+&lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/">Read More&lt;/a>&lt;/p></description></item><item><title>Publish your AWS CDK applications via AWS CloudFormation templates</title><link>https://kane.mx/posts/2022/publish-cdk-app-via-cloudformation/</link><pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2022/publish-cdk-app-via-cloudformation/</guid><description>
 &lt;p>&lt;a href="https://kane.mx/posts/2019/aws-cdk/">AWS CDK&lt;/a> is a great abstract to accelerate managing the cloud infrastructure as code.
 The journey will be enjoyful with leveraging the &lt;a href="https://constructs.dev/">Construct Hub&lt;/a> to use the high level contributions from AWS partners and commnunity.&lt;/p>
 &lt;h3 id="use-case">Use Case&lt;/h3>
