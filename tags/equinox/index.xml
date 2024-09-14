@@ -42,6 +42,24 @@ It means the start level of bundle 'org.eclipse.equinox.simpleconfigurator_1.0.2
 &lt;/li>
 &lt;li>
 &lt;p>The provisioning infrastructure on client machines&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Installable Unit (IU)&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Metadata&lt;/strong> that describes things that can be installed/configured&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Artifact&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The actual content being installed/configured(e.g., bundle JARs)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Repository&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>A store of metadata or artifacts&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/">Read More&lt;/a>&lt;/p></description></item><item><title>Eclipse/OSGi preference</title><link>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</link><pubDate>Thu, 22 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</guid><description>
 &lt;p>The IPreferenceStore API of Eclipse is based on OSGi's preferences service. Equinox implements several scope context for different preferences, such DefaultScope, InstanceScope and ConfigurationScope. The IPreferenceStore is the wrapper of instance scope for back-compatibility. It stored the data in workspace(osgi.data.area).&lt;/p>
 &lt;p>The workspace folder would be created when launching RCP application if it doesn't exist. But we can use argument '-data @none' to suppress the creation of workspace. If that, the instance scope/IPreferenceStore can't store any value any more.&lt;/p>

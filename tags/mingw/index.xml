@@ -2,4 +2,5 @@
 &lt;p>Yesterday I modified an existing c++ application for Windows. And its default build environment is Makefile and MinGW.&lt;/p>
 &lt;p>However I used a newly Windows API that is not included by header files of MinGW.&lt;/p>
 &lt;p>First of all, I copied the constant definition from header file of Windows SDK, and defined the Windows API method as a extern C method. So it's no problem to compile the code in MinGW.&lt;/p>
+&lt;p>Secondly I have to fix the link issue. Because the symbol of the Windows API also can't be found by gcc link.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/create-import-library-for-building/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

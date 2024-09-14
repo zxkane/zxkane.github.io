@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS CDK on The road</title><link>https://kane.mx/tags/aws-cdk/</link><description>Recent content in AWS CDK on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 08 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws-cdk/index.xml" rel="self" type="application/rss+xml"/><item><title>Deep dive clickstream analytic series: Data ingestion</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/</link><pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS CDK on The road</title><link>https://kane.mx/tags/aws-cdk/</link><description>Recent content in AWS CDK on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 08 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws-cdk/index.xml" rel="self" type="application/rss+xml"/><item><title>Deep dive clickstream analytic series: Data Ingestion</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/</link><pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/</guid><description>
 &lt;p>In this post, we will delve into the data ingestion service of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This service is a vital part of the clickstream analytics system. It is designed to be reliable, resilient, high-performing, flexible, and cost-effective. It plays a key role in capturing clickstream data from various sources and delivering it to downstream processing and modeling components.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
 &lt;p>
 &lt;figure>
 &lt;picture>
-&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/images/architecture.avif" type="image/avif">
-&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/images/architecture.webp" type="image/webp">
+&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.avif" type="image/avif">
+&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.webp" type="image/webp">
 &lt;img
 loading="lazy"
 decoding="async"
@@ -13,11 +13,13 @@ alt="Overview architecture"
 class="image_figure image_internal image_processed"
 width="1000"
 height="458"
-src="https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/images/architecture.png"
+src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.png"
 title="Overview architecture for data ingestion service"
 />
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/pi
-&lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/">Read More&lt;/a>&lt;/p></description></item><item><title>Custom compliance implementation in AWS CDK</title><link>https://kane.mx/posts/2024/custom-compliance-for-aws-cdk/</link><pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/custom-compliance-for-aws-cdk/</guid><description>
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/">Read More&lt;/a>&lt;/p></description></item><item><title>Custom compliance implementation in AWS CDK</title><link>https://kane.mx/posts/2024/custom-compliance-for-aws-cdk/</link><pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/custom-compliance-for-aws-cdk/</guid><description>
 &lt;p>&lt;a href="https://aws.amazon.com/cdk/?nc1=h_ls">AWS CDK&lt;/a> accelerates cloud development using common programming languages to model your applications. I had a series of posts using CDK to demonstrate &lt;a href="https://kane.mx/posts/2022/build-serverless-app-on-aws/intro/">Building serverless web applications with AWS Serverless&lt;/a>. Because CDK uses a programming language to model your application, you can encapsulate your library via &lt;a href="https://docs.aws.amazon.com/cdk/v2/guide/constructs.html">Constructs&lt;/a>, and then reuse it crossing the entire application.&lt;/p>
 &lt;p>Meanwhile, you can create your own constructs to encapsulate the compliance requirements to simplify the code. For example, in our solution, I used the construct &lt;code>SolutionFunction&lt;/code> to force using the same Node.js version(18.x), architecture(ARM64), Lambda logging configuration(JSON log), environment variables for &lt;a href="https://docs.powertools.aws.dev/lambda/typescript/latest/core/logger/">Powertools Logger&lt;/a> and so on crossing all &lt;code>NodejsFunction&lt;/code>. In addition, using &lt;a href="https://docs.aws.amazon.com/cdk/v2/guide/aspects.html">Aspects&lt;/a> and &lt;a href="https://docs.aws.amazon.com/cdk/v2/guide/cfn_layer.html">escape hatches&lt;/a> to make sure the application meets the compliance requirements.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2024/custom-compliance-for-aws-cdk/">Read More&lt;/a>&lt;/p></description></item><item><title>Build serverless web application with AWS Lambda web adapter</title><link>https://kane.mx/posts/2023/build-serverless-web-application-with-aws-lambda-web-adapter/</link><pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2023/build-serverless-web-application-with-aws-lambda-web-adapter/</guid><description>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Data Processing on The road</title><link>https://kane.mx/tags/data-processing/</link><description>Recent content in Data Processing on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 14 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/data-processing/index.xml" rel="self" type="application/rss+xml"/><item><title>Deep dive clickstream analytic series: Data Processing</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</link><pubDate>Sat, 14 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</guid><description>
+&lt;p>In this post, we will delve into the data processing module of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This module is an optional component that normalizes raw clickstream events by cleaning, transforming, and enriching them to fit the standard clickstream data schema defined in the solution. It's designed for flexibility, reliability, high performance, and cost-effectiveness.&lt;/p>
+&lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
+&lt;p>
+&lt;figure>
+&lt;picture>
+&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.avif" type="image/avif">
+&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.webp" type="image/webp">
+&lt;img
+loading="lazy"
+decoding="async"
+alt="Overview architecture"
+class="image_figure image_internal image_processed"
+width="921"
+height="401"
+src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.png"
+title="Overview architecture for data process module"
+/>
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data process module&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
+&lt;p>The data processing is designed for batch or micro-batch data processing to optimize performance and cost-effectiveness. It's primarily an Apache Spark application running on &lt;a href="https://aws.amazon.com/emr/serverless/">Amazon EMR Serverless&lt;/a> to achieve a balance between high performance and cost. It offers the following capabilities:&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

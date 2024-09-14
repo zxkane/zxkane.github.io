@@ -1,11 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS on The road</title><link>https://kane.mx/tags/aws/</link><description>Recent content in AWS on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 08 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws/index.xml" rel="self" type="application/rss+xml"/><item><title>Deep dive clickstream analytic series: Data ingestion</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/</link><pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS on The road</title><link>https://kane.mx/tags/aws/</link><description>Recent content in AWS on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 14 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws/index.xml" rel="self" type="application/rss+xml"/><item><title>Deep dive clickstream analytic series: Data Processing</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</link><pubDate>Sat, 14 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</guid><description>
+&lt;p>In this post, we will delve into the data processing module of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This module is an optional component that normalizes raw clickstream events by cleaning, transforming, and enriching them to fit the standard clickstream data schema defined in the solution. It's designed for flexibility, reliability, high performance, and cost-effectiveness.&lt;/p>
+&lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
+&lt;p>
+&lt;figure>
+&lt;picture>
+&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.avif" type="image/avif">
+&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.webp" type="image/webp">
+&lt;img
+loading="lazy"
+decoding="async"
+alt="Overview architecture"
+class="image_figure image_internal image_processed"
+width="921"
+height="401"
+src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.png"
+title="Overview architecture for data process module"
+/>
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data process module&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
+&lt;p>The data processing is designed for batch or micro-batch data processing to optimize performance and cost-effectiveness. It's primarily an Apache Spark application running on &lt;a href="https://aws.amazon.com/emr/serverless/">Amazon EMR Serverless&lt;/a> to achieve a balance between high performance and cost. It offers the following capabilities:&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Data Ingestion</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/</link><pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/</guid><description>
 &lt;p>In this post, we will delve into the data ingestion service of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This service is a vital part of the clickstream analytics system. It is designed to be reliable, resilient, high-performing, flexible, and cost-effective. It plays a key role in capturing clickstream data from various sources and delivering it to downstream processing and modeling components.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
 &lt;p>
 &lt;figure>
 &lt;picture>
-&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/images/architecture.avif" type="image/avif">
-&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/images/architecture.webp" type="image/webp">
+&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.avif" type="image/avif">
+&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.webp" type="image/webp">
 &lt;img
 loading="lazy"
 decoding="async"
@@ -13,13 +35,17 @@ alt="Overview architecture"
 class="image_figure image_internal image_processed"
 width="1000"
 height="458"
-src="https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/images/architecture.png"
+src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.png"
 title="Overview architecture for data ingestion service"
 />
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/pi
-&lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/ingestion-service/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Serverless web console</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</link><pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</guid><description>
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Serverless web console</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</link><pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</guid><description>
 &lt;p>This post explores the &lt;a href="https://docs.aws.amazon.com/solutions/latest/clickstream-analytics-on-aws/how-the-solution-works.html#web-console">web console&lt;/a> module of the &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>.&lt;/p>
 &lt;p>The web console allows users to create and manage projects with their data pipeline, which ingests, processes, analyzes, and visualizes clickstream data. In version 1.1, the &lt;a href="https://docs.aws.amazon.com/solutions/latest/clickstream-analytics-on-aws/analytics-studio.html">Analytics Studio&lt;/a> was introduced for &lt;strong>business analysts&lt;/strong>, enabling them to view metrics dashboards, explore clickstream data, design customized dashboards, and manage metadata without requiring in-depth knowledge of data warehouses and SQL.&lt;/p>
+&lt;h2 id="one-code-base-for-different-architectures">One code base for different architectures&lt;/h2>
+&lt;p>The web console is a web application built using AWS serverless technologies, as demonstrated in the &lt;a href="https://kane.mx/posts/2022/build-serverless-app-on-aws/intro/">Build serverless web application with AWS Serverless&lt;/a> series.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/">Read More&lt;/a>&lt;/p></description></item><item><title>How to build a clickstream analytic system for small businesses to large-scale events</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/preface/</link><pubDate>Tue, 03 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/preface/</guid><description>
 &lt;p>In the last couple of months, I led a team to build a comprehensive and open-sourced &lt;a href="https://aws.amazon.com/solutions/implementations/clickstream-analytics-on-aws/">solution&lt;/a> that helps customers analyze clickstream events on the cloud. The solution provides data autonomy, allowing users full access to raw data, near real-time ingestion, flexible configurations, and cost-effectiveness. It is a system that utilizes serverless services to cater to various customers, whether small businesses or large-scale events with massive data volumes, offering fully managed services with minimal operational efforts or the flexibility to use preferred open-source technical stacks.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">Read More&lt;/a>&lt;/p></description></item><item><title>Analyzing Clickstream Events Using Amazon Athena UDFs</title><link>https://kane.mx/posts/2024/analyzing-clickstream-events-using-amazon-athena-udfs/</link><pubDate>Sat, 17 Aug 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/analyzing-clickstream-events-using-amazon-athena-udfs/</guid><description>
@@ -52,6 +78,33 @@ title="Overview architecture for data ingestion service"
 &lt;p>&lt;a href="https://kane.mx/posts/2023/build-serverless-web-application-with-aws-lambda-web-adapter/">Read More&lt;/a>&lt;/p></description></item><item><title>Verbose logging for AWS JS SDK v3</title><link>https://kane.mx/posts/2023/aws-js-sdk-v3-verbose-logging/</link><pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2023/aws-js-sdk-v3-verbose-logging/</guid><description>
 &lt;p>When programming with the AWS SDK, developers sometimes want to debug a specific HTTP request when invoking an SDK API. Due to the &lt;a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-types/Interface/LoggerOptions/">poor documentation&lt;/a> of AWS JS SDK v3, it takes a lot of work to find a way to print the verbose logging of AWS SDK by asking it to the LLMs.&lt;/p>
 &lt;p>Below is a practical tip for enabling verbose logging for AWS JS SDK v3.&lt;/p>
+&lt;h3 id="solution-1---specify-a-custom-logger-for-aws-sdk-clients">Solution 1 - specify a custom logger for AWS SDK clients&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">DescribeParametersCommand&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">SSMClient&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="kr">from&lt;/span> &lt;span class="s2">&amp;#34;@aws-sdk/client-ssm&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="kr">as&lt;/span> &lt;span class="nx">log4js&lt;/span> &lt;span class="kr">from&lt;/span> &lt;span class="s2">&amp;#34;log4js&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl">&lt;span class="nx">log4js&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">configure&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl"> &lt;span class="nx">appenders&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">out&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="kr">type&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;stdout&amp;#34;&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl"> &lt;span class="nx">categories&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">default&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">appenders&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;out&amp;#34;&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="nx">level&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;debug&amp;#34;&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl">&lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">logger&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">log4js&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getLogger&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">ssmClient&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">SSMClient&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">12&lt;/span>&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>: &lt;span class="kt">logger&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">13&lt;/span>&lt;span class="cl">&lt;span class="p">});&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="solution-2---use-middleware-to-hook-the-life-cyele-of-request">Solution 2 - use middleware to hook the life cyele of request&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">DescribeParametersCommand&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">SSMClient&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="kr">from&lt;/span> &lt;span class="s2">&amp;#34;@aws-sdk/client-ssm&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">logRequestMiddleware&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">next&lt;/span>: &lt;span class="kt">any&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">_context&lt;/span>: &lt;span class="kt">any&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="kr">async&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">args&lt;/span>: &lt;span class="kt">any&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Request:&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">args&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">next&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">args&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl">&lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">ssmClient&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">SSMClient&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl">&lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl">&lt;span class="nx">ssmClient&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">middlewareStack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">logRequestMiddleware&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">step&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;finalizeRequest&amp;#39;&lt;/span> &lt;span class="p">});&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>See complete working example gist below,&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2023/aws-js-sdk-v3-verbose-logging/">Read More&lt;/a>&lt;/p></description></item><item><title>Define your API via OpenAPI definition on AWS</title><link>https://kane.mx/posts/2022/import-oas-as-api-on-aws/</link><pubDate>Thu, 27 Oct 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2022/import-oas-as-api-on-aws/</guid><description>
 &lt;p>Application Programming Interfaces(APIs) is a critical part of the web service, Werner Vogel, the CTO of AWS had a great
 &lt;a href="https://thenewstack.io/werner-vogels-6-rules-for-good-api-design/">6 Rules for Good API Design&lt;/a> presentation in 2021 re:Invent keynote.&lt;/p>

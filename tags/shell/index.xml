@@ -4,7 +4,13 @@
 &lt;blockquote>
 &lt;p>Feb 24, 2010 - update:&lt;/p>
 &lt;/blockquote>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">find . -maxdepth &lt;span class="m">4&lt;/span> -type d  -name &lt;span class="s1">&amp;#39;g-vxworks&amp;#39;&lt;/span> 2&amp;gt;/dev/null -print&lt;/span>&lt;/span>&lt;/code>&lt;/pr
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">find . -maxdepth &lt;span class="m">4&lt;/span> -type d  -name &lt;span class="s1">&amp;#39;g-vxworks&amp;#39;&lt;/span> 2&amp;gt;/dev/null -print&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;blockquote>
+&lt;p>Jan. 7, 2024 - update:
+You might see &lt;code>No such file or directory&lt;/code> when combining &lt;code>--exec rm&lt;/code> to delete the found files.&lt;/p>
+&lt;/blockquote>
+&lt;p>You can add &lt;code>-depth&lt;/code> option to mitigate the message.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">find deployment/g -depth -name &lt;span class="s1">&amp;#39;asset.*&amp;#39;&lt;/span> -type d -exec rm -rf &lt;span class="o">{}&lt;/span> &lt;span class="se">\;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/find-exec-tip/">Read More&lt;/a>&lt;/p></description></item><item><title>[shell]Learning Note - 3/19/08</title><link>https://kane.mx/posts/archive/blogspot/linux-shelllearning-note-31908/</link><pubDate>Wed, 19 Mar 2008 14:35:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/linux-shelllearning-note-31908/</guid><description>
 &lt;p>1&amp;gt; 是输出正确数据， 2&amp;gt; 则是错误数据输出项目, 若要同时写入同一个档案需要使用 2&amp;gt;&amp;amp;1 /dev/null 是什么呢？基本上，那就有点像是一个『黑洞』的垃圾桶功能！当你输入的任何东西导向到这个虚拟的垃圾桶装置时，『他就会凭空消失不见了～～』&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/linux-shelllearning-note-31908/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

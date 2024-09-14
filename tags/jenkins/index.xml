@@ -5,6 +5,8 @@
 &lt;p>The script works well when running it in shell of linux. The web application will run in background by daemon.&lt;/p>
 &lt;p>However I found both daemon and web application(java) exited immediately if I started the script in Jenkins as a shell step of build process.&lt;/p>
 &lt;p>I put below simple script in 'Execute shell' block,&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">daemon --name&lt;span class="o">=&lt;/span>test-daemon -- sleep 200sleep &lt;span class="m">60&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The process 'daemon' and 'sleep 200' should exit after 200 seconds the 'sleep' exits. The jenkins job will be finished in 60 secs.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/">Read More&lt;/a>&lt;/p></description></item><item><title>Run groovy script via Jenkins CLI</title><link>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</link><pubDate>Mon, 13 May 2013 13:44:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/</guid><description>
 &lt;p>Jenkins supports &lt;a href="https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+SSH">ssh authentication&lt;/a> in CLI.&lt;/p>
 &lt;p>Below is a command to verify that I am authenticated:&lt;/p>
@@ -13,5 +15,15 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">    Authenticated as: myuser
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">    Authorities:
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">        authenticated&lt;/span>&lt;/span>&lt;/code>&lt;/pr
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">        authenticated&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>However you still would meet permission error when running groovy script in CLI.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &lt;span class="s1">&amp;#39;jenkins.model.Jenkins.instance.pluginManager.plugins.each { println(&amp;#34;${it.longName} - ${it.version}&amp;#34;) };&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">Exception in thread &lt;span class="s2">&amp;#34;main&amp;#34;&lt;/span> java.lang.reflect.UndeclaredThrowableException
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">at &lt;span class="nv">$Proxy2&lt;/span>.main&lt;span class="o">(&lt;/span>Unknown Source&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">at hudson.cli.CLI.execute&lt;span class="o">(&lt;/span>CLI.java:271&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl">at hudson.cli.CLI._main&lt;span class="o">(&lt;/span>CLI.java:417&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">8&lt;/span>&lt;span class="cl">at hudson.cli.CLI.main&lt;span class="o">(&lt;/span>CLI.java:322&lt;span class="o">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>It's a bug of Jenkins. &lt;strong>The workaround is create a groovy script, then run that script via Jenkins CLI&lt;/strong>.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/">Read More&lt;/a>&lt;/p></description></item></channel></rss>
