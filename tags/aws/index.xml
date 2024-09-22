@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS on The road</title><link>https://kane.mx/tags/aws/</link><description>Recent content in AWS on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 14 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws/index.xml" rel="self" type="application/rss+xml"/><item><title>Deep dive clickstream analytic series: Data Processing</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</link><pubDate>Sat, 14 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS on The road</title><link>https://kane.mx/tags/aws/</link><description>Recent content in AWS on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 22 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/aws/index.xml" rel="self" type="application/rss+xml"/><item><title>Deep dive clickstream analytic series: Data Modeling</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/</link><pubDate>Sun, 22 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/</guid><description>
+&lt;p>In this post, we will delve into the data modeling module of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This module is an optional component that creates data models in the &lt;a href="https://aws.amazon.com/redshift/">Amazon Redshift&lt;/a> data warehouse and calculates reporting dimensions based on the event, session, and user factor tables generated in the &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/">data processing module&lt;/a>.&lt;/p>
+&lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
+&lt;p>
+&lt;figure>
+&lt;picture>
+&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.avif" type="image/avif">
+&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.webp" type="image/webp">
+&lt;img
+loading="lazy"
+decoding="async"
+alt="Overview architecture"
+class="image_figure image_internal image_processed"
+width="1000"
+height="777"
+src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.png"
+title="Overview architecture for data modeling module"
+/>
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
+&lt;p>The overview architecture demonstrates how the solution orchestrates loading clickstream data into the Amazon Redshift data warehouse and triggers data modeling within Redshift.&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Data Processing</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</link><pubDate>Sat, 14 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</guid><description>
 &lt;p>In this post, we will delve into the data processing module of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This module is an optional component that normalizes raw clickstream events by cleaning, transforming, and enriching them to fit the standard clickstream data schema defined in the solution. It's designed for flexibility, reliability, high performance, and cost-effectiveness.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
 &lt;p>
