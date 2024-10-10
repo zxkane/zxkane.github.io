@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Alfred on The road</title><link>https://kane.mx/tags/alfred/</link><description>Recent content in Alfred on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 10 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/alfred/index.xml" rel="self" type="application/rss+xml"/><item><title>Access Bedrock Claude 3/3.5 Models with Alfred OpenAI ChatGPT Workflow</title><link>https://kane.mx/posts/2024/alfred-integration-with-bedrock-claude/</link><pubDate>Thu, 10 Oct 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/alfred-integration-with-bedrock-claude/</guid><description>
+&lt;h1 id="access-bedrock-claude-335-models-with-alfred-openai-workflow">Access Bedrock Claude 3/3.5 Models with Alfred OpenAI Workflow&lt;/h1>
+&lt;p>Many &lt;a href="https://www.alfredapp.com/">Alfred&lt;/a> users enjoy the convenience of &lt;a href="https://www.alfredapp.com/workflows/">the OpenAI ChatGPT workflow&lt;/a> for quick AI-powered assistance. However, with the introduction of &lt;a href="https://aws.amazon.com/bedrock/?nc1=h_ls">Amazon's Bedrock&lt;/a> Claude 3 and 3.5 models, some may want to leverage these powerful alternatives. In this post, we'll explore how to set up a custom gateway to access Bedrock Claude models instead of the OpenAI API for your Alfred OpenAI workflow.&lt;/p>
+&lt;h2 id="why-use-bedrock-claude">Why Use Bedrock Claude?&lt;/h2>
+&lt;ol>
+&lt;li>Potentially lower costs compared to OpenAI's API&lt;/li>
+&lt;li>Access to the latest Claude models&lt;/li>
+&lt;li>Data privacy considerations (your data stays within AWS)&lt;/li>
+&lt;li>Integration with other AWS services&lt;/li>
+&lt;/ol>
+&lt;h2 id="setting-up-the-bedrock-access-gateway">Setting Up the Bedrock Access Gateway&lt;/h2>
+&lt;p>&lt;a href="https://github.com/aws-samples/bedrock-access-gateway">Bedrock Access Gateway&lt;/a> provides OpenAI-compatible RESTful APIs for Amazon Bedrock. It supports streaming responses via server-sent events (SSE) and is compatible with various Bedrock model families, including Anthropic Claude 3 (Haiku/Sonnet/Opus), Claude 3.5 Sonnet, Meta Llama 3, Mistral, and more features.&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/2024/alfred-integration-with-bedrock-claude/">Read More&lt;/a>&lt;/p></description></item></channel></rss>
