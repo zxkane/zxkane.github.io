@@ -17,8 +17,4 @@ The installation process would copy the feature and plugins which are included b
 &lt;/li>
 &lt;/ol>
 &lt;p>The requirement is that showing the menu items while current part is document, otherwise hide them.&lt;/p>
-&lt;p>So our implementation is:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>when current document part is deactivated, set menu items invisible&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

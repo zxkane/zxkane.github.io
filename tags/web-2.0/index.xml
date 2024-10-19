@@ -2,15 +2,4 @@
 &lt;p>在微服务和容器等技术的帮助下，Web应用可以较为容易的进行水平扩展，来部署更多的应用实例来提升请求处理数QPS。当Web服务有状态的时候，如何在集群下管理用户session成为新的待解决问题。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/clustered-session-under-spring-framework/">Read More&lt;/a>&lt;/p></description></item><item><title>V秘是如何构建的</title><link>https://kane.mx/posts/2016/how-we-build-videome/</link><pubDate>Thu, 07 Apr 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-we-build-videome/</guid><description>
 &lt;p>春天来了，&lt;a href="https://vme360.com">V秘&lt;/a>大家庭也新增了两位10后的传人。新爸爸经过一番忙乱后，希望在这里与大家分享&lt;a href="https://vme360.com">V秘&lt;/a>的架构，共同探讨如何快速的构建高可用，高性能的Web服务。&lt;/p>
-&lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>致力于提供最好的在线视频制作云平台。让用户随时随地零门槛的快速制作出高质量高清晰度的视频，来纪念记录生活中有意义的时刻，同时将这份快乐传递给更多的家人朋友一起分享。&lt;/p>
-&lt;p>然而要可靠的可扩展的实现这样看似简单的需求，其背后确由众多知名开源技术，可靠的云服务，不间歇的监控运维来实现和保证的。&lt;/p>
-&lt;!-- more -->
-&lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>架构的基本目标就是要实现，&lt;/p>
-&lt;ul>
-&lt;li>服务的高扩展性。有有效可靠的方法支撑数万并发到数十万，百万及更多的并发请求。&lt;/li>
-&lt;li>服务的高可用性。各种服务都是多实例的集群，某些服务故障后，集群中的其他实例仍然能够提供服务。&lt;/li>
-&lt;li>服务的自动化构建。从代码到服务部署上线是一套自动化的流程，越少的人工介入保证了服务的可用性。&lt;/li>
-&lt;li>系统的实时监控。7x24小时的监控保证服务的可用性，当监控到数据异常或服务停止运行能及时告警引入人工运维团队。&lt;/li>
-&lt;/ul>
-&lt;p>更多细节请参阅下面的&lt;a href="http://www.slideshare.net/zxkane/how-we-build-vme">slides&lt;/a>,&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/how-we-build-videome/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

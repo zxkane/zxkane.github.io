@@ -16,8 +16,5 @@ height="777"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.png"
 title="Overview architecture for data modeling module"
 />
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/picture>
-&lt;/figure>
-&lt;/p>
-&lt;p>The overview architecture demonstrates how the solution orchestrates loading clickstream data into the Amazon Redshift data warehouse and triggers data modeling within Redshift.&lt;/p>
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/pi
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/">Read More&lt;/a>&lt;/p></description></item></channel></rss>
