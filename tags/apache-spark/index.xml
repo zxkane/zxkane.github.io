@@ -16,5 +16,8 @@ height="401"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.png"
 title="Overview architecture for data process module"
 />
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data process module&lt;/figcaption>&lt;/pi
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data process module&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
+&lt;p>The data processing is designed for batch or micro-batch data processing to optimize performance and cost-effectiveness. It's primarily an Apache Spark application running on &lt;a href="https://aws.amazon.com/emr/serverless/">Amazon EMR Serverless&lt;/a> to achieve a balance between high performance and cost. It offers the following capabilities:&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

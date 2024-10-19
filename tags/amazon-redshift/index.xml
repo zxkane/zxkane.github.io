@@ -16,7 +16,10 @@ height="777"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.png"
 title="Overview architecture for data modeling module"
 />
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/pi
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
+&lt;p>The overview architecture demonstrates how the solution orchestrates loading clickstream data into the Amazon Redshift data warehouse and triggers data modeling within Redshift.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/">Read More&lt;/a>&lt;/p></description></item><item><title>Redshift Serverless: Cost Deep Dive and Use Cases</title><link>https://kane.mx/posts/2024/redshift-serverless-cost-deep-dive/</link><pubDate>Sat, 24 Feb 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/redshift-serverless-cost-deep-dive/</guid><description>
 &lt;p>Serverless computing is all the rage, promising pay-as-you-go magic and freedom from infrastructure woes. But what about serverless for data warehouses? Let's delve into the fascinating (and sometimes confusing) world of &lt;strong>&lt;a href="https://aws.amazon.com/redshift/redshift-serverless/">Redshift Serverless&lt;/a>&lt;/strong>: its cost structure, ideal use cases, and situations where it might not be the best fit.&lt;/p>
 &lt;h2 id="cost-breakdown-beyond-the-illusion-of-free">Cost Breakdown: Beyond the Illusion of Free&lt;/h2>

@@ -18,7 +18,10 @@ height="777"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.png"
 title="Overview architecture for data modeling module"
 />
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/pi
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
+&lt;p>The overview architecture demonstrates how the solution orchestrates loading clickstream data into the Amazon Redshift data warehouse and triggers data modeling within Redshift.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Data Processing</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</link><pubDate>Sat, 14 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</guid><description>
 &lt;p>In this post, we will delve into the data processing module of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This module is an optional component that normalizes raw clickstream events by cleaning, transforming, and enriching them to fit the standard clickstream data schema defined in the solution. It's designed for flexibility, reliability, high performance, and cost-effectiveness.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
@@ -37,7 +40,10 @@ height="401"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.png"
 title="Overview architecture for data process module"
 />
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data process module&lt;/figcaption>&lt;/pi
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data process module&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
+&lt;p>The data processing is designed for batch or micro-batch data processing to optimize performance and cost-effectiveness. It's primarily an Apache Spark application running on &lt;a href="https://aws.amazon.com/emr/serverless/">Amazon EMR Serverless&lt;/a> to achieve a balance between high performance and cost. It offers the following capabilities:&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Data Ingestion</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/</link><pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/</guid><description>
 &lt;p>In this post, we will delve into the data ingestion service of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This service is a vital part of the clickstream analytics system. It is designed to be reliable, resilient, high-performing, flexible, and cost-effective. It plays a key role in capturing clickstream data from various sources and delivering it to downstream processing and modeling components.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
@@ -56,10 +62,14 @@ height="458"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.png"
 title="Overview architecture for data ingestion service"
 />
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/pi
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Serverless web console</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</link><pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</guid><description>
 &lt;p>This post explores the &lt;a href="https://docs.aws.amazon.com/solutions/latest/clickstream-analytics-on-aws/how-the-solution-works.html#web-console">web console&lt;/a> module of the &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>.&lt;/p>
 &lt;p>The web console allows users to create and manage projects with their data pipeline, which ingests, processes, analyzes, and visualizes clickstream data. In version 1.1, the &lt;a href="https://docs.aws.amazon.com/solutions/latest/clickstream-analytics-on-aws/analytics-studio.html">Analytics Studio&lt;/a> was introduced for &lt;strong>business analysts&lt;/strong>, enabling them to view metrics dashboards, explore clickstream data, design customized dashboards, and manage metadata without requiring in-depth knowledge of data warehouses and SQL.&lt;/p>
+&lt;h2 id="one-code-base-for-different-architectures">One code base for different architectures&lt;/h2>
+&lt;p>The web console is a web application built using AWS serverless technologies, as demonstrated in the &lt;a href="https://kane.mx/posts/2022/build-serverless-app-on-aws/intro/">Build serverless web application with AWS Serverless&lt;/a> series.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/">Read More&lt;/a>&lt;/p></description></item><item><title>How to build a clickstream analytic system for small businesses to large-scale events</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/preface/</link><pubDate>Tue, 03 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/preface/</guid><description>
 &lt;p>In the last couple of months, I led a team to build a comprehensive and open-sourced &lt;a href="https://aws.amazon.com/solutions/implementations/clickstream-analytics-on-aws/">solution&lt;/a> that helps customers analyze clickstream events on the cloud. The solution provides data autonomy, allowing users full access to raw data, near real-time ingestion, flexible configurations, and cost-effectiveness. It is a system that utilizes serverless services to cater to various customers, whether small businesses or large-scale events with massive data volumes, offering fully managed services with minimal operational efforts or the flexibility to use preferred open-source technical stacks.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">Read More&lt;/a>&lt;/p></description></item><item><title>Analyzing Clickstream Events Using Amazon Athena UDFs</title><link>https://kane.mx/posts/2024/analyzing-clickstream-events-using-amazon-athena-udfs/</link><pubDate>Sat, 17 Aug 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/analyzing-clickstream-events-using-amazon-athena-udfs/</guid><description>

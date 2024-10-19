@@ -31,7 +31,10 @@ height="777"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.png"
 title="Overview architecture for data modeling module"
 />
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/pi
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
+&lt;p>The overview architecture demonstrates how the solution orchestrates loading clickstream data into the Amazon Redshift data warehouse and triggers data modeling within Redshift.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Data Processing</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</link><pubDate>Sat, 14 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</guid><description>
 &lt;p>In this post, we will delve into the data processing module of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This module is an optional component that normalizes raw clickstream events by cleaning, transforming, and enriching them to fit the standard clickstream data schema defined in the solution. It's designed for flexibility, reliability, high performance, and cost-effectiveness.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
@@ -50,7 +53,10 @@ height="401"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.png"
 title="Overview architecture for data process module"
 />
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data process module&lt;/figcaption>&lt;/pi
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data process module&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
+&lt;p>The data processing is designed for batch or micro-batch data processing to optimize performance and cost-effectiveness. It's primarily an Apache Spark application running on &lt;a href="https://aws.amazon.com/emr/serverless/">Amazon EMR Serverless&lt;/a> to achieve a balance between high performance and cost. It offers the following capabilities:&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Data Ingestion</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/</link><pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/</guid><description>
 &lt;p>In this post, we will delve into the data ingestion service of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This service is a vital part of the clickstream analytics system. It is designed to be reliable, resilient, high-performing, flexible, and cost-effective. It plays a key role in capturing clickstream data from various sources and delivering it to downstream processing and modeling components.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
@@ -69,10 +75,14 @@ height="458"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.png"
 title="Overview architecture for data ingestion service"
 />
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/pi
+&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/picture>
+&lt;/figure>
+&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Serverless web console</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</link><pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</guid><description>
 &lt;p>This post explores the &lt;a href="https://docs.aws.amazon.com/solutions/latest/clickstream-analytics-on-aws/how-the-solution-works.html#web-console">web console&lt;/a> module of the &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>.&lt;/p>
 &lt;p>The web console allows users to create and manage projects with their data pipeline, which ingests, processes, analyzes, and visualizes clickstream data. In version 1.1, the &lt;a href="https://docs.aws.amazon.com/solutions/latest/clickstream-analytics-on-aws/analytics-studio.html">Analytics Studio&lt;/a> was introduced for &lt;strong>business analysts&lt;/strong>, enabling them to view metrics dashboards, explore clickstream data, design customized dashboards, and manage metadata without requiring in-depth knowledge of data warehouses and SQL.&lt;/p>
+&lt;h2 id="one-code-base-for-different-architectures">One code base for different architectures&lt;/h2>
+&lt;p>The web console is a web application built using AWS serverless technologies, as demonstrated in the &lt;a href="https://kane.mx/posts/2022/build-serverless-app-on-aws/intro/">Build serverless web application with AWS Serverless&lt;/a> series.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/">Read More&lt;/a>&lt;/p></description></item><item><title>How to build a clickstream analytic system for small businesses to large-scale events</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/preface/</link><pubDate>Tue, 03 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/preface/</guid><description>
 &lt;p>In the last couple of months, I led a team to build a comprehensive and open-sourced &lt;a href="https://aws.amazon.com/solutions/implementations/clickstream-analytics-on-aws/">solution&lt;/a> that helps customers analyze clickstream events on the cloud. The solution provides data autonomy, allowing users full access to raw data, near real-time ingestion, flexible configurations, and cost-effectiveness. It is a system that utilizes serverless services to cater to various customers, whether small businesses or large-scale events with massive data volumes, offering fully managed services with minimal operational efforts or the flexibility to use preferred open-source technical stacks.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">Read More&lt;/a>&lt;/p></description></item><item><title>Analyzing Clickstream Events Using Amazon Athena UDFs</title><link>https://kane.mx/posts/2024/analyzing-clickstream-events-using-amazon-athena-udfs/</link><pubDate>Sat, 17 Aug 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2024/analyzing-clickstream-events-using-amazon-athena-udfs/</guid><description>
@@ -108,6 +118,33 @@ title="Overview architecture for data ingestion service"
 &lt;p>&lt;a href="https://kane.mx/posts/2023/build-serverless-web-application-with-aws-lambda-web-adapter/">Read More&lt;/a>&lt;/p></description></item><item><title>Verbose logging for AWS JS SDK v3</title><link>https://kane.mx/posts/2023/aws-js-sdk-v3-verbose-logging/</link><pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2023/aws-js-sdk-v3-verbose-logging/</guid><description>
 &lt;p>When programming with the AWS SDK, developers sometimes want to debug a specific HTTP request when invoking an SDK API. Due to the &lt;a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-types/Interface/LoggerOptions/">poor documentation&lt;/a> of AWS JS SDK v3, it takes a lot of work to find a way to print the verbose logging of AWS SDK by asking it to the LLMs.&lt;/p>
 &lt;p>Below is a practical tip for enabling verbose logging for AWS JS SDK v3.&lt;/p>
+&lt;h3 id="solution-1---specify-a-custom-logger-for-aws-sdk-clients">Solution 1 - specify a custom logger for AWS SDK clients&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">DescribeParametersCommand&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">SSMClient&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="kr">from&lt;/span> &lt;span class="s2">&amp;#34;@aws-sdk/client-ssm&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="kr">as&lt;/span> &lt;span class="nx">log4js&lt;/span> &lt;span class="kr">from&lt;/span> &lt;span class="s2">&amp;#34;log4js&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl">&lt;span class="nx">log4js&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">configure&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl"> &lt;span class="nx">appenders&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">out&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="kr">type&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;stdout&amp;#34;&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl"> &lt;span class="nx">categories&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">default&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">appenders&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;out&amp;#34;&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="nx">level&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;debug&amp;#34;&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl">&lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">logger&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">log4js&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getLogger&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">ssmClient&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">SSMClient&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">12&lt;/span>&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>: &lt;span class="kt">logger&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">13&lt;/span>&lt;span class="cl">&lt;span class="p">});&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="solution-2---use-middleware-to-hook-the-life-cyele-of-request">Solution 2 - use middleware to hook the life cyele of request&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">DescribeParametersCommand&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">SSMClient&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="kr">from&lt;/span> &lt;span class="s2">&amp;#34;@aws-sdk/client-ssm&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">logRequestMiddleware&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">next&lt;/span>: &lt;span class="kt">any&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">_context&lt;/span>: &lt;span class="kt">any&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="kr">async&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">args&lt;/span>: &lt;span class="kt">any&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Request:&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">args&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">next&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">args&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl">&lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">ssmClient&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">SSMClient&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl">&lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl">&lt;span class="nx">ssmClient&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">middlewareStack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">logRequestMiddleware&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">step&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;finalizeRequest&amp;#39;&lt;/span> &lt;span class="p">});&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>See complete working example gist below,&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2023/aws-js-sdk-v3-verbose-logging/">Read More&lt;/a>&lt;/p></description></item><item><title>Define your API via OpenAPI definition on AWS</title><link>https://kane.mx/posts/2022/import-oas-as-api-on-aws/</link><pubDate>Thu, 27 Oct 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2022/import-oas-as-api-on-aws/</guid><description>
 &lt;p>Application Programming Interfaces(APIs) is a critical part of the web service, Werner Vogel, the CTO of AWS had a great
 &lt;a href="https://thenewstack.io/werner-vogels-6-rules-for-good-api-design/">6 Rules for Good API Design&lt;/a> presentation in 2021 re:Invent keynote.&lt;/p>
@@ -404,20 +441,47 @@ to kinds of package registries, such as npmjs, pypi and maven central.&lt;/p>
 &lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>开发团队一直使用着&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>来持续集成&lt;a href="https://vme360.com">V秘&lt;/a>服务的新功能和各种改进。近日，&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>在重启之后，很多已有任务的配置无法被&lt;a href="https://jenkins.io/">Jenkins CI&lt;/a>完整的加载，导致很多功能无法使用。导致我们整个网站的各种服务无法被升级更新了:-(&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/how-to-fix-jenkins-fail-to-load-job-config/">Read More&lt;/a>&lt;/p></description></item><item><title>MongoDB中如何找出慢查询</title><link>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</link><pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/</guid><description>
 &lt;p>&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>是目前最为流行的&lt;a href="https://en.wikipedia.org/wiki/NoSQL">NoSQL&lt;/a>数据库之一。&lt;a href="https://vme360.com">V秘&lt;/a>的后台数据就是保存在&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>中的哦;)&lt;/p>
+&lt;p>尽管&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>的性能为业界称道，但任何数据库系统使用中都存在着慢查询的问题。慢查询的性能问题，可能是由于使用非最优的查询语句，不正确的索引或其他配置原因导致的。但开发人员或数据库维护人员首先要找出这些低效的查询，才能做出对应的查询优化。&lt;/p>
+&lt;!-- more -->
+&lt;p>在&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>中实现慢查询的profile是非常容易，因为&lt;a href="https://www.mongodb.com/">MongoDB&lt;/a>内置了&lt;a href="https://docs.mongodb.com/manual/reference/method/db.setProfilingLevel/">profile开关&lt;/a>来记录执行时间触发了profile条件的查询。&lt;/p>
+&lt;p>参照&lt;a href="https://docs.mongodb.com/manual/reference/method/db.setProfilingLevel/">db.setProfileLevel()&lt;/a>的文档，通过以下命令就可以记录执行时长超过&lt;strong>300ms&lt;/strong>的查询。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="nx">db&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">setProfilingLevel&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">300&lt;/span>&lt;span class="p">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>当慢查询被重现后，可以通过查找&lt;code>system.profile&lt;/code> collection来查看执行时长超过&lt;strong>300ms&lt;/strong>的查询。&lt;/p>
+&lt;p>被profiler记录下来慢查询record看起来如下，&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/how-to-find-slow-queries-in-mongodb/">Read More&lt;/a>&lt;/p></description></item><item><title>Docker Swarm mode(v1.12.x)的一些使用限制</title><link>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</link><pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/</guid><description>
 &lt;p>&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>在&lt;a href="https://www.docker.com">Docker&lt;/a> v1.12中正式发布，&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>带来了诸如Docker集群，容器编排，多主机网络等激动人心的特性。&lt;a href="https://vme360.com">V秘&lt;/a>团队也尝试着将各种后台服务部署到&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm Cluster&lt;/a>获取更好的弹性计算能力。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/the-limitations-docker-swarm-mode-v1.12/">Read More&lt;/a>&lt;/p></description></item><item><title>创建于Docker Swarm的服务无法在Ubuntu 14.04 LTS中运行</title><link>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</link><pubDate>Tue, 13 Sep 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/</guid><description>
 &lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>团队一直致力于用技术改善产品。&lt;a href="https://vme360.com">V秘&lt;/a>后台的各种服务一直是通过完善的Devops流程自动部署到&lt;a href="https://www.docker.com">Docker&lt;/a>容器集群。随着&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>在&lt;a href="https://www.docker.com">Docker&lt;/a> v1.12中正式发布，&lt;a href="https://docs.docker.com/engine/swarm/">Swarm mode&lt;/a>带来了诸如Docker集群，多主机网络等激动人心的特性。我们也在尝试将&lt;a href="https://vme360.com">V秘&lt;/a>服务部署到&lt;a href="https://docs.docker.com/engine/swarm/">Docker Swarm Cluster&lt;/a>获取更好的弹性计算能力。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/docker-swarm-mode-in-ubuntu-1404/">Read More&lt;/a>&lt;/p></description></item><item><title>基于Angularjs单页面应用的SEO优化</title><link>https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/</link><pubDate>Thu, 19 May 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/</guid><description>
 &lt;p>在之前的&lt;a href="https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/">文章&lt;/a>我曾提到基于&lt;a href="https://angularjs.org/">Angularjs&lt;/a>的单页面应用在用户体验上的种种好处。然而任何事情都不是完美的，&lt;a href="https://angularjs.org/">Angular&lt;/a>和类似的框架通过应用内做页面路由的实现给SEO（也俗称搜索引擎优化）带来了不少麻烦。&lt;/p>
+&lt;p>首先，我们来看看页面内路由是如何实现的。默认&lt;a href="https://angularjs.org/">Angularjs&lt;/a>生成的页面uri类型如下，&lt;/p>
+&lt;p>&lt;code>http://mydomain.com/#/app/page1&lt;/code>&lt;/p>
+&lt;p>浏览器请求上面这个uri的时候，实际发送给服务器的请求地址是&lt;strong>&lt;a href="http://mydomain.com/">http://mydomain.com/&lt;/a>&lt;/strong>, web服务器会将默认的页面响应给浏览器，比如&lt;em>index.html&lt;/em>或&lt;em>index.php&lt;/em>等。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/seo-optimization-for-angularajs-based-app/">Read More&lt;/a>&lt;/p></description></item><item><title>Spring框架下的分布式session管理</title><link>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</link><pubDate>Sat, 07 May 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/clustered-session-under-spring-framework/</guid><description>
 &lt;p>在微服务和容器等技术的帮助下，Web应用可以较为容易的进行水平扩展，来部署更多的应用实例来提升请求处理数QPS。当Web服务有状态的时候，如何在集群下管理用户session成为新的待解决问题。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/clustered-session-under-spring-framework/">Read More&lt;/a>&lt;/p></description></item><item><title>V秘是如何构建的</title><link>https://kane.mx/posts/2016/how-we-build-videome/</link><pubDate>Thu, 07 Apr 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/how-we-build-videome/</guid><description>
 &lt;p>春天来了，&lt;a href="https://vme360.com">V秘&lt;/a>大家庭也新增了两位10后的传人。新爸爸经过一番忙乱后，希望在这里与大家分享&lt;a href="https://vme360.com">V秘&lt;/a>的架构，共同探讨如何快速的构建高可用，高性能的Web服务。&lt;/p>
+&lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>致力于提供最好的在线视频制作云平台。让用户随时随地零门槛的快速制作出高质量高清晰度的视频，来纪念记录生活中有意义的时刻，同时将这份快乐传递给更多的家人朋友一起分享。&lt;/p>
+&lt;p>然而要可靠的可扩展的实现这样看似简单的需求，其背后确由众多知名开源技术，可靠的云服务，不间歇的监控运维来实现和保证的。&lt;/p>
+&lt;!-- more -->
+&lt;p>&lt;a href="https://vme360.com">V秘&lt;/a>架构的基本目标就是要实现，&lt;/p>
+&lt;ul>
+&lt;li>服务的高扩展性。有有效可靠的方法支撑数万并发到数十万，百万及更多的并发请求。&lt;/li>
+&lt;li>服务的高可用性。各种服务都是多实例的集群，某些服务故障后，集群中的其他实例仍然能够提供服务。&lt;/li>
+&lt;li>服务的自动化构建。从代码到服务部署上线是一套自动化的流程，越少的人工介入保证了服务的可用性。&lt;/li>
+&lt;li>系统的实时监控。7x24小时的监控保证服务的可用性，当监控到数据异常或服务停止运行能及时告警引入人工运维团队。&lt;/li>
+&lt;/ul>
+&lt;p>更多细节请参阅下面的&lt;a href="http://www.slideshare.net/zxkane/how-we-build-vme">slides&lt;/a>,&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/how-we-build-videome/">Read More&lt;/a>&lt;/p></description></item><item><title>说一说阿里云ossfs</title><link>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</link><pubDate>Fri, 26 Feb 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/aliyun-ossfs-sucks/</guid><description>
 &lt;p>阿里云提供的对象或者文件存储叫&lt;a href="https://www.aliyun.com/product/oss">OSS&lt;/a>，为应用程序提供了海量存储，按需付费等服务。应用程序则需要通过&lt;a href="https://www.aliyun.com/product/oss">Aliyun OSS&lt;/a>的各语言SDK才能操作（读，写，遍历等）OSS中的文件。&lt;/p>
+&lt;p>对运维人员来说，做一些数据维护工作的时候，通过SDK操作&lt;a href="https://www.aliyun.com/product/oss">OSS&lt;/a>中的文件就会比较麻烦。在linux/unix环境下，通常有一些工具把远程文件系统或云盘挂载为本地文件。在网络状况比较好的情况下，操作远程文件就像操作本地文件一样。例如，把&lt;a href="https://github.com/s3fs-fuse/s3fs-fuse">Amazon S3&lt;/a>，&lt;a href="https://github.com/joe42/CloudFusion">Dropbox云盘&lt;/a>，&lt;a href="https://github.com/libfuse/sshfs">可通过ssh登录的远程服务器上的磁盘&lt;/a>挂载为本地文件系统。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/aliyun-ossfs-sucks/">Read More&lt;/a>&lt;/p></description></item><item><title>如何使用微信公众平台的临时素材</title><link>https://kane.mx/posts/2016/weixin-temporary-materials/</link><pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/weixin-temporary-materials/</guid><description>
 &lt;p>微信给公众平台提供了&lt;a href="http://mp.weixin.qq.com/wiki/15/2d353966323806a202cd2deaafe8e557.html">素材管理&lt;/a>的接口，通过这一系列接口可以上传，接收以及管理图片，视频等多媒体文件。其中又分为&lt;strong>临时&lt;/strong>和&lt;strong>永久&lt;/strong>两种类型。永久素材有总量的限制，临时素材微信服务器只给保存3天。&lt;/p>
+&lt;p>最近&lt;a href="https://vme360.com">V秘&lt;/a>刚好有个同微信用户互动的场景，为用户美化微信拍摄的小视频。&lt;a href="https://vme360.com">V秘&lt;/a>后台服务器收到用户发送过来小视频（微信将其认做临时素材），将其美化处理后，再将美化的视频上传为临时素材，最终美化后的视频作为视频类型的客服消息被推送给用户。整个流程很简洁，用户发送小视频后，就坐等观看美化后的小视频了。&lt;/p>
+&lt;p>然而最终经过V秘开发团队的实践及测试，得出的结论是，&lt;/p>
+&lt;!-- more -->
+&lt;p>##&lt;strong>微信公众平台的临时素材不能用！绝对的鸡肋！&lt;/strong>&lt;/p>
+&lt;p>公众平台上传素材的API以及使用已有素材发送视频消息API都很健壮。但问题出在了微信后台资源的服务上面。&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/weixin-temporary-materials/">Read More&lt;/a>&lt;/p></description></item><item><title>单页面应用(single page application)中使用微信支付</title><link>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</link><pubDate>Sun, 24 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/</guid><description>
 &lt;p>随着&lt;strong>AngularJS&lt;/strong>等前端MVC框架的流行，AJAX的异步请求数据结合H5的push state等特性，极大的改善了网站的用户体验和页面加载性能。这类网站应用通常只有一个入口页面，通过应用内路由到不同的页面，所以俗称单页面(signle page application)应用。页面&lt;strong>URL&lt;/strong>看起来如下，&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2016/single-page-app-meets-weixin-pay/">Read More&lt;/a>&lt;/p></description></item><item><title>文件系统的Inode耗尽，会导致Docker编译镜像出现'No space left on device'错误</title><link>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</link><pubDate>Thu, 21 Jan 2016 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2016/docker-build-no-space-left-caused-by-inode-exhausted/</guid><description>
@@ -427,6 +491,8 @@ to kinds of package registries, such as npmjs, pypi and maven central.&lt;/p>
 &lt;p>The script works well when running it in shell of linux. The web application will run in background by daemon.&lt;/p>
 &lt;p>However I found both daemon and web application(java) exited immediately if I started the script in Jenkins as a shell step of build process.&lt;/p>
 &lt;p>I put below simple script in 'Execute shell' block,&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">daemon --name&lt;span class="o">=&lt;/span>test-daemon -- sleep 200sleep &lt;span class="m">60&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The process 'daemon' and 'sleep 200' should exit after 200 seconds the 'sleep' exits. The jenkins job will be finished in 60 secs.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/daemon-hell-in-jenkins/">Read More&lt;/a>&lt;/p></description></item><item><title>The symptoms of Java broken in Mac OSX 10.10 and fix solution</title><link>https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/</link><pubDate>Mon, 13 Jul 2015 19:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/the-symptoms-of-java-broken-in-mac-osx/</guid><description>
 &lt;p>After uninstalling some applications from my Mac OSX, I found the applications that depends on JRE totally does not work. I noticed below symptoms,&lt;/p>
 &lt;ol>
@@ -443,13 +509,24 @@ to kinds of package registries, such as npmjs, pypi and maven central.&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">    Authenticated as: myuser
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">    Authorities:
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">        authenticated&lt;/span>&lt;/span>&lt;/code>&lt;/pr
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">        authenticated&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>However you still would meet permission error when running groovy script in CLI.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">java -jar jenkins-cli.jar -s http://myserver/jenkins groovysh &lt;span class="s1">&amp;#39;jenkins.model.Jenkins.instance.pluginManager.plugins.each { println(&amp;#34;${it.longName} - ${it.version}&amp;#34;) };&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">Exception in thread &lt;span class="s2">&amp;#34;main&amp;#34;&lt;/span> java.lang.reflect.UndeclaredThrowableException
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">at &lt;span class="nv">$Proxy2&lt;/span>.main&lt;span class="o">(&lt;/span>Unknown Source&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">at hudson.cli.CLI.execute&lt;span class="o">(&lt;/span>CLI.java:271&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl">at hudson.cli.CLI._main&lt;span class="o">(&lt;/span>CLI.java:417&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">8&lt;/span>&lt;span class="cl">at hudson.cli.CLI.main&lt;span class="o">(&lt;/span>CLI.java:322&lt;span class="o">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>It's a bug of Jenkins. &lt;strong>The workaround is create a groovy script, then run that script via Jenkins CLI&lt;/strong>.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/run-groovy-script-via-jenkins-cli/">Read More&lt;/a>&lt;/p></description></item><item><title>Solr boost examples</title><link>https://kane.mx/posts/archive/blogspot/solr-boost-examples/</link><pubDate>Sat, 11 May 2013 13:16:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/solr-boost-examples/</guid><description>
 &lt;p>The index has a field named 'create_time' that is the timestamp of document created time. The query string can boost the latest created document like below,&lt;/p>
 &lt;p>{!boost b=recip(ms(NOW,create_time),3.16e-11,0.08,0.05)}name:keyword&lt;/p>
 &lt;p>There is another field named 'important' that indicates whether the document is important or not. The query string can boost the document is important like below,&lt;/p>
 &lt;p>q={!boost b=$importfunc}name:keyword&amp;amp;importfunc=query({!v='important:true'})&lt;/p>
 &lt;p>Above query string uses a sub query in boost function.&lt;/p>
+&lt;p>Finally I want to boost both above two fields, and 'important' field has higher priority. The query string looks like below,&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/solr-boost-examples/">Read More&lt;/a>&lt;/p></description></item><item><title>Django's unicdoe encode error</title><link>https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/</link><pubDate>Thu, 16 Aug 2012 09:11:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/djangos-unicdoe-encode-error/</guid><description>
 &lt;p>It's a common and ugly problem when using non-ascii characters in Django.&lt;/p>
 &lt;p>The general solution is below,&lt;/p>
@@ -510,10 +587,12 @@ Our product is based on plug-ins, however we added the '&lt;strong>featurelist&l
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/migrate-clearcase-to-git/">Read More&lt;/a>&lt;/p></description></item><item><title>p2 query performance</title><link>https://kane.mx/posts/archive/blogspot/p2-query-performance/</link><pubDate>Mon, 17 Oct 2011 19:34:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/p2-query-performance/</guid><description>
 &lt;p>Our p2 based on installer suffered performance issue when querying IUs from repositories. Though the repositories have a large number of IUs to be queried, but we find the performance of using QL is unacceptable in some special scenarios.&lt;/p>
 &lt;p>I &lt;a href="https://docs.google.com/document/d/1wfnr2d2TF4vIYDCMmWPuYd0kQA32WiWaXTiaCoJovho/edit?pli=1">published several different methods&lt;/a> to find the expected IUs. Thomas pointed out the better expression of QL and finally helped us to find out the our repository without &lt;strong>IIndexProvider&lt;/strong> implementation.&lt;/p>
+&lt;p>&lt;strong>IIndexProvider&lt;/strong> implementation of a repository is quite important to improve the performance of QL, especially use the 'traverse' clause to query something.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/p2-query-performance/">Read More&lt;/a>&lt;/p></description></item><item><title>Create an import library for building application in MinGW</title><link>https://kane.mx/posts/archive/blogspot/create-import-library-for-building/</link><pubDate>Fri, 12 Aug 2011 10:51:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/create-import-library-for-building/</guid><description>
 &lt;p>Yesterday I modified an existing c++ application for Windows. And its default build environment is Makefile and MinGW.&lt;/p>
 &lt;p>However I used a newly Windows API that is not included by header files of MinGW.&lt;/p>
 &lt;p>First of all, I copied the constant definition from header file of Windows SDK, and defined the Windows API method as a extern C method. So it's no problem to compile the code in MinGW.&lt;/p>
+&lt;p>Secondly I have to fix the link issue. Because the symbol of the Windows API also can't be found by gcc link.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/create-import-library-for-building/">Read More&lt;/a>&lt;/p></description></item><item><title>Customize PDE build</title><link>https://kane.mx/posts/archive/blogspot/customize-pde-build/</link><pubDate>Fri, 22 Jul 2011 13:59:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/customize-pde-build/</guid><description>
 &lt;p>&lt;a href="http://help.eclipse.org/helios/index.jsp?topic=/org.eclipse.pde.doc.user/tasks/pde_customization.htm">The documentation of PDE&lt;/a> has a chapter for this topic. Basically it's simply. Copy the template scripts what you want from &lt;em>templates/headless-build&lt;/em> folder under &lt;em>org.eclipse.pde.build&lt;/em> plug-in to your build configuration directory that is the folder has &lt;em>build.properties&lt;/em> file.&lt;/p>
 &lt;p>However I found the variables listed in template '&lt;em>customAssembly.xml&lt;/em>' can't be used in the runtime. I filed bug &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=346370">346370&lt;/a> against it.&lt;/p>
@@ -538,7 +617,32 @@ Our product is based on plug-ins, however we added the '&lt;strong>featurelist&l
       &lt;/hostRequirements>&lt;br>
       &lt;properties size='1'>&lt;br>
         &lt;property name='org.eclipse.equinox.p2.type.fragment' value='true'/>&lt;br>
-      &lt;/pr
+      &lt;/properties>&lt;br>
+      &lt;provides size='2'>&lt;br>
+        &lt;provided namespace='org.eclipse.equinox.p2.iu' name='tooling.osgi.bundle.default' version='1.0.0'/>&lt;br>
+        &lt;provided namespace='org.eclipse.equinox.p2.flavor' name='tooling' version='1.0.0'/>&lt;br>
+      &lt;/provides>&lt;br>
+      &lt;requires size='1'>&lt;br>
+        &lt;required namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' range='0.0.0' multiple='true' greedy='false'/>&lt;br>
+      &lt;/requires>&lt;br>
+      &lt;touchpoint id='null' version='0.0.0'/>&lt;br>
+      &lt;touchpointData size='1'>&lt;br>
+        &lt;instructions size='4'>&lt;br>
+          &lt;instruction key='install'>&lt;br>
+            installBundle(bundle:${artifact})&lt;br>
+          &lt;/instruction>&lt;br>
+          &lt;instruction key='uninstall'>&lt;br>
+            uninstallBundle(bundle:${artifact})&lt;br>
+          &lt;/instruction>&lt;br>
+          &lt;instruction key='unconfigure'>&lt;/p>
+&lt;p>          &lt;/instruction>&lt;br>
+          &lt;instruction key='configure'>&lt;br>
+            setStartLevel(startLevel:4);&lt;br>
+          &lt;/instruction>&lt;br>
+        &lt;/instructions>&lt;br>
+      &lt;/touchpointData>&lt;br>
+    &lt;/unit>&lt;/p>
+&lt;p>It has 'hostRequirements' element that represents it's a fragment IU and match all the eclipse's plug-ins in that profile. And this fragment defines the touch point actions for its hosts that will do installBundle action during 'install' phrase and uninstallBundle action during 'uninstall' phrase. It's a very good way to remove the duplicate touch point definitions for all eclipse's plug-ins in the profile.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/">Read More&lt;/a>&lt;/p></description></item><item><title>Inside P2's profile (1) - inclusion rules</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</link><pubDate>Tue, 28 Dec 2010 11:13:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid><description>
 &lt;p>You would see some interesting properties at the bottom of eclipse's profile.&lt;/p>
 &lt;p>For example,&lt;/p>
@@ -550,6 +654,8 @@ Our product is based on plug-ins, however we added the '&lt;strong>featurelist&l
 &lt;p>It attaches a property named 'org.eclipse.equinox.p2.internal.inclusion.rules' with value 'STRICT' on the IU 'org.eclipse.sdk.ide' with version 3.6.1.M20100909-0800.&lt;br>
  &lt;br>
 It's a very important property for the p2 engine. It means the IU 'org.eclipse.sdk.ide' has been explicitly installed into the profile, so it's not allowed be implicitly updated or removed.&lt;/p>
+&lt;p>For example,&lt;br>
+We have top feature IU 'org.eclipse.sdk.ide' that represents the Eclipse SDK,   'org.eclipse.pde.feature' that represents the Plug-in Development Tool and 'org.eclipse.jdt.feature' that represents the Java Development Tool. And both JDT and PDT are part of Eclipse SDK, so 'org.eclipse.pde.feature' and 'org.eclipse.jdt.feature' are required by 'org.eclipse.sdk.ide'.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/">Read More&lt;/a>&lt;/p></description></item><item><title>stack overflow protector</title><link>https://kane.mx/posts/archive/blogspot/stack-overflow-protector/</link><pubDate>Thu, 23 Dec 2010 13:25:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/stack-overflow-protector/</guid><description>
 &lt;p>Latest gcc compiler enables the stack overflow protector that is since GLIBC 2.4. So the library or executable is compiled by latest gcc could be loaded or executed in RHEL4 or Solaris 9 that only have GLIBC 2.3. Hence using option '-fno-stack-protector' to compile the library or executable to make sure it could be executed in older linux release.&lt;/p>
 &lt;p>g++ -fno-stack-protector -o test.o test&lt;/p>
@@ -578,7 +684,9 @@ width="320"
 height="180"
 src="https://kane.mx/DSC01486_5497315126248538115.jpg"
 />
-&lt;/pi
+&lt;/picture>
+&lt;/figure>
+&lt;/a>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/food-and-drinking/">Read More&lt;/a>&lt;/p></description></item><item><title>Working Workspace</title><link>https://kane.mx/posts/archive/blogspot/working-workspace/</link><pubDate>Fri, 27 Aug 2010 17:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/working-workspace/</guid><description>
 &lt;p>Joel posted a &lt;a href="http://www.joelonsoftware.com/articles/fieldguidetodevelopers.html">blog&lt;/a> related to how to hire the great programmers. One of his key points is building comfortable workspaces.&lt;/p>
 &lt;p>I believe every programmer loves the workspace like Google and Fog Creek. The workspace of Google has been very famous due to its French chef, gymnasium and big sofas. Why is Fog Creek? It's the company created by Joel, he also practiced his theory on his company. Ruan YiFeng posted a &lt;a href="http://www.ruanyifeng.com/blog/2009/02/fog_creek_s_new_office.html">blog&lt;/a> for it. I bet you would envy the guys working in that office.&lt;/p>
@@ -595,7 +703,27 @@ width="320"
 height="192"
 src="https://kane.mx/IMAG0058_5033465335237907880.jpg"
 />
-&lt;/pi
+&lt;/picture>
+&lt;/figure>
+&lt;/a>&lt;/p>
+&lt;p>Salzach River&lt;/p>
+&lt;p>&lt;a href="http://lh4.ggpht.com/_5seoFihTGKg/TF7wirfvyNI/AAAAAAAAEJo/Q92doV8uMyU/s1600/DSC01291.JPG">&lt;figure>
+&lt;picture>
+&lt;img
+loading="lazy"
+decoding="async"
+alt=""
+class="image_figure image_external image_processed"
+width="320"
+height="180"
+src="https://kane.mx/DSC01291_14853324469084525771.jpg"
+/>
+&lt;/picture>
+&lt;/figure>
+&lt;/a>&lt;/p>
+&lt;p>outline view&lt;/p>
+&lt;p>Riding the bicycle is a very good way to enjoy the beautiful sight of the city. You could see many kids with parents riding bicycle in the sunny weekend.&lt;br>
+The train station and a major bus transient station are the same one that is called as 'main station' by local residents. it's not far from the office of company, about 20 minutes by foot.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/transportation/">Read More&lt;/a>&lt;/p></description></item><item><title>Working style</title><link>https://kane.mx/posts/archive/blogspot/working-style/</link><pubDate>Fri, 20 Aug 2010 17:45:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/working-style/</guid><description>
 &lt;p>There are 20+ staffs in Salzburg office. Most of them are developers, one is administrator of office.&lt;br>
 Generally the staffs in Salzburg work more flexible than the staffs working in Beijing.&lt;br>
@@ -617,7 +745,40 @@ width="192"
 height="320"
 src="https://kane.mx/IMAG0012_584699872206005858.jpg"
 />
-&lt;/pi
+&lt;/picture>
+&lt;/figure>
+&lt;/a>&lt;/p>
+&lt;p>另外赞一下维也纳机场的Wifi，简单配置就K了，哪像国内的，又要移动号码，还要短信获取，搞半天也没弄定。&lt;br>
+转机之前还有段时间，就在机场里到处逛了逛。顺便在一个吧解决了晚餐，同时也尝了杯当地啤酒。&lt;/p>
+&lt;p>&lt;a href="http://lh3.ggpht.com/_5seoFihTGKg/TGHDGKzhOgI/AAAAAAAAENI/SyDJegD6gsU/s1600/IMAG0013.jpg">&lt;figure>
+&lt;picture>
+&lt;img
+loading="lazy"
+decoding="async"
+alt=""
+class="image_figure image_external image_processed"
+width="192"
+height="320"
+src="https://kane.mx/IMAG0013_3323993232420467989.jpg"
+/>
+&lt;/picture>
+&lt;/figure>
+&lt;/a>&lt;/p>
+&lt;p>去萨尔茨堡的飞机还是带螺旋桨的，头次坐这样的老式飞机。&lt;/p>
+&lt;p>&lt;a href="http://lh5.ggpht.com/_5seoFihTGKg/TF7tgvXQbhI/AAAAAAAAECI/AgjugZ-dPW0/s1600/DSC01197.JPG">&lt;figure>
+&lt;picture>
+&lt;img
+loading="lazy"
+decoding="async"
+alt=""
+class="image_figure image_external image_processed"
+width="320"
+height="180"
+src="https://kane.mx/DSC01197_12948264192493874901.jpg"
+/>
+&lt;/picture>
+&lt;/figure>
+&lt;/a>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/day-1/">Read More&lt;/a>&lt;/p></description></item><item><title>Discovering the p2 API</title><link>https://kane.mx/posts/archive/blogspot/discovering-p2-api/</link><pubDate>Mon, 17 May 2010 22:35:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/discovering-p2-api/</guid><description>
 &lt;p>Check out this SlideShare Presentation:&lt;/p>
 &lt;p>&lt;strong>&lt;a href="http://www.slideshare.net/PascalRapicault/discovering-the-p2-api" title="Discovering the p2 API">Discovering the p2 API&lt;/a>&lt;/strong>&lt;/p>
@@ -644,7 +805,13 @@ look up the domain name whose ip address is 206.191.52.46&lt;/p>
 &lt;blockquote>
 &lt;p>Feb 24, 2010 - update:&lt;/p>
 &lt;/blockquote>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">find . -maxdepth &lt;span class="m">4&lt;/span> -type d  -name &lt;span class="s1">&amp;#39;g-vxworks&amp;#39;&lt;/span> 2&amp;gt;/dev/null -print&lt;/span>&lt;/span>&lt;/code>&lt;/pr
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">find . -maxdepth &lt;span class="m">4&lt;/span> -type d  -name &lt;span class="s1">&amp;#39;g-vxworks&amp;#39;&lt;/span> 2&amp;gt;/dev/null -print&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;blockquote>
+&lt;p>Jan. 7, 2024 - update:
+You might see &lt;code>No such file or directory&lt;/code> when combining &lt;code>--exec rm&lt;/code> to delete the found files.&lt;/p>
+&lt;/blockquote>
+&lt;p>You can add &lt;code>-depth&lt;/code> option to mitigate the message.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">find deployment/g -depth -name &lt;span class="s1">&amp;#39;asset.*&amp;#39;&lt;/span> -type d -exec rm -rf &lt;span class="o">{}&lt;/span> &lt;span class="se">\;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/find-exec-tip/">Read More&lt;/a>&lt;/p></description></item><item><title>special characters in p2 touchpoint instruction</title><link>https://kane.mx/posts/archive/blogspot/special-characters-in-p2-touchpoint/</link><pubDate>Fri, 05 Feb 2010 16:15:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/special-characters-in-p2-touchpoint/</guid><description>
 &lt;p>I suffered p2 installation failed on the configure parse. Becase I try to add vm arguments for my application.&lt;br>
 For example, I added '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8272' in the product configuration.&lt;br>
@@ -658,7 +825,7 @@ And I also opened &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=3019
 &lt;p>1. open the file in vim, :%!xxd&lt;br>
 2. hexdump&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/way-to-dump-hex-file/">Read More&lt;/a>&lt;/p></description></item><item><title>How to get the name of running test case in JUnit4</title><link>https://kane.mx/posts/archive/blogspot/how-to-get-name-of-running-test-case-in/</link><pubDate>Mon, 11 Jan 2010 14:57:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-get-name-of-running-test-case-in/</guid><description>
-&lt;pre>&lt;code>public class NameRuleTest {     @Rule public TestName name = new TestName();         @Test public void testA() {                 assertEquals(&amp;quot;testA&amp;quot;, name.getMethodName());         }        @Test public void testB() {                 assertEquals(&amp;quot;testB&amp;quot;, name.getMethodName());         }}&lt;/code>&lt;/pr
+&lt;pre>&lt;code>public class NameRuleTest {     @Rule public TestName name = new TestName();         @Test public void testA() {                 assertEquals(&amp;quot;testA&amp;quot;, name.getMethodName());         }        @Test public void testB() {                 assertEquals(&amp;quot;testB&amp;quot;, name.getMethodName());         }}&lt;/code>&lt;/pre>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-to-get-name-of-running-test-case-in/">Read More&lt;/a>&lt;/p></description></item><item><title>How p2 UI handles with license agreements</title><link>https://kane.mx/posts/archive/blogspot/how-p2-ui-handles-with-license/</link><pubDate>Wed, 30 Dec 2009 16:56:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-p2-ui-handles-with-license/</guid><description>
 &lt;p>P2 install wizard firstly query the repository to find out the root installable unit(as well as top installable). Then p2 recalculate the dependency and try to search the requirements in all available repositories after user submits their installation request. Go to the license agreement page if all the dependencies are satisfied.&lt;/p>
 &lt;p>P2 agreement page obtains all the units to be installed from the operands of provision plan. The number always is much greater than the number submitted by user. Because the submitted IUs only are the root IUs.&lt;/p>
@@ -710,6 +877,24 @@ It means the start level of bundle 'org.eclipse.equinox.simpleconfigurator_1.0.2
 &lt;/li>
 &lt;li>
 &lt;p>The provisioning infrastructure on client machines&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Installable Unit (IU)&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Metadata&lt;/strong> that describes things that can be installed/configured&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Artifact&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The actual content being installed/configured(e.g., bundle JARs)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Repository&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>A store of metadata or artifacts&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]ssh forward</title><link>https://kane.mx/posts/archive/blogspot/ssh-forward/</link><pubDate>Wed, 28 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/ssh-forward/</guid><description>
 &lt;p>ssh -qTfnN -D LocalPort remotehost&lt;/p>
 &lt;p>All the added options are for a ssh session that's used for tunneling.&lt;/p>
@@ -733,6 +918,7 @@ It means the start level of bundle 'org.eclipse.equinox.simpleconfigurator_1.0.2
 &lt;/ul>
 &lt;p>There are three types of proxy supported by IProxyService. They're http, https and socks.&lt;/p>
 &lt;p>It also allows to add/remove ip address from white list, which are accessed without connecting proxy.&lt;/p>
+&lt;p>End users can manage the proxy setting of Eclipse via Preference - General - Network Connections. Eclipse would do persistence of user's setting. Other components of Eclipse also use those proxy settings to access network, such as ECF.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/usage-of-eclipses-proxy-api/">Read More&lt;/a>&lt;/p></description></item><item><title>[tip]Turn off automatically scanning disk when reboot</title><link>https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/</link><pubDate>Wed, 11 Feb 2009 17:40:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/</guid><description>
 &lt;p>tune2fs -i 0 -c 0 /dev/sdx&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/turnoff-automatically-scanning-disk/">Read More&lt;/a>&lt;/p></description></item><item><title>How to set default input method for GNOME</title><link>https://kane.mx/posts/archive/blogspot/how-to-set-default-input-method-for/</link><pubDate>Mon, 09 Feb 2009 11:24:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/how-to-set-default-input-method-for/</guid><description>
@@ -829,6 +1015,10 @@ The installation process would copy the feature and plugins which are included b
 &lt;/li>
 &lt;/ol>
 &lt;p>The requirement is that showing the menu items while current part is document, otherwise hide them.&lt;/p>
+&lt;p>So our implementation is:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>when current document part is deactivated, set menu items invisible&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/call-sequence-between-partactivated-and/">Read More&lt;/a>&lt;/p></description></item><item><title>[debug][java]Remote debug in Eclipse</title><link>https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/</link><pubDate>Wed, 18 Oct 2006 12:53:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/remote-debug-in-eclipse/</guid><description>
 &lt;p>I need use remote debug in our project, however just some experience in Weblogic were found from internet. After my investigation, I got some experience about using Eclipse remote debug RCP.&lt;br>
 There are two important parameters for jvm. And we must launch remote java app with those two parameters.&lt;br>

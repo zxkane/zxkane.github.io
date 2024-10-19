@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>P2 on The road</title><link>https://kane.mx/tags/p2/</link><description>Recent content in P2 on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 17 Oct 2011 19:34:00 +0800</lastBuildDate><atom:link href="https://kane.mx/tags/p2/index.xml" rel="self" type="application/rss+xml"/><item><title>p2 query performance</title><link>https://kane.mx/posts/archive/blogspot/p2-query-performance/</link><pubDate>Mon, 17 Oct 2011 19:34:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/p2-query-performance/</guid><description>
 &lt;p>Our p2 based on installer suffered performance issue when querying IUs from repositories. Though the repositories have a large number of IUs to be queried, but we find the performance of using QL is unacceptable in some special scenarios.&lt;/p>
 &lt;p>I &lt;a href="https://docs.google.com/document/d/1wfnr2d2TF4vIYDCMmWPuYd0kQA32WiWaXTiaCoJovho/edit?pli=1">published several different methods&lt;/a> to find the expected IUs. Thomas pointed out the better expression of QL and finally helped us to find out the our repository without &lt;strong>IIndexProvider&lt;/strong> implementation.&lt;/p>
+&lt;p>&lt;strong>IIndexProvider&lt;/strong> implementation of a repository is quite important to improve the performance of QL, especially use the 'traverse' clause to query something.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/p2-query-performance/">Read More&lt;/a>&lt;/p></description></item><item><title>Eclipse P2's import/export capability</title><link>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</link><pubDate>Fri, 22 Apr 2011 15:56:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</guid><description>
 &lt;p>I implemented the &lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/">replication tool&lt;/a> at the end of 2009, then published it to &lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-tool-lives-on-eclipse/">Eclipse Marketplace&lt;/a> in May 2010. However it's not pervasively used due to users have to install that plug-in firstly.&lt;/p>
 &lt;p>I searched a similar &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=282419">request&lt;/a> on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.&lt;/p>
@@ -12,7 +13,32 @@
       &lt;/hostRequirements>&lt;br>
       &lt;properties size='1'>&lt;br>
         &lt;property name='org.eclipse.equinox.p2.type.fragment' value='true'/>&lt;br>
-      &lt;/pr
+      &lt;/properties>&lt;br>
+      &lt;provides size='2'>&lt;br>
+        &lt;provided namespace='org.eclipse.equinox.p2.iu' name='tooling.osgi.bundle.default' version='1.0.0'/>&lt;br>
+        &lt;provided namespace='org.eclipse.equinox.p2.flavor' name='tooling' version='1.0.0'/>&lt;br>
+      &lt;/provides>&lt;br>
+      &lt;requires size='1'>&lt;br>
+        &lt;required namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' range='0.0.0' multiple='true' greedy='false'/>&lt;br>
+      &lt;/requires>&lt;br>
+      &lt;touchpoint id='null' version='0.0.0'/>&lt;br>
+      &lt;touchpointData size='1'>&lt;br>
+        &lt;instructions size='4'>&lt;br>
+          &lt;instruction key='install'>&lt;br>
+            installBundle(bundle:${artifact})&lt;br>
+          &lt;/instruction>&lt;br>
+          &lt;instruction key='uninstall'>&lt;br>
+            uninstallBundle(bundle:${artifact})&lt;br>
+          &lt;/instruction>&lt;br>
+          &lt;instruction key='unconfigure'>&lt;/p>
+&lt;p>          &lt;/instruction>&lt;br>
+          &lt;instruction key='configure'>&lt;br>
+            setStartLevel(startLevel:4);&lt;br>
+          &lt;/instruction>&lt;br>
+        &lt;/instructions>&lt;br>
+      &lt;/touchpointData>&lt;br>
+    &lt;/unit>&lt;/p>
+&lt;p>It has 'hostRequirements' element that represents it's a fragment IU and match all the eclipse's plug-ins in that profile. And this fragment defines the touch point actions for its hosts that will do installBundle action during 'install' phrase and uninstallBundle action during 'uninstall' phrase. It's a very good way to remove the duplicate touch point definitions for all eclipse's plug-ins in the profile.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/inside-p2s-profile-2-fragment-matches/">Read More&lt;/a>&lt;/p></description></item><item><title>Inside P2's profile (1) - inclusion rules</title><link>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</link><pubDate>Tue, 28 Dec 2010 11:13:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/</guid><description>
 &lt;p>You would see some interesting properties at the bottom of eclipse's profile.&lt;/p>
 &lt;p>For example,&lt;/p>
@@ -24,6 +50,8 @@
 &lt;p>It attaches a property named 'org.eclipse.equinox.p2.internal.inclusion.rules' with value 'STRICT' on the IU 'org.eclipse.sdk.ide' with version 3.6.1.M20100909-0800.&lt;br>
  &lt;br>
 It's a very important property for the p2 engine. It means the IU 'org.eclipse.sdk.ide' has been explicitly installed into the profile, so it's not allowed be implicitly updated or removed.&lt;/p>
+&lt;p>For example,&lt;br>
+We have top feature IU 'org.eclipse.sdk.ide' that represents the Eclipse SDK,   'org.eclipse.pde.feature' that represents the Plug-in Development Tool and 'org.eclipse.jdt.feature' that represents the Java Development Tool. And both JDT and PDT are part of Eclipse SDK, so 'org.eclipse.pde.feature' and 'org.eclipse.jdt.feature' are required by 'org.eclipse.sdk.ide'.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/inside-p2s-profile-1-inclusion-rules/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse][P2]P2 replication plug-in</title><link>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</link><pubDate>Fri, 25 Dec 2009 16:43:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/</guid><description>
 &lt;p>I wrote a plug-in to simplify the process to install the same plug-ins in different platform or different workstation.&lt;br>
 Anyone is interested in it, pls follow below guide to freely use it.&lt;br>
@@ -57,6 +85,24 @@ Anyone is interested in it, pls follow below guide to freely use it.&lt;br>
 &lt;/li>
 &lt;li>
 &lt;p>The provisioning infrastructure on client machines&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Installable Unit (IU)&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Metadata&lt;/strong> that describes things that can be installed/configured&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Artifact&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The actual content being installed/configured(e.g., bundle JARs)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Repository&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>A store of metadata or artifacts&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/">Read More&lt;/a>&lt;/p></description></item><item><title>Simulate p2 self host in Eclipse run</title><link>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</link><pubDate>Tue, 27 Oct 2009 16:12:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/simulate-p2-self-host-in-eclipse-run/</guid><description>
 &lt;p>-Dosgi.install.area=&amp;lt;launcher's folder&amp;gt;&lt;br>
 -Declipse.p2.profile=&lt;profile id>&lt;/p>
