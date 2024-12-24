@@ -32,12 +32,12 @@
 </a><a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fkane.mx%2fposts%2f2019%2fusing-s3-as-device-for-mac-time-machine-backup%2f&t=%e4%bd%bf%e7%94%a8AWS%20S3%e4%bd%9c%e4%b8%baMacOSX%e6%97%b6%e9%97%b4%e6%9c%ba%e5%99%a8%28Time%20Machine%29%e7%9a%84%e5%a4%87%e4%bb%bd%e5%ad%98%e5%82%a8" class=facebook title="Share on Facebook" target=_blank rel=nofollow><svg class="icon"><title>facebook</title><use xlink:href="#facebook"/></svg>
 </a><a href=#linkedinshare id=linkedinshare class=linkedin title="Share on LinkedIn" rel=nofollow><svg class="icon"><title>linkedin</title><use xlink:href="#linkedin"/></svg>
 </a><a href=https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/ title="Copy Link" class="link link_yank"><svg class="icon"><title>copy</title><use xlink:href="#copy"/></svg></a></div></span></div></div><div class="excerpt_footer partition"><div class=excerpt_thumbnail><figure><picture><img loading=lazy decoding=async alt="使用AWS S3作为MacOSX时间机器(Time Machine)的备份存储" class="image_figure image_thumbnail image_internal image_unprocessed" src=https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/cover.jpg></picture></figure></div><div class=pale><p>个人电脑数据备份一直都是一个强烈的需求。使用网盘等云存储产品可以部分满足数据的备份需求，仍然无法做到使用便利性和很高的数据安全保障。</p><p>MacOSX上系统内置了备份解决方案 -- <a href=https://support.apple.com/zh-cn/HT201250>时间机器(Time Machine)</a>。Time Machine支持AirPort Time Capsule，NAS存储或者外置的存储设备。然而这些备份方案都依赖于硬件设备，有容量限制或不便于移动。在云计算已经大行其道的今天，有没有使用云计算厂商对象存储作为目标存储的备份方案，为MacOSX数据备份提供无限容量、高度的安全性的云方案？经过一番搜索，既找到了开源免费的工具<a href=https://restic.net/>Restic</a>，也有付费软件<a href=https://www.arqbackup.com/>Arq</a>。无论Restic还是Arq提供的是独立的三方工具来实现备份 …</p><br><a href=https://kane.mx/posts/2019/using-s3-as-device-for-mac-time-machine-backup/ title="Read More" class="excerpt_more button">Read More</a></div></div></div></li><li></li></ul></div><aside class=sidebar><section class=sidebar_inner><br><div class=search><input type=search class="search_field form_field" placeholder=Search... id=find autocomplete=off data-scope=tags>
-<label for=find class=search_label><svg class="icon"><title>search</title><use xlink:href="#search"/></svg></label><div class="search_results results"></div></div><div class=author_header><img src=https://kane.mx/img/favicon.ico alt="Kane Zhu photo"><h2>Kane Zhu</h2></div><div class=author_bio>A tech blog sharing personal experiences and insights about cloud computing, software development, and emerging technologies.</div><a href=https://kane.mx/about/ class="button mt-1" role=button title='Read More'>Read More</a><h2 class=mt-4>Recent Posts</h2><ul class=flex-column><li><a href=https://kane.mx/posts/2024/ai-copilot-for-programming/ class=nav-link title="AI 真能编程了吗？">AI 真能编程了吗？</a></li><li><a href=https://kane.mx/posts/deep-dive-clickstream-analytics/pipeline-observability/ class=nav-link title="Deep Dive Clickstream Analytics Series: Data Pipeline Observability">Deep Dive Clickstream Analytics Series: Data Pipeline Observability</a></li><li><a href=https://kane.mx/posts/deep-dive-clickstream-analytics/report/ class=nav-link title="Deep Dive Clickstream Analytics Series: Reporting">Deep Dive Clickstream Analytics Series: Reporting</a></li><li><a href=https://kane.mx/posts/2024/cursor-meets-bedrock/ class=nav-link title="Using Amazon Bedrock as a Custom OpenAI Server Alternative in Cursor">Using Amazon Bedrock as a Custom OpenAI Server Alternative in Cursor</a></li><li><a href=https://kane.mx/posts/2024/alfred-integration-with-bedrock-claude/ class=nav-link title="Access Bedrock Claude 3/3.5 Models with Alfred OpenAI ChatGPT Workflow">Access Bedrock Claude 3/3.5 Models with Alfred OpenAI ChatGPT Workflow</a></li><li><a href=https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/ class=nav-link title="Deep dive clickstream analytic series: Data Modeling">Deep dive clickstream analytic series: Data Modeling</a></li><li><a href=https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/ class=nav-link title="Deep dive clickstream analytic series: Data Processing">Deep dive clickstream analytic series: Data Processing</a></li><li><a href=https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/ class=nav-link title="Deep dive clickstream analytic series: Data Ingestion">Deep dive clickstream analytic series: Data Ingestion</a></li></ul><div><h2 class="mt-4 taxonomy" id=categories-section>Categories</h2><nav class=tags_nav><a href=https://kane.mx/categories/blogging/ class="post_tag button button_translucent" title=blogging>BLOGGING
-<span class=button_tally>78</span>
+<label for=find class=search_label><svg class="icon"><title>search</title><use xlink:href="#search"/></svg></label><div class="search_results results"></div></div><div class=author_header><img src=https://kane.mx/img/favicon.ico alt="Kane Zhu photo"><h2>Kane Zhu</h2></div><div class=author_bio>A tech blog sharing personal experiences and insights about cloud computing, software development, and emerging technologies.</div><a href=https://kane.mx/about/ class="button mt-1" role=button title='Read More'>Read More</a><h2 class=mt-4>Recent Posts</h2><ul class=flex-column><li><a href=https://kane.mx/posts/2024/aws-amplify-you-need-to-know/ class=nav-link title="Nine Essential Tips of AWS Amplify for Boosting Development Productivity">Nine Essential Tips of AWS Amplify for Boosting Development Productivity</a></li><li><a href=https://kane.mx/posts/2024/ai-copilot-for-programming/ class=nav-link title="AI 真能编程了吗？">AI 真能编程了吗？</a></li><li><a href=https://kane.mx/posts/deep-dive-clickstream-analytics/pipeline-observability/ class=nav-link title="Deep Dive Clickstream Analytics Series: Data Pipeline Observability">Deep Dive Clickstream Analytics Series: Data Pipeline Observability</a></li><li><a href=https://kane.mx/posts/deep-dive-clickstream-analytics/report/ class=nav-link title="Deep Dive Clickstream Analytics Series: Reporting">Deep Dive Clickstream Analytics Series: Reporting</a></li><li><a href=https://kane.mx/posts/2024/cursor-meets-bedrock/ class=nav-link title="Using Amazon Bedrock as a Custom OpenAI Server Alternative in Cursor">Using Amazon Bedrock as a Custom OpenAI Server Alternative in Cursor</a></li><li><a href=https://kane.mx/posts/2024/alfred-integration-with-bedrock-claude/ class=nav-link title="Access Bedrock Claude 3/3.5 Models with Alfred OpenAI ChatGPT Workflow">Access Bedrock Claude 3/3.5 Models with Alfred OpenAI ChatGPT Workflow</a></li><li><a href=https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/ class=nav-link title="Deep dive clickstream analytic series: Data Modeling">Deep dive clickstream analytic series: Data Modeling</a></li><li><a href=https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/ class=nav-link title="Deep dive clickstream analytic series: Data Processing">Deep dive clickstream analytic series: Data Processing</a></li></ul><div><h2 class="mt-4 taxonomy" id=categories-section>Categories</h2><nav class=tags_nav><a href=https://kane.mx/categories/blogging/ class="post_tag button button_translucent" title=blogging>BLOGGING
+<span class=button_tally>79</span>
 </a><a href=https://kane.mx/categories/cloud-computing/ class="post_tag button button_translucent" title=cloud-computing>CLOUD-COMPUTING
 <span class=button_tally>42</span>
 </a><a href=https://kane.mx/categories/serverless-computing/ class="post_tag button button_translucent" title=serverless-computing>SERVERLESS-COMPUTING
-<span class=button_tally>12</span>
+<span class=button_tally>13</span>
 </a><a href=https://kane.mx/categories/kubernetes/ class="post_tag button button_translucent" title=kubernetes>KUBERNETES
 <span class=button_tally>10</span>
 </a><a href=https://kane.mx/categories/trip/ class="post_tag button button_translucent" title=trip>TRIP
@@ -51,7 +51,7 @@
 <span class=button_tally>6</span>
 </a><a href=https://kane.mx/series/amazon-builders-library/ class="post_tag button button_translucent" title=amazon-builders-library>AMAZON-BUILDERS-LIBRARY
 <span class=button_tally>2</span></a></nav></div><div><h2 class="mt-4 taxonomy" id=tags-section>Tags</h2><nav class=tags_nav><a href=https://kane.mx/tags/aws/ class="post_tag button button_translucent" title=aws>AWS
-<span class=button_tally>56</span>
+<span class=button_tally>57</span>
 </a><a href=https://kane.mx/tags/eclipse/ class="post_tag button button_translucent" title=eclipse>ECLIPSE
 <span class=button_tally>21</span>
 </a><a href=https://kane.mx/tags/aws-cdk/ class="post_tag button button_translucent" title="aws cdk">AWS CDK
@@ -64,9 +64,9 @@
 <span class=button_tally>14</span>
 </a><a href=https://kane.mx/tags/equinox/ class="post_tag button button_translucent" title=equinox>EQUINOX
 <span class=button_tally>10</span>
-</a><a href=https://kane.mx/tags/git/ class="post_tag button button_translucent" title=git>GIT
-<span class=button_tally>9</span>
 </a><a href=https://kane.mx/tags/serverless/ class="post_tag button button_translucent" title=serverless>SERVERLESS
+<span class=button_tally>10</span>
+</a><a href=https://kane.mx/tags/git/ class="post_tag button button_translucent" title=git>GIT
 <span class=button_tally>9</span>
 </a><a href=https://kane.mx/tags/serverless-computing/ class="post_tag button button_translucent" title="serverless computing">SERVERLESS COMPUTING
 <span class=button_tally>9</span>
@@ -84,7 +84,7 @@
 </a><a href=https://kane.mx/tags/amazon-alexa/ class="post_tag button button_translucent" data-position=1 title="amazon alexa">AMAZON ALEXA<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/amazon-api-gateway/ class="post_tag button button_translucent" data-position=1 title="amazon api gateway">AMAZON API GATEWAY<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/amazon-athena/ class="post_tag button button_translucent" data-position=1 title="amazon athena">AMAZON ATHENA<span class=button_tally>1</span>
-</a><a href=https://kane.mx/tags/amazon-bedrock/ class="post_tag button button_translucent" data-position=2 title="amazon bedrock">AMAZON BEDROCK<span class=button_tally>2</span>
+</a><a href=https://kane.mx/tags/amazon-bedrock/ class="post_tag button button_translucent" data-position=3 title="amazon bedrock">AMAZON BEDROCK<span class=button_tally>3</span>
 </a><a href=https://kane.mx/tags/amazon-builders-library/ class="post_tag button button_translucent" data-position=2 title="amazon builders' library">AMAZON BUILDERS' LIBRARY<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/amazon-codewhisperer/ class="post_tag button button_translucent" data-position=1 title="amazon codewhisperer">AMAZON CODEWHISPERER<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/amazon-dynamodb/ class="post_tag button button_translucent" data-position=1 title="amazon dynamodb">AMAZON DYNAMODB<span class=button_tally>1</span>
@@ -111,13 +111,15 @@
 </a><a href=https://kane.mx/tags/athena-udf/ class="post_tag button button_translucent" data-position=1 title="athena udf">ATHENA UDF<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/authentication/ class="post_tag button button_translucent" data-position=2 title=authentication>AUTHENTICATION<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/authorization/ class="post_tag button button_translucent" data-position=1 title=authorization>AUTHORIZATION<span class=button_tally>1</span>
-</a><a href=https://kane.mx/tags/aws/ class="post_tag button button_translucent" data-position=56 title=aws>AWS<span class=button_tally>56</span>
-</a><a href=https://kane.mx/tags/aws-amplify/ class="post_tag button button_translucent" data-position=1 title="aws amplify">AWS AMPLIFY<span class=button_tally>1</span>
+</a><a href=https://kane.mx/tags/aws/ class="post_tag button button_translucent" data-position=57 title=aws>AWS<span class=button_tally>57</span>
+</a><a href=https://kane.mx/tags/aws-amplify/ class="post_tag button button_translucent" data-position=2 title="aws amplify">AWS AMPLIFY<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/aws-api-gateway/ class="post_tag button button_translucent" data-position=1 title="aws api gateway">AWS API GATEWAY<span class=button_tally>1</span>
+</a><a href=https://kane.mx/tags/aws-appsync/ class="post_tag button button_translucent" data-position=1 title="aws appsync">AWS APPSYNC<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/aws-athena/ class="post_tag button button_translucent" data-position=1 title="aws athena">AWS ATHENA<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/aws-cdk/ class="post_tag button button_translucent" data-position=18 title="aws cdk">AWS CDK<span class=button_tally>18</span>
 </a><a href=https://kane.mx/tags/aws-cli/ class="post_tag button button_translucent" data-position=1 title="aws cli">AWS CLI<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/aws-cloudformation/ class="post_tag button button_translucent" data-position=3 title="aws cloudformation">AWS CLOUDFORMATION<span class=button_tally>3</span>
+</a><a href=https://kane.mx/tags/aws-cognito/ class="post_tag button button_translucent" data-position=1 title="aws cognito">AWS COGNITO<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/aws-ecs/ class="post_tag button button_translucent" data-position=1 title="aws ecs">AWS ECS<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/aws-eks/ class="post_tag button button_translucent" data-position=2 title="aws eks">AWS EKS<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/aws-fargate/ class="post_tag button button_translucent" data-position=1 title="aws fargate">AWS FARGATE<span class=button_tally>1</span>
@@ -142,6 +144,7 @@
 </a><a href=https://kane.mx/tags/chaos-engineering/ class="post_tag button button_translucent" data-position=1 title="chaos engineering">CHAOS ENGINEERING<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/chatgpt/ class="post_tag button button_translucent" data-position=2 title=chatgpt>CHATGPT<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/ci/ class="post_tag button button_translucent" data-position=1 title=ci>CI<span class=button_tally>1</span>
+</a><a href=https://kane.mx/tags/claude/ class="post_tag button button_translucent" data-position=1 title=claude>CLAUDE<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/clean-code/ class="post_tag button button_translucent" data-position=1 title="clean code">CLEAN CODE<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/clearcase/ class="post_tag button button_translucent" data-position=2 title=clearcase>CLEARCASE<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/clickstream-analytics/ class="post_tag button button_translucent" data-position=8 title="clickstream analytics">CLICKSTREAM ANALYTICS<span class=button_tally>8</span>
@@ -189,6 +192,7 @@
 </a><a href=https://kane.mx/tags/filevault/ class="post_tag button button_translucent" data-position=1 title=filevault>FILEVAULT<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/firefox/ class="post_tag button button_translucent" data-position=1 title=firefox>FIREFOX<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/flux/ class="post_tag button button_translucent" data-position=6 title=flux>FLUX<span class=button_tally>6</span>
+</a><a href=https://kane.mx/tags/fullstack/ class="post_tag button button_translucent" data-position=1 title=fullstack>FULLSTACK<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/gdb/ class="post_tag button button_translucent" data-position=1 title=gdb>GDB<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/gerrit/ class="post_tag button button_translucent" data-position=2 title=gerrit>GERRIT<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/git/ class="post_tag button button_translucent" data-position=9 title=git>GIT<span class=button_tally>9</span>
@@ -215,7 +219,7 @@
 </a><a href=https://kane.mx/tags/kubernetes/ class="post_tag button button_translucent" data-position=14 title=kubernetes>KUBERNETES<span class=button_tally>14</span>
 </a><a href=https://kane.mx/tags/lambda-web-adapter/ class="post_tag button button_translucent" data-position=1 title="lambda web adapter">LAMBDA WEB ADAPTER<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/linux/ class="post_tag button button_translucent" data-position=4 title=linux>LINUX<span class=button_tally>4</span>
-</a><a href=https://kane.mx/tags/llm/ class="post_tag button button_translucent" data-position=3 title=llm>LLM<span class=button_tally>3</span>
+</a><a href=https://kane.mx/tags/llm/ class="post_tag button button_translucent" data-position=4 title=llm>LLM<span class=button_tally>4</span>
 </a><a href=https://kane.mx/tags/logging/ class="post_tag button button_translucent" data-position=1 title=logging>LOGGING<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/lucene/ class="post_tag button button_translucent" data-position=1 title=lucene>LUCENE<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/mac-osx/ class="post_tag button button_translucent" data-position=1 title="mac osx">MAC OSX<span class=button_tally>1</span>
@@ -270,7 +274,7 @@
 </a><a href=https://kane.mx/tags/s3/ class="post_tag button button_translucent" data-position=1 title=s3>S3<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/salzburg/ class="post_tag button button_translucent" data-position=3 title=salzburg>SALZBURG<span class=button_tally>3</span>
 </a><a href=https://kane.mx/tags/seo/ class="post_tag button button_translucent" data-position=1 title=seo>SEO<span class=button_tally>1</span>
-</a><a href=https://kane.mx/tags/serverless/ class="post_tag button button_translucent" data-position=9 title=serverless>SERVERLESS<span class=button_tally>9</span>
+</a><a href=https://kane.mx/tags/serverless/ class="post_tag button button_translucent" data-position=10 title=serverless>SERVERLESS<span class=button_tally>10</span>
 </a><a href=https://kane.mx/tags/serverless-computing/ class="post_tag button button_translucent" data-position=9 title="serverless computing">SERVERLESS COMPUTING<span class=button_tally>9</span>
 </a><a href=https://kane.mx/tags/serverless-pattern/ class="post_tag button button_translucent" data-position=1 title="serverless pattern">SERVERLESS PATTERN<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/service-catalog/ class="post_tag button button_translucent" data-position=1 title="service catalog">SERVICE CATALOG<span class=button_tally>1</span>
