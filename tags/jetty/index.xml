@@ -3,6 +3,5 @@
 &lt;p>I had experience using simple http service implementation of equinox, however I want to play with Jetty this time.&lt;/p>
 &lt;p>Following &lt;a href="http://www.eclipse.org/equinox/server/http_in_equinox.php">the guide&lt;/a> of Equinox server, I can't running a Jetty server with my servlet in Eclipse Indigo. Obviously &lt;a href="http://www.eclipse.org/equinox/server/http_in_equinox.php">the guide&lt;/a> is out of date.&lt;/p>
 &lt;p>After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.&lt;br>
-&lt;script src="https://gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi">&lt;/script>
-&lt;/p>
+&lt;script src="https://gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi">&lt;/script>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/">Read More&lt;/a>&lt;/p></description></item></channel></rss>

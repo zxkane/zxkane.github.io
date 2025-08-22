@@ -3,8 +3,7 @@
 &lt;p>I had experience using simple http service implementation of equinox, however I want to play with Jetty this time.&lt;/p>
 &lt;p>Following &lt;a href="http://www.eclipse.org/equinox/server/http_in_equinox.php">the guide&lt;/a> of Equinox server, I can't running a Jetty server with my servlet in Eclipse Indigo. Obviously &lt;a href="http://www.eclipse.org/equinox/server/http_in_equinox.php">the guide&lt;/a> is out of date.&lt;/p>
 &lt;p>After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.&lt;br>
-&lt;script src="https://gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi">&lt;/script>
-&lt;/p>
+&lt;script src="https://gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi">&lt;/script>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/">Read More&lt;/a>&lt;/p></description></item><item><title>Eclipse P2's import/export capability</title><link>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</link><pubDate>Fri, 22 Apr 2011 15:56:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipse-p2s-importexport-capability/</guid><description>
 &lt;p>I implemented the &lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-plug-in/">replication tool&lt;/a> at the end of 2009, then published it to &lt;a href="https://kane.mx/posts/archive/blogspot/p2-replication-tool-lives-on-eclipse/">Eclipse Marketplace&lt;/a> in May 2010. However it's not pervasively used due to users have to install that plug-in firstly.&lt;/p>
 &lt;p>I searched a similar &lt;a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=282419">request&lt;/a> on bugzilla, then I initialized my contribution in the early of this year. Finally it was accepted and will release as part of eclipse itself since Eclipse 3.7 M7! I hope it would benefit the users of Eclipse more and more.&lt;/p>
@@ -17,20 +16,19 @@ It means the start level of bundle 'org.eclipse.equinox.simpleconfigurator_1.0.2
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/how-equinox-load-bundles/">Read More&lt;/a>&lt;/p></description></item><item><title>[Eclipse][P2]Learn p2 step by step</title><link>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</link><pubDate>Thu, 12 Nov 2009 17:48:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/learn-p2-step-by-step/</guid><description>
 &lt;h1 id="learn-p2-step-by-step">Learn p2 step by step&lt;/h1>
 &lt;blockquote>
-&lt;p>See &lt;a href="https://docs.google.com/document/d/1mDhET8al4FO4zlafeTUcXqFEopGbKqWZ5UQ2EbMH20Y/edit?usp=sharing">this link&lt;/a> for detail&lt;/p>
-&lt;/blockquote>
+&lt;p>See &lt;a href="https://docs.google.com/document/d/1mDhET8al4FO4zlafeTUcXqFEopGbKqWZ5UQ2EbMH20Y/edit?usp=sharing">this link&lt;/a> for detail&lt;/p>&lt;/blockquote>
 &lt;ol>
 &lt;li>
-&lt;p>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#Learn_P2_step_by_step">Learn P2 step by step&lt;/a>&lt;/p>
+&lt;p>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#Learn_P2_step_by_step">Learn P2 step by step&lt;/a>&lt;/p>
 &lt;ol>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#p2_concept">p2 concept&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#p2_install">p2 install&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#p2_install_practice">p2 install practice&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#p2_repository_publish">p2 repository publish&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#customized_p2_touchpoint">customized p2 touchpoint&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#p2_repository_publish_practice">p2 repository publish practice&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#Example_Code">Example Code&lt;/a>&lt;/li>
-&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;postID=6549693887265291061#Reference">Reference&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_concept">p2 concept&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_install">p2 install&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_install_practice">p2 install practice&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_repository_publish">p2 repository publish&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#customized_p2_touchpoint">customized p2 touchpoint&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#p2_repository_publish_practice">p2 repository publish practice&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#Example_Code">Example Code&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.blogger.com/post-edit.g?blogID=8314384370778429245&amp;amp;postID=6549693887265291061#Reference">Reference&lt;/a>&lt;/li>
 &lt;/ol>
 &lt;/li>
 &lt;/ol>

@@ -5,7 +5,7 @@
 &lt;p>DevOps pipeline is a key component of project operation,
 it helps you automate steps in your software delivery process.&lt;/p>
 &lt;p>Amazon itself has rich expirence on DevOps with large scale services,
-it &lt;a href="https://aws.amazon.com/builders-library/?nc1=h_ls&amp;cards-body.sort-by=item.additionalFields.sortDate&amp;cards-body.sort-order=desc&amp;awsf.filter-content-category=content-category%23software-delivery-operations&amp;awsf.filter-content-type=*all&amp;awsf.filter-content-level=*all">shares the lesson and learn&lt;/a> from operating the Amazon's services.
+it &lt;a href="https://aws.amazon.com/builders-library/?nc1=h_ls&amp;amp;cards-body.sort-by=item.additionalFields.sortDate&amp;amp;cards-body.sort-order=desc&amp;amp;awsf.filter-content-category=content-category%23software-delivery-operations&amp;amp;awsf.filter-content-type=*all&amp;amp;awsf.filter-content-level=*all">shares the lesson and learn&lt;/a> from operating the Amazon's services.
 You can read &lt;a href="https://kane.mx/posts/2020/the-best-practise-of-deployment-at-amazon/">this summary post&lt;/a> written in Chinese.&lt;/p>
 &lt;p>Also AWS provides fully managed SaaS services for the lifecycle of software development, including
 &lt;a href="https://aws.amazon.com/codepipeline/">AWS CodePipeline&lt;/a> for automating continuous delivery pipelines,

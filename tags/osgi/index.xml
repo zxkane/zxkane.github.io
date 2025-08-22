@@ -3,8 +3,7 @@
 &lt;p>I had experience using simple http service implementation of equinox, however I want to play with Jetty this time.&lt;/p>
 &lt;p>Following &lt;a href="http://www.eclipse.org/equinox/server/http_in_equinox.php">the guide&lt;/a> of Equinox server, I can't running a Jetty server with my servlet in Eclipse Indigo. Obviously &lt;a href="http://www.eclipse.org/equinox/server/http_in_equinox.php">the guide&lt;/a> is out of date.&lt;/p>
 &lt;p>After tuning it, I found below bundles are minimum collection to run Jetty inside OSGi runtime.&lt;br>
-&lt;script src="https://gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi">&lt;/script>
-&lt;/p>
+&lt;script src="https://gist.github.com/zxkane/1977922.js?file=embedded-jetty-osgi">&lt;/script>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/embedding-http-server-in-equinox/">Read More&lt;/a>&lt;/p></description></item><item><title>Eclipse/OSGi preference</title><link>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</link><pubDate>Thu, 22 Oct 2009 15:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/eclipseosgi-preference/</guid><description>
 &lt;p>The IPreferenceStore API of Eclipse is based on OSGi's preferences service. Equinox implements several scope context for different preferences, such DefaultScope, InstanceScope and ConfigurationScope. The IPreferenceStore is the wrapper of instance scope for back-compatibility. It stored the data in workspace(osgi.data.area).&lt;/p>
 &lt;p>The workspace folder would be created when launching RCP application if it doesn't exist. But we can use argument '-data @none' to suppress the creation of workspace. If that, the instance scope/IPreferenceStore can't store any value any more.&lt;/p>

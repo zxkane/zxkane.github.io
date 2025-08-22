@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Resilience Engineering on The road</title><link>https://kane.mx/tags/resilience-engineering/</link><description>Recent content in Resilience Engineering on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 28 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/resilience-engineering/index.xml" rel="self" type="application/rss+xml"/><item><title>应用程序弹性设计</title><link>https://kane.mx/posts/2021/application-resilience/</link><pubDate>Sun, 28 Nov 2021 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2021/application-resilience/</guid><description>
-&lt;p>&lt;a href="https://aws.amazon.com/architecture/well-architected/?wa-lens-whitepapers.sort-by=item.additionalFields.sortDate&amp;wa-lens-whitepapers.sort-order=desc">AWS架构的完善&lt;/a>(AWS Well-Architected)框架涉及了五大支柱，
+&lt;p>&lt;a href="https://aws.amazon.com/architecture/well-architected/?wa-lens-whitepapers.sort-by=item.additionalFields.sortDate&amp;amp;wa-lens-whitepapers.sort-order=desc">AWS架构的完善&lt;/a>(AWS Well-Architected)框架涉及了五大支柱，
 其中可靠性支柱要求侧重于确保工作负载在预期的时间内正确、一致地执行其预期功能。
 这要求应用程序系统具备弹性设计，可从故障中快速恢复，以便满足业务和客户需求。
 然而设计、开发、且验证具备弹性设计的应用程序，对经验和实践能力都有很高的要求。
