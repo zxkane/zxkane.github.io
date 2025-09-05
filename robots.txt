@@ -1,1 +1,39 @@
+# Robots.txt for kane.mx
+
 User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /*?print=1
+Disallow: /*?share=*
+Disallow: /search?*
+Crawl-delay: 1
+
+# Specific rules for major crawlers
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block aggressive crawlers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemaps
+Sitemap: https://kane.mx/sitemap.xml
+Sitemap: https://kane.mx/en/sitemap.xml
+Sitemap: https://kane.mx/zh/sitemap.xml

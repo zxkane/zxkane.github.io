@@ -1,0 +1,68 @@
+# GitHub Pages Headers Configuration
+# Note: GitHub Pages has limited support for custom headers
+# These are included for reference and potential future use with proxies/CDN
+
+/*
+  # Security Headers (Limited support on GitHub Pages)
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  
+  # Performance Headers (Limited support on GitHub Pages)
+  Cache-Control: public, max-age=3600
+
+# HTML Pages
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# API and Dynamic Content
+/api/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  
+# Service Worker
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Assets with hash in filename (long-term caching)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images
+/*.jpg
+  Cache-Control: public, max-age=31536000
+  
+/*.png
+  Cache-Control: public, max-age=31536000
+  
+/*.webp
+  Cache-Control: public, max-age=31536000
+  
+/*.gif
+  Cache-Control: public, max-age=31536000
+  
+/*.svg
+  Cache-Control: public, max-age=31536000
+
+# Fonts
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+  
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  
+/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+
+# JavaScript and CSS
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+  
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+# XML and JSON
+/*.xml
+  Cache-Control: public, max-age=3600
+  
+/*.json
+  Cache-Control: public, max-age=3600
