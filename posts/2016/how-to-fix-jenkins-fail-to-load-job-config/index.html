@@ -54,7 +54,7 @@ CannotResolveClassException: com.cloudbees.jenkins.plugins.BitBucketTrigger,
 CannotResolveClassException: hudson.plugins.emailext.ExtendedEmailPublisher, 
 CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 </code></pre><p>通过上面的错误信息，我们初步认为错误是由于插件无法被<a href=https://jenkins.io/>Jenkins CI</a>加载。但是通过<a href=https://jenkins.io/>Jenkins CI</a>的插件管理列表，我们发现<strong>Git</strong>插件已经被认为是安装的了。同时我们也可以在<a href=https://jenkins.io/>Jenkins CI</a>安装目录中找到插件对应的文件<code>git.jar</code>，并且成功验证了类<code>hudson.plugins.git.GitSCM</code>也是存在在jar文件里面的。重新安装<code>Git client</code>插件也不能解决这个错误！</p><p>经过进一步的分析，通过<a href=https://jenkins.io/>Jenkins CI</a>的系统日志，我们发现<code>Git插件</code>虽然是成功安装了，但是它所依赖的某些插件没有被安装！这导致<a href=https://jenkins.io/>Jenkins CI</a>无法正确加载<code>Git插件</code>。通过日志的提示，将缺失的插件一一安装上，重启<a href=https://jenkins.io/>Jenkins CI</a>后，插件加载正常，任务执行也恢复正常。</p><p>这个错误出现的还是相当奇怪。因为<a href=https://jenkins.io/>Jenkins CI</a>会在安装插件的时候将依赖的插件一并安装上。此外该<a href=https://jenkins.io/>Jenkins CI</a>已经运行很久了，这些插件也是一直安装着的。不过现在回想起之前升级<a href=https://jenkins.io/>Jenkins CI</a>插件的时候，部分插件由于网络原因升级失败了，但是没有重新更新。这导致这些插件处在了一个不正确的状态。在重启<a href=https://jenkins.io/>Jenkins CI</a>后，这些插件被标记为未安装，导致依赖它们的插件无法加载。</p></div><script src=https://giscus.app/client.js data-repo=zxkane/articles data-repo-id="MDEwOlJlcG9zaXRvcnkxNjM1OTcwMjc=" data-category=General data-category-id=DIC_kwDOCcBK484CSKCb data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=en crossorigin=anonymous async></script></article><aside class=sidebar><section class=sidebar_inner><br><div class=search><input type=search class="search_field form_field" placeholder=Search... id=find autocomplete=off data-scope=posts>
-<label for=find class=search_label><svg class="icon"><title>search</title><use xlink:href="#search"/></svg></label><div class="search_results results"></div></div><div class=author_header><img src=https://kane.mx/img/favicon.ico alt="Kane Zhu photo"><h2>Kane Zhu</h2></div><div class=author_bio>A tech blog sharing personal experiences and insights about cloud computing, software development, and emerging technologies.</div><a href=https://kane.mx/about/ class="button mt-1" role=button title='Read More'>Read More</a><h2 class=mt-4>Featured Posts</h2><ul><li><a href=https://kane.mx/posts/2025/mcp-authorization-oauth-rfc-deep-dive/ class=nav-link title="Technical Deconstruction of MCP Authorization: A Deep Dive into OAuth 2.1 and IETF RFC Specifications">Technical Deconstruction of MCP Authorization: A Deep Dive into OAuth 2.1 and IETF RFC Specifications</a></li><li><a href=https://kane.mx/posts/2025/invoke-mcp-hosted-on-aws-agentcore/ class=nav-link title="How invoking remote MCP servers hosted on AWS AgentCore">How invoking remote MCP servers hosted on AWS AgentCore</a></li></ul><h2 class=mt-4>Recent Posts</h2><ul class=flex-column><li><a href=https://kane.mx/posts/2025/deploy-keycloak-aws-mcp-oauth/ class=nav-link title="Implementing MCP OAuth 2.1 with Keycloak on AWS">Implementing MCP OAuth 2.1 with Keycloak on AWS</a></li><li><a href=https://kane.mx/posts/2025/xiaozhi-agentcore-gateway-mcp/ class=nav-link title="Xiaozhi ESP32 MCP Gateway with Amazon Bedrock AgentCore">Xiaozhi ESP32 MCP Gateway with Amazon Bedrock AgentCore</a></li><li><a href=https://kane.mx/posts/2025/context-engineering-secrets-claude-code/ class=nav-link title="Beyond Prompts: 4 Context Engineering Secrets for Claude Code">Beyond Prompts: 4 Context Engineering Secrets for Claude Code</a></li><li><a href=https://kane.mx/posts/2025/vscode-remote-ssh-claude-code-keybindings/ class=nav-link title="How to Fix Shift+Enter in VS Code Remote SSH for Claude Code">How to Fix Shift+Enter in VS Code Remote SSH for Claude Code</a></li><li><a href=https://kane.mx/posts/2025/amazon-quicksuite-deep-dive/ class=nav-link title="Amazon Quick Suite Deep Dive: Build AI-Powered Business Intelligence on AWS">Amazon Quick Suite Deep Dive: Build AI-Powered Business Intelligence on AWS</a></li><li><a href=https://kane.mx/posts/2025/aws-skills-claude-code/ class=nav-link title="Build on AWS Faster with Claude Code and AWS Skills">Build on AWS Faster with Claude Code and AWS Skills</a></li><li><a href=https://kane.mx/posts/2025/claude-agent-sdk-update/ class=nav-link title="Upgrade to Claude Agent SDK: A Quick Migration Guide from Claude Code">Upgrade to Claude Agent SDK: A Quick Migration Guide from Claude Code</a></li><li><a href=https://kane.mx/posts/2025/claude-code-agent-framework/ class=nav-link title="Building Agentic Applications with Claude Code: A Developer's Guide to AI-Powered Automation">Building Agentic Applications with Claude Code: A Developer's Guide to AI-Powered Automation</a></li></ul><div><h2 class="mt-4 taxonomy" id=categories-section>Categories</h2><nav class=tags_nav><a href=https://kane.mx/categories/blogging/ class="post_tag button button_translucent" title=blogging>BLOGGING
+<label for=find class=search_label><svg class="icon"><title>search</title><use xlink:href="#search"/></svg></label><div class="search_results results"></div></div><div class=author_header><img src=https://kane.mx/img/favicon.ico alt="Kane Zhu photo"><h2>Kane Zhu</h2></div><div class=author_bio>A tech blog sharing personal experiences and insights about cloud computing, software development, and emerging technologies.</div><a href=https://kane.mx/about/ class="button mt-1" role=button title='Read More'>Read More</a><h2 class=mt-4>Featured Posts</h2><ul><li><a href=https://kane.mx/posts/2025/mcp-authorization-oauth-rfc-deep-dive/ class=nav-link title="Technical Deconstruction of MCP Authorization: A Deep Dive into OAuth 2.1 and IETF RFC Specifications">Technical Deconstruction of MCP Authorization: A Deep Dive into OAuth 2.1 and IETF RFC Specifications</a></li><li><a href=https://kane.mx/posts/2025/invoke-mcp-hosted-on-aws-agentcore/ class=nav-link title="How invoking remote MCP servers hosted on AWS AgentCore">How invoking remote MCP servers hosted on AWS AgentCore</a></li></ul><h2 class=mt-4>Recent Posts</h2><ul class=flex-column><li><a href=https://kane.mx/posts/2025/claude-code-notification-hooks/ class=nav-link title="Desktop Notifications for Claude Code: Never Miss a Completed Task">Desktop Notifications for Claude Code: Never Miss a Completed Task</a></li><li><a href=https://kane.mx/posts/2025/mcp-oauth-sep-991-simplified-registration/ class=nav-link title="MCP OAuth Evolution: SEP-991 Simplifies Client Registration">MCP OAuth Evolution: SEP-991 Simplifies Client Registration</a></li><li><a href=https://kane.mx/posts/2025/deploy-keycloak-aws-mcp-oauth/ class=nav-link title="Implementing MCP OAuth 2.1 with Keycloak on AWS">Implementing MCP OAuth 2.1 with Keycloak on AWS</a></li><li><a href=https://kane.mx/posts/2025/xiaozhi-agentcore-gateway-mcp/ class=nav-link title="Xiaozhi ESP32 MCP Gateway with Amazon Bedrock AgentCore">Xiaozhi ESP32 MCP Gateway with Amazon Bedrock AgentCore</a></li><li><a href=https://kane.mx/posts/2025/context-engineering-secrets-claude-code/ class=nav-link title="Beyond Prompts: 4 Context Engineering Secrets for Claude Code">Beyond Prompts: 4 Context Engineering Secrets for Claude Code</a></li><li><a href=https://kane.mx/posts/2025/vscode-remote-ssh-claude-code-keybindings/ class=nav-link title="How to Fix Shift+Enter in VS Code Remote SSH for Claude Code">How to Fix Shift+Enter in VS Code Remote SSH for Claude Code</a></li><li><a href=https://kane.mx/posts/2025/amazon-quicksuite-deep-dive/ class=nav-link title="Amazon Quick Suite Deep Dive: Build AI-Powered Business Intelligence on AWS">Amazon Quick Suite Deep Dive: Build AI-Powered Business Intelligence on AWS</a></li><li><a href=https://kane.mx/posts/2025/aws-skills-claude-code/ class=nav-link title="Build on AWS Faster with Claude Code and AWS Skills">Build on AWS Faster with Claude Code and AWS Skills</a></li></ul><div><h2 class="mt-4 taxonomy" id=categories-section>Categories</h2><nav class=tags_nav><a href=https://kane.mx/categories/blogging/ class="post_tag button button_translucent" title=blogging>BLOGGING
 <span class=button_tally>84</span>
 </a><a href=https://kane.mx/categories/cloud-computing/ class="post_tag button button_translucent" title=cloud-computing>CLOUD-COMPUTING
 <span class=button_tally>46</span>
@@ -62,39 +62,40 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 <span class=button_tally>13</span>
 </a><a href=https://kane.mx/categories/kubernetes/ class="post_tag button button_translucent" title=kubernetes>KUBERNETES
 <span class=button_tally>10</span>
+</a><a href=https://kane.mx/categories/ai/ml/ class="post_tag button button_translucent" title=ai/ml>AI/ML
+<span class=button_tally>5</span>
 </a><a href=https://kane.mx/categories/trip/ class="post_tag button button_translucent" title=trip>TRIP
 <span class=button_tally>5</span>
 </a><a href=https://kane.mx/categories/ai-development/ class="post_tag button button_translucent" title="ai development">AI DEVELOPMENT
 <span class=button_tally>4</span>
-</a><a href=https://kane.mx/categories/ai/ml/ class="post_tag button button_translucent" title=ai/ml>AI/ML
-<span class=button_tally>4</span>
 </a><a href=https://kane.mx/categories/authentication-authorization/ class="post_tag button button_translucent" title="authentication & authorization">AUTHENTICATION & AUTHORIZATION
-<span class=button_tally>2</span>
+<span class=button_tally>3</span>
+</a><a href=https://kane.mx/categories/security/ class="post_tag button button_translucent" title=security>SECURITY
+<span class=button_tally>3</span>
 </a><a href=https://kane.mx/categories/automation/ class="post_tag button button_translucent" title=automation>AUTOMATION
 <span class=button_tally>2</span>
-</a><a href=https://kane.mx/categories/security/ class="post_tag button button_translucent" title=security>SECURITY
+</a><a href=https://kane.mx/categories/development-tools/ class="post_tag button button_translucent" title="development tools">DEVELOPMENT TOOLS
 <span class=button_tally>2</span>
+</a><a href=https://kane.mx/categories/ai-coding-assistants/ class="post_tag button button_translucent" title="ai coding assistants">AI CODING ASSISTANTS
+<span class=button_tally>1</span>
 </a><a href=https://kane.mx/categories/business-intelligence/ class="post_tag button button_translucent" title="business intelligence">BUSINESS INTELLIGENCE
 <span class=button_tally>1</span>
 </a><a href=https://kane.mx/categories/cloud-infrastructure/ class="post_tag button button_translucent" title="cloud infrastructure">CLOUD INFRASTRUCTURE
-<span class=button_tally>1</span>
-</a><a href=https://kane.mx/categories/developer-tools/ class="post_tag button button_translucent" title="developer tools">DEVELOPER TOOLS
-<span class=button_tally>1</span>
-</a><a href=https://kane.mx/categories/development-tools/ class="post_tag button button_translucent" title="development tools">DEVELOPMENT TOOLS
-<span class=button_tally>1</span></a><br><div class="post_tags_toggle button">All Categories</div><div class=post_tags><div class=tags_list><a href=https://kane.mx/categories/ai-development/ class="post_tag button button_translucent" data-position=4 title="ai development">AI DEVELOPMENT<span class=button_tally>4</span>
-</a><a href=https://kane.mx/categories/ai/ml/ class="post_tag button button_translucent" data-position=4 title=ai/ml>AI/ML<span class=button_tally>4</span>
-</a><a href=https://kane.mx/categories/authentication-authorization/ class="post_tag button button_translucent" data-position=2 title="authentication & authorization">AUTHENTICATION & AUTHORIZATION<span class=button_tally>2</span>
+<span class=button_tally>1</span></a><br><div class="post_tags_toggle button">All Categories</div><div class=post_tags><div class=tags_list><a href=https://kane.mx/categories/ai-coding-assistants/ class="post_tag button button_translucent" data-position=1 title="ai coding assistants">AI CODING ASSISTANTS<span class=button_tally>1</span>
+</a><a href=https://kane.mx/categories/ai-development/ class="post_tag button button_translucent" data-position=4 title="ai development">AI DEVELOPMENT<span class=button_tally>4</span>
+</a><a href=https://kane.mx/categories/ai/ml/ class="post_tag button button_translucent" data-position=5 title=ai/ml>AI/ML<span class=button_tally>5</span>
+</a><a href=https://kane.mx/categories/authentication-authorization/ class="post_tag button button_translucent" data-position=3 title="authentication & authorization">AUTHENTICATION & AUTHORIZATION<span class=button_tally>3</span>
 </a><a href=https://kane.mx/categories/automation/ class="post_tag button button_translucent" data-position=2 title=automation>AUTOMATION<span class=button_tally>2</span>
 </a><a href=https://kane.mx/categories/blogging/ class="post_tag button button_translucent" data-position=84 title=blogging>BLOGGING<span class=button_tally>84</span>
 </a><a href=https://kane.mx/categories/business-intelligence/ class="post_tag button button_translucent" data-position=1 title="business intelligence">BUSINESS INTELLIGENCE<span class=button_tally>1</span>
 </a><a href=https://kane.mx/categories/cloud-infrastructure/ class="post_tag button button_translucent" data-position=1 title="cloud infrastructure">CLOUD INFRASTRUCTURE<span class=button_tally>1</span>
 </a><a href=https://kane.mx/categories/cloud-computing/ class="post_tag button button_translucent" data-position=46 title=cloud-computing>CLOUD-COMPUTING<span class=button_tally>46</span>
 </a><a href=https://kane.mx/categories/developer-tools/ class="post_tag button button_translucent" data-position=1 title="developer tools">DEVELOPER TOOLS<span class=button_tally>1</span>
-</a><a href=https://kane.mx/categories/development-tools/ class="post_tag button button_translucent" data-position=1 title="development tools">DEVELOPMENT TOOLS<span class=button_tally>1</span>
+</a><a href=https://kane.mx/categories/development-tools/ class="post_tag button button_translucent" data-position=2 title="development tools">DEVELOPMENT TOOLS<span class=button_tally>2</span>
 </a><a href=https://kane.mx/categories/iot/ class="post_tag button button_translucent" data-position=1 title=iot>IOT<span class=button_tally>1</span>
 </a><a href=https://kane.mx/categories/kubernetes/ class="post_tag button button_translucent" data-position=10 title=kubernetes>KUBERNETES<span class=button_tally>10</span>
 </a><a href=https://kane.mx/categories/protocol-design/ class="post_tag button button_translucent" data-position=1 title="protocol design">PROTOCOL DESIGN<span class=button_tally>1</span>
-</a><a href=https://kane.mx/categories/security/ class="post_tag button button_translucent" data-position=2 title=security>SECURITY<span class=button_tally>2</span>
+</a><a href=https://kane.mx/categories/security/ class="post_tag button button_translucent" data-position=3 title=security>SECURITY<span class=button_tally>3</span>
 </a><a href=https://kane.mx/categories/serverless-computing/ class="post_tag button button_translucent" data-position=13 title=serverless-computing>SERVERLESS-COMPUTING<span class=button_tally>13</span>
 </a><a href=https://kane.mx/categories/software-engineering/ class="post_tag button button_translucent" data-position=1 title="software engineering">SOFTWARE ENGINEERING<span class=button_tally>1</span>
 </a><a href=https://kane.mx/categories/tips-tricks/ class="post_tag button button_translucent" data-position=1 title="tips & tricks">TIPS & TRICKS<span class=button_tally>1</span>
@@ -223,11 +224,12 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 </a><a href=https://kane.mx/tags/ci/ class="post_tag button button_translucent" data-position=1 title=ci>CI<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/claude/ class="post_tag button button_translucent" data-position=3 title=claude>CLAUDE<span class=button_tally>3</span>
 </a><a href=https://kane.mx/tags/claude-agent-sdk/ class="post_tag button button_translucent" data-position=1 title="claude agent sdk">CLAUDE AGENT SDK<span class=button_tally>1</span>
-</a><a href=https://kane.mx/tags/claude-code/ class="post_tag button button_translucent" data-position=5 title="claude code">CLAUDE CODE<span class=button_tally>5</span>
+</a><a href=https://kane.mx/tags/claude-code/ class="post_tag button button_translucent" data-position=6 title="claude code">CLAUDE CODE<span class=button_tally>6</span>
 </a><a href=https://kane.mx/tags/claude-desktop/ class="post_tag button button_translucent" data-position=1 title="claude desktop">CLAUDE DESKTOP<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/clean-code/ class="post_tag button button_translucent" data-position=1 title="clean code">CLEAN CODE<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/clearcase/ class="post_tag button button_translucent" data-position=2 title=clearcase>CLEARCASE<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/clickstream-analytics/ class="post_tag button button_translucent" data-position=8 title="clickstream analytics">CLICKSTREAM ANALYTICS<span class=button_tally>8</span>
+</a><a href=https://kane.mx/tags/client-id-metadata/ class="post_tag button button_translucent" data-position=1 title="client id metadata">CLIENT ID METADATA<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/cline/ class="post_tag button button_translucent" data-position=3 title=cline>CLINE<span class=button_tally>3</span>
 </a><a href=https://kane.mx/tags/cloud-native/ class="post_tag button button_translucent" data-position=1 title="cloud native">CLOUD NATIVE<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/cloudfront/ class="post_tag button button_translucent" data-position=1 title=cloudfront>CLOUDFRONT<span class=button_tally>1</span>
@@ -265,7 +267,7 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 </a><a href=https://kane.mx/tags/docker/ class="post_tag button button_translucent" data-position=6 title=docker>DOCKER<span class=button_tally>6</span>
 </a><a href=https://kane.mx/tags/docker-swarm/ class="post_tag button button_translucent" data-position=2 title=docker-swarm>DOCKER-SWARM<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/dual-monitor/ class="post_tag button button_translucent" data-position=1 title="dual monitor">DUAL MONITOR<span class=button_tally>1</span>
-</a><a href=https://kane.mx/tags/dynamic-client-registration/ class="post_tag button button_translucent" data-position=1 title="dynamic client registration">DYNAMIC CLIENT REGISTRATION<span class=button_tally>1</span>
+</a><a href=https://kane.mx/tags/dynamic-client-registration/ class="post_tag button button_translucent" data-position=2 title="dynamic client registration">DYNAMIC CLIENT REGISTRATION<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/dynamodb/ class="post_tag button button_translucent" data-position=2 title=dynamodb>DYNAMODB<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/eclipse/ class="post_tag button button_translucent" data-position=21 title=eclipse>ECLIPSE<span class=button_tally>21</span>
 </a><a href=https://kane.mx/tags/edas/ class="post_tag button button_translucent" data-position=1 title=edas>EDAS<span class=button_tally>1</span>
@@ -329,14 +331,14 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 </a><a href=https://kane.mx/tags/marscode/ class="post_tag button button_translucent" data-position=1 title=marscode>MARSCODE<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/material-ui/ class="post_tag button button_translucent" data-position=1 title="material ui">MATERIAL UI<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/maven/ class="post_tag button button_translucent" data-position=1 title=maven>MAVEN<span class=button_tally>1</span>
-</a><a href=https://kane.mx/tags/mcp/ class="post_tag button button_translucent" data-position=5 title=mcp>MCP<span class=button_tally>5</span>
+</a><a href=https://kane.mx/tags/mcp/ class="post_tag button button_translucent" data-position=6 title=mcp>MCP<span class=button_tally>6</span>
 </a><a href=https://kane.mx/tags/mcp-client/ class="post_tag button button_translucent" data-position=2 title="mcp client">MCP CLIENT<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/mcp-protocol/ class="post_tag button button_translucent" data-position=2 title="mcp protocol">MCP PROTOCOL<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/metaverse/ class="post_tag button button_translucent" data-position=1 title=metaverse>METAVERSE<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/microservice/ class="post_tag button button_translucent" data-position=1 title=microservice>MICROSERVICE<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/migration/ class="post_tag button button_translucent" data-position=1 title=migration>MIGRATION<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/mingw/ class="post_tag button button_translucent" data-position=1 title=mingw>MINGW<span class=button_tally>1</span>
-</a><a href=https://kane.mx/tags/model-context-protocol/ class="post_tag button button_translucent" data-position=4 title="model context protocol">MODEL CONTEXT PROTOCOL<span class=button_tally>4</span>
+</a><a href=https://kane.mx/tags/model-context-protocol/ class="post_tag button button_translucent" data-position=5 title="model context protocol">MODEL CONTEXT PROTOCOL<span class=button_tally>5</span>
 </a><a href=https://kane.mx/tags/mongodb/ class="post_tag button button_translucent" data-position=1 title=mongodb>MONGODB<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/monitoring/ class="post_tag button button_translucent" data-position=1 title=monitoring>MONITORING<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/mountain-lion/ class="post_tag button button_translucent" data-position=1 title="mountain lion">MOUNTAIN LION<span class=button_tally>1</span>
@@ -350,7 +352,7 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 </a><a href=https://kane.mx/tags/oas/ class="post_tag button button_translucent" data-position=1 title=oas>OAS<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/oauth/ class="post_tag button button_translucent" data-position=2 title=oauth>OAUTH<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/oauth-2.0/ class="post_tag button button_translucent" data-position=1 title="oauth 2.0">OAUTH 2.0<span class=button_tally>1</span>
-</a><a href=https://kane.mx/tags/oauth-2.1/ class="post_tag button button_translucent" data-position=2 title="oauth 2.1">OAUTH 2.1<span class=button_tally>2</span>
+</a><a href=https://kane.mx/tags/oauth-2.1/ class="post_tag button button_translucent" data-position=3 title="oauth 2.1">OAUTH 2.1<span class=button_tally>3</span>
 </a><a href=https://kane.mx/tags/oauth-client-provider/ class="post_tag button button_translucent" data-position=1 title="oauth client provider">OAUTH CLIENT PROVIDER<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/oauth2/ class="post_tag button button_translucent" data-position=2 title=oauth2>OAUTH2<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/observability/ class="post_tag button button_translucent" data-position=1 title=observability>OBSERVABILITY<span class=button_tally>1</span>
@@ -361,6 +363,7 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 </a><a href=https://kane.mx/tags/openid/ class="post_tag button button_translucent" data-position=1 title=openid>OPENID<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/openid-connect/ class="post_tag button button_translucent" data-position=1 title="openid connect">OPENID CONNECT<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/openswan/ class="post_tag button button_translucent" data-position=1 title=openswan>OPENSWAN<span class=button_tally>1</span>
+</a><a href=https://kane.mx/tags/osc-escape-sequences/ class="post_tag button button_translucent" data-position=1 title="osc escape sequences">OSC ESCAPE SEQUENCES<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/osgi/ class="post_tag button button_translucent" data-position=7 title=osgi>OSGI<span class=button_tally>7</span>
 </a><a href=https://kane.mx/tags/oss/ class="post_tag button button_translucent" data-position=1 title=oss>OSS<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/ossfs/ class="post_tag button button_translucent" data-position=1 title=ossfs>OSSFS<span class=button_tally>1</span>
@@ -371,7 +374,7 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 </a><a href=https://kane.mx/tags/performance-tuning/ class="post_tag button button_translucent" data-position=2 title=performance-tuning>PERFORMANCE-TUNING<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/php/ class="post_tag button button_translucent" data-position=1 title=php>PHP<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/pkce/ class="post_tag button button_translucent" data-position=2 title=pkce>PKCE<span class=button_tally>2</span>
-</a><a href=https://kane.mx/tags/productivity/ class="post_tag button button_translucent" data-position=2 title=productivity>PRODUCTIVITY<span class=button_tally>2</span>
+</a><a href=https://kane.mx/tags/productivity/ class="post_tag button button_translucent" data-position=3 title=productivity>PRODUCTIVITY<span class=button_tally>3</span>
 </a><a href=https://kane.mx/tags/profile/ class="post_tag button button_translucent" data-position=2 title=profile>PROFILE<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/programming/ class="post_tag button button_translucent" data-position=1 title=programming>PROGRAMMING<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/projen/ class="post_tag button button_translucent" data-position=1 title=projen>PROJEN<span class=button_tally>1</span>
@@ -395,6 +398,7 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 </a><a href=https://kane.mx/tags/salzburg/ class="post_tag button button_translucent" data-position=3 title=salzburg>SALZBURG<span class=button_tally>3</span>
 </a><a href=https://kane.mx/tags/sdk-migration/ class="post_tag button button_translucent" data-position=1 title="sdk migration">SDK MIGRATION<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/seo/ class="post_tag button button_translucent" data-position=1 title=seo>SEO<span class=button_tally>1</span>
+</a><a href=https://kane.mx/tags/sep-991/ class="post_tag button button_translucent" data-position=1 title=sep-991>SEP-991<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/serverless/ class="post_tag button button_translucent" data-position=11 title=serverless>SERVERLESS<span class=button_tally>11</span>
 </a><a href=https://kane.mx/tags/serverless-computing/ class="post_tag button button_translucent" data-position=9 title="serverless computing">SERVERLESS COMPUTING<span class=button_tally>9</span>
 </a><a href=https://kane.mx/tags/serverless-pattern/ class="post_tag button button_translucent" data-position=1 title="serverless pattern">SERVERLESS PATTERN<span class=button_tally>1</span>
@@ -402,6 +406,7 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 </a><a href=https://kane.mx/tags/service-mesh/ class="post_tag button button_translucent" data-position=1 title="service mesh">SERVICE MESH<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/session-management/ class="post_tag button button_translucent" data-position=1 title=session-management>SESSION-MANAGEMENT<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/shell/ class="post_tag button button_translucent" data-position=2 title=shell>SHELL<span class=button_tally>2</span>
+</a><a href=https://kane.mx/tags/shell-scripting/ class="post_tag button button_translucent" data-position=1 title="shell scripting">SHELL SCRIPTING<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/single-page-app/ class="post_tag button button_translucent" data-position=1 title=single-page-app>SINGLE-PAGE-APP<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/site-to-site-vpn/ class="post_tag button button_translucent" data-position=1 title="site-to-site vpn">SITE-TO-SITE VPN<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/smtp/ class="post_tag button button_translucent" data-position=1 title=smtp>SMTP<span class=button_tally>1</span>
@@ -439,6 +444,8 @@ CannotResolveClassException: hudson.plugins.parameterizedtrigger.BuildTrigger
 </a><a href=https://kane.mx/tags/visual-studio-code/ class="post_tag button button_translucent" data-position=1 title="visual studio code">VISUAL STUDIO CODE<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/voice-assistant/ class="post_tag button button_translucent" data-position=1 title="voice assistant">VOICE ASSISTANT<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/vs-code/ class="post_tag button button_translucent" data-position=1 title="vs code">VS CODE<span class=button_tally>1</span>
+</a><a href=https://kane.mx/tags/vscode/ class="post_tag button button_translucent" data-position=1 title=vscode>VSCODE<span class=button_tally>1</span>
+</a><a href=https://kane.mx/tags/vscode-remote-ssh/ class="post_tag button button_translucent" data-position=1 title="vscode remote ssh">VSCODE REMOTE SSH<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/web-2.0/ class="post_tag button button_translucent" data-position=2 title=web-2.0>WEB-2.0<span class=button_tally>2</span>
 </a><a href=https://kane.mx/tags/websocket/ class="post_tag button button_translucent" data-position=1 title=websocket>WEBSOCKET<span class=button_tally>1</span>
 </a><a href=https://kane.mx/tags/wechat/ class="post_tag button button_translucent" data-position=2 title=wechat>WECHAT<span class=button_tally>2</span>
