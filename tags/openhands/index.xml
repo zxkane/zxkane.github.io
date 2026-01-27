@@ -1,4 +1,52 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OpenHands on The road</title><link>https://kane.mx/tags/openhands/</link><description>Recent content in OpenHands on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 26 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/tags/openhands/index.xml" rel="self" type="application/rss+xml"/><item><title>Deploying OpenHands AI Platform on AWS with CDK</title><link>https://kane.mx/posts/2026/deploying-openhands-on-aws-with-cdk/</link><pubDate>Mon, 26 Jan 2026 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2026/deploying-openhands-on-aws-with-cdk/</guid><description>
 &lt;p>&lt;a href="https://github.com/All-Hands-AI/OpenHands">OpenHands&lt;/a> is an open-source AI-driven development platform that enables AI agents to write code, fix bugs, and execute complex development tasks autonomously. The default setup works well for local development, but what if you want to run it for a team or make it accessible from anywhere?&lt;/p>
 &lt;p>This post introduces an &lt;a href="https://github.com/zxkane/openhands-infra">AWS CDK project&lt;/a> that extends OpenHands beyond single-user local usage. It adds multi-user authentication, persistent storage, and automatic recovery capabilities—transforming OpenHands into a shared service that your team can access from anywhere.&lt;/p>
+&lt;h2 id="the-rise-of-cloud-based-ai-coding-agents">The Rise of Cloud-Based AI Coding Agents&lt;/h2>
+&lt;p>The AI coding landscape has evolved rapidly. While IDE-integrated tools like GitHub Copilot focus on code completion, a new category of &lt;strong>autonomous AI coding agents&lt;/strong> has emerged—platforms that can independently plan, write, test, and deploy code with minimal human intervention.&lt;/p>
+&lt;p>&lt;strong>Commercial cloud platforms&lt;/strong> now offer managed AI coding experiences:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>&lt;a href="https://devin.ai/">Devin&lt;/a>&lt;/strong> (Cognition AI): The first widely-known autonomous AI software engineer, handling complete tasks from planning to deployment&lt;/li>
+&lt;li>&lt;strong>&lt;a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code&lt;/a>&lt;/strong>: Anthropic's agentic coding tool that runs in your terminal, with Claude.ai offering &lt;a href="https://support.anthropic.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them">Artifacts&lt;/a> for interactive code generation&lt;/li>
+&lt;li>&lt;strong>&lt;a href="https://openai.com/codex">OpenAI Codex&lt;/a>&lt;/strong>: OpenAI's cloud-based coding agent running in sandboxed environments with GitHub integration&lt;/li>
+&lt;li>&lt;strong>&lt;a href="https://v0.dev/">v0&lt;/a>&lt;/strong> (Vercel): Cloud-based platform for generating full-stack applications with one-click deployment&lt;/li>
+&lt;/ul>
+&lt;p>These platforms provide convenience but come with trade-offs: &lt;strong>vendor lock-in&lt;/strong>, &lt;strong>data privacy concerns&lt;/strong>, &lt;strong>limited customization&lt;/strong>, and &lt;strong>recurring subscription costs&lt;/strong>.&lt;/p>
+&lt;p>&lt;strong>Why self-host OpenHands?&lt;/strong>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Consideration&lt;/th>
+&lt;th>Cloud Platforms&lt;/th>
+&lt;th>Self-Hosted OpenHands&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Data privacy&lt;/td>
+&lt;td>Data processed by third parties&lt;/td>
+&lt;td>Your data stays in your AWS account&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Customization&lt;/td>
+&lt;td>Limited to vendor features&lt;/td>
+&lt;td>Full control over configuration&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Cost model&lt;/td>
+&lt;td>Per-seat subscription&lt;/td>
+&lt;td>Infrastructure cost (scales with usage)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>LLM choice&lt;/td>
+&lt;td>Vendor-selected models&lt;/td>
+&lt;td>Any model (Bedrock, OpenAI, local)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Integration&lt;/td>
+&lt;td>Vendor-provided integrations&lt;/td>
+&lt;td>Custom integrations via API&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>For organizations with strict compliance requirements, existing AWS infrastructure, or teams that prefer open-source solutions, self-hosting OpenHands provides the autonomous coding capabilities without the constraints of commercial platforms.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2026/deploying-openhands-on-aws-with-cdk/">Read More&lt;/a>&lt;/p></description></item></channel></rss>
