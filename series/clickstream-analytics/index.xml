@@ -29,8 +29,7 @@ width="1000"
 height="777"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.png"
 title="Overview architecture for data modeling module"
-/>
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/picture>
+/>&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/picture>
 &lt;/figure>
 &lt;/p>
 &lt;p>The overview architecture demonstrates how the solution orchestrates loading clickstream data into the Amazon Redshift data warehouse and triggers data modeling within Redshift.&lt;/p>
@@ -51,8 +50,7 @@ width="921"
 height="401"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.png"
 title="Overview architecture for data process module"
-/>
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data process module&lt;/figcaption>&lt;/picture>
+/>&lt;figcaption class="caption_figure caption_internal">Overview architecture for data process module&lt;/figcaption>&lt;/picture>
 &lt;/figure>
 &lt;/p>
 &lt;p>The data processing is designed for batch or micro-batch data processing to optimize performance and cost-effectiveness. It's primarily an Apache Spark application running on &lt;a href="https://aws.amazon.com/emr/serverless/">Amazon EMR Serverless&lt;/a> to achieve a balance between high performance and cost. It offers the following capabilities:&lt;/p>
@@ -73,8 +71,7 @@ width="1000"
 height="458"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.png"
 title="Overview architecture for data ingestion service"
-/>
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/picture>
+/>&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/picture>
 &lt;/figure>
 &lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Serverless web console</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</link><pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</guid><description>

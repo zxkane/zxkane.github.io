@@ -219,8 +219,7 @@ width="1000"
 height="777"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.png"
 title="Overview architecture for data modeling module"
-/>
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/picture>
+/>&lt;figcaption class="caption_figure caption_internal">Overview architecture for data modeling module&lt;/figcaption>&lt;/picture>
 &lt;/figure>
 &lt;/p>
 &lt;p>The overview architecture demonstrates how the solution orchestrates loading clickstream data into the Amazon Redshift data warehouse and triggers data modeling within Redshift.&lt;/p>
@@ -241,8 +240,7 @@ width="921"
 height="401"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.png"
 title="Overview architecture for data process module"
-/>
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data process module&lt;/figcaption>&lt;/picture>
+/>&lt;figcaption class="caption_figure caption_internal">Overview architecture for data process module&lt;/figcaption>&lt;/picture>
 &lt;/figure>
 &lt;/p>
 &lt;p>The data processing is designed for batch or micro-batch data processing to optimize performance and cost-effectiveness. It's primarily an Apache Spark application running on &lt;a href="https://aws.amazon.com/emr/serverless/">Amazon EMR Serverless&lt;/a> to achieve a balance between high performance and cost. It offers the following capabilities:&lt;/p>
@@ -263,8 +261,7 @@ width="1000"
 height="458"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.png"
 title="Overview architecture for data ingestion service"
-/>
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/picture>
+/>&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/picture>
 &lt;/figure>
 &lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Serverless web console</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</link><pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/web-console/</guid><description>
@@ -868,8 +865,7 @@ class="image_figure image_external image_processed"
 width="320"
 height="180"
 src="https://kane.mx/DSC01486_5497315126248538115.jpg"
-/>
-&lt;/picture>
+/>&lt;/picture>
 &lt;/figure>
 &lt;/a>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/food-and-drinking/">Read More&lt;/a>&lt;/p></description></item><item><title>Working Workspace</title><link>https://kane.mx/posts/archive/blogspot/working-workspace/</link><pubDate>Fri, 27 Aug 2010 17:29:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/working-workspace/</guid><description>
@@ -887,8 +883,7 @@ class="image_figure image_external image_processed"
 width="320"
 height="192"
 src="https://kane.mx/IMAG0058_5033465335237907880.jpg"
-/>
-&lt;/picture>
+/>&lt;/picture>
 &lt;/figure>
 &lt;/a>&lt;/p>
 &lt;p>Salzach River&lt;/p>
@@ -902,8 +897,7 @@ class="image_figure image_external image_processed"
 width="320"
 height="180"
 src="https://kane.mx/DSC01291_14853324469084525771.jpg"
-/>
-&lt;/picture>
+/>&lt;/picture>
 &lt;/figure>
 &lt;/a>&lt;/p>
 &lt;p>outline view&lt;/p>
@@ -929,8 +923,7 @@ class="image_figure image_external image_processed"
 width="192"
 height="320"
 src="https://kane.mx/IMAG0012_584699872206005858.jpg"
-/>
-&lt;/picture>
+/>&lt;/picture>
 &lt;/figure>
 &lt;/a>&lt;/p>
 &lt;p>另外赞一下维也纳机场的Wifi，简单配置就K了，哪像国内的，又要移动号码，还要短信获取，搞半天也没弄定。&lt;br>
@@ -945,8 +938,7 @@ class="image_figure image_external image_processed"
 width="192"
 height="320"
 src="https://kane.mx/IMAG0013_3323993232420467989.jpg"
-/>
-&lt;/picture>
+/>&lt;/picture>
 &lt;/figure>
 &lt;/a>&lt;/p>
 &lt;p>去萨尔茨堡的飞机还是带螺旋桨的，头次坐这样的老式飞机。&lt;/p>
@@ -960,8 +952,7 @@ class="image_figure image_external image_processed"
 width="320"
 height="180"
 src="https://kane.mx/DSC01197_12948264192493874901.jpg"
-/>
-&lt;/picture>
+/>&lt;/picture>
 &lt;/figure>
 &lt;/a>&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/archive/blogspot/day-1/">Read More&lt;/a>&lt;/p></description></item><item><title>Discovering the p2 API</title><link>https://kane.mx/posts/archive/blogspot/discovering-p2-api/</link><pubDate>Mon, 17 May 2010 22:35:00 +0800</pubDate><guid>https://kane.mx/posts/archive/blogspot/discovering-p2-api/</guid><description>

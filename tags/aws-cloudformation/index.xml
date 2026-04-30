@@ -15,8 +15,7 @@ width="1000"
 height="458"
 src="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.png"
 title="Overview architecture for data ingestion service"
-/>
-&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/picture>
+/>&lt;figcaption class="caption_figure caption_internal">Overview architecture for data ingestion service&lt;/figcaption>&lt;/picture>
 &lt;/figure>
 &lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/">Read More&lt;/a>&lt;/p></description></item><item><title>Publish your AWS CDK applications via AWS CloudFormation templates</title><link>https://kane.mx/posts/2022/publish-cdk-app-via-cloudformation/</link><pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2022/publish-cdk-app-via-cloudformation/</guid><description>
