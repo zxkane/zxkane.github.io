@@ -1,4 +1,64 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Build-Serverless-Application on The road</title><link>https://kane.mx/series/build-serverless-application/</link><description>Recent content in Build-Serverless-Application on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 26 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/series/build-serverless-application/index.xml" rel="self" type="application/rss+xml"/><item><title>Build serverless web application with AWS Lambda web adapter</title><link>https://kane.mx/posts/2023/build-serverless-web-application-with-aws-lambda-web-adapter/</link><pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2023/build-serverless-web-application-with-aws-lambda-web-adapter/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Build-Serverless-Application on The road</title><link>https://kane.mx/series/build-serverless-application/</link><description>Recent content in Build-Serverless-Application on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 02 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/series/build-serverless-application/index.xml" rel="self" type="application/rss+xml"/><item><title>Serverless Multi-Tenant OpenHands on AWS with Fargate</title><link>https://kane.mx/posts/2026/serverless-multi-tenant-openhands-on-aws/</link><pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2026/serverless-multi-tenant-openhands-on-aws/</guid><description>
+&lt;p>In a &lt;a href="https://kane.mx/posts/2026/deploying-openhands-on-aws-with-cdk/">previous post&lt;/a>, I introduced an &lt;a href="https://github.com/zxkane/openhands-infra">AWS CDK project&lt;/a> for deploying &lt;a href="https://github.com/All-Hands-AI/OpenHands">OpenHands&lt;/a> on EC2, featuring Cognito authentication and Aurora PostgreSQL. While this architecture successfully facilitated initial deployment, operating a shared AI coding platform for a team revealed three fundamental limitations:&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>Shared Resources&lt;/strong>: All sandbox containers executed on a single EC2 instance, leading to contention for CPU and memory.&lt;/li>
+&lt;li>&lt;strong>Persistent Cost&lt;/strong>: The EC2 instance incurred approximately $375/month, regardless of platform utilization.&lt;/li>
+&lt;li>&lt;strong>Lack of Tenant Isolation&lt;/strong>: Sandbox containers possessed network access to each other.&lt;/li>
+&lt;/ol>
+&lt;p>The &lt;a href="https://github.com/zxkane/openhands-infra/releases/tag/v1.0.0">v1.0.0 release&lt;/a> of &lt;code>openhands-infra&lt;/code> addresses these limitations by fully replacing EC2 with &lt;strong>ECS Fargate&lt;/strong>. This revised architecture provides per-conversation isolation through dedicated Fargate tasks, eliminates idle costs by stopping tasks when inactive, and prevents cross-tenant communication via granular security groups.&lt;/p>
+&lt;p>This post details the architectural evolution and the AWS services that enable these capabilities.&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/2026/serverless-multi-tenant-openhands-on-aws/">Read More&lt;/a>&lt;/p></description></item><item><title>Deploying OpenHands AI Platform on AWS with CDK</title><link>https://kane.mx/posts/2026/deploying-openhands-on-aws-with-cdk/</link><pubDate>Mon, 26 Jan 2026 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2026/deploying-openhands-on-aws-with-cdk/</guid><description>
+&lt;p>&lt;a href="https://github.com/All-Hands-AI/OpenHands">OpenHands&lt;/a> is an open-source AI-driven development platform that enables AI agents to write code, fix bugs, and execute complex development tasks autonomously. The default setup works well for local development, but what if you want to run it for a team or make it accessible from anywhere?&lt;/p>
+&lt;p>This post introduces an &lt;a href="https://github.com/zxkane/openhands-infra">AWS CDK project&lt;/a> that extends OpenHands beyond single-user local usage. It adds multi-user authentication, persistent storage, and automatic recovery capabilities—transforming OpenHands into a shared service that your team can access from anywhere.&lt;/p>
+&lt;h2 id="the-rise-of-cloud-based-ai-coding-agents">The Rise of Cloud-Based AI Coding Agents&lt;/h2>
+&lt;p>The AI coding landscape has evolved rapidly. While IDE-integrated tools like GitHub Copilot focus on code completion, a new category of &lt;strong>autonomous AI coding agents&lt;/strong> has emerged—platforms that can independently plan, write, test, and deploy code with minimal human intervention.&lt;/p>
+&lt;p>&lt;strong>Commercial cloud platforms&lt;/strong> now offer managed AI coding experiences:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>&lt;a href="https://devin.ai/">Devin&lt;/a>&lt;/strong> (Cognition AI): The first widely-known autonomous AI software engineer, handling complete tasks from planning to deployment&lt;/li>
+&lt;li>&lt;strong>&lt;a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code&lt;/a>&lt;/strong>: Anthropic's agentic coding tool that runs in your terminal, with Claude.ai offering &lt;a href="https://support.anthropic.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them">Artifacts&lt;/a> for interactive code generation&lt;/li>
+&lt;li>&lt;strong>&lt;a href="https://openai.com/codex">OpenAI Codex&lt;/a>&lt;/strong>: OpenAI's cloud-based coding agent running in sandboxed environments with GitHub integration&lt;/li>
+&lt;li>&lt;strong>&lt;a href="https://v0.dev/">v0&lt;/a>&lt;/strong> (Vercel): Cloud-based platform for generating full-stack applications with one-click deployment&lt;/li>
+&lt;/ul>
+&lt;p>These platforms provide convenience but come with trade-offs: &lt;strong>vendor lock-in&lt;/strong>, &lt;strong>data privacy concerns&lt;/strong>, &lt;strong>limited customization&lt;/strong>, and &lt;strong>recurring subscription costs&lt;/strong>.&lt;/p>
+&lt;p>&lt;strong>Why self-host OpenHands?&lt;/strong>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Consideration&lt;/th>
+&lt;th>Cloud Platforms&lt;/th>
+&lt;th>Self-Hosted OpenHands&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Data privacy&lt;/td>
+&lt;td>Data processed by third parties&lt;/td>
+&lt;td>Your data stays in your AWS account&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Customization&lt;/td>
+&lt;td>Limited to vendor features&lt;/td>
+&lt;td>Full control over configuration&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Cost model&lt;/td>
+&lt;td>Per-seat subscription&lt;/td>
+&lt;td>Infrastructure cost (scales with usage)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>LLM choice&lt;/td>
+&lt;td>Vendor-selected models&lt;/td>
+&lt;td>Any model (Bedrock, OpenAI, local)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Integration&lt;/td>
+&lt;td>Vendor-provided integrations&lt;/td>
+&lt;td>Custom integrations via API&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>For organizations with strict compliance requirements, existing AWS infrastructure, or teams that prefer open-source solutions, self-hosting OpenHands provides the autonomous coding capabilities without the constraints of commercial platforms.&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/2026/deploying-openhands-on-aws-with-cdk/">Read More&lt;/a>&lt;/p></description></item><item><title>Build serverless web application with AWS Lambda web adapter</title><link>https://kane.mx/posts/2023/build-serverless-web-application-with-aws-lambda-web-adapter/</link><pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2023/build-serverless-web-application-with-aws-lambda-web-adapter/</guid><description>
 &lt;blockquote>
 &lt;p>&lt;strong>Disclaimer&lt;/strong>: the cover image was generated by StableDiffusionXL with prompts 'cover image, spring boot, flask framework running in aws lambda'.&lt;/p>&lt;/blockquote>
 &lt;p>When deploying and operating a web application on the cloud, you prefer to use your favorite programming language and web framework. Also, you want to benefit from Serverless technologies for stability, scalability, cost optimization, and operation excellence.&lt;/p>
