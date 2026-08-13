@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The road</title><link>https://kane.mx/</link><description>Recent content on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 10 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/index.xml" rel="self" type="application/rss+xml"/><item><title>Close Your Laptop: Claude Code on Bedrock AgentCore</title><link>https://kane.mx/posts/2026/agentcore-claude-shell/</link><pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2026/agentcore-claude-shell/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The road</title><link>https://kane.mx/</link><description>Recent content on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 13 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://kane.mx/index.xml" rel="self" type="application/rss+xml"/><item><title>Own Your Agents' Memory: Self-Hosted mem9 on AWS</title><link>https://kane.mx/posts/2026/self-hosted-agent-memory-mem9-on-aws/</link><pubDate>Thu, 13 Aug 2026 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2026/self-hosted-agent-memory-mem9-on-aws/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Every agent session starts amnesic. You explain your deployment topology to Claude Code on Monday, and on Tuesday Codex asks the same question. You tell one agent that Aurora MySQL cannot run your vector workload, and the next agent cheerfully proposes it. The knowledge that actually compounds — decisions and their rationale, environment quirks, the gotcha that cost you an afternoon — evaporates at the end of every context window.&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/2026/self-hosted-agent-memory-mem9-on-aws/">Read More&lt;/a>&lt;/p></description></item><item><title>Close Your Laptop: Claude Code on Bedrock AgentCore</title><link>https://kane.mx/posts/2026/agentcore-claude-shell/</link><pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2026/agentcore-claude-shell/</guid><description>
 &lt;p>If you have ever set an AI coding agent like Claude Code loose on a large code modification task, you know the anxiety. The task will run for 45 minutes, recursive calls will compile code, search tests, and fix bugs. You are locked to your machine. If your Wi-Fi drops for a second, your laptop battery dies, or you close your laptop to go to lunch, the terminal session breaks, the shell process is killed, and the entire agent context is lost.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2026/agentcore-claude-shell/">Read More&lt;/a>&lt;/p></description></item><item><title>Multi-Tenant Bedrock Agents Security with Cedar</title><link>https://kane.mx/posts/2026/multi-tenant-agent-security-blueprint/</link><pubDate>Sat, 06 Jun 2026 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2026/multi-tenant-agent-security-blueprint/</guid><description>
 &lt;h2 id="tldr-30-second-read">TL;DR (30-Second Read)&lt;/h2>
@@ -235,7 +238,6 @@
 &lt;p>
 &lt;figure>
 &lt;picture>
-&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.avif" type="image/avif">
 &lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.webp" type="image/webp">
 &lt;img
 loading="lazy"
@@ -256,7 +258,6 @@ title="Overview architecture for data modeling module"
 &lt;p>
 &lt;figure>
 &lt;picture>
-&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.avif" type="image/avif">
 &lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.webp" type="image/webp">
 &lt;img
 loading="lazy"
@@ -277,7 +278,6 @@ title="Overview architecture for data process module"
 &lt;p>
 &lt;figure>
 &lt;picture>
-&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.avif" type="image/avif">
 &lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.webp" type="image/webp">
 &lt;img
 loading="lazy"

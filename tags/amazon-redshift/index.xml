@@ -4,7 +4,6 @@
 &lt;p>
 &lt;figure>
 &lt;picture>
-&lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.avif" type="image/avif">
 &lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.webp" type="image/webp">
 &lt;img
 loading="lazy"
