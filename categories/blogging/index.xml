@@ -69,8 +69,7 @@
 &lt;p>&lt;a href="https://kane.mx/posts/2024/alfred-integration-with-bedrock-claude/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Data Modeling</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/</link><pubDate>Sun, 22 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/</guid><description>
 &lt;p>In this post, we will delve into the data modeling module of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This module is an optional component that creates data models in the &lt;a href="https://aws.amazon.com/redshift/">Amazon Redshift&lt;/a> data warehouse and calculates reporting dimensions based on the event, session, and user factor tables generated in the &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/">data processing module&lt;/a>.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
-&lt;p>
-&lt;figure>
+&lt;p>&lt;figure>
 &lt;picture>
 &lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.webp" type="image/webp">
 &lt;img
@@ -89,8 +88,7 @@ title="Overview architecture for data modeling module"
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Data Processing</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</link><pubDate>Sat, 14 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</guid><description>
 &lt;p>In this post, we will delve into the data processing module of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This module is an optional component that normalizes raw clickstream events by cleaning, transforming, and enriching them to fit the standard clickstream data schema defined in the solution. It's designed for flexibility, reliability, high performance, and cost-effectiveness.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
-&lt;p>
-&lt;figure>
+&lt;p>&lt;figure>
 &lt;picture>
 &lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.webp" type="image/webp">
 &lt;img
@@ -109,8 +107,7 @@ title="Overview architecture for data process module"
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Data Ingestion</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/</link><pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/</guid><description>
 &lt;p>In this post, we will delve into the data ingestion service of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This service is a vital part of the clickstream analytics system. It is designed to be reliable, resilient, high-performing, flexible, and cost-effective. It plays a key role in capturing clickstream data from various sources and delivering it to downstream processing and modeling components.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
-&lt;p>
-&lt;figure>
+&lt;p>&lt;figure>
 &lt;picture>
 &lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.webp" type="image/webp">
 &lt;img

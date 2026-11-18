@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on The road</title><link>https://kane.mx/posts/</link><description>Recent content in Posts on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 18 Nov 2026 12:00:00 +0800</lastBuildDate><atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>agent-memory-kit: Replacing mem9 with Markdown and Git</title><link>https://kane.mx/posts/2026/agent-memory-kit-git-markdown-mem9/</link><pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2026/agent-memory-kit-git-markdown-mem9/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on The road</title><link>https://kane.mx/posts/</link><description>Recent content in Posts on The road</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 18 Nov 2026 12:00:00 +0800</lastBuildDate><atom:link href="https://kane.mx/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>AWS Continuum Experiment: Findings, Fixes, and Cost</title><link>https://kane.mx/posts/2026/aws-continuum-mem9-security-review/</link><pubDate>Wed, 18 Nov 2026 12:00:00 +0800</pubDate><guid>https://kane.mx/posts/2026/aws-continuum-mem9-security-review/</guid><description>
+&lt;p>I connected &lt;a href="https://aws.amazon.com/continuum/">AWS Continuum&lt;/a> to my &lt;a href="https://kane.mx/posts/2026/self-hosted-agent-memory-mem9-on-aws/">mem9 deployment&lt;/a> to see whether an AI security service could move beyond reporting vulnerabilities and help deliver verified fixes. It did produce useful remediation work. It also exposed two costs I had underestimated: the engineering needed to admit generated patches safely, and the inference cost of a full repository scan.&lt;/p>
+&lt;p>The experiment covered a codebase of roughly 233,000 lines across 704 files. My investigation put &lt;strong>one full scan at roughly $250–370 in inference charges&lt;/strong>, based on approximate scan-window attribution. That is an observation from this workload, not a fixed price per scan or a quote for another repository.&lt;/p>
+&lt;p>&lt;a href="https://kane.mx/posts/2026/aws-continuum-mem9-security-review/">Read More&lt;/a>&lt;/p></description></item><item><title>agent-memory-kit: Replacing mem9 with Markdown and Git</title><link>https://kane.mx/posts/2026/agent-memory-kit-git-markdown-mem9/</link><pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2026/agent-memory-kit-git-markdown-mem9/</guid><description>
 &lt;p>A few months ago, I wrote about &lt;a href="https://kane.mx/posts/2026/self-hosted-agent-memory-mem9-on-aws/">self-hosting mem9 on AWS&lt;/a> so the agents I use could share memory. I have now replaced that workflow with &lt;a href="https://github.com/zxkane/agent-memory-kit">agent-memory-kit&lt;/a>, a new project I have released under the &lt;a href="https://github.com/zxkane/agent-memory-kit/blob/b2b508245f4578b7467ee1c9a4346f6e6298368d/LICENSE">MIT license&lt;/a>.&lt;/p>
 &lt;p>The workstation side keeps memory as Markdown notes in a private Git repository. Each machine has a clone. Claude Code, Codex, and Kiro work with those files; agents outside the workstations can use an optional &lt;a href="https://github.com/zxkane/agent-memory-kit#memory-api">Memory API&lt;/a> through an MCP gateway.&lt;/p>
 &lt;p>&lt;a href="https://kane.mx/posts/2026/agent-memory-kit-git-markdown-mem9/">Read More&lt;/a>&lt;/p></description></item><item><title>Share a Codex Session Between ChatGPT Mobile and SSH</title><link>https://kane.mx/posts/2026/chatgpt-mobile-codex-shared-session/</link><pubDate>Thu, 01 Oct 2026 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/2026/chatgpt-mobile-codex-shared-session/</guid><description>
@@ -253,8 +256,7 @@
 &lt;p>&lt;a href="https://kane.mx/posts/2024/alfred-integration-with-bedrock-claude/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Data Modeling</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/</link><pubDate>Sun, 22 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/</guid><description>
 &lt;p>In this post, we will delve into the data modeling module of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This module is an optional component that creates data models in the &lt;a href="https://aws.amazon.com/redshift/">Amazon Redshift&lt;/a> data warehouse and calculates reporting dimensions based on the event, session, and user factor tables generated in the &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/">data processing module&lt;/a>.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
-&lt;p>
-&lt;figure>
+&lt;p>&lt;figure>
 &lt;picture>
 &lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/images/architecture.webp" type="image/webp">
 &lt;img
@@ -273,8 +275,7 @@ title="Overview architecture for data modeling module"
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-modeling/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Data Processing</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</link><pubDate>Sat, 14 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/</guid><description>
 &lt;p>In this post, we will delve into the data processing module of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This module is an optional component that normalizes raw clickstream events by cleaning, transforming, and enriching them to fit the standard clickstream data schema defined in the solution. It's designed for flexibility, reliability, high performance, and cost-effectiveness.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
-&lt;p>
-&lt;figure>
+&lt;p>&lt;figure>
 &lt;picture>
 &lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/images/architecture.webp" type="image/webp">
 &lt;img
@@ -293,8 +294,7 @@ title="Overview architecture for data process module"
 &lt;p>&lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/data-processing/">Read More&lt;/a>&lt;/p></description></item><item><title>Deep dive clickstream analytic series: Data Ingestion</title><link>https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/</link><pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate><guid>https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/</guid><description>
 &lt;p>In this post, we will delve into the data ingestion service of our &lt;a href="https://kane.mx/posts/deep-dive-clickstream-analytics/preface/">clickstream solution&lt;/a>. This service is a vital part of the clickstream analytics system. It is designed to be reliable, resilient, high-performing, flexible, and cost-effective. It plays a key role in capturing clickstream data from various sources and delivering it to downstream processing and modeling components.&lt;/p>
 &lt;h2 id="overview-architecture">Overview Architecture&lt;/h2>
-&lt;p>
-&lt;figure>
+&lt;p>&lt;figure>
 &lt;picture>
 &lt;source srcset="https://kane.mx/posts/deep-dive-clickstream-analytics/data-ingestion/images/architecture.webp" type="image/webp">
 &lt;img
